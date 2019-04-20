@@ -18,16 +18,16 @@
 
 <template>
   <section :id="$style.container">
-    <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
+    <!--<a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>-->
     <div :id='$style.logo'>
       <Logo overtitle='Welcome to' subtitle='Growhop.' />
     </div>
     <div :id='$style.body'>
       <div :id='$style.products'></div>
-      <nuxt-link to='/designer' :id='$style.cta'>
+      <a href='https://shop.supergreenlab.com/' :id='$style.cta'>
         <b>build your automated<br />growbox</b>
         <small>starts $299</small>
-      </nuxt-link>
+      </a>
     </div>
     <small :id='$style.trustmeimalawyer'>
       Clicking any of these buttons confirms that you are major in<br />
