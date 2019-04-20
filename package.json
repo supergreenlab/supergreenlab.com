@@ -1,7 +1,7 @@
 {
   "name": "supergreenlab.com",
   "version": "1.0.0",
-  "description": "SuperGreenLab&#39;s growshop homepage and designer",
+  "description": "Build you automated grow box now.",
   "author": "vitaminwater",
   "private": true,
   "scripts": {
