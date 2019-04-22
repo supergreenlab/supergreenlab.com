@@ -51,8 +51,8 @@
         <div :id='$style.form'>
           <div :id='$style.box'>
             <div :class='$style.units'>
-              <CheckBox color='#3AB20B' label='Metric' :checked='unit == "metric"' v-on:click='changeUnit("metric")' />
-              <CheckBox color='#C4C4C4' label='Imperial' :checked='unit == "imperial"' v-on:click='changeUnit("imperial")' />
+              <CheckBox color='#3AB20B' label='Metric' :checked='unit == "metric"' v-on:click='setUnit("metric")' />
+              <CheckBox color='#C4C4C4' label='Imperial' :checked='unit == "imperial"' v-on:click='setUnit("imperial")' />
             </div>
             <div :id='$style.fields'>
               <div :class='$style.field'>
@@ -71,42 +71,52 @@
           </div>
           <div :id='$style.viewer'>
             <div :class='$style.units'>
-              <CheckBox color='white' label='White' :checked='box.color == "white"' v-on:click='changeColor("white")' />
-              <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='changeColor("black")' />
+              <CheckBox color='white' label='White' :checked='box.color == "white"' v-on:click='setColor("white")' />
+              <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='setColor("black")' />
             </div>
-            <div :id='$style.item'>
-              <div :id='$style.itempic' :style='{"background-image": `url(${require(`~/assets/img/144-${box.color}.png`)})`}'></div>
-              <div :id='$style.itemdescription'>
-                <span :id='$style.itemname'>SGB 144.301B</span>
-                <span :id='$style.itemn'>x<b>2</b> = <b>$199.99</b></span>
-                <span :id='$style.power'>
-                  Power included<br />
-                  <span :id='$style.powergreen'>No seperate driver needed</span>
-                </span>
+            <div :id='$style.leds' v-for='(led, i) in leds'>
+              <div :id='$style.led'>
+                <CheckBox color='#c4c4c4' :checked='led.name == (box.led || {}).name' v-on:click='setLed(led)' />
+                <Item
+                  :icon='led.icons[box.color]'
+                  :name='led.name'
+                  :n='Math.floor(led.n)'
+                  :total='`$${led.price * Math.floor(led.n)}`'>
+                  <span  v-if='led.power == "external"' :id='$style.power'>
+                    Power included<br />
+                    <span :id='$style.powergreen'>No seperate driver needed</span>
+                    <span v-if='led.power == "mw"' :id='$style.powerred'>Seperate driver needed</span>
+                  </span>
+                  <span  v-if='led.power == "mw"' :id='$style.power'>
+                    Power <b>NOT</b> included<br />
+                    <span :id='$style.powerred'>Seperate driver needed</span>
+                  </span>
+                </Item>
               </div>
+              <h2 v-if='i != leds.length - 1'>OR</h2>
             </div>
-            <span :id='$style.hint'>Vertical scrogging looks to be the most<br />appropriate here</span>
           </div>
         </div>
       </div>
     </div>
-    <nuxt-link :id='$style.cta' to='/designer/box'>Ok</nuxt-link>
+    <a :id='$style.cta' href='javascript:void(0)' v-on:click='add'>Add</a>
   </section>
 </template>
 
 <script>
 import Logo from '~/components/logo.vue'
 import CheckBox from '~/components/checkbox.vue'
+import Item from '~/components/item.vue'
 
 export default {
-  components: { Logo, CheckBox, },
+  components: { Logo, CheckBox, Item, },
   computed: {
     width: {
       get() {
         return this.box.width
       },
       set(width) {
-        this.$store.commit('boxes/update', {i: 0, obj: {width}})
+        this.$store.commit('boxes/update', {i: this.i, obj: {width}})
       },
     },
     height: {
@@ -114,7 +124,7 @@ export default {
         return this.box.height
       },
       set(height) {
-        this.$store.commit('boxes/update', {i: 0, obj: {height}})
+        this.$store.commit('boxes/update', {i: this.i, obj: {height}})
       },
     },
     depth: {
@@ -122,25 +132,38 @@ export default {
         return this.box.depth
       },
       set(depth) {
-        this.$store.commit('boxes/update', {i: 0, obj: {depth}})
+        this.$store.commit('boxes/update', {i: this.i, obj: {depth}})
       },
     },
     box() {
-      return this.$store.getters['boxes/getBox'](0)
+      return this.$store.getters['boxes/getBox'](this.i)
     },
     unit() {
       return this.$store.state.boxes.unit
     },
+    i() {
+      return this.$route.params.id - 1
+    },
+    leds() {
+      return this.$store.getters['shop/getLedsToFit'](this.box.main, this.box.width, this.box.height, this.box.depth)
+    },
   },
   methods: {
     switchbox(main) {
-      this.$store.commit('boxes/update', {i: 0, obj: {main}})
+      this.$store.commit('boxes/update', {i: this.i, obj: {main, led: null}})
     },
-    changeColor(color) {
-      this.$store.commit('boxes/update', {i: 0, obj: {color}})
+    setLed(led) {
+      this.$store.commit('boxes/update', {i: this.i, obj: {led}})
     },
-    changeUnit(unit) {
+    setColor(color) {
+      this.$store.commit('boxes/update', {i: this.i, obj: {color}})
+    },
+    setUnit(unit) {
       this.$store.commit('boxes/unit', {unit})
+    },
+    add() {
+      this.$store.commit('boxes/update', {i: this.i, obj: {added: true}})
+      this.$router.push('/designer/box')
     },
   },
 }
@@ -228,39 +251,21 @@ export default {
   flex-direction: column
   align-items: center
 
-#item
-  display: flex
+#leds
   width: 100%
 
-#itempic
-  flex: 0.6
-  margin-right: 10pt
-  background-position: center
-  background-repeat: no-repeat
-  background-size: contain
-
-#itemdescription
-  flex: 1
+#led
   display: flex
-  flex-direction: column
-
-#itemdescription > span
-  margin: 5pt 0
-
-#itemname
-  font-size: 1.1em
-
-#itemn
-  font-size: 1em
-
-#itemn > b:nth-of-type(2)
-  font-weight: 600
+  width: 100%
 
 #power
   font-size: 0.9em
 
 #powergreen
   color: #3BB30B
+
+#powerred
+  color: #EA1E1E
 
 .error
   color: red
@@ -275,7 +280,7 @@ export default {
   background-color: #3BB30B
   margin: 40pt 0
   padding: 5pt 35pt
-  border-radius: 5pt
+  border-radius: 3pt
   text-decoration: none
   text-align: center
   font-size: 1.2em

@@ -16,14 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import axios from 'axios'
-
 const box_defaults = (main) => ({
   main,
   color: 'white',
   width: '',
   height: '',
   depth: '',
+  leds: null,
 })
 
 export const state = () => ({
@@ -35,10 +34,14 @@ export const state = () => ({
   ],
 })
 
+const updateBox = (state, i, obj) => {
+  const box = Object.assign({}, state.boxes[i], obj)
+  state.boxes = Object.assign([], state.boxes, {[i]: box})
+}
+
 export const mutations = {
   update(state, { i, obj }) {
-    const box = Object.assign({}, state.boxes[i], obj)
-    state.boxes = Object.assign([], state.boxes, {[i]: box})
+    updateBox(state, i, obj)
   },
   unit(state, { unit }) {
     state.unit = unit

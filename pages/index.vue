@@ -18,8 +18,8 @@
 
 <template>
   <section :id="$style.container">
-    <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
     <div :id='$style.ad'>Happy 420 ! 20% off for all preorders with #SUPERGREEN420 :) Ends April 24th</div>
+    <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
     <div :id='$style.logo'>
       <Logo overtitle='Welcome to' subtitle='Growhop.' />
     </div>
@@ -123,7 +123,7 @@ export default {
   top: 0pt
   right: 0pt
   margin: 5pt
-  color: #3BB30B
+  color: white
   font-size: 0.8em
   font-weight: 600
 

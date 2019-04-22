@@ -19,17 +19,25 @@
 <template>
   <section :id='$style.container'>
     <h3>Box #{{ i }}</h3>
-    <div :id='$style.empty'>
-      No light selected for this box yet.
-      <nuxt-link :id='$style.create' :to='`/designer/box/${i}`'>Create box</nuxt-link>
+    <div v-if='!box.added'>
+      <div :id='$style.empty'>
+        No light selected for this box yet.
+        <nuxt-link :id='$style.create' :to='`/designer/box/${i}`'>Create box</nuxt-link>
+      </div>
+      <div v-if='enabled == "false"' :id='$style.disabled'></div>
     </div>
-    <div v-if='enabled == "false"' :id='$style.disabled'></div>
   </section>
 </template>
 
 <script>
 export default {
   props: ['i', 'enabled'],
+  computed: {
+    box() {
+      const { i, } = this.$props
+      return this.$store.getters['boxes/getBox'](i - 1)
+    }
+  },
 }
 </script>
 
@@ -59,7 +67,7 @@ export default {
   background-color: #3BB30B
   margin: 20pt 0 25pt 0
   padding: 5pt 35pt
-  border-radius: 5pt
+  border-radius: 3pt
   text-decoration: none
   text-align: center
   font-weight: 600

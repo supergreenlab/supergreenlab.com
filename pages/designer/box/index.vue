@@ -25,8 +25,9 @@
       <div :id='$style.intro'>
         <h2>Growbox designer</h2>
         <p>
-          We'll start by the main box.<br /><br />
-            And then the veg box, which is optionnal, but allows to double the frequency of your harvests, so you can avoid having too much at once, but still have continuous supply.
+          We'll start by the main boxes.<br /><br />
+            And then the veg box, which is optionnal, but allows to double the frequency of your harvests, so you can avoid having too much at once, but still have continuous supply.<br />
+          You can easily have one veg box for two Main boxes.
         </p>
       </div>
       <Box i='1' />
