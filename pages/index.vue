@@ -18,16 +18,17 @@
 
 <template>
   <section :id="$style.container">
-    <!--<a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>-->
+    <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
+    <div :id='$style.ad'>Happy 420 ! 20% off for all preorders with #SUPERGREEN420 :) Ends April 24th</div>
     <div :id='$style.logo'>
       <Logo overtitle='Welcome to' subtitle='Growhop.' />
     </div>
     <div :id='$style.body'>
       <div :id='$style.products'></div>
-      <a href='https://shop.supergreenlab.com/' :id='$style.cta'>
+      <nuxt-link to='/designer' :id='$style.cta'>
         <b>build your automated<br />growbox</b>
-        <small>starts $299</small>
-      </a>
+        <small>starts $219</small>
+      </nuxt-link>
     </div>
     <small :id='$style.trustmeimalawyer'>
       Clicking any of these buttons confirms that you are major in<br />
@@ -53,9 +54,21 @@ export default {
   align-items: center
   min-height: 100vh
 
+#ad
+  position: absolute
+  width: 100%
+  top: 0
+  left: 0
+  background-color: #3BB30B
+  text-align: center
+  color: white
+  font-weight: 400
+  padding: 5pt 0
+
 #logo
   margin: 50pt 0 0
   font-size: 3em
+  z-index: 100
 
 #body
   flex: 1
@@ -73,6 +86,11 @@ export default {
   background-position: center
   background-repeat: no-repeat
   background-size: contain
+  transform: scale(1.7)
+  @media only screen and (max-width: 500px)
+    transform: scale(1.0)
+  @media only screen and (min-width: 500px) and (max-width: 800px)
+    transform: scale(1.2)
 
 #cta
   display: flex
@@ -85,11 +103,15 @@ export default {
   text-decoration: none
   text-align: center
   font-size: 0.9em
+  z-index: 100
 
 #cta > small
   padding-top: 5pt
   font-weight: 300
   font-size: 1.1em
+
+#cta > b
+  font-weight: 600
 
 #trustmeimalawyer
   font-weight: 300

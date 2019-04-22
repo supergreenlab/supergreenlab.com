@@ -58,12 +58,15 @@ export default {
 #supergreenlab
   display: flex
   flex-direction: column
+  white-space: nowrap
 
 #logo
   font-family: 'PlumeAd'
   text-transform: uppercase
   letter-spacing: 1pt
-  word-spacing: -10pt
+  word-spacing: -6pt
+  @media only screen and (max-width: 600px)
+    word-spacing: -4pt
 
 .supergreen
   color: #3BB30B
@@ -78,8 +81,9 @@ export default {
   font-family: Roboto
   font-weight: 300
   font-size: 0.4em
+  width: 100%
 
 #subtitle
-  align-self: end
+  text-align: right
 
 </style>

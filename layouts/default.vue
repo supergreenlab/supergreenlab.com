@@ -10,6 +10,5 @@
   display: flex
   justify-content: center
   background-color: white
-  max-width: 1200px
 
 </style>
