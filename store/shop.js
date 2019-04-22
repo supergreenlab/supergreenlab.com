@@ -67,29 +67,29 @@ export const state = () => ({
   ]
 })
 
-const LED_SIZE_SPREAD = 1.25
+const LED_SIZE_SPREAD = 1.5
 
-const getNLedForSurface = (state, width, height) => Math.max(...state.leds.map((b) => Math.max(
-  Math.min(width / (b.width * LED_SIZE_SPREAD), height / (b.height * LED_SIZE_SPREAD)),
-  Math.min(width / (b.height * LED_SIZE_SPREAD), height / (b.width * LED_SIZE_SPREAD)),
-)))
+const getNLedForSurface = (state, width, height, l) => Math.max(
+  Math.min(width / (l.width * LED_SIZE_SPREAD), height / (l.height * LED_SIZE_SPREAD)),
+  Math.min(width / (l.height * LED_SIZE_SPREAD), height / (l.width * LED_SIZE_SPREAD)),
+)
 
 export const getters = {
   getLedsToFit: (state) => (main, width, height, depth) => {
     width = parseInt(width)
     height = parseInt(height)
     depth = parseInt(depth)
-    const b = state.leds.map((b) => {
-      const sideN = getNLedForSurface(state, height, depth),
-            ceilingN = getNLedForSurface(state, width, depth),
-            deepN = getNLedForSurface(state, width, height),
+    const leds = state.leds.map((l) => {
+      const sideN = getNLedForSurface(state, height, depth, l),
+            ceilingN = getNLedForSurface(state, width, depth, l),
+            deepN = getNLedForSurface(state, width, height, l),
             maxN = Math.max(sideN, ceilingN, deepN)
-      let res = Object.assign({}, b, {n: maxN})
+      let res = Object.assign({}, l, {n: Math.floor(maxN)})
       if (sideN == maxN || deepN == maxN) res.scrog = 'vertical'
       else if (ceilingN == maxN) res.scrog = 'horizontal'
       return res
     })
 
-    return b.filter((b) => b.n >= 1 && ((!main && b.power == 'controller') || (main && b.power != 'controller')))
+    return leds.filter((l) => l.n >= 1 && ((!main && l.power == 'controller') || (main && l.power != 'controller')))
   }
 }
