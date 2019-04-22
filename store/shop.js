@@ -67,7 +67,7 @@ export const state = () => ({
   ]
 })
 
-const LED_SIZE_SPREAD = 1.5
+const LED_SIZE_SPREAD = 1.6
 
 const getNLedForSurface = (state, width, height, l) => Math.max(
   Math.min(width / (l.width * LED_SIZE_SPREAD), height / (l.height * LED_SIZE_SPREAD)),
@@ -84,7 +84,7 @@ export const getters = {
             ceilingN = getNLedForSurface(state, width, depth, l),
             deepN = getNLedForSurface(state, width, height, l),
             maxN = Math.max(sideN, ceilingN, deepN)
-      let res = Object.assign({}, l, {n: Math.floor(maxN)})
+      let res = Object.assign({}, l, {n: Math.round(maxN)})
       if (sideN == maxN || deepN == maxN) res.scrog = 'vertical'
       else if (ceilingN == maxN) res.scrog = 'horizontal'
       return res
