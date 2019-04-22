@@ -56,13 +56,16 @@
             </div>
             <div :id='$style.fields'>
               <div :class='$style.field'>
-                <span>Width: </span><input type='text' v-model='box.width' /><span>cm</span>
+                <span>Width: </span><input type='text' v-model='width' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
+                <p :class='$style.error' v-if='width && !(/^\d+$/.test(width))'>enter a valid number</p>
               </div>
               <div :class='$style.field'>
-                <span>Height: </span><input type='text' v-model='box.height' /><span>cm</span>
+                <span>Height: </span><input type='text' v-model='height' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
+                <p :class='$style.error' v-if='height && !(/^\d+$/.test(height))'>enter a valid number</p>
               </div>
               <div :class='$style.field'>
-                <span>Depth: </span><input type='text' v-model='box.depth' /><span>cm</span>
+                <span>Depth: </span><input type='text' v-model='depth' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
+                <p :class='$style.error' v-if='depth && !(/^\d+$/.test(depth))'>enter a valid number</p>
               </div>
             </div>
           </div>
@@ -72,7 +75,7 @@
               <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='changeColor("black")' />
             </div>
             <div :id='$style.item'>
-              <div :id='$style.itempic' :style='{"background-image": `url(${require("~/assets/img/144-black.png")})`}'></div>
+              <div :id='$style.itempic' :style='{"background-image": `url(${require(`~/assets/img/144-${box.color}.png`)})`}'></div>
               <div :id='$style.itemdescription'>
                 <span :id='$style.itemname'>SGB 144.301B</span>
                 <span :id='$style.itemn'>x<b>2</b> = <b>$199.99</b></span>
@@ -87,6 +90,7 @@
         </div>
       </div>
     </div>
+    <nuxt-link :id='$style.cta' to='/designer/box'>Ok</nuxt-link>
   </section>
 </template>
 
@@ -97,6 +101,30 @@ import CheckBox from '~/components/checkbox.vue'
 export default {
   components: { Logo, CheckBox, },
   computed: {
+    width: {
+      get() {
+        return this.box.width
+      },
+      set(width) {
+        this.$store.commit('boxes/update', {i: 0, obj: {width}})
+      },
+    },
+    height: {
+      get() {
+        return this.box.height
+      },
+      set(height) {
+        this.$store.commit('boxes/update', {i: 0, obj: {height}})
+      },
+    },
+    depth: {
+      get() {
+        return this.box.depth
+      },
+      set(depth) {
+        this.$store.commit('boxes/update', {i: 0, obj: {depth}})
+      },
+    },
     box() {
       return this.$store.getters['boxes/getBox'](0)
     },
@@ -188,6 +216,7 @@ export default {
 .field > span:nth-of-type(2)
   display: inline-block
   margin-left: 5pt
+  width: 10pt
 
 #hint
   color: red
@@ -232,5 +261,28 @@ export default {
 
 #powergreen
   color: #3BB30B
+
+.error
+  color: red
+  font-size: 0.8em
+  text-align: right
+
+#cta
+  display: flex
+  flex-direction: column
+  text-transform: uppercase
+  color: white
+  background-color: #3BB30B
+  margin: 40pt 0
+  padding: 5pt 35pt
+  border-radius: 5pt
+  text-decoration: none
+  text-align: center
+  font-size: 1.2em
+  font-weight: 400
+  align-self: center
+
+#cta:hover
+  background-color: #2C800B
 
 </style>
