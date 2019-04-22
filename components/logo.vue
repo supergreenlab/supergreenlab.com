@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <div :id='$style.supergreenlab' :style='{"font-size": size, color, margin}'>
+  <div :id='$style.supergreenlab' :style='{"font-size": size, color, margin}' v-on:click='backToHome()'>
     <div v-if='overtitle' :id='$style.overtitle'>{{ overtitle }}</div>
     <div :id='$style.logo'>
       <span :class='vertical == true ? $style.supersmallword : ""'>S<span :class='$style.supersmall'>upe</span>r</span><br v-if='vertical != false' />
@@ -49,6 +49,11 @@ export default {
     subtitle: {
       default: ''
     }
+  },
+  methods: {
+    backToHome() {
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -59,6 +64,7 @@ export default {
   display: flex
   flex-direction: column
   white-space: nowrap
+  cursor: pointer
 
 #logo
   font-family: 'PlumeAd'

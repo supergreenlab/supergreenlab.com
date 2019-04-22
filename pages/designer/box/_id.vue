@@ -23,10 +23,10 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.choice'>
-        <h2 v-on:click='switchbox(true)'>Main box</h2>
-        <h2 v-on:click='switchbox(false)'>Veg box <small>(optional)</small></h2>
+        <h2 v-on:click='switchbox(true)' :class='box.main ? $style.selected : ""'>Main box</h2>
+        <h2 v-on:click='switchbox(false)' :class='!box.main ? $style.selected : ""'>Veg box <small>(optional)</small></h2>
       </div>
-      <p v-if='main' :id='$style.intro'>
+      <p v-if='box.main' :id='$style.intro'>
         The main box is all you need to grow, it can go from sprout to harvest.<br />
         Your mainbox will need a good amount of lights, which is calculated<br />
         based on the surface of your canopy.<br />
@@ -51,25 +51,25 @@
         <div :id='$style.form'>
           <div :id='$style.box'>
             <div :class='$style.units'>
-              <CheckBox color='#3AB20B' label='Metric' checked='1' />
-              <CheckBox color='#C4C4C4' label='Imperial' />
+              <CheckBox color='#3AB20B' label='Metric' :checked='unit == "metric"' v-on:click='changeUnit("metric")' />
+              <CheckBox color='#C4C4C4' label='Imperial' :checked='unit == "imperial"' v-on:click='changeUnit("imperial")' />
             </div>
             <div :id='$style.fields'>
               <div :class='$style.field'>
-                <span>Width: </span><input type='text' v-model='width' /><span>cm</span>
+                <span>Width: </span><input type='text' v-model='box.width' /><span>cm</span>
               </div>
               <div :class='$style.field'>
-                <span>Height: </span><input type='text' v-model='height' /><span>cm</span>
+                <span>Height: </span><input type='text' v-model='box.height' /><span>cm</span>
               </div>
               <div :class='$style.field'>
-                <span>Depth: </span><input type='text' v-model='depth' /><span>cm</span>
+                <span>Depth: </span><input type='text' v-model='box.depth' /><span>cm</span>
               </div>
             </div>
           </div>
           <div :id='$style.viewer'>
             <div :class='$style.units'>
-              <CheckBox color='white' label='White' />
-              <CheckBox color='black' label='Black' checked='1' />
+              <CheckBox color='white' label='White' :checked='box.color == "white"' v-on:click='changeColor("white")' />
+              <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='changeColor("black")' />
             </div>
             <div :id='$style.item'>
               <div :id='$style.itempic' :style='{"background-image": `url(${require("~/assets/img/144-black.png")})`}'></div>
@@ -96,17 +96,23 @@ import CheckBox from '~/components/checkbox.vue'
 
 export default {
   components: { Logo, CheckBox, },
-  data() {
-    return {
-      main: true,
-      width: '',
-      height: '',
-      depth: '',
-    }
+  computed: {
+    box() {
+      return this.$store.getters['boxes/getBox'](0)
+    },
+    unit() {
+      return this.$store.state.boxes.unit
+    },
   },
   methods: {
     switchbox(main) {
-      this.$data.main = main
+      this.$store.commit('boxes/update', {i: 0, obj: {main}})
+    },
+    changeColor(color) {
+      this.$store.commit('boxes/update', {i: 0, obj: {color}})
+    },
+    changeUnit(unit) {
+      this.$store.commit('boxes/unit', {unit})
     },
   },
 }
@@ -131,10 +137,20 @@ export default {
 #choice > h2
   margin: 0 10pt 0 0
   cursor: pointer
+  opacity: 0.3
+  transform: scale(0.98)
+  transition: transform 0.2s
+
+#choice > h2:hover
+  opacity: 0.5
 
 #choice > h2 > small
   font-size: 0.8em
   font-weight: 300
+
+#choice > .selected
+  transform: scale(1)
+  opacity: 1 !important
 
 #intro
   margin: 20pt 0

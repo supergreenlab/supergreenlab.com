@@ -107,7 +107,7 @@
       <div :id='$style.designer'>
         <div :id='$style.boxes'>
           Alright, now let’s design Grow boxes.
-          <nuxt-link :id='$style.cta' to='/boxes'>start</nuxt-link>
+          <nuxt-link :id='$style.cta' to='/designer/box'>start</nuxt-link>
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.border' :class='checked ? $style.selected : ""'>
+    <div :id='$style.border' :class='checked ? $style.selected : ""' v-on:click='click()'>
       <div :id='$style.checkboxcenter' :style='{"background-color": color}'></div>
     </div>
     {{ label }}
@@ -28,6 +28,11 @@
 <script>
 export default {
   props: ['color', 'label', 'checked', ],
+  methods: {
+    click() {
+      this.$emit('click')
+    },
+  },
 }
 </script>
 
@@ -50,6 +55,7 @@ export default {
   border: 1px solid #C4C4C4
   border-radius: 2pt
   cursor: pointer
+  transition: box-shadow 0.2s
 
 #checkboxcenter
   width: 100%

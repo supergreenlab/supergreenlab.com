@@ -21,7 +21,7 @@
     <h3>Box #{{ i }}</h3>
     <div :id='$style.empty'>
       No light selected for this box yet.
-      <nuxt-link :id='$style.create' to='/box'>Create box</nuxt-link>
+      <nuxt-link :id='$style.create' :to='`/designer/box/${i}`'>Create box</nuxt-link>
     </div>
     <div v-if='enabled == "false"' :id='$style.disabled'></div>
   </section>
