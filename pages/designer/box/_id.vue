@@ -51,17 +51,18 @@
         <div :id='$style.form'>
           <div :id='$style.box'>
             <div :class='$style.units'>
-              <CheckBox color='#3AB20B' label='Metric' :checked='unit == "metric"' v-on:click='setUnit("metric")' />
-              <CheckBox color='#C4C4C4' label='Imperial' :checked='unit == "imperial"' v-on:click='setUnit("imperial")' />
+              <CheckBox :color='unit == "metric" ? "#3AB20B" : "#C4C4C4"' label='Metric' :checked='unit == "metric"' v-on:click='setUnit("metric")' />
+              <CheckBox :color='unit == "imperial" ? "#3AB20B" : "#C4C4C4"' label='Imperial' :checked='unit == "imperial"' v-on:click='setUnit("imperial")' />
             </div>
             <div :id='$style.fields'>
               <div :class='$style.field'>
                 <span>Width: </span><input type='text' v-model='width' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
                 <p :class='$style.error' v-if='width && !(/^\d+$/.test(width))'>enter a valid number</p>
               </div>
-              <div v-if='box.main' :class='$style.field'>
-                <span>Height: </span><input type='text' v-model='height' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
+              <div :class='$style.field + " " + (!box.main ? $style.disabled : "")'>
+                <span>Height: </span><input :disabled='!box.main' type='text' v-model='height' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
                 <p :class='$style.error' v-if='height && !(/^\d+$/.test(height))'>enter a valid number</p>
+                <p v-if='!box.main' :id='$style.vegdisclaimer'>Veg boxes have there lights on top</p>
               </div>
               <div :class='$style.field'>
                 <span>Depth: </span><input type='text' v-model='depth' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
@@ -69,7 +70,7 @@
               </div>
             </div>
           </div>
-          <div :id='$style.viewer'>
+          <div v-if='leds.length' :id='$style.viewer'>
             <div :class='$style.units'>
               <CheckBox color='white' label='White' :checked='box.color == "white"' v-on:click='setColor("white")' />
               <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='setColor("black")' />
@@ -82,6 +83,7 @@
                   :name='led.name'
                   :n='Math.floor(led.n)'
                   :total='`$${led.price * Math.floor(led.n)}`'>
+                  {{ led.scrog }}
                   <span  v-if='led.power == "external"' :id='$style.power'>
                     Power included<br />
                     <span :id='$style.powergreen'>No seperate driver needed</span>
@@ -210,7 +212,7 @@ export default {
 #form
   flex: 0.7
   display: flex
-  @media only screen and (max-width: 500px)
+  @media only screen and (max-width: 800px)
     flex: 1
     flex-direction: column
 
@@ -218,6 +220,7 @@ export default {
   display: flex
   flex-direction: column
   margin-right: 50pt
+  flex: 0.9
 
 .units
   display: flex
@@ -266,6 +269,9 @@ export default {
 #powerred
   color: #EA1E1E
 
+#vegdisclaimer
+  font-size: 0.7em
+
 .error
   color: red
   font-size: 0.8em
@@ -291,9 +297,10 @@ export default {
 #cta.enabled:hover
   background-color: #2C800B
   
-
 .disabled
-  background-color: #c4c4c4
   opacity: 0.4
+
+#cta.disabled
+  background-color: #c4c4c4
 
 </style>
