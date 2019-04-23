@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :style='{display: visible ? "" : "none"}'>
     <h3>Box #{{ i+1 }}</h3>
     <div v-if='!box.leds'>
       <div :id='$style.empty'>
@@ -54,7 +54,7 @@
 import Item from './item.vue'
 export default {
   components: { Item },
-  props: ['i', 'box'],
+  props: ['i', 'box', 'visible'],
   methods: {
     clear() {
       const { i } = this.$props
@@ -74,12 +74,12 @@ export default {
 #logo
   margin: 5pt
   font-size: 1.2em
-  align-self: start
+  align-self: flex-start
 
 #empty
   display: flex
   flex-direction: column
-  align-items: start
+  align-items: flex-start
   justify-content: center
   padding: 30pt 0
 
@@ -118,5 +118,14 @@ export default {
 
 #actions > a
   margin-bottom: 5pt
+
+#power
+  font-size: 0.9em
+
+#powergreen
+  color: #3BB30B
+
+#powerred
+  color: #EA1E1E
 
 </style>

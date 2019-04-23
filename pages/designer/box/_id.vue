@@ -23,8 +23,8 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.choice'>
-        <h2 v-on:click='switchbox(true)' :class='box.main ? $style.selected : ""'>Main box</h2>
-        <h2 v-on:click='switchbox(false)' :class='!box.main ? $style.selected : ""'>Veg box <small>(optional)</small></h2>
+        <CheckBox :color='box.main ? "#3AB20B" : "#C4C4C4"' :checked='box.main' v-on:click='switchbox(true)' /><h2 v-on:click='switchbox(true)' :class='box.main ? $style.selected : ""'>Main box</h2>
+        <CheckBox :color='!box.main ? "#3AB20B" : "#C4C4C4"' :checked='!box.main' v-on:click='switchbox(false)' /><h2 v-on:click='switchbox(false)' :class='!box.main ? $style.selected : ""'>Veg box <small>(optional)</small></h2>
       </div>
       <p v-if='box.main' :id='$style.intro'>
         The main box is all you need to grow, it can go from sprout to harvest.<br />
@@ -82,7 +82,7 @@
                   :icon='led.icons[box.color]'
                   :name='led.name'
                   :n='Math.floor(led.n)'
-                  :total='`$${led.price * Math.floor(led.n)}`'>
+                  :total='`$${Math.round(led.price * Math.floor(led.n) * 100) / 100}`'>
                   {{ led.scrog }}
                   <span  v-if='led.power == "external"' :id='$style.power'>
                     Power included<br />
@@ -101,7 +101,7 @@
         </div>
       </div>
     </div>
-    <nuxt-link to='/designer/box' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>Add</nuxt-link>
+    <nuxt-link to='/designer/box' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>{{ box.leds ? "Save" : "Add" }}</nuxt-link>
   </section>
 </template>
 
@@ -147,7 +147,9 @@ export default {
       return this.$route.params.id - 1
     },
     leds() {
-      return this.$store.getters['shop/getLedsToFit'](this.box.main, this.box.width, this.box.height, this.box.depth)
+      let conv = 1.0
+      if (this.unit == 'in') conv = 2.54
+      return this.$store.getters['shop/getLedsToFit'](this.box.main, this.box.width * conv, this.box.height * conv, this.box.depth * conv)
     },
   },
   methods: {
@@ -172,11 +174,13 @@ export default {
 #container
   display: flex
   flex-direction: column
+  align-items: center
+  width: 100%
 
 #logo
   margin: 5pt
-  font-size: 1.2em
-  align-self: start
+  font-size: 1.5em
+  align-self: flex-start
 
 #choice
   display: flex
@@ -208,6 +212,8 @@ export default {
   display: flex
   flex-direction: column
   margin: 0 10pt
+  width: 100%
+  max-width: 600pt
 
 #form
   flex: 0.7

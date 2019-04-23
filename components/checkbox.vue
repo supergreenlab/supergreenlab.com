@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='label ? $style.withlabel : ""'>
     <div :id='$style.border' :class='checked ? $style.selected : ""' v-on:click='click()'>
       <div :id='$style.checkboxcenter' :style='{"background-color": color}'></div>
     </div>
@@ -42,6 +42,8 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+
+.withlabel
   margin-right: 20pt
 
 #border

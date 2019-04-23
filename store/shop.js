@@ -19,6 +19,10 @@
 export const state = () => ({
   leds: [
     {
+      ids: {
+        white: '22937070895152',
+        black: '22990585954352',
+      },
       name: 'SGB 288.301B',
       price: 99.00,
       main: true,
@@ -31,6 +35,10 @@ export const state = () => ({
       height: 25,
     },
     {
+      ids: {
+        white: '22937065586736',
+        black: '22990590410800',
+      },
       name: 'SGB 144.301B',
       price: 89.00,
       main: true,
@@ -43,6 +51,10 @@ export const state = () => ({
       height: 23,
     },
     {
+      ids: {
+        white: '22937069060144',
+        black: '22990602797104',
+      },
       name: 'SGB 72.301B',
       price: 34.99,
       power: 'controller',
@@ -54,6 +66,10 @@ export const state = () => ({
       height: 11,
     },
     {
+      ids: {
+        white: '22937067421744',
+        black: '23014573146160',
+      },
       name: 'SGB 36.301B',
       price: 24.99,
       power: 'controller',

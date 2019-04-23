@@ -127,12 +127,14 @@ export default {
 #container
   display: flex
   flex-direction: column
+  align-items: center
+  width: 100%
   min-height: 100vh
 
 #logo
   margin: 5pt
-  font-size: 1.2em
-  align-self: start
+  font-size: 1.5em
+  align-self: flex-start
 
 #header
   padding: 50pt 20pt
@@ -142,6 +144,7 @@ export default {
 
 #body
   padding: 0 30pt 0 30pt
+  width: 100%
   max-width: 600pt
 
 #body > p

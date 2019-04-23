@@ -18,12 +18,13 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.image'>
+    <div :id='$style.image' :style='{transform: `scale(${!expanded ? 0.6 : 1})`}'>
       <img :src='require(`~/assets/img/${image}`)' />
     </div>
-    <div :id='$style.body'>
+    <div ref='body' :id='$style.body' :style='{height}'>
       <h4>{{ title }}</h4>
       <slot></slot>
+      <a :id='$style.expand' href='javascript:void(0)' v-on:click='expand'>{{ expanded ? "See less" : "See more" }}</a>
     </div>
   </section>
 </template>
@@ -31,6 +32,21 @@
 <script>
 export default {
   props: ['image', 'title',],
+  data() {
+    return {
+      expanded: false,
+      height: '90px',
+    }
+  },
+  methods: {
+    expand() {
+      this.$data.expanded = !this.$data.expanded
+      if (this.$data.expanded)
+        this.$data.height = this.$refs.body.scrollHeight + 40 + 'px'
+      else
+        this.$data.height = '90px'
+    }
+  },
 }
 </script>
 
@@ -40,12 +56,14 @@ export default {
   display: flex
   margin: 20pt 0
   @media only screen and (max-width: 600px)
+    margin: 0 0
     flex-direction: column
 
 #image
   display: flex
   align-items: center
   justify-content: center
+  transition: transform 0.3s
 
 #image > img
   margin-right: 20pt
@@ -54,9 +72,23 @@ export default {
     margin-right: 0
     margin-bottom: 20pt
 
+#body
+  overflow: hidden
+  position: relative
+  transition: height 0.3s
+
 #body > h4
   margin-bottom: 10pt
   font-weight: 400
   font-size: 1.1em
+
+#expand
+  position: absolute
+  cursor: pointer
+  left: 0
+  bottom: 0
+  width: 100%
+  height: 35px
+  background-color: white
 
 </style>

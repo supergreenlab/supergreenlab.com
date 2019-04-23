@@ -25,13 +25,25 @@ const box_defaults = (main) => ({
   leds: null,
 })
 
+const default_boxes = [
+  box_defaults(true),
+  box_defaults(false),
+  box_defaults(false),
+]
+
+const stored = {
+  unit: window.localStorage.getItem('metric') || 'metric',
+  boxes: JSON.parse(window.localStorage.getItem('boxes') || JSON.stringify(default_boxes)),
+}
+
+const storeState = (state) => {
+  window.localStorage.setItem('unit', state.unit)
+  window.localStorage.setItem('boxes', JSON.stringify(state.boxes))
+}
+
 export const state = () => ({
-  unit: 'metric',
-  boxes: [
-    box_defaults(true),
-    box_defaults(true),
-    box_defaults(false),
-  ],
+  unit: stored.unit,
+  boxes: stored.boxes,
 })
 
 const updateBox = (state, i, obj) => {
@@ -42,9 +54,11 @@ const updateBox = (state, i, obj) => {
 export const mutations = {
   update(state, { i, obj }) {
     updateBox(state, i, obj)
+    storeState(state)
   },
   unit(state, { unit }) {
     state.unit = unit
+    storeState(state)
   },
 }
 

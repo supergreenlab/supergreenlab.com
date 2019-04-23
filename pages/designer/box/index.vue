@@ -30,7 +30,12 @@
           You can easily have one veg box for two Main boxes.
         </p>
       </div>
-      <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' />
+      <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || boxes[i - 1].leds' />
+    </div>
+    <div :id='$style.submitform'>
+      Got a promo code ?
+      <input :id='$style.promocode' type='text' v-model='promo' placeholder='Enter your promocode here.' />
+      <a v-on:click='createCart()' :id='$style.cta' :class='!valid ? $style.disabled : $style.enabled' href='javascript:void(0)'>Go to cart</a>
     </div>
   </section>
 </template>
@@ -41,10 +46,27 @@ import Box from '~/components/box.vue'
 
 export default {
   components: { Logo, Box, },
+  data() {
+    return {
+      promo: '',
+    }
+  },
   computed: {
     boxes() {
       return this.$store.state.boxes.boxes
-    }
+    },
+    valid() {
+      return this.$store.state.boxes.boxes.findIndex((b) => !!b.leds) != -1
+    },
+  },
+  methods: {
+    createCart() {
+      if (!this.valid) {
+        return
+      }
+      const url_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
+      window.location.href=`https://shop.supergreenlab.com/cart/${url_cart}?checkout[reduction_code]=${this.$data.promo}`
+    },
   },
 }
 </script>
@@ -54,12 +76,14 @@ export default {
 #container
   display: flex
   flex-direction: column
+  align-items: center
+  width: 100%
   min-height: 100vh
 
 #logo
   margin: 5pt
-  font-size: 1.2em
-  align-self: start
+  font-size: 1.5em
+  align-self: flex-start
 
 #intro
   padding: 50pt 0
@@ -70,6 +94,41 @@ export default {
 
 #body
   padding: 0 30pt 0 30pt
+  width: 100%
   max-width: 600pt
+
+#cta
+  display: flex
+  flex-direction: column
+  text-transform: uppercase
+  color: white
+  margin: 20pt 0
+  padding: 5pt 35pt
+  border-radius: 3pt
+  text-decoration: none
+  text-align: center
+  font-size: 1.2em
+  font-weight: 400
+  align-self: center
+
+#cta.enabled
+  background-color: #3BB30B
+
+#cta.enabled:hover
+  background-color: #2C800B
+  
+.disabled
+  opacity: 0.4
+  cursor: default
+
+#cta.disabled
+  background-color: #c4c4c4
+
+#promocode
+  height: 25pt
+
+#submitform
+  display: flex
+  flex-direction: column
 
 </style>
