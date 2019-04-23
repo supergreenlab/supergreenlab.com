@@ -22,8 +22,7 @@
       <Logo subtitle='Growbox Designer' />
     </div>
     <div :id='$style.header'>
-      Welcome to the grow box designer, this tool will help you pick the right<br />
-      bundle for the job.
+      Welcome to the grow box designer, this tool will help you pick the right bundle for the job.
     </div>
     <div :id='$style.body'>
       <h2>SuperGreenLab’s bundles</h2>
@@ -136,7 +135,7 @@ export default {
   align-self: start
 
 #header
-  padding: 50pt 0
+  padding: 50pt 20pt
   font-weight: 300
   text-align: center
   font-size: 1.5em

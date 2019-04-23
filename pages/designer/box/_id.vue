@@ -170,7 +170,6 @@ export default {
 #container
   display: flex
   flex-direction: column
-  min-height: 100vh
 
 #logo
   margin: 5pt
@@ -179,7 +178,7 @@ export default {
 
 #choice
   display: flex
-  margin 30pt 0
+  margin 50pt 0 10pt 0
 
 #choice > h2
   margin: 0 10pt 0 0
@@ -206,10 +205,14 @@ export default {
   flex: 1
   display: flex
   flex-direction: column
+  margin: 0 10pt
 
 #form
   flex: 0.7
   display: flex
+  @media only screen and (max-width: 500px)
+    flex: 1
+    flex-direction: column
 
 #box
   display: flex

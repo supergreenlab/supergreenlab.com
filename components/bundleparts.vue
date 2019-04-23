@@ -39,16 +39,20 @@ export default {
 #container
   display: flex
   margin: 20pt 0
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #image
   display: flex
   align-items: center
   justify-content: center
-  width: 100pt
 
 #image > img
   margin-right: 20pt
-
+  max-width: 100pt
+  @media only screen and (max-width: 600px)
+    margin-right: 0
+    margin-bottom: 20pt
 
 #body > h4
   margin-bottom: 10pt

@@ -120,10 +120,10 @@ export default {
 
 #shop
   position: absolute
-  top: 0pt
+  top: 20pt
   right: 0pt
   margin: 5pt
-  color: white
+  color: #3BB30B
   font-size: 0.8em
   font-weight: 600
 
