@@ -18,25 +18,48 @@
 
 <template>
   <section :id='$style.container'>
-    <h3>Box #{{ i }}</h3>
-    <div v-if='!box.added'>
+    <h3>Box #{{ i+1 }}</h3>
+    <div v-if='!box.leds'>
       <div :id='$style.empty'>
         No light selected for this box yet.
-        <nuxt-link :id='$style.create' :to='`/designer/box/${i}`'>Create box</nuxt-link>
+        <nuxt-link :id='$style.create' :to='`/designer/box/${i+1}`'>Create box</nuxt-link>
       </div>
-      <div v-if='enabled == "false"' :id='$style.disabled'></div>
+      <div v-if='box.enabled == "false"' :id='$style.disabled'></div>
+    </div>
+    <div v-else :id='$style.item'>
+      <Item 
+        :icon='box.leds.icons[box.color]'
+        :name='box.leds.name'
+        :n='Math.floor(box.leds.n)'
+        :total='`$${box.leds.price * Math.floor(box.leds.n)}`'>
+        <span  v-if='box.leds.power == "external"' :id='$style.power'>
+          Power included<br />
+          <span :id='$style.powergreen'>No seperate driver needed</span>
+          <span v-if='box.leds.power == "mw"' :id='$style.powerred'>Seperate driver needed</span>
+        </span>
+        <span  v-if='box.leds.power == "mw"' :id='$style.power'>
+          Power <b>NOT</b> included<br />
+          <span :id='$style.powerred'>Seperate driver needed</span>
+        </span>
+      </Item>
+      <div :id='$style.actions'>
+        <nuxt-link :to='`/designer/box/${i+1}`'>Edit</nuxt-link>
+        <a href='javascript:void(0)' v-on:click='clear'>X clear</a>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import Item from './item.vue'
 export default {
-  props: ['i', 'enabled'],
-  computed: {
-    box() {
-      const { i, } = this.$props
-      return this.$store.getters['boxes/getBox'](i - 1)
-    }
+  components: { Item },
+  props: ['i', 'box'],
+  methods: {
+    clear() {
+      const { i } = this.$props
+      this.$store.commit('boxes/update', {i, obj: {leds: null}})
+    },
   },
 }
 </script>
@@ -82,5 +105,18 @@ export default {
   top: 0
   left: 0
   background-color: rgba(255, 255, 255, 0.8)
+
+#item
+  display: flex
+  margin: 20pt 0
+
+#actions
+  display: flex
+  flex-direction: column
+  justify-content: center
+  white-space: nowrap
+
+#actions > a
+  margin-bottom: 5pt
 
 </style>

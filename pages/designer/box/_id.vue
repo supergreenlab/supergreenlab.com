@@ -76,7 +76,7 @@
             </div>
             <div :id='$style.leds' v-for='(led, i) in leds'>
               <div :id='$style.led'>
-                <CheckBox color='#c4c4c4' :checked='led.name == (box.led || {}).name' v-on:click='setLed(led)' />
+                <CheckBox color='#c4c4c4' :checked='box.leds && led.name == box.leds.name' v-on:click='setLeds(led)' />
                 <Item
                   :icon='led.icons[box.color]'
                   :name='led.name'
@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-    <a :id='$style.cta' href='javascript:void(0)' v-on:click='add'>Add</a>
+    <nuxt-link to='/designer/box' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>Add</nuxt-link>
   </section>
 </template>
 
@@ -150,20 +150,16 @@ export default {
   },
   methods: {
     switchbox(main) {
-      this.$store.commit('boxes/update', {i: this.i, obj: {main, led: null}})
+      this.$store.commit('boxes/update', {i: this.i, obj: {main, leds: null}})
     },
-    setLed(led) {
-      this.$store.commit('boxes/update', {i: this.i, obj: {led}})
+    setLeds(leds) {
+      this.$store.commit('boxes/update', {i: this.i, obj: {leds}})
     },
     setColor(color) {
       this.$store.commit('boxes/update', {i: this.i, obj: {color}})
     },
     setUnit(unit) {
       this.$store.commit('boxes/unit', {unit})
-    },
-    add() {
-      this.$store.commit('boxes/update', {i: this.i, obj: {added: true}})
-      this.$router.push('/designer/box')
     },
   },
 }
@@ -277,7 +273,6 @@ export default {
   flex-direction: column
   text-transform: uppercase
   color: white
-  background-color: #3BB30B
   margin: 40pt 0
   padding: 5pt 35pt
   border-radius: 3pt
@@ -287,7 +282,15 @@ export default {
   font-weight: 400
   align-self: center
 
-#cta:hover
+#cta.enabled
+  background-color: #3BB30B
+
+#cta.enabled:hover
   background-color: #2C800B
+  
+
+.disabled
+  background-color: #c4c4c4
+  opacity: 0.4
 
 </style>

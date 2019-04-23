@@ -30,9 +30,7 @@
           You can easily have one veg box for two Main boxes.
         </p>
       </div>
-      <Box i='1' />
-      <Box i='2' enabled=false />
-      <Box i='3' enabled=false />
+      <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' />
     </div>
   </section>
 </template>
@@ -43,6 +41,11 @@ import Box from '~/components/box.vue'
 
 export default {
   components: { Logo, Box, },
+  computed: {
+    boxes() {
+      return this.$store.state.boxes.boxes
+    }
+  },
 }
 </script>
 
