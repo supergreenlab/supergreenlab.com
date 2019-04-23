@@ -148,7 +148,7 @@ export default {
     },
     leds() {
       let conv = 1.0
-      if (this.unit == 'in') conv = 2.54
+      if (this.unit == 'imperial') conv = 2.54
       return this.$store.getters['shop/getLedsToFit'](this.box.main, this.box.width * conv, this.box.height * conv, this.box.depth * conv)
     },
   },

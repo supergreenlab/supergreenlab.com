@@ -24,7 +24,7 @@
     <div ref='body' :id='$style.body' :style='{height}'>
       <h4>{{ title }}</h4>
       <slot></slot>
-      <a :id='$style.expand' href='javascript:void(0)' v-on:click='expand'>{{ expanded ? "See less" : "See more" }}</a>
+      <a :id='$style.expand' :class='!expanded ? $style.gradient : ""' href='javascript:void(0)' v-on:click='expand'>{{ expanded ? "See less" : "See more" }}</a>
     </div>
   </section>
 </template>
@@ -84,11 +84,17 @@ export default {
 
 #expand
   position: absolute
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
   cursor: pointer
   left: 0
   bottom: 0
   width: 100%
-  height: 35px
-  background-color: white
+  height: 100%
+  transition: background 0.2s
+
+.gradient
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%)
 
 </style>

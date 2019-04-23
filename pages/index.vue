@@ -126,5 +126,6 @@ export default {
   color: #3BB30B
   font-size: 0.8em
   font-weight: 600
+  z-index: 1000
 
 </style>

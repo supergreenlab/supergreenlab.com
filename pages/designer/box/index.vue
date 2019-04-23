@@ -33,9 +33,9 @@
       <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || boxes[i - 1].leds' />
     </div>
     <div :id='$style.submitform'>
-      Got a promo code ?
-      <input :id='$style.promocode' type='text' v-model='promo' placeholder='Enter your promocode here.' />
-      <a v-on:click='createCart()' :id='$style.cta' :class='!valid ? $style.disabled : $style.enabled' href='javascript:void(0)'>Go to cart</a>
+      <!--Got a promo code ?
+      <input :id='$style.promocode' type='text' v-model='promo' placeholder='Enter your promocode here.' />-->
+      <a v-on:click='createCart()' :id='$style.cta' :class='!valid ? $style.disabled : $style.enabled' href='javascript:void(0)'>checkout</a>
     </div>
   </section>
 </template>
@@ -65,7 +65,7 @@ export default {
         return
       }
       const url_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
-      window.location.href=`https://shop.supergreenlab.com/cart/${url_cart}?checkout[reduction_code]=${this.$data.promo}`
+      window.location.href=`https://shop.supergreenlab.com/cart/${url_cart}`
     },
   },
 }
