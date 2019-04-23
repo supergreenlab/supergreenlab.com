@@ -83,7 +83,7 @@ export const getters = {
       const sideN = getNLedForSurface(state, height, depth, l),
             ceilingN = getNLedForSurface(state, width, depth, l),
             deepN = getNLedForSurface(state, width, height, l),
-            maxN = Math.max(sideN, ceilingN, deepN)
+            maxN = main ? Math.max(sideN, ceilingN, deepN) : ceilingN
       let res = Object.assign({}, l, {n: Math.round(maxN)})
       if (sideN == maxN || deepN == maxN) res.scrog = 'vertical'
       else if (ceilingN == maxN) res.scrog = 'horizontal'

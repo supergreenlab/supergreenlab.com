@@ -59,7 +59,7 @@
                 <span>Width: </span><input type='text' v-model='width' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
                 <p :class='$style.error' v-if='width && !(/^\d+$/.test(width))'>enter a valid number</p>
               </div>
-              <div :class='$style.field'>
+              <div v-if='box.main' :class='$style.field'>
                 <span>Height: </span><input type='text' v-model='height' /><span>{{ unit == 'metric' ? "cm" : "in" }}</span>
                 <p :class='$style.error' v-if='height && !(/^\d+$/.test(height))'>enter a valid number</p>
               </div>
