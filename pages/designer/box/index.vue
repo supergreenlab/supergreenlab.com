@@ -30,7 +30,24 @@
           You can easily have one veg box for two Main boxes.
         </p>
       </div>
+      <h2>Base pack</h2>
+      <div :id='$style.controllerpack'>
+        <ControllerPackItem icon='controller.png' name='Controller' n='1' total='119' realtotal='99' />
+        <ControllerPackItem icon='power.png' name='Power Supply' n='1' total='0' free='1' />
+        <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' n='2' total='99' />
+        <ControllerPackItem icon='blower.png' name='Main box ventilation' n='2' total='10' />
+        <ControllerPackItem icon='fan.png' name='Veg box ventilation' n='1' total='10' />
+      </div>
+      <div :id='$style.separator'></div>
+      <h2>Light system</h2>
       <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || boxes[i - 1].leds' />
+      <div :id='$style.separator'></div>
+      <div :id='$style.total'>
+        <h1>Total:</h1>
+        <div :id='$style.price'>
+          <span>${{ total }}</span>${{ realtotal }}
+        </div>
+      </div>
     </div>
     <div :id='$style.submitform'>
       <!--Got a promo code ?
@@ -43,9 +60,10 @@
 <script>
 import Logo from '~/components/logo.vue'
 import Box from '~/components/box.vue'
+import ControllerPackItem from '~/components/controllerpackitem.vue'
 
 export default {
-  components: { Logo, Box, },
+  components: { Logo, Box, ControllerPackItem, },
   data() {
     return {
       promo: '',
@@ -57,6 +75,12 @@ export default {
     },
     valid() {
       return this.$store.state.boxes.boxes.findIndex((b) => !!b.leds) != -1
+    },
+    total() {
+      return 349
+    },
+    realtotal() {
+      return 299
     },
   },
   methods: {
@@ -92,10 +116,17 @@ export default {
 #intro > h2
   margin: 40pt 0 40pt 0
 
+#controllerpack
+  display: flex
+  flex-wrap: wrap
+
 #body
   padding: 0 30pt 0 30pt
   width: 100%
   max-width: 600pt
+
+#body > h2
+  margin: 10pt 0 20pt 0
 
 #cta
   display: flex
@@ -130,5 +161,29 @@ export default {
 #submitform
   display: flex
   flex-direction: column
+
+#separator
+  height: 1pt
+  background-color: #EFEFEF
+  width: 100%
+  margin: 20pt 0
+
+#total
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  justify-content: flex-end
+  text-align: right
+
+#price
+  font-weight: 600
+  font-size: 1.5em
+
+#price > span
+  font-size: 0.9em
+  text-decoration: line-through
+  font-weight: 300
+  margin-right: 5pt
+  opacity: 0.5
 
 </style>
