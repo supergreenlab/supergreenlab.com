@@ -32,7 +32,7 @@
       </div>
       <div :id='$style.separator'></div>
       <h2>Light system</h2>
-      <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || boxes[i - 1].leds' />
+      <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || (boxes[i - 1].leds && boxes[i - 1].main)' :main='box.main' />
       <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
         <h4>Lighting price:</h4>
         <div :id='$style.price'>
@@ -40,13 +40,13 @@
         </div>
       </div>
 
-      <h2>Base pack</h2>
+      <h2>Controller bundle</h2>
       <div :id='$style.controllerpack'>
         <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
         <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
-        <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99 * this.nMainBoxes' />
-        <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29 * this.nMainBoxes' />
-        <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15 * this.nVegBoxes' />
+        <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99' />
+        <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29' />
+        <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='24.99' />
       </div>
       <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
         <h4>Controller bundle price:</h4>
@@ -64,7 +64,9 @@
     <div :id='$style.submitform'>
       <!--Got a promo code ?
       <input :id='$style.promocode' type='text' v-model='promo' placeholder='Enter your promocode here.' />-->
-      <a v-on:click='createCart()' :id='$style.cta' :class='!valid ? $style.disabled : $style.enabled' href='javascript:void(0)'>checkout</a>
+      <a v-on:click='createCart()' :id='$style.cta' :class='`${!valid ? $style.disabled : $style.enabled} ${loading_cart ? $style.loading : ""}`' href='javascript:void(0)'>
+        {{ loading_cart ? "Please wait" : "checkout" }}
+      </a>
     </div>
   </section>
 </template>
@@ -84,6 +86,7 @@ export default {
   data() {
     return {
       promo: '',
+      loading_cart: false,
     }
   },
   computed: {
@@ -96,8 +99,8 @@ export default {
     controllerprice() {
       const controllerpacks = [0, 129, 159]
       return roundPrices({
-        price: 99 + (24.99 * this.nMainBoxes) + (29 * this.nMainBoxes) + 15 * this.nVegBoxes,
-        realprice: controllerpacks[Math.min(2, this.nMainBoxes)] + 15 * this.nVegBoxes,
+        price: 99 + (24.99 * this.nMainBoxes) + (29 * this.nMainBoxes) + 24.99 * this.nVegBoxes,
+        realprice: controllerpacks[Math.min(2, this.nMainBoxes)] + 24.99 * this.nVegBoxes,
       })
     },
     ledprice() {
@@ -134,6 +137,7 @@ export default {
       if (!this.valid) {
         return
       }
+      this.$data.loading_cart = true
       const controllerpacks = [0, '23013022826544', '23015235289136']
       const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
       const controller_cart = `${controllerpacks[Math.min(2, this.nMainBoxes)]}:1`
@@ -241,6 +245,9 @@ export default {
   text-decoration: line-through
   font-weight: 300
   margin-right: 5pt
+  opacity: 0.5
+
+.loading
   opacity: 0.5
 
 </style>
