@@ -30,22 +30,34 @@
           You can easily have one veg box for two Main boxes.
         </p>
       </div>
-      <h2>Base pack</h2>
-      <div :id='$style.controllerpack'>
-        <ControllerPackItem icon='controller.png' name='Controller' n='1' total='119' realtotal='99' />
-        <ControllerPackItem icon='power.png' name='Power Supply' n='1' total='0' free='1' />
-        <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' n='2' total='99' />
-        <ControllerPackItem icon='blower.png' name='Main box ventilation' n='2' total='10' />
-        <ControllerPackItem icon='fan.png' name='Veg box ventilation' n='1' total='10' />
-      </div>
       <div :id='$style.separator'></div>
       <h2>Light system</h2>
       <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || boxes[i - 1].leds' />
-      <div :id='$style.separator'></div>
+      <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
+        <h4>Lighting price:</h4>
+        <div :id='$style.price'>
+          <span>${{ this.ledprice.price }}</span>${{ this.ledprice.realprice }}
+        </div>
+      </div>
+
+      <h2>Base pack</h2>
+      <div :id='$style.controllerpack'>
+        <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
+        <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
+        <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99 * this.nMainBoxes' />
+        <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29 * this.nMainBoxes' />
+        <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15 * this.nVegBoxes' />
+      </div>
+      <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
+        <h4>Controller bundle price:</h4>
+        <div :id='$style.price'>
+          <span>${{ this.controllerprice.price }}</span>${{ this.controllerprice.realprice }}
+        </div>
+      </div>
       <div :id='$style.total'>
         <h1>Total:</h1>
         <div :id='$style.price'>
-          <span>${{ total }}</span>${{ realtotal }}
+          <span>${{ this.totalprice.price }}</span>${{ this.totalprice.realprice }}
         </div>
       </div>
     </div>
@@ -62,6 +74,11 @@ import Logo from '~/components/logo.vue'
 import Box from '~/components/box.vue'
 import ControllerPackItem from '~/components/controllerpackitem.vue'
 
+const roundPrices = (p) => ({
+  price: Math.round(p.price * 100) / 100,
+  realprice: Math.round(p.realprice * 100) / 100,
+})
+
 export default {
   components: { Logo, Box, ControllerPackItem, },
   data() {
@@ -76,11 +93,40 @@ export default {
     valid() {
       return this.$store.state.boxes.boxes.findIndex((b) => !!b.leds) != -1
     },
-    total() {
-      return 349
+    controllerprice() {
+      const controllerpacks = [0, 129, 159]
+      return roundPrices({
+        price: 99 + (24.99 * this.nMainBoxes) + (29 * this.nMainBoxes) + 15 * this.nVegBoxes,
+        realprice: controllerpacks[Math.min(2, this.nMainBoxes)] + 15 * this.nVegBoxes,
+      })
     },
-    realtotal() {
-      return 299
+    ledprice() {
+      let promoMain = 1 - Math.min(15, Math.floor(this.nMainBoxLeds / 2) * 5) / 100
+      return roundPrices({
+        price: this.$store.getters['boxes/ledPrice'](true) + this.$store.getters['boxes/ledPrice'](false),
+        realprice: this.$store.getters['boxes/ledPrice'](true) * promoMain + this.$store.getters['boxes/ledPrice'](false) * 0.9,
+      })
+    },
+    totalprice() {
+      return roundPrices({
+        price: this.controllerprice.price + this.ledprice.price,
+        realprice: this.controllerprice.realprice + this.ledprice.realprice,
+      })
+    },
+    nBoxes() {
+      return this.nMainBoxes + this.nVegBoxes
+    },
+    nMainBoxes() {
+      return this.$store.getters['boxes/nBoxes'](true)
+    },
+    nVegBoxes() {
+      return this.$store.getters['boxes/nBoxes'](false)
+    },
+    nMainBoxLeds() {
+      return this.$store.getters['boxes/nLeds'](true)
+    },
+    nVegBoxLeds() {
+      return this.$store.getters['boxes/nLeds'](false)
     },
   },
   methods: {
@@ -88,8 +134,11 @@ export default {
       if (!this.valid) {
         return
       }
-      const url_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
-      window.location.href=`https://shop.supergreenlab.com/cart/${url_cart}`
+      const controllerpacks = [0, '23013022826544', '23015235289136']
+      const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
+      const controller_cart = `${controllerpacks[Math.min(2, this.nMainBoxes)]}:1`
+      const ventilation_cart = `22985779314736:${this.nVegBoxes}`
+      window.location.href=`https://shop.supergreenlab.com/cart/${led_cart},${controller_cart},${ventilation_cart}`
     },
   },
 }
@@ -161,6 +210,7 @@ export default {
 #submitform
   display: flex
   flex-direction: column
+  margin-top: 20pt
 
 #separator
   height: 1pt
@@ -174,6 +224,13 @@ export default {
   align-items: flex-end
   justify-content: flex-end
   text-align: right
+
+.subtotal
+  font-size: 0.9em
+  color: #454545
+  border-bottom: 1pt solid #EFEFEF
+  padding-bottom: 20pt
+  margin-bottom: 30pt
 
 #price
   font-weight: 600

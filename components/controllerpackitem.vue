@@ -7,15 +7,15 @@
     <div :id='$style.n'>{{ n }}</div>
     <div :id='$style.price'>
       <div v-if='free' :id='$style.included'>Included</div>
-      <div v-else-if='realtotal && total != realtotal' :id='$style.price'><span>${{ total }}</span> ${{ realtotal }}</div>
-      <div v-else :id='$style.price'>${{ total }}</div>
+      <div v-else-if='realprice && price != realprice' :id='$style.price'><span>${{ price }}</span> ${{ realprice }}</div>
+      <div v-else :id='$style.price'>${{ price }}</div>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['icon', 'name', 'n', 'total', 'realtotal', 'free']
+  props: ['icon', 'name', 'n', 'price', 'realprice', 'free']
 }
 </script>
 
