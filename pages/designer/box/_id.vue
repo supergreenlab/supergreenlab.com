@@ -24,7 +24,7 @@
     <div :id='$style.body'>
       <div :id='$style.choice'>
         <CheckBox :color='box.main ? "#3AB20B" : "#C4C4C4"' :checked='box.main' v-on:click='switchbox(true)' /><h2 v-on:click='switchbox(true)' :class='box.main ? $style.selected : ""'>Main box</h2>
-        <CheckBox :color='!box.main ? "#3AB20B" : "#C4C4C4"' :checked='!box.main' v-on:click='switchbox(false)' /><h2 v-on:click='switchbox(false)' :class='!box.main ? $style.selected : ""'>Veg box <small>(optional)</small></h2>
+        <CheckBox v-if='nVegBoxes == 0' :color='!box.main ? "#3AB20B" : "#C4C4C4"' :checked='!box.main' v-on:click='switchbox(false)' /><h2 v-on:click='switchbox(false)' :class='!box.main ? $style.selected : ""'>Veg box <small>(optional)</small></h2>
       </div>
       <p v-if='box.main' :id='$style.intro'>
         The main box is all you need to grow, it can go from sprout to harvest.<br />
@@ -101,7 +101,7 @@
         </div>
       </div>
     </div>
-    <nuxt-link to='/designer/box' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>{{ box.leds ? "Save" : "Add" }}</nuxt-link>
+    <nuxt-link to='/designer/box' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>{{ box.leds ? "Save" : "Cancel" }}</nuxt-link>
   </section>
 </template>
 
@@ -145,6 +145,9 @@ export default {
     },
     i() {
       return this.$route.params.id - 1
+    },
+    nVegBoxes() {
+      return this.$store.getters['boxes/nBoxes'](false)
     },
     leds() {
       let conv = 1.0

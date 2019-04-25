@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container' :style='{display: visible ? "" : "none"}'>
-    <h3>Box #{{ i+1 }} - <span :id='$style.type'>{{ main ? "Main" : "Veg" }}</span></h3>
+    <h3>Box #{{ i+1 }}<span v-if='box.leds'> - </span><span v-if='box.leds' :id='$style.type'>{{ main ? "Main" : "Veg" }}</span></h3>
     <div v-if='!box.leds'>
       <div :id='$style.empty'>
         No light selected for this box yet.
