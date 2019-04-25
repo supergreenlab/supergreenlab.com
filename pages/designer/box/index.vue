@@ -40,8 +40,8 @@
         </div>
       </div>
 
-      <h2>Controller bundle</h2>
-      <div :id='$style.controllerpack'>
+      <h2 v-if='this.nBoxes != 0'>Controller bundle</h2>
+      <div v-if='this.nBoxes != 0' :id='$style.controllerpack'>
         <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
         <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
         <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99' />
@@ -54,7 +54,7 @@
           <span>${{ this.controllerprice.price }}</span>${{ this.controllerprice.realprice }}
         </div>
       </div>
-      <div :id='$style.total'>
+      <div v-if='this.nBoxes != 0' :id='$style.total'>
         <h1>Total:</h1>
         <div :id='$style.price'>
           <span>${{ this.totalprice.price }}</span>${{ this.totalprice.realprice }}
@@ -139,11 +139,10 @@ export default {
       }
       this.$data.loading_cart = true
       const controllerpacks = [0, '23013022826544', '23015235289136']
-      const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => Array(b.leds.n).fill().map(() => `id[]=${b.leds.ids[b.color]}`).join('&')).join('&')
-      const controller_cart = `id[]=${controllerpacks[Math.min(2, this.nMainBoxes)]}&quantity[]=1`
-      const ventilation_cart = `id[]=22985779314736&quantity[]=${this.nVegBoxes}`
+      const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `id[${b.leds.ids[b.color]}]=${b.leds.n}`).join('&')
+      const controller_cart = `id[${controllerpacks[Math.min(2, this.nMainBoxes)]}]=1`
+      const ventilation_cart = this.nVegBoxes ? `id[22985779314736]=${this.nVegBoxes}` : ''
       const cart_url = `https://shop.supergreenlab.com/cart/add/?${led_cart}&${controller_cart}&${ventilation_cart}`
-      console.log(cart_url)
       window.location.href = cart_url
     },
   },
