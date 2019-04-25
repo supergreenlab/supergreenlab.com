@@ -139,10 +139,12 @@ export default {
       }
       this.$data.loading_cart = true
       const controllerpacks = [0, '23013022826544', '23015235289136']
-      const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
-      const controller_cart = `${controllerpacks[Math.min(2, this.nMainBoxes)]}:1`
-      const ventilation_cart = `22985779314736:${this.nVegBoxes}`
-      window.location.href=`https://shop.supergreenlab.com/cart/${led_cart},${controller_cart},${ventilation_cart}`
+      const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => Array(b.leds.n).fill().map(() => `id[]=${b.leds.ids[b.color]}`).join('&')).join('&')
+      const controller_cart = `id[]=${controllerpacks[Math.min(2, this.nMainBoxes)]}&quantity[]=1`
+      const ventilation_cart = `id[]=22985779314736&quantity[]=${this.nVegBoxes}`
+      const cart_url = `https://shop.supergreenlab.com/cart/add/?${led_cart}&${controller_cart}&${ventilation_cart}`
+      console.log(cart_url)
+      window.location.href = cart_url
     },
   },
 }
