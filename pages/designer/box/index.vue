@@ -46,7 +46,7 @@
         <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
         <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99' />
         <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29' />
-        <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='24.99' />
+        <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15' />
       </div>
       <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
         <h4>Controller bundle price:</h4>
@@ -99,8 +99,8 @@ export default {
     controllerprice() {
       const controllerpacks = [0, 129, 159]
       return roundPrices({
-        price: 99 + (24.99 * this.nMainBoxes) + (29 * this.nMainBoxes) + 24.99 * this.nVegBoxes,
-        realprice: controllerpacks[Math.min(2, this.nMainBoxes)] + 24.99 * this.nVegBoxes,
+        price: 99 + (24.99 * this.nMainBoxes) + (29 * this.nMainBoxes) + 15 * this.nVegBoxes,
+        realprice: controllerpacks[Math.min(2, this.nMainBoxes)] + 15 * this.nVegBoxes,
       })
     },
     ledprice() {
@@ -140,11 +140,11 @@ export default {
       this.$data.loading_cart = true
       const controllerpacks = [
         [0, '23013022826544', '23015235289136'], // without veg fan
-        [0, '23015231127600', '2330853113904'], // with
+        [0, '23015231127600', '23015235321904'], // with
       ]
       const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
       const controller_cart = `${controllerpacks[this.nVegBoxes][Math.min(2, this.nMainBoxes)]}:1`
-      const cart_url = `https://shop.supergreenlab.com/tocart#${led_cart},${controller_cart}`
+      const cart_url = `https://shop.supergreenlab.com/pages/loading-cart#${led_cart},${controller_cart}`
       window.location.href = cart_url
     },
   },

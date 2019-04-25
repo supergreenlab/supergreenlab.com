@@ -69,6 +69,12 @@
                 <p :class='$style.error' v-if='depth && !(/^\d+$/.test(depth))'>enter a valid number</p>
               </div>
             </div>
+            <h4 :id='$style.scroggingh'>Type of scrogging</h4>
+            <div :class='$style.units'>
+              <CheckBox :color='scrog == "horizontal" ? "#3AB20B" : "#C4C4C4"' label='Horizontal' :checked='scrog == "horizontal"' v-on:click='setScrog("horizontal")' />
+              <CheckBox :color='scrog == "vertical" ? "#3AB20B" : "#C4C4C4"' label='Vertical' :checked='scrog == "vertical"' v-on:click='setScrog("vertical")' />
+              <CheckBox :color='scrog == "" ? "#3AB20B" : "#C4C4C4"' label='No idea' :checked='scrog == ""' v-on:click='setScrog("")' />
+            </div>
           </div>
           <div v-if='leds.length' :id='$style.viewer'>
             <div :class='$style.units'>
@@ -112,6 +118,11 @@ import Item from '~/components/item.vue'
 
 export default {
   components: { Logo, CheckBox, Item, },
+  data() {
+    return {
+      scrog: '',
+    }
+  },
   computed: {
     width: {
       get() {
@@ -152,7 +163,7 @@ export default {
     leds() {
       let conv = 1.0
       if (this.unit == 'imperial') conv = 2.54
-      return this.$store.getters['shop/getLedsToFit'](this.box.main, this.box.width * conv, this.box.height * conv, this.box.depth * conv)
+      return this.$store.getters['shop/getLedsToFit'](this.box.main, this.box.width * conv, this.box.height * conv, this.box.depth * conv, this.$data.scrog)
     },
   },
   methods: {
@@ -167,6 +178,9 @@ export default {
     },
     setUnit(unit) {
       this.$store.commit('boxes/unit', {unit})
+    },
+    setScrog(scrog) {
+      this.$data.scrog = scrog
     },
   },
 }
@@ -261,6 +275,7 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
+  flex: 1
 
 #leds
   width: 100%
@@ -311,5 +326,8 @@ export default {
 
 #cta.disabled
   background-color: #c4c4c4
+
+#scroggingh
+  margin-top: 30pt
 
 </style>
