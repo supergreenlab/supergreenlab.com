@@ -7,15 +7,14 @@
     <div :id='$style.n'>{{ n }}</div>
     <div :id='$style.price'>
       <div v-if='free' :id='$style.included'>Included</div>
-      <div v-else-if='realtotal && total != realtotal' :id='$style.price'><span>${{ total }}</span> ${{ realtotal }}</div>
-      <div v-else :id='$style.price'>${{ total }}</div>
+      <div v-else :id='$style.price'><small v-if='n > 1'>{{ n }} x ${{ price }} = </small>${{ n * price }}</div>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['icon', 'name', 'n', 'total', 'realtotal', 'free']
+  props: ['icon', 'name', 'n', 'price', 'free']
 }
 </script>
 
@@ -59,9 +58,9 @@ export default {
   margin-top: 3pt
   font-weight: 600
   align-self: flex-end
+  white-space: nowrap
 
-#price > span
-  text-decoration: line-through
+#price > small
   opacity: 0.3
   font-weight: 300
 

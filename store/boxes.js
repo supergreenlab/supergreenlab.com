@@ -64,4 +64,7 @@ export const mutations = {
 
 export const getters = {
   getBox: (state) => (i) => state.boxes[i],
+  nBoxes: (state) => (main) => state.boxes.reduce((n, b) => b.leds && b.main == main ? n+1 : n, 0),
+  nLeds: (state) => (main) => state.boxes.reduce((n, b) => b.leds && b.main == main ? n+b.leds.n : n, 0),
+  ledPrice: (state) => (main) => state.boxes.reduce((n, b) => b.leds && b.main == main ? n+b.leds.n*b.leds.price : n, 0),
 }

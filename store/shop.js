@@ -49,6 +49,8 @@ export const state = () => ({
       },
       width: 25,
       height: 23,
+      max: 4,
+      hidemax: true,
     },
     {
       ids: {
@@ -64,6 +66,7 @@ export const state = () => ({
       },
       width: 25,
       height: 11,
+      max: 2,
     },
     {
       ids: {
@@ -79,6 +82,7 @@ export const state = () => ({
       },
       width: 13,
       height: 11,
+      max: 4,
     },
   ]
 })
@@ -91,14 +95,14 @@ const getNLedForSurface = (state, width, height, l) => Math.max(
 )
 
 export const getters = {
-  getLedsToFit: (state) => (main, width, height, depth) => {
+  getLedsToFit: (state) => (main, width, height, depth, scrog) => {
     width = parseInt(width)
     height = parseInt(height)
     depth = parseInt(depth)
     const leds = state.leds.map((l) => {
-      const sideN = getNLedForSurface(state, height, depth, l),
-            ceilingN = getNLedForSurface(state, width, depth, l),
-            deepN = getNLedForSurface(state, width, height, l),
+      const sideN = (scrog && scrog == 'horizontal') ? 0 : getNLedForSurface(state, height, depth, l),
+            ceilingN = (scrog && scrog == 'vertical') ? 0 : getNLedForSurface(state, width, depth, l),
+            deepN = (scrog && scrog == 'horizontal') ? 0 : getNLedForSurface(state, width, height, l),
             maxN = main ? Math.max(sideN, ceilingN, deepN) : ceilingN
       let res = Object.assign({}, l, {n: maxN < 1 ? 0 : Math.round(maxN)})
       if (sideN == maxN || deepN == maxN) res.scrog = 'vertical'
@@ -106,6 +110,6 @@ export const getters = {
       return res
     })
 
-    return leds.filter((l) => l.n >= 1 && ((!main && l.power == 'controller') || (main && l.power != 'controller')))
+    return leds.filter((l) => l.n >= 1 && !(l.max && l.hidemax && l.n >= l.max) && ((!main && l.power == 'controller') || (main && l.power != 'controller')))
   }
 }

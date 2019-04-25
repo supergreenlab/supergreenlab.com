@@ -27,8 +27,8 @@
     <div :id='$style.body'>
       <h2>SuperGreenLab’s bundles</h2>
       <p>
-        Our bundles enable you to build an automated grow box out using everyday furniture. Even something as simple as a cardboard box!<br />
-        They can adapt to fit a wide variety of spaces and volumes, this page will help you pick the right kit.
+        Our bundles allow you to build an automated growbox out of any furniture, or even a cardboard box!<br />
+        They can adapt to wide variety of spaces and volumes, this page will help you pick the right one.
       </p>
       <h3>What's included in the kit:</h3>
       <BundleParts 
@@ -59,11 +59,10 @@
       </BundleParts>
       <BundleParts 
         image='sht21.png'
-        title='SHT21 Climate sensor'>
-        All kits come with a SHT21 temperature and humidity sensor to help monitor and regulate
-        the conditions of your grow. If connected through Wi-Fi, all values from the sensor are 
-        made accessible from the app remotely, which allows the system to be monitored to send
-        alerts when things go wrong.
+        title='SHT21 Temperature and humidity sensor'>
+        All kits come with a SHT21 temperature and humidity sensor, to ensure a sensible growing environment.
+        All values from the sensors are accessible from the app remotely
+        (wifi connection required), and allows the system to send alerts when things go wrong.
       </BundleParts>
       <BundleParts 
         image='ventilation.png'
@@ -77,23 +76,22 @@
         All kits come with the controller’s main power supply, which can power up to four SGB.36
         or two SGB.72 (the veg lights)*.<br />
         <br />
-        All LED panels are self-powered, and come with the necessary cables, except the SGB.288
-        which requires an external Meanwell driver that has to be purchased separately.<br />
+        All self-powered led panels also come with their own power supply, except the SGB.288
+        that requires an external Meanwell driver that has to be purchased separately.<br />
         <small>(we’ll tell you which, and how to plug)</small>
       </BundleParts>
       <BundleParts 
         image='lights.png'
         title='Lights'>
-        We have a wide variety of custom-made LED panels, ranging from 36 to 288 LEDs,
-        all equipped with Samsung-LM301B LEDs.<br />
+        We have a whole product line of led panels, going from 36 to 288 leds,
+        all equipped with Samsung lm301b leds.<br />
         <br />
         They’re all full spectrum, so they can all be used either for either veg or bloom.
         The smallest ones can be directly powered by the controller itself, no need to get an
         additional power supply.<br />
         <br />
-        Medium (144 leds) are powered by a classic 24V power supply that comes with it.
-        The big ones (288 leds) are powered by traditional Meanwell drivers that have to
-        be purchased separately.
+        Medium (144 leds) are powered by a classic 24v power supply, that comes with it.
+        The big ones (288 leds) are powered by classical meanwell drivers, that have to be purchased separately.
       </BundleParts>
       <div :id='$style.separator'></div>
       <p>

@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.ad'>Head over to our shop to design your home grow kit!</div>
+    <!--<div :id='$style.ad'>Head over to our shop to design your home grow kit!</div>-->
     <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
     <div :id='$style.logo'>
       <Logo overtitle='Welcome to' subtitle='Growhop.' />
