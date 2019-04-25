@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.ad'>Happy 420 ! 20% off for all preorders with #SUPERGREEN420 :) Ends April 24th</div>
+    <div :id='$style.ad'>Head over to our shop to design your home grow kit!</div>
     <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
     <div :id='$style.logo'>
       <Logo overtitle='Welcome to' subtitle='Growhop.' />
@@ -27,12 +27,13 @@
       <div :id='$style.products'></div>
       <nuxt-link to='/designer' :id='$style.cta'>
         <b>build your automated<br />growbox</b>
-        <small>starts $219</small>
+        <small>From $219</small>
       </nuxt-link>
     </div>
     <small :id='$style.trustmeimalawyer'>
-      Clicking any of these buttons confirms that you are major in<br />
-      your state and are not violating any laws. Whatsoever. Not even a parking ticket.
+      By proceeding, you explicitly agree that you are acting in coordinance with<br />
+      local, state, and federal laws. SuperGreenLabs will not be liable for<br />
+      consequences surrounding the legality of how the lights or grow kit are used. 
     </small>
   </section>
 </template>

@@ -27,21 +27,20 @@
     <div :id='$style.body'>
       <h2>SuperGreenLab’s bundles</h2>
       <p>
-        Our bundles allow you to build an automated growbox out of any furniture, even a cardboard is enough.<br />
-        They can adapt to wide variety of spaces and volumes, this page will help you pick the right one.
+        Our bundles enable you to build an automated grow box out using everyday furniture. Even something as simple as a cardboard box!<br />
+        They can adapt to fit a wide variety of spaces and volumes, this page will help you pick the right kit.
       </p>
-      <h3>They all come with:</h3>
+      <h3>What's included in the kit:</h3>
       <BundleParts 
         image='controller.png'
         title='SuperGreenController v2.0'>
         <b>Features:</b><br />
-        - 6 independent leds channels<br />
-        - 4 of them are self-powered*<br />
-        - up to 3 different environment settings at once (veg/bloom/clones)<br />
-        - compatible with existing hardwares, even from other manufacturers (leds, hps..)*<br />
-        - 3 ventilation ports (self-powered)<br />
-        - 3 Sensor ports for remote monitoring and alerts<br />
-        - Wifi/BLE<br />
+        - Various pre-configured environment settings (veg/bloom/clones)<br />
+        - Compatible with existing grow hardware, even from other manufacturers (LEDs, HPS, etc.)*<br />
+        - 3x independent fan controllers for ventilation<br />
+        - 3x sensor ports for remote monitoring and alerting<br />
+        - 6 independent LED channels<br />
+        - Wi-Fi Enabled for remote control.<br />
         - Automatic blower control (coming soon) for humidity and temperature.
       </BundleParts>
       <BundleParts 
@@ -60,52 +59,53 @@
       </BundleParts>
       <BundleParts 
         image='sht21.png'
-        title='SHT21 Temperature and humidity sensor'>
-        All kits come with a SHT21 temperature and humidity sensor, mandatory to check
-        that your environment is sane.
-        All values from the sensors are accessible from the app remotely
-        (wifi connection required), and allows the system to send alerts when things go wrong.
+        title='SHT21 Climate sensor'>
+        All kits come with a SHT21 temperature and humidity sensor to help monitor and regulate
+        the conditions of your grow. If connected through Wi-Fi, all values from the sensor are 
+        made accessible from the app remotely, which allows the system to be monitored to send
+        alerts when things go wrong.
       </BundleParts>
       <BundleParts 
         image='ventilation.png'
-        title='Ventilation system'>
-        All kits come with 1 24v 0.8a blower for filters, and 2 24v PC-like fans, for boxes that
+        title='Ventilation'>
+        All kits come with 1x 24V 0.8A blower for filters, and 2x 24V CPU-fans, for boxes that
         don’t need a filter (ie veg boxes)
       </BundleParts>
       <BundleParts 
         image='power.png'
-        title='Power supply'>
+        title='Power Supply'>
         All kits come with the controller’s main power supply, which can power up to four SGB.36
         or two SGB.72 (the veg lights)*.<br />
         <br />
-        All self-powered led panels also come with their own alimentation, except the SGB.288
-        that requires an external Meanwell driver that has to be purchased separately.<br />
+        All LED panels are self-powered, and come with the necessary cables, except the SGB.288
+        which requires an external Meanwell driver that has to be purchased separately.<br />
         <small>(we’ll tell you which, and how to plug)</small>
       </BundleParts>
       <BundleParts 
         image='lights.png'
-        title='Lights !'>
-        We have a whole product line of led panels, going from 36 to 288 leds,
-        all equipped with Samsung lm301b leds.<br />
+        title='Lights'>
+        We have a wide variety of custom-made LED panels, ranging from 36 to 288 LEDs,
+        all equipped with Samsung-LM301B LEDs.<br />
         <br />
         They’re all full spectrum, so they can all be used either for either veg or bloom.
         The smallest ones can be directly powered by the controller itself, no need to get an
-        additional power supply, which means less shipping costs:)<br />
+        additional power supply.<br />
         <br />
-        Medium (144 leds) are powered by a classic 24v power supply, that comes with it.
-        The big ones (288 leds) are powered by classical meanwell drivers, that have to
-        be purchased seperately.
+        Medium (144 leds) are powered by a classic 24V power supply that comes with it.
+        The big ones (288 leds) are powered by traditional Meanwell drivers that have to
+        be purchased separately.
       </BundleParts>
       <div :id='$style.separator'></div>
       <p>
-        So this is the base of all kits. Now you’ll need lights.<br />
-        Lights are divided in two categories, veg lights and bloom lights.<br />
-        They can both do veg and bloom, they are full-spectrum.<br />
-        Difference is that veg lights don’t require external power, they can be pluggued directly to the controller.<br />
+        These are just the included parts for all kits. Now you’ll need lights.<br />
+        Lights are divided in two categories, vegetation lights and bloom lights.<br />
+        They can both do veg and bloom, they are full-spectrum LEDs.<br />
+        The main difference is that veg lights don’t require external power<br />
+        and they can be plugged directly to your controller.<br />
       </p>
       <div :id='$style.designer'>
         <div :id='$style.boxes'>
-          Alright, now let’s design Grow boxes.
+          Alright, now let’s design your grow box!
           <nuxt-link :id='$style.cta' to='/designer/box'>start</nuxt-link>
         </div>
       </div>
