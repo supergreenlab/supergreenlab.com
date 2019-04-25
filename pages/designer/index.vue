@@ -27,7 +27,7 @@
     <div :id='$style.body'>
       <h2>SuperGreenLab’s bundles</h2>
       <p>
-        Our bundles allow you to build an automated growbox out of any furniture, even a cardboard is enough.<br />
+        Our bundles allow you to build an automated growbox out of any furniture, or even a cardboard box!<br />
         They can adapt to wide variety of spaces and volumes, this page will help you pick the right one.
       </p>
       <h3>They all come with:</h3>
@@ -61,8 +61,7 @@
       <BundleParts 
         image='sht21.png'
         title='SHT21 Temperature and humidity sensor'>
-        All kits come with a SHT21 temperature and humidity sensor, mandatory to check
-        that your environment is sane.
+        All kits come with a SHT21 temperature and humidity sensor, to ensure a sensible growing environment.
         All values from the sensors are accessible from the app remotely
         (wifi connection required), and allows the system to send alerts when things go wrong.
       </BundleParts>
@@ -78,13 +77,13 @@
         All kits come with the controller’s main power supply, which can power up to four SGB.36
         or two SGB.72 (the veg lights)*.<br />
         <br />
-        All self-powered led panels also come with their own alimentation, except the SGB.288
+        All self-powered led panels also come with their own power supply, except the SGB.288
         that requires an external Meanwell driver that has to be purchased separately.<br />
         <small>(we’ll tell you which, and how to plug)</small>
       </BundleParts>
       <BundleParts 
         image='lights.png'
-        title='Lights !'>
+        title='Lights'>
         We have a whole product line of led panels, going from 36 to 288 leds,
         all equipped with Samsung lm301b leds.<br />
         <br />
@@ -94,7 +93,7 @@
         <br />
         Medium (144 leds) are powered by a classic 24v power supply, that comes with it.
         The big ones (288 leds) are powered by classical meanwell drivers, that have to
-        be purchased seperately.
+        be purchased separately.
       </BundleParts>
       <div :id='$style.separator'></div>
       <p>

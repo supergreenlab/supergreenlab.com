@@ -27,7 +27,7 @@
       <div :id='$style.products'></div>
       <nuxt-link to='/designer' :id='$style.cta'>
         <b>build your automated<br />growbox</b>
-        <small>starts $219</small>
+        <small>from $219</small>
       </nuxt-link>
     </div>
     <small :id='$style.trustmeimalawyer'>
