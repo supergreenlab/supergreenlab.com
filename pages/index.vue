@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <!--<div :id='$style.ad'>Happy 420 ! 20% off for all preorders with #SUPERGREEN420 :) Ends April 24th</div>-->
+    <!--<div :id='$style.ad'>Head over to our shop to design your home grow kit!</div>-->
     <a href='https://shop.supergreenlab.com' :id='$style.shop'>Direct access to shop</a>
     <div :id='$style.logo'>
       <Logo overtitle='Welcome to' subtitle='Growhop.' />
@@ -27,7 +27,7 @@
       <div :id='$style.products'></div>
       <nuxt-link to='/designer' :id='$style.cta'>
         <b>build your automated<br />growbox</b>
-        <small>from $219</small>
+        <small>From $219</small>
       </nuxt-link>
     </div>
     <small :id='$style.trustmeimalawyer'>
