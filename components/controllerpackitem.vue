@@ -32,13 +32,19 @@ export default {
   margin: 10pt 5pt
   flex-basis: 60pt
   padding: 5pt 5pt
+  @media only screen and (max-width: 500px)
+    flex-basis: 30pt
 
 #pic
   padding: 5pt 20pt
+  @media only screen and (max-width: 500px)
+    padding: 3pt 5pt
 
 #pic > img
   flex: 1
   max-width: 50pt
+  @media only screen and (max-width: 500px)
+    max-width: 40pt
 
 #n
   display: flex
@@ -53,6 +59,12 @@ export default {
   border-radius: 10pt
   background-color: white
   font-weight: 400
+  @media only screen and (max-width: 500px)
+    right: -5pt
+    top: -5pt
+    width: 15pt
+    height: 15pt
+    border-radius: 7.5pt
 
 #price
   margin-top: 3pt

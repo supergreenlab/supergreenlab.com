@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container' :class='label ? $style.withlabel : ""'>
+  <section :id='$style.container' :class='label && !nomarginright ? $style.withlabel : ""'>
     <div :id='$style.border' :class='checked ? $style.selected : ""' v-on:click='click()'>
       <div :id='$style.checkboxcenter' :style='{"background-color": color}'></div>
     </div>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props: ['color', 'label', 'checked', ],
+  props: ['color', 'label', 'checked', 'nomarginright'],
   methods: {
     click() {
       this.$emit('click')
@@ -42,6 +42,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+  white-space: nowrap
 
 .withlabel
   margin-right: 20pt

@@ -168,9 +168,13 @@ export default {
 #intro
   padding: 50pt 0
   font-weight: 300
+  @media only screen and (max-width: 500px)
+    padding: 0pt 0
 
 #intro > h2
   margin: 40pt 0 40pt 0
+  @media only screen and (max-width: 500px)
+    margin: 20pt 0 20pt 0
 
 #controllerpack
   display: flex
@@ -238,6 +242,9 @@ export default {
   border-bottom: 1pt solid #EFEFEF
   padding-bottom: 20pt
   margin-bottom: 30pt
+  @media only screen and (max-width: 500px)
+    padding-bottom: 5pt
+    margin-bottom: 10pt
 
 #price
   font-weight: 600

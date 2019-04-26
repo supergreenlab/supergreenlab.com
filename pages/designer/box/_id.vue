@@ -50,6 +50,7 @@
       </p>
         <div :id='$style.form'>
           <div :id='$style.box'>
+            <h4 :id='$style.title'>Enter the dimensions of your box</h4>
             <div :class='$style.units'>
               <CheckBox :color='unit == "metric" ? "#3AB20B" : "#C4C4C4"' label='Metric' :checked='unit == "metric"' v-on:click='setUnit("metric")' />
               <CheckBox :color='unit == "imperial" ? "#3AB20B" : "#C4C4C4"' label='Imperial' :checked='unit == "imperial"' v-on:click='setUnit("imperial")' />
@@ -69,14 +70,15 @@
                 <p :class='$style.error' v-if='depth && !(/^\d+$/.test(depth))'>enter a valid number</p>
               </div>
             </div>
-            <h4 :id='$style.scroggingh'>Type of scrogging</h4>
+            <h4 :id='$style.title'>Type of scrogging</h4>
             <div :class='$style.units'>
               <CheckBox :color='scrog == "horizontal" ? "#3AB20B" : "#C4C4C4"' label='Horizontal' :checked='scrog == "horizontal"' v-on:click='setScrog("horizontal")' />
               <CheckBox :color='scrog == "vertical" ? "#3AB20B" : "#C4C4C4"' label='Vertical' :checked='scrog == "vertical"' v-on:click='setScrog("vertical")' />
-              <CheckBox :color='scrog == "" ? "#3AB20B" : "#C4C4C4"' label='No idea' :checked='scrog == ""' v-on:click='setScrog("")' />
+              <CheckBox :color='scrog == "" ? "#3AB20B" : "#C4C4C4"' label='No idea' :checked='scrog == ""' v-on:click='setScrog("")' nomarginright='true' />
             </div>
           </div>
           <div v-if='leds.length' :id='$style.viewer'>
+            <h4 :id='$style.title'>Choose your light</h4>
             <div :class='$style.units'>
               <CheckBox color='white' label='White' :checked='box.color == "white"' v-on:click='setColor("white")' />
               <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='setColor("black")' />
@@ -193,11 +195,16 @@ export default {
   flex-direction: column
   align-items: center
   width: 100%
+  padding: 0 30pt
 
 #logo
   margin: 5pt
   font-size: 1.5em
   align-self: flex-start
+
+#title
+  align-self: flex-start
+  margin-top: 10pt
 
 #choice
   display: flex
@@ -326,8 +333,5 @@ export default {
 
 #cta.disabled
   background-color: #c4c4c4
-
-#scroggingh
-  margin-top: 30pt
 
 </style>
