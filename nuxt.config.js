@@ -60,5 +60,12 @@ export default {
     */
     extend(config, ctx) {
     }
+  },
+  generate: {
+    routes: [
+      '/designer/box/1',
+      '/designer/box/2',
+      '/designer/box/3'
+    ]
   }
 }

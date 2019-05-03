@@ -42,7 +42,7 @@
           <span :id='$style.powerred'>Seperate driver needed</span>
         </span>
         <span :id='$style.shipping'>
-          Shipping summer 2019
+          SHIPPING SUMMER 2019
         </span>
       </Item>
       <div :id='$style.actions'>

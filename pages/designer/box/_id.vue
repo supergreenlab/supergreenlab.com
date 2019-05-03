@@ -339,12 +339,12 @@ export default {
 
 @keyframes blinker {
   50% {
-    opacity: 0;
+    opacity: 0.4;
   }
 }
 
 #shipping
-  color: #3BB30B
+  color: #2C800B
   font-size: 0.8em
   font-weight: 600
   animation: blinker 1s linear infinite;
