@@ -41,6 +41,9 @@
           Power <b>NOT</b> included<br />
           <span :id='$style.powerred'>Seperate driver needed</span>
         </span>
+        <span :id='$style.shipping'>
+          Shipping summer 2019
+        </span>
       </Item>
       <div :id='$style.actions'>
         <nuxt-link :to='`/designer/box/${i+1}`'>Edit</nuxt-link>
@@ -130,5 +133,10 @@ export default {
 
 #type
   color: #3BB30B
+
+#shipping
+  color: #3BB30B
+  font-size: 0.8em
+  font-weight: 600
 
 </style>

@@ -101,6 +101,9 @@
                     Power <b>NOT</b> included<br />
                     <span :id='$style.powerred'>Seperate driver needed</span>
                   </span>
+                  <span :id='$style.shipping'>
+                    SHIPPING SUMMER 2019
+                  </span>
                 </Item>
               </div>
               <h2 v-if='i != leds.length - 1'>OR</h2>
@@ -333,5 +336,17 @@ export default {
 
 #cta.disabled
   background-color: #c4c4c4
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+#shipping
+  color: #3BB30B
+  font-size: 0.8em
+  font-weight: 600
+  animation: blinker 1s linear infinite;
 
 </style>
