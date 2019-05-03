@@ -135,7 +135,7 @@ export default {
   color: #3BB30B
 
 #shipping
-  color: #3BB30B
+  color: #2C800B
   font-size: 0.8em
   font-weight: 600
 
