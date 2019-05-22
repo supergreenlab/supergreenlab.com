@@ -32,16 +32,19 @@ const default_boxes = [
 ]
 
 const stored = {
+  controller: window.localStorage.getItem('controller') || 'controller',
   unit: window.localStorage.getItem('metric') || 'metric',
   boxes: JSON.parse(window.localStorage.getItem('boxes') || JSON.stringify(default_boxes)),
 }
 
 const storeState = (state) => {
+  window.localStorage.setItem('controller', state.controller)
   window.localStorage.setItem('unit', state.unit)
   window.localStorage.setItem('boxes', JSON.stringify(state.boxes))
 }
 
 export const state = () => ({
+  controller: stored.controller,
   unit: stored.unit,
   boxes: stored.boxes,
 })
@@ -52,6 +55,9 @@ const updateBox = (state, i, obj) => {
 }
 
 export const mutations = {
+  controller(state, { controller }) {
+    store.controller = controller
+  },
   update(state, { i, obj }) {
     updateBox(state, i, obj)
     storeState(state)

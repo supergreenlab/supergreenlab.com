@@ -23,7 +23,7 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.intro'>
-        <h2>Growbox designer</h2>
+        <h1>Welcome to the grow box designer, this tool will <b>help you pick the right bundle for the job.</b></h1>
         <p>
           We'll start by the main boxes.<br /><br />
             And then the veg box, which is optionnal, but allows to double the frequency of your harvests, so you can avoid having too much at once, but still have continuous supply.<br />
@@ -40,6 +40,8 @@
         </div>
       </div>
 
+      <CheckBox :color='controller ? "#3AB20B" : "#C4C4C4"' :checked='controller' v-on:click='setController(true)' /><h2 v-on:click='setController(true)' :class='controller ? $style.selected : ""'>With controller</h2>
+      <CheckBox :color='!controller ? "#3AB20B" : "#C4C4C4"' :checked='!controller' v-on:click='setController(false)' /><h2 v-on:click='setController(false)' :class='!controller ? $style.selected : ""'>Without controller</h2>
       <h2 v-if='this.nBoxes != 0'>Controller bundle</h2>
       <div v-if='this.nBoxes != 0' :id='$style.controllerpack'>
         <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
@@ -90,6 +92,9 @@ export default {
     }
   },
   computed: {
+    controller() {
+      return this.$store.state.boxes.controller
+    },
     boxes() {
       return this.$store.state.boxes.boxes
     },
@@ -147,6 +152,9 @@ export default {
       const cart_url = `https://shop.supergreenlab.com/pages/loading-cart#${led_cart},${controller_cart}`
       window.location.href = cart_url
     },
+    setController(controller) {
+      this.$store.commit('boxes/controller', {controller})
+    }
   },
 }
 </script>
@@ -170,6 +178,10 @@ export default {
   font-weight: 300
   @media only screen and (max-width: 500px)
     padding: 0pt 0
+
+#intro > h1
+  font-weight: 300
+  margin: 20pt 0 60pt 0
 
 #intro > h2
   margin: 40pt 0 40pt 0
