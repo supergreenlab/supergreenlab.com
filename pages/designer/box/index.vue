@@ -221,9 +221,11 @@ export default {
   flex-wrap: wrap
 
 #body
-  padding: 0 30pt 0 30pt
+  padding: 0 30pt
   width: 100%
   max-width: 600pt
+  @media only screen and (max-width: 500px)
+    padding: 0 10pt
 
 #body > h2
   margin: 10pt 0 20pt 0

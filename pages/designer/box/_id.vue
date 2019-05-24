@@ -205,6 +205,8 @@ export default {
   align-items: center
   width: 100%
   padding: 0 30pt
+  @media only screen and (max-width: 500px)
+    padding: 0 10pt
 
 #logo
   margin: 5pt

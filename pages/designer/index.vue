@@ -83,9 +83,7 @@ export default {
   padding: 0 30pt
   width: 100%
   max-width: 800pt
-
-@media only screen and (max-width: 500px)
-  #body
+  @media only screen and (max-width: 500px)
     padding: 0 10pt
 
 #body > p
