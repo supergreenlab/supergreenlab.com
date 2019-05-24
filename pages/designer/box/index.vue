@@ -73,6 +73,11 @@
     <div :id='$style.submitform'>
       <!--Got a promo code ?
       <input :id='$style.promocode' type='text' v-model='promo' placeholder='Enter your promocode here.' />-->
+      <div v-if='!this.controller && this.nVegBoxes != 0' :id='$style.disclaimer'>
+        Oops looks like you picked veg lights (36 and 72) without the controller, that's not possible yet.<br />
+        Head to the <a href='https://discord.gg/crdYzgy'>discord server</a> and ask for it if you want power-supplied veg lights !<br />
+        <b>Remove the veg box before going to the cart</b> or <a href='javascript:void(0)' v-on:click='setController(true)'><b>add a controller</b></a>.
+      </div>
       <a v-on:click='createCart()' :id='$style.cta' :class='`${!valid ? $style.disabled : $style.enabled} ${loading_cart ? $style.loading : ""}`' href='javascript:void(0)'>
         {{ loading_cart ? "Please wait" : "checkout" }}
       </a>
@@ -107,7 +112,13 @@ export default {
       return this.$store.state.boxes.boxes
     },
     valid() {
-      return this.$store.state.boxes.boxes.findIndex((b) => !!b.leds) != -1
+      if (this.$store.state.boxes.boxes.findIndex((b) => !!b.leds) == -1) {
+        return false
+      }
+      if (!this.controller && this.nVegBoxes != 0) {
+        return false
+      }
+      return true
     },
     controllerprice() {
       const controllerpacks = [0, 129, 159]
@@ -308,5 +319,9 @@ export default {
 #accessorieschoice > .selected
   transform: scale(1)
   opacity: 1 !important
+
+#disclaimer
+  color: #EA1E1E
+  text-align: center
 
 </style>
