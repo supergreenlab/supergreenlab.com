@@ -87,7 +87,7 @@ export default {
   background-position: center
   background-repeat: no-repeat
   background-size: contain
-  transform: scale(1.7)
+  transform: scale(1.4)
   @media only screen and (max-width: 500px)
     transform: scale(1.0)
   @media only screen and (min-width: 500px) and (max-width: 800px)
