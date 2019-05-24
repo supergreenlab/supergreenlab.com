@@ -1,46 +1,52 @@
 <template>
   <section :id='$style.section'>
     <div :id='$style.title'>
-      <h4>The Continuous Supply Setup</h4>&nbsp;-&nbsp;<span :id='$style.level'>Advanced</span>&nbsp;- from $149
+      <h4>The Continuous Supply Setup</h4>&nbsp;-&nbsp;<span :id='$style.level'>Advanced</span>&nbsp;- from ~ $249
     </div>
     <div :id='$style.pics'>
       <div :class='$style.picdiv'></div>
     </div>
     <div :id='$style.description'>
       <p>
-        And finally, the continuous supply setup ! Once you’ll have a few runs under your belt, you’ll want to reach continuous supply, which means starting a new grow before the one before ends. 
+        And finally, the <b>continuous supply</b> setup ! Once you’ll have a few runs under your belt, you’ll want to reach <b>continuous supply</b>, which means starting the <b>next grow before the one before ends</b>. 
       </p>
       <p>
-        SuperGreenLab has developed the SuperGreenController just for that.
-      </p>
-      <p>
-        It can be mixed with all kinds of leds, even from other manufacturers*.
+        SuperGreenLab has developed the <b>SuperGreenController</b> just for that.
       </p>
       <p>
         If you already own SuperGreenLeds, they’re all compatible except the Solo.<br />
-        The 36 and 72 can even be powered directly from the SuperGreenController, no need for all these wires !
+      </p>
+      <p>
+        <b>Introduces the 36 and 72 leds panels</b>, perfect for <b>veg</b> and <b>clone spaces</b>.<br />
+        The 36 and 72 can even be powered directly from the SuperGreenController, <b>no need for all these power plugs !</b>
       </p>
       <p>
         <b>Features:</b>
         <ul :id='$style.firstul'>
-          <p>- Full spectrum</p>
-          <p>- Power supply included</p>
-          <p>- Up to 3 temperature and humidity sensors (1 included)</p>
-          <p>- 3 motor controllers, for ventilation and auto-watering (1 blower included)</p>
-          <p>- SuperGreenController with wifi and bluetooth</p>
-          <p>- Easy setup with the app</p>
-          <p>- Control up to 3 separate grow spaces.</p>
-          <p>- Can power your 36 and 72 SuperGreenLeds (up to 144 leds total)</p>
-          <p>- Monitoring alerts, for when things fo wrong.</p>
+          <li>- <b>Full spectrum</b></li>
+          <li>- Power supply <b>included</b></li>
+          <li>- <b>Up to 3</b> temperature and humidity <b>sensors</b> (1 included)</li>
+          <li>- <b>3 motor controllers</b>, for ventilation and auto-watering (1 blower included)</li>
+          <li>- SuperGreenController with wifi and bluetooth</li>
+          <li>- <b>Easy setup</b> with the app</li>
+          <li>- Control up to <b>3 separate grow spaces</b>.</li>
+          <li>- <b>Can power your 36 and 72</b> SuperGreenLeds (up to 144 leds total)</li>
+          <li>- <b>Monitoring alerts</b>, for when things fo wrong.</li>
         </ul>
       </p>
     </div>
-    <nuxt-link :id='$style.cta' to='/designer/box'>Go to designer</nuxt-link>
+    <a :id='$style.cta' v-on:click='setController(true)'>Go to designer</a>
   </section>
 </template>
 
 <script>
 export default {
+  methods: {
+    setController(controller) {
+      this.$store.commit('boxes/controller', {controller})
+      this.$router.push('/designer/box')
+    }
+  }
 }
 </script>
 

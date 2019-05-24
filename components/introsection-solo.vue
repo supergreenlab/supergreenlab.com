@@ -6,23 +6,25 @@
     <div :id='$style.pics'>
       <div :class='$style.picdiv'></div>
       <div :class='$style.subtitle'>
-        192 leds - <b>$149</b>
+        192 leds - <b>$149</b><br />
+        <small :class='$style.green'>power supply included</small>
       </div>
     </div>
     <div :id='$style.description'>
       <p>
-        With it’s embedded computer with wifi and sensors, this unique led panel has everything you’ll need to start doing automatic and monitored grows.
-        You’ll have an eye on your grow, no matter where you are.
+        With it’s <b>embedded computer</b> with wifi and <b>sensors</b>, this unique led panel has everything you’ll need to start doing <b>automatic</b> and <b>monitored grows</b>.
+        You’ll have <b>an eye on your grow</b>, no matter where you are.
       </p>
       <p>
         <b>Features:</b>
         <ul :id='$style.firstul'>
-          <li>- Full spectrum</li>
-          <li>- Power supply included</li>
-          <li>- Temperature and humidity sensor included</li>
-          <li>- Ventilation included</li>
-          <li>- Embedded computer with wifi and bluetooth</li>
-          <li>- Easy setup with the app</li>
+          <li>- <b>Full spectrum</b></li>
+          <li>- Power supply <b>included</b></li>
+          <li>- Temperature and humidity sensor <b>included</b></li>
+          <li>- Ventilation <b>included</b></li>
+          <li>- <b>Embedded computer</b> with wifi and bluetooth</li>
+          <li>- <b>Easy setup</b> with the app</li>
+          <li>- <b>Monitoring alerts</b>, for when things fo wrong.</li>
         </ul>
       </p>
     </div>
@@ -49,6 +51,9 @@ export default {
 
 #title > h4
   margin: 0 2pt 0 0
+
+.subtitle
+  text-align: center
 
 #level
   color: #3AB20B

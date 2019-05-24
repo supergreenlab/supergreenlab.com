@@ -1,10 +1,10 @@
 <template>
   <section :id='$style.section'>
     <div :id='$style.title'>
-      <h4>Bare Led panels</h4> -&nbsp;<span :id='$style.level'>Beginner</span>&nbsp;- from $24.99
+      <h4>Bare Led panels</h4> -&nbsp;<span :id='$style.level'>Beginner</span>&nbsp;- from $89
     </div>
     <div :id='$style.pics'>
-      <div :class='$style.pic' :id='$style.pic36'>
+      <!--<div :class='$style.pic' :id='$style.pic36'>
         <div :class='$style.picdiv' :id='$style.picdiv36'></div>
         <div :class='$style.subtitle'>
           36 leds - <b>$24.99</b>
@@ -15,17 +15,19 @@
         <div :class='$style.subtitle'>
           72 leds - <b>$34.99</b>
         </div>
-      </div>
+      </div>-->
       <div :class='$style.pic' :id='$style.pic144'>
         <div :class='$style.picdiv' :id='$style.picdiv144'></div>
         <div :class='$style.subtitle'>
-          144 leds - <b>$89</b>
+          144 leds - <b>$89</b><br />
+          <small :class='$style.green'>power supply included</small>
         </div>
       </div>
       <div :class='$style.pic' :id='$style.pic288'>
         <div :class='$style.picdiv' :id='$style.picdiv288'></div>
         <div :class='$style.subtitle'>
-          288 leds - <b>$99</b>
+          288 leds - <b>$99</b><br />
+          <small :class='$style.red'>power supply NOT included</small>
         </div>
       </div>
     </div>
@@ -37,25 +39,33 @@
         <b>Features:</b>
         <ul :id='$style.firstul'>
           <li>- Full spectrum</li>
-          <li>- 4 different sizes:</li>
+          <li>- 2 different sizes:</li>
           <li>
             <ul>
-              <li>- <b>36 leds</b>: 130x110mm (5.1x4.3 in)   <span :class='$style.green'>power supply included*</span></li>
-              <li>- <b>72 leds</b>: 250x110mm (9.8x4.3 in)   <span :class='$style.green'>power supply included*</span></li>
+              <!--<li>- <b>36 leds</b>: 130x110mm (5.1x4.3 in)   <span :class='$style.green'>power supply included*</span></li>
+              <li>- <b>72 leds</b>: 250x110mm (9.8x4.3 in)   <span :class='$style.green'>power supply included*</span></li>-->
               <li>- <b>144 leds</b>: 250x230mm (9.8x9 in)    <span :class='$style.green'>power supply included</span></li>
               <li>- <b>288 leds</b>: 350x250mm (13.8x9.8 in) <span :class='$style.red'>power supply NOT included</span></li>
             </ul>
           </li>
-          <li>- Available in black or white</li>
+          <li>- <b>Large aluminium panel</b> for better light <b>repartition</b>, <b>no need</b> for lens or heat dissipator</li>
+          <li>- Stays <b>cool at max power</b>, perfect for <b>tight spaces</b>, no need for a <b>huge tent anymore</b></li>
+          <li>- Available in <b>black</b> or <b>white</b></li>
         </ul>
       </p>
     </div>
-    <nuxt-link :id='$style.cta' to='/designer/box'>Go to designer</nuxt-link>
+    <a :id='$style.cta' v-on:click='setController(false)'>Go to designer</a>
   </section>
 </template>
 
 <script>
 export default {
+  methods: {
+    setController(controller) {
+      this.$store.commit('boxes/controller', {controller})
+      this.$router.push('/designer/box')
+    }
+  }
 }
 </script>
 
@@ -73,6 +83,9 @@ export default {
 
 #title > h4
   margin: 0 2pt 0 0
+
+.subtitle
+  text-align: center
 
 #level
   color: #3AB20B

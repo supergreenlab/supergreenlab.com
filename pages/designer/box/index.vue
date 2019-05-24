@@ -26,11 +26,11 @@
         <h1>Welcome to the grow box designer, this tool will <b>help you pick the right bundle for the job.</b></h1>
         <p>
           We'll start by the main boxes.<br /><br />
-            And then the veg box, which is optionnal, but allows to double the frequency of your harvests, so you can avoid having too much at once, but still have continuous supply.<br />
+          And then the veg box, which is optionnal, but allows to double the frequency of your harvests, so you can avoid having too much at once, but still have continuous supply.<br />
           You can easily have one veg box for two Main boxes.
         </p>
       </div>
-      <div :id='$style.separator'></div>
+      <div :class='$style.separator'></div>
       <h2>Light system</h2>
       <Box v-for='(box, i) in boxes' :key='i' :box='box' :i='i' :visible='i == 0 || boxes[i].leds || (boxes[i - 1].leds && boxes[i - 1].main)' :main='box.main' />
       <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
@@ -38,22 +38,29 @@
         <div :id='$style.price'>
           <span>${{ this.ledprice.price }}</span>${{ this.ledprice.realprice }}
         </div>
+        <div :class='$style.separator'></div>
       </div>
+      <div v-else :class='$style.separator'></div>
 
-      <CheckBox :color='controller ? "#3AB20B" : "#C4C4C4"' :checked='controller' v-on:click='setController(true)' /><h2 v-on:click='setController(true)' :class='controller ? $style.selected : ""'>With controller</h2>
-      <CheckBox :color='!controller ? "#3AB20B" : "#C4C4C4"' :checked='!controller' v-on:click='setController(false)' /><h2 v-on:click='setController(false)' :class='!controller ? $style.selected : ""'>Without controller</h2>
-      <h2 v-if='this.nBoxes != 0'>Controller bundle</h2>
-      <div v-if='this.nBoxes != 0' :id='$style.controllerpack'>
-        <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
-        <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
-        <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99' />
-        <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29' />
-        <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15' />
+      <div v-if='this.nBoxes != 0' :id='$style.accessorieschoice'>
+        <CheckBox :color='controller ? "#3AB20B" : "#C4C4C4"' :checked='controller' v-on:click='setController(true)' /><h2 v-on:click='setController(true)' :class='controller ? $style.selected : ""'>With controller</h2>
+        <CheckBox :color='!controller ? "#3AB20B" : "#C4C4C4"' :checked='!controller' v-on:click='setController(false)' /><h2 v-on:click='setController(false)' :class='!controller ? $style.selected : ""'>Without controller</h2>
       </div>
-      <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
-        <h4>Controller bundle price:</h4>
-        <div :id='$style.price'>
-          <span>${{ this.controllerprice.price }}</span>${{ this.controllerprice.realprice }}
+      <div v-if='controller && this.nBoxes != 0' :id='$style.accessories'>
+        <h2>Controller bundle</h2>
+        <div :id='$style.controllerpack'>
+          <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
+          <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
+          <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99' />
+          <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29' />
+          <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15' />
+        </div>
+        <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
+          <h4>Controller bundle price:</h4>
+          <div :id='$style.price'>
+            <span>${{ this.controllerprice.price }}</span>${{ this.controllerprice.realprice }}
+          </div>
+          <div :class='$style.separator'></div>
         </div>
       </div>
       <div v-if='this.nBoxes != 0' :id='$style.total'>
@@ -76,6 +83,7 @@
 <script>
 import Logo from '~/components/logo.vue'
 import Box from '~/components/box.vue'
+import CheckBox from '~/components/checkbox.vue'
 import ControllerPackItem from '~/components/controllerpackitem.vue'
 
 const roundPrices = (p) => ({
@@ -84,7 +92,7 @@ const roundPrices = (p) => ({
 })
 
 export default {
-  components: { Logo, Box, ControllerPackItem, },
+  components: { Logo, Box, ControllerPackItem, CheckBox, },
   data() {
     return {
       promo: '',
@@ -116,10 +124,13 @@ export default {
       })
     },
     totalprice() {
-      return roundPrices({
-        price: this.controllerprice.price + this.ledprice.price,
-        realprice: this.controllerprice.realprice + this.ledprice.realprice,
-      })
+      if (this.controller) {
+        return roundPrices({
+          price: this.controllerprice.price + this.ledprice.price,
+          realprice: this.controllerprice.realprice + this.ledprice.realprice,
+        })
+      }
+      return this.ledprice
     },
     nBoxes() {
       return this.nMainBoxes + this.nVegBoxes
@@ -143,13 +154,19 @@ export default {
         return
       }
       this.$data.loading_cart = true
-      const controllerpacks = [
-        [0, '23013022826544', '23015235289136'], // without veg fan
-        [0, '23015231127600', '23015235321904'], // with
-      ]
+      let cart_url = 'https://shop.supergreenlab.com/pages/loading-cart'
       const led_cart = this.$store.state.boxes.boxes.filter(b => b.leds).map((b) => `${b.leds.ids[b.color]}:${b.leds.n}`).join(',')
-      const controller_cart = `${controllerpacks[this.nVegBoxes][Math.min(2, this.nMainBoxes)]}:1`
-      const cart_url = `https://shop.supergreenlab.com/pages/loading-cart#${led_cart},${controller_cart}`
+
+      if (this.controller) {
+        const controllerpacks = [
+          [0, '23013022826544', '23015235289136'], // without veg fan
+          [0, '23015231127600', '23015235321904'], // with
+        ]
+        const controller_cart = `${controllerpacks[this.nVegBoxes][Math.min(2, this.nMainBoxes)]}:1`
+        cart_url = `${cart_url}#${led_cart},${controller_cart}`
+      } else {
+        cart_url = `${cart_url}#${led_cart}`
+      }
       window.location.href = cart_url
     },
     setController(controller) {
@@ -235,7 +252,7 @@ export default {
   flex-direction: column
   margin-top: 20pt
 
-#separator
+.separator
   height: 1pt
   background-color: #EFEFEF
   width: 100%
@@ -251,8 +268,6 @@ export default {
 .subtotal
   font-size: 0.9em
   color: #454545
-  border-bottom: 1pt solid #EFEFEF
-  padding-bottom: 20pt
   margin-bottom: 30pt
   @media only screen and (max-width: 500px)
     padding-bottom: 5pt
@@ -271,5 +286,27 @@ export default {
 
 .loading
   opacity: 0.5
+
+#accessorieschoice
+  display: flex
+  margin 0pt 0 40pt 0
+
+#accessorieschoice > h2
+  margin: 0 10pt 0 0
+  cursor: pointer
+  opacity: 0.3
+  transform: scale(0.98)
+  transition: transform 0.2s
+
+#accessorieschoice > h2:hover
+  opacity: 0.5
+
+#accessorieschoice > h2 > small
+  font-size: 0.8em
+  font-weight: 300
+
+#accessorieschoice > .selected
+  transform: scale(1)
+  opacity: 1 !important
 
 </style>

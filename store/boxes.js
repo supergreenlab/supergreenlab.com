@@ -56,7 +56,8 @@ const updateBox = (state, i, obj) => {
 
 export const mutations = {
   controller(state, { controller }) {
-    store.controller = controller
+    state.controller = controller
+    storeState(state)
   },
   update(state, { i, obj }) {
     updateBox(state, i, obj)

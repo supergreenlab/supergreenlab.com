@@ -24,17 +24,20 @@
     <div :id='$style.body'>
       <h3 :id='$style.header'>
         Welcome to SuperGreenLab,<br />
-        we sell all you need to grow at home, from bare lights,
-        to complete and automous kits.
+        we sell all you need to grow at home, from bare lights, to complete and automous kits.
       </h3>
       <p>
-        SuperGreenLab has designed the perfect growing setup for modern growers.
+        <b>SuperGreenLab</b> has designed the <b>perfect</b> growing setup for <b>modern growers</b>.
       </p>
       <p>
-        While producing a lot of lights, our led panels produce very little heat, which make them perfect for you stealthy grow project.
+        While <b>producing a lot of lights</b> (up to 200-220 lumens per watts), our led panels produce <b>very little heat</b>, which make them perfect for your <b>stealthy grow project</b>.
       </p>
       <p>
-        Whether you’re a beginner, intermediate or advance grower, we have what you need:)
+        Whether you’re a beginner, intermediate or advance grower, <b>we have what you need</b>:)
+      </p>
+      <p>
+        Also, one of our main concerne is <b>your success</b>, we're offering free <b>top-notch real time support</b>.<br />
+        You can <b>join the support</b> <a href='https://discord.gg/crdYzgy'>discord server</a> now, <b>feel free to ask your questions</b> here, we and the community will be <b>glad to help</b>:)
       </p>
       <h3>Our products tailored to your needs and budget:</h3>
       <IntroSectionBareLeds />
