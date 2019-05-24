@@ -32,13 +32,13 @@ const default_boxes = [
 ]
 
 const stored = {
-  controller: window.localStorage.getItem('controller') || 'controller',
+  controller: window.localStorage.getItem('controller') === null ? true : window.localStorage.getItem('controller') === 'true',
   unit: window.localStorage.getItem('metric') || 'metric',
   boxes: JSON.parse(window.localStorage.getItem('boxes') || JSON.stringify(default_boxes)),
 }
 
 const storeState = (state) => {
-  window.localStorage.setItem('controller', state.controller)
+  window.localStorage.setItem('controller', state.controller ? 'true' : 'false')
   window.localStorage.setItem('unit', state.unit)
   window.localStorage.setItem('boxes', JSON.stringify(state.boxes))
 }
