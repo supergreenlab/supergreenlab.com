@@ -23,8 +23,9 @@
     </div>
     <div :id='$style.body'>
       <h3 :id='$style.header'>
-        Welcome to SuperGreenLab,<br />
-        we sell all you need to grow at home, from bare lights, to complete and automous kits.
+        <nobr><b>Welcome to SuperGreenLab</b>,</nobr><br /><br />
+        we sell all you need to grow at home, from bare lights,<br />
+        to complete and automatic kits.
       </h3>
       <p>
         <b>SuperGreenLab</b> has designed the <b>perfect</b> growing setup for <b>modern growers</b>.
@@ -73,15 +74,19 @@ export default {
   align-self: flex-start
 
 #header
-  padding: 50pt 20pt
+  padding: 50pt 0pt
   font-weight: 300
   text-align: center
   font-size: 1.5em
 
 #body
-  padding: 0 30pt 0 30pt
+  padding: 0 30pt
   width: 100%
   max-width: 800pt
+
+@media only screen and (max-width: 500px)
+  #body
+    padding: 0 10pt
 
 #body > p
   margin: 10pt 0

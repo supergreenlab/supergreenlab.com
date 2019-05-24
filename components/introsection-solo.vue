@@ -1,7 +1,7 @@
 <template>
   <section :id='$style.section'>
     <div :id='$style.title'>
-      <h4>The Solo board</h4> -&nbsp;<span :id='$style.level'>Intermediate</span>&nbsp;- from $149
+      <h4>Solo board</h4> -&nbsp;<span :id='$style.level'>Intermediate</span>&nbsp;- from $149
     </div>
     <div :id='$style.pics'>
       <div :class='$style.picdiv'></div>

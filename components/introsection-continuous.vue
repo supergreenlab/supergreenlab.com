@@ -1,7 +1,7 @@
 <template>
   <section :id='$style.section'>
     <div :id='$style.title'>
-      <h4>The Continuous Supply Setup</h4>&nbsp;-&nbsp;<span :id='$style.level'>Advanced</span>&nbsp;- from ~ $249
+      <h4>Continuous Supply</h4>&nbsp;-&nbsp;<span :id='$style.level'>Advanced</span>&nbsp;- from ~ $249
     </div>
     <div :id='$style.pics'>
       <div :class='$style.picdiv'></div>
@@ -85,6 +85,11 @@ export default {
   background-repeat: no-repeat
   background-position: center
   background-image: url('~assets/img/intro-continuous-small.png')
+
+@media only screen and (max-width: 500px)
+  .picdiv
+    height: 100pt
+
 
 #description
   margin: 30pt 0 0 0
