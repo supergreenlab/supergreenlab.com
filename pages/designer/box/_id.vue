@@ -53,10 +53,12 @@
       </p>
         <div :id='$style.form'>
           <div :id='$style.box'>
-            <h4 :id='$style.title'>Enter the dimensions of your box</h4>
-            <div :class='$style.units'>
-              <CheckBox :color='unit == "metric" ? "#3AB20B" : "#C4C4C4"' label='Metric' :checked='unit == "metric"' v-on:click='setUnit("metric")' />
-              <CheckBox :color='unit == "imperial" ? "#3AB20B" : "#C4C4C4"' label='Imperial' :checked='unit == "imperial"' v-on:click='setUnit("imperial")' />
+            <div>
+              <h4 :id='$style.title'>Enter the dimensions of your box</h4>
+              <div :class='$style.units'>
+                <CheckBox :color='unit == "metric" ? "#3AB20B" : "#C4C4C4"' label='Metric' :checked='unit == "metric"' v-on:click='setUnit("metric")' />
+                <CheckBox :color='unit == "imperial" ? "#3AB20B" : "#C4C4C4"' label='Imperial' :checked='unit == "imperial"' v-on:click='setUnit("imperial")' />
+              </div>
             </div>
             <div :id='$style.fields'>
               <div :class='$style.field'>
@@ -73,6 +75,8 @@
                 <p :class='$style.error' v-if='depth && !(/^\d+$/.test(depth))'>enter a valid number</p>
               </div>
             </div>
+          </div>
+          <div>
             <h4 :id='$style.title'>Type of scrogging</h4>
             <div :class='$style.units'>
               <CheckBox :color='scrog == "horizontal" ? "#3AB20B" : "#C4C4C4"' label='Horizontal' :checked='scrog == "horizontal"' v-on:click='setScrog("horizontal")' />
@@ -261,7 +265,6 @@ export default {
   display: flex
   flex-direction: column
   margin-right: 50pt
-  flex: 0.9
 
 .units
   display: flex
