@@ -75,8 +75,6 @@
                 <p :class='$style.error' v-if='depth && !(/^\d+$/.test(depth))'>enter a valid number</p>
               </div>
             </div>
-          </div>
-          <div>
             <h4 :id='$style.title'>Type of scrogging</h4>
             <div :class='$style.units'>
               <CheckBox :color='scrog == "horizontal" ? "#3AB20B" : "#C4C4C4"' label='Horizontal' :checked='scrog == "horizontal"' v-on:click='setScrog("horizontal")' />
