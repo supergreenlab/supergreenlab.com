@@ -31,7 +31,7 @@
         :icon='box.leds.icons[box.color]'
         :name='box.leds.name'
         :n='Math.floor(box.leds.n)'
-        :total='`$${box.leds.price * Math.floor(box.leds.n)}`'>
+        :total='`$${Math.round(box.leds.price * Math.floor(box.leds.n) * 100) / 100}`'>
         <span  v-if='box.leds.power == "external"' :id='$style.power'>
           Power included<br />
           <span :id='$style.powergreen'>No seperate driver needed</span>

@@ -51,9 +51,9 @@
         <div :id='$style.controllerpack'>
           <ControllerPackItem icon='controller.png' name='Controller' n='1' price='99' />
           <ControllerPackItem icon='power.png' name='Power Supply' n='1' price='0' free='1' />
-          <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='this.nMainBoxes' :price='24.99' />
-          <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='this.nMainBoxes' :price='29' />
-          <ControllerPackItem v-if='this.nVegBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15' />
+          <ControllerPackItem icon='sht21.png' name='Temperature and humidity sensor' :n='(this.nMainBoxes == 0 && this.nVegBoxes != 0) ? this.nVegBoxes : this.nMainBoxes' :price='24.99' />
+          <ControllerPackItem icon='blower.png' name='Main box ventilation' :n='(this.nMainBoxes == 0 && this.nVegBoxes != 0) ? this.nVegBoxes : this.nMainBoxes' :price='29' />
+          <ControllerPackItem v-if='this.nVegBoxes > 0 && this.nMainBoxes > 0' icon='fan.png' name='Veg box ventilation' :n='this.nVegBoxes' :price='15' />
         </div>
         <div v-if='this.nBoxes != 0' :id='$style.total' :class='$style.subtotal'>
           <h4>Controller bundle price:</h4>
@@ -122,9 +122,15 @@ export default {
     },
     controllerprice() {
       const controllerpacks = [0, 129, 159]
+      let nMainBoxes = this.nMainBoxes,
+          nVegBoxes = this.nVegBoxes
+      if (nMainBoxes == 0 && nVegBoxes == 1) {
+        nMainBoxes = 1
+        nVegBoxes = 0
+      }
       return roundPrices({
-        price: 99 + (24.99 * this.nMainBoxes) + (29 * this.nMainBoxes) + 15 * this.nVegBoxes,
-        realprice: controllerpacks[Math.min(2, this.nMainBoxes)] + 15 * this.nVegBoxes,
+        price: 99 + (24.99 * nMainBoxes) + (29 * nMainBoxes) + 15 * nVegBoxes,
+        realprice: controllerpacks[Math.min(2, nMainBoxes)] + 15 * nVegBoxes,
       })
     },
     ledprice() {
@@ -173,7 +179,14 @@ export default {
           [0, '23013022826544', '23015235289136'], // without veg fan
           [0, '23015231127600', '23015235321904'], // with
         ]
-        const controller_cart = `${controllerpacks[this.nVegBoxes][Math.min(2, this.nMainBoxes)]}:1`
+        let nMainBoxes = this.nMainBoxes,
+          nVegBoxes = this.nVegBoxes
+        if (nMainBoxes == 0 && nVegBoxes == 1) {
+          nMainBoxes = 1
+          nVegBoxes = 0
+        }
+
+        const controller_cart = `${controllerpacks[nVegBoxes][Math.min(2, nMainBoxes)]}:1`
         cart_url = `${cart_url}#${led_cart},${controller_cart}`
       } else {
         cart_url = `${cart_url}#${led_cart}`
