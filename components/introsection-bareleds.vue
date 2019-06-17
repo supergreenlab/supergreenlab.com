@@ -1,7 +1,7 @@
 <template>
   <section :id='$style.section'>
     <div :id='$style.title'>
-      <h4>Bare Led panels</h4> -&nbsp;<span :id='$style.level'>Beginner</span>&nbsp;- from $89
+      <h4>Bare Led panels</h4> -&nbsp;<span :id='$style.level'>Beginner</span>&nbsp;- from $99
     </div>
     <div :id='$style.pics'>
       <!--<div :class='$style.pic' :id='$style.pic36'>
@@ -19,7 +19,7 @@
       <div :class='$style.pic' :id='$style.pic144'>
         <div :class='$style.picdiv' :id='$style.picdiv144'></div>
         <div :class='$style.subtitle'>
-          144 leds - <b>$89</b><br />
+          144 leds - <b>$99</b><br />
           <small :class='$style.green'>power supply included</small>
         </div>
       </div>

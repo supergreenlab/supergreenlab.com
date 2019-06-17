@@ -40,7 +40,7 @@ export const state = () => ({
         black: '22990590410800',
       },
       name: 'SGB 144.301B',
-      price: 89.00,
+      price: 99.00,
       main: true,
       power: 'external',
       icons: {
@@ -58,7 +58,7 @@ export const state = () => ({
         black: '22990602797104',
       },
       name: 'SGB 72.301B',
-      price: 34.99,
+      price: 39.99,
       power: 'controller',
       icons: {
         white: '72-white.png',
@@ -74,7 +74,7 @@ export const state = () => ({
         black: '23014573146160',
       },
       name: 'SGB 36.301B',
-      price: 24.99,
+      price: 29.99,
       power: 'controller',
       icons: {
         white: '36-white.png',

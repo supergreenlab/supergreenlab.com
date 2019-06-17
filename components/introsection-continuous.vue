@@ -8,7 +8,7 @@
     </div>
     <div :id='$style.description'>
       <p>
-        And finally, the <b>continuous supply</b> setup ! Once you’ll have a few runs under your belt, you’ll want to reach <b>continuous supply</b>, which means starting the <b>next grow before the one before ends</b>. 
+        Once you’ll have a few runs under your belt, you’ll want to reach <b>continuous supply</b>, which means starting the <b>next grow before the one before ends</b>. 
       </p>
       <p>
         SuperGreenLab has developed the <b>SuperGreenController</b> just for that.
@@ -122,6 +122,7 @@ export default {
   text-align: center
   font-size: 1.2em
   font-weight: 400
+  cursor: pointer
 
 #cta:hover
   background-color: #2C800B

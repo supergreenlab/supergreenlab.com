@@ -25,9 +25,14 @@
       <div :id='$style.intro'>
         <h1>Welcome to the grow box designer, this tool will <b>help you pick the right bundle for the job.</b></h1>
         <p>
-          We'll start by the main boxes.<br /><br />
-          And then the veg box, which is optionnal, but allows to double the frequency of your harvests, so you can avoid having too much at once, but still have continuous supply.<br />
+          We'll start by the <b>main box.</b><br /><br />
+          And then the <b>veg box</b>, which is optionnal, but allows to <b>double the frequency of your harvests</b>, so you can avoid having too much at once, but still have <b>continuous supply</b>.<br />
           You can easily have one veg box for two Main boxes.
+        </p>
+        <br />
+        <p :id='$style.shippinginfos'>
+          <b>Free shipping</b> in us/ca/eu <b>from $179</b><br />
+          <b>Free shipping from $279</b> worldwide
         </p>
       </div>
       <div :class='$style.separator'></div>
@@ -37,6 +42,8 @@
         <h4>Lighting price:</h4>
         <div :id='$style.price'>
           <span>${{ this.ledprice.price }}</span>${{ this.ledprice.realprice }}
+          <h2 :class='$style.freeshipping' v-if='this.totalprice.realprice > 279'>FREE SHIPPING 🚀 !</h2>
+          <h2 :class='$style.freeshipping' v-else-if='this.totalprice.realprice > 179'>FREE SHIPPING 🚀 (US/CA/EU) !</h2>
         </div>
         <div :class='$style.separator'></div>
       </div>
@@ -59,6 +66,8 @@
           <h4>Controller bundle price:</h4>
           <div :id='$style.price'>
             <span>${{ this.controllerprice.price }}</span>${{ this.controllerprice.realprice }}
+            <h2 :class='$style.freeshipping' v-if='this.totalprice.realprice > 279'>FREE SHIPPING 🚀 !</h2>
+            <h2 :class='$style.freeshipping' v-else-if='this.totalprice.realprice > 179'>FREE SHIPPING 🚀 (US/CA/EU) !</h2>
           </div>
           <div :class='$style.separator'></div>
         </div>
@@ -67,6 +76,8 @@
         <h1>Total:</h1>
         <div :id='$style.price'>
           <span>${{ this.totalprice.price }}</span>${{ this.totalprice.realprice }}
+          <h2 :class='$style.freeshipping' v-if='this.totalprice.realprice > 279'>FREE SHIPPING 🚀 !</h2>
+          <h2 :class='$style.freeshipping' v-else-if='this.totalprice.realprice > 179'>FREE SHIPPING 🚀 (US/CA/EU) !</h2>
         </div>
       </div>
     </div>
@@ -121,7 +132,7 @@ export default {
       return true
     },
     controllerprice() {
-      const controllerpacks = [0, 129, 159]
+      const controllerpacks = [0, 149, 179]
       let nMainBoxes = this.nMainBoxes,
           nVegBoxes = this.nVegBoxes
       if (nMainBoxes == 0 && nVegBoxes == 1) {
@@ -129,7 +140,7 @@ export default {
         nVegBoxes = 0
       }
       return roundPrices({
-        price: 99 + (24.99 * nMainBoxes) + (29 * nMainBoxes) + 15 * nVegBoxes,
+        price: 119 + (24.99 * nMainBoxes) + (29 * nMainBoxes) + 22.99 * nVegBoxes,
         realprice: controllerpacks[Math.min(2, nMainBoxes)] + 15 * nVegBoxes,
       })
     },
@@ -215,7 +226,7 @@ export default {
   align-self: flex-start
 
 #intro
-  padding: 50pt 0
+  padding: 50pt 0 20pt 0
   font-weight: 300
   @media only screen and (max-width: 500px)
     padding: 0pt 0
@@ -228,6 +239,13 @@ export default {
   margin: 40pt 0 40pt 0
   @media only screen and (max-width: 500px)
     margin: 20pt 0 20pt 0
+
+#shippinginfos
+  font-size: 1.2em
+
+#shippinginfos > b
+  color: #3bb30b
+  animation: blinker 1s linear infinite;
 
 #controllerpack
   display: flex
@@ -338,5 +356,17 @@ export default {
 #disclaimer
   color: #EA1E1E
   text-align: center
+
+@keyframes blinker {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.freeshipping
+  color: #2C800B
+  font-size: 1.2em
+  font-weight: 600
+  animation: blinker 1s linear infinite;
 
 </style>

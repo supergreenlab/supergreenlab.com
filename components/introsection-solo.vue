@@ -1,12 +1,12 @@
 <template>
   <section :id='$style.section'>
     <div :id='$style.title'>
-      <h4>Solo board</h4> -&nbsp;<span :id='$style.level'>Intermediate</span>&nbsp;- from $149
+      <h4>Solo board</h4> -&nbsp;<span :id='$style.level'>Intermediate</span>&nbsp;- from $199
     </div>
     <div :id='$style.pics'>
       <div :class='$style.picdiv'></div>
       <div :class='$style.subtitle'>
-        192 leds - <b>$149</b><br />
+        192 leds - <b>$199</b><br />
         <small :class='$style.green'>power supply included</small>
       </div>
     </div>
