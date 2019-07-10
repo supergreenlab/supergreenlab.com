@@ -57,7 +57,7 @@ export default {
   created() {
     this.interval = setInterval(() => {
       this.n = (this.n + 1) % 4
-    }, 2000)
+    }, 4000)
   },
   destroyed() {
     clearInterval(this.interval)
@@ -112,7 +112,7 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
-  transition: opacity 1s
+  transition: opacity 2s
 
 .shown
   opacity: 1
