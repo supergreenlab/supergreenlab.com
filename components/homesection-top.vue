@@ -34,6 +34,7 @@
         <div :class='$style.product + " " + (n == 1 ? $style.shown : "")' :id='$style.office'></div>
         <div :class='$style.product + " " + (n == 2 ? $style.shown : "")' :id='$style.dombas'></div>
         <div :class='$style.product + " " + (n == 3 ? $style.shown : "")' :id='$style.all'></div>
+        <div :id='$style.mobile'></div>
       </div>
     </div>
     <small :id='$style.trustmeimalawyer'>
@@ -143,6 +144,18 @@ export default {
   background-position: center
   background-repeat: no-repeat
   background-size: contain
+
+#mobile
+  width: 100pt
+  height: 300pt
+  position: absolute
+  bottom: 0
+  left: calc(50% + 80pt)
+  background-image: url("~assets/img/mobile.png")
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+  transform: translate(0, 25%)
 
 #cta
   display: flex
