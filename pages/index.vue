@@ -48,6 +48,7 @@
           "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'
+        url='https://shop.supergreenlab.com/pages/loading-cart#29107264880688:1'
         price='$249'
         bigleds='1'
         smallleds='0'
@@ -68,6 +69,7 @@
           "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'
+        url='https://shop.supergreenlab.com/pages/loading-cart#29107272089648:1'
         price='$349'
         :right=1
         bigleds='1'
@@ -88,6 +90,7 @@
           "from a <b>wardrobe</b> to a <b>closet</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'
+        url='https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1'
         price='$599'
         bigleds='2'
         smallleds='2'
@@ -107,6 +110,7 @@
           "Can fit from a <b>nightstand</b> to a <b>shoebox</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'
+        url='https://shop.supergreenlab.com/pages/loading-cart#29107273826352:1'
         price='$299'
         :right=1
         bigleds='0'

@@ -37,7 +37,7 @@
         <Items :bigleds='bigleds' :smallleds='smallleds' :tinyleds='tinyleds' :ventilation='ventilation' :sensor='sensor' />
       </div>
       <div :id='$style.buy'>
-        <a href='javascript:void(0)'>BUY NOW <b>{{ price }}</b></a><br />
+        <a href='javascript:void(0)' @click='buy'>BUY NOW <b>{{ price }}</b></a><br />
         Free shipping
       </div>
     </div>
@@ -49,7 +49,12 @@ import Items from '~/components/homesection-bundle-items.vue'
 
 export default {
   components: {Items,},
-  props: ['title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor',],
+  props: ['title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url',],
+  methods: {
+    buy() {
+      window.location.href = this.$props.url
+    },
+  },
 }
 </script>
 
