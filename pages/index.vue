@@ -22,16 +22,24 @@
       <Header />
     </div>
     <div :id='$style.body'>
+      <div id='top'></div>
       <Top />
+      <div :class='$style.separator'></div>
       <UseSteps />
+      <div :class='$style.separator'></div>
       <Stealth />
+      <div :class='$style.separator'></div>
       <BundleIntro />
+      <div :class='$style.separator'></div>
+      <div :id='$style.shop'></div>
       <div :id='$style.title'>
-        <SectionTitle title='And come in all'
-                      green='shapes and size'/>
+        <SectionTitle title='Welcome to the shop'
+                      green='Checkout our bundles'/>
       </div>
+      <div id='mono'></div>
       <Bundle
-        title='SOLO BOX KIT'
+        title='MONO BOX BUNDLE'
+        subtitle='192 leds, 1 controller'
         icon='tvstand.png'
         :bullets='[
           "Perfect kit for <b>first-timers</b> or <b>small setups</b>.",
@@ -41,9 +49,17 @@
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'
         price='$199'
+        bigleds='1'
+        smallleds='0'
+        tinyleds='0'
+        ventilation='1'
+        sensor='1'
         />
+      <div :class='$style.separator'></div>
+      <div id='multi'></div>
       <Bundle
-        title='MULTI BOX KIT'
+        title='MULTI BOX BUNDLE'
+        subtitle='Harvests come twice faster !'
         icon='office.png'
         :bullets='[
           "Start the <b>next batch</b> before end of bloom",
@@ -54,9 +70,17 @@
         ]'
         price='$249'
         :right=1
+        bigleds='1'
+        smallleds='0'
+        tinyleds='2'
+        ventilation='2'
+        sensor='2'
         />
+      <div :class='$style.separator'></div>
+      <div id='closet'></div>
       <Bundle
-        title='GROW ROOM KIT'
+        title='CLOSET BUNDLE'
+        subtitle='Grow huge plants, harvest often'
         icon='dombas.png'
         :bullets='[
           "<b>High efficiency</b> setup",
@@ -65,9 +89,17 @@
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'
         price='$400'
+        bigleds='2'
+        smallleds='2'
+        tinyleds='0'
+        ventilation='2'
+        sensor='2'
         />
+      <div :class='$style.separator'></div>
+      <div id='micro'></div>
       <Bundle
-        title='MICRO GROW KIT'
+        title='MICRO GROW BUNDLE'
+        subtitle='6 tiny led panels for canna scientists'
         icon='triforce.png'
         :bullets='[
           "Perfect kit for <b>experimenters</b> and <b>breeders</b>",
@@ -77,8 +109,14 @@
         ]'
         price='$249'
         :right=1
+        bigleds='0'
+        smallleds='0'
+        tinyleds='6'
+        ventilation='1'
+        sensor='1'
         />
     </div>
+    <Footer />
   </section>
 </template>
 
@@ -90,9 +128,10 @@ import Stealth from '~/components/homesection-stealth-build.vue'
 import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
+import Footer from '~/components/homesection-footer.vue'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, },
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer, },
 }
 </script>
 
@@ -116,6 +155,18 @@ export default {
   max-width: 900pt
 
 #title
-  margin: 20pt 0 50pt 0
+  margin: 20pt 0 20pt 0
+
+.separator
+  height: 2pt
+  margin: 30pt 0
+  background-color: #efefef
+
+#shop
+  height: 150pt
+  background-image: url('~assets/img/shop.svg')
+  background-position: center
+  background-repeat: no-repeat
+  background-size: contain
 
 </style>

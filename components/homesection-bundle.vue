@@ -18,24 +18,37 @@
 
 <template>
   <section :id='$style.container'>
-    <h1>{{ title }}</h1>
+    <div :id='$style.header'>
+      <div :id='$style.title'>
+        <h1>{{ title }}</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+      <h1>{{ price }}</h1>
+    </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
       <div :id='$style.description'>
         <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
       </div>
     </div>
-    <div :id='$style.buy'>
-      <a href='javascript:void(0)'>BUY NOW <b>{{ price }}</b></a><br />
-      Free shipping
+    <div :id='$style.bottom'>
+      <div :id='$style.items'>
+        <Items :bigleds='bigleds' :smallleds='smallleds' :tinyleds='tinyleds' :ventilation='ventilation' :sensor='sensor' />
+      </div>
+      <div :id='$style.buy'>
+        <a href='javascript:void(0)'>BUY NOW <b>{{ price }}</b></a><br />
+        Free shipping
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import Items from '~/components/homesection-bundle-items.vue'
 
 export default {
-  props: ['title', 'icon', 'bullets', 'price', 'right', ],
+  components: {Items,},
+  props: ['title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor',],
 }
 </script>
 
@@ -45,14 +58,31 @@ export default {
   display: flex
   width: 100%
   flex-direction: column
-  padding: 0 20pt
 
-#container > h1
+#header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  background-color: #EEEEEE
+  padding: 10pt 10pt
+
+#header > h1
+  color: #3BB30B
+  margin: 0
+
+#title
   color: #5D5D5D
+
+#title > h1
+  margin: 0
+
+#title > h2
+  font-weight: 200
+  font-size: 1.3em
 
 #body
   display: flex
-  margin: 30pt 0
+  margin: 30pt 30pt
 
 #icon
   width: 40%
@@ -75,6 +105,7 @@ export default {
 #buy
   display: flex
   flex-direction: column
+  justify-content: flex-end
   text-align: right
 
 #buy > a
@@ -86,12 +117,22 @@ export default {
   color: white
   text-decoration: none
 
+#buy > a:hover
+  background-color: #2F880B
+
 #buy > a > b
   font-weight: 600
 
 .bullet > b
   color: #3BB30B
   font-weight: 600
-  
+
+#bottom 
+  display: flex
+  padding: 0 20pt
+
+#items
+  flex: 1
+  display: flex
 
 </style>

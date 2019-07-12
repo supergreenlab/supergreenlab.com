@@ -22,20 +22,21 @@
       <SectionTitle title='Setting up a grow space'
                     green='Has never been easier'/>
     </div>
-    <div :id='$style.video'>
-      <iframe width="559" height="314" src="https://www.youtube.com/embed/uUlO5EedbIE?autoplay=1&loop=1&playlist=uUlO5EedbIE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <video :id='$style.video' autoplay loop>
+      <source src="/intro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video> 
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=1
               title='Get any furniture'
-              text='Any sizes and shapes, our kits are designed to adapt to all furnitures.'
+              text='Any sizes and shapes, our bundles are designed to adapt to all furnitures.'
               icon='furniture.svg'
               :vertical=1 />
       </div>
       <div :class='$style.step'>
         <Step n=2
-              title='Install our kit'
+              title='Install our bundle'
               text='Easy to install and configure, let yourself guided.'
               icon='screw.svg'
               :vertical=true />
@@ -71,9 +72,13 @@ export default {
   min-height: 100vh
 
 #title
-  margin: 100pt 0 50pt 0
+  margin: 0pt 0 50pt 0
 
 #video
+  height: 100%
+  max-height: 600px
+  width: 100%
+  max-width: 800px
   margin: 0 0 40pt 0
 
 #steps

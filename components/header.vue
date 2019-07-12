@@ -22,11 +22,11 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
-      <div :class='$style.selected'>Home</div>
-      <div>Mono box kit</div>
-      <div>Multi box kit</div>
-      <div>Closet kit</div>
-      <div>Microgrow kit</div>
+      <div><a href='#top'>Home</a></div>
+      <div><a href='#mono'>Mono box bundle</a></div>
+      <div><a href='#multi'>Multi box bundle</a></div>
+      <div><a href='#closet'>Closet bundle</a></div>
+      <div><a href='#micro'>Microgrow bundle</a></div>
     </div>
   </section>
 </template>
@@ -45,19 +45,21 @@ export default {
 #container
   display: flex
   width: 100%
-  background-color: #EFEFEF
+  background-color: rgba(255, 255, 255, 0.8)
   align-items: center
   justify-content: space-between
   padding: 0 0 0 10pt
 
 #menu
   display: flex
+  font-size: 0.8em
 
-#menu > div
+#menu > div > a
+  display: block
   color: #5D5D5D
   font-weight: 600
-  padding: 15pt 15pt
   cursor: pointer
+  padding: 15pt 10pt
   text-decoration: underline
   text-transform: uppercase
 

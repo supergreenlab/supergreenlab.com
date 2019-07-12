@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <!--<div :id='$style.ad'>Head over to our shop to design your home grow kit!</div>-->
+    <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
     <div :id='$style.logo'>
       <Logo />
     </div>
@@ -40,7 +40,7 @@
     <small :id='$style.trustmeimalawyer'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />
       local, state, and federal laws. SuperGreenLabs will not be liable for<br />
-      consequences surrounding the legality of how the lights or grow kit are used. 
+      consequences surrounding the legality of how the lights or grow bundle are used. 
     </small>
   </section>
 </template>

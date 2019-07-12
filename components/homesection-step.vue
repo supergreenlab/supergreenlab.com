@@ -59,10 +59,11 @@ export default {
 #title
   margin-bottom: 5pt
   font-size: 1.1em
-  font-weight: 400
+  font-weight: 600
 
 #body > h1
   margin-top: 0
   font-size: 3em
+  color: #888888
 
 </style>

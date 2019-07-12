@@ -70,9 +70,6 @@ export default {
   justify-content: center
   align-items: center
 
-#title
-  margin: 20pt 0 50pt 0
-
 #steps
   display: flex
   align-items: center

@@ -22,9 +22,10 @@
       <SectionTitle title='Introducing more flexible'
                     green='and stealthy builds'/>
     </div>
-    <div :id='$style.video'>
-      <iframe width="500" height="500" src="https://www.youtube.com/embed/-FM1Fq-HFvs?autoplay=1&loop=1&playlist=-FM1Fq-HFvs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <video :id='$style.video' autoplay loop>
+      <source src="/stealth.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video> 
   </section>
 </template>
 
@@ -47,9 +48,19 @@ export default {
   align-items: center
 
 #title
-  margin: 80pt 0 50pt 0
+  margin: 0pt 0 50pt 0
 
 #video
+  height: 100%
+  max-height: 600px
+  width: 100%
+  max-width: 600px
   margin: 0 0 40pt 0
+
+#iframe
+  width: 100%
+  max-width: 500pt
+  height: 100%
+  max-height: 500pt
 
 </style>
