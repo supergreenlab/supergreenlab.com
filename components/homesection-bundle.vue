@@ -33,6 +33,7 @@
     </div>
     <div :id='$style.bottom'>
       <div :id='$style.items'>
+        <b>Includes:</b>
         <Items :bigleds='bigleds' :smallleds='smallleds' :tinyleds='tinyleds' :ventilation='ventilation' :sensor='sensor' />
       </div>
       <div :id='$style.buy'>
@@ -69,9 +70,13 @@ export default {
 #header > h1
   color: #3BB30B
   margin: 0
+  @media only screen and (max-width: 600px)
+    font-size: 1.8em
 
 #title
   color: #5D5D5D
+  @media only screen and (max-width: 600px)
+    font-size: 0.85em
 
 #title > h1
   margin: 0
@@ -145,5 +150,12 @@ export default {
 #items
   flex: 1
   display: flex
+  flex-direction: column
+  font-weight: 400
+  color: #5d5d5d
+
+#items > b
+  font-size: 1.2em
+  margin-bottom: 30pt
 
 </style>
