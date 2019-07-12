@@ -54,6 +54,7 @@ export default {
 
 #container
   display: flex
+  flex-wrap: wrap
 
 .icon
   display: flex
@@ -70,6 +71,9 @@ export default {
   transition: transform 0.2s
   cursor: pointer
   color: #5E5E5E
+  @media only screen and (max-width: 600px)
+    flex-basis: 50%
+    margin: 20pt 0pt 0 0
 
 .icon:hover
   transform: scale(1.1)

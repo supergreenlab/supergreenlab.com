@@ -39,6 +39,8 @@ export default {
 
 #container
   display: flex 
+  @media only screen and (max-width: 600px)
+    flex-direction: row !important
 
 #iconv, #iconh
   background-position: center
@@ -48,10 +50,17 @@ export default {
 #iconv
   width: 100%
   height: 150pt
+  @media only screen and (max-width: 600px)
+    width: 150pt
+    height: auto
+    flex: 0.3
+    margin-right: 20pt
 
 #iconh
   flex: 0.3
   margin-right: 20pt
+  @media only screen and (max-width: 600px)
+    width: 150pt
 
 #body
   flex: 0.7

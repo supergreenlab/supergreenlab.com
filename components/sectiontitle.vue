@@ -37,6 +37,8 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: center
+  @media only screen and (max-width: 600px)
+    font-size: 0.8em
 
 #title
   color: #5E5E5E

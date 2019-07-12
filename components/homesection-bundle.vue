@@ -83,6 +83,8 @@ export default {
 #body
   display: flex
   margin: 30pt 30pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column !important
 
 #icon
   width: 40%
@@ -91,6 +93,9 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   margin: 0 20pt 0 20pt
+  @media only screen and (max-width: 600px)
+    width: 100%
+    margin: 0 0pt 0 0pt
 
 #description
   display: flex
@@ -107,6 +112,8 @@ export default {
   flex-direction: column
   justify-content: flex-end
   text-align: right
+  @media only screen and (max-width: 600px)
+    margin-top: 30pt
 
 #buy > a
   display: block
@@ -130,6 +137,10 @@ export default {
 #bottom 
   display: flex
   padding: 0 20pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+    justify-content: center
+    align-items: center
 
 #items
   flex: 1

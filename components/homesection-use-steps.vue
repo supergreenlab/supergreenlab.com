@@ -75,6 +75,7 @@ export default {
   margin: 0pt 0 50pt 0
 
 #video
+  display: block
   height: 100%
   max-height: 600px
   width: 100%
@@ -86,8 +87,12 @@ export default {
   align-items: center
   justify-content: space-around
   margin: 0 40pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 .step
   flex-basis: 25%
+  @media only screen and (max-width: 600px)
+    margin-bottom: 20pt
 
 </style>

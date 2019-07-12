@@ -37,7 +37,7 @@
         <div :id='$style.mobile'></div>
       </div>
     </div>
-    <small :id='$style.trustmeimalawyer'>
+    <small :id='$style.legal'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />
       local, state, and federal laws. SuperGreenLabs will not be liable for<br />
       consequences surrounding the legality of how the lights or grow bundle are used. 
@@ -90,6 +90,9 @@ export default {
   margin: 80pt 0 0
   font-size: 3.5em
   z-index: 100
+  @media only screen and (max-width: 600px)
+    font-size: 2em
+    margin: 15pt 0 20pt 0
 
 #body
   flex: 1
@@ -113,16 +116,26 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   transition: opacity 2s
+  @media only screen and (max-width: 600px)
+    width: 60%
+    height: 60%
+    top: 20%
+    left: 20%
 
 .shown
   opacity: 1
 
 #tvstand
   background-image: url('~assets/img/tvstand.png')
+  @media only screen and (max-width: 600px)
+    top: 10%
+    height: 80%
 
 #office
   background-image: url('~assets/img/office.png')
   top: 20%
+  @media only screen and (max-width: 600px)
+    height: 70%
 
 #dombas
   background-image: url('~assets/img/dombas.png')
@@ -133,6 +146,9 @@ export default {
   background-image: url('~assets/img/all-sgl.png')
   top: 5%
   height: 90%
+  @media only screen and (max-width: 600px)
+    height: 70%
+    top: 15%
 
 #productbg
   position: absolute
@@ -156,6 +172,10 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   transform: translate(0, 25%)
+  @media only screen and (max-width: 600px)
+    left: calc(50% + 40pt)
+    width: 50pt
+    height: 150pt
 
 #cta
   display: flex
@@ -178,7 +198,7 @@ export default {
 #cta > b
   font-weight: 600
 
-#trustmeimalawyer
+#legal
   font-weight: 300
   text-align: center
   margin-bottom: 5pt

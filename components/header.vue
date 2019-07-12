@@ -49,6 +49,10 @@ export default {
   align-items: center
   justify-content: space-between
   padding: 0 0 0 10pt
+  @media only screen and (max-width: 600px)
+    justify-content: center
+  @media only screen and (max-width: 600px)
+    display: none
 
 #menu
   display: flex

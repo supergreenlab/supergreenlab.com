@@ -152,6 +152,7 @@ export default {
   z-index: 1000
 
 #body
+  width: 100%
   max-width: 900pt
 
 #title
