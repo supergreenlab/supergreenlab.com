@@ -20,7 +20,6 @@ export default ({ app }) => {
   }
   window.onload = () => {
     let { sglid } = getCookies()
-    console.log(sglid)
     if (!sglid) {
       sglid = uuidv4()
       document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/`;
