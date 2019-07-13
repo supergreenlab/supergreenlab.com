@@ -1,21 +1,30 @@
 export default ({ app }) => {
-  var _paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-  _paq.push(["setDomains", ["*.www.supergreenlab.com","*.localhost","*.shop.supergreenlab.com"]]);
-  _paq.push(["enableCrossDomainLinking"]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//analytics.supergreenlab.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
+  const getCookies = () => {
+    return document.cookie.split(';').map(function(c) {
+      return c.trim().split('=').map(decodeURIComponent);
+    }).reduce(function(a, b) {
+      try {
+        a[b[0]] = JSON.parse(b[1]);
+      } catch (e) {
+        a[b[0]] = b[1];
+      }
+      return a;
+    }, {});
+  }
 
-  app.router.afterEach((to, from) => {
-    _paq.push(['setDocumentTitle', document.domain + '/' + document.title]);
-    _paq.push(['trackPageView']);
-  })
+  const uuidv4 = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  window.onload = () => {
+    let { sglid } = getCookies()
+    console.log(sglid)
+    if (!sglid) {
+      sglid = uuidv4()
+      document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/`;
+    }
+    app.$matomo.setUserId(sglid)
+  }
 }
