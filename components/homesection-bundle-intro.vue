@@ -25,7 +25,7 @@
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=1
-              title='Best in class leds'
+              title='Best in class LEDs'
               text='While providing optimum lighting for <b>all stages of you plants</b>’ growth, they produce <b>very little heat</b>.<br />Which makes them perfect for all range of spaces. <b>Even the stealthiest</b>.'
               icon='light.svg' />
       </div>

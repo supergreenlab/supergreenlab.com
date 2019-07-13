@@ -20,15 +20,15 @@
   <section :id='$style.container'>
     <a href='https://shop.supergreenlab.com/collections/grow-lights/products/192-301b' v-if='bigleds > 0' :class='$style.icon' :id='$style.light'>
       <div :class='$style.number'>{{ bigleds }}</div>
-      <span>Big led</span>
+      <span>Big LED</span>
     </a>
     <a href='https://shop.supergreenlab.com/collections/grow-lights/products/sgb-144-301b' v-if='smallleds > 0' :class='$style.icon' :id='$style.smalllight'>
       <div :class='$style.number'>{{ smallleds }}</div>
-      <span>Medium led</span>
+      <span>Medium LED</span>
     </a>
     <a href='https://shop.supergreenlab.com/collections/grow-lights/products/sgb-36-301b' v-if='tinyleds > 0' :class='$style.icon' :id='$style.tinylight'>
       <div :class='$style.number'>{{ tinyleds }}</div>
-      <span>Tiny led</span>
+      <span>Tiny LED</span>
     </a>
     <a href='https://shop.supergreenlab.com/collections/accessories/products/blower' :class='$style.icon' :id='$style.ventilation'>
       <div :class='$style.number'>{{ ventilation }}</div>

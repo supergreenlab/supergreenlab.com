@@ -39,7 +39,7 @@
       <div id='mono'></div>
       <Bundle
         title='MONO BOX BUNDLE'
-        subtitle='192 leds, 1 controller'
+        subtitle='192 LEDs, 1 controller'
         icon='tvstand.png'
         :bullets='[
           "Perfect kit for <b>first-timers</b> or <b>small setups</b>.",
@@ -102,11 +102,11 @@
       <div id='micro'></div>
       <Bundle
         title='MICRO GROW BUNDLE'
-        subtitle='6 tiny led panels for canna scientists'
+        subtitle='6 tiny LED panels for canna scientists'
         icon='triforce.png'
         :bullets='[
           "Perfect kit for <b>experimenters</b> and <b>breeders</b>",
-          "<b>6 tiny led panels</b> for 0 limitations",
+          "<b>6 tiny LED panels</b> for 0 limitations",
           "Can fit from a <b>nightstand</b> to a <b>shoebox</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
         ]'

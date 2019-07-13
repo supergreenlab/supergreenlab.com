@@ -1,7 +1,7 @@
 {
   "name": "supergreenlab.com",
   "version": "1.0.0",
-  "description": "Build you automated grow box now.",
+  "description": "Transform any furniture into a connected growbox.",
   "author": "vitaminwater",
   "private": true,
   "scripts": {
