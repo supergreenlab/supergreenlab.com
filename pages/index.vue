@@ -137,7 +137,6 @@ import Footer from '~/components/homesection-footer.vue'
 export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer, },
   matomo(from, to, store) {
-    console.log('pouet')
   },
 }
 </script>
