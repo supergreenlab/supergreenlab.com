@@ -36,7 +36,6 @@ export default {
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/pixel.js', ssr: false },
-    { src: '~plugins/matomo.js', ssr: false },
   ],
 
   /*
@@ -45,6 +44,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    ['nuxt-matomo', { matomoUrl: '//analytics.supergreenlab.com/', trackerUrl: '//analytics.supergreenlab.com/matomo.php', scriptUrl: '//analytics.supergreenlab.com/matomo.js', siteId: 1 }],
   ],
   /*
   ** Axios module configuration
