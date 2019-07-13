@@ -43,7 +43,7 @@
         icon='tvstand.png'
         :bullets='[
           "Perfect kit for <b>first-timers</b> or <b>small setups</b>.",
-          "<b>Easy setup</b> with just one <b>all-in-one</b> led panel",
+          "<b>Easy setup</b> with the application",
           "Harvest every <b>3 months</b>",
           "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
@@ -64,7 +64,7 @@
         icon='office.png'
         :bullets='[
           "Start the <b>next batch</b> before end of bloom",
-          "<b>Easy setup</b> with just <b>two all-in-one led</b> panel",
+          "<b>Easy setup</b> with the application",
           "Harvest every <b>1 and 1/2 months</b>",
           "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
           "<b>all included</b>: power supply, sensor and ventilation",
