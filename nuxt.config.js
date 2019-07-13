@@ -35,7 +35,7 @@ export default {
   */
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
-    { src: '~plugins/pixel.js', ssr: false },
+    //{ src: '~plugins/pixel.js', ssr: false },
   ],
 
   /*

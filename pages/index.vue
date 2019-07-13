@@ -23,13 +23,13 @@
     </div>
     <div :id='$style.body'>
       <div id='top'></div>
-      <Top />
+      <Top ref='top' />
       <div :class='$style.separator'></div>
-      <UseSteps />
+      <UseSteps ref='use-steps' />
       <div :class='$style.separator'></div>
-      <Stealth />
+      <Stealth ref='stealth' />
       <div :class='$style.separator'></div>
-      <BundleIntro />
+      <BundleIntro ref='bundle-intro' />
       <div :class='$style.separator'></div>
       <div :id='$style.shop'></div>
       <div :id='$style.title'>
@@ -38,6 +38,7 @@
       </div>
       <div id='mono'></div>
       <Bundle
+        ref='mono-box-bundle'
         title='MONO BOX BUNDLE'
         subtitle='192 LEDs, 1 controller'
         icon='tvstand.png'
@@ -59,6 +60,7 @@
       <div :class='$style.separator'></div>
       <div id='multi'></div>
       <Bundle
+        ref='multi-box-bundle'
         title='MULTI BOX BUNDLE'
         subtitle='Harvests come twice faster !'
         icon='office.png'
@@ -81,6 +83,7 @@
       <div :class='$style.separator'></div>
       <div id='closet'></div>
       <Bundle
+        ref='closet-bundle'
         title='CLOSET BUNDLE'
         subtitle='Grow huge plants, harvest often'
         icon='dombas.png'
@@ -101,6 +104,7 @@
       <div :class='$style.separator'></div>
       <div id='micro'></div>
       <Bundle
+        ref='micro-grow-bundle'
         title='MICRO GROW BUNDLE'
         subtitle='6 tiny LED panels for canna scientists'
         icon='triforce.png'
@@ -136,7 +140,29 @@ import Footer from '~/components/homesection-footer.vue'
 
 export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer, },
-  matomo(from, to, store) {
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    if (this.timeout) clearTimeout(this.timeout)
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll(e) {
+      if (this.timeout) clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        Object.keys(this.$refs).forEach((name) => {
+          const ref = this.$refs[name],
+                { y, height } = ref.$el.getBoundingClientRect(),
+                centery = y + height / 2,
+                winh = window.innerHeight
+
+          if (centery > 0 && centery < winh) {
+            this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
+          }
+        })
+      }, 250)
+    },
   },
 }
 </script>
