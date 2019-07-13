@@ -22,11 +22,11 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
-      <div><a href='#top'>Home</a></div>
-      <div><a href='#mono'>Mono box bundle</a></div>
-      <div><a href='#multi'>Multi box bundle</a></div>
-      <div><a href='#closet'>Closet bundle</a></div>
-      <div><a href='#micro'>Microgrow bundle</a></div>
+      <div><a @click='onClick' href='#top'>Home</a></div>
+      <div><a @click='onClick' href='#mono'>Mono box bundle</a></div>
+      <div><a @click='onClick' href='#multi'>Multi box bundle</a></div>
+      <div><a @click='onClick' href='#closet'>Closet bundle</a></div>
+      <div><a @click='onClick' href='#micro'>Microgrow bundle</a></div>
     </div>
   </section>
 </template>
@@ -36,6 +36,11 @@ import Logo from '~/components/logo.vue'
 
 export default {
   components: { Logo, },
+  methods: {
+    onClick(e) {
+      this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
+    },
+  },
 }
 
 </script>
