@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     buy() {
-      window.location.href = this.$props.url
+      window.location.href = this.bundle.url
     },
   },
 }
