@@ -1,5 +1,271 @@
 {
   "shopify": {
-    "token": "38015c2b548aad3277f645ced86d3390"
-  }
+    "token": "15b29141aad68fb6c4cfd0c2bf9bae8b"
+  },
+  "leds": [
+    {
+      "slug": "192",
+      "ids": {
+        "white": "22937070895152",
+        "black": "22990585954352"
+      },
+      "name": "SGB 192",
+      "price": 129,
+      "main": true,
+      "power": "external",
+      "icons": {
+        "white": "192-white.png",
+        "black": "192-black.png"
+      },
+      "bullets": [
+        "Easy installation with it’s led holder",
+        "192 of the best LEDs on the market: Samsung lm301b",
+        "Huge surface for better heat dissipation and even surface coverage",
+        "full spectrum: fits veg and bloom"
+      ],
+      "width": 35,
+      "height": 25,
+      "keymetrics": {
+        "distance": {
+          "unit": "cm",
+          "min": 20,
+          "max": 50
+        },
+        "power": {
+          "unit": "w",
+          "min": 30,
+          "max": 120
+        },
+        "coverage": {
+          "unit": "cm2",
+          "min": 30,
+          "max": 80
+        },
+        "yield": {
+          "unit": "g",
+          "min": 30,
+          "max": 150
+        },
+        "plants": {
+          "unit" :"",
+          "min": 1,
+          "max": 8
+        }
+      }
+    },
+    {
+      "slug": "144",
+      "ids": {
+        "white": "22937065586736",
+        "black": "22990590410800"
+      },
+      "name": "SGB 144",
+      "price": 99,
+      "main": true,
+      "power": "external",
+      "icons": {
+        "white": "144-white.png",
+        "black": "144-black.png"
+      },
+      "bullets": [
+        "Easy installation with it’s led holder",
+        "144 of the best LEDs on the market: Samsung lm301b",
+        "Big led spacing for better heat dissipation and even surface coverage",
+        "full spectrum: fits veg and bloom"
+      ],
+      "width": 25,
+      "height": 23,
+      "max": 4,
+      "hidemax": true,
+      "keymetrics": {
+        "distance": {
+          "unit": "cm",
+          "min": 15,
+          "max": 40
+        },
+        "power": {
+          "unit": "w",
+          "min": 20,
+          "max": 80
+        },
+        "coverage": {
+          "unit": "cm2",
+          "min": 30,
+          "max": 60
+        },
+        "yield": {
+          "unit": "g",
+          "min": 30,
+          "max": 80
+        },
+        "plants": {
+          "unit" :"",
+          "min": 1,
+          "max": 4
+        }
+      }
+    },
+    {
+      "slug": "36",
+      "ids": {
+        "white": "22937067421744",
+        "black": "23014573146160"
+      },
+      "name": "SGB 36",
+      "price": 29.99,
+      "power": "controller",
+      "icons": {
+        "white": "36-white.png",
+        "black": "36-black.png"
+      },
+      "bullets": [
+        "Easy installation with it’s led holder",
+        "36 of the best LEDs on the market: Samsung lm301b",
+        "Big led spacing for better heat dissipation and even surface coverage",
+        "full spectrum: fits veg and bloom"
+      ],
+      "width": 13,
+      "height": 11,
+      "max": 6,
+      "keymetrics": {
+        "distance": {
+          "unit": "cm",
+          "min": 5,
+          "max": 30
+        },
+        "power": {
+          "unit": "w",
+          "min": 5,
+          "max": 12
+        },
+        "coverage": {
+          "unit": "cm2",
+          "min": 15,
+          "max": 30
+        },
+        "plants": {
+          "unit" :"",
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  ],
+  "accessories": [
+    {
+      "slug": "blower",
+      "name": "Ventilation blower",
+      "price": 29,
+      "icon": "blower.png",
+      "bullets": [
+        "Fits to a wide array of sizes",
+        "Strong enough to pull through a carbon filter",
+        "2 configurable speeds: night and day",
+        "Totally silent at low level"
+      ]
+    },
+    {
+      "slug": "sensor",
+      "name": "Temperature and humidity sensor.",
+      "price": 24.99,
+      "icon": "sht21.png",
+      "bullets": [
+        "Monitor your growing environment remotely",
+        "Get alerts when things go wrong",
+        "Easy to install"
+      ]
+    },
+    {
+      "slug": "controller",
+      "name": "System controller",
+      "price": 119,
+      "icon": "controller.png",
+      "bullets": [
+        "Monitor your growing environment remotely",
+        "Get alerts when things go wrong",
+        "Easy to install"
+      ]
+    }
+  ],
+	"bundles": [
+    {
+      "slug":"mono-box-bundle",
+      "ref":"mono-box-bundle",
+      "title": "MONO BOX BUNDLE",
+      "subtitle": "192 LEDs, 1 controller",
+      "icon": "tvstand.png",
+      "bullets": [
+        "Perfect kit for <b>first-timers</b> or <b>small setups</b>.",
+        "<b>Easy setup</b> with the application",
+        "Harvest every <b>3 months</b>",
+        "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
+        "<b>all included</b>: power supply, sensor and ventilation"
+      ],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107264880688:1",
+      "price": 249,
+      "bigleds": 1,
+      "smallleds": 0,
+      "tinyleds": 0,
+      "ventilation": 1,
+      "sensor": 1
+    }, {
+      "slug":"multi-box-bundle",
+      "ref":"multi-box-bundle",
+      "title": "MULTI BOX BUNDLE",
+      "subtitle": "Harvests come twice faster !",
+      "icon": "office.png",
+      "bullets": [                                                     
+        "Start the <b>next batch</b> before end of bloom",          
+        "<b>Easy setup</b> with the application",
+        "Harvest every <b>1 and 1/2 months</b>",                              
+        "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
+        "<b>all included</b>: power supply, sensor and ventilation"
+      ],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107272089648:1",
+      "price": 349,
+      "bigleds": 1,
+      "smallleds": 0,
+      "tinyleds": 2,
+      "ventilation": 2,
+      "sensor": 2
+    }, {
+      "slug":"closet-box-bundle",
+      "ref":"closet-bundle",
+      "title": "CLOSET BUNDLE",
+      "subtitle": "Grow huge plants, harvest often",
+      "icon": "dombas.png",
+      "bullets": [                                                   
+        "<b>High efficiency</b> setup",              
+        "<b>Harvest up to every 3 weeks</b>",                                 
+        "from a <b>wardrobe</b> to a <b>closet</b>",                
+        "<b>all included</b>: power supply, sensor and ventilation"
+      ],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
+      "price": 549,
+      "bigleds": 2,
+      "smallleds": 2,
+      "tinyleds": 0,
+      "ventilation": 2,
+      "sensor": 2
+    }, {
+      "slug":"micro-box-bundle",
+      "ref":"micro-grow-bundle",
+      "title": "MICRO GROW BUNDLE",
+			"subtitle": "6 tiny LED panels for canna scientists",
+			"icon": "triforce.png",
+			"bullets": [
+				"Perfect kit for <b>experimenters</b> and <b>breeders</b>",
+				"<b>6 tiny LED panels</b> for 0 limitations",
+				"Can fit from a <b>nightstand</b> to a <b>shoebox</b>",
+				"<b>all included</b>: power supply, sensor and ventilation"
+			],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
+      "price": 299,
+      "bigleds": 0,
+      "smallleds": 0,
+      "tinyleds": 6,
+      "ventilation": 1,
+      "sensor": 1
+    }
+  ]
 }

@@ -37,92 +37,10 @@
                       green='Checkout our bundles'/>
       </div>
       <div id='mono'></div>
-      <Bundle
-        ref='mono-box-bundle'
-        title='MONO BOX BUNDLE'
-        subtitle='192 LEDs, 1 controller'
-        icon='tvstand.png'
-        :bullets='[
-          "Perfect kit for <b>first-timers</b> or <b>small setups</b>.",
-          "<b>Easy setup</b> with the application",
-          "Harvest every <b>3 months</b>",
-          "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
-          "<b>all included</b>: power supply, sensor and ventilation",
-        ]'
-        url='https://shop.supergreenlab.com/pages/loading-cart#29107264880688:1'
-        price='$249'
-        bigleds='1'
-        smallleds='0'
-        tinyleds='0'
-        ventilation='1'
-        sensor='1'
-        />
-      <div :class='$style.separator'></div>
-      <div id='multi'></div>
-      <Bundle
-        ref='multi-box-bundle'
-        title='MULTI BOX BUNDLE'
-        subtitle='Harvests come twice faster !'
-        icon='office.png'
-        :bullets='[
-          "Start the <b>next batch</b> before end of bloom",
-          "<b>Easy setup</b> with the application",
-          "Harvest every <b>1 and 1/2 months</b>",
-          "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
-          "<b>all included</b>: power supply, sensor and ventilation",
-        ]'
-        url='https://shop.supergreenlab.com/pages/loading-cart#29107272089648:1'
-        price='$349'
-        :right=1
-        bigleds='1'
-        smallleds='0'
-        tinyleds='2'
-        ventilation='2'
-        sensor='2'
-        />
-      <div :class='$style.separator'></div>
-      <div id='closet'></div>
-      <Bundle
-        ref='closet-bundle'
-        title='CLOSET BUNDLE'
-        subtitle='Grow huge plants, harvest often'
-        icon='dombas.png'
-        :bullets='[
-          "<b>High efficiency</b> setup",
-          "<b>Harvest up to every 3 weeks</b>",
-          "from a <b>wardrobe</b> to a <b>closet</b>",
-          "<b>all included</b>: power supply, sensor and ventilation",
-        ]'
-        url='https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1'
-        price='$599'
-        bigleds='2'
-        smallleds='2'
-        tinyleds='0'
-        ventilation='2'
-        sensor='2'
-        />
-      <div :class='$style.separator'></div>
-      <div id='micro'></div>
-      <Bundle
-        ref='micro-grow-bundle'
-        title='MICRO GROW BUNDLE'
-        subtitle='6 tiny LED panels for canna scientists'
-        icon='triforce.png'
-        :bullets='[
-          "Perfect kit for <b>experimenters</b> and <b>breeders</b>",
-          "<b>6 tiny LED panels</b> for 0 limitations",
-          "Can fit from a <b>nightstand</b> to a <b>shoebox</b>",
-          "<b>all included</b>: power supply, sensor and ventilation",
-        ]'
-        url='https://shop.supergreenlab.com/pages/loading-cart#29107273826352:1'
-        price='$299'
-        :right=1
-        bigleds='0'
-        smallleds='0'
-        tinyleds='6'
-        ventilation='1'
-        sensor='1'
-        />
+      <div :class='$style.bundle' v-for='b in bundles'>
+        <div :id='b.ref'></div>
+        <Bundle v-bind='b' />
+      </div>
     </div>
     <Footer />
   </section>
@@ -138,6 +56,8 @@ import Bundle from '~/components/homesection-bundle.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 
+import { bundles } from '../config.json'
+
 export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer, },
   created () {
@@ -147,6 +67,11 @@ export default {
     if (this.timeout) clearTimeout(this.timeout)
     window.removeEventListener('scroll', this.handleScroll);
   },
+	computed: {
+		bundles() {
+			return bundles
+		}
+	},
   methods: {
     handleScroll(e) {
       if (this.timeout) clearTimeout(this.timeout)
@@ -201,5 +126,8 @@ export default {
   background-position: center
   background-repeat: no-repeat
   background-size: contain
+
+.bundle
+  margin: 0 0 30pt 0
 
 </style>

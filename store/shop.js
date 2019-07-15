@@ -16,75 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { leds } from '../config.json'
+
 export const state = () => ({
-  leds: [
-    {
-      ids: {
-        white: '22937070895152',
-        black: '22990585954352',
-      },
-      name: 'SGB 288.301B',
-      price: 99.00,
-      main: true,
-      power: 'mw',
-      icons: {
-        white: '288-white.png',
-        black: '288-black.png',
-      },
-      width: 35,
-      height: 25,
-    },
-    {
-      ids: {
-        white: '22937065586736',
-        black: '22990590410800',
-      },
-      name: 'SGB 144.301B',
-      price: 99.00,
-      main: true,
-      power: 'external',
-      icons: {
-        white: '144-white.png',
-        black: '144-black.png',
-      },
-      width: 25,
-      height: 23,
-      max: 4,
-      hidemax: true,
-    },
-    {
-      ids: {
-        white: '22937069060144',
-        black: '22990602797104',
-      },
-      name: 'SGB 72.301B',
-      price: 39.99,
-      power: 'controller',
-      icons: {
-        white: '72-white.png',
-        black: '72-black.png',
-      },
-      width: 25,
-      height: 11,
-      max: 2,
-    },
-    {
-      ids: {
-        white: '22937067421744',
-        black: '23014573146160',
-      },
-      name: 'SGB 36.301B',
-      price: 29.99,
-      power: 'controller',
-      icons: {
-        white: '36-white.png',
-        black: '36-black.png',
-      },
-      width: 13,
-      height: 11,
-      max: 4,
-    },
-  ]
+	leds,
 })
 
 const LED_SIZE_SPREAD = 1.6

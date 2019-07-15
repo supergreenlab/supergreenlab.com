@@ -23,7 +23,7 @@
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </div>
-      <h1>{{ price }}</h1>
+      <h1>${{ price }}</h1>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
@@ -31,13 +31,13 @@
         <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
       </div>
     </div>
-    <div :id='$style.bottom'>
+    <div :id='$style.bottom' v-if='!nobottom'>
       <div :id='$style.items'>
         <b>Includes:</b>
         <Items :bigleds='bigleds' :smallleds='smallleds' :tinyleds='tinyleds' :ventilation='ventilation' :sensor='sensor' />
       </div>
       <div :id='$style.buy'>
-        <a href='javascript:void(0)' @click='buy'>BUY NOW <b>{{ price }}</b></a><br />
+        <nuxt-link :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />
         Free shipping
       </div>
     </div>
@@ -49,12 +49,7 @@ import Items from '~/components/homesection-bundle-items.vue'
 
 export default {
   components: {Items,},
-  props: ['title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url',],
-  methods: {
-    buy() {
-      window.location.href = this.$props.url
-    },
-  },
+  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom'],
 }
 </script>
 

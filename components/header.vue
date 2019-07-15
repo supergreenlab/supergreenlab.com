@@ -22,11 +22,11 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
-      <div><a @click='onClick' href='#top'>Home</a></div>
-      <div><a @click='onClick' href='#mono'>Mono box bundle</a></div>
-      <div><a @click='onClick' href='#multi'>Multi box bundle</a></div>
-      <div><a @click='onClick' href='#closet'>Closet bundle</a></div>
-      <div><a @click='onClick' href='#micro'>Microgrow bundle</a></div>
+      <div><a @click='onClick' href='/#top'>Home</a></div>
+      <div><a @click='onClick' href='/#mono-box-bundle'>Mono box bundle</a></div>
+      <div><a @click='onClick' href='/#multi-box-bundle'>Multi box bundle</a></div>
+      <div><a @click='onClick' href='/#closet-bundle'>Closet bundle</a></div>
+      <div><a @click='onClick' href='/#micro-grow-bundle'>Microgrow bundle</a></div>
     </div>
   </section>
 </template>
