@@ -112,5 +112,7 @@ export default {
   font-weight: 600
   right: 0
   bottom: 0
+  @media only screen and (max-width: 600px)
+    right: 20pt
 
 </style>

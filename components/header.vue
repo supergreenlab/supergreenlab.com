@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='responsiveHide ? $style.responsiveHide : ""'>
     <div :id='$style.logo'>
       <Logo subtitle='Growshop.' />
     </div>
@@ -36,6 +36,7 @@ import Logo from '~/components/logo.vue'
 
 export default {
   components: { Logo, },
+  props: ['responsiveHide',],
   methods: {
     onClick(e) {
       this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
@@ -56,12 +57,18 @@ export default {
   padding: 0 0 0 10pt
   @media only screen and (max-width: 600px)
     justify-content: center
+    padding: 10pt 0 10pt 0
+    font-size: 1.2em
+
+.responsiveHide
   @media only screen and (max-width: 600px)
-    display: none
+      display: none !important
 
 #menu
   display: flex
   font-size: 0.8em
+  @media only screen and (max-width: 600px)
+      display: none
 
 #menu > div > a
   display: block

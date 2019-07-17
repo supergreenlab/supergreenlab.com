@@ -118,7 +118,8 @@ export default {
   justify-content: flex-end
   text-align: right
   @media only screen and (max-width: 600px)
-    margin-top: 30pt
+    margin: 30pt 10pt 0 0
+    align-self: flex-end
 
 #buy > a
   display: block
@@ -146,6 +147,7 @@ export default {
     flex-direction: column
     justify-content: center
     align-items: center
+    padding: 0
 
 #items
   flex: 1

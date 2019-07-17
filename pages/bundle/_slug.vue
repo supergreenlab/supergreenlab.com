@@ -121,7 +121,6 @@ export default {
   justify-content: center
   align-items: center
 
-
 #header
   position: fixed
   width: 100%
@@ -142,7 +141,7 @@ export default {
   text-align: right
   margin: 40pt 50pt 20pt 0
   @media only screen and (max-width: 600px)
-    margin-top: 30pt
+    margin: 30pt 10pt 20pt 0
 
 #buybutton
   display: block

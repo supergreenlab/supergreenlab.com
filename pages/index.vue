@@ -19,7 +19,7 @@
 <template>
   <section :id="$style.container">
     <div :id='$style.header'>
-      <Header />
+      <Header responsiveHide='true' />
     </div>
     <div :id='$style.body'>
       <div id='top'></div>
