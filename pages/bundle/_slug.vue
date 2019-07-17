@@ -52,6 +52,7 @@
 
             </div>
           </div>
+          Secured by stripe
         </div>
       </div>
     </div>
@@ -200,7 +201,6 @@ export default {
 
 .block
   display: flex
-  margin: 10pt
 
 .blockicon
   width: 20pt

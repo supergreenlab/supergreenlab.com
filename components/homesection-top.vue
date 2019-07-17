@@ -37,6 +37,10 @@
         <div :id='$style.mobile'></div>
       </div>
     </div>
+    <nuxt-link :id='$style.cta' :to='{path: "/", hash: "#use-steps"}'>
+      <b>build your automated<br />growbox</b>
+      <small>From $219</small>
+    </nuxt-link>
     <small :id='$style.legal'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />
       local, state, and federal laws. SuperGreenLabs will not be liable for<br />
@@ -184,11 +188,11 @@ export default {
   color: white
   background-color: #3BB30B
   padding: 5pt 25pt
-  border-radius: 5pt
+  border-radius: 3pt
   text-decoration: none
   text-align: center
-  font-size: 0.9em
   z-index: 100
+  margin-bottom: 20pt
 
 #cta > small
   padding-top: 5pt

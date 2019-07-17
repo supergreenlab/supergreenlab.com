@@ -25,6 +25,7 @@
       <div id='top'></div>
       <Top ref='top' />
       <div :class='$style.separator'></div>
+      <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
       <div :class='$style.separator'></div>
       <Stealth ref='stealth' />
