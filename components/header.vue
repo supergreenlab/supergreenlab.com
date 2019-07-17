@@ -22,11 +22,11 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
-      <div><a @click='onClick' href='/#top'>Home</a></div>
-      <div><a @click='onClick' href='/#mono-box-bundle'>Mono box bundle</a></div>
-      <div><a @click='onClick' href='/#multi-box-bundle'>Multi box bundle</a></div>
-      <div><a @click='onClick' href='/#closet-bundle'>Closet bundle</a></div>
-      <div><a @click='onClick' href='/#micro-grow-bundle'>Microgrow bundle</a></div>
+      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#top' }">Home</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#mono-box-bundle' }">Mono box bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#multi-box-bundle' }">Multi box bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#closet-bundle' }">Closet bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#micro-grow-bundle' }">Microgrow bundle</nuxt-link></div>
     </div>
   </section>
 </template>
