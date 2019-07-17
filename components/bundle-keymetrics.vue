@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.header'>
-      <h3>Key metrics</h3>
+      <h3>Key metrics per items</h3>
     </div>
     <div :id='$style.metrics'>
       <div v-if='distance' :class='$style.metric'>
