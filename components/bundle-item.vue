@@ -142,6 +142,8 @@ export default {
   display: flex
   flex: 1
   flex-direction: row-reverse
+  @media only screen and (max-width: 600px)
+    margin-left: 10pt
 
 #price
   position: relative
