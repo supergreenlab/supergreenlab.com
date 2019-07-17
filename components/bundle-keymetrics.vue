@@ -74,6 +74,8 @@ export default {
   display: flex
   flex-direction: column
   padding: 20pt
+  @media only screen and (max-width: 600px)
+    padding: 0
 
 #header
   display: flex
@@ -88,9 +90,13 @@ export default {
   display: flex
   flex-wrap: wrap
   margin: 0 30pt
+  @media only screen and (max-width: 600px)
+    margin: 0 0
 
 .metric
   flex-basis: 50%
   padding: 10pt
+  @media only screen and (max-width: 600px)
+    flex-basis: auto
 
 </style>

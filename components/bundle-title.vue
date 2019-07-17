@@ -39,6 +39,8 @@ export default {
   background-color: #EEEEEE
   padding: 10pt 0
   color: #5D5D5D
+  @media only screen and (max-width: 600px)
+    font-size: 0.8em
 
 #icon
   width: 50pt
@@ -47,5 +49,9 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  @media only screen and (max-width: 600px)
+    width: 30pt
+    height: 30pt
+    margin: 0 8pt
 
 </style>

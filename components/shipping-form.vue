@@ -107,6 +107,8 @@ export default {
   width: 100%
   padding: 0 40pt
   flex-direction: column
+  @media only screen and (max-width: 600px)
+    padding: 0
 
 #container > h2
   margin: 0 0 0 8pt
@@ -116,6 +118,8 @@ export default {
 .twoinrow
   width: 100%
   display: flex
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 .input
   padding: 10pt

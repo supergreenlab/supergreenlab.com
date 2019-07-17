@@ -68,6 +68,9 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  @media only screen and (max-width: 600px)
+    height: 40pt
+    width: 40pt
 
 #metrics
   display: flex

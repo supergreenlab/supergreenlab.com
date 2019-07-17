@@ -89,12 +89,18 @@ export default {
 #product
   display: flex
   margin: 20pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #iconcontainer
   flex: 0.3
   display: flex
   align-items: center
   justify-content: center
+  @media only screen and (max-width: 600px)
+    flex: auto
+    height: 100pt
+    margin-bottom: 20pt
   
 #icon
   width: 100%
@@ -170,6 +176,10 @@ export default {
   color: #707070
   width: 180pt
   transition: background-color 0.2s, border 0.2s
+  white-space: nowrap
+  @media only screen and (max-width: 600px)
+    justify-content: center
+    padding: 5pt 10pt
 
 #metricsarrow
   width: 10pt
@@ -179,6 +189,8 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   transition: transform 0.2s
+  @media only screen and (max-width: 600px)
+    margin-left: 5pt
 
 .shown
   border: 2pt solid #3BB30B !important
