@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.label'>{{ label }} <span v-if='!optional'>*</span></div>
-    <input type='text' :name='name' :value='value' @input='onChange' />
+    <input type='text' :name='name' :value='value' @input='onInput' @change='onChange' />
   </section>
 </template>
 
@@ -27,8 +27,11 @@
 export default {
   props: ['label', 'value', 'name', 'optional',],
   methods: {
-    onChange(e) {
+    onInput(e) {
       this.$emit('input', e.target.value);
+    },
+    onChange(e) {
+      this.$matomo && this.$matomo.trackEvent('shipping-form', this.$props.name, e.target.value)
     }
   },
 }

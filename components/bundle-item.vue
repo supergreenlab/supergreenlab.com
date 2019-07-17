@@ -76,6 +76,7 @@ export default {
   },
   methods: {
     showMetrics() {
+      this.$matomo && this.$matomo.trackEvent('bundle', 'show-keymetrics', this.$props.name)
       this.$data.keymetricsHeight = this.$refs.keymetrics.clientHeight
       this.$data.shownMetrics = !this.$data.shownMetrics
     },
