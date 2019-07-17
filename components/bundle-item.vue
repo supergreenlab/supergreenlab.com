@@ -94,6 +94,7 @@ export default {
   margin: 20pt
   @media only screen and (max-width: 600px)
     flex-direction: column
+    margin: 5pt
 
 #iconcontainer
   flex: 0.3
@@ -146,7 +147,7 @@ export default {
   flex: 1
   flex-direction: row-reverse
   @media only screen and (max-width: 600px)
-    margin-left: 10pt
+    font-size: 0.8em
 
 .price
   position: relative
