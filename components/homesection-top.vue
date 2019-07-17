@@ -39,7 +39,7 @@
     </div>
     <nuxt-link :id='$style.cta' :to='{path: "/", hash: "#use-steps"}'>
       <b>build your automated<br />growbox</b>
-      <small>From $219</small>
+      <small>From $249</small>
     </nuxt-link>
     <small :id='$style.legal'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />
