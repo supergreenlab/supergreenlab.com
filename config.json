@@ -193,6 +193,7 @@
         "white": "29107264880688",
         "black": "29133881770032"
       },
+      "discount": 18,
       "slug":"mono-box-bundle",
       "ref":"mono-box-bundle",
       "title": "MONO BOX BUNDLE",
@@ -217,6 +218,7 @@
         "white": "29107272089648",
         "black": "29133885898800"
       },
+      "discount": 16,
       "slug":"multi-box-bundle",
       "ref":"multi-box-bundle",
       "title": "MULTI BOX BUNDLE",
@@ -241,6 +243,7 @@
         "white": "29107330154544",
         "black": "29133872431152"
       },
+      "discount": 0.2,
       "slug":"closet-box-bundle",
       "ref":"closet-bundle",
       "title": "CLOSET BUNDLE",
@@ -264,6 +267,7 @@
         "white": "29107273826352",
         "black": "29133894352944"
       },
+      "discount": 15,
       "slug":"micro-box-bundle",
       "ref":"micro-grow-bundle",
       "title": "MICRO GROW BUNDLE",

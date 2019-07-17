@@ -24,12 +24,12 @@
     <div :id='$style.body'>
       <Bundle nobottom='true' v-bind='bundle' />
       <Title icon='package.svg' title='PACKAGE CONTENT' />
-      <Item v-if='bundle.bigleds' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
-      <Item v-if='bundle.smallleds' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
-      <Item v-if='bundle.tinyleds' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
-      <Item v-if='bundle.ventilation' :n='bundle.ventilation' v-bind='accessory("blower")' />
-      <Item v-if='bundle.sensor' :n='bundle.sensor' v-bind='accessory("sensor")' />
-      <Item n='1' v-bind='accessory("controller")' last='true' />
+      <Item v-if='bundle.bigleds' :discount='bundle.discount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
+      <Item v-if='bundle.smallleds' :discount='bundle.discount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
+      <Item v-if='bundle.tinyleds' :discount='bundle.discount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
+      <Item v-if='bundle.ventilation' :discount='bundle.discount' :n='bundle.ventilation' v-bind='accessory("blower")' />
+      <Item v-if='bundle.sensor' :discount='bundle.discount' :n='bundle.sensor' v-bind='accessory("sensor")' />
+      <Item n='1' v-bind='accessory("controller")' :discount='bundle.discount' last='true' />
       <Title icon='world.svg' title='SHIPPING INFORMATIONS' />
       <Shipping />
       <div :id='$style.buy'>

@@ -36,7 +36,10 @@
             <div :id='$style.metricsarrow'></div>
           </a>
           <div :id='$style.pricecontainer'>
-            <div :id='$style.price'>
+            <div :class='$style.price'>
+              <h1>${{ Math.floor((price - price * discount / 100) * 100) / 100 }}</h1>
+            </div>
+            <div :class='$style.price + " " + $style.smallprice'>
               <h1>${{ price }}</h1>
               <div :id='$style.redbar'></div>
             </div>
@@ -58,7 +61,7 @@ import KeyMetrics from '~/components/bundle-keymetrics.vue'
 
 export default {
   components: {KeyMetrics,},
-  props: ['n', 'slug', 'name', 'price', 'icon', 'icons', 'color', 'bullets', 'keymetrics', 'last', ],
+  props: ['n', 'slug', 'name', 'price', 'discount', 'icon', 'icons', 'color', 'bullets', 'keymetrics', 'last', ],
   data() {
     return {
       shownMetrics: false,
@@ -145,10 +148,17 @@ export default {
   @media only screen and (max-width: 600px)
     margin-left: 10pt
 
-#price
+.price
   position: relative
+  display: flex
+  align-items: center
+  justify-content: center
 
-#price > h1
+.smallprice
+  margin: 0 10pt
+  font-size: 0.8em
+
+.price > h1
   color: #3BB30B
 
 #redbar
