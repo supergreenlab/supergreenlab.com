@@ -30,14 +30,14 @@
       <div :class='$style.step'>
         <Step n=1
               title='Get any furniture'
-              text='Any sizes and shapes, our bundles are designed to adapt to all furnitures.'
+              text='Any size and shape, our bundles are designed to adapt to all types furniture.'
               icon='furniture.svg'
               :vertical=1 />
       </div>
       <div :class='$style.step'>
         <Step n=2
               title='Install our bundle'
-              text='Easy to install and configure, let yourself guided.'
+              text='Easy to install and configure.'
               icon='screw.svg'
               :vertical=true />
       </div>

@@ -25,26 +25,26 @@
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=1
-              title='Best in class LEDs'
-              text='While providing optimum lighting for <b>all stages of you plants</b>’ growth, they produce <b>very little heat</b>.<br />Which makes them perfect for all range of spaces. <b>Even the stealthiest</b>.'
+              title='Top of the line LEDs
+              text='Provding optimal lighting and little heat. Perfect for the <b>whole life cycle</b> of your grow. The LEDs produce very little heat, perfect for stealth growths.' 
               icon='light.svg' />
       </div>
       <div :class='$style.step'>
         <Step n=2
               title='Ventilation'
-              text='All our kits <b>come with ventilation</b>, which ensures <b>heat and humidity</b> control, as well as <b>odor filtering</b>.'
+              text='All our kits <b>come with ventilation</b>, which ensures <b>heat and humidity</b> control, aswell as <b>odor filtering</b>.'
               icon='ventilation.svg' />
       </div>
       <div :class='$style.step'>
         <Step n=3
               title='Sensors'
-              text='Kits include a <b>temperature</b> and <b>humidity</b> sensor.<br /><b>Keep and eye</b> on your grow environment, even <b>when you’re not home</b> !'
+              text='Kits are included with an <b>humidity and temperature sensor.</b> Keep an eye on your grow even when <b>you're not at home!</b>'
               icon='sensor.svg' />
       </div>
       <div :class='$style.step'>
         <Step n=4
               title='Free app'
-              text='<b>Monitoring</b>, <b>live view</b>, <b>fine-tuning</b>, the free companion app will <b>guide you to harvest</b> !'
+              text='<b>Fine-tuning, monitoring and having a live view on your grow</b>, all from your <b>phone!</b> The app also includes tips and tricks to ensure the <b>best yield<b> from your grow!'
               icon='app.svg' />
       </div>
     </div>
