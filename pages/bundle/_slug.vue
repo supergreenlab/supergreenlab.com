@@ -24,17 +24,25 @@
     <div :id='$style.body'>
       <Bundle nobottom='true' v-bind='bundle' />
       <Title icon='package.svg' title='PACKAGE CONTENT' />
-      <Item v-if='bundle.bigleds' :n='bundle.bigleds' v-bind='led("192")' />
-      <Item v-if='bundle.smallleds' :n='bundle.smallleds' v-bind='led("144")' />
-      <Item v-if='bundle.tinyleds' :n='bundle.tinyleds' v-bind='led("36")' />
+      <Item v-if='bundle.bigleds' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
+      <Item v-if='bundle.smallleds' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
+      <Item v-if='bundle.tinyleds' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
       <Item v-if='bundle.ventilation' :n='bundle.ventilation' v-bind='accessory("blower")' />
       <Item v-if='bundle.sensor' :n='bundle.sensor' v-bind='accessory("sensor")' />
-      <Item n='1' v-bind='accessory("controller")' />
-      <!--<Title icon='world.svg' title='SHIPPING INFORMATIONS' />
-      <Shipping />-->
+      <Item n='1' v-bind='accessory("controller")' last='true' />
+      <Title icon='world.svg' title='SHIPPING INFORMATIONS' />
+      <Shipping />
       <div :id='$style.buy'>
-        <a href='javascript:void(0)' @click='buy'>PAY NOW <b>${{ bundle.price }}</b></a><br />
-        Free shipping
+        <div :id='$style.promocode'>
+          <TextInput label='Promo code' v-model='promocode' optional='true' />
+          <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>${{ bundle.price }}</b></a>
+          Free shipping
+        </div>
+      </div>
+    </div>
+    <div :id='$style.loading' v-if='loading'>
+      <div :id='$style.loadingcontainer'>
+        <Loading label='Preparing your order, please wait' />
       </div>
     </div>
   </section>
@@ -46,12 +54,32 @@ import Bundle from '~/components/homesection-bundle.vue'
 import Item from '~/components/bundle-item.vue'
 import Title from '~/components/bundle-title.vue'
 import Shipping from '~/components/shipping-form.vue'
+import TextInput from '~/components/shipping-text.vue'
+import Loading from '~/components/loading.vue'
 
-import { bundles, leds, accessories } from '~/config.json'
+import { bundles, leds, accessories, } from '~/config.json'
+import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
+
+const binding = (name) => ({
+  get() {
+    return this.$store.state.checkout[name].value
+  },
+  set(value) {
+    this.$store.commit('checkout/updateCheckout', {key: name, value})
+  },
+})
 
 export default {
-  components: {Header, Bundle, Title, Item, Shipping,},
+  components: {Header, Bundle, Title, Item, Shipping, TextInput, Loading,},
+  data() {
+    return {
+      loading: false
+    }
+  },
   computed: {
+    valid() {
+      return Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+    },
     bundle() {
       const { slug } = this.$route.params
       return bundles.find((b) => b.slug == slug)
@@ -62,10 +90,23 @@ export default {
     accessory() {
       return (slug) => accessories.find((a) => a.slug == slug)
     },
+    color() {
+      return this.$store.state.checkout.color
+    },
+    promocode: binding('promocode'),
   },
   methods: {
-    buy() {
-      window.location.href = this.bundle.url
+    async buy() {
+      if (!this.valid) return
+      this.$data.loading = true
+      this.$store.commit('checkout/setCart', {id: `gid://shopify/ProductVariant/${this.bundle.ids[this.color]}`, n: 1})
+			const checkout = await createCheckout(this.$store.state.checkout)
+			await setShippingAddress(this.$store.state.checkout, checkout)
+			if (this.$store.state.checkout.promocode) {
+				await applyCoupon(this.$store.state.checkout, checkout)
+			}
+      await applyFreeShipping(this.$store.state.checkout, checkout)
+      window.location.href = checkout.webUrl
     },
   },
 }
@@ -96,25 +137,51 @@ export default {
 #buy
   display: flex
   flex-direction: column
+  align-items: flex-end
   justify-content: flex-end
   text-align: right
-  margin: 20pt 0
+  margin: 40pt 50pt 20pt 0
   @media only screen and (max-width: 600px)
     margin-top: 30pt
 
-#buy > a
+#buybutton
   display: block
-  align-self: flex-end
   background-color: #3BB30B
   padding: 8pt 25pt
+  margin: 5pt 0 0 0
   border-radius: 5pt
   color: white
   text-decoration: none
+  text-align: center
 
-#buy > a:hover
-  background-color: #2F880B
-
-#buy > a > b
+#buybutton > b
   font-weight: 600
 
+#promocode
+  text-align: left
+
+#loading
+  display: flex
+  align-items: center
+  justify-content: center
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  background-color: rgba(255, 255, 255, 0.6)
+  z-index: 1000
+
+#loadingcontainer
+  position: relative
+  width: 200pt
+  height: 100pt
+
+.invalid
+  opacity: 0.6
+  cursor: default !important
+
+.valid:hover
+  background-color: #2F880B
+  
 </style>

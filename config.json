@@ -189,6 +189,10 @@
   ],
 	"bundles": [
     {
+      "ids": {
+        "white": "29107264880688",
+        "black": "29133881770032"
+      },
       "slug":"mono-box-bundle",
       "ref":"mono-box-bundle",
       "title": "MONO BOX BUNDLE",
@@ -209,6 +213,10 @@
       "ventilation": 1,
       "sensor": 1
     }, {
+      "ids": {
+        "white": "29107272089648",
+        "black": "29133885898800"
+      },
       "slug":"multi-box-bundle",
       "ref":"multi-box-bundle",
       "title": "MULTI BOX BUNDLE",
@@ -229,6 +237,10 @@
       "ventilation": 2,
       "sensor": 2
     }, {
+      "ids": {
+        "white": "29107330154544",
+        "black": "29133872431152"
+      },
       "slug":"closet-box-bundle",
       "ref":"closet-bundle",
       "title": "CLOSET BUNDLE",
@@ -248,6 +260,10 @@
       "ventilation": 2,
       "sensor": 2
     }, {
+      "ids": {
+        "white": "29107273826352",
+        "black": "29133894352944"
+      },
       "slug":"micro-box-bundle",
       "ref":"micro-grow-bundle",
       "title": "MICRO GROW BUNDLE",

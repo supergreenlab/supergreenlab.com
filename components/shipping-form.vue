@@ -18,12 +18,85 @@
 
 <template>
   <section :id='$style.container'>
+    <h2>Contact informations</h2>
+    <div :class='$style.twoinrow'>
+      <div :class='$style.input'>
+        <TextInput label='First name' name='firstname' v-model='firstname' />
+      </div>
+      <div :class='$style.input'>
+        <TextInput label='Last name' name='lastname' v-model='lastname' />
+      </div>
+    </div>
+    <div :class='$style.twoinrow'>
+      <div :class='$style.input'>
+        <TextInput label='Phone' name='phone' v-model='phone' />
+      </div>
+      <div :class='$style.input'>
+        <TextInput label='Email' name='email' v-model='email' />
+      </div>
+    </div>
+    <h2>Shipping address</h2>
+    <div :class='$style.oninrow'>
+      <div :class='$style.input'>
+        <TextInput label='Company' name='company' v-model='company' optional='true' />
+      </div>
+    </div>
+    <div :class='$style.twoinrow'>
+      <div :class='$style.input'>
+        <TextInput label='Country' name='country' v-model='country' />
+      </div>
+      <div :class='$style.input'>
+        <TextInput label='City' name='city' v-model='city' />
+      </div>
+    </div>
+    <div :class='$style.oninrow'>
+      <div :class='$style.input'>
+        <TextInput label='Address line 1' name='address1' v-model='address1' />
+      </div>
+    </div>
+    <div :class='$style.oninrow'>
+      <div :class='$style.input'>
+        <TextInput label='Address line 2' name='address2' v-model='address2' optional='true' />
+      </div>
+    </div>
+    <div :class='$style.twoinrow'>
+      <div :class='$style.input'>
+        <TextInput label='Province' name='province' v-model='province' />
+      </div>
+      <div :class='$style.input'>
+        <TextInput label='Zip' name='zip' v-model='zip' />
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
+import TextInput from '~/components/shipping-text.vue'
+
+const binding = (name) => ({
+  get() {
+    return this.$store.state.checkout[name].value
+  },
+  set(value) {
+    this.$store.commit('checkout/updateCheckout', {key: name, value})
+  },
+})
 
 export default {
+  components: {TextInput, },
+  computed: {
+    firstname: binding('firstname'),
+    lastname: binding('lastname'),
+    phone: binding('phone'),
+    email: binding('email'),
+    country: binding('country'),
+    city: binding('city'),
+    company: binding('company'),
+    address1: binding('address1'),
+    address2: binding('address2'),
+    province: binding('province'),
+    zip: binding('zip'),
+  },
 }
 </script>
 
@@ -32,8 +105,20 @@ export default {
 #container
   display: flex
   width: 100%
+  padding: 0 40pt
   flex-direction: column
-  justify-content: center
-  align-items: center
+
+#container > h2
+  margin: 0 0 0 8pt
+  color: #717171
+  padding: 20pt 0
+
+.twoinrow
+  width: 100%
+  display: flex
+
+.input
+  padding: 10pt
+  flex-basis: 50%
 
 </style>

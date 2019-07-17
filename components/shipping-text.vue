@@ -18,17 +18,40 @@
 
 <template>
   <section :id='$style.container'>
+    <div :id='$style.label'>{{ label }} <span v-if='!optional'>*</span></div>
+    <input type='text' :name='name' :value='value' @input='onChange' />
   </section>
 </template>
 
 <script>
 export default {
+  props: ['label', 'value', 'name', 'optional',],
+  methods: {
+    onChange(e) {
+      this.$emit('input', e.target.value);
+    }
+  },
 }
 </script>
 
 <style module lang=stylus>
 
 #container
-  display: flex
+  width: 100%
+
+#label
+  margin: 0 0 5pt 0
+  font-weight: 600
+  font-size: 1.1em
+  color: #717171
+
+#label > span
+  color: red
+
+#container > input
+  width: 100%
+  border: 1pt solid #ABABAB
+  font-weight: 400
+  color: #717171
 
 </style>
