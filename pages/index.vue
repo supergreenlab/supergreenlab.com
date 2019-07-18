@@ -78,6 +78,9 @@ export default {
       if (this.timeout) clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
         Object.keys(this.$refs).forEach((name) => {
+          if (this.lastEvent == name) {
+            return;
+          }
           const ref = this.$refs[name],
                 { y, height } = ref.$el.getBoundingClientRect(),
                 centery = y + height / 2,
@@ -85,6 +88,7 @@ export default {
 
           if (centery > winh / 4 && centery < winh * 3/4) {
             this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
+            this.lastEvent = name
           }
         })
       }, 250)
