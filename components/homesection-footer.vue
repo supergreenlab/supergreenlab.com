@@ -84,7 +84,7 @@ export default {
   height: 40pt
   width: 100%
   margin-top: 20pt
-  padding: 20pt 0 20pt 0
+  padding: 25pt 0 25pt 0
   background-color: #efefef
 
 .block
