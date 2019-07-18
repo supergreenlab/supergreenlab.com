@@ -17,10 +17,7 @@
  */
 
 export const state = () => {
-  if (window.localStorage.getItem('checkout')) {
-    return JSON.parse(window.localStorage.getItem('checkout'))
-  }
-  return {
+  const defaults = {
     firstname: {value: '', valid: false,},
     lastname: {value: '', valid: false,},
     phone: {value: '', valid: false,},
@@ -36,6 +33,10 @@ export const state = () => {
     color: 'white',
     cart: [],
   }
+  if (window.localStorage.getItem('checkout')) {
+    return Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
+  }
+  return defaults
 }
 
 const storeState = (state) => {

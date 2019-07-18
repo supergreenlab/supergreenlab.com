@@ -24,6 +24,6 @@ export default ({ app }) => {
       sglid = uuidv4()
       document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/`;
     }
-    app.$matomo.setUserId(sglid)
+    app.$matomo && app.$matomo.setUserId(sglid)
   }
 }
