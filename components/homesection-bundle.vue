@@ -37,7 +37,7 @@
         <Items :bigleds='bigleds' :smallleds='smallleds' :tinyleds='tinyleds' :ventilation='ventilation' :sensor='sensor' />
       </div>
       <div :id='$style.buy'>
-        <nuxt-link :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />
+        <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />
         Free shipping
       </div>
     </div>
@@ -50,6 +50,11 @@ import Items from '~/components/homesection-bundle-items.vue'
 export default {
   components: {Items,},
   props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom'],
+  methods: {
+    bundleClicked() {
+      this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
+    },
+  },
 }
 </script>
 
