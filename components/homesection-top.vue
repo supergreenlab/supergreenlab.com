@@ -29,9 +29,8 @@
     <div :id='$style.body'>
       <div :id='$style.productbg'></div>
       <div :id='$style.carousel'>
-        {{ n }}
-        <div :class='$style.product + " " + (n == 0 ? $style.shown : "")' :id='$style.tvstand'></div>
-        <div :class='$style.product + " " + (n == 1 ? $style.shown : "")' :id='$style.office'></div>
+        <div :class='$style.product + " " + (n == 0 ? $style.shown : "")' :id='$style.office'></div>
+        <div :class='$style.product + " " + (n == 1 ? $style.shown : "")' :id='$style.tvstand'></div>
         <div :class='$style.product + " " + (n == 2 ? $style.shown : "")' :id='$style.dombas'></div>
         <div :class='$style.product + " " + (n == 3 ? $style.shown : "")' :id='$style.all'></div>
         <div :id='$style.mobile'></div>
@@ -172,7 +171,7 @@ export default {
 
 #mobile
   width: 100pt
-  height: 300pt
+  height: 80%
   position: absolute
   bottom: 0
   left: calc(50% + 80pt)
@@ -182,9 +181,7 @@ export default {
   background-repeat: no-repeat
   transform: translate(0, 25%)
   @media only screen and (max-width: 600px)
-    left: calc(50% + 40pt)
-    width: 50pt
-    height: 150pt
+    left: calc(50% + 10pt)
 
 #cta
   display: flex
