@@ -83,7 +83,7 @@ export default {
                 centery = y + height / 2,
                 winh = window.innerHeight
 
-          if (centery > 0 && centery < winh) {
+          if (centery > winh / 4 && centery < winh * 3/4) {
             this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
           }
         })
