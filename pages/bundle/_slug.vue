@@ -114,7 +114,7 @@ export default {
   methods: {
     async buy() {
       if (!this.valid) return
-      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug)
+      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.bundle.price)
       this.$data.loading = true
       this.$store.commit('checkout/setCart', {id: `gid://shopify/ProductVariant/${this.bundle.ids[this.color]}`, n: 1})
 			const checkout = await createCheckout(this.$store.state.checkout)
