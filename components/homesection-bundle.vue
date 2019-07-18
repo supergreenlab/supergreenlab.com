@@ -29,6 +29,12 @@
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
       <div :id='$style.description'>
         <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
+        <div :id='$style.addtocartcontainer' v-if='addtocart'>
+          <div :id='$style.addtocart'>
+            <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
+            Free shipping
+          </div>
+        </div>
       </div>
     </div>
     <div :id='$style.bottom' v-if='!nobottom'>
@@ -49,10 +55,13 @@ import Items from '~/components/homesection-bundle-items.vue'
 
 export default {
   components: {Items,},
-  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom'],
+  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart',],
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
+    },
+    addToCartClicked() {
+      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
     },
   },
 }
@@ -164,5 +173,31 @@ export default {
 #items > b
   font-size: 1.2em
   margin-bottom: 30pt
+
+#addtocartcontainer
+  margin-top: 20pt
+
+#addtocart
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  text-align: right
+  @media only screen and (max-width: 600px)
+    align-self: flex-end
+
+#addtocart > a
+  display: block
+  align-self: flex-end
+  background-color: #3BB30B
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+
+#addtocart > a:hover
+  background-color: #2F880B
+
+#addtocart > a > b
+  font-weight: 600
 
 </style>
