@@ -18,6 +18,7 @@
 
 <template>
   <section :id='$style.container'>
+    <p :id='$style.nb'>Our bundles are shipped in <b>discreet</b> packages: <b>random cardboard box</b> or <b>standard transporter packages</b>.</p>
     <h2>Contact informations</h2>
     <div :class='$style.twoinrow'>
       <div :class='$style.input'>
@@ -114,6 +115,12 @@ export default {
   margin: 0 0 0 8pt
   color: #717171
   padding: 20pt 0
+
+#nb
+  margin: 20pt 0 0 5pt
+
+#nb > b
+  color: #3bb30b
 
 .twoinrow
   width: 100%
