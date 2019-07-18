@@ -37,7 +37,7 @@
         <div :id='$style.mobile'></div>
       </div>
     </div>
-    <nuxt-link :id='$style.cta' :to='{path: "/", hash: "#use-steps"}'>
+    <nuxt-link :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
       <b>build your automated<br />growbox</b>
       <small>From $249</small>
     </nuxt-link>
@@ -65,6 +65,11 @@ export default {
   },
   destroyed() {
     clearInterval(this.interval)
+  },
+  methods: {
+    ctaClicked() {
+      this.$matomo && this.$matomo.trackEvent('front-page', 'cta', 'top')
+    }
   },
 }
 </script>
