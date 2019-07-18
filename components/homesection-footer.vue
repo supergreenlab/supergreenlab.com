@@ -79,13 +79,14 @@ export default {
 
 #container
   display: flex
-  flex-direction: column
   align-items: center
   justify-content: space-between
   width: 100%
   margin-top: 20pt
   padding: 25pt 0 25pt 0
   background-color: #efefef
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 .block
   display: flex
