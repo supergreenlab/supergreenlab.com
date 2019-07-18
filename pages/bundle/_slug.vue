@@ -30,6 +30,7 @@
       <Item v-if='bundle.ventilation' :discount='bundle.discount' :n='bundle.ventilation' v-bind='accessory("blower")' />
       <Item v-if='bundle.sensor' :discount='bundle.discount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='bundle.discount' last='true' />
+      <div id='shipping'></div>
       <Title icon='world.svg' title='SHIPPING INFORMATIONS' />
       <Shipping />
       <div :id='$style.buy'>

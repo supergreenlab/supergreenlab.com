@@ -79,9 +79,9 @@ export default {
 
 #container
   display: flex
+  flex-direction: column
   align-items: center
   justify-content: space-between
-  height: 40pt
   width: 100%
   margin-top: 20pt
   padding: 25pt 0 25pt 0
