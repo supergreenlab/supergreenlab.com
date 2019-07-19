@@ -73,6 +73,7 @@ export default {
   min-height: 100vh
 
 #title
+  width: 100%
   margin: 0pt 0 50pt 0
 
 #video

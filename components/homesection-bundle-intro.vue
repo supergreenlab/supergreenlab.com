@@ -82,4 +82,7 @@ export default {
   flex-basis: 40%
   margin-top: 20pt
 
+#title
+  width: 100%
+
 </style>

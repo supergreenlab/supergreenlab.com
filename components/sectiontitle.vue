@@ -43,7 +43,7 @@ export default {
 
 .separator
   background-color: #efefef
-  width: 100vw
+  width: 100%
   margin: 20pt 0 20pt 0
   padding: 15pt 0 15pt 0
 

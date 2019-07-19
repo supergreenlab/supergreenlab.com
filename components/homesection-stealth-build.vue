@@ -49,6 +49,7 @@ export default {
   align-items: center
 
 #title
+  width: 100%
   margin: 0pt 0 50pt 0
 
 #video

@@ -30,11 +30,10 @@
       <BundleIntro ref='bundle-intro' />
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
-                      green='Checkout our bundles'
-                      separator='true'/>
+            green='Checkout our bundles'
+            separator='true'/>
       </div>
       <div :id='$style.shop'></div>
-      <div id='mono'></div>
       <div :class='$style.bundle' v-for='b in bundles'>
         <div :id='b.ref'></div>
         <Bundle v-bind='b' />
