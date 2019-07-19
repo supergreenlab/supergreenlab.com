@@ -19,8 +19,9 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle green='How it works'
-                    smalltitle='Start growing in no time!'
+      <SectionTitle title='How it works'
+                    green='In just 3 steps'
+                    smalltitle='(like.. around 3 steps)'
                     separator='true'/>
     </div>
     <video :id='$style.video' autoplay loop>
