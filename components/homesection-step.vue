@@ -71,8 +71,12 @@ export default {
   font-weight: 600
 
 #body > h1
-  margin-top: 0
+  margin: 0 0 5pt 0
   font-size: 3em
   color: #888888
+
+#text
+  @media only screen and (min-width: 600px)
+    height: 40pt
 
 </style>
