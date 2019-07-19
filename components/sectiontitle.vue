@@ -60,8 +60,9 @@ export default {
   text-transform: uppercase
 
 #smalltitle
-  font-size: 1.2em
+  margin-top: 5pt
+  font-size: 0.8em
   @media only screen and (max-width: 600px)
-    font-size: 1.4em
+    font-size: 1em
 
 </style>
