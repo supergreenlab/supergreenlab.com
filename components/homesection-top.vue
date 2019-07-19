@@ -19,23 +19,35 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
-    <div :id='$style.top'>
-      <SectionTitle title='Transform any furniture into a'
-                    green='connected growbox'/>
-    </div>
     <div :id='$style.body'>
-      <div :id='$style.productbg'></div>
-      <div :id='$style.carousel'>
-        <div :class='$style.product + " " + (n == 0 ? $style.shown : "")' :id='$style.office'></div>
-        <div :class='$style.product + " " + (n == 1 ? $style.shown : "")' :id='$style.tvstand'></div>
-        <div :class='$style.product + " " + (n == 2 ? $style.shown : "")' :id='$style.dombas'></div>
-        <div :class='$style.product + " " + (n == 3 ? $style.shown : "")' :id='$style.all'></div>
-        <div :id='$style.mobile'></div>
-      </div>
+        <div :class='$style.product + " " + (n == 0 ? $style.shown : "")'>
+          <SectionTitle title='Your'
+                        green='TV Stand'
+                        title2='could grow weed'/>
+        </div>
+        <div :class='$style.product + " " + (n == 1 ? $style.shown : "")'>
+          <SectionTitle title='Your'
+                        green='wardrobe'
+                        title2='could grow weed'/>
+        </div>
+        <div :class='$style.product + " " + (n == 2 ? $style.shown : "")'>
+          <SectionTitle title='Your'
+                        green='closet'
+                        title2='could grow weed'/>
+        </div>
+        <div :class='$style.product + " " + (n == 3 ? $style.shown : "")'>
+          <SectionTitle title='Your'
+                        green='office storage'
+                        title2='could grow weed'/>
+        </div>
+        <div :class='$style.product + " " + (n == 4 ? $style.shown : "")'>
+          <SectionTitle title='Your'
+                        green='office storage'
+                        title2='could grow weed'/>
+        </div>
     </div>
     <nuxt-link :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
-      <b>build your automated<br />growbox</b>
-      <small>From $249</small>
+      <b>Learn how</b>
     </nuxt-link>
     <small :id='$style.legal'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />
@@ -56,8 +68,8 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
-      this.n = (this.n + 1) % 4
-    }, 4000)
+      this.n = (this.n + 1) % 5
+    }, 2000)
   },
   destroyed() {
     clearInterval(this.interval)
@@ -102,27 +114,22 @@ export default {
   position: relative
   height: 100%
   width: 100%
+  padding: 80pt 0 0
   flex-direction: column
   justify-content: center
   align-items: center
   margin: 0pt 0 40pt
+  font-size: 3em
+  @media only screen and (max-width: 600px)
+    font-size: 1.5em
 
 .product
-  width: 80%
-  height: 80%
   position: absolute
-  top: 10%
-  left: 10%
-  opacity: 0
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  opacity: 0
   transition: opacity 2s
-  @media only screen and (max-width: 600px)
-    width: 60%
-    height: 60%
-    top: 20%
-    left: 20%
 
 .shown
   opacity: 1
@@ -183,12 +190,15 @@ export default {
   text-transform: uppercase
   color: white
   background-color: #3BB30B
-  padding: 5pt 25pt
+  padding: 15pt 35pt
   border-radius: 3pt
   text-decoration: none
   text-align: center
   z-index: 100
   margin-bottom: 20pt
+  font-size: 1.5em
+  @media only screen and (max-width: 600px)
+    font-size: 1.1em
 
 #cta > small
   padding-top: 5pt

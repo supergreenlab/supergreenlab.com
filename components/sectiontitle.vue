@@ -20,6 +20,7 @@
   <section :id='$style.container' :class='separator ? $style.separator : ""'>
     <h2 :id='$style.title'>{{ title }}</h2>
     <h2 :id='$style.green'>{{ green }}</h2>
+    <h2 :id='$style.title'>{{ title2 }}</h2>
     <small :id='$style.smalltitle'>{{ smalltitle }}</small>
   </section>
 </template>
@@ -27,7 +28,7 @@
 <script>
 
 export default {
-  props: ['title', 'green', 'smalltitle', 'separator', ],
+  props: ['title', 'title2', 'green', 'smalltitle', 'separator', ],
 }
 </script>
 
@@ -44,7 +45,7 @@ export default {
 .separator
   background-color: #efefef
   width: 100%
-  margin: 20pt 0 20pt 0
+  margin: 40pt 0 0pt 0
   padding: 15pt 0 15pt 0
 
 #title

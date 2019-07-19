@@ -76,7 +76,7 @@ export default {
   align-items: center
   justify-content: space-around
   flex-wrap: wrap
-  margin-bottom: 80pt
+  margin: 20pt 0 40pt 0
 
 .step
   flex-basis: 40%
