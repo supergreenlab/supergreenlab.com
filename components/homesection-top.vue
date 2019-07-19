@@ -70,6 +70,12 @@
         </div>
         <div :class='$style.product + " " + (n == 8 ? $style.shown : "")'>
           <SectionTitle title='Your'
+                        green='Carboard box'
+                        title2='could grow weed'
+                        smalltitle="you just didn't know it (yet)"/>
+        </div>
+        <div :class='$style.product + " " + (n == 9 ? $style.shown : "")'>
+          <SectionTitle title='Your'
                         green='plumbus'
                         title2='could grow weed'
                         smalltitle="you just didn't know it (yet)"/>
@@ -97,7 +103,7 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
-      this.n = (this.n + 1) % 9
+      this.n = (this.n + 1) % 10
     }, 2000)
   },
   destroyed() {
