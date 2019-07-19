@@ -20,13 +20,14 @@
   <section :id='$style.container'>
     <h2 :id='$style.title'>{{ title }}</h2>
     <h2 :id='$style.green'>{{ green }}</h2>
+    <small :id='$style.smalltitle'>{{ smalltitle }}</small>
   </section>
 </template>
 
 <script>
 
 export default {
-  props: ['title', 'green'],
+  props: ['title', 'green', 'smalltitle',],
 }
 </script>
 
@@ -50,5 +51,8 @@ export default {
   font-size: 2.1em
   text-align: center
   text-transform: uppercase
+
+#smalltitle
+  font-size: 1.2em
 
 </style>

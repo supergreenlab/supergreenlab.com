@@ -19,8 +19,9 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Setting up a grow space'
-                    green='Has never been easier'/>
+      <SectionTitle green='How it works'
+                    smalltitle='Start growing in no time!'
+                    revert='true'/>
     </div>
     <video :id='$style.video' autoplay loop>
       <source src="/intro.mp4" type="video/mp4">
@@ -44,7 +45,7 @@
       <div :class='$style.step'>
         <Step n=3
               title='Start growing'
-              text='24/7 support, join the community !'
+              text='24/7 support, join the community!'
               icon='plant.svg'
               :vertical=true />
       </div>
