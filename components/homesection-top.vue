@@ -19,10 +19,7 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
-    <div :id='$style.logo'>
-      <Logo />
-    </div>
-    <div>
+    <div :id='$style.top'>
       <SectionTitle title='Transform any furniture into a'
         green='connected growbox'/>
     </div>
@@ -94,13 +91,10 @@ export default {
   font-weight: 400
   padding: 5pt 0
 
-#logo
+#top
   margin: 80pt 0 0
-  font-size: 3.5em
-  z-index: 100
   @media only screen and (max-width: 600px)
-    font-size: 2em
-    margin: 15pt 0 20pt 0
+    margin: 50pt 0 0
 
 #body
   flex: 1

@@ -60,10 +60,6 @@ export default {
     padding: 10pt 0 10pt 0
     font-size: 1.2em
 
-.responsiveHide
-  @media only screen and (max-width: 600px)
-      display: none !important
-
 #menu
   display: flex
   font-size: 0.8em

@@ -61,6 +61,7 @@ export default {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
     },
     addToCartClicked() {
+      fbq('track', 'AddToCart')
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
     },
   },
