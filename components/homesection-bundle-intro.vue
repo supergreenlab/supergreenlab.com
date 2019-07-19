@@ -20,7 +20,8 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <SectionTitle title='Our bundles are'
-                    green='all included'/>
+                    green='all included'
+                    separator='true'/>
     </div>
     <div :id='$style.steps'>
       <div :class='$style.step'>

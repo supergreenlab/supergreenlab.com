@@ -21,7 +21,7 @@
     <div :id='$style.title'>
       <SectionTitle green='How it works'
                     smalltitle='Start growing in no time!'
-                    revert='true'/>
+                    separator='true'/>
     </div>
     <video :id='$style.video' autoplay loop>
       <source src="/intro.mp4" type="video/mp4">

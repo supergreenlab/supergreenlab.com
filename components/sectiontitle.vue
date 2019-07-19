@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='separator ? $style.separator : ""'>
     <h2 :id='$style.title'>{{ title }}</h2>
     <h2 :id='$style.green'>{{ green }}</h2>
     <small :id='$style.smalltitle'>{{ smalltitle }}</small>
@@ -27,7 +27,7 @@
 <script>
 
 export default {
-  props: ['title', 'green', 'smalltitle',],
+  props: ['title', 'green', 'smalltitle', 'separator', ],
 }
 </script>
 
@@ -40,6 +40,12 @@ export default {
   justify-content: center
   @media only screen and (max-width: 600px)
     font-size: 0.8em
+
+.separator
+  background-color: #efefef
+  width: 100vw
+  margin: 20pt 0 20pt 0
+  padding: 15pt 0 15pt 0
 
 #title
   color: #5E5E5E
@@ -54,5 +60,7 @@ export default {
 
 #smalltitle
   font-size: 1.2em
+  @media only screen and (max-width: 600px)
+    font-size: 1.4em
 
 </style>

@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.header'>
+    <div :id='$style.header' :class='noframe ? "" : $style.framed'>
       <div :id='$style.title'>
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
@@ -55,7 +55,7 @@ import Items from '~/components/homesection-bundle-items.vue'
 
 export default {
   components: {Items,},
-  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart',],
+  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe',],
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
@@ -79,8 +79,11 @@ export default {
   display: flex
   align-items: center
   justify-content: space-between
-  background-color: #EEEEEE
   padding: 10pt 10pt
+  border-bottom: 1pt solid #EEEEEE
+
+.framed
+  border-top: 1pt solid #EEEEEE
 
 #header > h1
   color: #3BB30B

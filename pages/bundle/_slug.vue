@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' v-bind='bundle' addtocart='true' />
+      <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' />
       <Title icon='package.svg' title='PACKAGE CONTENT' />
       <Item v-if='bundle.bigleds' :discount='bundle.discount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
       <Item v-if='bundle.smallleds' :discount='bundle.discount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />

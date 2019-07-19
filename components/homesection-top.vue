@@ -21,7 +21,7 @@
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
     <div :id='$style.top'>
       <SectionTitle title='Transform any furniture into a'
-        green='connected growbox'/>
+                    green='connected growbox'/>
     </div>
     <div :id='$style.body'>
       <div :id='$style.productbg'></div>

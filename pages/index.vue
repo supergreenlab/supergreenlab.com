@@ -24,19 +24,16 @@
     <div :id='$style.body'>
       <div id='top'></div>
       <Top ref='top' />
-      <div :class='$style.separator'></div>
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
-      <div :class='$style.separator'></div>
       <Stealth ref='stealth' />
-      <div :class='$style.separator'></div>
       <BundleIntro ref='bundle-intro' />
-      <div :class='$style.separator'></div>
-      <div :id='$style.shop'></div>
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
-                      green='Checkout our bundles'/>
+                      green='Checkout our bundles'
+                      separator='true'/>
       </div>
+      <div :id='$style.shop'></div>
       <div id='mono'></div>
       <div :class='$style.bundle' v-for='b in bundles'>
         <div :id='b.ref'></div>
@@ -127,6 +124,7 @@ export default {
 
 #shop
   height: 150pt
+  margin: 30pt
   background-image: url('~assets/img/shop.svg')
   background-position: center
   background-repeat: no-repeat
