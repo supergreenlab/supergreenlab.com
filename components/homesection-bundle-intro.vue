@@ -27,7 +27,7 @@
       <div :class='$style.step'>
         <Step n=1
               title='Top of the line LEDs'
-              text='Provding optimal lighting and little heat. Perfect for the <b>whole life cycle</b> of your grow. The LEDs produce very little heat, perfect for stealth growths.' 
+              text='Providing optimal lighting and little heat. Perfect for the <b>whole life cycle</b> of your grow. The LEDs produce very little heat, perfect for stealth growths.' 
               icon='light.svg' />
       </div>
       <div :class='$style.step'>
