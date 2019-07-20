@@ -24,7 +24,7 @@
                     smalltitle='(like.. around 3 steps)'
                     separator='true'/>
     </div>
-    <video :id='$style.video' autoplay loop playsinline mute>
+    <video :id='$style.video' autoplay loop playsinline mute defaultMuted>
       <source src="/intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video> 
