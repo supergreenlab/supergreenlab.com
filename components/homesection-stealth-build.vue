@@ -23,7 +23,7 @@
                     green='and stealthy builds'
                     separator='true'/>
     </div>
-    <video :id='$style.video' autoplay loop playsinline mute defaultMuted>
+    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
       <source src="/stealth.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video> 
