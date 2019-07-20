@@ -29,23 +29,21 @@
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
       <div :id='$style.description'>
         <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
+
+        <div :id='$style.bottom' v-if='!nobottom'>
+          <div :id='$style.buy'>
+            <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
+            <!--Free shipping-->
+            <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
+          </div>
+        </div>
+
         <div :id='$style.addtocartcontainer' v-if='addtocart'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
             Free shipping
           </div>
         </div>
-      </div>
-    </div>
-    <div :id='$style.bottom' v-if='!nobottom'>
-      <div :id='$style.items'>
-        <b>Includes:</b>
-        <Items :bigleds='bigleds' :smallleds='smallleds' :tinyleds='tinyleds' :ventilation='ventilation' :sensor='sensor' />
-      </div>
-      <div :id='$style.buy'>
-        <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
-        <!--Free shipping-->
-        <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
       </div>
     </div>
   </section>
@@ -161,11 +159,8 @@ export default {
 
 #bottom 
   display: flex
-  padding: 0 20pt
+  padding: 10pt 0
   @media only screen and (max-width: 600px)
-    flex-direction: column
-    justify-content: center
-    align-items: center
     padding: 0
 
 #items
