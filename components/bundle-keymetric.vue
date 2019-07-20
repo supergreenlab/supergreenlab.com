@@ -35,17 +35,19 @@
 <script>
 
 export default {
-  props: ['icon', 'title', 'subtitle', 'min', 'max', 'unit',],
+  props: ['icon', 'title', 'subtitle', 'min', 'max', 'unit', 'n',],
   computed: {
     minStr() {
-      let { min, unit } = this.$props
+      let { min, unit, n } = this.$props
+      min *= n
       if (unit == 'cm2') {
         min = `${min}x${min}`
       } 
       return `${min}${unit}`
     },
     maxStr() {
-      let { max, unit } = this.$props
+      let { max, unit, n } = this.$props
+      max *= n
       if (unit == 'cm2') {
         max = `${max}x${max}`
       } 

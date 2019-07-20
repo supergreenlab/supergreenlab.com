@@ -19,29 +19,33 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.header'>
-      <h3>Key metrics per items</h3>
+      <h3>Key metrics for <b>{{n}} {{ name }}</b></h3>
     </div>
     <div :id='$style.metrics'>
       <div v-if='distance' :class='$style.metric'>
         <Metric
+          n='1'
           icon='distance.svg'
           title='LED height above plant'
           v-bind='distance' />
       </div>
       <div v-if='power' :class='$style.metric'>
         <Metric
+          :n='n'
           icon='energy.svg'
           title='Power consumption'
           v-bind='power' />
       </div>
       <div v-if='coverage' :class='$style.metric'>
         <Metric
+          :n='n'
           icon='surface.svg'
           title='Surface coverage'
           v-bind='coverage' />
       </div>
       <div v-if='yield' :class='$style.metric'>
         <Metric
+          :n='n'
           icon='bag.svg'
           title='Approx yield'
           subtitle='(depends on strain and grower’s skills)'
@@ -49,6 +53,7 @@
       </div>
       <div v-if='plants' :class='$style.metric'>
         <Metric
+          :n='n'
           icon='plants.svg'
           title='Number of plants'
           subtitle='(depends on strain and grower’s skills)'
@@ -64,7 +69,7 @@ import Metric from '~/components/bundle-keymetric.vue'
 
 export default {
   components: {Title, Metric,},
-  props: ['distance', 'power', 'coverage', 'yield', 'plants',],
+  props: ['distance', 'power', 'coverage', 'yield', 'plants', 'n', 'name',],
 }
 </script>
 
@@ -85,6 +90,9 @@ export default {
   justify-content: space-between
   border-bottom: 1pt solid #D2D2D2
   margin-bottom: 20pt
+
+#header > h3 > b
+  color: #3bb30b
 
 #metrics
   display: flex
