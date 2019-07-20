@@ -43,7 +43,7 @@
           title='Surface coverage'
           v-bind='coverage' />
       </div>
-      <div v-if='yield' :class='$style.metric'>
+      <div v-if='yield && showHarvest' :class='$style.metric'>
         <Metric
           :n='n'
           icon='bag.svg'
@@ -69,7 +69,7 @@ import Metric from '~/components/bundle-keymetric.vue'
 
 export default {
   components: {Title, Metric,},
-  props: ['distance', 'power', 'coverage', 'yield', 'plants', 'n', 'name',],
+  props: ['distance', 'power', 'coverage', 'yield', 'plants', 'n', 'name', 'showHarvest',],
 }
 </script>
 

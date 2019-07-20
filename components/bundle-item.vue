@@ -49,7 +49,7 @@
     </div>
     <div :id='$style.keymetricscontainer' :style='{"height": shownMetrics ? `${keymetricsHeight}px` : "0px"}'>
       <div v-if='keymetrics' ref='keymetrics' :id='$style.keymetrics'>
-        <KeyMetrics :name='name' :n='n' v-bind='keymetrics' />
+        <KeyMetrics :showHarvest='showHarvest' :name='name' :n='n' v-bind='keymetrics' />
       </div>
     </div>
     <div v-if='!last' :id='$style.separator'></div>
@@ -61,7 +61,7 @@ import KeyMetrics from '~/components/bundle-keymetrics.vue'
 
 export default {
   components: {KeyMetrics,},
-  props: ['n', 'slug', 'name', 'price', 'discount', 'icon', 'icons', 'color', 'bullets', 'keymetrics', 'last', ],
+  props: ['n', 'slug', 'name', 'price', 'discount', 'icon', 'icons', 'color', 'bullets', 'keymetrics', 'last', 'showHarvest',],
   data() {
     return {
       shownMetrics: false,
