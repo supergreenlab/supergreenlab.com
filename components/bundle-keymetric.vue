@@ -34,23 +34,51 @@
 
 <script>
 
+const unitConv = {
+  'cm': 0.393701,
+  'cm2': 0.393701,
+  'g': 0.35274,
+  'w': 1,
+  '': 1,
+}
+
+const unitMap = {
+  'cm': 'in',
+  'cm2': 'sq in',
+  'g': 'oz',
+  'w': 'w',
+  '' : '',
+}
+
 export default {
   props: ['icon', 'title', 'subtitle', 'min', 'max', 'unit', 'n',],
   computed: {
+    isImperial() {
+      const off = new Date().getTimezoneOffset() / 60
+      return (off >= -10 && off <= -4)
+    },
     minStr() {
       let { min, unit, n } = this.$props
-      min *= n
+      min *= n * (this.isImperial ? unitConv[unit] : 1)
+      min = Math.floor(min*100)/100
       if (unit == 'cm2') {
         min = `${min}x${min}`
       } 
+      if (this.isImperial) {
+        unit = unitMap[unit]
+      }
       return `${min}${unit}`
     },
     maxStr() {
       let { max, unit, n } = this.$props
-      max *= n
+      max *= n * (this.isImperial ? unitConv[unit] : 1)
+      max = Math.floor(max*100)/100
       if (unit == 'cm2') {
         max = `${max}x${max}`
       } 
+      if (this.isImperial) {
+        unit = unitMap[unit]
+      }
       return `${max}${unit}`
     },
   },
