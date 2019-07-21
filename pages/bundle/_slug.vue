@@ -30,6 +30,17 @@
       <Item v-if='bundle.ventilation' :discount='bundle.discount' :n='bundle.ventilation' v-bind='accessory("blower")' />
       <Item v-if='bundle.sensor' :discount='bundle.discount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='bundle.discount' last='true' />
+      <div :id='$style.pricecontainer'>
+        <h1>Total:</h1>
+        <div :class='$style.price + " " + $style.smallprice'>
+          <h1>${{ bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119 }}</h1>
+          <div :id='$style.redbar'></div>
+        </div>
+        <div :class='$style.price'>
+          <h1>${{ bundle.price }}</h1><br />
+          <span>save <b>{{ bundle.discount }}%</b> !</span>
+        </div>
+      </div>
       <div id='shipping'></div>
       <Title icon='world.svg' title='SHIPPING INFORMATIONS' />
       <Shipping />
@@ -209,5 +220,40 @@ export default {
   width: 20pt
   height: 20pt
   margin: 5pt
+
+#pricecontainer
+  display: flex
+  flex: 1
+  justify-content: flex-end
+  border-top: 1pt solid #eeeeee
+  border-bottom: 1pt solid #eeeeee
+  margin: 10pt 10pt 15pt 0
+  color: #454545
+  @media only screen and (max-width: 600px)
+    font-size: 0.8em
+
+.price
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.smallprice
+  margin: 0 10pt 10pt 10pt
+  font-size: 0.8em
+
+.price > h1
+  margin-bottom: 0
+  color: #3BB30B
+
+#redbar
+  width: 110%
+  height: 2pt
+  top: calc(50% + 3pt)
+  left: 0
+  transform: rotate(-30deg)
+  position: absolute
+  background-color: #FF0000
  
 </style>
