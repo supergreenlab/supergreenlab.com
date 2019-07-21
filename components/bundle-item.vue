@@ -147,8 +147,7 @@ export default {
   display: flex
   flex: 1
   flex-direction: row-reverse
-  @media only screen and (max-width: 600px)
-    font-size: 0.8em
+  font-size: 0.8em
 
 .price
   position: relative
@@ -161,7 +160,7 @@ export default {
   font-size: 0.8em
 
 .price > h1
-  color: #3BB30B
+  color: #565656
 
 #redbar
   width: 110%
