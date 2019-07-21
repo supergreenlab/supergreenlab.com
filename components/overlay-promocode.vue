@@ -18,13 +18,16 @@
 
 <template>
   <section :id='$style.container' @click='close'>
-    <div :id='$style.popup'>
+    <div :id='$style.popup' @click='cancelClick'>
       <SectionTitle title='Welcome back !'
                     green='Take this promocode:' />
       <h3>-10% with</h3>
       <h1>SGL_LOVE</h1>
       <a :id='$style.cta' href='javascript:void(0)' @click='close'>
         <b>OK</b>
+      </a>
+      <a :id='$style.discord' href='https://discord.gg/z86RNjq' target='_blank'>
+        Got questions ?<br />Ask us anything on discord:)
       </a>
     </div>
   </section>
@@ -43,7 +46,10 @@ export default {
     close() {
       this.$props.onClose()
       this.$matomo && this.$matomo.trackEvent('popup', 'close')
-    }
+    },
+    cancelClick(e) {
+      e.stopPropagation()
+    },
   },
 }
 </script>
@@ -101,5 +107,9 @@ export default {
   font-size: 1.5em
   @media only screen and (max-width: 600px)
     font-size: 1.1em
+
+#discord
+  text-align: center
+  white-space: nowrap
 
 </style>
