@@ -55,7 +55,7 @@ export default {
   computed: {
     isImperial() {
       const off = new Date().getTimezoneOffset() / 60
-      return (off >= -10 && off <= -4)
+      return (off >= 4 && off <= 10)
     },
     minStr() {
       let { min, unit, n } = this.$props
