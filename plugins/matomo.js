@@ -22,7 +22,9 @@ export default ({ app }) => {
     let { sglid } = getCookies()
     if (!sglid) {
       sglid = uuidv4()
-      document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/`;
+      var exdate=new Date()
+      exdate.setDate(exdate.getDate() + 3650)
+      document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/; expires=${exdate.toUTCString()}`;
     }
     app.$matomo && app.$matomo.setUserId(sglid)
   }
