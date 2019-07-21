@@ -40,6 +40,9 @@
       </div>
     </div>
     <Footer />
+    <transition name="popup">
+      <Promocode v-if='showPopup' :onClose='closePopup' />
+    </transition>
   </section>
 </template>
 
@@ -52,11 +55,17 @@ import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
+import Promocode from '~/components/overlay-promocode.vue'
 
 import { bundles } from '../config.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer, },
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer,  Promocode,},
+  data() {
+    return {
+      showPopup: false,
+    }
+  },
   created () {
     window.addEventListener('scroll', this.handleScroll);
   },
@@ -64,12 +73,22 @@ export default {
     if (this.timeout) clearTimeout(this.timeout)
     window.removeEventListener('scroll', this.handleScroll);
   },
+  mounted() {
+    const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
+    window.localStorage.setItem('nVisits', nVisits+1)
+    if (nVisits > 1) {
+      setTimeout(() => this.$data.showPopup = true, 2000)
+    }
+  },
 	computed: {
 		bundles() {
 			return bundles
 		}
 	},
   methods: {
+    closePopup() {
+      this.$data.showPopup = false
+    },
     handleScroll(e) {
       if (this.timeout) clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {

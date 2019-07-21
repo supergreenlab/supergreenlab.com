@@ -83,3 +83,10 @@ input[type=text]::placeholder {
 .vue-slider-process {
   background-color: #c4c4c4 !important;
 }
+
+.popup-enter-active, .popup-leave-active {
+  transition: opacity .5s;
+}
+.popup-enter, .popup-leave-to {
+  opacity: 0;
+}

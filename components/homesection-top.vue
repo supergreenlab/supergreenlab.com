@@ -225,7 +225,7 @@ export default {
   text-transform: uppercase
   color: white
   background-color: #3BB30B
-  padding: 15pt 35pt
+  padding: 10pt 35pt
   border-radius: 3pt
   text-decoration: none
   text-align: center
