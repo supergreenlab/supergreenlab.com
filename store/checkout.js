@@ -17,7 +17,7 @@
  */
 
 export const state = () => {
-  const defaults = {
+  let defaults = {
     firstname: {value: '', valid: false,},
     lastname: {value: '', valid: false,},
     phone: {value: '', valid: false,},
@@ -34,8 +34,14 @@ export const state = () => {
     cart: [],
   }
   if (window.localStorage.getItem('checkout')) {
-    return Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
+     defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
   }
+  const urlParams = new URLSearchParams(window.location.search)
+  if (urlParams.get('promo')) {
+    defaults.promocode.value = urlParams.get('promo')
+    storeState(defaults)
+  }
+
   return defaults
 }
 
