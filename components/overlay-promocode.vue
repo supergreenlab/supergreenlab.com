@@ -113,6 +113,8 @@ export default {
 
 #ctano, #ctayes
   display: flex
+  align-items: center
+  justify-content: center
   flex-direction: column
   text-transform: uppercase
   color: white
@@ -120,7 +122,6 @@ export default {
   padding: 8pt 35pt
   border-radius: 3pt
   text-decoration: none
-  text-align: center
   z-index: 100
   margin-bottom: 20pt
   font-size: 1.5em

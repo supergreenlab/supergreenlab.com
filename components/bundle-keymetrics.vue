@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.header'>
-      <h3>Key metrics for <b>{{n}} {{ name }}</b></h3>
+      <h3>Key metrics for <b>{{n}}</b> x <b>{{ name }}</b></h3>
     </div>
     <div :id='$style.metrics'>
       <div v-if='distance' :class='$style.metric'>
