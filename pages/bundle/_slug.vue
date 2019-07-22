@@ -46,7 +46,7 @@
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
-          <TextInput label='Promo code' v-model='promocode' optional='true' />
+          <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
           <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>${{ bundle.price }}</b></a>
           Free shipping
           <div :class='$style.block'>
