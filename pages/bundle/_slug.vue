@@ -123,6 +123,10 @@ export default {
     },
     promocode: binding('promocode'),
   },
+  mounted() {
+    fbq('track', 'ViewContent')
+    fbq('track', 'Lead')
+  },
   methods: {
     async buy() {
       if (!this.valid) return
