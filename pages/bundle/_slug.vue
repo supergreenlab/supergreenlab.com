@@ -136,7 +136,7 @@ export default {
 				await applyCoupon(this.$store.state.checkout, checkout)
 			}
       await applyFreeShipping(this.$store.state.checkout, checkout)
-      window.location.href = checkout.webUrl
+      setTimeout(() => window.location.href = checkout.webUrl, 1000)
     },
   },
 }
