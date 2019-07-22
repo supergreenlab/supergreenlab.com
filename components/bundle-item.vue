@@ -207,7 +207,9 @@ export default {
   color: #707070
   transition: background-color 0.2s, border 0.2s
   white-space: nowrap
+  width: 180pt
   @media only screen and (max-width: 600px)
+    width: 130pt
     justify-content: center
     padding: 5pt 10pt
 
@@ -218,6 +220,7 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  margin-left: 4pt
   transition: transform 0.2s
   @media only screen and (max-width: 600px)
     margin-left: 5pt
