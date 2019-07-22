@@ -36,7 +36,7 @@
       <div :id='$style.shop'></div>
       <div :class='$style.bundle' v-for='b in bundles'>
         <div :id='b.ref'></div>
-        <Bundle v-bind='b' />
+        <Bundle v-bind='b' :promodiscount='promo.discount' />
       </div>
     </div>
     <Footer />
@@ -57,7 +57,7 @@ import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
 
-import { bundles } from '../config.json'
+import { bundles, shopify, } from '../config.json'
 
 export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer,  Promocode,},
@@ -74,6 +74,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
+    if (this.$store.state.checkout.promocode.value) return
     const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
     window.localStorage.setItem('nVisits', nVisits+1)
     if (nVisits > 1) {
@@ -84,7 +85,18 @@ export default {
 	computed: {
 		bundles() {
 			return bundles
-		}
+		},
+    promo() {
+      const { promos } = shopify,
+            promocode = this.$store.state.checkout.promocode.value
+      if (!promocode || !promos[promocode]) return {promocode: '', discount: 0}
+      return {promocode, discount: promos[promocode]}
+    },
+    totaldiscount() {
+      const bundle = this.bundle,
+            promo = this.promo
+      return parseInt((1 - (1-bundle.discount/100) * (1-promo.discount/100) ) * 100)
+    },
 	},
   methods: {
     closePopup() {

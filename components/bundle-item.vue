@@ -35,13 +35,16 @@
             <span>{{ shownMetrics ? "HIDE KEY METRICS" : "SHOW KEY METRICS" }}</span>
             <div :id='$style.metricsarrow'></div>
           </a>
+          <div v-else :id='$style.spacer'></div>
           <div :id='$style.pricecontainer'>
             <div :class='$style.price'>
-              <h1>${{ Math.floor((price - price * discount / 100) * 100) / 100 }}</h1>
+              <h1>${{ (Math.floor((price - price * discount / 100) * 100) / 100).toFixed(2) }}</h1>
             </div>
             <div :class='$style.price + " " + $style.smallprice'>
-              <h1>${{ price }}</h1>
-              <div :id='$style.redbar'></div>
+              <h1>
+                ${{ price.toFixed(2) }}
+                <div :id='$style.redbar'></div>
+              </h1>
             </div>
           </div>
         </div>
@@ -141,13 +144,17 @@ export default {
 #bottom
   display: flex
   align-items: center
+  justify-content: space-between
   margin-top: 20pt
 
 #pricecontainer
   display: flex
   flex: 1
-  flex-direction: row-reverse
+  align-self: flex-end
   font-size: 0.8em
+  flex-direction: row-reverse
+  @media only screen and (max-width: 600px)
+    flex: none
 
 .price
   position: relative
@@ -158,9 +165,17 @@ export default {
 .smallprice
   margin: 0 10pt
   font-size: 0.8em
+  @media only screen and (max-width: 600px)
+    margin: 0 4pt
 
 .price > h1
+  position: relative
   color: #565656
+  @media only screen and (max-width: 600px)
+    margin-top: 4pt
+
+.smallprice > h1
+  color: #898989
 
 #redbar
   width: 110%
@@ -177,6 +192,9 @@ export default {
   background-repeat: repeat-x
   background-position: center
 
+#spacer
+  flex: 1
+
 #showmetrics
   display: flex
   justify-content: space-between
@@ -187,7 +205,6 @@ export default {
   border-radius: 2pt
   text-decoration: none
   color: #707070
-  width: 180pt
   transition: background-color 0.2s, border 0.2s
   white-space: nowrap
   @media only screen and (max-width: 600px)

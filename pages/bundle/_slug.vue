@@ -22,23 +22,25 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' />
+      <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
       <Title icon='package.svg' title='PACKAGE CONTENT' />
-      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='bundle.discount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
-      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='bundle.discount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
-      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='bundle.discount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
-      <Item v-if='bundle.ventilation' :discount='bundle.discount' :n='bundle.ventilation' v-bind='accessory("blower")' />
-      <Item v-if='bundle.sensor' :discount='bundle.discount' :n='bundle.sensor' v-bind='accessory("sensor")' />
-      <Item n='1' v-bind='accessory("controller")' :discount='bundle.discount' last='true' />
+      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
+      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
+      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
+      <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' v-bind='accessory("blower")' />
+      <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
+      <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
       <div :id='$style.pricecontainer'>
         <h1>Total:</h1>
         <div :class='$style.price + " " + $style.smallprice'>
-          <h1>${{ bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119 }}</h1>
-          <div :id='$style.redbar'></div>
+          <h1>
+            ${{ bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119 }}
+            <div :id='$style.redbar'></div>
+          </h1>
         </div>
         <div :class='$style.price'>
-          <h1>${{ bundle.price }}</h1><br />
-          <span>save <b>{{ bundle.discount }}%</b> !</span>
+          <h1>${{ (bundle.price - bundle.price * promo.discount / 100).toFixed(2) }}</h1><br />
+          <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
         </div>
       </div>
       <div id='shipping'></div>
@@ -47,7 +49,7 @@
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
           <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-          <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>${{ bundle.price }}</b></a>
+          <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>${{ (bundle.price - bundle.price*promo.discount / 100).toFixed(2) }}</b></a>
           Free shipping
           <div :class='$style.block'>
             <div :class='$style.blockicon'>
@@ -68,6 +70,7 @@
         </div>
       </div>
     </div>
+    <Footer />
     <div :id='$style.loading' v-if='loading'>
       <div :id='$style.loadingcontainer'>
         <Loading label='Preparing your order, please wait' />
@@ -84,8 +87,9 @@ import Title from '~/components/bundle-title.vue'
 import Shipping from '~/components/shipping-form.vue'
 import TextInput from '~/components/shipping-text.vue'
 import Loading from '~/components/loading.vue'
+import Footer from '~/components/homesection-footer.vue'
 
-import { bundles, leds, accessories, } from '~/config.json'
+import { bundles, leds, accessories, shopify, } from '~/config.json'
 import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
 
 const binding = (name) => ({
@@ -98,7 +102,7 @@ const binding = (name) => ({
 })
 
 export default {
-  components: {Header, Bundle, Title, Item, Shipping, TextInput, Loading,},
+  components: {Header, Bundle, Title, Item, Shipping, TextInput, Loading, Footer,},
   data() {
     return {
       loading: false
@@ -122,6 +126,17 @@ export default {
       return this.$store.state.checkout.color
     },
     promocode: binding('promocode'),
+    promo() {
+      const { promos } = shopify,
+            promocode = this.$store.state.checkout.promocode.value
+      if (!promocode || !promos[promocode]) return {promocode: '', discount: 0}
+      return {promocode, discount: promos[promocode]}
+    },
+    totaldiscount() {
+      const bundle = this.bundle,
+            promo = this.promo
+      return parseInt((1 - (1-bundle.discount/100) * (1-promo.discount/100) ) * 100)
+    },
   },
   mounted() {
     fbq('track', 'ViewContent')
@@ -228,6 +243,7 @@ export default {
 #pricecontainer
   display: flex
   flex: 1
+  text-align: center
   justify-content: flex-end
   border-top: 1pt solid #eeeeee
   border-bottom: 1pt solid #eeeeee
@@ -244,17 +260,18 @@ export default {
   justify-content: center
 
 .smallprice
-  margin: 0 10pt 10pt 10pt
+  margin: 0 10pt 0pt 10pt
   font-size: 0.8em
 
 .price > h1
-  margin-bottom: 0
+  position: relative
+  margin: 0
   color: #3BB30B
 
 #redbar
-  width: 110%
+  width: 100%
   height: 2pt
-  top: calc(50% + 3pt)
+  top: calc(50%)
   left: 0
   transform: rotate(-30deg)
   position: absolute

@@ -23,7 +23,18 @@
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </div>
-      <h1>${{ price }}</h1>
+      <div v-if='promodiscount' :id='$style.pricecontainer'>
+        <div :class='$style.price + " " + $style.smallprice'>
+          <h1>${{ price.toFixed(2) }}
+            <div :id='$style.redbar'></div>
+          </h1>
+        </div>
+        <div :class='$style.price'>
+          <h1>${{ (price - price * promodiscount / 100).toFixed(2) }}</h1><br />
+          <span>promocode: <b>-{{ promodiscount }}%</b> !</span>
+        </div>
+      </div>
+      <h1 v-else>${{ (price - price*promodiscount/100).toFixed(2) }}</h1>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
@@ -54,7 +65,7 @@ import Items from '~/components/homesection-bundle-items.vue'
 
 export default {
   components: {Items,},
-  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe',],
+  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
@@ -62,6 +73,11 @@ export default {
     addToCartClicked() {
       fbq('track', 'AddToCart')
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
+    },
+  },
+  computed: {
+    promodiscount() {
+      return this.$props.promodiscount || 0
     },
   },
 }
@@ -200,4 +216,47 @@ export default {
 #addtocart > a > b
   font-weight: 600
 
+#pricecontainer
+  display: flex
+  flex: 1
+  justify-content: flex-end
+  margin: 10pt 10pt 15pt 0
+  color: #454545
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+    font-size: 0.8em
+    margin: 0
+
+.price
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.smallprice
+  margin: 0 10pt 10pt 10pt
+  font-size: 0.8em
+  @media only screen and (max-width: 600px)
+    margin: 0
+
+.price > h1
+  position: relative
+  margin-bottom: 0
+  color: #3BB30B
+  @media only screen and (max-width: 600px)
+    margin-top: 4pt
+
+.smallprice > h1
+  color: #787878
+
+#redbar
+  width: 100%
+  height: 2pt
+  top: calc(50%)
+  left: 0
+  transform: rotate(-30deg)
+  position: absolute
+  background-color: #FF0000
+ 
 </style>

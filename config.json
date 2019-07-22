@@ -1,6 +1,10 @@
 {
   "shopify": {
-    "token": "15b29141aad68fb6c4cfd0c2bf9bae8b"
+    "token": "15b29141aad68fb6c4cfd0c2bf9bae8b",
+    "promos": {
+      "SGL_LOVE": 10,
+      "SGL_NEWSLETTER": 20
+    }
   },
   "leds": [
     {

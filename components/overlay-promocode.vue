@@ -23,9 +23,14 @@
                     green='Take this promocode:' />
       <h3>-10% with</h3>
       <h1>SGL_LOVE</h1>
-      <a :id='$style.cta' href='javascript:void(0)' @click='close'>
-        <b>OK</b>
-      </a>
+      <div :id='$style.ctas'>
+        <a :id='$style.ctano' href='javascript:void(0)' @click='no'>
+          Not interested
+        </a>
+        <a :id='$style.ctayes' href='javascript:void(0)' @click='ok'>
+          <b>ACTIVATE PROMOCODE</b>
+        </a>
+      </div>
       <a :id='$style.discord' href='https://discord.gg/z86RNjq' target='_blank'>
         Got questions ?<br />Ask us anything on discord:)
       </a>
@@ -46,6 +51,15 @@ export default {
     close() {
       this.$props.onClose()
       this.$matomo && this.$matomo.trackEvent('popup', 'close')
+    },
+    ok() {
+      this.close()
+      this.$store.commit('checkout/updateCheckout', {key: 'promocode', value: 'SGL_LOVE'})
+      this.$matomo && this.$matomo.trackEvent('popup', 'activate')
+    },
+    no() {
+      this.close()
+      this.$matomo && this.$matomo.trackEvent('popup', 'nothanks')
     },
     cancelClick(e) {
       e.stopPropagation()
@@ -92,7 +106,12 @@ export default {
   font-size: 2em
   margin-top: 20pt
 
-#cta
+#ctas
+  display: flex
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+
+#ctano, #ctayes
   display: flex
   flex-direction: column
   text-transform: uppercase
@@ -107,6 +126,11 @@ export default {
   font-size: 1.5em
   @media only screen and (max-width: 600px)
     font-size: 1.1em
+
+#ctano
+  font-size: 1.2em
+  background-color: #F78181
+  margin-right: 5pt
 
 #discord
   text-align: center
