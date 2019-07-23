@@ -146,7 +146,7 @@ export default {
     async buy() {
       if (!this.valid) return
       fbq('track', 'AddToCart')
-      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.bundle.price)
+      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, Math.floor((this.bundle.price - this.bundle.price*this.promo.discount/100) * 100) / 100)
       this.$data.loading = true
       this.$store.commit('checkout/setCart', {id: `gid://shopify/ProductVariant/${this.bundle.ids[this.color]}`, n: 1})
 			const checkout = await createCheckout(this.$store.state.checkout)

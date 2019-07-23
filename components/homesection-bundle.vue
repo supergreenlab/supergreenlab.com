@@ -30,11 +30,11 @@
           </h1>
         </div>
         <div :class='$style.price'>
-          <h1>${{ (price - price * promodiscount / 100).toFixed(2) }}</h1><br />
-          <span>promocode: <b>-{{ promodiscount }}%</b></span>
+          <h1>${{ (price - price * promodiscountdef / 100).toFixed(2) }}</h1><br />
+          <span>promocode: <b>-{{ promodiscountdef }}%</b></span>
         </div>
       </div>
-      <h1 v-else>${{ (price - price*promodiscount/100).toFixed(2) }}</h1>
+      <h1 v-else>${{ (price - price*promodiscountdef/100).toFixed(2) }}</h1>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
@@ -76,7 +76,7 @@ export default {
     },
   },
   computed: {
-    promodiscount() {
+    promodiscountdef() {
       return this.$props.promodiscount || 0
     },
   },
