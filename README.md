@@ -2,7 +2,7 @@
 
 
 
-# Supergreenlab.com
+# Supergreenlab.com [![Netlify Status](https://api.netlify.com/api/v1/badges/b08c6552-21af-4c20-8915-bd4094e82332/deploy-status)](https://app.netlify.com/sites/modest-ptolemy-9508e6/deploys)
 [supergreenlab](https://supergreenlab.com) growshop, led grow lights & more.
 
 ## Discord
