@@ -3,7 +3,7 @@
 
 
 # Supergreenlab.com
-[supergreenlab](https://supergreenlab.com) growshop, grow lights & more.
+[supergreenlab](https://supergreenlab.com) growshop, led grow lights & more.
 
 ## Discord
 [![Discord](https://img.shields.io/discord/561976602192510978.svg)](https://discord.gg/z86RNjq)
