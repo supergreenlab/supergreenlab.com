@@ -68,7 +68,7 @@ export default {
 
 #menu > div > a
   display: block
-  color: black
+  color: #4c4c4c
   font-weight: 600
   cursor: pointer
   padding: 15pt 10pt
