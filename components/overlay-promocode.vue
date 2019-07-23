@@ -27,11 +27,11 @@
         <a :id='$style.ctano' href='javascript:void(0)' @click='no'>
           Not interested
         </a>
-        <a :id='$style.ctayes' href='javascript:void(0)' @click='ok'>
+        <a :id='$style.ctayes' class="hvr-curl-bottom-left" href='javascript:void(0)' @click='ok'>
           <b>ACTIVATE PROMOCODE</b>
         </a>
       </div>
-      <a :id='$style.discord' href='https://discord.gg/z86RNjq' target='_blank'>
+      <a :id='$style.discord' class="hvr-grow" href='https://discord.gg/z86RNjq' target='_blank'>
         Got questions ?<br />Ask us anything on discord:)
       </a>
     </div>
@@ -136,5 +136,7 @@ export default {
 #discord
   text-align: center
   white-space: nowrap
+  text-decoration: none;
+  color: green;
 
 </style>
