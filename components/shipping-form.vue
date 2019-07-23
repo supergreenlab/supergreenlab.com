@@ -121,6 +121,7 @@ export default {
 
 #nb > b
   color: #3bb30b
+  font-weight: 600;
 
 .twoinrow
   width: 100%
