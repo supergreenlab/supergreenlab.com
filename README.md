@@ -2,8 +2,15 @@
 
 
 
-# supergreenlab.com
-
+# Supergreenlab.com
+[supergreenlab](https://supergreenlab.com) growshop, grow lights & more.
 
 ## Discord
 [![Discord](https://img.shields.io/discord/561976602192510978.svg)](https://discord.gg/z86RNjq)
+
+## Project
+
+- [SuperGreenLive](https://github.com/supergreenlab/SuperGreenLive) - Build a remote camera with a raspberryPI and webcam, and always have an eye on your growth
+- [SuperGreenOS](https://github.com/supergreenlab/SuperGreenOS) - SuperGreenOS provides most features used when growing cannabis, all in one package
+- [SuperGreenOSBoilerplate](https://github.com/supergreenlab/SuperGreenOSBoilerplate) - ESP32 Boilerplate code generator 
+- [SuperGreenCO2](https://github.com/supergreenlab/SuperGreenCO2) - A first test at controlling co2 level in a box.
