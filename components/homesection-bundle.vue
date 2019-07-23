@@ -52,7 +52,7 @@
         <div :id='$style.addtocartcontainer' v-if='addtocart'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-            Free shipping
+            <b>Free shipping!</b>
           </div>
         </div>
       </div>
@@ -198,6 +198,8 @@ export default {
   flex-direction: column
   justify-content: flex-end
   text-align: right
+  color: #3bb30b;
+  font-weight: 600;
   @media only screen and (max-width: 600px)
     align-self: flex-end
 
@@ -209,6 +211,7 @@ export default {
   border-radius: 5pt
   color: white
   text-decoration: none
+  font-size: 22px
 
 #addtocart > a:hover
   background-color: #2F880B
@@ -258,5 +261,5 @@ export default {
   transform: rotate(-30deg)
   position: absolute
   background-color: #FF0000
- 
+
 </style>
