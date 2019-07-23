@@ -68,19 +68,24 @@ export default {
 
 #menu > div > a
   display: block
-  color: #5D5D5D
+  color: #4c4c4c
   font-weight: 600
   cursor: pointer
   padding: 15pt 10pt
-  text-decoration: underline
+  text-decoration: none
   text-transform: uppercase
+  font-size: 14px
 
 #menu > div:hover
-  background-color: #DEDEDE
+  background-color: #43b100bd
+
 
 #menu > div.selected
   color: white
-  background-color: #3BB30B
+  background-color: #43b100bd
+
+
+  
 
 #logo
   font-size: 1.5em

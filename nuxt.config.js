@@ -7,11 +7,11 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'Welcome to SuperGreenLab',
+    title: 'SuperGreenLab - Growshop - Automated LED Grow Lights',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: 'Transform any furniture into a connected growbox.' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }

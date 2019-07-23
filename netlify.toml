@@ -1,0 +1,26 @@
+[build]
+  publish = "dist"
+  command = "yarn run build"
+[build.environment]
+  YARN_VERSION = "1.7.0"
+  [[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, s-max-age=604800"
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, s-max-age=604800"
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, s-max-age=604800"
+[[headers]]
+for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "form-action https:"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=2592000"
+    Feature-Policy = "geolocation 'none'; midi 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'none'; fullscreen 'none'; payment 'none'"
