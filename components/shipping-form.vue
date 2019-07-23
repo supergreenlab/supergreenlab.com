@@ -62,7 +62,7 @@
     </div>
     <div :class='$style.twoinrow'>
       <div :class='$style.input'>
-        <TextInput label='Province' name='province' v-model='province' />
+        <TextInput label='State/Province' name='province' v-model='province' />
       </div>
       <div :class='$style.input'>
         <TextInput label='Zip' name='zip' v-model='zip' />
