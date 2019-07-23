@@ -32,21 +32,21 @@
       <div :class='$style.step'>
         <Step n=1
               title='Get any furniture'
-              text='Any size and shape, our bundles are designed to adapt to all types furniture.'
+              text='<b>Any size and shape</b>, our bundles are designed to adapt to <b>all types furniture.</b>'
               icon='furniture.svg'
               :vertical=1 />
       </div>
       <div :class='$style.step'>
         <Step n=2
               title='Install our bundle'
-              text='Easy to install and configure.'
+              text='Easy to install and configure. Just a few steps and your <b>LED lights</b> are ready!'
               icon='screw.svg'
               :vertical=true />
       </div>
       <div :class='$style.step'>
         <Step n=3
               title='Start growing'
-              text='24/7 support, join the community!'
+              text='24/7 support, join the evergrowing community on <b>Reddit & Discord!</b>'
               icon='plant.svg'
               :vertical=true />
       </div>
