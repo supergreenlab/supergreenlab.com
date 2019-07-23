@@ -1,7 +1,6 @@
 {
   "name": "supergreenlab.com",
   "version": "1.0.0",
-  "description": "Transform any furniture into a connected growbox.",
   "author": "vitaminwater",
   "private": true,
   "scripts": {
