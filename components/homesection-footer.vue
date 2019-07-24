@@ -17,16 +17,16 @@
  -->
 
 <template>
-<footer class="fdb-block footer-large fp-active" data-block-type="footers" data-id="1">
+<footer :id='$style.container' class="fdb-block footer-large fp-active" data-block-type="footers" data-id="1">
   <div class="container">
     <div class="row align-items-top text-center">
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-sm-left">
         <h3><strong>Products</strong></h3>
         <nav class="nav flex-column">
-          <a class="nav-link" href="#mono-box-bundle">Mono Box Bundle</a>
-          <a class="nav-link" href="#multi-box-bundle">Multi Box Bundle</a>
-          <a class="nav-link" href="#closet-bundle">Closet Bundle</a>
-          <a class="nav-link" href="#micro-grow-bundle">Microgrow Bundle</a>
+          <nuxt-link class="nav-link" :to="{path: '/', hash: '#mono-box-bundle'}">Mono Box Bundle</nuxt-link>
+          <nuxt-link class="nav-link" :to="{path: '/', hash: '#multi-box-bundle'}">Multi Box Bundle</nuxt-link>
+          <nuxt-link class="nav-link" :to="{path: '/', hash: '#closet-bundle'}">Closet Bundle</nuxt-link>
+          <nuxt-link class="nav-link" :to="{path: '/', hash: '#micro-box-bundle'}">Microgrow Bundle</nuxt-link>
         </nav>
       </div>
 
@@ -42,7 +42,7 @@
 
       <div class="col-12 col-md-4 col-lg-3 text-md-left mt-5 mt-md-0">
         <h3><strong>About Us</strong></h3>
-        <p><font size="3" style=" font-weight: 300;" >We sell LED growlights while provding open-source hardware and software for stealthy cannabis growing systems.</font></p>
+        <p><font size="3" style=" font-weight: 300;" >We sell LED growlights while providing open-source hardware and software for stealthy cannabis growing systems.</font></p>
       </div>
 
       <div class="col-12 col-lg-2 ml-auto text-lg-left mt-4 mt-lg-0">
@@ -84,7 +84,7 @@ export default {
   width: 100%
   margin-top: 20pt
   padding: 25pt 0 25pt 0
-  background-color: #efefef
+  border-top: 2pt solid #efefef
   @media only screen and (max-width: 600px)
     flex-direction: column
 
