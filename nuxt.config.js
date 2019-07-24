@@ -14,7 +14,8 @@ export default {
       { hid: 'description', name: 'description', content: 'Transform any furniture into a connected growbox.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' }
     ]
   },
 
@@ -27,7 +28,11 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/css/global.css'
+    '@/assets/css/global.css',
+    '@/assets/css/froala_blocks.min.css',
+    '@/assets/css/froala_editor.pkgd.min.css',
+    '@/assets/css/bootstrap.min.css',
+    '@/assets/css/froala_style.min.css'
   ],
 
   /*
