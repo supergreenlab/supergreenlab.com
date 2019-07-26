@@ -44,7 +44,7 @@
         </div>
       </div>
       <div id='shipping'></div>
-      <Title icon='world.svg' title='SHIPPING INFORMATIONS' />
+      <Title icon='world.svg' title='SHIPPING INFORMATION' />
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>

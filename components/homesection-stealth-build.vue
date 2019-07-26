@@ -58,6 +58,8 @@ export default {
   width: 100%
   max-width: 600px
   margin: 0 0 40pt 0
+  @media only screen and (min-width: 600pt)
+    box-shadow: -1px 1px 5px #888
 
 #iframe
   width: 100%
