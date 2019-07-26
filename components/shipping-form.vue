@@ -18,8 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <p :id='$style.nb'>Our bundles are shipped in <b>discreet</b> packages: <b>random cardboard box</b> or <b>standard transporter packages</b>.</p>
-    <h2>Contact informations</h2>
+    <h2>Contact information</h2>
     <div :class='$style.twoinrow'>
       <div :class='$style.input'>
         <TextInput label='First name' name='firstname' v-model='firstname' />

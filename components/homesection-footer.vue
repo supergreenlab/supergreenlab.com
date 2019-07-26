@@ -33,7 +33,7 @@
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-5 mt-sm-0 text-sm-left">
         <h3><strong>Help</strong></h3>
         <nav class="nav flex-column">
-          <a class="nav-link active" href="">Privacy Policy</a>
+          <nuxt-link class="nav-link active" :to="{path: '/privacy'}">Privacy Policy</nuxt-link>
           <a class="nav-link" href="">Terms</a>
           <a class="nav-link" href="">FAQ</a>
           <a class="nav-link" href="https://discord.gg/crdYzgy">Discord Support</a>
@@ -48,13 +48,13 @@
       <div class="col-12 col-lg-2 ml-auto text-lg-left mt-4 mt-lg-0">
         <h3><strong>Follow Us</strong></h3>
         <p class="lead">
-				<a href="https://www.facebook.com/supergreenlab"><i class="fa fa-facebook"></i></a>
+				<a href="https://www.facebook.com/supergreenlab"><i class="fa fa-facebook-square"></i></a>
 				<a href="https://twitter.com/SuperGreenLab"><i class="fa fa-twitter"></i></a>
 				<a href="https://www.instagram.com/sgreenlab/"><i class="fa fa-instagram"></i></a>
-				<a href="https://github.com/supergreenlab"><i class="fa fa-github"></i></a>
+				<a href="https://supergreenlab.tumblr.com/"><i class="fa fa-tumblr-square"></i></a>
         <a href="https://www.reddit.com/r/SuperGreenLab/"><i class="fa fa-reddit"></i></a>
-        <a href="https://supergreenlab.tumblr.com/"><i class="fa fa-tumblr"></i></a>
         <a href="https://www.youtube.com/c/supergreenlab"><i class="fa fa-youtube"></i></a>
+        <a href="https://github.com/supergreenlab"><i class="fa fa-github"></i></a>
         </p>
       </div>
     </div>
