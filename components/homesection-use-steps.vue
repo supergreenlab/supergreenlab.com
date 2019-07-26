@@ -82,7 +82,6 @@ export default {
   margin: 0 0 40pt 0
   height: 100%
   max-height: 600px
-  width: 100%
   max-width: 800px
   @media only screen and (min-width: 600pt)
     box-shadow: -1px 1px 5px #888

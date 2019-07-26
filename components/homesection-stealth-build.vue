@@ -55,7 +55,6 @@ export default {
 #video
   height: 100%
   max-height: 600px
-  width: 100%
   max-width: 600px
   margin: 0 0 40pt 0
   @media only screen and (min-width: 600pt)
