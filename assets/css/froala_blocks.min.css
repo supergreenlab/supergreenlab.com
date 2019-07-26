@@ -1464,6 +1464,13 @@ footer.footer-large {
 footer .flex-column .nav-link {
     padding-left: 0;
     text-decoration: none;
+    color: black;
+    font-weight: 300;
+}
+
+footer a.nav-link:hover {
+    padding-left: 0;
+    text-decoration: none;
     color: #3bb30b;
     font-weight: 600;
 }
