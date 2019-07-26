@@ -213,6 +213,7 @@ export default {
   color: white
   text-decoration: none
   font-size: 22px
+  margin: 4pt 0
 
 #addtocart > a:hover
   background-color: #2F880B
