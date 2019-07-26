@@ -53,12 +53,13 @@ export default {
   margin: 0pt 0 50pt 0
 
 #video
+  height: 100%
+  max-height: 600px
+  width: 100%
+  max-width: 600px
   margin: 0 0 40pt 0
-  box-shadow: -1px 1px 5px #888
-  @media all and (max-width: 959px)
-    display: none
-  @media all and (max-width: 479px) 
-    display: none
+  @media only screen and (min-width: 600pt)
+    box-shadow: -1px 1px 5px #888
 
 #iframe
   width: 100%

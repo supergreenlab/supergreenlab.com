@@ -24,7 +24,7 @@
                     smalltitle='(like.. around 3 steps)'
                     separator='true'/>
     </div>
-    <video  width="800" height="464" :id='$style.video' autoplay loop playsinline muted defaultMuted>
+    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
       <source src="/intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video> 
@@ -80,14 +80,12 @@ export default {
 #video
   display: block
   margin: 0 0 40pt 0
-  box-shadow: -1px 1px 5px #888
-  @media all and (max-width: 959px)
-    display: none
-  @media all and (max-width: 479px) 
-    display: none
-
-
-
+  height: 100%
+  max-height: 600px
+  width: 100%
+  max-width: 800px
+  @media only screen and (min-width: 600pt)
+    box-shadow: -1px 1px 5px #888
 
 #steps
   display: flex
