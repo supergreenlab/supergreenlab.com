@@ -141,6 +141,10 @@ export default {
   flex-direction: column
   justify-content: center
 
+.bullet > b
+  color: #3BB30B
+  font-weight: 600
+
 #bottom
   display: flex
   align-items: center

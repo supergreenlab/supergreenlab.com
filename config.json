@@ -25,10 +25,10 @@
         "black": "192-black.png"
       },
       "bullets": [
-        "Easy installation with it’s led holder",
-        "192 of the best LEDs on the market: Samsung lm301b",
-        "Huge surface for better heat dissipation and even surface coverage",
-        "full spectrum: fits veg and bloom"
+        "<b>Easy installation</b> with it’s <b>led holder</b>",
+        "<b>192</b> of the best LEDs on the market: <b>Samsung lm301b</b>",
+        "Huge surface for <b>better heat dissipation</b> and <b>even surface coverage</b>",
+        "full spectrum: <b>fits veg and bloom</b>"
       ],
       "width": 35,
       "height": 25,
@@ -75,10 +75,10 @@
         "black": "144-black.png"
       },
       "bullets": [
-        "Easy installation with it’s led holder",
-        "144 of the best LEDs on the market: Samsung lm301b",
-        "Big led spacing for better heat dissipation and even surface coverage",
-        "full spectrum: fits veg and bloom"
+        "<b>Easy installation</b> with it’s <b>led holder</b>",
+        "<b>144</b> of the best LEDs on the market: <b>Samsung lm301b</b>",
+        "Huge surface for <b>better heat dissipation</b> and <b>even surface coverage</b>",
+        "full spectrum: <b>fits veg and bloom</b>"
       ],
       "width": 25,
       "height": 23,
@@ -126,10 +126,10 @@
         "black": "36-black.png"
       },
       "bullets": [
-        "Easy installation with it’s led holder",
-        "36 of the best LEDs on the market: Samsung lm301b",
-        "Big led spacing for better heat dissipation and even surface coverage",
-        "full spectrum: fits veg and bloom"
+        "<b>Easy installation</b> with it’s <b>led holder</b>",
+        "<b>36</b> of the best LEDs on the market: <b>Samsung lm301b</b>",
+        "Huge surface for <b>better heat dissipation</b> and <b>even surface coverage</b>",
+        "full spectrum: <b>fits veg and bloom</b>"
       ],
       "width": 13,
       "height": 11,
@@ -170,10 +170,10 @@
       "price": 29,
       "icon": "blower.png",
       "bullets": [
-        "Fits to a wide array of sizes",
-        "Strong enough to pull through a carbon filter",
+        "Fits to a <b>wide array of sizes</b>",
+        "Strong enough to pull through a <b>carbon filter</b>",
         "2 configurable speeds: night and day",
-        "Totally silent at low level"
+        "<b>Totally silent</b> at low level"
       ]
     },
     {
@@ -182,9 +182,9 @@
       "price": 24.99,
       "icon": "sht21.png",
       "bullets": [
-        "Monitor your growing environment remotely",
-        "Get alerts when things go wrong",
-        "Easy to install"
+        "<b>Monitor</b> your growing environment <b>remotely</b>",
+        "Get <b>alerts</b> when things go wrong",
+        "<b>Easy to install</b>"
       ]
     },
     {
@@ -193,9 +193,15 @@
       "price": 119,
       "icon": "controller.png",
       "bullets": [
-        "Monitor your growing environment remotely",
-        "Get alerts when things go wrong",
-        "Easy to install"
+        "<b>All-in-one</b> growing central units",
+        "Up to <b>6 LED channels</b>",
+        "<b>3 motor</b> outputs",
+        "<b>3 sensor</b> and accessories <b>ports</b>",
+        "<b>Up to 3</b> separate <b>growboxes</b> with one controller",
+        "Comes with a <b>free mobile app</b>",
+        "<b>Monitor</b> your growing environment <b>remotely</b>",
+        "Get <b>alerts</b> when things go wrong",
+        "<b>Easy to install</b>"
       ]
     }
   ],
