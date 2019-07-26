@@ -74,7 +74,15 @@ export default {
   destroyed () {
     if (this.timeout) clearTimeout(this.timeout)
     window.removeEventListener('scroll', this.handleScroll);
-  }
+  },
+  head () {
+    return {
+      title: 'Privacy Policy - SuperGreenLab',
+      meta: [
+        { hid: 'description', name: 'description', content: 'SuperGreenLab Privacy Policy Statement. You will find our data protection notice here.' }
+      ]
+    }
+  },
 }
 </script>
 
