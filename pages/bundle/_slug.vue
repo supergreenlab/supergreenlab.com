@@ -253,7 +253,7 @@ export default {
 
 .price > h1
   position: relative
-  margin: -10px;
+  margin: 0
   color: #3BB30B
 
 #redbar
