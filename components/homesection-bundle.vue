@@ -52,8 +52,8 @@
         <div :id='$style.addtocartcontainer' v-if='addtocart'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-            <b>Free shipping</b>
-            <p>Our bundles are shipped <b>discreet</b></p>
+            <p>Free shipping</p>
+            <p>Our bundles are shipped discreet</p>
           </div>
         </div>
       </div>
