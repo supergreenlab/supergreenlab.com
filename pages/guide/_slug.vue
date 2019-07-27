@@ -26,7 +26,7 @@
         <SectionTitle :title='guide.title'
                       :green='guide.subtitle' />
       </div>
-      <div v-for='section in guide.sections' :ref='${section.slug}'>
+      <div v-for='section in guide.sections' :ref='section.slug'>
         <div :class='$style.paragraph'>
           <div :class='$style.videosection'>
             <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
