@@ -36,7 +36,7 @@
         "distance": {
           "unit": "cm",
           "min": 20,
-          "max": 50
+          "max": 60
         },
         "power": {
           "unit": "w",
@@ -88,7 +88,7 @@
         "distance": {
           "unit": "cm",
           "min": 15,
-          "max": 40
+          "max": 45
         },
         "power": {
           "unit": "w",
