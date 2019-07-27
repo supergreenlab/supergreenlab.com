@@ -23,6 +23,15 @@
     </div>
     <div :id='$style.body'>
       <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
+      <Title icon='guides.svg' title='GUIDES' />
+      <div :id='$style.guides'>
+        <div :class='$style.guide'>
+          <Guide icon='guide-install-led.svg'
+                 title='HOW TO'
+                 subtitle='INSTALL A LED PANEL'
+                 slug='how-to-install-a-led-panel' />
+        </div>
+      </div>
       <Title icon='package.svg' title='PACKAGE CONTENT' />
       <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
       <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
@@ -68,6 +77,7 @@
 
 <script>
 import Header from '~/components/header.vue'
+import Guide from '~/components/bundle-guide.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import Item from '~/components/bundle-item.vue'
 import Title from '~/components/bundle-title.vue'
@@ -89,7 +99,7 @@ const binding = (name) => ({
 })
 
 export default {
-  components: {Header, Bundle, Title, Item, Shipping, TextInput, Loading, Footer,},
+  components: {Header, Guide, Bundle, Title, Item, Shipping, TextInput, Loading, Footer,},
   data() {
     return {
       loading: false
@@ -264,5 +274,16 @@ export default {
   transform: rotate(-30deg)
   position: absolute
   background-color: #FF0000
+
+#guides
+  display: flex
+  flex-wrap: wrap
+
+.guide
+  margin: 20pt 0
+  flex-basis: 50% 
+  @media only screen and (max-width: 600px)
+    flex-basis: 100% 
+    margin: 20pt 5pt
  
 </style>

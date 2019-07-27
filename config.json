@@ -305,5 +305,87 @@
       "ventilation": 1,
       "sensor": 1
     }
+  ],
+  "guides": [
+    {
+      "slug": "how-to-install-a-led-panel",
+      "title": "HOW TO",
+      "subtitle": "INSTALL A LED PANEL",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INTRODUCTION",
+          "video": "/guide-led-holder/intro.mp4",
+          "text": [
+            "We designed our LED panels to be <b>as simple as possible</b> to install.",
+            "To do so, we made them compatible with a <b>widely used standard</b> called VESA.",
+            "VESA is initially made to hang screens against walls, the holders are <b>cheap</b> and <b>available virtually anywhere</b>. "
+          ]
+        },
+        {
+          "slug": "install-holder-base",
+          "title": "1. INSTALL HOLDER BASE",
+          "video": "/guide-led-holder/1.mp4",
+          "text": [
+            "VESA holders are usually made of <b>two parts</b>, one is <b>attached to the wall</b> (the base), and the other is <b>attached to the led panel</b>.",
+            "<b>Place the led holder base</b> at the <b>middle of the top shelf</b> with one hand, and <b>mark the position</b> of the holes <b>with a pen</b>."
+          ]
+        },
+        {
+          "slug": "drill-holder-base-holes",
+          "title": "2. DRILL HOLDER BASE HOLES",
+          "video": "/guide-led-holder/2.mp4",
+          "text": [
+            "Using the <b>mark done previously</b>, make 2 holes, watch out that the <b>drill is the right size</b> for you screws (ie. the <b>screw</b> should be <b>slightly larger</b>)."
+          ]
+        },
+        {
+          "slug": "screw-led-holder",
+          "title": "3. SCREW LED HOLDER",
+          "video": "/guide-led-holder/3.mp4",
+          "text": [
+            "<b>Get help from your buddy</b> to screw the LED holder's <b>base in place</b>."
+          ]
+        },
+        {
+          "slug": "attach-to-led-panel",
+          "title": "4. ATTACH TO LED PANEL",
+          "video": "/guide-led-holder/4.mp4",
+          "text": [
+            "<b>Now take the other part</b> of the led holder, the one that goes <b>on the led panel</b>."
+          ]
+        },
+        {
+          "slug": "attach-to-led-panel-2",
+          "title": "",
+          "video": "/guide-led-holder/5.mp4",
+          "text": [
+            "You can use <b>zip ties</b> or <b>screws</b> to attach the <b>led holder to the led panel</b>."
+          ]
+        },
+        {
+          "slug": "attach-both-parts-together",
+          "title": "5. Attach both parts together",
+          "video": "/guide-led-holder/6.mp4",
+          "text": [
+            "<b>Attach both parts</b> of the led holder <b>together</b>, and add the <b>tightening screw</b>."
+          ]
+        },
+        {
+          "slug": "plug-led-panel-controller",
+          "title": "6. Plug the led panel to your controller",
+          "video": "/guide-led-holder/7.mp4",
+          "text": [
+            "And you're <b>halfway good to grow</b>."
+          ]
+        }
+      ]
+    }
   ]
 }
