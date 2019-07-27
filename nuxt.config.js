@@ -78,6 +78,7 @@ export default {
       '/bundle/multi-box-bundle',
       '/bundle/closet-box-bundle',
       '/bundle/micro-box-bundle',
+      '/guide/how-to-install-a-led-panel',
     ]
   },
 
