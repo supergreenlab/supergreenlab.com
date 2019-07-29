@@ -35,7 +35,7 @@
         <div :class='$style.guide'>
           <Guide icon='ask.svg'
                  title='GOT QUESTIONS ?'
-                 subtitle='JOIN US ON DISCORD'
+                 subtitle='ASK US ON DISCORD'
                  href='https://discord.gg/8qedy4N'
                  button='JOIN' />
         </div>
