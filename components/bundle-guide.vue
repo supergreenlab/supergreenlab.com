@@ -22,15 +22,21 @@
     <div :id='$style.content'>
       <h2>{{ title }}</h2>
       <h1>{{ subtitle }}</h1>
-      <a v-if='href' :id='$style.learnmore' :href='href' target='_blank'>{{ button }}</a>
-      <nuxt-link v-else :id='$style.learnmore' to='/guide/how-to-install-a-led-panel'>{{ button }}</nuxt-link>
+      <a @click='onClick' v-if='href' :id='$style.learnmore' :href='href' target='_blank'>{{ button }}</a>
+      <nuxt-link @click.native='onClick' v-else :id='$style.learnmore' to='/guide/how-to-install-a-led-panel'>{{ button }}</nuxt-link>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['icon', 'title', 'subtitle', 'slug', 'href', 'button',],
+  props: ['icon', 'title', 'subtitle', 'slug', 'href', 'button', 'analytics',],
+  methods: {
+    onClick() {
+      const { analytics } = this.$props
+      this.$matomo && this.$matomo.trackEvent('guide', 'clicked', analytics)
+    }
+  },
 }
 </script>
 

@@ -27,6 +27,7 @@
       <div :id='$style.guides'>
         <div :class='$style.guide'>
           <Guide icon='guide-install-led.svg'
+                 analytics='guide-install-led'
                  title='HOW TO'
                  subtitle='INSTALL A LED PANEL'
                  slug='how-to-install-a-led-panel'
@@ -34,6 +35,7 @@
         </div>
         <div :class='$style.guide'>
           <Guide icon='ask.svg'
+                 analytics='ask-on-discord'
                  title='GOT QUESTIONS ?'
                  subtitle='ASK US ON DISCORD'
                  href='https://discord.gg/8qedy4N'
