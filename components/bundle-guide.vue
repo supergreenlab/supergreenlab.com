@@ -22,14 +22,15 @@
     <div :id='$style.content'>
       <h2>{{ title }}</h2>
       <h1>{{ subtitle }}</h1>
-      <nuxt-link :id='$style.learnmore' to='/guide/how-to-install-a-led-panel'>LEARN MORE</nuxt-link>
+      <a v-if='href' :id='$style.learnmore' :href='href' target='_blank'>{{ button }}</a>
+      <nuxt-link v-else :id='$style.learnmore' to='/guide/how-to-install-a-led-panel'>{{ button }}</nuxt-link>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['icon', 'title', 'subtitle', 'slug',],
+  props: ['icon', 'title', 'subtitle', 'slug', 'href', 'button',],
 }
 </script>
 

@@ -29,7 +29,15 @@
           <Guide icon='guide-install-led.svg'
                  title='HOW TO'
                  subtitle='INSTALL A LED PANEL'
-                 slug='how-to-install-a-led-panel' />
+                 slug='how-to-install-a-led-panel'
+                 button='LEARN MORE' />
+        </div>
+        <div :class='$style.guide'>
+          <Guide icon='ask.svg'
+                 title='GOT QUESTIONS ?'
+                 subtitle='JOIN US ON DISCORD'
+                 href='https://discord.gg/8qedy4N'
+                 button='JOIN' />
         </div>
       </div>
       <Title icon='package.svg' title='PACKAGE CONTENT' />
