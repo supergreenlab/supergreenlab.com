@@ -53,12 +53,12 @@
         <h1>Total:</h1>
         <div :class='$style.price + " " + $style.smallprice'>
           <h1>
-            ${{ bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119 }}
+            {{ priceConv(bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119) }}
             <div :id='$style.redbar'></div>
           </h1>
         </div>
         <div :class='$style.price'>
-          <h1>${{ (bundle.price - bundle.price * promo.discount / 100).toFixed(2) }}</h1><br />
+          <h1>{{ priceConv(bundle.price - bundle.price * promo.discount / 100) }}</h1><br />
           <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
         </div>
       </div>
@@ -68,8 +68,8 @@
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
           <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-          <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>${{ (bundle.price - bundle.price*promo.discount / 100).toFixed(2) }}</b></a>
-          <small>20% tax will be applied for EU countries</small>
+          <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
+          <small>Including taxes for EU countries</small>
           <div :class='$style.block'>
             <img src='~assets/img/powered-by-stripe.png' width="300">
           </div>
@@ -95,6 +95,8 @@ import Shipping from '~/components/shipping-form.vue'
 import TextInput from '~/components/shipping-text.vue'
 import Loading from '~/components/loading.vue'
 import Footer from '~/components/homesection-footer.vue'
+
+import priceConv from '~/lib/price.js'
 
 import { bundles, leds, accessories, shopify, } from '~/config.json'
 import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
@@ -157,12 +159,16 @@ export default {
       this.$data.loading = true
       this.$store.commit('checkout/setCart', {id: `gid://shopify/ProductVariant/${this.bundle.ids[this.color]}`, n: 1})
 			const checkout = await createCheckout(this.$store.state.checkout)
+      console.log(checkout)
 			await setShippingAddress(this.$store.state.checkout, checkout)
 			if (this.$store.state.checkout.promocode) {
 				await applyCoupon(this.$store.state.checkout, checkout)
 			}
       await applyFreeShipping(this.$store.state.checkout, checkout)
       setTimeout(() => window.location.href = checkout.webUrl, 1000)
+    },
+    priceConv(dols) {
+      return priceConv(dols)
     },
   },
 }

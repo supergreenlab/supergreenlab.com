@@ -38,11 +38,11 @@
           <div v-else :id='$style.spacer'></div>
           <div :id='$style.pricecontainer'>
             <div :class='$style.price'>
-              <h1>${{ (Math.floor((price - price * discount / 100) * 100) / 100).toFixed(2) }}</h1>
+              <h1>{{ priceConv(Math.floor((price - price * discount / 100) * 100) / 100) }}</h1>
             </div>
             <div :class='$style.price + " " + $style.smallprice'>
               <h1>
-                ${{ price.toFixed(2) }}
+                {{ priceConv(price) }}
                 <div :id='$style.redbar'></div>
               </h1>
             </div>
@@ -61,6 +61,7 @@
 
 <script>
 import KeyMetrics from '~/components/bundle-keymetrics.vue'
+import priceConv from '~/lib/price.js'
 
 export default {
   components: {KeyMetrics,},
@@ -82,6 +83,9 @@ export default {
       this.$matomo && this.$matomo.trackEvent('bundle', 'show-keymetrics', this.$props.name)
       this.$data.keymetricsHeight = this.$refs.keymetrics.clientHeight
       this.$data.shownMetrics = !this.$data.shownMetrics
+    },
+    priceConv(dols) {
+      return priceConv(dols)
     },
   },
 }

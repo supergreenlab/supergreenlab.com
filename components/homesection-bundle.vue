@@ -25,16 +25,16 @@
       </div>
       <div v-if='promodiscount' :id='$style.pricecontainer'>
         <div :class='$style.price + " " + $style.smallprice'>
-          <h1>${{ price.toFixed(2) }}
+          <h1>{{ priceConv(price) }}
             <div :id='$style.redbar'></div>
           </h1>
         </div>
         <div :class='$style.price'>
-          <h1>${{ (price - price * promodiscountdef / 100).toFixed(2) }}</h1><br />
+          <h1>{{ priceConv(price - price * promodiscountdef / 100) }}</h1><br />
           <span>promocode: <b>-{{ promodiscountdef }}%</b></span>
         </div>
       </div>
-      <h1 v-else>${{ (price - price*promodiscountdef/100).toFixed(2) }}</h1>
+      <h1 v-else>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
@@ -63,6 +63,7 @@
 
 <script>
 import Items from '~/components/homesection-bundle-items.vue'
+import priceConv from '~/lib/price.js'
 
 export default {
   components: {Items,},
@@ -74,6 +75,9 @@ export default {
     addToCartClicked() {
       fbq('track', 'AddToCart')
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
+    },
+    priceConv(dols) {
+      return priceConv(dols)
     },
   },
   computed: {
