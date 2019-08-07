@@ -91,3 +91,12 @@ input[type=text]::placeholder {
 .popup-enter, .popup-leave-to {
   opacity: 0;
 }
+#ssid {
+  display: inline-block;
+  height: 20pt;
+  width: 100pt;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  background-image: url('~assets/img/wifi-ssid.png');
+}

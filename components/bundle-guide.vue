@@ -23,7 +23,7 @@
       <h2>{{ title }}</h2>
       <h1>{{ subtitle }}</h1>
       <a @click='onClick' v-if='href' :id='$style.learnmore' :href='href' target='_blank'>{{ button }}</a>
-      <nuxt-link @click.native='onClick' v-else :id='$style.learnmore' to='/guide/how-to-install-a-led-panel'>{{ button }}</nuxt-link>
+      <nuxt-link @click.native='onClick' v-else :id='$style.learnmore' :to='`/guide/${slug}`'>{{ button }}</nuxt-link>
     </div>
   </section>
 </template>

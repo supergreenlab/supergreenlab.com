@@ -26,6 +26,14 @@
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <div :class='$style.guide'>
+          <Guide icon='app.svg'
+                 analytics='guide-setup-with-the-app'
+                 title='HOW TO'
+                 subtitle='SETUP WITH THE APP'
+                 slug='how-to-setup-with-the-app'
+                 button='LEARN MORE' />
+        </div>
+        <div :class='$style.guide'>
           <Guide icon='guide-install-led.svg'
                  analytics='guide-install-led'
                  title='HOW TO'

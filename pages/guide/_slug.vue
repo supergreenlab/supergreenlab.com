@@ -151,6 +151,9 @@ export default {
   color: #3BB30B
   font-weight: 600
 
+.ps > h3
+  color: #717171
+
 .video
   display: block
   height: 100%
