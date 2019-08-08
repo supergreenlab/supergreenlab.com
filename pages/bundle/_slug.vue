@@ -78,7 +78,10 @@
           <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
           <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
           <div :class='$style.block'>
-            <img src='~assets/img/powered-by-stripe.png' width="300">
+            <img src='~assets/img/powered-by-stripe.png' width="300"><br />
+          </div>
+          <div :class='$style.block'>
+            <img src='~assets/img/paypal.png'>
           </div>
         </div>
       </div>
