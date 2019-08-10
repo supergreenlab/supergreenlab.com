@@ -7,7 +7,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'SuperGreenLab - Growshop - Automated LED Grow Lights',
+    title: 'SuperGreenLab - Growshop - Automated LED Grow Lights - All included bundles',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
