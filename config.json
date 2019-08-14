@@ -48,6 +48,10 @@
           "min": 30,
           "max": 80
         },
+        "par": {
+          "icon": "PAR-192-icon.png",
+          "zoom": "PAR-192.png"
+        },
         "yield": {
           "unit": "g",
           "min": 30,
@@ -100,6 +104,10 @@
           "min": 30,
           "max": 60
         },
+        "par": {
+          "icon": "PAR-144-icon.png",
+          "zoom": "PAR-144.png"
+        },
         "yield": {
           "unit": "g",
           "min": 30,
@@ -149,6 +157,10 @@
           "unit": "cm2",
           "min": 15,
           "max": 30
+        },
+        "par": {
+          "icon": "PAR-36-icon.png",
+          "zoom": "PAR-36.png"
         },
         "plants": {
           "unit" :"",

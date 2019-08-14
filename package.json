@@ -14,6 +14,7 @@
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
     "nuxt-matomo": "^1.2.2",
+    "portal-vue": "^2.1.6",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
   },

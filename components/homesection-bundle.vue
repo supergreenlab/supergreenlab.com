@@ -37,7 +37,7 @@
       <h1 v-else>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
-      <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
+      <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}' @click='toggleZoom'></div>
       <div :id='$style.description'>
         <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
 
@@ -58,6 +58,11 @@
         </div>
       </div>
     </div>
+    <portal v-if='showZoom' to='root'>
+      <div :id='$style.fullscreen' @click='toggleZoom'>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
+      </div>
+    </portal>
   </section>
 </template>
 
@@ -68,6 +73,11 @@ import priceConv from '~/lib/price.js'
 export default {
   components: {Items,},
   props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
+  data() {
+    return {
+      showZoom: false,
+    }
+  },
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
@@ -78,6 +88,9 @@ export default {
     },
     priceConv(dols) {
       return priceConv(dols)
+    },
+    toggleZoom() {
+      this.$data.showZoom = !this.$data.showZoom
     },
   },
   computed: {
@@ -136,6 +149,7 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   margin: 0 20pt 0 20pt
+  cursor: pointer
   @media only screen and (max-width: 600px)
     width: 100%
     margin: 0 0pt 0 0pt
@@ -267,5 +281,24 @@ export default {
   transform: rotate(-30deg)
   position: absolute
   background-color: #FF0000
+
+#fullscreen
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: white
+
+#iconfullscreen
+  height: 90%
+  width: 90%
+  margin: 0 15pt 0 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

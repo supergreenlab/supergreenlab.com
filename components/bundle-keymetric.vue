@@ -22,13 +22,19 @@
     <div :id='$style.metrics'>
       <h3>{{ title }}</h3>
       <small v-if='subtitle'>{{ subtitle }}</small>
-      <p>
+      <p v-if='min'>
         Min: <span :class='$style.green'>{{ minStr }}</span>
       </p>
-      <p>
+      <p v-if='max'>
         Max: <span :class='$style.green'>{{ maxStr }}</span>
       </p>
+      <a v-if='zoom' href='javascript:void(0)' @click='toggleZoom'>View</a>
     </div>
+    <portal v-if='showZoom' to='root'>
+      <div :id='$style.fullscreen' @click='toggleZoom'>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${zoom}`)})`}'></div>
+      </div>
+    </portal>
   </section>
 </template>
 
@@ -51,7 +57,12 @@ const unitMap = {
 }
 
 export default {
-  props: ['icon', 'title', 'subtitle', 'min', 'max', 'unit', 'n',],
+  props: ['icon', 'title', 'subtitle', 'min', 'max', 'unit', 'n', 'zoom',],
+  data() {
+    return {
+      showZoom: false
+    }
+  },
   computed: {
     isImperial() {
       const off = new Date().getTimezoneOffset() / 60
@@ -80,6 +91,11 @@ export default {
         unit = unitMap[unit]
       }
       return `${max}${unit}`
+    },
+  },
+  methods: {
+    toggleZoom() {
+      this.$data.showZoom = !this.$data.showZoom
     },
   },
 }
@@ -111,8 +127,31 @@ export default {
   font-weight: 400
   font-size: 1.1em
 
+#metrics > a
+  flex: 1
+  margin-top: 5pt
+
 .green
   font-weight: 600
   color: #3BB30B
+
+#fullscreen
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: white
+
+#iconfullscreen
+  height: 90%
+  width: 90%
+  margin: 0 15pt 0 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

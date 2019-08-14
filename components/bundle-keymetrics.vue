@@ -43,6 +43,12 @@
           title='Surface coverage'
           v-bind='coverage' />
       </div>
+      <div v-if='par' :class='$style.metric'>
+        <Metric
+          :n='n'
+          title='PAR map'
+          v-bind='par' />
+      </div>
       <div v-if='yield && showHarvest' :class='$style.metric'>
         <Metric
           :n='n'
@@ -69,7 +75,7 @@ import Metric from '~/components/bundle-keymetric.vue'
 
 export default {
   components: {Title, Metric,},
-  props: ['distance', 'power', 'coverage', 'yield', 'plants', 'n', 'name', 'showHarvest',],
+  props: ['distance', 'power', 'coverage', 'par', 'yield', 'plants', 'n', 'name', 'showHarvest',],
 }
 </script>
 

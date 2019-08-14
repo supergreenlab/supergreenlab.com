@@ -8,6 +8,9 @@
         <h2>Enjoy your {{ promo.discount }}% off :)</h2>
       </div>
     </transition>
+
+    <portal-target name='root'>
+    </portal-target>
   </section>
 </template>
 

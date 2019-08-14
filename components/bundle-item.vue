@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.product'>
       <div :id='$style.iconcontainer'>
-        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${iconcomp}`)})`}'></div>
+        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${iconcomp}`)})`}' @click='toggleZoom'></div>
       </div>
       <div :id='$style.description'>
         <div :id='$style.header'>
@@ -56,6 +56,11 @@
       </div>
     </div>
     <div v-if='!last' :id='$style.separator'></div>
+    <portal v-if='showZoom' to='root'>
+      <div :id='$style.fullscreen' @click='toggleZoom'>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${iconcomp}`)})`}'></div>
+      </div>
+    </portal>
   </section>
 </template>
 
@@ -70,6 +75,7 @@ export default {
     return {
       shownMetrics: false,
       keymetricsHeight: 0,
+      showZoom: false,
     }
   },
   computed: {
@@ -86,6 +92,9 @@ export default {
     },
     priceConv(dols) {
       return priceConv(dols)
+    },
+    toggleZoom() {
+      this.$data.showZoom = !this.$data.showZoom
     },
   },
 }
@@ -122,6 +131,7 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  cursor: pointer
 
 #description
   flex: 0.7
@@ -243,5 +253,24 @@ export default {
 #keymetricscontainer
   transition: height 0.5s
   overflow: hidden
+
+#fullscreen
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: white
+
+#iconfullscreen
+  height: 90%
+  width: 90%
+  margin: 0 15pt 0 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>
