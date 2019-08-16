@@ -83,7 +83,6 @@ export default {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
     },
     addToCartClicked() {
-      fbq('track', 'AddToCart')
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
     },
     priceConv(dols) {
@@ -291,14 +290,15 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  background-color: white
+  background-color: rgba(255, 255, 255, 0.5)
 
 #iconfullscreen
-  height: 90%
+  height: 80%
   width: 90%
   margin: 0 15pt 0 0
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  background-color: white
 
 </style>

@@ -157,14 +157,9 @@ export default {
       return parseInt((1 - (1-bundle.discount/100) * (1-promo.discount/100) ) * 100)
     },
   },
-  mounted() {
-    fbq('track', 'ViewContent')
-    fbq('track', 'Lead')
-  },
   methods: {
     async buy() {
       if (!this.valid) return
-      fbq('track', 'AddToCart')
       this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, Math.floor((this.bundle.price - this.bundle.price*this.promo.discount/100) * 100) / 100)
       this.$data.loading = true
       this.$store.commit('checkout/setCart', {id: `gid://shopify/ProductVariant/${this.bundle.ids[this.color]}`, n: 1})

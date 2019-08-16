@@ -80,7 +80,6 @@ export default {
     if (nVisits > 1) {
       setTimeout(() => this.$data.showPopup = true, 2000)
     }
-    fbq('track', 'ViewContent')
   },
 	computed: {
 		bundles() {

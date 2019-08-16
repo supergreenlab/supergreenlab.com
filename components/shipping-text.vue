@@ -32,7 +32,6 @@ export default {
     },
     onChange(e) {
       this.$matomo && this.$matomo.trackEvent('shipping-form', this.$props.name, e.target.value)
-      fbq('track', 'InitiateCheckout')
       this.$emit('input', e.target.value);
     },
   },
