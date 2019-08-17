@@ -81,6 +81,9 @@
             <img src='~assets/img/powered-by-stripe.png' width="300"><br />
           </div>
           <div :class='$style.block'>
+            <img src='~assets/img/crypto.png'>
+          </div>
+          <div :class='$style.block'>
             <img src='~assets/img/paypal.png'>
           </div>
         </div>
