@@ -34,6 +34,8 @@
       <a :id='$style.discord' class="hvr-grow" href='https://discord.gg/z86RNjq' target='_blank'>
         Got questions ?<br />Ask us anything on discord:)
       </a>
+      or send us an email at
+      <a :id='$style.discord' href='mailto:towelie@supergreenlab.com'>towelie@supergreenlab.com</a>
     </div>
   </section>
 </template>
