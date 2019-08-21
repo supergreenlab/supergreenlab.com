@@ -6,7 +6,8 @@
       "SGL_NEWSLETTER": 20,
       "SGL_FAM": 20,
       "STRAINLY": 15,
-      "SGL_I_CAN_READ_CODE": 25
+      "SGL_I_CAN_READ_CODE": 25,
+      "I_WANT_TO_GROW": 10
     }
   },
   "leds": [
