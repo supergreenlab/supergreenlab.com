@@ -31,7 +31,7 @@
           <b>ACTIVATE PROMOCODE</b>
         </a>
       </div>
-      <a :id='$style.discord' class="hvr-grow" href='https://discord.gg/z86RNjq' target='_blank'>
+      <a :id='$style.discord' class="hvr-grow" href='https://www.supergreenlab.com/discord' target='_blank'>
         Got questions ?<br />Ask us anything on discord:)
       </a>
       or send us an email at
