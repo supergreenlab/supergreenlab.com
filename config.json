@@ -2,11 +2,12 @@
   "shopify": {
     "token": "15b29141aad68fb6c4cfd0c2bf9bae8b",
     "promos": {
-      "SGL_LOVE": 10,
+      "SGL_LOVE": 5,
       "SGL_NEWSLETTER": 20,
       "SGL_FAM": 20,
       "STRAINLY": 15,
-      "SGL_I_CAN_READ_CODE": 25
+      "SGL_I_CAN_READ_CODE": 25,
+      "I_WANT_TO_GROW": 10
     }
   },
   "leds": [
@@ -234,7 +235,7 @@
         "<b>Easy setup</b> with the application",
         "Harvest every <b>3 months</b>",
         "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
-        "<b>all included</b>: power supply, sensor and ventilation"
+        "<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
       ],
       "url": "https://shop.supergreenlab.com/pages/loading-cart#29107264880688:1",
       "price": 249,
@@ -259,7 +260,7 @@
         "<b>Easy setup</b> with the application",
         "Harvest every <b>1 and 1/2 months</b>",                              
         "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
-        "<b>all included</b>: power supply, sensor and ventilation"
+        "<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
       ],
       "url": "https://shop.supergreenlab.com/pages/loading-cart#29107272089648:1",
       "price": 349,
@@ -283,7 +284,7 @@
         "<b>High yield</b> setup",              
         "<b>Harvest up to every 3 weeks</b>",                                 
         "from a <b>wardrobe</b> to a <b>closet</b>",                
-        "<b>all included</b>: power supply, sensor and ventilation"
+        "<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
       ],
       "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
       "price": 599,
@@ -307,7 +308,7 @@
 				"Perfect kit for <b>experimenters</b> and <b>breeders</b>",
 				"<b>6 tiny LED panels</b> for 0 limitations",
 				"Can fit from a <b>nightstand</b> to a <b>shoebox</b>",
-				"<b>all included</b>: power supply, sensor and ventilation"
+				"<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
 			],
       "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
       "price": 299,

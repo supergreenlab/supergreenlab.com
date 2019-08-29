@@ -21,7 +21,7 @@
     <div :id='$style.popup' @click='cancelClick'>
       <SectionTitle title='Welcome back !'
                     green='Take this promocode:' />
-      <h3>-10% with</h3>
+      <h3>-5% with</h3>
       <h1>SGL_LOVE</h1>
       <div :id='$style.ctas'>
         <a :id='$style.ctano' href='javascript:void(0)' @click='no'>
