@@ -86,7 +86,7 @@
       <input :id='$style.promocode' type='text' v-model='promo' placeholder='Enter your promocode here.' />-->
       <div v-if='!this.controller && this.nVegBoxes != 0' :id='$style.disclaimer'>
         Oops looks like you picked veg lights (36 and 72) without the controller, that's not possible yet.<br />
-        Head to the <a href='https://discord.gg/crdYzgy'>discord server</a> and ask for it if you want power-supplied veg lights !<br />
+        Head to the <a href='https://www.supergreenlab.com/discord'>discord server</a> and ask for it if you want power-supplied veg lights !<br />
         <b>Remove the veg box before going to the cart</b> or <a href='javascript:void(0)' v-on:click='setController(true)'><b>add a controller</b></a>.
       </div>
       <a v-on:click='createCart()' :id='$style.cta' :class='`${!valid ? $style.disabled : $style.enabled} ${loading_cart ? $style.loading : ""}`' href='javascript:void(0)'>
