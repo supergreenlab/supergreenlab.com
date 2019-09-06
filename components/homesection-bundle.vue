@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        <div :id='$style.addtocartcontainer' v-if='addtocart'>
+        <div :id='$style.addtocartcontainer' v-if='addtocart && !description'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
             <p>Free shipping</p>
@@ -61,6 +61,13 @@
     <div v-if='description' :id='$style.text'>
       <h1>Description</h1>
       <div v-html='description'></div>
+      <div :id='$style.addtocartcontainer' v-if='addtocart'>
+        <div :id='$style.addtocart'>
+          <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
+          <p>Free shipping</p>
+          <p>Our bundles are shipped discreet</p>
+        </div>
+      </div>
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
