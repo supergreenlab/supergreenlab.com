@@ -70,11 +70,15 @@ export default {
     },
     minStr() {
       let { min, unit, n } = this.$props
-      min *= n * (this.isImperial ? unitConv[unit] : 1)
-      min = Math.floor(min*100)/100
+      min *= (this.isImperial ? unitConv[unit] : 1)
+      min = Math.floor(min)
       if (unit == 'cm2') {
+        min *= Math.sqrt(n)
+        min = Math.floor(min)
         min = `${min}x${min}`
-      } 
+      } else {
+        min *= n
+      }
       if (this.isImperial) {
         unit = unitMap[unit]
       }
@@ -82,11 +86,15 @@ export default {
     },
     maxStr() {
       let { max, unit, n } = this.$props
-      max *= n * (this.isImperial ? unitConv[unit] : 1)
-      max = Math.floor(max*100)/100
+      max *= (this.isImperial ? unitConv[unit] : 1)
+      max = Math.floor(max)
       if (unit == 'cm2') {
+        max *= Math.sqrt(n)
+        max = Math.floor(max)
         max = `${max}x${max}`
-      } 
+      } else {
+        max *= n
+      }
       if (this.isImperial) {
         unit = unitMap[unit]
       }
