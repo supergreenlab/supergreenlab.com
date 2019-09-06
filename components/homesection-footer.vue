@@ -36,7 +36,7 @@
           <nuxt-link class="nav-link active" :to="{path: '/privacy'}">Privacy Policy</nuxt-link>
           <a class="nav-link" href="">Terms</a>
           <a class="nav-link" href="">FAQ</a>
-          <a class="nav-link" href="https://discord.gg/crdYzgy">Discord Support</a>
+          <a class="nav-link" href="https://www.supergreenlab.com/discord">Discord Support</a>
         </nav>
       </div>
 

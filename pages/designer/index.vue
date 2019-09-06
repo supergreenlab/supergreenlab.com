@@ -38,7 +38,7 @@
       </p>
       <p>
         Also, one of our main concern is <b>your success</b>, we're offering free <b>top-notch real time support</b>.<br />
-        You can <b>join the support</b> <a href='https://discord.gg/crdYzgy'>discord server</a> now, <b>feel free to ask your questions</b> here, we and the community will be <b>glad to help</b>:)
+        You can <b>join the support</b> <a href='https://www.supergreenlab.com/discord'>discord server</a> now, <b>feel free to ask your questions</b> here, we and the community will be <b>glad to help</b>:)
       </p>
       <h3>Our products tailored to your needs and budget:</h3>
       <IntroSectionBareLeds />

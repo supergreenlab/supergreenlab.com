@@ -46,7 +46,7 @@
                  analytics='ask-on-discord'
                  title='GOT QUESTIONS ?'
                  subtitle='ASK US ON DISCORD'
-                 href='https://discord.gg/8qedy4N'
+                 href='https://www.supergreenlab.com/discord'
                  button='JOIN' />
         </div>
       </div>

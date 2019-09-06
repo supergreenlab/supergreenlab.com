@@ -24,7 +24,7 @@
 <script>
 export default {
   created() {
-    window.location.href = 'https://discord.gg/crdYzgy'
+    window.location.href = 'https://discord.gg/n4MvwMh'
   },
 }
 </script>
