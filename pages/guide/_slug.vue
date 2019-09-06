@@ -54,7 +54,7 @@ import Header from '~/components/header.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 
-import { guides } from '~/config.json'
+import { guides } from '~/config/guides.json'
 
 export default {
   components: { Header, SectionTitle, Footer, },

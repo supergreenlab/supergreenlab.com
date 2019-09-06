@@ -1,0 +1,72 @@
+{
+  "faq": [
+    {
+      "q": "I can’t get access on your discord server",
+      "a": "<a href='https://www.supergreenlab.com/discord'>supergreenlab.com/discord</a><br />Click the “ok hand” to accept the rules in #rules, if you are still not given access send a message to either @stant or @FreakingDuck (on the right panel of your discord page)."
+    },
+    {
+      "q": "Do you ship to…. ?",
+      "a": "We currently ship to the United States, Canada, most of Europe, Australia, New Zealand, New Zealand, Malaysia and South Africa. We are always opening new destination, drop us a line at towelie@supergreenlab.com if your country is not available yet."
+    },
+    {
+      "q": "Will the power supplies work in my country ?",
+      "a": "Our power supplies can be used worldwide (100 to 240VAC, 50 and 60Hz). We are currently only able to provide with EU (for european shipments) and US (rest of the world) power cords outlet types. Any travel adapter will let you use it if your country have different outlets."
+    },
+    {
+      "q": "What is the right bundle for my grow box ?",
+      "a": "It depends on your growbox size, growing techniques ect.. Drop us a line at towelie@supergreenlab.com or join us on discord and we will gladely help you choose the right bundle"
+    },
+    {
+      "q": "How do you manage the smell ?",
+      "a": "We are using cooking hood carbon filters that you can easily get on amazon along with the blower including in the bundles with good results. These filters can easily be stacked if needed during the end of blooming."
+    },
+    {
+      "q": "Where can I find the app ?",
+      "a": "The app will soon be publicly pushed to the store, in the meantime drop us a line at towelie@supergreenlab.com so we can grant you access or use the desktop app available on app.supergreenlab.com."
+    },
+    {
+      "q": "How do I setup my bundle ?",
+      "a": "You can find the how to setup the app here : https://www.supergreenlab.com/guide/how-to-setup-with-the-app<br />You can find a how to setup a led panel here : https://www.supergreenlab.com/guide/how-to-install-a-led-panel<br/>You can find how to builds on our youtube channel : <br/>youtube.com/c/supergreenlab<br />We are working on new tutorials, in the meantime come and ask us on discord : supergreenlab.com/discord"
+    },
+    {
+      "q": "Why are the lights in pictures different from the bundles description ?",
+      "a": "We are working on the new builds and will soon have updated pictures. Some of the builds depicted on this website have been built using our first bundle which only supported small panels. For our new bundles we have designed bigger lights (use the same and even better leds) for easier installation and use but also better results."
+    },
+    {
+      "q": "Are the bundles upgradable ?",
+      "a": "Yes, all our grow lights are compatible and the controller have 6 light outputs. This means you can hook up up to 6 total lights and allocate them inside 3 different grow box on each controller."
+    },
+    {
+      "q": "Do I have to pay taxes/duties on my order ?",
+      "a": "As we are based in spain it is mandatory for us to add a 21% VAT tax on all order shipped inside the EU.<br />For the rest of the world, as we cannot ship with duty paid delivery a duty fee can be applied at the entry of the package in your country it depends on your country's policies and the mood of the custom officer. Currently we haven’t had feedbacks/complaints regarding duties fee."
+    },
+    {
+      "q": "I am new to growing, will someone help me ?",
+      "a": "Of course we will help you through every step of growing with your SuperGreenLab setup. Join our discord and enjoy 24/7 grower support."
+    },
+    {
+      "q": "How will the transaction appear on my bank statements ?",
+      "a": "Orders made on supergreenlab.com will appear as HCKMN on your bank statement."
+    },
+    {
+      "q": "Is the package discreet ?",
+      "a": "Yes we ship using standard Fedex/UPS boxes"
+    },
+    {
+      "q": "Love the project, can I help you ?",
+      "a": "Yes, join us on discord and ask us."
+    },
+    {
+      "q": "Can I buy lights alone/not in bundles ?",
+      "a": "Yes, check our spare part shop here : shop.supergreenlab.com"
+    },
+    {
+      "q": "Can I get a promocode ?",
+      "a": "Take that 10% OFF : I_WANT_TO_GROW"
+    },
+    {
+      "q": "Who are you?",
+      "a": "We're two french guys located in Barcelona to develop a better solution for modern home-growers."
+    }
+  ]
+}

@@ -42,6 +42,14 @@
                  button='LEARN MORE' />
         </div>
         <div :class='$style.guide'>
+          <Guide icon='enveloppe.svg'
+                 analytics='ask-by-email'
+                 title='GOT QUESTIONS ?'
+                 subtitle='DROP US AN EMAIL'
+                 text='at towelie@supergreenlab.com'
+                 button='EMAIL' />
+        </div>
+        <div :class='$style.guide'>
           <Guide icon='ask.svg'
                  analytics='ask-on-discord'
                  title='GOT QUESTIONS ?'
@@ -111,7 +119,10 @@ import Footer from '~/components/homesection-footer.vue'
 
 import priceConv from '~/lib/price.js'
 
-import { bundles, leds, accessories, shopify, } from '~/config.json'
+import { bundles, } from '~/config/bundles.json'
+import { leds, } from '~/config/leds.json'
+import { accessories, } from '~/config/accessories.json'
+import { shopify, } from '~/config/shopify.json'
 import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
 
 const binding = (name) => ({

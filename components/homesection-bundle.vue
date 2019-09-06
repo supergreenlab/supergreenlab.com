@@ -58,6 +58,10 @@
         </div>
       </div>
     </div>
+    <div v-if='description' :id='$style.text'>
+      <h1>Description</h1>
+      <div v-html='description'></div>
+    </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
         <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
@@ -72,7 +76,7 @@ import priceConv from '~/lib/price.js'
 
 export default {
   components: {Items,},
-  props: ['slug', 'title', 'subtitle', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
+  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
   data() {
     return {
       showZoom: false,
@@ -300,5 +304,10 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   background-color: white
+
+#text
+  font-size: 1.1em
+  padding: 10pt 30pt 40pt 30pt
+  color: #5D5D5D
 
 </style>

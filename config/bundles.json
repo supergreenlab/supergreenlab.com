@@ -1,0 +1,107 @@
+{
+	"bundles": [
+    {
+      "ids": {
+        "white": "29107264880688",
+        "black": "29133881770032"
+      },
+      "discount": 18,
+      "slug":"mono-box-bundle",
+      "ref":"mono-box-bundle",
+      "title": "MONO BOX BUNDLE",
+      "subtitle": "192 LEDs, 1 controller",
+      "icon": "tvstand.png",
+      "description": "The mono box bundle is the easiest way to build a compact seed to harvest stealth grow box out of any furniture you already own. Featuring full spectrum LED grow lights producing dense light with little heat this complete grow box bundle is perfect for both beginners and advanced growers looking to start a hidden grow in their home.<br /><br />Coming with a grow box controller, sensor, ventilation and a companion app for easy setup, control and monitoring of your grow directly from your smartphone. This smart growbox bundle enables you to have complete control of your grow including schedules, ventilation, and light dimming to insure the best growth’s speed.<br /><br />This bundle can be seamlessly upgraded with more grow lights, sensors and ventilation in order to easily add more grow rooms and side boxes for vegging.",
+      "bullets": [
+        "Perfect kit for <b>first-timers</b> or <b>small setups</b>.",
+        "<b>Easy setup</b> with the application",
+        "Harvest every <b>3 months</b>",
+        "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
+        "<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
+      ],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107264880688:1",
+      "price": 249,
+      "bigleds": 1,
+      "smallleds": 0,
+      "tinyleds": 0,
+      "ventilation": 1,
+      "sensor": 1
+    }, {
+      "ids": {
+        "white": "29107272089648",
+        "black": "29133885898800"
+      },
+      "discount": 16,
+      "slug":"multi-box-bundle",
+      "ref":"multi-box-bundle",
+      "title": "MULTI BOX BUNDLE",
+      "subtitle": "Harvests come twice faster",
+      "icon": "office.png",
+      "description": "Designed for multi chamber grow boxes, the multi box bundle lets you drastically reduce times between grows and increase yields with a perpetual harvest cycle. The main grow light will lit your blooming chamber while the small led panels will take care of your next plants in the adjacent vegging chamber even the tightest ones.<br /><br />Featuring full spectrum LEDs producing dense light with little heat, this complete bundle will let you get the most out of any grow space.<br />Easily upgradable with more lights (up to 6), the grow box controller connected to your companion app enables you to have complete control over your grow : light dimming, ventilation (included) and environmental data (sensors included) to insure the best possible yield",
+      "bullets": [                                                     
+        "Start the <b>next batch</b> before end of bloom",          
+        "<b>Easy setup</b> with the application",
+        "Harvest every <b>1 and 1/2 months</b>",                              
+        "Can fit from a <b>nightstand</b> to a <b>small wardrobe</b>",
+        "<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
+      ],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107272089648:1",
+      "price": 349,
+      "bigleds": 1,
+      "smallleds": 0,
+      "tinyleds": 2,
+      "ventilation": 2,
+      "sensor": 2
+    }, {
+      "ids": {
+        "white": "29107330154544",
+        "black": "29133872431152"
+      },
+      "discount": 12,
+      "slug":"closet-box-bundle",
+      "ref":"closet-bundle",
+      "title": "CLOSET BUNDLE",
+      "subtitle": "Grow huge plants, harvest often",
+      "icon": "dombas.png",
+      "description": "For those who want to grow big with style ! The closet bundle lets you transform your old wardrobe into a high yield output growing machine. Its 2 Main grow lights will lit your blooming chambers while the 2 medium grow lights will take care of your plants in their earlier stages.<br /><br />It’s full spectrum LEDs producing dense light with little heat can be used in all spaces while keeping the growing area temperature low.<br /><br />Coming with a grow box controller, sensor, ventilation and a companion app for easy setup, control and monitoring of your grow directly from your smartphone. This smart growbox bundle enables you to have complete control of your grow including schedules, ventilation, and light dimming to insure the best growth’s speed.<br /><br />This bundle can be seamlessly upgraded with up to 2 more grow lights if you want to grow even bigger.",
+      "bullets": [                                                   
+        "<b>High yield</b> setup",              
+        "<b>Harvest up to every 3 weeks</b>",                                 
+        "from a <b>wardrobe</b> to a <b>closet</b>",                
+        "<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
+      ],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
+      "price": 599,
+      "bigleds": 2,
+      "smallleds": 2,
+      "tinyleds": 0,
+      "ventilation": 2,
+      "sensor": 2
+    }, {
+      "ids": {
+        "white": "29107273826352",
+        "black": "29133894352944"
+      },
+      "discount": 15,
+      "slug":"micro-box-bundle",
+      "ref":"micro-grow-bundle",
+      "title": "MICRO GROW BUNDLE",
+			"subtitle": "6 tiny LED panels for canna scientists",
+			"icon": "micro.png",
+      "description": "The micro box bundle comes with 6 tiny LED panels, making it the most versatile of all, perfect for those that want to experiment advanced training technics, or just for the fun of having a tiny furniture that grows buds.<br /><br />The micro box bundle’s LED panel has been specifically designed to produce a dense light while producing little heat, which makes it perfect for tiny setups. The dimming feature allows fine control of the plant’s growth speed.<br /><br />The bundle comes with a controller that can control up to 6 LED panels dispatched in 3 separated grow spaces, each with their own configuration.<br /><br />It comes with a free application (beta testing in progress) for easy setup, control and monitoring.",
+			"bullets": [
+				"Perfect kit for <b>experimenters</b> and <b>breeders</b>",
+				"<b>6 tiny LED panels</b> for 0 limitations",
+				"Can fit from a <b>nightstand</b> to a <b>shoebox</b>",
+				"<b>all included</b>: power supply, sht21 temperature sensor, humidity sensor, and ventilation"
+			],
+      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
+      "price": 299,
+      "bigleds": 0,
+      "smallleds": 0,
+      "tinyleds": 6,
+      "ventilation": 1,
+      "sensor": 1
+    }
+  ]
+}

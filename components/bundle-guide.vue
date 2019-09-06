@@ -22,15 +22,16 @@
     <div :id='$style.content'>
       <h2>{{ title }}</h2>
       <h1>{{ subtitle }}</h1>
+      <p v-if='text'>{{ text }}</p>
       <a @click='onClick' v-if='href' :id='$style.learnmore' :href='href' target='_blank'>{{ button }}</a>
-      <nuxt-link @click.native='onClick' v-else :id='$style.learnmore' :to='`/guide/${slug}`'>{{ button }}</nuxt-link>
+      <nuxt-link @click.native='onClick' v-else-if='slug' :id='$style.learnmore' :to='`/guide/${slug}`'>{{ button }}</nuxt-link>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['icon', 'title', 'subtitle', 'slug', 'href', 'button', 'analytics',],
+  props: ['icon', 'title', 'subtitle', 'text', 'slug', 'href', 'button', 'analytics',],
   methods: {
     onClick() {
       const { analytics } = this.$props
@@ -67,6 +68,10 @@ export default {
   margin: 0
   @media only screen and (max-width: 600px)
     font-size: 1.5em
+
+#content > p
+  font-size: 1.4em
+  padding: 5pt 0 0 0
 
 #learnmore
   display: block

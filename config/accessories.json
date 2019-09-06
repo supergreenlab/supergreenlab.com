@@ -1,0 +1,44 @@
+{
+  "accessories": [
+    {
+      "slug": "blower",
+      "name": "Ventilation blower",
+      "price": 29,
+      "icon": "blower.png",
+      "bullets": [
+        "Fits to a <b>wide array of sizes</b>",
+        "Strong enough to pull through a <b>carbon filter</b>",
+        "2 configurable speeds: night and day",
+        "<b>Totally silent</b> at low level"
+      ]
+    },
+    {
+      "slug": "sensor",
+      "name": "Temperature and humidity sensor.",
+      "price": 24.99,
+      "icon": "sht21.png",
+      "bullets": [
+        "<b>Monitor</b> your growing environment <b>remotely</b>",
+        "Get <b>alerts</b> when things go wrong",
+        "<b>Easy to install</b>"
+      ]
+    },
+    {
+      "slug": "controller",
+      "name": "System controller",
+      "price": 119,
+      "icon": "controller.png",
+      "bullets": [
+        "<b>All-in-one</b> growing central units",
+        "Up to <b>6 independent LED channels</b>",
+        "<b>3 motor</b> outputs",
+        "<b>3 sensor</b> and accessories <b>ports</b>",
+        "<b>Up to 3</b> separate <b>growboxes</b> with one controller",
+        "Comes with a <b>free mobile app</b>",
+        "<b>Monitor</b> your growing environment <b>remotely</b>",
+        "Get <b>alerts</b> when things go wrong",
+        "<b>Easy to install</b>"
+      ]
+    }
+  ]
+}

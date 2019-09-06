@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { shopify } from '~/config.json'
+import { shopify } from '~/config/shopify.json'
 
 export default {
   computed: {

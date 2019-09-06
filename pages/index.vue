@@ -36,7 +36,7 @@
       <div :id='$style.shop'></div>
       <div :class='$style.bundle' v-for='b in bundles'>
         <div :id='b.ref'></div>
-        <Bundle v-bind='b' :promodiscount='promo.discount' />
+        <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
       </div>
     </div>
     <Footer />
@@ -57,7 +57,8 @@ import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
 
-import { bundles, shopify, } from '../config.json'
+import { bundles, } from '../config/bundles.json'
+import { shopify, } from '../config/shopify.json'
 
 export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer,  Promocode,},

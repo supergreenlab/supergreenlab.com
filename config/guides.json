@@ -1,0 +1,154 @@
+{
+  "guides": [
+    {
+      "slug": "how-to-install-a-led-panel",
+      "title": "HOW TO",
+      "subtitle": "INSTALL A LED PANEL",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INTRODUCTION",
+          "video": "/guide-led-holder/intro.mp4",
+          "text": [
+            "We designed our LED panels to be <b>as simple as possible</b> to install.",
+            "To do so, we made them compatible with a <b>widely used standard</b> called VESA.",
+            "VESA is initially made to hang screens against walls, the holders are <b>cheap</b> and <b>available virtually anywhere</b>. "
+          ]
+        },
+        {
+          "slug": "install-holder-base",
+          "title": "1. INSTALL HOLDER BASE",
+          "video": "/guide-led-holder/1.mp4",
+          "text": [
+            "VESA holders are usually made of <b>two parts</b>, one is <b>attached to the wall</b> (the base), and the other is <b>attached to the led panel</b>.",
+            "<b>Place the led holder base</b> at the <b>middle of the top shelf</b> with one hand, and <b>mark the position</b> of the holes <b>with a pen</b>."
+          ]
+        },
+        {
+          "slug": "drill-holder-base-holes",
+          "title": "2. DRILL HOLDER BASE HOLES",
+          "video": "/guide-led-holder/2.mp4",
+          "text": [
+            "Using the <b>mark done previously</b>, make 2 holes, watch out that the <b>drill is the right size</b> for you screws (ie. the <b>screw</b> should be <b>slightly larger</b>)."
+          ]
+        },
+        {
+          "slug": "screw-led-holder",
+          "title": "3. SCREW LED HOLDER",
+          "video": "/guide-led-holder/3.mp4",
+          "text": [
+            "<b>Get help from your buddy</b> to screw the LED holder's <b>base in place</b>."
+          ]
+        },
+        {
+          "slug": "attach-to-led-panel",
+          "title": "4. ATTACH TO LED PANEL",
+          "video": "/guide-led-holder/4.mp4",
+          "text": [
+            "<b>Now take the other part</b> of the led holder, the one that goes <b>on the led panel</b>."
+          ]
+        },
+        {
+          "slug": "attach-to-led-panel-2",
+          "title": "",
+          "video": "/guide-led-holder/5.mp4",
+          "text": [
+            "You can use <b>zip ties</b> or <b>screws</b> to attach the <b>led holder to the led panel</b>."
+          ]
+        },
+        {
+          "slug": "attach-both-parts-together",
+          "title": "5. Attach both parts together",
+          "video": "/guide-led-holder/6.mp4",
+          "text": [
+            "<b>Attach both parts</b> of the led holder <b>together</b>, and add the <b>tightening screw</b>."
+          ]
+        },
+        {
+          "slug": "plug-led-panel-controller",
+          "title": "6. Plug the led panel to your controller",
+          "video": "/guide-led-holder/7.mp4",
+          "text": [
+            "And you're <b>halfway good to grow</b>."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "how-to-setup-with-the-app",
+      "title": "HOW TO",
+      "subtitle": "SETUP WITH THE APP",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INSTALL THE APP",
+          "video": "/guide-initial-setup/1.mp4",
+          "text": [
+            "The control app is <b>available</b> on (nearly) <b>all platforms</b>.",
+            "<b>android/iOS</b> and <b>Windows/Mac/Linux</b>",
+            "First step is to download our app on your appstore, or here for desktop versions:",
+            "<a href=''>Windows</a> <a href=''>Mac</a> <a href=''>Linux</a>",
+            "Then <b>follow the instructions</b> on screen. <b>First step</b> is turning the controller <b>ON</b>",
+            "<b>You don't need</b> to have the <b>LEDs or motors plugged</b> in at that point."
+          ]
+        },
+        {
+          "slug": "emoji-wifi",
+          "title": "CONNECT TO THE CONTROLLER'S WIFI",
+          "video": "/guide-initial-setup/2.mp4",
+          "text": [
+            "The initial setup process is done by <b>directly connecting to the controller's wifi network</b>.",
+            "Go to your <b>phone's settings</b>, and <b>connect</b> to the following <b>wifi</b>:",
+            "SSID: <div id='ssid'></div>",
+            "Password: <b>multipass</b>"
+          ]
+        },
+        {
+          "slug": "led-test",
+          "title": "CONNECT TO THE CONTROLLER'S WIFI",
+          "video": "/guide-initial-setup/3.mp4",
+          "text": [
+            "This is when you can <b>plug your lights</b> for a little test.",
+            "Once <b>all lights</b> are plugged in, press the <b>Test LEDs</b> button.",
+            "All LEDs should go <b>ON</b> and then <b>OFF</b> one by one."
+          ]
+        },
+        {
+          "slug": "box-config",
+          "title": "BOX CONFIGURATION",
+          "video": "/guide-initial-setup/4.mp4",
+          "text": [
+            "<b>Under</b> the LED testing section, you'll find different <b>presets</b> for the most <b>common configurations</b>.",
+            "<b>As of now</b>, the <b>2</b> presets are either <b>one box</b>, or <b>two boxes</b>.",
+            "<h3>One box mode</h3>",
+            "When selecting <b>one box</b>, <b>all LEDs</b> are in the <b>box #1</b> and timer is preset to <b>vegging times</b> (18h <b>ON</b> and 6h <b>OFF</b>).",
+            "<h3>Two boxes mode</h3>",
+            "When <b>two boxes</b> is selected, you'll have the <b>first 4 lights</b> in the <b>box #1</b> with its timer preset to bloom schedules (12h <b>ON</b> and 12h <b>OFF</b>. And all the <b>remaining LEDs</b> in the <b>box #2</b> with its timer set to <b>vegging</b> schedules (18h <b>ON</b> and 6h <b>OFF</b>)."
+          ]
+        },
+        {
+          "slug": "connect-home-wifi",
+          "title": "CONNECT TO YOUR HOME WIFI",
+          "video": "/guide-initial-setup/5.mp4",
+          "text": [
+            "This step is <b>Optional</b>",
+            "Once <b>all is setup</b>, you can connect the <b>controller to the internet</b>.",
+            "This will allow it to do <b>alert notifications</b> when things go wrong, give you <b>remote monitoring</b>, and automatic firmware upgrades to <b>access latest features</b> as they come."
+          ]
+        }
+      ]
+    }
+  ]
+}

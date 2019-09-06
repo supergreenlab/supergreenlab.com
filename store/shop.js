@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { leds } from '../config.json'
+import { leds } from '../config/leds.json'
 
 export const state = () => ({
 	leds,

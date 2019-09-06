@@ -84,7 +84,6 @@ export default {
 #menu > div:hover
   background-color: #43b100bd
 
-
 #menu > div.selected
   color: white
   background-color: #43b100bd
