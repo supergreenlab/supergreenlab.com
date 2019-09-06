@@ -22,11 +22,11 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
-      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#top' }">Home</nuxt-link></div>
-      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#mono-box-bundle' }">Mono box bundle</nuxt-link></div>
-      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#multi-box-bundle' }">Multi box bundle</nuxt-link></div>
-      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#closet-bundle' }">Closet bundle</nuxt-link></div>
-      <div><nuxt-link @click='onClick' :to="{ path: '/', hash: '#micro-grow-bundle' }">Microgrow bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/' : { path: '/', hash: '#top' }">Home</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/mono-box-bundle' : { path: '/', hash: '#mono-box-bundle' }">Mono box bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/multi-box-bundle' : { path: '/', hash: '#multi-box-bundle' }">Multi box bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/closet-box-bundle' : { path: '/', hash: '#closet-bundle' }">Closet bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/micro-box-bundle' : { path: '/', hash: '#micro-grow-bundle' }">Microgrow bundle</nuxt-link></div>
     </div>
   </section>
 </template>
@@ -37,6 +37,11 @@ import Logo from '~/components/logo.vue'
 export default {
   components: { Logo, },
   props: ['responsiveHide',],
+  computed: {
+    page() {
+      return this.$route.name
+    }
+  },
   methods: {
     onClick(e) {
       this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
@@ -83,9 +88,6 @@ export default {
 #menu > div.selected
   color: white
   background-color: #43b100bd
-
-
-  
 
 #logo
   font-size: 1.5em

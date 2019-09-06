@@ -253,7 +253,7 @@
       "slug":"multi-box-bundle",
       "ref":"multi-box-bundle",
       "title": "MULTI BOX BUNDLE",
-      "subtitle": "Harvests come twice faster !",
+      "subtitle": "Harvests come twice faster",
       "icon": "office.png",
       "bullets": [                                                     
         "Start the <b>next batch</b> before end of bloom",          
@@ -303,7 +303,7 @@
       "ref":"micro-grow-bundle",
       "title": "MICRO GROW BUNDLE",
 			"subtitle": "6 tiny LED panels for canna scientists",
-			"icon": "triforce.png",
+			"icon": "micro.png",
 			"bullets": [
 				"Perfect kit for <b>experimenters</b> and <b>breeders</b>",
 				"<b>6 tiny LED panels</b> for 0 limitations",

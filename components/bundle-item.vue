@@ -81,7 +81,7 @@ export default {
   computed: {
     iconcomp() {
       const { icon, icons } = this.$props
-      return icon ? icon : icons['black']
+      return icon ? icon : icons['white']
     },
   },
   methods: {
