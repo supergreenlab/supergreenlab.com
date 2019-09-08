@@ -19,9 +19,10 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg1.jpg`)})`, opacity: (parseInt(n/2) % 3 + 1) == 1 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg2.jpg`)})`, opacity: (parseInt(n/2) % 3 + 1) == 2 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg3.jpg`)})`, opacity: (parseInt(n/2) % 3 + 1) == 3 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg1.jpg`)})`, opacity: (parseInt(n/2) % 4 + 1) == 1 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg2.jpg`)})`, opacity: (parseInt(n/2) % 4 + 1) == 2 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg3.jpg`)})`, opacity: (parseInt(n/2) % 4 + 1) == 3 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg2.jpg`)})`, opacity: (parseInt(n/2) % 4 + 1) == 4 ? 1 : 0}'></div>
 		<svg :class="$style.waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 										 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
 			<defs>
