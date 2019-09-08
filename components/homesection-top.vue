@@ -19,6 +19,19 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
+		<svg :class="$style.waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+										 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+			<defs>
+			<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+			</defs>
+			<g :class="$style.parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(59, 179, 11, 0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(59, 179, 11, 0.2)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(59, 179, 11, 0.1)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(59, 179, 11, 0.3)" />
+			</g>
+		</svg>
+		</div>
     <div :id='$style.body'>
         <div :class='$style.product + " " + (n == 0 ? $style.shown : "")'>
           <SectionTitle title='Your'
@@ -244,6 +257,7 @@ export default {
   font-weight: 600
 
 #legal
+  z-index: 100
   font-weight: 300
   text-align: center
   margin-bottom: 5pt
@@ -257,5 +271,49 @@ export default {
   font-size: 0.8em
   font-weight: 600
   z-index: 1000
+
+.waves 
+  position:absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  height:30vh
+  margin-bottom:-7px
+  min-height:100px
+  max-height:200px
+
+.content 
+  position:relative
+  height:20vh
+  text-align:center
+  background-color: #3bb30b
+
+.parallax > use 
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite
+
+.parallax > use:nth-child(1) 
+  animation-delay: -2s
+  animation-duration: 7s
+
+.parallax > use:nth-child(2) 
+  animation-delay: -3s
+  animation-duration: 10s
+
+.parallax > use:nth-child(3) 
+  animation-delay: -4s
+  animation-duration: 13s
+
+.parallax > use:nth-child(4) 
+  animation-delay: -5s
+  animation-duration: 20s
+
+@keyframes move-forever  {
+  0% {
+    transform: translate3d(-90px,0,0)
+  }
+  100% {
+    transform: translate3d(85px,0,0)
+  }
+}
 
 </style>
