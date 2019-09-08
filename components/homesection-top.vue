@@ -103,6 +103,7 @@
       local, state, and federal laws. SuperGreenLabs will not be liable for<br />
       consequences surrounding the legality of how the lights or grow bundle are used. 
     </small>
+    <div :id='$style.transition'></div>
   </section>
 </template>
 
@@ -321,5 +322,13 @@ export default {
     transform: translate3d(85px,0,0)
   }
 }
+
+#transition
+  position: absolute
+  top: 100%
+  left: 0
+  background-color: #5CBF36
+  width: 100vw
+  height: 20pt
 
 </style>
