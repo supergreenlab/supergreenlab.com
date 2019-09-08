@@ -18,6 +18,7 @@
 
 <template>
   <section :id='$style.container'>
+    <div :id='$style.background'></div>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
 		<svg :class="$style.waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 										 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -139,6 +140,12 @@ export default {
   justify-content: center
   align-items: center
   min-height: 100vh
+
+#background
+  position: absolute
+  width: 100vw
+  height: 100vh
+  background: linear-gradient(0deg, rgba(59, 179, 11,0.5) 0%, rgba(255, 255, 255, 0.5) 45%)
 
 #ad
   position: absolute
