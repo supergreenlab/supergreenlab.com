@@ -26,7 +26,7 @@
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <div :class='$style.guide'>
-          <Guide icon='app.svg'
+          <Guide icon='guide-mobile.svg'
                  analytics='guide-setup-with-the-app'
                  title='HOW TO'
                  subtitle='SETUP WITH THE APP'
