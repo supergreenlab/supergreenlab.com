@@ -49,7 +49,7 @@ export default {
   padding: 15pt 0 15pt 0
 
 #title
-  color: #5E5E5E
+  color: white
   text-align: center
   text-transform: uppercase
 
@@ -61,7 +61,7 @@ export default {
 
 #smalltitle
   margin-top: 5pt
-  color: #5E5E5E
+  color: white
   font-size: 0.8em
   @media only screen and (max-width: 600px)
     font-size: 1em

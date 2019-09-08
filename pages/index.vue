@@ -143,7 +143,6 @@ export default {
 
 #body
   width: 100%
-  max-width: 900pt
 
 #title
   margin: 20pt 0 20pt 0

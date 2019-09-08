@@ -18,18 +18,18 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.background'></div>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
+    <div :id='$style.background'></div>
 		<svg :class="$style.waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 										 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
 			<defs>
 			<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
 			</defs>
 			<g :class="$style.parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(59, 179, 11, 0.3)" />
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(59, 179, 11, 0.2)" />
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(59, 179, 11, 0.1)" />
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(59, 179, 11, 0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.9)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.7)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255, 255, 255, 0.9)" />
 			</g>
 		</svg>
 		</div>
@@ -103,7 +103,6 @@
       local, state, and federal laws. SuperGreenLabs will not be liable for<br />
       consequences surrounding the legality of how the lights or grow bundle are used. 
     </small>
-    <div :id='$style.transition'></div>
   </section>
 </template>
 
@@ -141,12 +140,16 @@ export default {
   justify-content: center
   align-items: center
   min-height: 100vh
+  background-image: url('~assets/img/top-bg.jpg')
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
 
 #background
   position: absolute
   width: 100vw
   height: 100vh
-  background: linear-gradient(0deg, rgba(59, 179, 11,0.5) 0%, rgba(255, 255, 255, 0.5) 45%)
+  background-color: rgba(0, 0, 0, 0.5)
 
 #ad
   position: absolute
