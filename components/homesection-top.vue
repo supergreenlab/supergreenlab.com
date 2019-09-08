@@ -38,70 +38,70 @@
           <SectionTitle title='Your'
                         :white='true'
                         green='TV Stand'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 1 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='wardrobe'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 2 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='closet'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 3 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='office storage'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 4 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cabinet'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 5 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='old fridge'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 6 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cupboard'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 7 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='coffee table'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 8 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='Carboard box'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
         <div :class='$style.product + " " + (n == 9 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='plumbus'
-                        title2='can grow weed'
+                        title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
     </div>
