@@ -91,7 +91,7 @@
                         :white='true'
                         green='coffee table'
                         title2='can grow plants'
-                        smalltitle="just press the LEAN HOW button"/>
+                        smalltitle="just press the LEARN HOW button"/>
         </div>
         <div :class='$style.product + " " + (n == 8 ? $style.shown : "")'>
           <SectionTitle title='Your'
