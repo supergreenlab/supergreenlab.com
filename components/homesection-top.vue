@@ -104,7 +104,7 @@
                         :white='true'
                         green='plumbus'
                         title2='can grow plants'
-                        smalltitle=""/>
+                        smalltitle="and it's open-source btw"/>
         </div>
     </div>
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
