@@ -130,7 +130,7 @@ export default {
   created() {
     this.interval = setInterval(() => {
       this.n = (this.n + 1) % 10
-    }, 2000)
+    }, 3000)
   },
   destroyed() {
     clearInterval(this.interval)
