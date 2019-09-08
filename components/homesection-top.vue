@@ -19,7 +19,9 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
-    <div :id='$style.background'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg1.jpg`)})`, opacity: (parseInt(n/2) % 3 + 1) == 1 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg3.jpg`)})`, opacity: (parseInt(n/2) % 3 + 1) == 2 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg2.jpg`)})`, opacity: (parseInt(n/2) % 3 + 1) == 3 ? 1 : 0}'></div>
 		<svg :class="$style.waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 										 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
 			<defs>
@@ -46,63 +48,63 @@
                         :white='true'
                         green='wardrobe'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="it's actually quite easy you know?"/>
         </div>
         <div :class='$style.product + " " + (n == 2 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='closet'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="we sell LED lights, and climate control"/>
         </div>
         <div :class='$style.product + " " + (n == 3 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='office storage'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="and it's all controlled by an app!"/>
         </div>
         <div :class='$style.product + " " + (n == 4 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cabinet'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="so you can turn any furniture"/>
         </div>
         <div :class='$style.product + " " + (n == 5 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='old fridge'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="into a connected grow box"/>
         </div>
         <div :class='$style.product + " " + (n == 6 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cupboard'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="and that's amazing"/>
         </div>
         <div :class='$style.product + " " + (n == 7 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='coffee table'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="just press the LEAN HOW button"/>
         </div>
         <div :class='$style.product + " " + (n == 8 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='Carboard box'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="get yours now:)"/>
         </div>
         <div :class='$style.product + " " + (n == 9 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='plumbus'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle=""/>
         </div>
     </div>
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
@@ -150,16 +152,18 @@ export default {
   justify-content: center
   align-items: center
   min-height: 100vh
-  background-image: url('~assets/img/top-bg.jpg')
-  background-size: cover
-  background-position: center
-  background-repeat: no-repeat
+  background-color: black
 
 #background
   position: absolute
   width: 100vw
   height: 100vh
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
   background-color: rgba(0, 0, 0, 0.5)
+  background-blend-mode: overlay
+  transition: opacity 1s
 
 #ad
   position: absolute
