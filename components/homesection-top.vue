@@ -285,7 +285,6 @@ export default {
   left: 0
   width: 100%
   height:30vh
-  margin-bottom:-7px
   min-height:100px
   max-height:200px
 
