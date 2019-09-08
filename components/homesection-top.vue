@@ -56,7 +56,7 @@
                         :white='true'
                         green='closet'
                         title2='can grow plants'
-                        smalltitle="we sell LED lights with climate control"/>
+                        smalltitle="we sell LED lights with climate control kits"/>
         </div>
         <div :class='$style.product + " " + (n == 3 ? $style.shown : "")'>
           <SectionTitle title='Your'
