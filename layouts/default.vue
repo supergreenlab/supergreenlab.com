@@ -37,6 +37,7 @@ export default {
   background-color: white
 
 #promo
+  z-index: 100
   position: fixed
   display: flex
   flex-direction: column
