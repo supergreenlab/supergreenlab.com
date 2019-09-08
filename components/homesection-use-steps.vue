@@ -93,6 +93,7 @@ export default {
   align-items: center
   justify-content: space-around
   margin: 0 40pt
+  max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column
 

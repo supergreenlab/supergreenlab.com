@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container' :class='separator ? $style.separator : ""'>
     <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title }}</h2>
-    <h2 :id='$style.green'>{{ green }}</h2>
+    <h2 :id='$style.green' :style='white ? {color: "#7CCC5C"} : {}'>{{ green }}</h2>
     <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
     <small :id='$style.smalltitle' :style='white ? {color: "white"} : {}'>{{ smalltitle }}</small>
   </section>

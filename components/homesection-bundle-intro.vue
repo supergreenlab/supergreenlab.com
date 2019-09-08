@@ -77,6 +77,7 @@ export default {
   justify-content: space-around
   flex-wrap: wrap
   margin: 20pt 0 40pt 0
+  max-width: 900pt
 
 .step
   flex-basis: 40%

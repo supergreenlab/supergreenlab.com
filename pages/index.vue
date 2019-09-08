@@ -34,9 +34,11 @@
             separator='true'/>
       </div>
       <div :id='$style.shop'></div>
-      <div :class='$style.bundle' v-for='b in bundles'>
-        <div :id='b.ref'></div>
-        <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
+      <div :id='$style.bundles'>
+        <div :class='$style.bundle' v-for='b in bundles'>
+          <div :id='b.ref'></div>
+          <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
+        </div>
       </div>
     </div>
     <Footer />
@@ -160,7 +162,15 @@ export default {
   background-repeat: no-repeat
   background-size: contain
 
+#bundles
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+
 .bundle
   margin: 0 0 30pt 0
+  width: 100%
+  max-width: 1000pt
 
 </style>
