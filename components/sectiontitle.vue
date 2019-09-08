@@ -18,17 +18,17 @@
 
 <template>
   <section :id='$style.container' :class='separator ? $style.separator : ""'>
-    <h2 :id='$style.title'>{{ title }}</h2>
+    <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title }}</h2>
     <h2 :id='$style.green'>{{ green }}</h2>
-    <h2 :id='$style.title'>{{ title2 }}</h2>
-    <small :id='$style.smalltitle'>{{ smalltitle }}</small>
+    <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
+    <small :id='$style.smalltitle' :style='white ? {color: "white"} : {}'>{{ smalltitle }}</small>
   </section>
 </template>
 
 <script>
 
 export default {
-  props: ['title', 'title2', 'green', 'smalltitle', 'separator', ],
+  props: ['title', 'title2', 'green', 'smalltitle', 'separator', 'white',],
 }
 </script>
 
@@ -49,7 +49,7 @@ export default {
   padding: 15pt 0 15pt 0
 
 #title
-  color: white
+  color: #5E5E5E
   text-align: center
   text-transform: uppercase
 
@@ -61,7 +61,7 @@ export default {
 
 #smalltitle
   margin-top: 5pt
-  color: white
+  color: #5E5E5E
   font-size: 0.8em
   @media only screen and (max-width: 600px)
     font-size: 1em
