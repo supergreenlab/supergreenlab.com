@@ -36,8 +36,10 @@ export default {
   width: 100%
   justify-content: center
   align-items: center
-  background-color: #EEEEEE
   padding: 10pt 0
+  margin-top: 40pt
+  border-top: 5px solid #3bb30b
+  border-bottom: 1px solid #eee
   color: #5D5D5D
   @media only screen and (max-width: 600px)
     font-size: 0.8em

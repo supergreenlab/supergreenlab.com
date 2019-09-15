@@ -320,5 +320,7 @@ export default {
   font-size: 1.1em
   padding: 10pt 30pt 40pt 30pt
   color: #5D5D5D
+  @media only screen and (max-width: 600px)
+    padding: 10pt 10pt 40pt 10pt
 
 </style>

@@ -23,6 +23,26 @@
     </div>
     <div :id='$style.body'>
       <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
+      <Title icon='package.svg' title='PACKAGE CONTENT' />
+      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
+      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
+      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
+      <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' v-bind='accessory("blower")' />
+      <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
+      <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
+      <div :id='$style.pricecontainer'>
+        <h1>Total:</h1>
+        <div :class='$style.price + " " + $style.smallprice'>
+          <h1>
+            {{ priceConv(bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119) }}
+            <div :id='$style.redbar'></div>
+          </h1>
+        </div>
+        <div :class='$style.price'>
+          <h1>{{ priceConv(bundle.price - bundle.price * promo.discount / 100) }}</h1><br />
+          <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
+        </div>
+      </div>
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <div :class='$style.guide'>
@@ -58,28 +78,8 @@
                  button='JOIN' />
         </div>
       </div>
-      <Title icon='package.svg' title='PACKAGE CONTENT' />
-      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
-      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
-      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
-      <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' v-bind='accessory("blower")' />
-      <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
-      <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
-      <div :id='$style.pricecontainer'>
-        <h1>Total:</h1>
-        <div :class='$style.price + " " + $style.smallprice'>
-          <h1>
-            {{ priceConv(bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119) }}
-            <div :id='$style.redbar'></div>
-          </h1>
-        </div>
-        <div :class='$style.price'>
-          <h1>{{ priceConv(bundle.price - bundle.price * promo.discount / 100) }}</h1><br />
-          <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
-        </div>
-      </div>
       <div id='shipping'></div>
-      <Title icon='world.svg' title='SHIPPING INFORMATION' />
+      <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>

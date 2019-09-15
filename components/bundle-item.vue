@@ -55,7 +55,6 @@
         <KeyMetrics :showHarvest='showHarvest' :name='name' :n='n' v-bind='keymetrics' />
       </div>
     </div>
-    <div v-if='!last' :id='$style.separator'></div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
         <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${iconcomp}`)})`}'></div>
@@ -105,6 +104,9 @@ export default {
 #container
   display: flex
   flex-direction: column
+  background-color: #f5f5f5
+  border-radius: 5pt
+  margin: 10pt 5pt
 
 #product
   display: flex
@@ -137,6 +139,8 @@ export default {
 
 #description
   flex: 0.7
+  background-color: white
+  padding: 10pt
 
 #header
   display: flex
