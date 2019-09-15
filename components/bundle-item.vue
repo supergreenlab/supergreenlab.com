@@ -118,16 +118,18 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+  margin-right: 10pt
   @media only screen and (max-width: 600px)
     flex: auto
-    height: 100pt
+    height: 250pt
     margin-bottom: 20pt
+    margin-right: 0
   
 #icon
   width: 100%
-  max-width: 140pt
+  max-width: 300pt
   height: 100%
-  max-height: 140pt
+  height: 300pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat

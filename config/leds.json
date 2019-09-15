@@ -11,7 +11,7 @@
       "main": true,
       "power": "external",
       "icons": {
-        "white": "192-white.png",
+        "white": "192-face.jpg",
         "black": "192-black.png"
       },
       "bullets": [
@@ -65,7 +65,7 @@
       "main": true,
       "power": "external",
       "icons": {
-        "white": "144-white.png",
+        "white": "144-side.jpg",
         "black": "144-black.png"
       },
       "bullets": [
@@ -120,7 +120,7 @@
       "price": 29.99,
       "power": "controller",
       "icons": {
-        "white": "36-white.png",
+        "white": "36-side.jpg",
         "black": "36-black.png"
       },
       "bullets": [

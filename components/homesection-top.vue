@@ -209,56 +209,6 @@ export default {
 .shown
   opacity: 1
 
-#tvstand
-  background-image: url('~assets/img/tvstand.png')
-  @media only screen and (max-width: 600px)
-    top: 10%
-    height: 80%
-
-#office
-  background-image: url('~assets/img/office.png')
-  top: 20%
-  @media only screen and (max-width: 600px)
-    height: 70%
-
-#dombas
-  background-image: url('~assets/img/dombas.png')
-  top: 10%
-  height: 90%
-
-#all
-  background-image: url('~assets/img/all-sgl.png')
-  top: 5%
-  height: 90%
-  @media only screen and (max-width: 600px)
-    height: 70%
-    top: 15%
-
-#productbg
-  position: absolute
-  top: 10%
-  left: 10%
-  width: 80%
-  height: 80%
-  background-image: url("~assets/img/bg-front.svg")
-  background-position: center
-  background-repeat: no-repeat
-  background-size: contain
-
-#mobile
-  width: 100pt
-  height: 80%
-  position: absolute
-  bottom: 0
-  left: calc(50% + 80pt)
-  background-image: url("~assets/img/mobile.png")
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
-  transform: translate(0, 25%)
-  @media only screen and (max-width: 600px)
-    left: calc(50% + 10pt)
-
 #cta
   display: flex
   flex-direction: column

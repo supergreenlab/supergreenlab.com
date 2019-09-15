@@ -151,10 +151,11 @@ export default {
   margin: 30pt 30pt
   @media only screen and (max-width: 600px)
     flex-direction: column !important
+    margin: 0pt 0pt
 
 #icon
   width: 40%
-  height: 200pt
+  height: 300pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
@@ -162,6 +163,7 @@ export default {
   cursor: pointer
   @media only screen and (max-width: 600px)
     width: 100%
+    height: 300pt
     margin: 0 0pt 0 0pt
 
 #description
@@ -169,6 +171,8 @@ export default {
   flex: 1
   flex-direction: column
   justify-content: center
+  @media only screen and (max-width: 600px)
+    margin: 0pt 10pt
 
 #description > p
   margin: 5pt 0

@@ -4,7 +4,7 @@
       "slug": "blower",
       "name": "Ventilation blower",
       "price": 29,
-      "icon": "blower.png",
+      "icon": "blower-side.jpg",
       "bullets": [
         "Fits to a <b>wide array of sizes</b>",
         "Strong enough to pull through a <b>carbon filter</b>",
@@ -16,7 +16,7 @@
       "slug": "sensor",
       "name": "Temperature and humidity sensor.",
       "price": 24.99,
-      "icon": "sht21.png",
+      "icon": "sensor.jpg",
       "bullets": [
         "<b>Monitor</b> your growing environment <b>remotely</b>",
         "Get <b>alerts</b> when things go wrong",
@@ -27,7 +27,7 @@
       "slug": "controller",
       "name": "System controller",
       "price": 119,
-      "icon": "controller.png",
+      "icon": "controller-side.jpg",
       "bullets": [
         "<b>All-in-one</b> growing central units",
         "Up to <b>6 independent LED channels</b>",
