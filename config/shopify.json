@@ -3,11 +3,10 @@
     "token": "15b29141aad68fb6c4cfd0c2bf9bae8b",
     "promos": {
       "SGL_LOVE": 5,
-      "SGL_NEWSLETTER": 20,
-      "SGL_FAM": 20,
       "STRAINLY": 15,
       "SGL_I_CAN_READ_CODE": 25,
-      "I_WANT_TO_GROW": 10
+      "I_WANT_TO_GROW": 10,
+      "BEST_WE_CAN_DO": 15
     }
   }
 }
