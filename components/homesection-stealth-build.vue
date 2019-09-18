@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <SectionTitle title='Introducing more flexible'
-                    green='and stealthy builds'
+                    green='and aesthetic builds'
                     separator='true'/>
     </div>
     <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
