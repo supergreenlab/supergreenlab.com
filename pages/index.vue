@@ -26,7 +26,6 @@
       <Top ref='top' />
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
-      <Stealth ref='stealth' />
       <BundleIntro ref='bundle-intro' />
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
@@ -77,7 +76,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    if (this.$store.state.checkout.promocode.value) return
+    if (this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown')) return
     const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
     window.localStorage.setItem('nVisits', nVisits+1)
     if (nVisits > 3) {
@@ -102,6 +101,7 @@ export default {
 	},
   methods: {
     closePopup() {
+      window.localStorage.setItem('popupShown', 1)
       this.$data.showPopup = false
     },
     handleScroll(e) {

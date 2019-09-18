@@ -23,7 +23,7 @@
     </div>
     <div :id='$style.body'>
       <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
-      <Title icon='package.svg' title='PACKAGE CONTENT' />
+      <Title icon='package.svg' title='BUNDLE CONTENT' />
       <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
       <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
       <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
