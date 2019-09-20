@@ -308,9 +308,11 @@ export default {
   background-color: rgba(255, 255, 255, 0.5)
 
 #iconfullscreen
+  flex: 1
+  align-items: center
+  justify-content: center
   height: 80%
   width: 90%
-  margin: 0 15pt 0 0
   background-position: center
   background-size: contain
   background-repeat: no-repeat

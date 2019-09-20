@@ -274,7 +274,6 @@ export default {
 #iconfullscreen
   height: 90%
   width: 90%
-  margin: 0 15pt 0 0
   background-position: center
   background-size: contain
   background-repeat: no-repeat
