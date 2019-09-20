@@ -76,7 +76,7 @@ export default {
   margin-bottom: 5pt
   font-size: 1.1em
   font-weight: 600
-  color: #717171
+  color: #3bb30b
 
 #body > h1
   margin: 0 0 5pt 0
