@@ -11,7 +11,7 @@
       "main": true,
       "power": "external",
       "icons": {
-        "white": "192-face.jpg",
+        "white": "192-side.jpg",
         "black": "192-black.png"
       },
       "bullets": [
