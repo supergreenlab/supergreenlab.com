@@ -26,28 +26,31 @@
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step title='gmamazgoodies'
-              text="Best of luck to all of your future endeavors. If it wasn't for your SGL Board my homegrown wouldn't be this successful."
+              text="<i>&quot;Best of luck to all of your future endeavors. If it wasn't for your SGL Board my homegrown wouldn't be this successful.&quot;</i>"
               icon='amazingnutt.jpg'
               :center=1
               :vertical=true
-              :nohorizontal=true />
+              :nohorizontal=true
+              textheight='140pt'/>
       </div>
       <div :class='$style.step'>
         <Step title='yung_gravity'
-              text='These lights put off a huge punch, with hardly any heat at all, my plants Love the spectrums..  this is an easy all on one set up - with the best customer service hands down..   and have you seen the price!?  What a steal! You cant go wrong... and i have one of every product!'
+              text='<i>&quot;These lights put off a huge punch, with hardly any heat at all, my plants Love the spectrums..  this is an easy all on one set up - with the best customer service hands down..   and have you seen the price!?  What a steal! You cant go wrong... and i have one of every product!&quot;</i>'
               icon='yung.jpg'
               :center=1
               :vertical=true
-              :nohorizontal=true  />
+              :nohorizontal=true
+              textheight='170pt'  />
       </div>
       <div :class='$style.step'>
         <Step title='sawyer_grow'
-              text="Been using the product for months now and keep being surprise.
-              I have been growing for long time but i'm doing some micro grow since few months and the LED results and capabilities are amazing. Great product and great team and a strong community."
+              text="<i>&quot;Been using the product for months now and keep being surprise.
+              I have been growing for long time but i'm doing some micro grow since few months and the LED results and capabilities are amazing. Great product and great team and a strong community.&quot;</i>"
               icon='sawyer_grow.jpg'
               :center=1
               :vertical=true
-              :nohorizontal=true  />
+              :nohorizontal=true
+              textheight='140pt'  />
       </div>
     </div>
   </section>

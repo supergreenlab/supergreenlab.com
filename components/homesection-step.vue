@@ -24,14 +24,14 @@
       <p :id='$style.title' :style='{"margin-top": !n ? "10pt" : ""}'>
         {{ title }}
       </p>
-      <p :id='$style.text' v-html='text'></p>
+      <p :id='$style.text' :style='{height: textheight || ""}' v-html='text'></p>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['n', 'title', 'text', 'icon', 'vertical', 'center', 'nohorizontal'],
+  props: ['n', 'title', 'text', 'textheight', 'icon', 'vertical', 'center', 'nohorizontal'],
 }
 </script>
 
@@ -86,6 +86,9 @@ export default {
 #text
   color: #515151
   @media only screen and (min-width: 600px)
-    height: 70pt
+    height: 40pt
+
+#text > i
+  font-size: 1.3em
 
 </style>
