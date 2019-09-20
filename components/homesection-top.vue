@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
     <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg1.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 1 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 2 ? 1 : 0}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg2.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 2 ? 1 : 0}'></div>
     <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg3.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 3 ? 1 : 0}'></div>
     <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 4 ? 1 : 0}'></div>
     <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg4.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 5 ? 1 : 0}'></div>
