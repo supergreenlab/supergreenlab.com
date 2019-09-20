@@ -164,7 +164,7 @@ export default {
   @media only screen and (max-width: 600px)
     width: 100%
     height: 300pt
-    margin: 0 0pt 0 0pt
+    margin: 20pt 0pt 20pt 0pt
 
 #description
   display: flex

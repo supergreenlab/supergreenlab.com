@@ -123,19 +123,19 @@ export default {
   margin-right: 10pt
   @media only screen and (max-width: 600px)
     flex: auto
-    height: 250pt
     margin-bottom: 20pt
     margin-right: 0
   
 #icon
   width: 100%
-  max-width: 300pt
   height: 100%
-  height: 300pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
   cursor: pointer
+  @media only screen and (max-width: 600px)
+    max-width: 300pt
+    height: 300pt
 
 #description
   flex: 0.7
