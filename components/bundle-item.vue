@@ -133,7 +133,9 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   cursor: pointer
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 400px)
+    height: 220pt
+  @media only screen and (min-width: 400px) and (max-width: 800px)
     max-width: 300pt
     height: 300pt
 
