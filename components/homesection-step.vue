@@ -76,6 +76,7 @@ export default {
   margin-bottom: 5pt
   font-size: 1.1em
   font-weight: 600
+  color: #717171
 
 #body > h1
   margin: 0 0 5pt 0
@@ -83,6 +84,7 @@ export default {
   color: #888888
 
 #text
+  color: #515151
   @media only screen and (min-width: 600px)
     height: 70pt
 
