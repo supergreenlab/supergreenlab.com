@@ -19,36 +19,35 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='How it works'
-                    green='In just 3 steps'
-                    smalltitle='(like.. around 3 steps)'
+      <SectionTitle title='Join the community'
+                    green='of happy growers'
                     separator='true'/>
     </div>
-    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source src="/intro.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video> 
     <div :id='$style.steps'>
       <div :class='$style.step'>
-        <Step n=1
-              title='Get any furniture'
-              text='<b>Any size and shape</b>, our bundles are designed to adapt to <b>all types furniture.</b>'
-              icon='furniture.svg'
-              :vertical=true />
+        <Step title='gmamazgoodies'
+              text="Best of luck to all of your future endeavors. If it wasn't for your SGL Board my homegrown wouldn't be this successful."
+              icon='amazingnutt.jpg'
+              :center=1
+              :vertical=true
+              :nohorizontal=true />
       </div>
       <div :class='$style.step'>
-        <Step n=2
-              title='Install our bundle'
-              text='Easy to install and configure. Just a few steps and your <b>LED lights</b> are ready!'
-              icon='screw.svg'
-              :vertical=true />
+        <Step title='yung_gravity'
+              text='These lights put off a huge punch, with hardly any heat at all, my plants Love the spectrums..  this is an easy all on one set up - with the best customer service hands down..   and have you seen the price!?  What a steal! You cant go wrong... and i have one of every product!'
+              icon='yung.jpg'
+              :center=1
+              :vertical=true
+              :nohorizontal=true  />
       </div>
       <div :class='$style.step'>
-        <Step n=3
-              title='Start growing'
-              text='24/7 support, join the evergrowing community on <b><a href="https://www.reddit.com/r/supergreenlab" target="_blank">Reddit</a> & <a href="/discord" target="_blank">Discord</a>!</b>'
-              icon='plant.svg'
-              :vertical=true />
+        <Step title='sawyer_grow'
+              text="Been using the product for months now and keep being surprise.
+              I have been growing for long time but i'm doing some micro grow since few months and the LED results and capabilities are amazing. Great product and great team and a strong community."
+              icon='sawyer_grow.jpg'
+              :center=1
+              :vertical=true
+              :nohorizontal=true  />
       </div>
     </div>
   </section>
@@ -71,28 +70,16 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
-  min-height: 100vh
 
 #title
   width: 100%
   margin: 0pt 0 50pt 0
 
-#video
-  display: block
-  margin: 0 0 40pt 0
-  height: 100%
-  max-height: 600px
-  max-width: 800px
-  @media only screen and (max-width: 600pt)
-    width: 100%
-  @media only screen and (min-width: 600pt)
-    box-shadow: -1px 1px 5px #888
-
 #steps
   display: flex
   align-items: center
   justify-content: space-around
-  margin: 0 40pt
+  margin: 0 40pt 30pt 40pt
   max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column

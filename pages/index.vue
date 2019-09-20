@@ -27,6 +27,7 @@
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
       <BundleIntro ref='bundle-intro' />
+      <Testimonials ref='testimonials' />
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
             green='Checkout our bundles'
@@ -52,6 +53,7 @@ import Header from '~/components/header.vue'
 import Top from '~/components/homesection-top.vue'
 import UseSteps from '~/components/homesection-use-steps.vue'
 import Stealth from '~/components/homesection-stealth-build.vue'
+import Testimonials from '~/components/homesection-testimonials.vue'
 import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
@@ -62,7 +64,7 @@ import { bundles, } from '../config/bundles.json'
 import { shopify, } from '../config/shopify.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, BundleIntro, Bundle, Footer,  Promocode,},
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Footer,  Promocode,},
   data() {
     return {
       showPopup: false,

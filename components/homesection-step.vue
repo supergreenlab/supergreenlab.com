@@ -17,11 +17,11 @@
  -->
 
 <template>
-  <section :id='$style.container' :style='{"flex-direction": vertical ? "column" : ""}'>
-    <div :id='vertical ? $style.iconv : $style.iconh' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
-    <div :id='$style.body'>
-      <h1>{{ n }}</h1>
-      <p :id='$style.title'>
+  <section :id='nohorizontal ? $style.containerv : $style.container' :style='{"flex-direction": vertical ? "column" : ""}'>
+    <div :id='vertical ? (nohorizontal ? $style.iconav : $style.iconv) : $style.iconh' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
+    <div :id='$style.body' :style='{"text-align": center ? "center" : ""}'>
+      <h1 v-if='n'>{{ n }}</h1>
+      <p :id='$style.title' :style='{"margin-top": !n ? "10pt" : ""}'>
         {{ title }}
       </p>
       <p :id='$style.text' v-html='text'></p>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ['n', 'title', 'text', 'icon', 'vertical', ],
+  props: ['n', 'title', 'text', 'icon', 'vertical', 'center', 'nohorizontal'],
 }
 </script>
 
@@ -42,10 +42,17 @@ export default {
   @media only screen and (max-width: 600px)
     flex-direction: row !important
 
-#iconv, #iconh
+#containerv
+  display: flex 
+
+#iconav, #iconv, #iconh
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+
+#iconav
+  width: 100%
+  height: 150pt
 
 #iconv
   width: 100%
@@ -77,6 +84,6 @@ export default {
 
 #text
   @media only screen and (min-width: 600px)
-    height: 40pt
+    height: 70pt
 
 </style>
