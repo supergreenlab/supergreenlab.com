@@ -37,7 +37,12 @@
       <h1 v-else>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
-      <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}' @click='toggleZoom'></div>
+      <div :id='$style.iconcontainer'>
+        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`, opacity: n == 0 ? 1 : 0}' @click='toggleZoom'></div>
+        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon}`)})`, opacity: n == 1 ? 1 : 0}' @click='toggleZoom'></div>
+        <div :id='$style.leftarrow' @click='previous'></div>
+        <div :id='$style.rightarrow' @click='next'></div>
+      </div>
       <div :id='$style.description'>
         <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
 
@@ -71,7 +76,7 @@
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
-        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${zoomPic}`)})`}'></div>
       </div>
     </portal>
   </section>
@@ -83,11 +88,21 @@ import priceConv from '~/lib/price.js'
 
 export default {
   components: {Items,},
-  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
+  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
   data() {
     return {
       showZoom: false,
+      zoomPic: '',
+      n: 0,
     }
+  },
+  created() {
+    this.interval = setInterval(() => {
+      this.$data.n = (this.$data.n+1) % 2
+    }, 3000)
+  },
+  destroyed() {
+    if (this.interval) clearInterval(this.interval)
   },
   methods: {
     bundleClicked() {
@@ -99,8 +114,20 @@ export default {
     priceConv(dols) {
       return priceConv(dols)
     },
-    toggleZoom() {
+    toggleZoom(url) {
+      this.$data.zoomPic = this.$data.n == 0 ? this.$props.icon : this.$props.setupicon
       this.$data.showZoom = !this.$data.showZoom
+    },
+    next() {
+      this.$data.n = (this.$data.n+1) % 2
+      clearInterval(this.interval)
+      this.interval = null
+    },
+    previous() {
+      this.$data.n = (this.$data.n-1)
+      if (this.$data.n < 0) this.$data.n = 1
+      clearInterval(this.interval)
+      this.interval = null
     },
   },
   computed: {
@@ -153,18 +180,44 @@ export default {
     flex-direction: column !important
     margin: 0pt 0pt
 
-#icon
+#iconcontainer
+  position: relative
   width: 40%
   height: 300pt
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
   margin: 0 20pt 0 20pt
   cursor: pointer
   @media only screen and (max-width: 600px)
     width: 100%
     height: 300pt
     margin: 20pt 0pt 20pt 0pt
+
+.icon
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+  transition: opacity 1s
+
+#leftarrow, #rightarrow
+  width: 30pt
+  height: 30pt
+  position: absolute
+  top: calc(50% - 15pt)
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+#leftarrow
+  left: 5pt
+  background-image: url('~assets/img/leftarrow.png')
+
+#rightarrow
+  right: 5pt
+  background-image: url('~assets/img/rightarrow.png')
 
 #description
   display: flex
