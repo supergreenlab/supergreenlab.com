@@ -27,7 +27,7 @@
       <div :class='$style.step'>
         <Step title='gmamazgoodies'
               text="<i>&quot;Best of luck to all of your future endeavors. If it wasn't for your SGL Board my homegrown wouldn't be this successful.&quot;</i>"
-              icon='amazingnutt.jpg'
+              icon='gmamazgoodies.jpg'
               :center=1
               :vertical=true
               :nohorizontal=true
