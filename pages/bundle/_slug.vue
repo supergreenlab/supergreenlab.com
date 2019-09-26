@@ -80,6 +80,10 @@
       </div>
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
+      <div :id='$style.shipdisclaimer'>
+        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 3 to 6 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
+        <h4>Thanks for your support:)</h4>
+      </div>
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
@@ -320,5 +324,15 @@ export default {
   @media only screen and (max-width: 600px)
     flex-basis: 100% 
     margin: 20pt 5pt
+
+#shipdisclaimer
+  background-color: #f2f2f2
+  padding: 20pt 15pt
+  color: #717171
+  font-size: 1.2em
+  text-align: center
+
+#shipdisclaimer > b
+  color: #3BB30B
  
 </style>
