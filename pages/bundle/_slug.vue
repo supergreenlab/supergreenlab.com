@@ -74,7 +74,7 @@
                  analytics='ask-on-discord'
                  title='GOT QUESTIONS ?'
                  subtitle='ASK US ON DISCORD'
-                 href='https://www.supergreenlab.com/discord'
+                 href='javascript:$crisp.push(["set", "session:event", ["show_chat"]])'
                  button='JOIN' />
         </div>
       </div>

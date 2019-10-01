@@ -31,8 +31,8 @@
           <b>ACTIVATE PROMOCODE</b>
         </a>
       </div>
-      <a :id='$style.discord' class="hvr-grow" href='https://www.supergreenlab.com/discord' target='_blank'>
-        Got questions ?<br />Ask us anything on discord:)
+      <a :id='$style.discord' class="hvr-grow" href='javascript:void(0)' @click='showChat'>
+        Got questions ?<br />Ask us anything on the chat:)
       </a>
       or send us an email at
       <a :id='$style.discord' href='mailto:towelie@supergreenlab.com'>towelie@supergreenlab.com</a>
@@ -66,6 +66,9 @@ export default {
     cancelClick(e) {
       e.stopPropagation()
     },
+    showChat(e) {
+      $crisp.push(["set", "session:event", ["show_chat"]])
+    }
   },
 }
 </script>
