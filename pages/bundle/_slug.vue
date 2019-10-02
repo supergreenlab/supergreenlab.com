@@ -73,7 +73,7 @@
           <Guide icon='ask.svg'
                  analytics='ask-on-discord'
                  title='GOT QUESTIONS ?'
-                 subtitle='ASK US ON DISCORD'
+                 subtitle='ASK US BY CHAT'
                  href='javascript:$crisp.push(["set", "session:event", ["show_chat"]])'
                  button='JOIN' />
         </div>
