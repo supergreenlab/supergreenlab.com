@@ -56,7 +56,7 @@ export default {
     },
     ok() {
       this.close()
-      this.$store.commit('checkout/updateCheckout', {key: 'promocode', value: 'SGL_LOVE'})
+      this.$store.commit('checkout/setPromocode', 'SGL_LOVE')
       this.$matomo && this.$matomo.trackEvent('popup', 'activate')
     },
     no() {

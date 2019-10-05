@@ -40,6 +40,7 @@ export default {
   */
   plugins: [
     //{ src: '~plugins/analytics.js', ssr: false },
+    { src: '~plugins/init.js', ssr: false },
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
     //{ src: '~plugins/pixel.js', ssr: false },

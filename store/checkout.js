@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import axios from 'axios'
+
 export const state = () => {
   let defaults = {
     firstname: {value: '', valid: false,},
@@ -30,16 +32,12 @@ export const state = () => {
     province: {value: '', valid: false,},
     zip: {value: '', valid: false,},
     promocode: {value: '', valid: true, optional: true,},
+    discount: {value: 0, valid: true, optional: true},
     color: 'white',
     cart: [],
   }
   if (window.localStorage.getItem('checkout')) {
      defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
-  }
-  const urlParams = new URLSearchParams(window.location.search)
-  if (urlParams.get('promo')) {
-    defaults.promocode.value = urlParams.get('promo')
-    storeState(defaults)
   }
 
   return defaults
@@ -47,6 +45,18 @@ export const state = () => {
 
 const storeState = (state) => {
   window.localStorage.setItem('checkout', JSON.stringify(state))
+}
+
+export const actions = {
+  async setPromocode(context, {code}) {
+    try {
+      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com?code=${code}`)
+      context.commit('setPromocode', code)
+      context.commit('setDiscount', discount.value)
+    } catch(e) {
+      context.commit('setDiscount', 0)
+    }
+  },
 }
 
 export const mutations = {
@@ -61,5 +71,11 @@ export const mutations = {
   setCart(state, lineItems) {
     state.cart = [lineItems]
     storeState(state)
+  },
+  setPromocode(state, promocode) {
+    state.promocode.value = promocode
+  },
+  setDiscount(state, discount) {
+    state.discount.value = discount
   },
 }

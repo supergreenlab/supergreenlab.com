@@ -15,15 +15,13 @@
 </template>
 
 <script>
-import { shopify } from '~/config/shopify.json'
-
 export default {
   computed: {
     promo() {
-      const { promos } = shopify,
+      const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !promos[promocode]) return ''
-      return {promocode, discount: promos[promocode]}
+      if (!promocode || !discount) return ''
+      return {promocode, discount}
     },
   },
 }

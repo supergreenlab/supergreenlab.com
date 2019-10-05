@@ -126,7 +126,6 @@ import priceConv from '~/lib/price.js'
 import { bundles, } from '~/config/bundles.json'
 import { leds, } from '~/config/leds.json'
 import { accessories, } from '~/config/accessories.json'
-import { shopify, } from '~/config/shopify.json'
 import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
 
 const binding = (name) => ({
@@ -145,6 +144,9 @@ export default {
       loading: false
     }
   },
+  destroyed() {
+    if (this.timeout) clearTimeout(this.timeout)
+  },
   computed: {
     valid() {
       return Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
@@ -162,12 +164,22 @@ export default {
     color() {
       return this.$store.state.checkout.color
     },
-    promocode: binding('promocode'),
+    promocode: {
+      get() {
+        return this.$store.state.checkout.promocode.value
+      },
+      set(value) {
+        this.$store.commit('checkout/updateCheckout', {key: 'promocode', value})
+        this.$store.commit('checkout/setDiscount', 0)
+        if (this.timeout) clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => this.$store.dispatch('checkout/setPromocode', { code: value }), 400)
+      },
+    },
     promo() {
-      const { promos } = shopify,
+      const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !promos[promocode]) return {promocode: '', discount: 0}
-      return {promocode, discount: promos[promocode]}
+      if (!promocode || !discount) return {promocode: '', discount: 0}
+      return {promocode, discount}
     },
     totaldiscount() {
       const bundle = this.bundle,

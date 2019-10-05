@@ -61,7 +61,6 @@ import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
 
 import { bundles, } from '../config/bundles.json'
-import { shopify, } from '../config/shopify.json'
 
 export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Footer,  Promocode,},
@@ -90,10 +89,10 @@ export default {
 			return bundles
 		},
     promo() {
-      const { promos } = shopify,
+      const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !promos[promocode]) return {promocode: '', discount: 0}
-      return {promocode, discount: promos[promocode]}
+      if (!promocode || !discount) return {promocode: '', discount: 0}
+      return {promocode, discount}
     },
     totaldiscount() {
       const bundle = this.bundle,
