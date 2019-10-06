@@ -35,7 +35,7 @@
       </div>
       <div :class='$style.step'>
         <Step title='yung_gravity'
-              text='<i>&quot;These lights put off a huge punch, with hardly any heat at all, my plants Love the spectrums..  this is an easy all on one set up - with the best customer service hands down..   and have you seen the price!?  What a steal! You cant go wrong... and i have one of every product!&quot;</i>'
+              text='<i>&quot;These lights put off a huge punch, with hardly any heat at all, my plants Love the spectrums..  this is an easy all on one set up - with the best customer service hands down. You cant go wrong:) and i have one of every product!&quot;</i>'
               icon='yung.jpg'
               :center=1
               :vertical=true
