@@ -36,7 +36,7 @@
             <div :id='$style.metricsarrow'></div>
           </a>
           <div v-else :id='$style.spacer'></div>
-          <div :id='$style.pricecontainer'>
+          <!--<div :id='$style.pricecontainer'>
             <div :class='$style.price'>
               <h1>{{ priceConv(Math.floor((price - price * discount / 100) * 100) / 100) }}</h1>
             </div>
@@ -46,7 +46,7 @@
                 <div :id='$style.redbar'></div>
               </h1>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
