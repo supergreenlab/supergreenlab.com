@@ -102,16 +102,21 @@ export default {
           })
       }
 
-      if (to.hash) {
-        let el = await findEl(to.hash)
+      const scrollTo = (y) => {
+        y -= document.getElementById('header_wrapper').children[0].clientHeight
         if ('scrollBehavior' in document.documentElement.style) {
-          return window.scrollTo({ top: el.offsetTop - document.getElementById('header_wrapper').children[0].clientHeight, behavior: 'smooth' })
-        } else {
-          return window.scrollTo(0, el.offsetTop)
+          return window.scrollTo({ top: y, behavior: 'smooth' })
         }
+        return window.scrollTo(0, y)
       }
 
-      return savedPosition// { x: 0, y: 0 }
+      if (to.hash) {
+        let el = await findEl(to.hash)
+        return scrollTo(el.offsetTop)
+      }
+
+      await new Promise((r) => setTimeout(r, 200))
+      return {x: 0, y: 0}
     }
   }
 }
