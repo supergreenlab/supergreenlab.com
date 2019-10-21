@@ -39,7 +39,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    //{ src: '~plugins/analytics.js', ssr: false },
+    { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/init.js', ssr: false },
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
