@@ -81,7 +81,7 @@ export default {
 
 .step
   flex-basis: 40%
-  margin-top: 20pt
+  margin: 30pt 0 30pt 0
 
 #title
   width: 100%
