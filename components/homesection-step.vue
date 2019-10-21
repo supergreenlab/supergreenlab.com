@@ -74,9 +74,11 @@ export default {
 
 #title
   margin-bottom: 5pt
-  font-size: 1.1em
+  font-size: 1.7em
   font-weight: 600
   color: #3bb30b
+  @media only screen and (max-width: 600px)
+    font-size: 1.5em
 
 #body > h1
   margin: 0 0 5pt 0

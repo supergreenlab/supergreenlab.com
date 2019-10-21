@@ -18,15 +18,20 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.header'>
-      <Header responsiveHide='true' />
+    <div id='header_wrapper'>
+      <div :id='$style.header'>
+        <Header responsiveHide='true' />
+      </div>
     </div>
     <div :id='$style.body'>
       <div id='top'></div>
       <Top ref='top' />
+      <div :class='$style.space'></div>
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
+      <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
+      <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
@@ -173,5 +178,8 @@ export default {
   margin: 0 0 30pt 0
   width: 100%
   max-width: 1000pt
+
+.space
+  height: 40pt
 
 </style>

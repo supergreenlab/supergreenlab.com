@@ -25,25 +25,25 @@
     </div>
     <div :id='$style.steps'>
       <div :class='$style.step'>
-        <Step n=1
+        <Step n=''
               title='Top of the line LEDs'
               text='Providing optimal lighting and little heat. Perfect for the <b>whole life cycle</b> of your grow. The LEDs produce very little heat, perfect for stealth growths.' 
               icon='light.svg' />
       </div>
       <div :class='$style.step'>
-        <Step n=2
+        <Step n=''
               title='Ventilation'
               text='All our kits <b>come with ventilation</b>, which ensures <b>heat and humidity</b> control, aswell as <b>odor filtering</b>.'
               icon='ventilation.svg' />
       </div>
       <div :class='$style.step'>
-        <Step n=3
+        <Step n=''
               title='Sensors'
               text="Kits are included with an <b>humidity and temperature sensor.</b> Keep an eye on your grow even when <b>you're not at home!</b>"
               icon='sensor.svg' />
       </div>
       <div :class='$style.step'>
-        <Step n=4
+        <Step n=''
               title='Free app'
               text='<b>Fine-tuning, monitoring and having a live view on your grow</b>, all from your <b>phone!</b> The app also includes tips and tricks to ensure the <b>best yield<b> from your grow!'
               icon='app.svg' />

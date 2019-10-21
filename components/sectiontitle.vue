@@ -45,7 +45,6 @@ export default {
 .separator
   background-color: #efefef
   width: 100%
-  margin: 40pt 0 0pt 0
   padding: 15pt 0 15pt 0
 
 #title

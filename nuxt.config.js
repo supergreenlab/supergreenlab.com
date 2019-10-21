@@ -105,13 +105,13 @@ export default {
       if (to.hash) {
         let el = await findEl(to.hash)
         if ('scrollBehavior' in document.documentElement.style) {
-          return window.scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+          return window.scrollTo({ top: el.offsetTop - document.getElementById('header_wrapper').children[0].clientHeight, behavior: 'smooth' })
         } else {
           return window.scrollTo(0, el.offsetTop)
         }
       }
 
-      return { x: 0, y: 0 }
+      return savedPosition// { x: 0, y: 0 }
     }
   }
 }
