@@ -110,7 +110,7 @@
         </div>
     </div>
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
-      <b class="hvr-grow">Learn how</b>
+      <b class="hvr-grow">Start growing</b>
     </nuxt-link>
     <small :id='$style.legal'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />

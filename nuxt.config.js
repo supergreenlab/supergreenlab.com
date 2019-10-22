@@ -108,7 +108,10 @@ export default {
       }
 
       const scrollTo = (y) => {
-        y -= document.getElementById('header_wrapper').children[0].clientHeight
+        const wrapper = document.getElementById('header_wrapper')
+        if (wrapper) {
+          y -= wrapper.children[0].clientHeight
+        }
         if ('scrollBehavior' in document.documentElement.style) {
           return window.scrollTo({ top: y, behavior: 'smooth' })
         }

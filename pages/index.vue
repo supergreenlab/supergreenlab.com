@@ -30,9 +30,9 @@
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
       <div :class='$style.space'></div>
-      <BundleIntro ref='bundle-intro' />
-      <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
+      <div :class='$style.space'></div>
+      <BundleIntro ref='bundle-intro' />
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
             green='Checkout our bundles'
