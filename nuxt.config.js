@@ -51,10 +51,18 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     ['nuxt-matomo', { matomoUrl: '//analytics.supergreenlab.com/', trackerUrl: '//analytics.supergreenlab.com/matomo.php', scriptUrl: '//analytics.supergreenlab.com/matomo.js', siteId: 1 }],
     'portal-vue/nuxt',
   ],
+  sitemap: {
+    hostname: 'https://www.supergreenlab.com',
+    exclude: [
+      '/designer',
+      '/designer/*',
+    ]
+  },
   /*
   ** Axios module configuration
   */
@@ -74,9 +82,6 @@ export default {
   },
   generate: {
     routes: [
-      '/designer/box/1',
-      '/designer/box/2',
-      '/designer/box/3',
       '/bundle/mono-box-bundle',
       '/bundle/multi-box-bundle',
       '/bundle/closet-box-bundle',
