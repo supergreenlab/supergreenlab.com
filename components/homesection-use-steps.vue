@@ -38,7 +38,7 @@
       </div>
       <div :class='$style.step'>
         <Step n=2
-              title='Install our bundle'
+              title='Install your bundle'
               text='Easy to install and configure. Just a few steps and your <b>LED lights</b> are ready!'
               icon='screw.svg'
               :vertical=true />
