@@ -50,7 +50,7 @@
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
             <!--Free shipping-->
-            <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
+            <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW</nuxt-link><br />
           </div>
         </div>
 
