@@ -81,7 +81,7 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 3 to 6 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
+        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 2 to 4 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
         <h4>Thanks for your support:)</h4>
       </div>
       <Shipping />
