@@ -19,89 +19,73 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg1.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 1 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg2.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 2 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg3.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 3 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 4 ? 1 : 0}'></div>
-    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg4.jpg`)})`, opacity: (parseInt(n/2) % 5 + 1) == 5 ? 1 : 0}'></div>
-		<svg :class="$style.waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-										 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-			<defs>
-			<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-			</defs>
-			<g :class="$style.parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.8)" />
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.7)" />
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.5)" />
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255, 255, 255, 0.9)" />
-			</g>
-		</svg>
+    <div :id='$style.background' v-for='i in 12' :style='{"background-image": `url(${require(`~/assets/img/top-bg${i}.jpg`)})`, opacity: i <= (n % 12 + 1) ? 1 : 0}'></div>
 		</div>
     <div :id='$style.body'>
-        <div :class='$style.product + " " + (n == 0 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3) % 10 == 0 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='TV Stand'
                         title2='can grow plants'
                         smalltitle="you just didn't know it (yet)"/>
         </div>
-        <div :class='$style.product + " " + (n == 1 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 1 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='wardrobe'
                         title2='can grow plants'
                         smalltitle="it's actually quite easy you know?"/>
         </div>
-        <div :class='$style.product + " " + (n == 2 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 2 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='closet'
                         title2='can grow plants'
                         smalltitle="we sell LED lights with climate control kits"/>
         </div>
-        <div :class='$style.product + " " + (n == 3 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 3 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='office storage'
                         title2='can grow plants'
                         smalltitle="and it's all controlled by an app!"/>
         </div>
-        <div :class='$style.product + " " + (n == 4 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 4 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cabinet'
                         title2='can grow plants'
                         smalltitle="so you can turn any furniture"/>
         </div>
-        <div :class='$style.product + " " + (n == 5 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 5 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='old fridge'
                         title2='can grow plants'
                         smalltitle="into a connected grow box"/>
         </div>
-        <div :class='$style.product + " " + (n == 6 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 6 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cupboard'
                         title2='can grow plants'
                         smalltitle="and that's amazing"/>
         </div>
-        <div :class='$style.product + " " + (n == 7 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 7 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='coffee table'
                         title2='can grow plants'
-                        smalltitle="just press the LEARN HOW button"/>
+                        smalltitle="just press the START GROWING button"/>
         </div>
-        <div :class='$style.product + " " + (n == 8 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 8 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='Carboard box'
                         title2='can grow plants'
                         smalltitle="get yours now:)"/>
         </div>
-        <div :class='$style.product + " " + (n == 9 ? $style.shown : "")'>
+        <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 9 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='plumbus'
@@ -131,8 +115,8 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
-      this.n = (this.n + 1) % 10
-    }, 3000)
+      this.n = this.n + 1
+    }, 1000)
   },
   destroyed() {
     clearInterval(this.interval)
@@ -161,11 +145,11 @@ export default {
   width: 100vw
   height: 100vh
   background-size: cover
-  background-position: center
+  background-position: bottom
   background-repeat: no-repeat
   background-color: rgba(0, 0, 0, 0.5)
   background-blend-mode: overlay
-  transition: opacity 1s
+  transition: opacity 0.5s
 
 #ad
   position: absolute
