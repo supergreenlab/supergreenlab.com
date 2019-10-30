@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
-    <div :id='$style.background' v-for='i in 12' :style='{"background-image": `url(${require(`~/assets/img/top-bg${i}.jpg`)})`, opacity: i <= (n % 12 + 1) ? 1 : 0}'></div>
+    <div :id='$style.background' v-for='i in 12' :style='{"background-image": `url(${require(`~/assets/img/top-bg${i}.jpg`)})`, opacity: i <= (n % 9 + 1) ? 1 : 0}'></div>
 		</div>
     <div :id='$style.body'>
         <div :class='$style.product + " " + (parseInt(n / 3) % 10 == 0 ? $style.shown : "")'>
@@ -116,7 +116,7 @@ export default {
   created() {
     this.interval = setInterval(() => {
       this.n = this.n + 1
-    }, 1000)
+    }, 1500)
   },
   destroyed() {
     clearInterval(this.interval)
@@ -147,7 +147,6 @@ export default {
   background-size: cover
   background-position: bottom
   background-repeat: no-repeat
-  background-color: rgba(0, 0, 0, 0.5)
   background-blend-mode: overlay
   transition: opacity 0.5s
 
