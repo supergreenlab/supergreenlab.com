@@ -150,6 +150,8 @@ export default {
   background-repeat: no-repeat
   background-blend-mode: overlay
   transition: opacity 0.75s
+  @media only screen and (max-width: 600px)
+    background-position: 15% 100%
 
 #ad
   position: absolute
