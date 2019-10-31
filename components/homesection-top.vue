@@ -20,8 +20,8 @@
   <section :id='$style.container'>
     <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
     <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg${n % 9 + 1}.jpg`)})`}'></div>
+    <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg0.jpg`)})`, opacity: n == -1 ? 1 : 0}'></div>
     <div :id='$style.background' v-for='i in 12' :style='{"background-image": `url(${require(`~/assets/img/top-bg${i}.jpg`)})`, opacity: i == (n % 9 + 1) ? 1 : 0}'></div>
-		</div>
     <div :id='$style.body'>
         <div :class='$style.product + " " + (parseInt(n / 3) % 10 == 0 ? $style.shown : "")'>
           <SectionTitle title='Your'
@@ -112,7 +112,7 @@ import SectionTitle from '~/components/sectiontitle.vue'
 export default {
   components: { Logo, SectionTitle, },
   data() {
-    return {n: 0}
+    return {n: -1}
   },
   created() {
     this.interval = setInterval(() => {
