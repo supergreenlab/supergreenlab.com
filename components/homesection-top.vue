@@ -111,6 +111,7 @@ import SectionTitle from '~/components/sectiontitle.vue'
 
 export default {
   components: { Logo, SectionTitle, },
+  props: ['focus'],
   data() {
     return {
       n: -1,
@@ -121,7 +122,10 @@ export default {
     setTimeout(() => {
       this.$data.startanimation = true
       this.interval = setInterval(() => {
-        this.n = this.n + 1
+        this.$data.n = this.$data.n + 1
+        if (this.$props.focus) {
+          this.$matomo && this.$matomo.trackEvent('front-page', 'top-animation', this.$data.n)
+        }
       }, 1500)
     }, 1000)
   },

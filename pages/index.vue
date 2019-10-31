@@ -25,7 +25,7 @@
     </div>
     <div :id='$style.body'>
       <div id='top'></div>
-      <Top ref='top' />
+      <Top ref='top' :focus='currentRef == "top"' />
       <div :class='$style.space'></div>
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       showPopup: false,
+      currentRef: 'top'
     }
   },
   created () {
@@ -125,6 +126,7 @@ export default {
           if (centery > winh / 4 && centery < winh * 3/4) {
             this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
             this.lastEvent = name
+            this.$data.currentRef = name
           }
         })
       }, 250)
