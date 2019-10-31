@@ -124,7 +124,7 @@ export default {
       this.interval = setInterval(() => {
         this.$data.n = this.$data.n + 1
         if (this.$props.focus) {
-          this.$matomo && this.$matomo.trackEvent('front-page', 'top-animation', this.$data.n)
+          this.$matomo && this.$matomo.trackEvent('front-page', 'top-animation', `image-${this.$data.n}`)
         }
       }, 1500)
     }, 1000)
