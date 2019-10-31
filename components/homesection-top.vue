@@ -230,10 +230,13 @@ export default {
   font-weight: 600
 
 #legal
+  color: white
   z-index: 100
   font-weight: 300
   text-align: center
   margin-bottom: 5pt
+  @media only screen and (min-width: 600px)
+    font-size: 1.1em
 
 #shop
   position: absolute
