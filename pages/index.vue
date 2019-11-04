@@ -83,12 +83,12 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    /*if (this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown')) return
+    if (this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown')) return
     const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
     window.localStorage.setItem('nVisits', nVisits+1)
     if (nVisits > 3) {
-      setTimeout(() => this.$data.showPopup = true, 2000)
-    }*/
+      setTimeout(() => this.$data.showPopup = true, 3000)
+    }
   },
 	computed: {
 		bundles() {
