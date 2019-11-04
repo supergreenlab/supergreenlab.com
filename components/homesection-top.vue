@@ -123,9 +123,6 @@ export default {
       this.$data.startanimation = true
       this.interval = setInterval(() => {
         this.$data.n = this.$data.n + 1
-        if (this.$props.focus) {
-          this.$matomo && this.$matomo.trackEvent('front-page', 'top-animation', `image-${this.$data.n % 9 + 1}`)
-        }
       }, 1500)
     }, 1000)
   },
