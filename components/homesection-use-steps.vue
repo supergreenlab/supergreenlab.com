@@ -24,10 +24,10 @@
                     smalltitle='(like.. around 3 steps)'
                     separator='true'/>
     </div>
-    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
+    <!--<video :id='$style.video' autoplay loop playsinline muted defaultMuted>
       <source src="/intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
-    </video> 
+    </video> -->
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=1
@@ -71,7 +71,6 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
-  min-height: 100vh
 
 #title
   width: 100%

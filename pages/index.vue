@@ -30,13 +30,11 @@
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
       <div :class='$style.space'></div>
-      <Testimonials ref='testimonials' />
-      <div :class='$style.space'></div>
-      <BundleIntro ref='bundle-intro' />
-      <div :class='$style.space'></div>
       <Instagram ref='instagram' />
       <div :class='$style.space'></div>
       <Youtube ref='youtube' />
+      <div :class='$style.space'></div>
+      <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
@@ -50,6 +48,8 @@
           <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
         </div>
       </div>
+      <div :class='$style.space'></div>
+      <Testimonials ref='testimonials' />
     </div>
     <Footer />
     <transition name="popup">
