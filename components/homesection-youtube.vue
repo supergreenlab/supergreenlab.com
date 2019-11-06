@@ -27,10 +27,16 @@
       <div :class='$style.yt'>
         <h2>How to build an Automated LED Grow Box</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/DXwtIjdDvHs?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-grow-bundle"}'>
+          <b class="hvr-grow">Build yours now</b>
+        </nuxt-link>
       </div>
       <div :class='$style.yt'>
         <h2>How to build an automated closet growbox</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/MovZ7ncuQr0?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#closet-bundle"}'>
+          <b class="hvr-grow">Build yours now</b>
+        </nuxt-link>
       </div>
       <h1></h1>
     </div>
@@ -83,7 +89,32 @@ export default {
 .yt > iframe
   width: 560px
   height: 315px
+  margin: 10pt 0 20pt 0
   @media only screen and (max-width: 600px)
     width: 100%
+
+#cta
+  display: flex
+  flex-direction: column
+  text-transform: uppercase
+  color: white
+  background-color: #3BB30B
+  padding: 10pt 35pt
+  border-radius: 3pt
+  text-decoration: none
+  text-align: center
+  z-index: 100
+  margin-bottom: 20pt
+  font-size: 1.5em
+  @media only screen and (max-width: 600px)
+    font-size: 1.1em
+
+#cta > small
+  padding-top: 5pt
+  font-weight: 300
+  font-size: 1.1em
+
+#cta > b
+  font-weight: 600
 
 </style>
