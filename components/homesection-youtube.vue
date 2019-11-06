@@ -26,11 +26,11 @@
     <div :id='$style.body'>
       <div :class='$style.yt'>
         <h2>How to build an Automated LED Grow Box</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/DXwtIjdDvHs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/DXwtIjdDvHs?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div :class='$style.yt'>
         <h2>How to build an automated closet growbox</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/MovZ7ncuQr0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MovZ7ncuQr0?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <h1></h1>
     </div>
