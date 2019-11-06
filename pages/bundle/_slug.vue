@@ -62,13 +62,8 @@
           <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
         </div>
       </div>
-      <div id='shipping'></div>
-      <Title icon='world.svg' title='ORDER YOURS NOW!' />
-      <div :id='$style.shipdisclaimer'>
-        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 2 to 4 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
-        <h4>Thanks for your support:)</h4>
-      </div>
       <div :id='$style.guides'>
+        <Title icon='guides.svg' title='QUESTIONS?' />
         <div :class='$style.guide'>
           <Guide icon='enveloppe.svg'
                  analytics='ask-by-email'
@@ -83,8 +78,14 @@
                  title='GOT QUESTIONS ?'
                  subtitle='ASK US BY CHAT'
                  href='javascript:$crisp.push(["set", "session:event", ["show_chat"]])'
-                 button='JOIN' />
+                 button='START CHAT' />
         </div>
+      </div>
+      <div id='shipping'></div>
+      <Title icon='world.svg' title='ORDER YOURS NOW!' />
+      <div :id='$style.shipdisclaimer'>
+        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 2 to 4 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
+        <h4>Thanks for your support:)</h4>
       </div>
       <Shipping />
       <div :id='$style.buy'>
