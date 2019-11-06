@@ -33,6 +33,9 @@
       <Testimonials ref='testimonials' />
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
+      <div :class='$style.space'></div>
+      <Instagram ref='instagram' />
+      <div :class='$style.space'></div>
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
             green='Checkout our bundles'
@@ -61,6 +64,7 @@ import Stealth from '~/components/homesection-stealth-build.vue'
 import Testimonials from '~/components/homesection-testimonials.vue'
 import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import Bundle from '~/components/homesection-bundle.vue'
+import Instagram from '~/components/homesection-instagram.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
@@ -68,7 +72,7 @@ import Promocode from '~/components/overlay-promocode.vue'
 import { bundles, } from '../config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Footer,  Promocode,},
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Footer,  Promocode,},
   data() {
     return {
       showPopup: false,
