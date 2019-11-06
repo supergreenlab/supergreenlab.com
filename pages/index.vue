@@ -36,6 +36,8 @@
       <div :class='$style.space'></div>
       <Instagram ref='instagram' />
       <div :class='$style.space'></div>
+      <Youtube ref='youtube' />
+      <div :class='$style.space'></div>
       <div :id='$style.title'>
         <SectionTitle title='Welcome to the shop'
             green='Checkout our bundles'
@@ -65,6 +67,7 @@ import Testimonials from '~/components/homesection-testimonials.vue'
 import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import Instagram from '~/components/homesection-instagram.vue'
+import Youtube from '~/components/homesection-youtube.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
@@ -72,7 +75,7 @@ import Promocode from '~/components/overlay-promocode.vue'
 import { bundles, } from '../config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Footer,  Promocode,},
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Youtube, Footer,  Promocode,},
   data() {
     return {
       showPopup: false,
