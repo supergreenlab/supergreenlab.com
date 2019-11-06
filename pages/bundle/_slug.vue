@@ -23,6 +23,25 @@
     </div>
     <div :id='$style.body'>
       <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
+      <Title icon='guides.svg' title='GUIDES' />
+      <div :id='$style.guides'>
+        <div :class='$style.guide'>
+          <Guide icon='guide-mobile.svg'
+                 analytics='guide-setup-with-the-app'
+                 title='HOW TO'
+                 subtitle='SETUP WITH THE APP'
+                 slug='how-to-setup-with-the-app'
+                 button='LEARN MORE' />
+        </div>
+        <div :class='$style.guide'>
+          <Guide icon='guide-install-led.svg'
+                 analytics='guide-install-led'
+                 title='HOW TO'
+                 subtitle='INSTALL A LED PANEL'
+                 slug='how-to-install-a-led-panel'
+                 button='LEARN MORE' />
+        </div>
+      </div>
       <Title icon='package.svg' title='BUNDLE CONTENT' />
       <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
       <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
@@ -43,24 +62,13 @@
           <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
         </div>
       </div>
-      <Title icon='guides.svg' title='GUIDES' />
+      <div id='shipping'></div>
+      <Title icon='world.svg' title='ORDER YOURS NOW!' />
+      <div :id='$style.shipdisclaimer'>
+        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 2 to 4 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
+        <h4>Thanks for your support:)</h4>
+      </div>
       <div :id='$style.guides'>
-        <div :class='$style.guide'>
-          <Guide icon='guide-mobile.svg'
-                 analytics='guide-setup-with-the-app'
-                 title='HOW TO'
-                 subtitle='SETUP WITH THE APP'
-                 slug='how-to-setup-with-the-app'
-                 button='LEARN MORE' />
-        </div>
-        <div :class='$style.guide'>
-          <Guide icon='guide-install-led.svg'
-                 analytics='guide-install-led'
-                 title='HOW TO'
-                 subtitle='INSTALL A LED PANEL'
-                 slug='how-to-install-a-led-panel'
-                 button='LEARN MORE' />
-        </div>
         <div :class='$style.guide'>
           <Guide icon='enveloppe.svg'
                  analytics='ask-by-email'
@@ -77,12 +85,6 @@
                  href='javascript:$crisp.push(["set", "session:event", ["show_chat"]])'
                  button='JOIN' />
         </div>
-      </div>
-      <div id='shipping'></div>
-      <Title icon='world.svg' title='ORDER YOURS NOW!' />
-      <div :id='$style.shipdisclaimer'>
-        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 2 to 4 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
-        <h4>Thanks for your support:)</h4>
       </div>
       <Shipping />
       <div :id='$style.buy'>
