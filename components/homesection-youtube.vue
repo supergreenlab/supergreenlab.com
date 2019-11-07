@@ -19,8 +19,8 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Subscribe our'
-                    green='Youtube channel'
+      <SectionTitle title='how to be a'
+                    green='ninja grower'
                     separator='true'/>
     </div>
     <div :id='$style.body'>

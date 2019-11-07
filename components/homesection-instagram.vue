@@ -19,8 +19,8 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Follow us on'
-                    green='Instagram'
+      <SectionTitle title='enjoy'
+                    green='your own buds'
                     separator='true'/>
     </div>
     <div :id='$style.mosaic'>
@@ -30,6 +30,7 @@
           Your browser does not support the video tag.
         </video> 
         <img v-else :src='require(`~/assets/img/instagram/${i.pic}`)' />
+        <div :class='$style.iglogo'></div>
       </div>
     </div>
   </section>
@@ -78,6 +79,7 @@ export default {
    
 .post
   display: flex
+  position: relative
   flex-basis: 12.5%
   cursor: pointer
   @media only screen and (max-width: 600px)
@@ -86,5 +88,21 @@ export default {
 .post > video, .post > img
   width: 100%
   height: 100%
+
+.iglogo
+  position: absolute
+  bottom: 3pt
+  right: 3pt
+  width: 20pt
+  height: 20pt
+  background-image: url('~assets/img/instagram.svg')
+  background-position: center
+  background-repeat: no-repeat
+  background-size: contain
+  transition: opacity 0.2s
+  opacity: 0.7
+
+.post:hover > .iglogo
+  opacity: 1
 
 </style>
