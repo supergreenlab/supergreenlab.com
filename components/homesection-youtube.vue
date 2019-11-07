@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='how to be a'
+      <SectionTitle title='become a'
                     green='ninja grower'
                     separator='true'/>
     </div>
