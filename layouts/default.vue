@@ -3,6 +3,10 @@
     <nuxt/>
 
     <transition name="popup">
+      <Disclaimer v-if='showDisclaimer && this.$route.name != "cookies"' :onClose='closeDisclaimer' />
+    </transition>
+
+    <transition name="popup">
       <div v-if='promo' :id='$style.promo'>
         <h1>Promo code {{ promo.promocode }} activated !</h1>
         <h2>Enjoy your {{ promo.discount }}% off :)</h2>
@@ -15,13 +19,36 @@
 </template>
 
 <script>
+import Disclaimer from '~/components/overlay-major.vue'
+
 export default {
+  components: {Disclaimer,},
+  data() {
+    return {
+      showDisclaimer: false,
+    }
+  },
+  mounted() {
+    if (!window.localStorage.getItem('disclaimerShown')) {
+      this.$data.showDisclaimer = true
+    }
+  },
   computed: {
     promo() {
       const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
       if (!promocode || !discount) return ''
       return {promocode, discount}
+    },
+  },
+  methods: {
+    closeDisclaimer(ok) {
+      if (ok) {
+        this.$data.showDisclaimer = false
+        window.localStorage.setItem('disclaimerShown', 1)
+      } else {
+        document.location.href='https://www.google.com'
+      }
     },
   },
 }

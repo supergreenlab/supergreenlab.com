@@ -72,14 +72,14 @@ import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
 
-import { bundles, } from '../config/bundles.json'
+import { bundles, } from '~/config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Youtube, Footer,  Promocode,},
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Youtube, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,
-      currentRef: 'top'
+      currentRef: 'top',
     }
   },
   created () {
@@ -90,11 +90,12 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    if (this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown')) return
-    const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
-    window.localStorage.setItem('nVisits', nVisits+1)
-    if (nVisits > 3) {
-      setTimeout(() => this.$data.showPopup = true, 3000)
+    if (!(this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown'))) {
+      const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
+      window.localStorage.setItem('nVisits', nVisits+1)
+      if (nVisits > 3) {
+        setTimeout(() => this.$data.showPopup = true, 3000)
+      }
     }
   },
 	computed: {

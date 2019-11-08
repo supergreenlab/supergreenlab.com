@@ -97,11 +97,11 @@
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
       <b class="hvr-grow">Start growing</b>
     </nuxt-link>
-    <small :id='$style.legal'>
+    <!--<small :id='$style.legal'>
       By proceeding, you explicitly agree that you are acting in coordinance with<br />
       local, state, and federal laws. SuperGreenLab will not be liable for<br />
       consequences surrounding the legality of how the lights or grow bundle are used. 
-    </small>
+    </small>-->
   </section>
 </template>
 
