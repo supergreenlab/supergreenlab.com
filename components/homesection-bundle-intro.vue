@@ -33,7 +33,7 @@
       <div :class='$style.step'>
         <Step n=''
               title='Ventilation'
-              text='All our kits <b>come with ventilation</b>, which ensures <b>heat and humidity</b> control, aswell as <b>odor filtering</b>.'
+              text='All our kits <b>come with ventilation</b>, which ensures <b>heat and humidity</b> control, can be used with a <b>carbon filter</b> (not included).'
               icon='ventilation.svg' />
       </div>
       <div :class='$style.step'>
