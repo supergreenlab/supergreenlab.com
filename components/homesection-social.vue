@@ -73,7 +73,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  margin: 0 50pt
+  margin: 20pt 50pt
   @media only screen and (max-width: 600px)
     margin: 0
 

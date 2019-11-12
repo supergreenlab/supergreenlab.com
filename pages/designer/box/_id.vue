@@ -84,10 +84,6 @@
           </div>
           <div v-if='leds.length' :id='$style.viewer'>
             <h4 :id='$style.title'>Choose your light</h4>
-            <div :class='$style.units'>
-              <CheckBox color='white' label='White' :checked='box.color == "white"' v-on:click='setColor("white")' />
-              <CheckBox color='black' label='Black' :checked='box.color == "black"' v-on:click='setColor("black")' />
-            </div>
             <div :id='$style.leds' v-for='(led, i) in leds'>
               <div :id='$style.led'>
                 <CheckBox color='#c4c4c4' :checked='box.leds && led.name == box.leds.name' v-on:click='setLeds(led)' />
@@ -117,7 +113,7 @@
         </div>
       </div>
     </div>
-    <nuxt-link to='/designer/box' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>{{ box.leds ? "Save" : "Cancel" }}</nuxt-link>
+    <nuxt-link to='/designer' :id='$style.cta' :class='box.leds == null ? $style.disabled : $style.enabled' href='javascript:void(0)'>{{ box.leds ? "Save" : "Cancel" }}</nuxt-link>
   </section>
 </template>
 
@@ -297,6 +293,7 @@ export default {
   flex: 1
 
 #leds
+  margin-top: 10pt
   width: 100%
 
 #led
