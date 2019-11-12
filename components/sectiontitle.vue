@@ -62,8 +62,8 @@ export default {
 #smalltitle
   margin-top: 5pt
   color: #5E5E5E
-  font-size: 0.8em
+  font-size: 1.1em
   @media only screen and (max-width: 600px)
-    font-size: 1em
+    font-size: 1.3em
 
 </style>

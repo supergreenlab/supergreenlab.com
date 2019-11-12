@@ -19,8 +19,10 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='become a'
-                    green='ninja grower'
+      <SectionTitle title='follow the guide to becoming'
+                    green='a ninja grower'
+                    title2='we publish guides on youtube'
+                    smalltitle='and offer free 24/24 support, 7/7'
                     separator='true'/>
     </div>
     <div :id='$style.body'>
