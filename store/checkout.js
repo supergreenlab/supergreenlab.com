@@ -74,8 +74,10 @@ export const mutations = {
   },
   setPromocode(state, promocode) {
     state.promocode.value = promocode
+    storeState(state)
   },
   setDiscount(state, discount) {
     state.discount.value = discount
+    storeState(state)
   },
 }

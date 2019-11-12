@@ -31,10 +31,14 @@
         </div>
         <div :class='$style.price'>
           <h1>{{ priceConv(price - price * promodiscountdef / 100) }}</h1><br />
+          <small>incl. tax</small>
           <span>promocode: <b>-{{ promodiscountdef }}%</b></span>
         </div>
       </div>
-      <h1 v-else>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
+      <div v-else :class='$style.price'>
+        <h1>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
+        <small>incl. tax</small>
+      </div>
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -154,6 +158,12 @@ export default {
 
 .framed
   border-top: 1pt solid #EEEEEE
+
+#price
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  width: 100%
 
 #header > h1
   color: #3BB30B
@@ -321,7 +331,6 @@ export default {
   position: relative
   display: flex
   flex-direction: column
-  align-items: center
   justify-content: center
 
 .smallprice
@@ -336,6 +345,9 @@ export default {
   color: #3BB30B
   @media only screen and (max-width: 600px)
     margin-top: 4pt
+
+.price > small
+  color: #717171
 
 .smallprice > h1
   color: #787878

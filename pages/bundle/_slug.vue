@@ -49,17 +49,24 @@
       <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' v-bind='accessory("blower")' />
       <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
-      <div :id='$style.pricecontainer'>
+      <div v-if='promo.discount' :id='$style.pricecontainer'>
         <h1>Total:</h1>
         <div :class='$style.price + " " + $style.smallprice'>
-          <h1>
-            {{ priceConv(bundle.bigleds * 129 + bundle.smallleds * 99 + bundle.tinyleds * 29.99 + bundle.ventilation * 29 + bundle.sensor * 24.99 + 119) }}
+          <h1>{{ priceConv(bundle.price) }}
             <div :id='$style.redbar'></div>
           </h1>
         </div>
         <div :class='$style.price'>
           <h1>{{ priceConv(bundle.price - bundle.price * promo.discount / 100) }}</h1><br />
-          <span>save <b>{{ totaldiscount }}%</b>!<br />(compared to detail price)</span>
+          <small>incl. tax</small>
+          <span>promocode: <b>-{{ promo.discount }}%</b></span>
+        </div>
+      </div>
+      <div v-else :id='$style.pricecontainer'>
+        <h1>Total:</h1>
+        <div :class='$style.price'>
+          <h1>{{ priceConv(bundle.price - bundle.price*promo.discount/100) }}</h1>
+          <small>incl. tax</small>
         </div>
       </div>
       <div :id='$style.guides'>
@@ -295,7 +302,6 @@ export default {
 #pricecontainer
   display: flex
   flex: 1
-  text-align: center
   justify-content: flex-end
   border-top: 1pt solid #eeeeee
   border-bottom: 1pt solid #eeeeee
@@ -308,8 +314,8 @@ export default {
   position: relative
   display: flex
   flex-direction: column
-  align-items: center
   justify-content: center
+  margin: 10pt 0 0 20pt
 
 .smallprice
   margin: 0 10pt 0pt 10pt
@@ -319,6 +325,9 @@ export default {
   position: relative
   margin: 0
   color: #3BB30B
+
+.price > small
+  color: #717171
 
 #redbar
   width: 100%
