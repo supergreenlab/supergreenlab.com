@@ -315,7 +315,7 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
-  margin: 10pt 0 0 20pt
+  margin: 10pt 0 10pt 20pt
 
 .smallprice
   margin: 0 10pt 0pt 10pt
