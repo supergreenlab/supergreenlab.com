@@ -21,7 +21,7 @@
     <div :id='$style.title'>
       <SectionTitle title='Follow us'
                     green='on social medias'
-                    title2="let's stay in touch"
+                    title2="let's stay in touch!"
                     separator='true'/>
     </div>
     <div :id='$style.socialicons'>
