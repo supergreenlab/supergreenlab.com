@@ -58,7 +58,7 @@
         </div>
         <div :class='$style.price'>
           <h1>{{ priceConv(bundle.price - bundle.price * promo.discount / 100) }}</h1><br />
-          <small>incl. tax</small>
+          <small>incl. tax + <b>FREE SHIPPING</b></small>
           <span>promocode: <b>-{{ promo.discount }}%</b></span>
         </div>
       </div>
@@ -66,7 +66,7 @@
         <h1>Total:</h1>
         <div :class='$style.price'>
           <h1>{{ priceConv(bundle.price - bundle.price*promo.discount/100) }}</h1>
-          <small>incl. tax</small>
+          <small>incl. tax + <b>FREE SHIPPING</b></small>
         </div>
       </div>
       <div :id='$style.guides'>
