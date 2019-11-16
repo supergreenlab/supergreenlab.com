@@ -329,11 +329,14 @@ export default {
 .price > small
   color: #717171
 
+.smallprice > h1
+  color: #787878
+
 #redbar
-  width: 100%
+  width: 50%
   height: 2pt
-  top: calc(50%)
-  left: 0
+  top: 40%
+  left: 25%
   transform: rotate(-30deg)
   position: absolute
   background-color: #FF0000
