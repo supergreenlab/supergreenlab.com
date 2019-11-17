@@ -55,6 +55,7 @@ export default {
   background-repeat: no-repeat
 
 .price
+  display: flex
   margin: 10pt 0
 
 #goto
