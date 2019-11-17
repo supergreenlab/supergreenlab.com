@@ -48,7 +48,7 @@ export default {
 
 #pic
   margin: 10pt
-  width: 150pt
+  width: 100%
   height: 150pt
   background-position: center
   background-size: contain
