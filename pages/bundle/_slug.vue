@@ -49,25 +49,8 @@
       <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' v-bind='accessory("blower")' />
       <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
-      <div v-if='promo.discount' :id='$style.pricecontainer'>
-        <h1>Total:</h1>
-        <div :class='$style.price + " " + $style.smallprice'>
-          <h1>{{ priceConv(bundle.price) }}
-            <div :id='$style.redbar'></div>
-          </h1>
-        </div>
-        <div :class='$style.price'>
-          <h1>{{ priceConv(bundle.price - bundle.price * promo.discount / 100) }}</h1><br />
-          <small>incl. tax + <b>FREE SHIPPING</b></small>
-          <span>promocode: <b>-{{ promo.discount }}%</b></span>
-        </div>
-      </div>
-      <div v-else :id='$style.pricecontainer'>
-        <h1>Total:</h1>
-        <div :class='$style.price'>
-          <h1>{{ priceConv(bundle.price - bundle.price*promo.discount/100) }}</h1>
-          <small>incl. tax + <b>FREE SHIPPING</b></small>
-        </div>
+      <div :class='$style.price'>
+        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='true' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
@@ -126,6 +109,7 @@ import Guide from '~/components/bundle-guide.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import Item from '~/components/bundle-item.vue'
 import Title from '~/components/bundle-title.vue'
+import Price from '~/components/price.vue'
 import Shipping from '~/components/shipping-form.vue'
 import TextInput from '~/components/shipping-text.vue'
 import Loading from '~/components/loading.vue'
@@ -148,7 +132,7 @@ const binding = (name) => ({
 })
 
 export default {
-  components: {Header, Guide, Bundle, Title, Item, Shipping, TextInput, Loading, Footer,},
+  components: {Header, Guide, Bundle, Title, Price, Item, Shipping, TextInput, Loading, Footer,},
   data() {
     return {
       loading: false
@@ -311,35 +295,9 @@ export default {
     font-size: 0.8em
 
 .price
-  position: relative
   display: flex
-  flex-direction: column
-  justify-content: center
-  margin: 10pt 0 10pt 20pt
-
-.smallprice
-  margin: 0 10pt 0pt 10pt
-  font-size: 0.8em
-
-.price > h1
-  position: relative
-  margin: 0
-  color: #3BB30B
-
-.price > small
-  color: #717171
-
-.smallprice > h1
-  color: #787878
-
-#redbar
-  width: 50%
-  height: 2pt
-  top: 40%
-  left: 25%
-  transform: rotate(-30deg)
-  position: absolute
-  background-color: #FF0000
+  justify-content: flex-end
+  margin: 10pt 10pt 10pt 20pt
 
 #guides
   display: flex

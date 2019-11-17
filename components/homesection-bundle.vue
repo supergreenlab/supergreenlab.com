@@ -23,22 +23,7 @@
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </div>
-      <div v-if='promodiscount' :id='$style.pricecontainer'>
-        <div :class='$style.price + " " + $style.smallprice'>
-          <h1>{{ priceConv(price) }}
-            <div :id='$style.redbar'></div>
-          </h1>
-        </div>
-        <div :class='$style.price'>
-          <h1>{{ priceConv(price - price * promodiscountdef / 100) }}</h1><br />
-          <small>incl.tax + <b>FREE SHIPPING</b></small>
-          <span>promocode: <b>-{{ promodiscountdef }}%</b></span>
-        </div>
-      </div>
-      <div v-else :class='$style.price'>
-        <h1>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
-        <small>incl. tax + <b>FREE SHIPPING</b></small>
-      </div>
+      <Price :price='price' :promodiscount='promodiscount' :freeshipping='true' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -87,11 +72,12 @@
 </template>
 
 <script>
+import Price from '~/components/price.vue'
 import Items from '~/components/homesection-bundle-items.vue'
 import priceConv from '~/lib/price.js'
 
 export default {
-  components: {Items,},
+  components: {Items, Price,},
   props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
   data() {
     return {
@@ -158,12 +144,6 @@ export default {
 
 .framed
   border-top: 1pt solid #EEEEEE
-
-#price
-  display: flex
-  flex-direction: column
-  align-items: flex-end
-  width: 100%
 
 #header > h1
   color: #3BB30B
@@ -315,51 +295,6 @@ export default {
 
 #addtocart > a > b
   font-weight: 600
-
-#pricecontainer
-  display: flex
-  flex: 1
-  justify-content: flex-end
-  margin: 10pt 10pt 15pt 0
-  color: #454545
-  @media only screen and (max-width: 600px)
-    flex-direction: column
-    font-size: 0.8em
-    margin: 0
-
-.price
-  position: relative
-  display: flex
-  flex-direction: column
-  justify-content: center
-
-.smallprice
-  margin: 0 10pt 10pt 10pt
-  font-size: 0.8em
-  @media only screen and (max-width: 600px)
-    margin: 0
-
-.price > h1
-  position: relative
-  margin-bottom: 0
-  color: #3BB30B
-  @media only screen and (max-width: 600px)
-    margin-top: 4pt
-
-.price > small
-  color: #717171
-
-.smallprice > h1
-  color: #787878
-
-#redbar
-  width: 50%
-  height: 2pt
-  top: 40%
-  left: 25%
-  transform: rotate(-30deg)
-  position: absolute
-  background-color: #FF0000
 
 #fullscreen
   position: fixed

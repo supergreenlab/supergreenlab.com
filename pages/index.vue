@@ -51,6 +51,8 @@
         </div>
       </div>
       <div :class='$style.space'></div>
+      <SpareParts :promodiscount='promo.discount' />
+      <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
     <Footer />
@@ -70,6 +72,7 @@ import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import Instagram from '~/components/homesection-instagram.vue'
 import Youtube from '~/components/homesection-youtube.vue'
+import SpareParts from '~/components/homesection-spareparts.vue'
 import Social from '~/components/homesection-social.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
@@ -78,7 +81,7 @@ import Promocode from '~/components/overlay-promocode.vue'
 import { bundles, } from '~/config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Youtube, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,
