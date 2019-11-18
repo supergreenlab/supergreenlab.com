@@ -52,7 +52,7 @@ export const actions = {
     try {
       const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${code}`)
       context.commit('setPromocode', code)
-      context.commit('setDiscount', discount.value)
+      context.commit('setDiscount', discount.discount)
     } catch(e) {
       context.commit('setDiscount', 0)
     }
