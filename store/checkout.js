@@ -47,10 +47,21 @@ const storeState = (state) => {
   window.localStorage.setItem('checkout', JSON.stringify(state))
 }
 
+const CancelToken = axios.CancelToken;
+let cancel
 export const actions = {
   async setPromocode(context, {code}) {
     try {
-      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${code}`)
+      if (cancel) {
+        cancel()
+        cancel = null
+      }
+      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${code}`, {
+        cancelToken: new CancelToken((c) => {
+          cancel = c
+        })
+      })
+      cancel = null
       context.commit('setPromocode', code)
       context.commit('setDiscount', discount.discount)
     } catch(e) {
