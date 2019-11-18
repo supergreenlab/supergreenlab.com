@@ -50,7 +50,7 @@ const storeState = (state) => {
 export const actions = {
   async setPromocode(context, {code}) {
     try {
-      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com?code=${code}`)
+      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${code}`)
       context.commit('setPromocode', code)
       context.commit('setDiscount', discount.value)
     } catch(e) {
