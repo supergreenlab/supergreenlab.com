@@ -57,6 +57,7 @@
       <div v-html='description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <div :id='$style.addtocart'>
+          <h2 :class='$style.outofstock' v-if='outofstock'>Out of stock !</h2>
           <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
           <p>Free shipping</p>
           <p>Our bundles are shipped discreet</p>
@@ -78,7 +79,7 @@ import priceConv from '~/lib/price.js'
 
 export default {
   components: {Items, Price,},
-  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount',],
+  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
   data() {
     return {
       showZoom: false,
@@ -324,5 +325,8 @@ export default {
   color: #5D5D5D
   @media only screen and (max-width: 600px)
     padding: 10pt 10pt 40pt 10pt
+
+.outofstock
+  color: red
 
 </style>

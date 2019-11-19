@@ -47,8 +47,8 @@ const storeState = (state) => {
   window.localStorage.setItem('checkout', JSON.stringify(state))
 }
 
-const CancelToken = axios.CancelToken;
 let cancel
+const CancelToken = axios.CancelToken
 export const actions = {
   async setPromocode(context, {code}) {
     try {

@@ -80,6 +80,7 @@
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
+          <h2 :class='$style.outofstock' v-if='bundle.outofstock'>Out of stock !</h2>
           <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
           <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
           <div :class='$style.block'>
@@ -143,7 +144,7 @@ export default {
   },
   computed: {
     valid() {
-      return Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+      return !this.bundle.outofstock && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
     },
     bundle() {
       const { slug } = this.$route.params
@@ -319,5 +320,8 @@ export default {
 
 #shipdisclaimer > b
   color: #3BB30B
+
+.outofstock
+  color: red
  
 </style>
