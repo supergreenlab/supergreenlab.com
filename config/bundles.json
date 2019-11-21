@@ -30,18 +30,18 @@
       "sensor": 1
     }, {
       "ids": {
-        "white": "29107272089648",
-        "black": "29133885898800"
+        "white": "31179785404486",
+        "black": "31179785404486"
       },
       "outofstock": false,
-      "discount": 16,
+      "discount": 17,
       "slug":"multi-box-bundle",
       "ref":"multi-box-bundle",
       "title": "MULTI BOX BUNDLE",
       "subtitle": "Harvests come twice faster",
       "icon": "multi-bundle.jpg",
-      "setupicon": "office.jpg",
-      "description": "Designed for multi chamber grow boxes, the multi box bundle lets you drastically reduce time between grows and increase yields with a perpetual harvest cycle. The main grow light will lit your blooming chamber while the small led panels will take care of your next plants in the adjacent vegging chamber.<br /><br />Featuring full spectrum LEDs producing dense light with little heat, this complete bundle will let you get the most out of any grow space.<br />Easily upgradable with more lights (up to 6), the grow box controller connected to your companion app enables you to have complete control over your grow : light dimming, ventilation (included) and environmental data (sensors included) to insure the best possible yield",
+      "setupicon": "tvstand144.jpg",
+      "description": "Designed for multi chamber grow boxes, the multi box bundle lets you drastically reduce time between grows and increase yields with a perpetual harvest cycle. The main grow light will lit your blooming chamber while the medium led panel will take care of your next plants in the adjacent vegging chamber.<br /><br />Featuring full spectrum LEDs producing dense light with little heat, this complete bundle will let you get the most out of any grow space.<br />Easily upgradable with more lights (up to 6), the grow box controller connected to your companion app enables you to have complete control over your grow : light dimming, ventilation (included) and environmental data (sensors included) to insure the best possible yield",
       "bullets": [                                                     
         "Allows <b>vegging</b> and <b>blooming</b> at the <b>same time</b>",
         "<b>Reduce time</b> between harvests with <b>2 grow chambers</b>",
@@ -51,10 +51,10 @@
         "<b>all included</b>: Grow lights, power supplies, sensors and ventilation"
       ],
       "url": "https://shop.supergreenlab.com/pages/loading-cart#29107272089648:1",
-      "price": 349,
+      "price": 389,
       "bigleds": 1,
-      "smallleds": 0,
-      "tinyleds": 2,
+      "smallleds": 1,
+      "tinyleds": 0,
       "ventilation": 2,
       "sensor": 2
     }, {
