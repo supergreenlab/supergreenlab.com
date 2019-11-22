@@ -6,6 +6,7 @@
         "white": "22937070895152",
         "black": "22990585954352"
       },
+      "outofstock": false,
       "name": "SGB 192",
       "url": "https://shop.supergreenlab.com/collections/grow-lights/products/192-301b",
       "price": 129,
@@ -61,6 +62,7 @@
         "white": "22937065586736",
         "black": "22990590410800"
       },
+      "outofstock": false,
       "name": "SGB 144",
       "url": "https://shop.supergreenlab.com/collections/grow-lights/products/sgb-144-301b",
       "price": 99,
@@ -118,6 +120,7 @@
         "white": "22937067421744",
         "black": "23014573146160"
       },
+      "outofstock": true,
       "name": "SGB 36",
       "url": "https://shop.supergreenlab.com/collections/grow-lights/products/sgb-36-301b",
       "price": 29.99,

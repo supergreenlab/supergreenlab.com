@@ -24,6 +24,7 @@
     <div :class='$style.price'>
       <Price :price='price' :promodiscount='promodiscount' />
     </div>
+    <h2 :class='$style.outofstock' v-if='outofstock'>Out of stock !</h2>
     <a :id='$style.goto' :href='url'>View in spare part shop</a>
   </section>
 </template>
@@ -33,7 +34,7 @@ import Price from '~/components/price.vue'
 
 export default {
   components: {Price,},
-  props: ['name', 'icons', 'bullets', 'price', 'promodiscount', 'url',],
+  props: ['name', 'icons', 'bullets', 'price', 'promodiscount', 'url', 'outofstock',],
 }
 </script>
 
@@ -72,5 +73,8 @@ export default {
 
 #goto > b
   font-weight: 600
+
+.outofstock
+  color: red
 
 </style>

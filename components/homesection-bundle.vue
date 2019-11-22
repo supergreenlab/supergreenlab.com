@@ -39,6 +39,7 @@
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
             <!--Free shipping-->
+            <h2 :class='$style.outofstock' v-if='outofstock'>Out of stock !</h2>
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
