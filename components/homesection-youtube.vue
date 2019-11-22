@@ -22,7 +22,7 @@
       <SectionTitle title='follow the guide to becoming'
                     green='a ninja grower'
                     title2='we publish guides on youtube'
-                    smalltitle='and offer free 24/24 support, 7/7'
+                    smalltitle='and offer free 24/7/365 support'
                     separator='true'/>
     </div>
     <div :id='$style.body'>
