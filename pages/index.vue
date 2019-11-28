@@ -84,7 +84,7 @@ export default {
   components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
   data() {
     return {
-      showPopup: true,
+      showPopup: false,
       currentRef: 'top',
     }
   },
