@@ -19,16 +19,21 @@
 <template>
   <section :id='$style.container' @click='close'>
     <div :id='$style.popup' @click='cancelClick'>
-      <SectionTitle title='Welcome back !'
-                    green='Take this promocode:' />
-      <h3>-5% with</h3>
-      <h1>SGL_LOVE</h1>
-      <div :id='$style.ctas'>
+      <SectionTitle title='Welcome back:)'
+                    green='Sorry for the interruption!' />
+      <div v-if='showTypeForm' :id='$style.typeform'>
+        <div class="typeform-widget" :onSubmit="onSubmit" data-url="https://supergreenlab.typeform.com/to/n2oKQ2" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+      </div>
+      <div v-if='!showTypeForm' :id='$style.typeformintro'>
+        <h3>Can you help us improve</h3>
+        <h2>SuperGreenLab?</h2>
+      </div>
+      <div v-if='!showTypeForm' :id='$style.ctas'>
         <a :id='$style.ctano' href='javascript:void(0)' @click='no'>
-          Not interested
+          Nope
         </a>
-        <a :id='$style.ctayes' class="hvr-curl-bottom-left" href='javascript:void(0)' @click='ok'>
-          <b>ACTIVATE PROMOCODE</b>
+        <a :id='$style.ctayes' class="hvr-curl-bottom-left" href='javascript:void(0)' @click='takeSurvey'>
+          <b>TAKE SURVEY</b>
         </a>
       </div>
       <a :id='$style.discord' class="hvr-grow" href='javascript:void(0)' @click='showChat'>
@@ -45,6 +50,11 @@ import SectionTitle from '~/components/sectiontitle.vue'
 
 export default {
   props: ['onClose',],
+  data() {
+    return {
+      showTypeForm: false,
+    }
+  },
   components: { SectionTitle ,},
   created() {
     this.$matomo && this.$matomo.trackEvent('popup', 'shown')
@@ -59,6 +69,9 @@ export default {
       this.$store.dispatch('checkout/setPromocode', {code: 'SGL_LOVE'})
       this.$matomo && this.$matomo.trackEvent('popup', 'activate')
     },
+    takeSurvey() {
+      this.$data.showTypeForm = true
+    },
     no() {
       this.close()
       this.$matomo && this.$matomo.trackEvent('popup', 'nothanks')
@@ -68,6 +81,9 @@ export default {
     },
     showChat(e) {
       $crisp.push(["set", "session:event", ["show_chat"]])
+    },
+    onSubmit() {
+      this.ok()
     }
   },
 }
@@ -98,18 +114,9 @@ export default {
   border-radius: 5pt
   border: 4pt solid #3BB30B
   @media only screen and (max-width: 600px)
+    padding: 40pt 10pt 10pt 10pt
     width: 100vw
     height: 100vh
-
-#popup > h1
-  color: #5E5E5E
-  font-size: 4em
-  margin-top: 0
-
-#popup > h3
-  color: #3BB30B
-  font-size: 2em
-  margin-top: 20pt
 
 #ctas
   display: flex
@@ -143,5 +150,28 @@ export default {
   white-space: nowrap
   text-decoration: none;
   color: green;
+
+#typeformintro
+  flex: 1
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  text-align: center
+  margin: 30pt 0
+
+#typeformintro > h2
+  color: #5E5E5E
+  font-size: 2.3em
+  margin-top: 20pt
+
+#typeformintro > h3
+  color: #3BB30B
+  font-size: 2em
+  margin-top: 0
+
+#typeform
+  flex: 1
+  width: 100%
 
 </style>
