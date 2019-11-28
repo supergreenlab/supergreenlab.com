@@ -96,9 +96,9 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    if (!(this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown'))) {
-      const nVisits = parseInt(window.localStorage.getItem('nVisits') || '1')
-      window.localStorage.setItem('nVisits', nVisits+1)
+    if (!(this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown2'))) {
+      const nVisits = parseInt(window.localStorage.getItem('nVisits2') || '1')
+      window.localStorage.setItem('nVisits2', nVisits+1)
       if (nVisits > 3) {
         setTimeout(() => this.$data.showPopup = true, 3000)
       }
@@ -122,7 +122,7 @@ export default {
 	},
   methods: {
     closePopup() {
-      window.localStorage.setItem('popupShown', 1)
+      window.localStorage.setItem('popupShown2', 1)
       this.$data.showPopup = false
     },
     handleScroll(e) {
