@@ -39,7 +39,7 @@
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
             <!--Free shipping-->
-            <h2 :class='$style.outofstock' v-if='outofstock'>Out of stock !</h2>
+            <OutOfStock v-if='outofstock' />
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
@@ -58,7 +58,7 @@
       <div v-html='description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <div :id='$style.addtocart'>
-          <h2 :class='$style.outofstock' v-if='outofstock'>Out of stock !</h2>
+          <OutOfStock v-if='outofstock' />
           <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
           <p>Free shipping</p>
           <p>Our bundles are shipped discreet</p>
@@ -77,9 +77,10 @@
 import Price from '~/components/price.vue'
 import Items from '~/components/homesection-bundle-items.vue'
 import priceConv from '~/lib/price.js'
+import OutOfStock from '~/components/outofstock.vue'
 
 export default {
-  components: {Items, Price,},
+  components: {Items, Price, OutOfStock,},
   props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
   data() {
     return {
@@ -226,15 +227,13 @@ export default {
 #buy
   display: flex
   flex-direction: column
-  justify-content: flex-end
-  text-align: right
   @media only screen and (max-width: 600px)
     margin: 30pt 10pt 0 0
     align-self: flex-end
 
 #buy > a
   display: block
-  align-self: flex-end
+  align-self: flex-start
   background-color: #3BB30B
   padding: 8pt 25pt
   border-radius: 5pt
@@ -328,6 +327,9 @@ export default {
     padding: 10pt 10pt 40pt 10pt
 
 .outofstock
+  font-size: 1.2em
+  font-weight: 600
   color: red
+  margin: 5pt 0
 
 </style>

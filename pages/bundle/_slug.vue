@@ -80,7 +80,7 @@
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
-          <h2 :class='$style.outofstock' v-if='bundle.outofstock'>Out of stock !</h2>
+          <OutOfStock v-if='bundle.outofstock' />
           <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
           <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
           <div :class='$style.block'>
@@ -115,6 +115,7 @@ import Shipping from '~/components/shipping-form.vue'
 import TextInput from '~/components/shipping-text.vue'
 import Loading from '~/components/loading.vue'
 import Footer from '~/components/homesection-footer.vue'
+import OutOfStock from '~/components/outofstock.vue'
 
 import priceConv from '~/lib/price.js'
 
@@ -133,7 +134,7 @@ const binding = (name) => ({
 })
 
 export default {
-  components: {Header, Guide, Bundle, Title, Price, Item, Shipping, TextInput, Loading, Footer,},
+  components: {Header, Guide, Bundle, Title, Price, Item, Shipping, TextInput, Loading, Footer, OutOfStock,},
   data() {
     return {
       loading: false
@@ -321,7 +322,4 @@ export default {
 #shipdisclaimer > b
   color: #3BB30B
 
-.outofstock
-  color: red
- 
 </style>
