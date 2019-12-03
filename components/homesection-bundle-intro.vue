@@ -24,6 +24,8 @@
                     title2='and free shipping'
                     separator='true'/>
     </div>
+    <div :id='$style.all'>
+    </div>
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=''
@@ -77,7 +79,7 @@ export default {
   align-items: center
   justify-content: space-around
   flex-wrap: wrap
-  margin: 20pt 0 40pt 0
+  margin: 0pt 0 40pt 0
   max-width: 900pt
 
 .step
@@ -86,5 +88,16 @@ export default {
 
 #title
   width: 100%
+
+#all
+  width: 100%
+  height: 300pt
+  margin-top: 30pt
+  background-image: url('~assets/img/all_products.png')
+  background-size: contain
+  background-repeat: no-repeat
+  background-position: center
+  @media only screen and (max-width: 600px)
+    height: 150pt
 
 </style>
