@@ -47,7 +47,7 @@
         <div :id='$style.addtocartcontainer' v-if='addtocart && !description'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-            <p>Free shipping</p>
+            <p>Free shipping*</p>
             <p>Our bundles are shipped discreet</p>
           </div>
         </div>
@@ -60,7 +60,7 @@
         <div :id='$style.addtocart'>
           <OutOfStock v-if='outofstock' />
           <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-          <p>Free shipping</p>
+          <p>Free shipping*</p>
           <p>Our bundles are shipped discreet</p>
         </div>
       </div>

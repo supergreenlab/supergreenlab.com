@@ -26,13 +26,13 @@
       </div>
       <div :class='$style.price'>
         <h1>{{ priceConv(price - price * promodiscountdef / 100) }}</h1><br />
-        <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING</b></span></small>
+        <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
         <span>promocode: <b>-{{ promodiscountdef }}%</b></span>
       </div>
     </div>
     <div v-else :class='$style.price'>
       <h1>{{ priceConv(price - price*promodiscountdef/100) }}</h1>
-      <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING</b></span></small>
+      <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
   </section>
 </template>

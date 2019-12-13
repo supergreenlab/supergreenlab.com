@@ -21,7 +21,7 @@
     <div :id='$style.title'>
       <SectionTitle title='Our bundles are'
                     green='all included'
-                    title2='and free shipping'
+                    title2='and free shipping*'
                     separator='true'/>
     </div>
     <div :id='$style.all'>
