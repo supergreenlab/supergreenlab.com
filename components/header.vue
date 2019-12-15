@@ -25,6 +25,7 @@
       <div><nuxt-link @click='onClick' :to="page != 'index' ? '/' : { path: '/', hash: '#top' }">Home</nuxt-link></div>
       <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/micro-box-bundle' : { path: '/', hash: '#micro-grow-bundle' }">Microgrow bundle</nuxt-link></div>
       <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/mono-box-bundle' : { path: '/', hash: '#mono-box-bundle' }">Mono box bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/multi-box-bundle' : { path: '/', hash: '#multi-box-bundle' }">Multi box bundle</nuxt-link></div>
     </div>
   </section>
 </template>
