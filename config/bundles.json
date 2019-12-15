@@ -6,6 +6,7 @@
         "black": "29133881770032"
       },
       "outofstock": false,
+      "canorder": true,
       "discount": 7.6,
       "slug":"mono-box-bundle",
       "ref":"mono-box-bundle",
@@ -34,6 +35,7 @@
         "black": "31179785404486"
       },
       "outofstock": false,
+      "canorder": true,
       "discount": 17,
       "slug":"multi-box-bundle",
       "ref":"multi-box-bundle",
@@ -63,6 +65,7 @@
         "black": "29133894352944"
       },
       "outofstock": true,
+      "canorder": true,
       "discount": 15,
       "slug":"micro-box-bundle",
       "ref":"micro-grow-bundle",
