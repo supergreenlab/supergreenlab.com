@@ -34,7 +34,7 @@
         "power": {
           "unit": "w",
           "min": 30,
-          "max": 120
+          "max": 80
         },
         "coverage": {
           "unit": "cm2",
