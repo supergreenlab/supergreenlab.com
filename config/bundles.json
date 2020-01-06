@@ -5,7 +5,7 @@
         "white": "29107273826352",
         "black": "29133894352944"
       },
-      "outofstock": true,
+      "outofstock": false,
       "canorder": true,
       "discount": 15,
       "slug":"micro-box-bundle",
@@ -94,8 +94,8 @@
       "white": "29107330154544",
       "black": "29133872431152"
     },
-    "canorder": true,
     "outofstock": false,
+    "canorder": true,
     "discount": 12,
     "slug":"closet-box-bundle",
     "ref":"closet-bundle",
