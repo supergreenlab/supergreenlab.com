@@ -150,7 +150,7 @@
         "power": {
           "unit": "w",
           "min": 5,
-          "max": 12
+          "max": 15
         },
         "coverage": {
           "unit": "cm2",
