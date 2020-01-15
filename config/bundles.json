@@ -89,36 +89,6 @@
     "tinyleds": 0,
     "ventilation": 2,
     "sensor": 2
-    }, {
-    "ids": {
-      "white": "29107330154544",
-      "black": "29133872431152"
-    },
-    "outofstock": false,
-    "canorder": true,
-    "discount": 12,
-    "slug":"closet-box-bundle",
-    "ref":"closet-bundle",
-    "title": "CLOSET BUNDLE",
-    "subtitle": "Grow huge plants, harvest often",
-    "icon": "closet-bundle.jpg",
-    "setupicon": "dombas.jpg",
-    "description": "For those who want to grow big with style ! The closet bundle lets you transform your old wardrobe into a high yield output growing machine. Its 2 Main grow lights will lit your blooming chambers while the 2 medium grow lights will take care of your plants in their earlier stages.<br /><br />It’s full spectrum LEDs producing dense light with little heat can be used in all spaces while keeping the growing area temperature low.<br /><br />Coming with a grow box controller, sensor, ventilation and a companion app for easy setup, control and monitoring of your grow directly from your smartphone. This smart growbox bundle enables you to have complete control of your grow including schedules, ventilation, and light dimming to insure the best growth speed.<br /><br />This bundle can be seamlessly upgraded with up to 2 more grow lights if you want to grow even bigger.",
-    "bullets": [                                                   
-      "Allows <b>vegging</b> and <b>blooming</b> at the <b>same time</b>",
-      "For <b>high yield setups</b> and <b>perpetual harvest</b>",
-      "<b>2</b> Main grow lights for <b>blooming</b> (<b>up to 4’ x 4’</b> - 120cm x 120cm)",
-      "<b>2</b> Medium lights for <b>additional</b> grow chambers (up to 2.5’ x 2.5’ - 75cm x 75cm)",
-      "<b>Easy setup</b> with the application",
-      "<b>all included</b>: Grow lights, power supplies, sensors and ventilation"
-    ],
-    "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
-    "price": 599,
-    "bigleds": 2,
-    "smallleds": 2,
-    "tinyleds": 0,
-    "ventilation": 2,
-    "sensor": 2
     }
   ]
 }
