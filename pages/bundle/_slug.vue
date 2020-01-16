@@ -50,7 +50,7 @@
       <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
       <div :class='$style.price'>
-        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='true' />
+        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='false' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />

@@ -37,7 +37,6 @@
           <nuxt-link class="nav-link" to="/terms">Terms</nuxt-link>
           <nuxt-link class="nav-link" to="/faq">FAQ</nuxt-link>
           <a class="nav-link" href="https://www.supergreenlab.com/discord">Discord Support</a>
-          <span>*: Free shipping except Israël ($60)</span>
         </nav>
       </div>
 

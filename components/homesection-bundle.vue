@@ -23,7 +23,7 @@
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </div>
-      <Price :price='price' :promodiscount='promodiscount' :freeshipping='true' />
+      <Price :price='price' :promodiscount='promodiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -38,7 +38,6 @@
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
-            <!--Free shipping-->
             <OutOfStock v-if='outofstock' />
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
           </div>
@@ -47,7 +46,6 @@
         <div :id='$style.addtocartcontainer' v-if='addtocart && !description'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-            <p>Free shipping*</p>
             <p>Our bundles are shipped discreet</p>
           </div>
         </div>
@@ -60,7 +58,6 @@
         <div :id='$style.addtocart'>
           <OutOfStock v-if='outofstock' />
           <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-          <p>Free shipping*</p>
           <p>Our bundles are shipped discreet</p>
         </div>
       </div>
