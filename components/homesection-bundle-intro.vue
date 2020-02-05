@@ -19,11 +19,9 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Our bundles are'
-                    green='all included'
+      <SectionTitle title='The perfect all-in-one bundle'
+                    green='Fits any space'
                     separator='true'/>
-    </div>
-    <div :id='$style.all'>
     </div>
     <div :id='$style.steps'>
       <div :class='$style.step'>
@@ -35,13 +33,13 @@
       <div :class='$style.step'>
         <Step n=''
               title='Ventilation'
-              text='All our kits <b>come with ventilation</b>, which ensures <b>heat and humidity</b> control, can be used with a <b>carbon filter</b> (not included).'
+              text='<b>Come with ventilation</b>, which ensures <b>heat and humidity</b> control, can be used with a <b>carbon filter</b> (not included).'
               icon='ventilation.svg' />
       </div>
       <div :class='$style.step'>
         <Step n=''
-              title='Sensors'
-              text="Kits are included with an <b>humidity and temperature sensor.</b> Keep an eye on your grow even when <b>you're not at home!</b>"
+              title='Sensor'
+              text="Includes a <b>humidity and temperature sensor.</b> Keep an eye on your grow even when <b>you're not at home!</b>"
               icon='sensor.svg' />
       </div>
       <div :class='$style.step'>
@@ -78,7 +76,7 @@ export default {
   align-items: center
   justify-content: space-around
   flex-wrap: wrap
-  margin: 0pt 0 40pt 0
+  margin: 30pt 0 40pt 0
   max-width: 900pt
 
 .step
@@ -87,16 +85,5 @@ export default {
 
 #title
   width: 100%
-
-#all
-  width: 100%
-  height: 300pt
-  margin-top: 30pt
-  background-image: url('~assets/img/all_products.png')
-  background-size: contain
-  background-repeat: no-repeat
-  background-position: center
-  @media only screen and (max-width: 600px)
-    height: 150pt
 
 </style>

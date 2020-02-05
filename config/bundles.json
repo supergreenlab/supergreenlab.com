@@ -30,35 +30,6 @@
       "tinyleds": 6,
       "ventilation": 1,
       "sensor": 1
-    }, {
-      "ids": {
-        "white": "29107264880688",
-        "black": "29133881770032"
-      },
-      "outofstock": false,
-      "canorder": true,
-      "discount": 7.6,
-      "slug":"mono-box-bundle",
-      "ref":"mono-box-bundle",
-      "title": "MONO BOX BUNDLE",
-      "subtitle": "192 LEDs, 1 controller",
-      "icon": "mono-bundle.jpg",
-      "setupicon": "tvstand.jpg",
-      "description": "The mono box bundle is the easiest way to build a compact seed to harvest stealth grow box out of any furniture you already own. Featuring full spectrum LED grow lights producing dense light with little heat this complete grow box bundle is perfect for both beginners and advanced growers looking to start a hidden grow in their home.<br /><br />Coming with a grow box controller, sensor, ventilation and a companion app for easy setup, control and monitoring of your grow directly from your smartphone. This smart growbox bundle enables you to have complete control of your grow including schedules, ventilation, and light dimming to insure the best growth speed.<br /><br />This bundle can be seamlessly upgraded with more grow lights, sensors and ventilation in order to easily add more grow chambers and side boxes for vegging.",
-      "bullets": [
-        "For <b>compact</b> seed to harvest <b>stealth grow box</b>",
-        "<b>Perfect</b> for both <b>beginners</b> and advanced growers",
-        "<b>Easy setup</b> with the application",
-        "Fit spaces <b>up to 2.5’ x 2.5’</b> (80cm x 80cm)",
-        "<b>all included</b>: Grow lights, power supply, sensor and ventilation"
-      ],
-      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107264880688:1",
-      "price": 279,
-      "bigleds": 1,
-      "smallleds": 0,
-      "tinyleds": 0,
-      "ventilation": 1,
-      "sensor": 1
     }
   ]
 }
