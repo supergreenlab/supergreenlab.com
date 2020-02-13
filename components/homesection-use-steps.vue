@@ -51,6 +51,9 @@
               :vertical=true />
       </div>
     </div>
+    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
+      <b class="hvr-grow">Buy now</b>
+    </nuxt-link>
   </section>
 </template>
 
@@ -60,6 +63,11 @@ import Step from '~/components/homesection-step.vue'
 
 export default {
   components: { SectionTitle, Step, },
+  methods: {
+    ctaClicked() {
+      this.$matomo && this.$matomo.trackEvent('front-page', 'cta', 'buy-now')
+    }
+  },
 }
 </script>
 
@@ -91,7 +99,7 @@ export default {
   display: flex
   align-items: center
   justify-content: space-around
-  margin: 0 40pt
+  margin: 0 40pt 20pt 40pt
   max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column
@@ -100,5 +108,29 @@ export default {
   flex-basis: 25%
   @media only screen and (max-width: 600px)
     margin-bottom: 20pt
+
+#cta
+  display: flex
+  flex-direction: column
+  text-transform: uppercase
+  color: white
+  background-color: #3BB30B
+  padding: 10pt 35pt
+  border-radius: 3pt
+  text-decoration: none
+  text-align: center
+  z-index: 100
+  margin-bottom: 20pt
+  font-size: 1.5em
+  @media only screen and (max-width: 600px)
+    font-size: 1.1em
+
+#cta > small
+  padding-top: 5pt
+  font-weight: 300
+  font-size: 1.1em
+
+#cta > b
+  font-weight: 600
 
 </style>
