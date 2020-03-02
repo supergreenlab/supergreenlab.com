@@ -71,7 +71,6 @@ export default {
     minStr() {
       let { min, unit, n } = this.$props
       min *= (this.isImperial ? unitConv[unit] : 1)
-      min = Math.floor(min)
       if (unit == 'cm2') {
         min *= Math.sqrt(n)
         min = Math.floor(min)
@@ -82,7 +81,7 @@ export default {
       if (this.isImperial) {
         unit = unitMap[unit]
       }
-      return `${min}${unit}`
+      return `${Math.round(min)}${unit}`
     },
     maxStr() {
       let { max, unit, n } = this.$props
