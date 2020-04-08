@@ -74,7 +74,7 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>PRE-ORDER NOTICE:</b> New batch incoming, ETA end of April! <b>Shipping will resume once the COVID-19 situation allows for it. </b><br />
+        <b>PRE-ORDER NOTICE:</b> New batch incoming, ETA end of April! <b>Shipping will resume once the COVID-19 situation allows for it. </b><br /><br />
         <h4>Thanks for your support:)</h4>
       </div>
       <Shipping />
