@@ -107,7 +107,7 @@ export default {
       return priceConv(dols)
     },
     toggleZoom(url) {
-      this.$data.zoomPic = this.$data.n == 0 ? this.$props.icon : this.$props.setupicon
+      this.$data.zoomPic =  [this.$props.icon, this.$props.setupicon, this.$props.setupicon2, this.$props.setupicon3][this.$data.n];
       this.$data.showZoom = !this.$data.showZoom
     },
     next() {
