@@ -29,6 +29,8 @@
       <div :id='$style.iconcontainer'>
         <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`, opacity: n == 0 ? 1 : 0}' @click='toggleZoom'></div>
         <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon}`)})`, opacity: n == 1 ? 1 : 0}' @click='toggleZoom'></div>
+        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon2}`)})`, opacity: n == 2 ? 1 : 0}' @click='toggleZoom'></div>
+        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon3}`)})`, opacity: n == 3 ? 1 : 0}' @click='toggleZoom'></div>
         <div :id='$style.leftarrow' @click='previous'></div>
         <div :id='$style.rightarrow' @click='next'></div>
       </div>
@@ -78,7 +80,7 @@ import OutOfStock from '~/components/outofstock.vue'
 
 export default {
   components: {Items, Price, OutOfStock,},
-  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
+  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
   data() {
     return {
       showZoom: false,
@@ -88,7 +90,7 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
-      this.$data.n = (this.$data.n+1) % 2
+      this.$data.n = (this.$data.n+1) % 4
     }, 3000)
   },
   destroyed() {
@@ -109,13 +111,13 @@ export default {
       this.$data.showZoom = !this.$data.showZoom
     },
     next() {
-      this.$data.n = (this.$data.n+1) % 2
+      this.$data.n = (this.$data.n+1) % 4
       clearInterval(this.interval)
       this.interval = null
     },
     previous() {
       this.$data.n = (this.$data.n-1)
-      if (this.$data.n < 0) this.$data.n = 1
+      if (this.$data.n < 0) this.$data.n = 3
       clearInterval(this.interval)
       this.interval = null
     },

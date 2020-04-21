@@ -29,10 +29,6 @@ export default {
   */
   css: [
     '@/assets/css/global.css',
-    '@/assets/css/froala_blocks.min.css',
-    '@/assets/css/froala_editor.pkgd.min.css',
-    '@/assets/css/bootstrap.min.css',
-    '@/assets/css/froala_style.min.css'
   ],
 
   /*
