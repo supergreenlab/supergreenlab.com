@@ -73,13 +73,10 @@
       </div>
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
-      <!--<div :id='$style.shipdisclaimer'>
-        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 1 to 2 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
-        <b>NOTE:</b> We'll be off during holiday season, starting December 13th, shipping will resume on January 6th 2020<br /><br />
-        As a thank you for supporting us here's a gift for you:<br />
-        <b>SGL_HAPPY_HOLIDAYS</b><br /><br />
+      <div :id='$style.shipdisclaimer'>
+        <b>PRE-ORDER NOTICE:</b> New batch incoming, ETA end of April! <b>Shipping will resume once the COVID-19 situation allows for it. </b><br /><br />
         <h4>Thanks for your support:)</h4>
-      </div>-->
+      </div>
       <Shipping />
       <div :id='$style.buy'>
         <div :id='$style.promocode'>
