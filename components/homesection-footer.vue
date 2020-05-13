@@ -94,6 +94,6 @@ export default {
   height: 20pt
   margin: 5pt
 
-  a:hover 
-    color: #19ab00
+a:hover 
+  color: #19ab00
 </style>

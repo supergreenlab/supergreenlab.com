@@ -40,7 +40,7 @@
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
-            <OutOfStock v-if='outofstock' />
+            <!--<OutOfStock v-if='outofstock' />-->
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
@@ -58,7 +58,7 @@
       <div v-html='description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <div :id='$style.addtocart'>
-          <OutOfStock v-if='outofstock' />
+          <!--<OutOfStock v-if='outofstock' />-->
           <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
           <p>Our bundles are shipped discreet</p>
         </div>
