@@ -148,6 +148,120 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "how-to-setup-controller",
+      "title": "HOW TO",
+      "subtitle": "SET UP CONTROLLER",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INTRODUCTION",
+          "video": "/guide-setup-controller/1.mp4",
+          "text": [
+            "Welcome to the <b>SGL grow diaries/assistant app</b> :)",
+            "Follow along this guide to get started with the SGL app and initial set up.",
+            "Because we are working on creating the ultimate app for growers we need your help to understand how the app is used; thank you for sharing your experience with us.",
+            "Your data will not be shared with any 3rd parties."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "MEET TOWELIE",
+          "video": "/guide-setup-controller/2.mp4",
+          "text": [
+            "<b>Towelie is your personal grow assistant.</b>",
+            "Teaching you how to grow and helping you with reminders, tips&tricks, etc.",
+            "Here he offers the SGL growing checklist - recommended products for succesful growing."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "ADD YOUR FIRST PLANT",
+          "video": "/guide-setup-controller/3.mp4",
+          "text": [
+            "Let Towelie guide you to adding your first plant.",
+            "<b>What strain are you going to grow?</b>",
+            "Type in the name of your plant and press 'create plant'.",
+            "Planning on growing more than 1 plant of the same strain in the same box? Uncheck 'Single plant grow diary'."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "CREATE YOUR LAB",
+          "video": "/guide-setup-controller/4.mp4",
+          "text": [
+            "<b>The Lab</b> is the place your plant(s) will grow in; give it a inspiring name and press next :)"
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "SET UP YOUR CONTROLLER",
+          "video": "/guide-setup-controller/5.mp4",
+          "text": [
+            "recommended for Android - optional for iOS.",
+            "<b>Switch off mobile data.</b> Because the controller isn't connected to the Internet yet some Android phones try to bypass via mobile data."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "CONNECT YOUR CONTROLLER",
+          "video": "/guide-setup-controller/6.mp4",
+          "text": [
+            "Press 'Connect Controller' and let the app look for and connect to the controller automatically :)"
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "NAME YOUR CONTROLLER",
+          "video": "/guide-setup-controller/7.mp4",
+          "text": [
+            "Name your controller; easily know which controller manages which lab and also allows you to directly connect to it if you were to reinstall the app."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "TEST LEDS",
+          "video": "/guide-setup-controller/8.mp4",
+          "text": [
+            "Test and identify which LED is connected to which channel."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "CONNECT TO YOUR HOME WIFI",
+          "video": "/guide-setup-controller/9.mp4",
+          "text": [
+            "Type in your SSID (WIFI name), password, and press 'Next'.",
+            "The controller only connects to 2.4GHz wifi - not 5GHz"
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "SELECT LEDS",
+          "video": "/guide-setup-controller/10.mp4",
+          "text": [
+            "Select which LED channels are in your lab.",
+            "Unasigned LED channels can be assigned later to another lab."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "SET UP COMPLETE!",
+          "video": "/guide-setup-controller/11.mp4",
+          "text": [
+            "<b>Good job!</b> You're all set up and ready to start growing :)",
+            "Towelie will assist you moving forward.",
+            "Need extra help setting everything up? Hit us up on Discord "
+          ]
+        }
+      ]
     }
   ]
 }
