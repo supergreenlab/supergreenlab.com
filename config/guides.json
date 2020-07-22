@@ -262,6 +262,74 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "how-to-germinate-seed",
+      "title": "GROWING 101",
+      "subtitle": "GERMINATION",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INTRODUCTION",
+          "video": "/guide-germination/x.mp4",
+          "text": [
+            "Germination is the first step when starting from seed :)",
+            "This guide will teach you how to successfuly germinate your seeds with a battle tested method; the shot glass."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "",
+          "video": "/guide-germination/x.mp4",
+          "text": [
+            "Seeds are made to survive through winter and sprout when 3 conditions are met:",
+            "Water: activates the seed’s growth hormones while making the shell easier to break through.",
+            "Temperature: signals the plant it is safe to sprout, winter is over",
+            "Oxygen: determines how deep the seed is, low oxygen would mean it’s too deep and won’t be able to reach the surface in time."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 1",
+          "video": "/guide-germination/1.mp4",
+          "text": [
+            "Fill a small glass with luke warm bwater (75-80°F / 23-27°C). Tap water is fine, as long as the pH is not too high (7.3 pH is good)."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 2",
+          "video": "/guide-germination/2.mp4",
+          "text": [
+            "Place your seed(s) on the surface, they should float.",
+            "Leave nature do it's thing, avoid touching them ;)"
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 3",
+          "video": "/guide-germination/3.mp4",
+          "text": [
+            "Place the glass in a completely dark place, a cupboard works well.",
+            "The process usually takes between 24-72hours.",
+            "Don't forget to label your glass if you are germinating different strains at the same time."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 4",
+          "video": "/guide-germination/4.mp4",
+          "text": [
+            "The taproot is the main root that will sprout from the seed, once it reaches 1-2cm (1/2 in) it's ready to be sown!"
+          ]
+        }
+      ]
     }
   ]
 }
