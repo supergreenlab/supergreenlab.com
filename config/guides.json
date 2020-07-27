@@ -262,6 +262,142 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "how-to-germinate-seed",
+      "title": "GROWING 101",
+      "subtitle": "GERMINATION",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INTRODUCTION",
+          "video": "/guide-germination/0.mp4",
+          "text": [
+            "Germination is the first step when starting from seed :)",
+            "This guide will teach you how to successfuly germinate your seeds with a battle tested method; the shot glass."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "WHY SEEDS GERMINATE",
+          "video": "/guide-germination/germination-secrets.mp4",
+          "text": [
+            "Seeds are made to survive through winter and sprout when 3 conditions are met:",
+            "Water: activates the seed’s growth hormones while making the shell easier to break through.",
+            "Temperature: signals the plant it is safe to sprout, winter is over",
+            "Oxygen: determines how deep the seed is, low oxygen would mean it’s too deep and won’t be able to reach the surface in time."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 1",
+          "video": "/guide-germination/1.mp4",
+          "text": [
+            "Fill a small glass with luke warm water (75-80°F / 23-27°C). Tap water is fine, as long as the pH is not too high (7.3 pH is good)."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 2",
+          "video": "/guide-germination/2.mp4",
+          "text": [
+            "Place your seed(s) on the surface, they should float.",
+            "Leave nature do it's thing, avoid touching them ;)"
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 3",
+          "video": "/guide-germination/3.mp4",
+          "text": [
+            "Place the glass in a completely dark place, a cupboard works well.",
+            "The process usually takes between 24-72hours.",
+            "Don't forget to label your glass if you are germinating different strains at the same time."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 4",
+          "video": "/guide-germination/4.mp4",
+          "text": [
+            "The taproot is the main root that will sprout from the seed, once it reaches 1-2cm (1/2 in) it's ready to be sown!"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "how-to-sow-seed",
+      "title": "GROWING 101",
+      "subtitle": "SOWING",
+      "requires": [
+        {
+          "name": "Screws",
+          "icon": ""
+        }
+      ],
+      "sections": [
+        {
+          "slug": "intro",
+          "title": "INTRODUCTION",
+          "video": "/guide-sowing/intro.mp4",
+          "text": [
+            "Once the seed has germinated it's ready to be sown into your soil.",
+            "Follow along this guide to learn how to properly sow your seed for it to get a good start."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 1",
+          "video": "/guide-sowing/clay-balls.mp4",
+          "text": [
+            "Cover the bottom of the pot with 1 layer of clay pebbles.",
+            "Rinse them to remove clay dust and debris.",
+            "Check that the pot drains well."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 2",
+          "video": "/guide-sowing/soil.mp4",
+          "text": [
+            "Mix your soil with some water to get it humid",
+            "You want it to stay soil-like not turn to mud.",
+            "Fill your pot and tamp the soil.",
+            "Leave a little space before reaching the top of the pot, that will help prevent water from overflowing when watering."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 3",
+          "video": "/guide-sowing/hole.mp4",
+          "text": [
+            "Use your finger or a pen to make a hole in the soil 1/2in - 1.5cm deep (about 1 fingernail)."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 4",
+          "video": "/guide-sowing/sow.mp4",
+          "text": [
+            "Carfully place the seed with the root pointing downwards and the top of the shell barely covered at the surface."
+          ]
+        },
+        {
+          "slug": "intro",
+          "title": "STEP 5",
+          "video": "/guide-sowing/sprout.mp4",
+          "text": [
+            "Kepp the soil moist and wait a couple of days for your seed to sprout :)",
+            "Seedlings thrive at high RH >60% - if your RH is low; a humidity dome could help out until it sprouts. Use a clear plastic cup or the bottom of a plastic bottle."
+          ]
+        }
+      ]
     }
   ]
 }
