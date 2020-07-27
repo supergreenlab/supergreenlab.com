@@ -23,12 +23,14 @@
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </div>
-      <Price :price='price' :promodiscount='promodiscount' :freeshipping='true' />
+      <Price :price='price' :promodiscount='promodiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
         <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`, opacity: n == 0 ? 1 : 0}' @click='toggleZoom'></div>
         <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon}`)})`, opacity: n == 1 ? 1 : 0}' @click='toggleZoom'></div>
+        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon2}`)})`, opacity: n == 2 ? 1 : 0}' @click='toggleZoom'></div>
+        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon3}`)})`, opacity: n == 3 ? 1 : 0}' @click='toggleZoom'></div>
         <div :id='$style.leftarrow' @click='previous'></div>
         <div :id='$style.rightarrow' @click='next'></div>
       </div>
@@ -38,8 +40,7 @@
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
-            <!--Free shipping-->
-            <OutOfStock v-if='outofstock' />
+            <!--<OutOfStock v-if='outofstock' />-->
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
@@ -47,7 +48,6 @@
         <div :id='$style.addtocartcontainer' v-if='addtocart && !description'>
           <div :id='$style.addtocart'>
             <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-            <p>Free shipping</p>
             <p>Our bundles are shipped discreet</p>
           </div>
         </div>
@@ -58,9 +58,8 @@
       <div v-html='description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <div :id='$style.addtocart'>
-          <OutOfStock v-if='outofstock' />
+          <!--<OutOfStock v-if='outofstock' />-->
           <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-          <p>Free shipping</p>
           <p>Our bundles are shipped discreet</p>
         </div>
       </div>
@@ -81,7 +80,7 @@ import OutOfStock from '~/components/outofstock.vue'
 
 export default {
   components: {Items, Price, OutOfStock,},
-  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
+  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
   data() {
     return {
       showZoom: false,
@@ -91,7 +90,7 @@ export default {
   },
   created() {
     this.interval = setInterval(() => {
-      this.$data.n = (this.$data.n+1) % 2
+      this.$data.n = (this.$data.n+1) % 4
     }, 3000)
   },
   destroyed() {
@@ -108,17 +107,17 @@ export default {
       return priceConv(dols)
     },
     toggleZoom(url) {
-      this.$data.zoomPic = this.$data.n == 0 ? this.$props.icon : this.$props.setupicon
+      this.$data.zoomPic =  [this.$props.icon, this.$props.setupicon, this.$props.setupicon2, this.$props.setupicon3][this.$data.n];
       this.$data.showZoom = !this.$data.showZoom
     },
     next() {
-      this.$data.n = (this.$data.n+1) % 2
+      this.$data.n = (this.$data.n+1) % 4
       clearInterval(this.interval)
       this.interval = null
     },
     previous() {
       this.$data.n = (this.$data.n-1)
-      if (this.$data.n < 0) this.$data.n = 1
+      if (this.$data.n < 0) this.$data.n = 3
       clearInterval(this.interval)
       this.interval = null
     },

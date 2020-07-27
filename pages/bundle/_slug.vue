@@ -50,7 +50,7 @@
       <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
       <div :class='$style.price'>
-        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='true' />
+        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='false' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
@@ -74,23 +74,31 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>NOTE:</b> we're trying to keep the flow as smooth as possible, but due to us being at an early stage, and growing demand, <b>we can experience delays varying from 1 to 2 weeks before shipping.</b> But please still place your order, so we can serve you first and accelerate the flow!<br />
+        <b>OUT OF STOCK NOTICE:</b> manufacturing of new Ninja bundles in progress (5-8 weeks).<br />
+        As the bundles come together <b>we will have a more precise shipping estimate.</b><br /><br />
+        <b>Want to be updated on the restock status?</b><br />
+        Fill out the form below and we'll let you know when we're ready for pre-orders :)<br /><br />
         <h4>Thanks for your support:)</h4>
       </div>
-      <Shipping />
-      <div :id='$style.buy'>
-        <div :id='$style.promocode'>
-          <OutOfStock v-if='bundle.outofstock' />
-          <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-          <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
-          <div :class='$style.block'>
-            <img src='~assets/img/powered-by-stripe.png' width="300"><br />
-          </div>
-          <!--<div :class='$style.block'>
-            <img src='~assets/img/crypto.png'>
-          </div>-->
-          <div :class='$style.block'>
-            <img src='~assets/img/paypal.png'>
+      <div :id='$style.preorderoverlay' v-if='bundle.outofstock'>
+        <div class="typeform-widget" data-url="https://supergreenlab.typeform.com/to/i0dIP6" data-transparency="100" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+      </div>
+      <div v-else>
+        <Shipping />
+        <div :id='$style.buy'>
+          <div :id='$style.promocode'>
+            <!--<OutOfStock v-if='bundle.outofstock' />-->
+            <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
+            <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
+            <div :class='$style.block'>
+              <img src='~assets/img/powered-by-stripe.png' width="300"><br />
+            </div>
+            <!--<div :class='$style.block'>
+              <img src='~assets/img/crypto.png'>
+            </div>-->
+            <div :class='$style.block'>
+              <img src='~assets/img/paypal.png'>
+            </div>
           </div>
         </div>
       </div>
@@ -145,7 +153,7 @@ export default {
   },
   computed: {
     valid() {
-      return !this.bundle.outofstock && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+      return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
     },
     bundle() {
       const { slug } = this.$route.params
@@ -252,6 +260,9 @@ export default {
 
 #promocode
   text-align: left
+
+#preorderoverlay
+  background-color: white
 
 #loading
   display: flex

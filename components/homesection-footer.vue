@@ -23,10 +23,7 @@
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-sm-left">
         <h3><strong>Products</strong></h3>
         <nav class="nav flex-column">
-          <nuxt-link class="nav-link" to="/bundle/mono-box-bundle">Mono Box Bundle</nuxt-link>
-          <nuxt-link class="nav-link" to="/bundle/multi-box-bundle">Multi Box Bundle</nuxt-link>
-          <nuxt-link class="nav-link" to="/bundle/closet-box-bundle">Closet Bundle</nuxt-link>
-          <nuxt-link class="nav-link" to="/bundle/micro-box-bundle">Microgrow Bundle</nuxt-link>
+          <nuxt-link class="nav-link" to="/bundle/micro-box-bundle">Ninja Bundle</nuxt-link>
         </nav>
       </div>
 
@@ -97,6 +94,6 @@ export default {
   height: 20pt
   margin: 5pt
 
-  a:hover 
-    color: #19ab00
+a:hover 
+  color: #19ab00
 </style>

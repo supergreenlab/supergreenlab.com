@@ -38,20 +38,12 @@
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
-      <div :id='$style.title'>
-        <SectionTitle title='Welcome to the shop'
-            green='Checkout our bundles'
-            separator='true'/>
-      </div>
-      <div :id='$style.shop'></div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles'>
           <div :id='b.ref'></div>
           <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
         </div>
       </div>
-      <div :class='$style.space'></div>
-      <SpareParts :promodiscount='promo.discount' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>

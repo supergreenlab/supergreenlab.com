@@ -1,126 +1,12 @@
 {
   "leds": [
     {
-      "slug": "192",
-      "ids": {
-        "white": "22937070895152",
-        "black": "22990585954352"
-      },
-      "outofstock": false,
-      "name": "SGB 192",
-      "url": "https://shop.supergreenlab.com/collections/grow-lights/products/192-301b",
-      "price": 129,
-      "main": true,
-      "power": "external",
-      "icons": {
-        "white": "192-side.jpg",
-        "black": "192-black.png"
-      },
-      "bullets": [
-        "<b>Easy installation</b>",
-        "<b>192</b> of the best LEDs on the market: <b>Samsung lm301b</b>",
-        "Huge surface for <b>better heat dissipation</b> and <b>even surface coverage</b>",
-        "full spectrum: <b>fits veg and bloom</b>"
-      ],
-      "width": 35,
-      "height": 25,
-      "keymetrics": {
-        "distance": {
-          "unit": "cm",
-          "min": 20,
-          "max": 60
-        },
-        "power": {
-          "unit": "w",
-          "min": 30,
-          "max": 120
-        },
-        "coverage": {
-          "unit": "cm2",
-          "min": 30,
-          "max": 80
-        },
-        "par": {
-          "icon": "PAR-192-icon.png",
-          "zoom": "PAR-192.png"
-        },
-        "yield": {
-          "unit": "g",
-          "min": 30,
-          "max": 150
-        },
-        "plants": {
-          "unit" :"",
-          "min": 1,
-          "max": 8
-        }
-      }
-    },
-    {
-      "slug": "144",
-      "ids": {
-        "white": "22937065586736",
-        "black": "22990590410800"
-      },
-      "outofstock": false,
-      "name": "SGB 144",
-      "url": "https://shop.supergreenlab.com/collections/grow-lights/products/sgb-144-301b",
-      "price": 99,
-      "main": true,
-      "power": "external",
-      "icons": {
-        "white": "144-side.jpg",
-        "black": "144-black.png"
-      },
-      "bullets": [
-        "<b>Easy installation</b>",
-        "<b>144</b> of the best LEDs on the market: <b>Samsung lm301b</b>",
-        "Huge surface for <b>better heat dissipation</b> and <b>even surface coverage</b>",
-        "full spectrum: <b>fits veg and bloom</b>"
-      ],
-      "width": 25,
-      "height": 23,
-      "max": 4,
-      "hidemax": true,
-      "keymetrics": {
-        "distance": {
-          "unit": "cm",
-          "min": 15,
-          "max": 45
-        },
-        "power": {
-          "unit": "w",
-          "min": 20,
-          "max": 80
-        },
-        "coverage": {
-          "unit": "cm2",
-          "min": 30,
-          "max": 60
-        },
-        "par": {
-          "icon": "PAR-144-icon.png",
-          "zoom": "PAR-144.png"
-        },
-        "yield": {
-          "unit": "g",
-          "min": 30,
-          "max": 80
-        },
-        "plants": {
-          "unit" :"",
-          "min": 1,
-          "max": 4
-        }
-      }
-    },
-    {
       "slug": "36",
       "ids": {
         "white": "22937067421744",
         "black": "23014573146160"
       },
-      "outofstock": true,
+      "outofstock": false,
       "name": "SGB 36",
       "url": "https://shop.supergreenlab.com/collections/grow-lights/products/sgb-36-301b",
       "price": 35.99,
@@ -131,6 +17,7 @@
       },
       "bullets": [
         "<b>Easy installation</b>",
+        "Can adapt to any space, no matter what <b>size or configuration</b>.",
         "<b>36</b> of the best LEDs on the market: <b>Samsung lm301b</b>",
         "Huge surface for <b>better heat dissipation</b> and <b>even surface coverage</b>",
         "full spectrum: <b>fits veg and bloom</b>"
@@ -147,7 +34,7 @@
         "power": {
           "unit": "w",
           "min": 5,
-          "max": 12
+          "max": 15
         },
         "coverage": {
           "unit": "cm2",
@@ -160,8 +47,8 @@
         },
         "plants": {
           "unit" :"",
-          "min": 1,
-          "max": 3
+          "min": 0.16,
+          "max": 1.3
         },
         "yield": {
           "unit": "g",
