@@ -63,6 +63,7 @@ export default {
   margin-top: 5pt
   color: #5E5E5E
   font-size: 1.1em
+  text-align: center
   @media only screen and (max-width: 600px)
     font-size: 1.3em
 
