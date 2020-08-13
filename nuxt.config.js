@@ -84,7 +84,9 @@ export default {
       '/bundle/micro-box-bundle',
       '/guide/how-to-install-a-led-panel',
       '/guide/how-to-setup-with-the-app',
-      '/guide/how-to-setup-controller'
+      '/guide/how-to-setup-controller',
+      '/guide/how-to-germinate-seed',
+      '/guide/how-to-sow-seed'
     ]
   },
 
