@@ -104,6 +104,12 @@
       <!-- Alerts & Reminders to prevent disasters screen -->
 
     </div>
+    <div :class='$style.stores'>
+      Download <b>now</b>:<br />
+      <a href='https://play.google.com/store/apps/details?id=com.supergreenlab.app2' target='_blank'><img src='~/assets/img/playstore.png' /></a>
+      <a href='https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318' target='_blank'><img src='~/assets/img/appstore.png' /></a>
+    </div>
+
   </section>
 </template>
 
