@@ -74,13 +74,14 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>OUT OF STOCK NOTICE:</b> manufacturing of new Ninja bundles in progress (5-8 weeks).<br />
-        As the bundles come together <b>we will have a more precise shipping estimate.</b><br /><br />
-        <b>Want to be updated on the restock status?</b><br />
-        Fill out the form below and we'll let you know when we're ready for pre-orders :)<br /><br />
+        <b>PRE-PRE-ORDER OPENNED</b><br /><br />
+        Current shipping estimate: <b>late-September/early-October</b><br /><br />
+        We've received very supportive and encouraging messages form many of you still wanting to pre-order even if there were to be <b>additional delay</b>.
+        After much consideration, <b>we decided to accept "pre-pre-orders"</b> for those that understand that <b>late-September/early-October ship date is an estimate subject to change</b>.<br />
+        We totally understand if you prefer to wait until we have something more precise and we'll keep you updated as soon as we have more info: <a v-on:click='togglePreOrderForm' href='javascript:void(0)'>Add youself to the waiting list instead</a>
         <h4>Thanks for your support:)</h4>
       </div>
-      <div :id='$style.preorderoverlay' v-if='bundle.outofstock'>
+      <div :id='$style.preorderoverlay' v-if='bundle.outofstock || showPreOrderForm'>
         <div class="typeform-widget" data-url="https://supergreenlab.typeform.com/to/i0dIP6" data-transparency="100" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
       </div>
       <div v-else>
@@ -145,7 +146,8 @@ export default {
   components: {Header, Guide, Bundle, Title, Price, Item, Shipping, TextInput, Loading, Footer, OutOfStock,},
   data() {
     return {
-      loading: false
+      loading: false,
+      showPreOrderForm: false,
     }
   },
   destroyed() {
@@ -208,6 +210,9 @@ export default {
     },
     priceConv(dols) {
       return priceConv(dols)
+    },
+    togglePreOrderForm() {
+      this.$data.showPreOrderForm = !this.$data.showPreOrderForm
     },
   },
 }
@@ -331,6 +336,15 @@ export default {
   text-align: center
 
 #shipdisclaimer > b
+  color: #3BB30B
+
+#shipdisclaimer > h4
+  text-align: center;
+
+#shipdisclaimer > a
+  color: #717171
+
+#shipdisclaimer > a:hover
   color: #3BB30B
 
 </style>

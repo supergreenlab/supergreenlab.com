@@ -5,8 +5,8 @@
         "white": "29107273826352",
         "black": "29133894352944"
       },
-      "outofstock": true,
-      "canorder": false,
+      "outofstock": false,
+      "canorder": true,
       "discount": 15,
       "slug":"micro-box-bundle",
       "ref":"micro-grow-bundle",
