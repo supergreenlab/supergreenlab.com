@@ -44,11 +44,11 @@
           <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
         </div>
       </div>
-      <div :class='$style.space'></div>
-      <App ref='app' />
-      <div :class='$style.space'></div>
-      <Testimonials ref='testimonials' />
     </div>
+    <div :class='$style.space'></div>
+    <App ref='app' />
+    <div :class='$style.space'></div>
+    <Testimonials ref='testimonials' />
     <Footer />
     <transition name="popup">
       <Promocode v-if='showPopup' :onClose='closePopup' />
