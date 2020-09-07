@@ -38,14 +38,14 @@
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
-      <App ref='app' />
-      <div :class='$style.space'></div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles'>
           <div :id='b.ref'></div>
           <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
         </div>
       </div>
+      <div :class='$style.space'></div>
+      <App ref='app' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>

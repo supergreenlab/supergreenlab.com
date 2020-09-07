@@ -78,7 +78,8 @@
         Current shipping estimate: <b>late-September/early-October</b><br /><br />
         We've received very supportive and encouraging messages form many of you still wanting to pre-order even if there were to be <b>additional delay</b>.
         After much consideration, <b>we decided to accept "pre-pre-orders"</b> for those that understand that <b>late-September/early-October ship date is an estimate subject to change</b>.<br />
-        We totally understand if you prefer to wait until we have something more precise and we'll keep you updated as soon as we have more info: <a v-on:click='togglePreOrderForm' href='javascript:void(0)'>Add youself to the waiting list instead</a>
+        We totally understand if you prefer to wait until we have something more precise and we'll keep you updated as soon as we have more info: <a v-on:click='togglePreOrderForm' href='javascript:void(0)'>Add youself to the waiting list instead</a><br /><br />
+        <b>Update 05/20/2020</b>: New prototype is here and <b>everything is working!</b> now waiting for manufacturer lead time, stay tuned.</b><br />
         <h4>Thanks for your support:)</h4>
       </div>
       <div :id='$style.preorderoverlay' v-if='bundle.outofstock || showPreOrderForm'>
