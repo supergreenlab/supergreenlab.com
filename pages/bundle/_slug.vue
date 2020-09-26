@@ -74,7 +74,7 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>PRE-PRE-ORDER OPENNED</b><br /><br />
+        <b>PRE-PRE-ORDER OPENED</b><br /><br />
         Current shipping estimate: <b>late-September/early-October</b><br /><br />
         We've received very supportive and encouraging messages form many of you still wanting to pre-order even if there were to be <b>additional delay</b>.
         After much consideration, <b>we decided to accept "pre-pre-orders"</b> for those that understand that <b>late-September/early-October ship date is an estimate subject to change</b>.<br />
