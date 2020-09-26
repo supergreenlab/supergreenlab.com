@@ -38,7 +38,7 @@ export default {
   components: {Header,},
   mounted() {
     setTimeout(() => {
-      const { id } = this.$route.params
+      const { id } = this.$route.query
       document.location.href = `sglapp://supergreenlab.com/public/plant?id=${id}`
     }, 1000)
   },
