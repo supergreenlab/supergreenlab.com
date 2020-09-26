@@ -25,7 +25,11 @@
     </div>
     <div :id='$style.body'>
       <div>
-        <h4>Redirecting to the public plant..</h4>
+        <div :class='$style.button'><a :href='`sglapp://supergreenlab.com/public/plant?id=${$route.query.id}`'>Open public plant in the app</a></div>
+      </div>
+      <div>
+        Don't have the app installed yet?<br />
+        <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
       </div>
     </div>
   </section>
@@ -36,12 +40,6 @@ import Header from '~/components/header.vue'
 
 export default {
   components: {Header,},
-  mounted() {
-    setTimeout(() => {
-      const { id } = this.$route.query
-      document.location.href = `sglapp://supergreenlab.com/public/plant?id=${id}`
-    }, 1000)
-  },
 }
 </script>
 
@@ -61,6 +59,7 @@ export default {
 
 #body
   display: flex
+  flex-direction: column
   flex: 1
   top: 0
   left: 0
@@ -70,5 +69,19 @@ export default {
   align-items: center
   justify-content: center
   text-align: center
+
+.button:nth-of-type(1)
+  margin-bottom: 30pt
+
+.button
+  background-color: #3bb30b
+  padding: 10pt 15pt
+  border-radius: 2pt
+
+.button > a
+  color: white
+  text-decoration: none
+  font-size: 1.1em
+  
 
 </style>
