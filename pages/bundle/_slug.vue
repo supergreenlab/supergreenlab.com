@@ -74,12 +74,10 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>PRE-PRE-ORDER OPENED</b><br /><br />
-        Current shipping estimate: <b>late-September/early-October</b><br /><br />
-        We've received very supportive and encouraging messages form many of you still wanting to pre-order even if there were to be <b>additional delay</b>.
-        After much consideration, <b>we decided to accept "pre-pre-orders"</b> for those that understand that <b>late-September/early-October ship date is an estimate subject to change</b>.<br />
-        We totally understand if you prefer to wait until we have something more precise and we'll keep you updated as soon as we have more info: <a v-on:click='togglePreOrderForm' href='javascript:void(0)'>Add youself to the waiting list instead</a><br /><br />
-        <b>Update 05/20/2020</b>: New prototype is here and <b>everything is working!</b> now waiting for manufacturer lead time, stay tuned.</b><br />
+        <b>PRE-ORDER OPEN!</b><br /><br />
+        We'll start shipping the pre-pre-orders on Oct 21st, then pre-orders will follow end of October. We should be able to do 24h shipping by the end of November.<br /><br />
+        <b>Expect delivery by end-October/early-November if you order now.</b><br /><br />
+        To be notified when we start doing 24hr shipping: <a v-on:click='togglePreOrderForm' href='javascript:void(0)'>add youself to the waiting list instead</a><br /><br />
         <h4>Thanks for your support:)</h4>
       </div>
       <div :id='$style.preorderoverlay' v-if='bundle.outofstock || showPreOrderForm'>

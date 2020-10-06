@@ -27,6 +27,8 @@
       <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
       <div :class='$style.space'></div>
+      <div :class='$style.space'></div>
+      <PreOrder ref='preorder' />
       <div id='use-steps'></div>
       <UseSteps ref='use-steps' />
       <div :class='$style.space'></div>
@@ -59,6 +61,7 @@
 <script>
 import Header from '~/components/header.vue'
 import Top from '~/components/homesection-top.vue'
+import PreOrder from '~/components/homesection-preorder.vue'
 import UseSteps from '~/components/homesection-use-steps.vue'
 import Stealth from '~/components/homesection-stealth-build.vue'
 import Testimonials from '~/components/homesection-testimonials.vue'
@@ -76,7 +79,7 @@ import Promocode from '~/components/overlay-promocode.vue'
 import { bundles, } from '~/config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, UseSteps, Stealth, Testimonials, BundleIntro, App, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, App, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,
