@@ -75,7 +75,8 @@
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
         <b>PRE-ORDER OPEN!</b><br /><br />
-        We'll start shipping the pre-pre-orders on Oct 21st, then pre-orders will follow end of October. We should be able to do 24h shipping by the end of November.<br /><br />
+        We'll start shipping the pre-pre-orders on October 21st, then pre-orders will follow end of October.<br />
+        We should be able to do 24h shipping by the end of November.<br /><br />
         <b>Expect delivery by end-October/early-November if you order now.</b><br /><br />
         To be notified when we start doing 24hr shipping: <a v-on:click='togglePreOrderForm' href='javascript:void(0)'>add youself to the waiting list instead</a><br /><br />
         <h4>Thanks for your support:)</h4>
