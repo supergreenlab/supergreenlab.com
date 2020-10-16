@@ -34,6 +34,8 @@
       <div :class='$style.space'></div>
       <ContinuousSupply ref='continuous_supply' />
       <div :class='$style.space'></div>
+      <App ref='app' />
+      <div :class='$style.space'></div>
       <Instagram ref='instagram' />
       <div :class='$style.space'></div>
       <Youtube ref='youtube' />
@@ -48,8 +50,6 @@
           <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
         </div>
       </div>
-      <div :class='$style.space'></div>
-      <App ref='app' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
