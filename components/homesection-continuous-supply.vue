@@ -19,56 +19,40 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='How it works'
-                    green='In just 3 steps'
-                    smalltitle='(like.. around 3 steps)'
+      <SectionTitle title='Our hardware is'
+                    green="The first continuous supply setup"
+                    title2='Harvest twice as fast'
+                    smalltitle="Don't wait until harvest to start the next plant!"
                     separator='true'/>
     </div>
-    <!--<video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source src="/intro.mp4" type="video/mp4">
+    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
+      <source src="/continuous_supply.mp4" type="video/mp4">
+      <source src="/continuous_supply.ogg" type="video/ogg">
+      <source src="/continuous_supply.webm" type="video/webm">
       Your browser does not support the video tag.
-    </video> -->
-    <div :id='$style.steps'>
-      <div :class='$style.step'>
-        <Step n=1
-              title='Get any furniture'
-              text='<b>Any size and shape</b>, our bundles are designed to adapt to <b>all types furniture.</b>'
-              icon='furniture.svg'
-              :vertical=true />
-      </div>
-      <div :class='$style.step'>
-        <Step n=2
-              title='Install your bundle'
-              text='Easy to install and configure. Just a few steps and your <b>LED lights</b> are ready!'
-              icon='screw.svg'
-              :vertical=true />
-      </div>
-      <div :class='$style.step'>
-        <Step n=3
-              title='Start growing'
-              text='24/7 support, join the evergrowing community!</b>'
-              icon='plant.svg'
-              :vertical=true />
-      </div>
+    </video>
+    <div :id='$style.text'>
+      <b>You don't have to wait until harvest</b> to start the next plant! <b>Harvest twice as fast</b> with continuous supply.<br />
+      The Controller can control <b>up to 3 spaces</b> with different schedules to do <b>vegging and blooming at the same time</b>.
     </div>
-    <!--<nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
+    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
       <b class="hvr-grow">Buy now</b>
-    </nuxt-link>-->
+    </nuxt-link>
   </section>
 </template>
 
 <script>
 import SectionTitle from '~/components/sectiontitle.vue'
-import Step from '~/components/homesection-step.vue'
 
 export default {
-  components: { SectionTitle, Step, },
+  components: { SectionTitle, },
   methods: {
     ctaClicked() {
-      this.$matomo && this.$matomo.trackEvent('front-page', 'cta', 'buy-now')
+      this.$matomo && this.$matomo.trackEvent('front-page', 'cta-continuous', 'buy-now')
     }
   },
 }
+
 </script>
 
 <style module lang=stylus>
@@ -82,11 +66,10 @@ export default {
 
 #title
   width: 100%
-  margin: 0pt 0 50pt 0
 
 #video
   display: block
-  margin: 0 0 40pt 0
+  margin: 20pt 0 40pt 0
   height: 100%
   max-height: 600px
   max-width: 800px
@@ -95,19 +78,12 @@ export default {
   @media only screen and (min-width: 600pt)
     box-shadow: -1px 1px 5px #888
 
-#steps
-  display: flex
-  align-items: center
-  justify-content: space-around
-  margin: 0 40pt 20pt 40pt
-  max-width: 900pt
-  @media only screen and (max-width: 600px)
-    flex-direction: column
+#text
+  color: #515151
+  text-align: center
 
-.step
-  flex-basis: 25%
-  @media only screen and (max-width: 600px)
-    margin-bottom: 20pt
+#text > b
+  color: #3bb30b
 
 #cta
   display: flex
@@ -120,6 +96,7 @@ export default {
   text-decoration: none
   text-align: center
   z-index: 100
+  margin-top: 20pt
   margin-bottom: 20pt
   font-size: 1.5em
   @media only screen and (max-width: 600px)
