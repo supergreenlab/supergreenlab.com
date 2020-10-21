@@ -24,7 +24,7 @@
                     smalltitle="The loooooong wait is over! We're now shipping worlwide, 24h after you order."/>
     </div>
 		<div :id='$style.carousel'>
-			<agile autoplay pause-on-dots-hover>
+			<agile autoplay pause-on-dots-hover :autoplay-speed="5000">
 				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-1.jpg")})`}'></div>
 				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-2.jpg")})`}'></div>
 				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-3.jpg")})`}'></div>
