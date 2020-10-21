@@ -20,10 +20,18 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <SectionTitle title='SHIPPING RESUMED!'
-                    green='Pre-pre-order shipping starts October 21st!'
-                    smalltitle='Pre-orders are now open, estimate shipping date end October.'/>
+                    green='Thank you all for your support!'
+                    smalltitle="The loooooong wait is over! We're now shipping worlwide, 24h after you order."/>
     </div>
-  </section>
+		<div :id='$style.carousel'>
+			<agile autoplay pause-on-dots-hover>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-1.jpg")})`}'></div>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-2.jpg")})`}'></div>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-3.jpg")})`}'></div>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-4.jpg")})`}'></div>
+			</agile>
+		</div>
+	</section>
 </template>
 
 <script>
@@ -44,10 +52,24 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
+  margin-bottom: 20pt
 
 #title
   width: 100%
   margin: 0pt 0 50pt 0
   padding: 0 30pt
+
+#carousel
+  width: 100vw
+  max-width: 530px
+
+.pic
+  width: 100vw
+  max-width: 530px
+  height: 100vw
+  max-height: 530px
+  background-position: bottom
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

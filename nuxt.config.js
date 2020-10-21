@@ -39,6 +39,7 @@ export default {
     { src: '~plugins/init.js', ssr: false },
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
+    { src: '~plugins/vue-agile.js', ssr: false },
     //{ src: '~plugins/pixel.js', ssr: false },
   ],
 
@@ -70,11 +71,7 @@ export default {
   ** Build configuration
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-    }
+    transpile: ['vue-agile'],
   },
   generate: {
     routes: [

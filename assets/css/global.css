@@ -5,6 +5,7 @@
 @import './froala_blocks.min.css';
 @import './froala_style.min.css';
 @import './bootstrap.min.css';
+@import './agile.css';
 
 html {
 	font-size: 11pt;
