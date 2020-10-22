@@ -38,6 +38,8 @@
       <div :class='$style.space'></div>
       <App ref='app' />
       <div :class='$style.space'></div>
+      <LatestDiaries ref='latest_diaries' />
+      <div :class='$style.space'></div>
       <Instagram ref='instagram' />
       <div :class='$style.space'></div>
       <Youtube ref='youtube' />
@@ -73,6 +75,7 @@ import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import ContinuousSupply from '~/components/homesection-continuous-supply.vue'
 import ProgressiveSunriseSunset from '~/components/homesection-progressive-sunrise-sunset.vue'
 import App from '~/components/homesection-app.vue'
+import LatestDiaries from '~/components/homesection-latest-diaries.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import Instagram from '~/components/homesection-instagram.vue'
 import Youtube from '~/components/homesection-youtube.vue'
@@ -85,7 +88,7 @@ import Promocode from '~/components/overlay-promocode.vue'
 import { bundles, } from '~/config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,
