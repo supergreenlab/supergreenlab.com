@@ -39,7 +39,7 @@
 
       <div class="col-12 col-md-4 col-lg-3 text-md-left mt-5 mt-md-0">
         <h3><strong>About Us</strong></h3>
-        <p><font size="3" style=" font-weight: 300;" >We sell LED growlights while providing open-source hardware and software for stealthy cannabis growing systems.</font></p>
+        <p><font size="3" style=" font-weight: 300;" >We sell LED growlights while providing open-source software for stealthy cannabis growing systems.</font></p>
       </div>
 
       <div class="col-12 col-lg-2 ml-auto text-lg-left mt-4 mt-lg-0">
@@ -58,7 +58,7 @@
 
     <div class="row mt-3">
       <div class="col text-center">
-        <font size="3" style=" font-weight: 500;" >© 2019 SuperGreenLab. All Rights Reserved</font>
+        <font size="3" style=" font-weight: 500;" >© 2020 SuperGreenLab. All Rights Reserved</font>
       </div>
     </div>
   </div>

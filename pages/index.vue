@@ -34,6 +34,8 @@
       <div :class='$style.space'></div>
       <ContinuousSupply ref='continuous_supply' />
       <div :class='$style.space'></div>
+      <ProgressiveSunriseSunset ref='progressive_sunrise_sunset' />
+      <div :class='$style.space'></div>
       <App ref='app' />
       <div :class='$style.space'></div>
       <Instagram ref='instagram' />
@@ -69,6 +71,7 @@ import Stealth from '~/components/homesection-stealth-build.vue'
 import Testimonials from '~/components/homesection-testimonials.vue'
 import BundleIntro from '~/components/homesection-bundle-intro.vue'
 import ContinuousSupply from '~/components/homesection-continuous-supply.vue'
+import ProgressiveSunriseSunset from '~/components/homesection-progressive-sunrise-sunset.vue'
 import App from '~/components/homesection-app.vue'
 import Bundle from '~/components/homesection-bundle.vue'
 import Instagram from '~/components/homesection-instagram.vue'
@@ -82,7 +85,7 @@ import Promocode from '~/components/overlay-promocode.vue'
 import { bundles, } from '~/config/bundles.json'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, App, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,

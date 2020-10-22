@@ -19,20 +19,22 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Our hardware is'
-                    green="The first continuous supply setup"
-                    title2='Harvest twice as fast'
-                    smalltitle="Don't wait until harvest to start the next plant!"
+      <SectionTitle title='SuperGreenOS feature highlight'
+                    green='Progressive sunrise/sunset'
+                    title2="Just like the sun, in a box"
+                    smalltitle="The sun doesn't switch to midday position in a second, why would your lamp?"
                     separator='true'/>
     </div>
     <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source src="/continuous_supply.mp4" type="video/mp4">
-      <source src="/continuous_supply.webm" type="video/webm">
+      <source src="/progressive_sunrise_sunset.mp4" type="video/mp4">
+      <source src="/progressive_sunrise_sunset.webm" type="video/webm">
       Your browser does not support the video tag.
     </video>
     <div :id='$style.text'>
-      <b>You don't have to wait until harvest</b> to start the next plant! <b>Harvest twice as fast</b> with continuous supply.<br />
-      The Controller can control <b>up to 3 spaces</b> with different schedules to do <b>vegging and blooming at the same time</b>.
+      The <b>SuperGreenController</b> gives you total control of your lights,<br />
+      it allows to switch from veg to bloom at a press of a button,<br />
+      it <b>simulates sunrise and sunsets</b>, and allows to choose <b>independent dimming</b> for each led channels,<br />
+      smart schedules for <b>UV</b> and <b>IR</b> panels are coming soon.
     </div>
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
       <b class="hvr-grow">Buy now</b>
