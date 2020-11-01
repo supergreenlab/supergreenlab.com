@@ -17,6 +17,7 @@
  */
 
 import axios from 'axios'
+import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
 
 export const state = () => {
   let defaults = {
@@ -34,6 +35,7 @@ export const state = () => {
     promocode: {value: '', valid: true, optional: true,},
     discount: {value: 0, valid: true, optional: true},
     color: 'white',
+    isValid: false,
     cart: [],
   }
   if (window.localStorage.getItem('checkout')) {
@@ -67,6 +69,16 @@ export const actions = {
     } catch(e) {
       context.commit('setDiscount', 0)
     }
+  },
+  async buy({ state }) {
+    if (!this.valid) return
+    const checkout = await createCheckout(state.checkout)
+    await setShippingAddress(state.checkout, checkout)
+    if (state.checkout.promocode) {
+      await applyCoupon(state.checkout, checkout)
+    }
+    await applyFreeShipping(state.checkout, checkout)
+    setTimeout(() => window.location.href = checkout.webUrl, 1000)
   },
 }
 

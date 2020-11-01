@@ -46,10 +46,7 @@
         </div>
 
         <div :id='$style.addtocartcontainer' v-if='addtocart && !description'>
-          <div :id='$style.addtocart'>
-            <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-            <p>Our bundles are shipped discreet</p>
-          </div>
+          <AddToCart :id='id' :slug='slug' />
         </div>
       </div>
     </div>
@@ -57,11 +54,7 @@
       <h1>Description</h1>
       <div v-html='description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
-        <div :id='$style.addtocart'>
-          <!--<OutOfStock v-if='outofstock' />-->
-          <nuxt-link @click.native='addToCartClicked' :to='{path: `/bundle/${slug}`, hash: "#shipping"}'><b>ADD TO CART</b></nuxt-link><br />
-          <p>Our bundles are shipped discreet</p>
-        </div>
+        <AddToCart :id='id' :slug='slug' />
       </div>
     </div>
     <portal v-if='showZoom' to='root'>
@@ -77,10 +70,11 @@ import Price from '~/components/price.vue'
 import Items from '~/components/homesection-bundle-items.vue'
 import priceConv from '~/lib/price.js'
 import OutOfStock from '~/components/outofstock.vue'
+import AddToCart from '~/components/bundle-addtocart.vue'
 
 export default {
-  components: {Items, Price, OutOfStock,},
-  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
+  components: {Items, Price, OutOfStock, AddToCart,},
+  props: ['id', 'slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
   data() {
     return {
       showZoom: false,
@@ -102,6 +96,7 @@ export default {
     },
     addToCartClicked() {
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
+      this.$store.commit('checkout/addToCart', {id: `gid://shopify/ProductVariant/${this.$props.id}`, n: 1})
     },
     priceConv(dols) {
       return priceConv(dols)
