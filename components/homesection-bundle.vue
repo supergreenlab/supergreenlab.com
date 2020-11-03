@@ -96,7 +96,7 @@ export default {
     },
     addToCartClicked() {
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
-      this.$store.commit('checkout/addToCart', {id: `gid://shopify/ProductVariant/${this.$props.id}`, n: 1})
+      this.$store.commit('storefront/addToCart', {id: `gid://shopify/ProductVariant/${this.$props.id}`, n: 1})
     },
     priceConv(dols) {
       return priceConv(dols)

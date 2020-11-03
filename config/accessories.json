@@ -1,6 +1,7 @@
 {
   "accessories": [
     {
+      "shopifyid": "22973595222064",
       "slug": "blower",
       "name": "Ventilation blower",
       "price": 29,
@@ -13,6 +14,7 @@
       ]
     },
     {
+      "shopifyid": "22974836572208",
       "slug": "sensor",
       "name": "Temperature and humidity sensor.",
       "price": 24.99,
@@ -24,6 +26,7 @@
       ]
     },
     {
+      "shopifyid": "22985843867696",
       "slug": "controller",
       "name": "System controller",
       "price": 119,

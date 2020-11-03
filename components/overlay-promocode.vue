@@ -68,7 +68,7 @@ export default {
     },
     ok() {
       this.close()
-      this.$store.dispatch('checkout/setPromocode', {code: 'SGL_LOVE'})
+      this.$store.dispatch('storefront/setPromocode', {code: 'SGL_LOVE'})
       this.$matomo && this.$matomo.trackEvent('popup', 'activate')
     },
     takeSurvey() {

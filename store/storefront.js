@@ -19,35 +19,10 @@
 import axios from 'axios'
 import { createCheckout, setShippingAddress, applyCoupon, applyFreeShipping,} from '~/lib/storefront.js'
 
-export const state = () => {
-  let defaults = {
-    firstname: {value: '', valid: false,},
-    lastname: {value: '', valid: false,},
-    phone: {value: '', valid: false,},
-    email: {value: '', valid: false,},
-    country: {value: '', valid: false,},
-    city: {value: '', valid: false,},
-    company: {value: '', valid: false, optional: true,},
-    address1: {value: '', valid: false,},
-    address2: {value: '', valid: false, optional: true,},
-    province: {value: '', valid: false,},
-    zip: {value: '', valid: false,},
-    promocode: {value: '', valid: true, optional: true,},
-    discount: {value: 0, valid: true, optional: true},
-    color: 'white',
-    isValid: false,
-    cart: [],
-  }
-  if (window.localStorage.getItem('checkout')) {
-     defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
-  }
-
-  return defaults
-}
-
-const storeState = (state) => {
-  window.localStorage.setItem('checkout', JSON.stringify(state))
-}
+export const state = () => ({
+  promocode: {value: '', valid: true, optional: true},
+  discount: {value: 0, valid: true, optional: true}
+})
 
 let cancel
 const CancelToken = axios.CancelToken
@@ -70,7 +45,7 @@ export const actions = {
       context.commit('setDiscount', 0)
     }
   },
-  async buy({ state }) {
+  async buy({ state }, { checkoutInfos }) {
     if (!this.valid) return
     const checkout = await createCheckout(state.checkout)
     await setShippingAddress(state.checkout, checkout)
@@ -83,18 +58,6 @@ export const actions = {
 }
 
 export const mutations = {
-  updateCheckout(state, params) {
-    state[params.key] = Object.assign({}, state[params.key], {value: params.value})
-    storeState(state)
-  },
-  addToCart(state, lineItems) {
-    state.cart.push(lineItems)
-    storeState(state)
-  },
-  setCart(state, lineItems) {
-    state.cart = [lineItems]
-    storeState(state)
-  },
   setPromocode(state, promocode) {
     state.promocode.value = promocode
     storeState(state)

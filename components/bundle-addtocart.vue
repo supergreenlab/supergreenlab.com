@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  props: ['id', 'slug'],
+  props: ['product'],
   data() {
     return {
       n: 0,
@@ -35,7 +35,6 @@ export default {
   methods: {
     addToCartClicked() {
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
-      this.$store.commit('checkout/addToCart', {id: `gid://shopify/ProductVariant/${this.$props.id}`, n: 1})
     },
   },
 }
