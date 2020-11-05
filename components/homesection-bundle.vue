@@ -20,41 +20,38 @@
   <section :id='$style.container'>
     <div :id='$style.header' :class='noframe ? "" : $style.framed'>
       <div :id='$style.title'>
-        <h1>{{ title }}</h1>
-        <h2>{{ subtitle }}</h2>
+        <h1>{{ bundle.title }}</h1>
+        <h2>{{ bundle.subtitle }}</h2>
       </div>
-      <Price :price='price' :promodiscount='promodiscount' :freeshipping='false' />
+      <Price :price='bundle.price' :promodiscount='promodiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
-        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`, opacity: n == 0 ? 1 : 0}' @click='toggleZoom'></div>
-        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon}`)})`, opacity: n == 1 ? 1 : 0}' @click='toggleZoom'></div>
-        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon2}`)})`, opacity: n == 2 ? 1 : 0}' @click='toggleZoom'></div>
-        <div :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${setupicon3}`)})`, opacity: n == 3 ? 1 : 0}' @click='toggleZoom'></div>
+        <div v-for='(p, i) in bundle.pics' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
         <div :id='$style.leftarrow' @click='previous'></div>
         <div :id='$style.rightarrow' @click='next'></div>
       </div>
       <div :id='$style.description'>
-        <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
+        <p v-for='b in bundle.bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
             <!--<OutOfStock v-if='outofstock' />-->
-            <nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>LEARN MORE</nuxt-link><br />
+            <nuxt-link @click.native='bundleClicked' :to='`/bundle/${bundle.slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
 
-        <div :id='$style.addtocartcontainer' v-if='addtocart && !description'>
-          <AddToCart :id='id' :slug='slug' />
+        <div :id='$style.addtocartcontainer' v-if='addtocart && !showdescription'>
+          <AddToCart :id='bundle.id' :slug='bundle.slug' />
         </div>
       </div>
     </div>
-    <div v-if='description' :id='$style.text'>
+    <div v-if='showdescription' :id='$style.text'>
       <h1>Description</h1>
-      <div v-html='description'></div>
+      <div v-html='bundle.description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
-        <AddToCart :id='id' :slug='slug' />
+        <AddToCart :id='bundle.id' :slug='bundle.slug' />
       </div>
     </div>
     <portal v-if='showZoom' to='root'>
@@ -74,7 +71,7 @@ import AddToCart from '~/components/bundle-addtocart.vue'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart,},
-  props: ['id', 'slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
+  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'showdescription'],
   data() {
     return {
       showZoom: false,
@@ -102,7 +99,8 @@ export default {
       return priceConv(dols)
     },
     toggleZoom(url) {
-      this.$data.zoomPic =  [this.$props.icon, this.$props.setupicon, this.$props.setupicon2, this.$props.setupicon3][this.$data.n];
+      console.log(this.$props.bundle)
+      this.$data.zoomPic =  this.$props.bundle.pics[this.$data.n];
       this.$data.showZoom = !this.$data.showZoom
     },
     next() {

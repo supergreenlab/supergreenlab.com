@@ -20,18 +20,18 @@
   <section :id='$style.container'>
     <div :id='$style.product'>
       <div :id='$style.iconcontainer'>
-        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${iconcomp}`)})`}' @click='toggleZoom'></div>
+        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0]}`)})`}' @click='toggleZoom'></div>
       </div>
       <div :id='$style.description'>
         <div :id='$style.header'>
-          <h3>{{ name }}</h3>
+          <h3>{{ item.name }}</h3>
           <h2 :id='$style.n'>x{{ n }}</h2>
         </div>
         <div :id='$style.bullets'>
-          <p v-for='b in bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
+          <p v-for='b in item.bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
         </div>
         <div :id='$style.bottom'>
-          <a href='javascript:void(0)' v-if='keymetrics' :id='$style.showmetrics' :class='shownMetrics ? $style.shown : ""' @click='showMetrics'>
+          <a href='javascript:void(0)' v-if='item.keymetrics' :id='$style.showmetrics' :class='shownMetrics ? $style.shown : ""' @click='showMetrics'>
             <span>{{ shownMetrics ? "HIDE KEY METRICS" : "SHOW KEY METRICS" }}</span>
             <div :id='$style.metricsarrow'></div>
           </a>
@@ -51,13 +51,13 @@
       </div>
     </div>
     <div :id='$style.keymetricscontainer' :style='{"height": shownMetrics ? `${keymetricsHeight}px` : "0px"}'>
-      <div v-if='keymetrics' ref='keymetrics' :id='$style.keymetrics'>
-        <KeyMetrics :showHarvest='showHarvest' :name='name' :n='n' v-bind='keymetrics' />
+      <div v-if='item.keymetrics' ref='keymetrics' :id='$style.keymetrics'>
+        <KeyMetrics :showHarvest='showHarvest' :name='item.name' :n='n' v-bind='item.keymetrics' />
       </div>
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
-        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${iconcomp}`)})`}'></div>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0]}`)})`}'></div>
       </div>
     </portal>
   </section>
@@ -69,19 +69,13 @@ import priceConv from '~/lib/price.js'
 
 export default {
   components: {KeyMetrics,},
-  props: ['n', 'slug', 'name', 'price', 'discount', 'icon', 'icons', 'color', 'bullets', 'keymetrics', 'last', 'showHarvest',],
+  props: ['n', 'item', 'last', 'showHarvest',],
   data() {
     return {
       shownMetrics: false,
       keymetricsHeight: 0,
       showZoom: false,
     }
-  },
-  computed: {
-    iconcomp() {
-      const { icon, icons } = this.$props
-      return icon ? icon : icons['white']
-    },
   },
   methods: {
     showMetrics() {

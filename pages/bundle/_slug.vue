@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' v-bind='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
+      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <div :class='$style.guide'>
@@ -43,12 +43,12 @@
         </div>
       </div>
       <Title icon='package.svg' title='BUNDLE CONTENT' />
-      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :color='color' :n='bundle.bigleds' v-bind='led("192")' />
-      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :color='color' :n='bundle.smallleds' v-bind='led("144")' />
-      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :color='color' :n='bundle.tinyleds' v-bind='led("36")' />
-      <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' v-bind='accessory("blower")' />
-      <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
-      <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
+      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :n='bundle.bigleds' :item='led("192")' />
+      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :n='bundle.smallleds' :item='led("144")' />
+      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :n='bundle.tinyleds' :item='led("36")' />
+      <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' :item='accessory("blower")' />
+      <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' :item='accessory("sensor")' />
+      <Item n='1' :item='accessory("controller")' :discount='totaldiscount' last='true' />
       <div :class='$style.price'>
         <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='false' />
       </div>
@@ -92,10 +92,6 @@ import Footer from '~/components/homesection-footer.vue'
 
 import priceConv from '~/lib/price.js'
 
-import { bundles, } from '~/config/bundles.json'
-import { leds, } from '~/config/leds.json'
-import { accessories, } from '~/config/accessories.json'
-
 export default {
   components: {Header, Guide, Bundle, Title, Price, Item, Footer,},
   data() {
@@ -113,16 +109,13 @@ export default {
     },
     bundle() {
       const { slug } = this.$route.params
-      return bundles.find((b) => b.slug == slug)
+      return this.$store.state.eshop.sgl.bundles.find((b) => b.slug == slug)
     },
     led() {
-      return (slug) => leds.find((l) => l.slug == slug)
+      return (slug) => this.$store.state.eshop.sgl.leds.find((l) => l.slug == slug)
     },
     accessory() {
-      return (slug) => accessories.find((a) => a.slug == slug)
-    },
-    color() {
-      return this.$store.state.checkout.color
+      return (slug) => this.$store.state.eshop.sgl.accessories.find((a) => a.slug == slug)
     },
     promo() {
       const discount = this.$store.state.checkout.discount.value,

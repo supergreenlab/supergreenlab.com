@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { leds, } from '~/config/leds.json'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Item from '~/components/homesection-sparepartsitem.vue'
 

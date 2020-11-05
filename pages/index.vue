@@ -51,7 +51,7 @@
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles'>
           <div :id='b.ref'></div>
-          <Bundle v-bind='b' description='' :promodiscount='promo.discount' />
+          <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
       <div :class='$style.space'></div>
@@ -85,8 +85,6 @@ import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 import Promocode from '~/components/overlay-promocode.vue'
 
-import { bundles, } from '~/config/bundles.json'
-
 export default {
   components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
   data() {
@@ -113,7 +111,7 @@ export default {
   },
 	computed: {
 		bundles() {
-			return bundles
+			return this.$store.state.eshop.sgl.bundles
 		},
     promo() {
       const discount = this.$store.state.checkout.discount.value,

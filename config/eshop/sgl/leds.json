@@ -7,7 +7,9 @@
       "name": "SGB 36",
       "price": 35.99,
       "power": "controller",
-      "white": "36-side.jpg",
+      "pics": [
+        "36-side.jpg"
+      ],
       "bullets": [
         "<b>Easy installation</b>",
         "Can adapt to any space, no matter what <b>size or configuration</b>.",

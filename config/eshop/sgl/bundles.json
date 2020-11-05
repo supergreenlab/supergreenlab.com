@@ -8,8 +8,8 @@
       "ref":"micro-grow-bundle",
       "title": "NINJA GROW BUNDLE",
       "subtitle": "6 LED panels to adapt to any spaces.",
-      "icon": "ninja.jpg",
-      "setupicons": [
+      "pics": [
+        "ninja.jpg",
         "micro.jpg",
         "office.jpg",
         "tvstand.jpg"
@@ -20,7 +20,7 @@
         "<b>6 LED lights</b> for unlimited possibilities",
         "Build a grow box <b>out of anything</b> (space buckets, TV stands, toolboxes …)",
         "Up to <b>2’ x 2’</b> (80cm x 80 cm)",
-        "Up to <b>3 different grow schedules</b>",
+        "Up to <b>3 different grow schedules</b>, in 3 different boxes",
         "<b>Easy setup</b> and control with the Application",
         "<b>all included</b>: Grow lights, power supplies, sensors and ventilation"
       ],

@@ -32,14 +32,14 @@ export const state = () => {
     isValid: false,
     cart: [],
   };
-  if (window.localStorage.getItem('storeFront')) {
-    defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('storeFront')))
+  if (window.localStorage.getItem('checkout')) {
+    defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
   }
   return defaults
 };
 
 const storeState = (state) => {
-  window.localStorage.setItem('storeFront', JSON.stringify(state))
+  window.localStorage.setItem('checkout', JSON.stringify(state))
 }
 
 export const actions = {

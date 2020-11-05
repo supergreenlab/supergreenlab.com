@@ -69,10 +69,6 @@ import OutOfStock from '~/components/outofstock.vue'
 
 import priceConv from '~/lib/price.js'
 
-import { bundles, } from '~/config/bundles.json'
-import { leds, } from '~/config/leds.json'
-import { accessories, } from '~/config/accessories.json'
-
 const binding = (name) => ({
   get() {
     return this.$store.state.checkout[name].value
@@ -95,7 +91,9 @@ export default {
   },
   computed: {
     valid() {
-      return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+      return this.bundle.canorder &&
+              Object.keys(this.$store.state.checkout)
+                .findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
     },
     promocode: {
       get() {
