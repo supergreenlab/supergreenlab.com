@@ -83,9 +83,7 @@ export default {
       '/guide/how-to-setup-with-the-app',
       '/guide/how-to-setup-controller',
       '/guide/how-to-germinate-seed',
-      '/guide/how-to-sow-seed',
-      '/public/plant',
-      '/app'
+      '/guide/how-to-sow-seed'
     ]
   },
 

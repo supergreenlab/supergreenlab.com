@@ -17,56 +17,45 @@
  -->
 
 <template>
-<footer :id='$style.container' class="fdb-block footer-large fp-active" data-block-type="footers" data-id="1">
-  <div class="container">
-    <div class="row align-items-top text-center">
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-sm-left">
+  <section :id='$style.container'>
+    <div :id='$style.nav'>
+      <div :class='$style.links'>
         <h3><strong>Products</strong></h3>
-        <nav class="nav flex-column">
-          <nuxt-link class="nav-link" to="/bundle/micro-box-bundle">Ninja Bundle</nuxt-link>
-        </nav>
+        <nuxt-link to="/bundle/micro-box-bundle">Ninja Bundle</nuxt-link>
       </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-5 mt-sm-0 text-sm-left">
+      <div :class='$style.links'>
         <h3><strong>Help</strong></h3>
-        <nav class="nav flex-column">
-          <nuxt-link class="nav-link active" :to="{path: '/privacy'}">Privacy Policy</nuxt-link>
-          <nuxt-link class="nav-link" to="/terms">Terms</nuxt-link>
-          <nuxt-link class="nav-link" to="/faq">FAQ</nuxt-link>
-          <a class="nav-link" href="https://www.supergreenlab.com/discord">Discord Support</a>
-        </nav>
+        <nuxt-link to="/privacy">Privacy Policy</nuxt-link>
+        <nuxt-link to="/faq">FAQ</nuxt-link>
+        <nuxt-link to="/discord">Discord Support</nuxt-link>
+        <nuxt-link to="/terms">Terms</nuxt-link>
       </div>
 
-      <div class="col-12 col-md-4 col-lg-3 text-md-left mt-5 mt-md-0">
+      <div :class='$style.links'>
         <h3><strong>About Us</strong></h3>
-        <p><font size="3" style=" font-weight: 300;" >We sell LED growlights while providing open-source software for stealthy cannabis growing systems.</font></p>
+        <p><font size="3" style="font-weight: 300;" >We sell LED growlights while providing open-source software for stealthy cannabis growing systems.</font></p>
       </div>
 
-      <div class="col-12 col-lg-2 ml-auto text-lg-left mt-4 mt-lg-0">
+      <div>
         <h3><strong>Follow Us</strong></h3>
-        <p class="lead">
-				<a href="https://www.facebook.com/supergreenlab"><i class="fa fa-facebook-square"></i></a>
-				<a href="https://twitter.com/SuperGreenLab"><i class="fa fa-twitter"></i></a>
-				<a href="https://www.instagram.com/sgreenlab/"><i class="fa fa-instagram"></i></a>
-				<a href="https://supergreenlab.tumblr.com/"><i class="fa fa-tumblr-square"></i></a>
+        <a href="https://www.facebook.com/supergreenlab"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://twitter.com/SuperGreenLab"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/sgreenlab/"><i class="fa fa-instagram"></i></a>
+        <a href="https://supergreenlab.tumblr.com/"><i class="fa fa-tumblr-square"></i></a>
         <a href="https://www.reddit.com/r/SuperGreenLab/"><i class="fa fa-reddit"></i></a>
         <a href="https://www.youtube.com/c/supergreenlab"><i class="fa fa-youtube"></i></a>
         <a href="https://github.com/supergreenlab"><i class="fa fa-github"></i></a>
-        </p>
       </div>
     </div>
 
-    <div class="row mt-3">
-      <div class="col text-center">
-        <font size="3" style=" font-weight: 500;" >© 2020 SuperGreenLab. All Rights Reserved</font>
-      </div>
+    <div>
+      <font size="3" style="font-weight: 500;" >© 2020 SuperGreenLab. All Rights Reserved</font>
     </div>
-  </div>
-</footer>
+  </section>
 </template>
 
 <script>
-
 export default {
 
 }
@@ -77,23 +66,31 @@ export default {
 #container
   display: flex
   align-items: center
-  justify-content: space-between
+  justify-content: space-around
   width: 100%
+  margin-top: 20pt
+  padding: 25pt 0 25pt 0
+  border-top: 2pt solid #efefef
+  flex-direction: column
+
+#nav
+  display: flex
+  justify-content: center
   margin-top: 20pt
   padding: 25pt 0 25pt 0
   border-top: 2pt solid #efefef
   @media only screen and (max-width: 600px)
     flex-direction: column
 
-.block
+#nav > div
+  flex: 1
+  max-width: 33%
+  margin: 10pt 10pt
+  @media only screen and (max-width: 600px)
+    max-width: initial
+
+.links
   display: flex
-  margin: 10pt
+  flex-direction: column
 
-.blockicon
-  width: 20pt
-  height: 20pt
-  margin: 5pt
-
-a:hover 
-  color: #19ab00
 </style>
