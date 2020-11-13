@@ -30,7 +30,7 @@
                  analytics='guide-setup-with-the-app'
                  title='HOW TO'
                  subtitle='SETUP WITH THE APP'
-                 slug='how-to-setup-with-the-app'
+                 slug='how-to-setup-controller'
                  button='LEARN MORE' />
         </div>
         <div :class='$style.guide'>
