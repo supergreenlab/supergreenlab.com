@@ -18,7 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    {{ slug }}
     <a href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
     <p>Our bundles are shipped discreet</p>
   </section>
@@ -35,6 +34,7 @@ export default {
   methods: {
     addToCartClicked() {
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
+      this.$store.commit('checkout/addToCart', this.$props.product)
     },
   },
 }

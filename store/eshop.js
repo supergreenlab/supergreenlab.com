@@ -22,9 +22,9 @@ import { leds } from '~/config/eshop/sgl/leds.json'
 
 export const state = () => ({
   sgl: {
-    bundles,
-    leds,
-    accessories,
+    bundles: bundles.map(o => Object.assign(o, {type: 'sgl_bundle'})),
+    leds: leds.map(o => Object.assign(o, {type: 'sgl_led'})),
+    accessories: accessories.map(o => Object.assign(o, {type: 'sgl_accessory'})),
   },
 })
 

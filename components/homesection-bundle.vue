@@ -43,7 +43,7 @@
         </div>
 
         <div :id='$style.addtocartcontainer' v-if='addtocart && !showdescription'>
-          <AddToCart :id='bundle.id' :slug='bundle.slug' />
+          <AddToCart :product='bundle' />
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
       <h1>Description</h1>
       <div v-html='bundle.description'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
-        <AddToCart :id='bundle.id' :slug='bundle.slug' />
+        <AddToCart :product='bundle' />
       </div>
     </div>
     <portal v-if='showZoom' to='root'>
@@ -71,7 +71,7 @@ import AddToCart from '~/components/bundle-addtocart.vue'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart,},
-  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'showdescription'],
+  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'showdescription', 'right'],
   data() {
     return {
       showZoom: false,

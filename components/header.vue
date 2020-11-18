@@ -24,6 +24,7 @@
     <div :id='$style.menu'>
       <div><nuxt-link @click='onClick' :to="page != 'index' ? '/' : { path: '/', hash: '#top' }">Home</nuxt-link></div>
       <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/micro-box-bundle' : { path: '/', hash: '#micro-grow-bundle' }">Ninja bundle</nuxt-link></div>
+      <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
   </section>
 </template>
@@ -37,6 +38,9 @@ export default {
   computed: {
     page() {
       return this.$route.name
+    },
+    nCartItems() {
+      return this.$store.state.checkout.cart.length
     }
   },
   methods: {

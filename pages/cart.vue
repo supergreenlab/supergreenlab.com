@@ -21,22 +21,23 @@
     <div :id='$style.header'>
       <Header />
     </div>
+    <div>
+      <div v-for='product in cart'>
+        {{ product.slug }}
+      </div>
+    </div>
     <div :id='$style.body'>
       <div :id='$style.shipdisclaimer'>
         <b>NORMAL SHIPPING IS BACK!</b><br /><br />
         The loooooong wait is over! We're now shipping worlwide, 24h after you order.<br /><br />
         <h4>Thanks for your support:)</h4>
       </div>
-      <div :id='$style.preorderoverlay' v-if='bundle.outofstock || showPreOrderForm'>
-        <div class="typeform-widget" data-url="https://supergreenlab.typeform.com/to/i0dIP6" data-transparency="100" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
-      </div>
-      <div v-else>
+      <div>
         <Shipping />
         <div :id='$style.buy'>
           <div :id='$style.promocode'>
-            <!--<OutOfStock v-if='bundle.outofstock' />-->
             <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-            <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
+            <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(totalPrice) }}</b></a>
             <div :class='$style.block'>
               <img src='~assets/img/powered-by-stripe.png' width="300"><br />
             </div>
@@ -91,9 +92,7 @@ export default {
   },
   computed: {
     valid() {
-      return this.bundle.canorder &&
-              Object.keys(this.$store.state.checkout)
-                .findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+      return false
     },
     promocode: {
       get() {
@@ -112,20 +111,14 @@ export default {
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
     },
+    cart() {
+      return this.$store.state.checkout.cart
+    },
+    totalPrice() {
+      return this.$store.getters['checkout/getTotalPrice']
+    }
   },
   methods: {
-    async buy() {
-      if (!this.valid) return
-      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, Math.floor((this.bundle.price - this.bundle.price*this.promo.discount/100) * 100) / 100)
-      this.$data.loading = true
-      this.$store.commit('checkout/buy',)
-    },
-    priceConv(dols) {
-      return priceConv(dols)
-    },
-    togglePreOrderForm() {
-      this.$data.showPreOrderForm = !this.$data.showPreOrderForm
-    },
   },
 }
 </script>

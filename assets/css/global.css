@@ -1,6 +1,7 @@
 @import './normalize.css';
 @import './color.css';
 @import './fonts.css';
+@import './agile.css';
 
 html {
 	font-size: 11pt;

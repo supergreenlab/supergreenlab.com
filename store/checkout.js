@@ -16,20 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+
 export const state = () => {
   let defaults = {
-    firstname: {value: '', valid: false,},
-    lastname: {value: '', valid: false,},
-    phone: {value: '', valid: false,},
-    email: {value: '', valid: false,},
-    country: {value: '', valid: false,},
-    city: {value: '', valid: false,},
-    company: {value: '', valid: false, optional: true,},
-    address1: {value: '', valid: false,},
-    address2: {value: '', valid: false, optional: true,},
-    province: {value: '', valid: false,},
-    zip: {value: '', valid: false,},
-    isValid: false,
     cart: [],
   };
   if (window.localStorage.getItem('checkout')) {
@@ -46,10 +36,6 @@ export const actions = {
 }
 
 export const mutations = {
-  setShippingInfo(state, { key, value }) {
-    state[key] = Object.assign({}, state[key], {value: value})
-    storeState(state)
-  },
   addToCart(state, lineItems) {
     state.cart.push(lineItems)
     storeState(state)
@@ -58,4 +44,8 @@ export const mutations = {
     state.cart = [lineItems]
     storeState(state)
   },
+}
+
+export const getters = {
+  getTotalPrice: (state) => state.cart.reduce((p, t) => t + p.price, 0)
 }
