@@ -12,8 +12,11 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/sitemap": "^2.3.0",
     "cross-env": "^5.2.1",
+    "markdown-it-attrs": "^3.0.3",
+    "markdown-it-div": "^1.1.0",
     "nuxt": "^2.12.2",
     "nuxt-matomo": "^1.2.3",
     "portal-vue": "^2.1.7",

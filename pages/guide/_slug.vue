@@ -30,12 +30,12 @@
         <div :class='$style.paragraph'>
           <div :class='$style.videosection'>
             <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
-              <source :src="section.video" type="video/mp4">
+              <source :src="require(`~/assets/img/${section.media.filePath}`)" type="video/mp4">
                 Your browser does not support the video tag.
-            </video> 
+            </video>
             <div :class='$style.text'>
               <h1 v-if='section.title'>{{ section.title }}</h1>
-              <p :class='$style.ps' v-for='t in section.text' v-html='t'></p>
+              <p :class='$style.ps' v-html='$md.render(section.text)'></p>
             </div>
           </div>
         </div>

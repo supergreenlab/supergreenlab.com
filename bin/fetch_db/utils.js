@@ -14,14 +14,14 @@ const eshop = Airtable.base(AIRTABLE_BASE)
 const fetchFile = async (url, dst) => {
   dst = `${assetsPath}/${dst}`
   console.log(`Fetching pic ${url} to ${dst}`)
-  const response = await axios.get(url)
+  const response = await axios.get(url, { responseType: 'arraybuffer' })
   await fs.writeFile(dst, response.data)
   console.log(`Fetched pic ${url} to ${dst}`)
 }
 
 module.exports.emptyAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
-  await fs.rmdir(dir)
+  await fs.rmdir(dir, { recursive: true })
   await fs.mkdir(dir)
 }
 

@@ -50,6 +50,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/sitemap',
     '@nuxtjs/axios',
+    '@nuxtjs/markdownit',
     ['nuxt-matomo', { matomoUrl: '//analytics.supergreenlab.com/', trackerUrl: '//analytics.supergreenlab.com/matomo.php', scriptUrl: '//analytics.supergreenlab.com/matomo.js', siteId: 1 }],
     'portal-vue/nuxt',
   ],
@@ -65,6 +66,19 @@ export default {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  // [optional] markdownit options
+  // See https://github.com/markdown-it/markdown-it
+  markdownit: {
+    injected: true,
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: [
+      'markdown-it-div',
+      'markdown-it-attrs'
+    ]
   },
 
   /*

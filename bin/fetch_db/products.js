@@ -32,6 +32,8 @@ module.exports.fetchProducts = async () => {
       return p
     }),
     sellers,
+    brandProducts,
+    brands
   })
   await picPromise
   await fs.writeFile('config/products.json', productsJSON)
