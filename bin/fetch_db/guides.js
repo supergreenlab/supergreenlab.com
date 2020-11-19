@@ -4,7 +4,7 @@ const { fetchTable, fetchAttachement, emptyAssetsDir, mkAssetsDir } = require('.
 
 module.exports.fetchGuides = async () => {
   await mkAssetsDir('guides')
-  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'introduction', 'requires', 'sections', 'name', 'media'])
+  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'introduction', 'requires', 'sections', 'name', 'media', 'next'])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order'])
   let picPromise = Promise.resolve()
   guides = guides.map(g => {

@@ -1,3 +1,4 @@
+import fs from 'fs';
 import pkg from './package'
 
 export default {
@@ -93,12 +94,7 @@ export default {
       '/bundle/multi-box-bundle',
       '/bundle/closet-box-bundle',
       '/bundle/micro-box-bundle',
-      '/guide/how-to-install-a-led-panel',
-      '/guide/how-to-setup-with-the-app',
-      '/guide/how-to-setup-controller',
-      '/guide/how-to-germinate-seed',
-      '/guide/how-to-sow-seed'
-    ]
+    ].concat(fs.readdirSync("config").filter(f => f.indexOf('guide-') == 0).map(f => `/guide/${f.replace(/guide-|.json/g, '')}`)),
   },
 
   router: {
