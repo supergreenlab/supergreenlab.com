@@ -1,4 +1,4 @@
-#!/bin/env node
+#!/usr/bin/env node
 
 const { fetchProducts } = require('./products.js')
 const { fetchGuides } = require('./guides.js')
