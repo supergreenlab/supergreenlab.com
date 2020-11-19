@@ -2,19 +2,7 @@
   publish = "dist"
   command = "npm run build"
 [[headers]]
-  for = "/img/*"
-  [headers.values]
-    Cache-Control = "public, s-max-age=604800"
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, s-max-age=604800"
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, s-max-age=604800"
-[[headers]]
-for = "/*"
+  for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
