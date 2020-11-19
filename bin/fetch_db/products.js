@@ -3,6 +3,7 @@ const fs = require('fs/promises')
 const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir } = require('./utils.js')
 
 module.exports.fetchProducts = async () => {
+  await mkAssetsDir('guides')
   const products = await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'specs', 'SellingPoints', 'type'])
   const sellingPoints = await fetchTable('SellingPoints', ['url', 'regions', 'vendor', 'price', 'currency', 'outofstock', 'canorder', 'params', 'specs', 'BrandProduct'])
   const sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type'])

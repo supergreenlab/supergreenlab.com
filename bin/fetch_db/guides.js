@@ -1,8 +1,9 @@
 const fs = require('fs/promises')
 
-const { fetchTable, fetchAttachement, emptyAssetsDir } = require('./utils.js')
+const { fetchTable, fetchAttachement, emptyAssetsDir, mkAssetsDir } = require('./utils.js')
 
 module.exports.fetchGuides = async () => {
+  await mkAssetsDir('guides')
   let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'introduction', 'requires', 'sections', 'name', 'media'])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order'])
   let picPromise = Promise.resolve()

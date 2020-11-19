@@ -25,6 +25,11 @@ module.exports.emptyAssetsDir = async (dir) => {
   await fs.mkdir(dir)
 }
 
+module.exports.mkAssetsDir = async (dir) => {
+  dir = `${assetsPath}/${dir}`
+  await fs.mkdir(dir)
+}
+
 module.exports.fetchAttachement = (p, attachement, dir) => {
   if (attachement.type.indexOf('image/') == 0) {
     const ext = attachement.type.split('/')[1]
