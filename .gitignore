@@ -82,3 +82,8 @@ dist
 
 # Service worker
 sw.*
+
+assets/img/guides/
+assets/img/products/
+config/products.json
+config/guides.json
