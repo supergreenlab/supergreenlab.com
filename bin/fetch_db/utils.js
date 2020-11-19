@@ -3,15 +3,13 @@ const fs = require('fs/promises')
 const YAML = require('yaml')
 const axios = require('axios')
 
-const key='keyg5sicPKgLcKRDG'
 const assetsPath = 'assets/img'
 
 const Airtable = require('airtable')
 
-Airtable.configure({ apiKey: key })
-
-const { AIRTABLE_TOKEN } = process.env
-const eshop = Airtable.base(AIRTABLE_TOKEN)
+const { AIRTABLE_BASE, AIRTABLE_APIKEY } = process.env
+Airtable.configure({ apiKey: AIRTABLE_APIKEY })
+const eshop = Airtable.base(AIRTABLE_BASE)
 
 const fetchFile = async (url, dst) => {
   dst = `${assetsPath}/${dst}`
