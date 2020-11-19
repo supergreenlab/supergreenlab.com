@@ -27,7 +27,9 @@ module.exports.emptyAssetsDir = async (dir) => {
 
 module.exports.mkAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
-  await fs.mkdir(dir)
+  try {
+    await fs.mkdir(dir)
+  } catch(e) {}
 }
 
 module.exports.fetchAttachement = (p, attachement, dir) => {

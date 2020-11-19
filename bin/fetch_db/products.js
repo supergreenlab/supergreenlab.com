@@ -1,6 +1,6 @@
 const fs = require('fs/promises')
 
-const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir } = require('./utils.js')
+const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir, mkAssetsDir } = require('./utils.js')
 
 module.exports.fetchProducts = async () => {
   await mkAssetsDir('guides')
