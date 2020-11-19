@@ -26,6 +26,17 @@
         <SectionTitle :title='guide.title'
                       :green='guide.subtitle' />
       </div>
+      <div :class='$style.videosection'>
+        <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
+          <source :src="require(`~/assets/img/${guide.media.filePath}`)" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div :class='$style.text'>
+          <h1>INTRODUCTION</h1>
+          <p :class='$style.ps' v-html='$md.render(guide.introduction)'></p>
+        </div>
+      </div>
+
       <div v-for='section in guide.sections' :ref='section.slug'>
         <div :class='$style.paragraph'>
           <div :class='$style.videosection'>

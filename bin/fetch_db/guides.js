@@ -10,11 +10,14 @@ module.exports.fetchGuides = async () => {
     await emptyAssetsDir('guides')
   } catch(e) {}
 
-  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'introduction', 'requires', 'sections', 'name', 'medias'])
+  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'introduction', 'requires', 'sections', 'name', 'media'])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order'])
   let picPromise = Promise.resolve()
   const guidesJSON = JSON.stringify({
     guides: guides.map(g => {
+      const { p, data } = fetchAttachement(picPromise, g.media[0], 'guides')
+      picPromise = p
+      g.media = data
       g.sections = guideSections.filter(gs => g.sections.indexOf(gs.id) != -1).map(gs => {
         const { p, data } = fetchAttachement(picPromise, gs.media[0], 'guides')
         picPromise = p
