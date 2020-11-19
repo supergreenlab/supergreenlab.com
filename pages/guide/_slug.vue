@@ -65,8 +65,6 @@ import Header from '~/components/header.vue'
 import SectionTitle from '~/components/sectiontitle.vue'
 import Footer from '~/components/homesection-footer.vue'
 
-import { guides } from '~/config/guides.json'
-
 export default {
   components: { Header, SectionTitle, Footer, },
   created () {
@@ -79,7 +77,8 @@ export default {
   computed: {
     guide() {
       const { slug } = this.$route.params
-      return guides.find((g) => g.slug == slug)
+      const guide = require(`~/config/guide-${slug}.json`)
+      return guide
     },
   },
   methods: {
