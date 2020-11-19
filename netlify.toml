@@ -1,9 +1,7 @@
 [build]
   publish = "dist"
   command = "npm run build"
-[build.environment]
-  YARN_VERSION = "1.7.0"
-  [[headers]]
+[[headers]]
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, s-max-age=604800"
