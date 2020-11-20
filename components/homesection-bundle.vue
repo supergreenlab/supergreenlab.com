@@ -20,19 +20,19 @@
   <section :id='$style.container'>
     <div :id='$style.header' :class='noframe ? "" : $style.framed'>
       <div :id='$style.title'>
-        <h1>{{ bundle.title }}</h1>
-        <h2>{{ bundle.subtitle }}</h2>
+        <h1>{{ bundle.name }}</h1>
+        <h2>{{ bundle.tagline }}</h2>
       </div>
       <Price :price='bundle.price' :promodiscount='promodiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
-        <div v-for='(p, i) in bundle.pics' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
+        <div v-for='(p, i) in bundle.pics' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p.fileLarge}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
         <div :id='$style.leftarrow' @click='previous'></div>
         <div :id='$style.rightarrow' @click='next'></div>
       </div>
       <div :id='$style.description'>
-        <p v-for='b in bundle.bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
+        <p v-html='$md.render(bundle.bulletpoints)' :class='$style.bullet'></p>
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
@@ -49,7 +49,7 @@
     </div>
     <div v-if='showdescription' :id='$style.text'>
       <h1>Description</h1>
-      <div v-html='bundle.description'></div>
+      <div v-html='$md.render(bundle.description)'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <AddToCart :product='bundle' />
       </div>
@@ -153,6 +153,7 @@ export default {
 
 #title > h1
   margin: 0
+  text-transform: uppercase
 
 #title > h2
   font-weight: 200
@@ -238,9 +239,16 @@ export default {
 #buy > a > b
   font-weight: 600
 
-.bullet > b
+.bullet strong
   color: #3BB30B
   font-weight: 600
+
+.bullet > ul
+  padding: 0
+  list-style-type: none
+
+.bullet > ul > li
+  margin-bottom:7pt
 
 #bottom 
   display: flex
@@ -317,6 +325,12 @@ export default {
   color: #5D5D5D
   @media only screen and (max-width: 600px)
     padding: 10pt 10pt 40pt 10pt
+
+#text p
+  margin: 5pt 0
+
+#text strong
+  color: #3bb30b
 
 .outofstock
   font-size: 1.2em

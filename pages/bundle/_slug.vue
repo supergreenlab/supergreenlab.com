@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :promodiscount='promo.discount' />
+      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' :promodiscount='promo.discount' />
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <div :class='$style.guide'>
@@ -43,12 +43,12 @@
         </div>
       </div>
       <Title icon='package.svg' title='BUNDLE CONTENT' />
-      <Item v-if='bundle.bigleds' :showHarvest='true' :discount='totaldiscount' :n='bundle.bigleds' :item='led("192")' />
-      <Item v-if='bundle.smallleds' :showHarvest='!bundle.bigleds' :discount='totaldiscount' :n='bundle.smallleds' :item='led("144")' />
-      <Item v-if='bundle.tinyleds' :showHarvest='!bundle.bigleds && !bundle.smallleds' :discount='totaldiscount' :n='bundle.tinyleds' :item='led("36")' />
-      <Item v-if='bundle.ventilation' :discount='totaldiscount' :n='bundle.ventilation' :item='accessory("blower")' />
-      <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' :item='accessory("sensor")' />
-      <Item n='1' :item='accessory("controller")' :discount='totaldiscount' last='true' />
+      <Item v-if='bundle.specs.bigleds' :showHarvest='true' :discount='totaldiscount' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
+      <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :discount='totaldiscount' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
+      <Item v-if='bundle.specs.tinyleds' :showHarvest='!bundle.specs.bigleds && !bundle.specs.smallleds' :discount='totaldiscount' :n='bundle.specs.tinyleds' :item='led("sgl-36")' />
+      <Item v-if='bundle.specs.ventilation' :discount='totaldiscount' :n='bundle.specs.ventilation' :item='accessory("sgl-blower")' />
+      <Item v-if='bundle.specs.sensor' :discount='totaldiscount' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
+      <Item n='1' :item='accessory("sgl-controller")' :discount='totaldiscount' last='true' />
       <div :class='$style.price'>
         <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='false' />
       </div>
@@ -104,18 +104,15 @@ export default {
     if (this.timeout) clearTimeout(this.timeout)
   },
   computed: {
-    valid() {
-      return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
-    },
     bundle() {
       const { slug } = this.$route.params
-      return this.$store.state.eshop.sgl.bundles.find((b) => b.slug == slug)
+      return this.$store.getters['eshop/productWithSlug'](slug)
     },
     led() {
-      return (slug) => this.$store.state.eshop.sgl.leds.find((l) => l.slug == slug)
+      return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
     },
     accessory() {
-      return (slug) => this.$store.state.eshop.sgl.accessories.find((a) => a.slug == slug)
+      return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
     },
     promo() {
       const discount = this.$store.state.checkout.discount.value,

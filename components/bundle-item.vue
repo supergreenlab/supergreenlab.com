@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.product'>
       <div :id='$style.iconcontainer'>
-        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0]}`)})`}' @click='toggleZoom'></div>
+        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0].fileLarge}`)})`}' @click='toggleZoom'></div>
       </div>
       <div :id='$style.description'>
         <div :id='$style.header'>
@@ -28,10 +28,10 @@
           <h2 :id='$style.n'>x{{ n }}</h2>
         </div>
         <div :id='$style.bullets'>
-          <p v-for='b in item.bullets' v-html='`- ${b}`' :class='$style.bullet'></p>
+          <p v-html='$md.render(item.bulletpoints)' :class='$style.bullet'></p>
         </div>
         <div :id='$style.bottom'>
-          <a href='javascript:void(0)' v-if='item.keymetrics' :id='$style.showmetrics' :class='shownMetrics ? $style.shown : ""' @click='showMetrics'>
+          <a href='javascript:void(0)' v-if='item.specs.keymetrics' :id='$style.showmetrics' :class='shownMetrics ? $style.shown : ""' @click='showMetrics'>
             <span>{{ shownMetrics ? "HIDE KEY METRICS" : "SHOW KEY METRICS" }}</span>
             <div :id='$style.metricsarrow'></div>
           </a>
@@ -51,8 +51,8 @@
       </div>
     </div>
     <div :id='$style.keymetricscontainer' :style='{"height": shownMetrics ? `${keymetricsHeight}px` : "0px"}'>
-      <div v-if='item.keymetrics' ref='keymetrics' :id='$style.keymetrics'>
-        <KeyMetrics :showHarvest='showHarvest' :name='item.name' :n='n' v-bind='item.keymetrics' />
+      <div v-if='item.specs.keymetrics' ref='keymetrics' :id='$style.keymetrics'>
+        <KeyMetrics :showHarvest='showHarvest' :name='item.name' :n='n' v-bind='item.specs.keymetrics' />
       </div>
     </div>
     <portal v-if='showZoom' to='root'>
@@ -157,9 +157,16 @@ export default {
   flex-direction: column
   justify-content: center
 
-.bullet > b
+.bullet strong
   color: #3BB30B
   font-weight: 600
+
+.bullet > ul
+  padding: 0
+  list-style-type: none
+
+.bullet > ul > li
+  margin-bottom:7pt
 
 #bottom
   display: flex

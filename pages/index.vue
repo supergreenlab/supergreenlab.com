@@ -50,7 +50,7 @@
       <div :class='$style.space'></div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles'>
-          <div :id='b.ref'></div>
+          <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
@@ -111,18 +111,13 @@ export default {
   },
 	computed: {
 		bundles() {
-			return this.$store.state.eshop.sgl.bundles
+			return this.$store.getters['eshop/bundles']
 		},
     promo() {
       const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
-    },
-    totaldiscount() {
-      const bundle = this.bundle,
-            promo = this.promo
-      return parseInt((1 - (1-bundle.discount/100) * (1-promo.discount/100) ) * 100)
     },
 	},
   methods: {

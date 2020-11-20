@@ -21,6 +21,8 @@
 export const state = () => {
   let defaults = {
     cart: [],
+    promocode: {value: '', valid: true, optional: true,},
+    discount: {value: 0, valid: true, optional: true},
   };
   if (window.localStorage.getItem('checkout')) {
     defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
@@ -33,6 +35,24 @@ const storeState = (state) => {
 }
 
 export const actions = {
+  async setPromocode(context, {code}) {
+    try {
+      if (cancel) {
+        cancel()
+        cancel = null
+      }
+      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${code}`, {
+        cancelToken: new CancelToken((c) => {
+          cancel = c
+        })
+      })
+      cancel = null
+      context.commit('setPromocode', code)
+      context.commit('setDiscount', discount.discount)
+    } catch(e) {
+      context.commit('setDiscount', 0)
+    }
+  },
 }
 
 export const mutations = {
@@ -42,6 +62,14 @@ export const mutations = {
   },
   setCart(state, lineItems) {
     state.cart = [lineItems]
+    storeState(state)
+  },
+  setPromocode(state, promocode) {
+    state.promocode.value = promocode
+    storeState(state)
+  },
+  setDiscount(state, discount) {
+    state.discount.value = discount
     storeState(state)
   },
 }

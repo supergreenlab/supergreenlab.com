@@ -16,20 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { accessories } from '~/config/eshop/sgl/accessories.json'
-import { bundles } from '~/config/eshop/sgl/bundles.json'
-import { leds } from '~/config/eshop/sgl/leds.json'
+import { products } from '~/config/products.json'
 
 export const state = () => ({
-  sgl: {
-    bundles: bundles.map(o => Object.assign(o, {type: 'sgl_bundle'})),
-    leds: leds.map(o => Object.assign(o, {type: 'sgl_led'})),
-    accessories: accessories.map(o => Object.assign(o, {type: 'sgl_accessory'})),
-  },
+  products,
 })
 
-export const actions = {
-}
+const productsWithType = (state, type) => state.products.filter(p => p.type.indexOf(type) !== -1)
 
-export const mutations = {
+export const getters = {
+  bundles: state => {
+    return productsWithType(state, 'SGL_BUNDLE')
+  },
+  leds: state => {
+    return productsWithType(state, 'SGL_LED')
+  },
+  accessories: state => {
+    return productsWithType(state, 'SGL_ACCESSORIES')
+  },
+  productWithSlug: state => slug => state.products.find(p => p.slug == slug),
+  productsWithType: state => type => productsWithType(state, type)
 }

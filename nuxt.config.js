@@ -1,5 +1,6 @@
 import fs from 'fs';
 import pkg from './package'
+import { products } from './config/products.json'
 
 export default {
   mode: 'spa',
@@ -90,11 +91,8 @@ export default {
   },
   generate: {
     routes: [
-      '/bundle/mono-box-bundle',
-      '/bundle/multi-box-bundle',
-      '/bundle/closet-box-bundle',
-      '/bundle/micro-box-bundle',
-    ].concat(fs.readdirSync("config").filter(f => f.indexOf('guide-') == 0).map(f => `/guide/${f.replace(/guide-|.json/g, '')}`)),
+    ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
+    .concat(fs.readdirSync("config").filter(f => f.indexOf('guide-') == 0).map(f => `/guide/${f.replace(/guide-|.json/g, '')}`)),
   },
 
   router: {
