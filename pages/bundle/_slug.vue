@@ -50,7 +50,7 @@
       <Item v-if='bundle.specs.sensor' :discount='totaldiscount' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
       <Item n='1' :item='accessory("sgl-controller")' :discount='totaldiscount' last='true' />
       <div :class='$style.price'>
-        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='false' />
+        <Price :price='bundle.SellingPoints[0].price' :promodiscount='promo.discount' :freeshipping='false' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />

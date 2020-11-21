@@ -22,11 +22,36 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <div v-for='product in cart'>
-        {{ product.slug }}
+      <div :id='$style.shipdisclaimer'>
+        <b>NORMAL SHIPPING IS BACK!</b><br /><br />
+        The loooooong wait is over! We're now shipping worlwide, 24h after you order.<br /><br />
+        <h4>Thanks for your support:)</h4>
+      </div>
+      <div>
+        <Shipping />
+        <div :id='$style.buy'>
+          <div :id='$style.promocode'>
+            <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
+            <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(totalPrice) }}</b></a>
+            <div :class='$style.block'>
+              <img src='~assets/img/powered-by-stripe.png' width="300"><br />
+            </div>
+            <!--<div :class='$style.block'>
+              <img src='~assets/img/crypto.png'>
+            </div>-->
+            <div :class='$style.block'>
+              <img src='~assets/img/paypal.png'>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <Footer />
+    <div :id='$style.loading' v-if='loading'>
+      <div :id='$style.loadingcontainer'>
+        <Loading label='Preparing your order, please wait' />
+      </div>
+    </div>
   </section>
 </template>
 

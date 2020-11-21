@@ -23,7 +23,7 @@
         <h1>{{ bundle.name }}</h1>
         <h2>{{ bundle.tagline }}</h2>
       </div>
-      <Price :price='bundle.price' :promodiscount='promodiscount' :freeshipping='false' />
+      <Price :price='bundle.SellingPoints[0].price' :promodiscount='promodiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -36,7 +36,6 @@
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
-            <!--<nuxt-link @click.native='bundleClicked' :to='`/bundle/${slug}`'>BUY NOW <b>${{ price }}</b></nuxt-link><br />-->
             <!--<OutOfStock v-if='outofstock' />-->
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${bundle.slug}`'>LEARN MORE</nuxt-link><br />
           </div>
@@ -91,15 +90,10 @@ export default {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
     },
-    addToCartClicked() {
-      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
-      this.$store.commit('storefront/addToCart', {id: `gid://shopify/ProductVariant/${this.$props.id}`, n: 1})
-    },
     priceConv(dols) {
       return priceConv(dols)
     },
     toggleZoom(url) {
-      console.log(this.$props.bundle)
       this.$data.zoomPic =  this.$props.bundle.pics[this.$data.n];
       this.$data.showZoom = !this.$data.showZoom
     },

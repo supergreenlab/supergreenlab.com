@@ -75,10 +75,10 @@ import TextInput from '~/components/shipping-text.vue'
 
 const binding = (name) => ({
   get() {
-    return this.$store.state.checkout[name].value
+    return this.$store.state.shipping[name].value
   },
   set(value) {
-    this.$store.commit('checkout/updateCheckout', {key: name, value})
+    this.$store.commit('shipping/updateShipping', {key: name, value})
   },
 })
 
