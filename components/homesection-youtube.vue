@@ -28,7 +28,6 @@
     <div :id='$style.body'>
       <div :class='$style.yt'>
         <h2>How to build an Automated LED Grow Box</h2>
-        {{ require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg") }} 
         <a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'><div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /></div></a>
         <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-grow-bundle"}'>
           <b class="hvr-grow">Build yours now</b>
