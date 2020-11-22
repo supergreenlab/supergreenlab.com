@@ -101,12 +101,12 @@ export default {
   background-repeat: no-repeat
   @media only screen and (max-width: 600px)
     width: 100%
+    height: 200px
 
 .thumbnail > img
   transition: opacity 0.2s
   @media only screen and (max-width: 600px)
-    width: 25%
-    height: 25%
+    max-width: 25%
 
 .thumbnail:hover > img
   opacity: 90%
