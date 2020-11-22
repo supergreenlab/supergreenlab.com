@@ -28,14 +28,14 @@
     <div :id='$style.body'>
       <div :class='$style.yt'>
         <h2>How to build an Automated LED Grow Box</h2>
-        <a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'><div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /></div></a>
+        <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
         <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-grow-bundle"}'>
           <b class="hvr-grow">Build yours now</b>
         </nuxt-link>
       </div>
       <div :class='$style.yt'>
         <h2>How to build the cheapest growbox ever</h2>
-        <a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'><div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-cheapest-growbox-ever.jpg")})`}'><img src='~assets/img/youtube-play.png' /></div></a>
+        <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-cheapest-growbox-ever.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'></a></div>
         <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#mono-box-bundle"}'>
           <b class="hvr-grow">Build yours now</b>
         </nuxt-link>
@@ -89,6 +89,7 @@ export default {
   margin: 10pt
 
 .thumbnail
+  position: relative
   display: flex
   align-items: center
   justify-content: center
@@ -103,9 +104,18 @@ export default {
 
 .thumbnail > img
   transition: opacity 0.2s
+  @media only screen and (max-width: 600px)
+    width: 25%
+    height: 25%
 
 .thumbnail:hover > img
   opacity: 90%
+
+.thumbnail > a
+  display: block
+  position: absolute
+  width: 100%
+  height: 100%
 
 #cta
   display: flex
