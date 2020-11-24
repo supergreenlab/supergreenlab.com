@@ -19,18 +19,18 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.buy'>
-      <div :id='$style.promocode'>
-        <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-        <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(price) }}</b></a>
-        <div :class='$style.block'>
-          <img src='~assets/img/powered-by-stripe.png' width="300"><br />
-        </div>
-        <!--<div :class='$style.block'>
-          <img src='~assets/img/crypto.png'>
-        </div>-->
-        <div :class='$style.block'>
-          <img src='~assets/img/paypal.png'>
-        </div>
+      <div :id='$style.promocode' v-if='promocodePrompt'>
+        <TextInput label='SGL Promo code' v-model='code' name='promocode' optional='true' />
+      </div>
+      <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='$emit("click")'>PAY NOW <b>{{ priceConv(price) }}</b></a>
+      <div :class='$style.block'>
+        <img src='~assets/img/powered-by-stripe.png' width="300"><br />
+      </div>
+      <!--<div :class='$style.block'>
+        <img src='~assets/img/crypto.png'>
+      </div>-->
+      <div :class='$style.block'>
+        <img src='~assets/img/paypal.png'>
       </div>
     </div>
   </section>
@@ -40,8 +40,21 @@
 
 import priceConv from '~/lib/price.js'
 
+import TextInput from '~/components/shipping/text.vue'
+
 export default {
-  props: ['valid', 'price',],
+  components: { TextInput, },
+  props: ['valid', 'price', 'value', 'promocodePrompt',],
+  computed: {
+    code: {
+      get() {
+        return this.$props.value
+      },
+      set(value) {
+        this.$emit('input', value)
+      },
+    },
+  },
   methods: {
     priceConv(dols) {
       return priceConv(dols)

@@ -30,7 +30,7 @@
         </div>
       </div>
       <div :id='$style.checkoutbutton'>
-        <CheckoutButton :valid='valid' :price='totalPrice' />
+        <CheckoutButton :valid='valid' :price='totalPrice' v-model='promocode' :promocodePrompt='true' />
       </div>
     </div>
     <Footer />
@@ -46,6 +46,9 @@ import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
 export default {
   components: {Header, Footer, CartTitle, LineItem, CheckoutButton,},
+  destroyed() {
+    if (this.timeout) clearTimeout(this.timeout)
+  },
   computed: {
     valid() {
       return false
@@ -55,10 +58,9 @@ export default {
         return this.$store.state.checkout.promocode.value
       },
       set(value) {
-        this.$store.commit('checkout/updateCheckout', {key: 'promocode', value})
-        this.$store.commit('checkout/setDiscount', 0)
+        this.$store.commit('checkout/setPromocode', value)
         if (this.timeout) clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => this.$store.dispatch('checkout/setPromocode', { code: value }), 400)
+        this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { code: value }), 400)
       },
     },
     promo() {

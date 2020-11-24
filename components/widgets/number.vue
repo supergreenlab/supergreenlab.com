@@ -46,12 +46,19 @@ export default {
   font-size: 2em
   border: 1px solid #9a9a9a
   border-radius: 5px
+  user-select: none
 
 #container > div
   flex: 1
 
 .control
   cursor: pointer
-  padding: 2pt 10pt
+  text-align: center
+  padding: 2pt 5pt
+  width: 30pt
+
+#value
+  width: 50pt
+  text-align: center
 
 </style>

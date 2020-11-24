@@ -17,6 +17,7 @@
  */
 
 import Vue from 'vue'
+import axios from 'axios'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
@@ -36,8 +37,10 @@ const storeState = (state) => {
   window.localStorage.setItem('checkout', JSON.stringify(state))
 }
 
+let cancel
+const CancelToken = axios.CancelToken
 export const actions = {
-  async setPromocode(context, {code}) {
+  async fetchPromocode(context, {code}) {
     try {
       if (cancel) {
         cancel()
@@ -75,6 +78,7 @@ export const mutations = {
   },
   setPromocode(state, promocode) {
     state.promocode.value = promocode
+    state.discount.value = 0
     storeState(state)
   },
   setDiscount(state, discount) {

@@ -44,7 +44,6 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Shipping from '~/components/shipping/form.vue'
-import TextInput from '~/components/shipping/text.vue'
 import Loading from '~/components/widgets/loading.vue'
 import Footer from '~/components/layout/footer.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
@@ -52,7 +51,7 @@ import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
 
 export default {
-  components: {Header, Shipping, TextInput, Loading, Footer, OutOfStock, CheckoutButton},
+  components: {Header, Shipping, Loading, Footer, OutOfStock, CheckoutButton},
   data() {
     return {
       loading: false,
