@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Disclaimer from '~/components/overlay-major.vue'
+import Disclaimer from '~/components/layout/overlay-major.vue'
 
 export default {
   components: {Disclaimer,},

@@ -19,38 +19,45 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='SuperGreenOS feature highlight'
-                    green='Progressive sunrise/sunset'
-                    title2="Just like the sun, in a box"
-                    smalltitle="The sun doesn't switch to midday position in a second, why would your lamp?"
+      <SectionTitle title='Checkout the'
+                    green="Latest diaries in the app"
+                    title2='(install the app before clicking)'
                     separator='true'/>
     </div>
-    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source src="/progressive_sunrise_sunset.mp4" type="video/mp4">
-      <source src="/progressive_sunrise_sunset.webm" type="video/webm">
-      Your browser does not support the video tag.
-    </video>
-    <div :id='$style.text'>
-      The <b>SuperGreenController</b> gives you total control of your lights,<br />
-      it allows to switch from veg to bloom at a press of a button,<br />
-      it <b>simulates sunrise and sunsets</b>, and allows to choose <b>independent dimming</b> for each led channels,<br />
-      smart schedules for <b>UV</b> and <b>IR</b> panels are coming soon.
+    <div :id='$style.plants'>
+      <a :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>
+        {{ plant.name }}
+      </a>
     </div>
-    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
-      <b class="hvr-grow">Buy now</b>
+    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' to='/app'>
+      <b class="hvr-grow">Install app</b>
     </nuxt-link>
   </section>
 </template>
 
 <script>
-import SectionTitle from '~/components/sectiontitle.vue'
+import axios from 'axios'
+
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
   components: { SectionTitle, },
+  data() {
+    return {
+      plants: [],
+    }
+  },
+  async mounted() {
+    const { data: { plants } } = await axios.get(`https://api2.supergreenlab.com/public/plants?limit=10&offset=0`)
+    this.$data.plants = plants
+  },
   methods: {
     ctaClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'cta-continuous', 'buy-now')
-    }
+    },
+    open(plant) {
+      document.location.href = '';
+    },
   },
 }
 
@@ -67,6 +74,7 @@ export default {
 
 #title
   width: 100%
+  margin: 0pt 0 50pt 0
 
 #video
   display: block
@@ -85,6 +93,33 @@ export default {
 
 #text > b
   color: #3bb30b
+
+#plants
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+  margin: 0 50pt
+  @media only screen and (max-width: 600px)
+    margin: 0
+
+.plant
+  height: 150px
+  display: flex
+  align-items: center
+  justify-content: center
+  text-align: center
+  text-decoration: none
+  color: white
+  font-weight: bold
+  position: relative
+  flex-basis: 20%
+  cursor: pointer
+  background-position: center
+  background-repeat: no-repeat
+  background-size: fit
+  @media only screen and (max-width: 600px)
+    flex-basis: 50%
 
 #cta
   display: flex

@@ -18,30 +18,24 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.title'>
-      <SectionTitle title=''
-                    green='- Spare parts -' />
+    <h2>{{ name }}</h2>
+    <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${icons.white}`)})`}'></div>
+    <div v-for='b in bullets' v-html='b'></div>
+    <div :class='$style.price'>
+      <Price :price='price' :promodiscount='promodiscount' />
     </div>
-    <div :id='$style.body'>
-      <div v-for='led in leds' :class='$style.led'>
-        <Item :promodiscount='promodiscount' v-bind='led' />
-      </div>
-    </div>
+    <OutOfStock v-if='outofstock' />
+    <a :id='$style.goto' :href='url'>View in spare part shop</a>
   </section>
 </template>
 
 <script>
-import SectionTitle from '~/components/sectiontitle.vue'
-import Item from '~/components/homesection-sparepartsitem.vue'
+import OutOfStock from '~/components/products/outofstock.vue'
+import Price from '~/components/products/price.vue'
 
 export default {
-  props: ['promodiscount',],
-  components: {SectionTitle, Item,},
-	computed: {
-		leds() {
-			return leds
-		},
-  },
+  components: {Price, OutOfStock,},
+  props: ['name', 'icons', 'bullets', 'price', 'promodiscount', 'url', 'outofstock',],
 }
 </script>
 
@@ -49,25 +43,36 @@ export default {
 
 #container
   display: flex
-  width: 100%
   flex-direction: column
-  justify-content: center
-  align-items: center
-
-#title
-  width: 100%
-  margin: 0pt 0 50pt 0
-
-#body
-  display: flex
   flex-wrap: wrap
-  align-items: center
-  justify-content: center
+  max-width: 250pt
+  color: #454545
 
-.led
-  flex-basis: 33%
-  padding: 20pt 30pt
-  @media only screen and (max-width: 600px)
-    flex-basis: 100%
+#pic
+  margin: 10pt
+  width: 100%
+  height: 150pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+.price
+  display: flex
+  margin: 10pt 0
+
+#goto
+  display: block
+  align-self: flex-start
+  background-color: #3BB30B
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+
+#goto:hover
+  background-color: #2F880B
+
+#goto > b
+  font-weight: 600
 
 </style>

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import Step from '~/components/homesection-step.vue'
+import Step from '~/components/home/step.vue'
 
 export default {
   components: { Step, },

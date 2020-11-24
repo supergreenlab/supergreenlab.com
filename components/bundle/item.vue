@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import KeyMetrics from '~/components/bundle-keymetrics.vue'
+import KeyMetrics from '~/components/bundle/keymetrics.vue'
 import priceConv from '~/lib/price.js'
 
 export default {

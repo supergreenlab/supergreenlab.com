@@ -19,23 +19,28 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Introducing more flexible'
-                    green='and aesthetic builds'
-                    separator='true'/>
+      <SectionTitle title='SHIPPING RESUMED!'
+                    green='Thank you all for your support!'
+                    smalltitle="The loooooong wait is over! We're now shipping worlwide, 24h after you order."/>
     </div>
-    <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source src="/stealth.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video> 
-  </section>
+		<div :id='$style.carousel'>
+			<agile autoplay pause-on-dots-hover :autoplay-speed="5000">
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-1.jpg")})`}'></div>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-2.jpg")})`}'></div>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-3.jpg")})`}'></div>
+				<div :class='$style.pic' :style='{"background-image": `url(${require("~/assets/img/new-sgl-4.jpg")})`}'></div>
+			</agile>
+		</div>
+	</section>
 </template>
 
 <script>
-import SectionTitle from '~/components/sectiontitle.vue'
-import Step from '~/components/homesection-step.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Step from '~/components/home/step.vue'
 
 export default {
   components: { SectionTitle, Step, },
+  methods: {},
 }
 </script>
 
@@ -47,19 +52,24 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
+  margin-bottom: 20pt
 
 #title
   width: 100%
   margin: 0pt 0 50pt 0
+  padding: 0 30pt
 
-#video
-  height: 100%
-  max-height: 600px
-  max-width: 600px
-  margin: 0 0 40pt 0
-  @media only screen and (max-width: 600pt)
-    width: 100%
-  @media only screen and (min-width: 600pt)
-    box-shadow: -1px 1px 5px #888
+#carousel
+  width: 100vw
+  max-width: 530px
+
+.pic
+  width: 100vw
+  max-width: 530px
+  height: 100vw
+  max-height: 530px
+  background-position: bottom
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

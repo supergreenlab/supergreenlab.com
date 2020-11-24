@@ -106,8 +106,8 @@
 </template>
 
 <script>
-import Logo from '~/components/logo.vue'
-import SectionTitle from '~/components/sectiontitle.vue'
+import Logo from '~/components/widgets/logo.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
   components: { Logo, SectionTitle, },

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Header from '~/components/header.vue'
+import Header from '~/components/layout/header.vue'
 
 export default {
   components: {Header,},

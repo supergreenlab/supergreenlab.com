@@ -145,9 +145,9 @@
 </template>
 
 <script>
-import Header from '~/components/header.vue'
-import SectionTitle from '~/components/sectiontitle.vue'
-import Footer from '~/components/homesection-footer.vue'
+import Header from '~/components/layout/header.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Footer from '~/components/layout/footer.vue'
 
 export default {
   components: {Header, SectionTitle, Footer},

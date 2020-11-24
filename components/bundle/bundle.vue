@@ -62,11 +62,11 @@
 </template>
 
 <script>
-import Price from '~/components/price.vue'
-import Items from '~/components/homesection-bundle-items.vue'
+import Price from '~/components/products/price.vue'
+import Items from '~/components/bundle/items.vue'
 import priceConv from '~/lib/price.js'
-import OutOfStock from '~/components/outofstock.vue'
-import AddToCart from '~/components/bundle-addtocart.vue'
+import OutOfStock from '~/components/products/outofstock.vue'
+import AddToCart from '~/components/bundle/addtocart.vue'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart,},

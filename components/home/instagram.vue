@@ -19,27 +19,28 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='Follow us'
-                    green='on social medias'
-                    title2="let's stay in touch!"
+      <SectionTitle title='we found the best way'
+                    green='to grow your own buds'
+                    title2='in the most convenient way'
+                    smalltitle='No big tent, no complicated hardware.'
                     separator='true'/>
     </div>
-    <div :id='$style.socialicons'>
-      <a href='https://www.reddit.com/r/supergreenlab' target='_blank'>
-        <div :class='$style.socialicon' :id='$style.reddit'></div>
-      </a>
-      <a href='https://www.youtube.com/c/supergreenlab' target='_blank'>
-        <div :class='$style.socialicon' :id='$style.youtube'></div>
-      </a>
-      <a href='https://www.instagram.com/sgreenlab/' target='_blank'>
-        <div :class='$style.socialicon' :id='$style.instagram'></div>
-      </a>
+    <div :id='$style.mosaic'>
+      <div v-for='i in posts' :class='$style.post' @click='open(i.url)'>
+        <video v-if='i.pic.indexOf("mp4") != -1' autoplay loop playsinline muted defaultMuted>
+          <source :src='require(`~/assets/img/instagram/${i.pic}`)' type="video/mp4">
+          Your browser does not support the video tag.
+        </video> 
+        <img v-else :src='require(`~/assets/img/instagram/${i.pic}`)' />
+        <div :class='$style.iglogo'></div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import SectionTitle from '~/components/sectiontitle.vue'
+import instagram from '~/config/instagram.json'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
   components: {SectionTitle,},
@@ -69,29 +70,41 @@ export default {
   width: 100%
   margin: 0pt 0 50pt 0
 
-#socialicons
+#mosaic
   display: flex
+  flex-wrap: wrap
   align-items: center
   justify-content: center
-  margin: 20pt 50pt
+  margin: 0 50pt
   @media only screen and (max-width: 600px)
     margin: 0
-
-.socialicon
-  width: 100pt
-  height: 50pt
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+   
+.post
+  display: flex
+  position: relative
+  flex-basis: 12.5%
   cursor: pointer
+  @media only screen and (max-width: 600px)
+    flex-basis: 50%
 
-#youtube
-  background-image: url('~assets/img/youtube.svg')
+.post > video, .post > img
+  width: 100%
+  height: 100%
 
-#reddit
-  background-image: url('~assets/img/reddit.svg')
-
-#instagram
+.iglogo
+  position: absolute
+  bottom: 3pt
+  right: 3pt
+  width: 20pt
+  height: 20pt
   background-image: url('~assets/img/instagram.svg')
+  background-position: center
+  background-repeat: no-repeat
+  background-size: contain
+  transition: opacity 0.2s
+  opacity: 0.7
+
+.post:hover > .iglogo
+  opacity: 1
 
 </style>

@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import TextInput from '~/components/shipping-text.vue'
+import TextInput from '~/components/shipping/text.vue'
 
 const binding = (name) => ({
   get() {

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import SectionTitle from '~/components/sectiontitle.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
   components: {SectionTitle,},

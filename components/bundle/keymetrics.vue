@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import Title from '~/components/bundle-title.vue'
-import Metric from '~/components/bundle-keymetric.vue'
+import Title from '~/components/bundle/title.vue'
+import Metric from '~/components/bundle/keymetric.vue'
 
 export default {
   components: {Title, Metric,},

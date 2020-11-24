@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import SectionTitle from '~/components/sectiontitle.vue'
-import Step from '~/components/homesection-step.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Step from '~/components/home/step.vue'
 
 export default {
   components: { SectionTitle, Step, },

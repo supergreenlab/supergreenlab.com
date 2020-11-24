@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import Header from '~/components/header.vue'
-import Shipping from '~/components/shipping-form.vue'
-import TextInput from '~/components/shipping-text.vue'
-import Loading from '~/components/loading.vue'
-import Footer from '~/components/homesection-footer.vue'
-import OutOfStock from '~/components/outofstock.vue'
+import Header from '~/components/layout/header.vue'
+import Shipping from '~/components/shipping/form.vue'
+import TextInput from '~/components/shipping/text.vue'
+import Loading from '~/components/widgets/loading.vue'
+import Footer from '~/components/layout/footer.vue'
+import OutOfStock from '~/components/products/outofstock.vue'
 
 import priceConv from '~/lib/price.js'
 

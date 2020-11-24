@@ -82,13 +82,13 @@
 </template>
 
 <script>
-import Header from '~/components/header.vue'
-import Guide from '~/components/bundle-guide.vue'
-import Bundle from '~/components/homesection-bundle.vue'
-import Item from '~/components/bundle-item.vue'
-import Title from '~/components/bundle-title.vue'
-import Price from '~/components/price.vue'
-import Footer from '~/components/homesection-footer.vue'
+import Header from '~/components/layout/header.vue'
+import Guide from '~/components/bundle/guide.vue'
+import Bundle from '~/components/bundle/bundle.vue'
+import Item from '~/components/bundle/item.vue'
+import Title from '~/components/bundle/title.vue'
+import Price from '~/components/products/price.vue'
+import Footer from '~/components/layout/footer.vue'
 
 import priceConv from '~/lib/price.js'
 
