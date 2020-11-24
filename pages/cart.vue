@@ -18,20 +18,9 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.header'>
-      <Header />
-    </div>
+    <Header />
     <div :id='$style.body'>
-      <CartTitle title='SuperGreenLab Cart' />
-      <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
-      <div :class='$style.lineItems'>
-        <div v-for='lineItem in cart'>
-          <LineItem :lineItem='lineItem' />
-        </div>
-      </div>
-      <div :id='$style.checkoutbutton'>
-        <CheckoutButton :valid='valid' :price='totalPrice' v-model='promocode' :promocodePrompt='true' />
-      </div>
+      <SGLCart />
     </div>
     <Footer />
   </section>
@@ -40,42 +29,12 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
-import CartTitle from '~/components/cart/carttitle.vue'
-import LineItem from '~/components/cart/lineitem.vue'
-import CheckoutButton from '~/components/cart/checkoutbutton.vue'
+import SGLCart from '~/components/cart/sglcart.vue'
 
 export default {
-  components: {Header, Footer, CartTitle, LineItem, CheckoutButton,},
-  destroyed() {
-    if (this.timeout) clearTimeout(this.timeout)
-  },
+  components: {Header, Footer, SGLCart},
   computed: {
-    valid() {
-      return false
-    },
-    promocode: {
-      get() {
-        return this.$store.state.checkout.promocode.value
-      },
-      set(value) {
-        this.$store.commit('checkout/setPromocode', value)
-        if (this.timeout) clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { code: value }), 400)
-      },
-    },
-    promo() {
-      const discount = this.$store.state.checkout.discount.value,
-            promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !discount) return {promocode: '', discount: 0}
-      return {promocode, discount}
-    },
-    cart() {
-      return this.$store.state.checkout.cart
-    },
-    totalPrice() {
-      return this.$store.getters['checkout/getTotalPrice']
-    },
- },
+  },
 }
 </script>
 
@@ -88,28 +47,9 @@ export default {
   justify-content: center
   align-items: center
 
-#header
-  position: fixed
-  width: 100%
-  top: 0 
-  left: 0
-  z-index: 1000
-
 #body
   width: 100%
   max-width: 900pt
-  padding: 50pt 0 0 0
-
-.lineItems
-  display: flex
-  flex-direction: column
-  margin: 30pt
-
-.carttype
-  margin: 30pt
-
-#checkoutbutton
-  display: flex
-  justify-content: flex-end
+  padding: 100pt 0 0 0
 
 </style>

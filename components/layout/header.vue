@@ -53,6 +53,10 @@ export default {
 <style module lang=stylus>
 
 #container
+  position: fixed
+  top: 0 
+  left: 0
+  z-index: 1000
   display: flex
   width: 100%
   background-color: rgba(255, 255, 255, 0.8)

@@ -33,6 +33,7 @@ export default {
 
 #container
   display: flex
+  width: 100%
   border-bottom: 2px solid #9a9a9a
 
 #container > img

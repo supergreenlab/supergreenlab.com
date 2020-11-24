@@ -88,5 +88,5 @@ export const mutations = {
 }
 
 export const getters = {
-  getTotalPrice: (state) => state.cart.reduce((t, lineItem) => t + lineItem.sellingPoint.price, 0)
+  getTotalPrice: (state) => state.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
 }
