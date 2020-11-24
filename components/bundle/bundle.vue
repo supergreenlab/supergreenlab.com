@@ -42,7 +42,7 @@
         </div>
 
         <div :id='$style.addtocartcontainer' v-if='addtocart && !showdescription'>
-          <AddToCart :product='bundle' />
+          <AddToCart :product='bundle' :sellingPoint='bundle.sellingPoints[0]' />
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
       <h1>Description</h1>
       <div v-html='$md.render(bundle.description)'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
-        <AddToCart :product='bundle' />
+        <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
       </div>
     </div>
     <portal v-if='showZoom' to='root'>
@@ -66,7 +66,7 @@ import Price from '~/components/products/price.vue'
 import Items from '~/components/bundle/items.vue'
 import priceConv from '~/lib/price.js'
 import OutOfStock from '~/components/products/outofstock.vue'
-import AddToCart from '~/components/bundle/addtocart.vue'
+import AddToCart from '~/components/products/addtocart.vue'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart,},

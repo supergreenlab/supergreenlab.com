@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -18,24 +18,21 @@
 
 <template>
   <section :id='$style.container'>
-    <a href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
-    <p>Our bundles are shipped discreet</p>
+    <div :class='$style.control' @click='change(value-1)'>-</div>
+    <div :id='$style.value'>
+      {{ value }}
+    </div>
+    <div :class='$style.control' @click='change(value+1)'>+</div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['product'],
-  data() {
-    return {
-      n: 0,
-    }
-  },
+  props: ['value'],
   methods: {
-    addToCartClicked() {
-      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', this.$props.slug)
-      this.$store.commit('checkout/addToCart', this.$props.product)
-    },
+    change(v) {
+      this.$emit('change', v)
+    }
   },
 }
 </script>
@@ -44,29 +41,17 @@ export default {
 
 #container
   display: flex
-  flex-direction: column
-  justify-content: flex-end
-  text-align: right
-  color: #3bb30b;
-  font-weight: 600;
-  @media only screen and (max-width: 600px)
-    align-self: flex-end
+  align-items: center
+  justify-content: center
+  font-size: 2em
+  border: 1px solid #454545
+  border-radius: 5px
 
-#container > a
-  display: block
-  align-self: flex-end
-  background-color: #3BB30B
-  padding: 8pt 25pt
-  border-radius: 5pt
-  color: white
-  text-decoration: none
-  font-size: 22px
-  margin: 4pt 0
+#container > div
+  flex: 1
 
-#container > a:hover
-  background-color: #2F880B
-
-#container > a > b
-  font-weight: 600
+.control
+  cursor: pointer
+  padding: 10pt
 
 </style>

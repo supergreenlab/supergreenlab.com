@@ -22,8 +22,6 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
-      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/' : { path: '/', hash: '#top' }">Home</nuxt-link></div>
-      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/micro-box-bundle' : { path: '/', hash: '#micro-grow-bundle' }">Ninja bundle</nuxt-link></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
   </section>
@@ -40,7 +38,7 @@ export default {
       return this.$route.name
     },
     nCartItems() {
-      return this.$store.state.checkout.cart.length
+      return this.$store.state.checkout.cart.reduce((acc, i) => acc + i.n, 0)
     }
   },
   methods: {

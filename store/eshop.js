@@ -16,10 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { products } from '~/config/products.json'
+import { products, sellers, brandProducts, brands } from '~/config/products.json'
 
 export const state = () => ({
   products,
+  sellers,
+  brandProducts,
+  brands
 })
 
 const productsWithType = (state, type) => state.products.filter(p => p.type.indexOf(type) !== -1)
@@ -35,5 +38,7 @@ export const getters = {
     return productsWithType(state, 'SGL_ACCESSORIES')
   },
   productWithSlug: state => slug => state.products.find(p => p.slug == slug),
-  productsWithType: state => type => productsWithType(state, type)
+  productsWithType: state => type => productsWithType(state, type),
+  brandProduct: state => id => state.brandProducts.find(bp => bp.id == id),
+  brand: state => id => state.brands.find(b => p.id == id)
 }

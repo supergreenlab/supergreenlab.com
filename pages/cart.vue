@@ -22,8 +22,12 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <div v-for='product in cart'>
-        {{ product.slug }}
+      <CartTitle title='SuperGreenLab Cart' />
+      <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
+      <div :class='$style.lineItems'>
+        <div v-for='lineItem in cart'>
+          <LineItem :lineItem='lineItem' />
+        </div>
       </div>
     </div>
     <Footer />
@@ -32,25 +36,12 @@
 
 <script>
 import Header from '~/components/layout/header.vue'
-import Shipping from '~/components/shipping/form.vue'
-import TextInput from '~/components/shipping/text.vue'
-import Loading from '~/components/widgets/loading.vue'
 import Footer from '~/components/layout/footer.vue'
-import OutOfStock from '~/components/products/outofstock.vue'
-
-import priceConv from '~/lib/price.js'
+import CartTitle from '~/components/cart/carttitle.vue'
+import LineItem from '~/components/cart/lineitem.vue'
 
 export default {
-  components: {Header, Shipping, TextInput, Loading, Footer, OutOfStock,},
-  data() {
-    return {
-      loading: false,
-      showPreOrderForm: false,
-    }
-  },
-  destroyed() {
-    if (this.timeout) clearTimeout(this.timeout)
-  },
+  components: {Header, Footer, CartTitle, LineItem,},
   computed: {
     valid() {
       return false
@@ -79,11 +70,6 @@ export default {
       return this.$store.getters['checkout/getTotalPrice']
     },
  },
-  methods: {
-    priceConv(dols) {
-      return priceConv(dols)
-    },
-  },
 }
 </script>
 
@@ -108,85 +94,12 @@ export default {
   max-width: 900pt
   padding: 50pt 0 0 0
 
-#buy
+.lineItems
   display: flex
   flex-direction: column
-  align-items: flex-end
-  justify-content: flex-end
-  text-align: right
-  margin: 40pt 50pt 20pt 0
-  @media only screen and (max-width: 600px)
-    margin: 30pt 10pt 20pt 0
+  margin: 30pt
 
-#buybutton
-  display: block
-  background-color: #3BB30B
-  padding: 8pt 25pt
-  margin: 5pt 0 0 0
-  border-radius: 5pt
-  color: white
-  text-decoration: none
-  text-align: center
-  font-weight: 500
-
-#buybutton > b
-  font-weight: 600
-
-#promocode
-  text-align: left
-
-#preorderoverlay
-  background-color: white
-
-#loading
-  display: flex
-  align-items: center
-  justify-content: center
-  position: fixed
-  width: 100vw
-  height: 100vh
-  top: 0
-  left: 0
-  background-color: rgba(255, 255, 255, 0.6)
-  z-index: 1000
-
-#loadingcontainer
-  position: relative
-  width: 200pt
-  height: 100pt
-
-.invalid
-  opacity: 0.6
-  cursor: default !important
-
-.valid:hover
-  background-color: #2F880B
-
-.block
-  display: flex
-
-.blockicon
-  width: 20pt
-  height: 20pt
-  margin: 5pt
-
-#shipdisclaimer
-  background-color: #f2f2f2
-  padding: 20pt 15pt
-  color: #717171
-  font-size: 1.2em
-  text-align: center
-
-#shipdisclaimer > b
-  color: #3BB30B
-
-#shipdisclaimer > h4
-  text-align: center;
-
-#shipdisclaimer > a
-  color: #717171
-
-#shipdisclaimer > a:hover
-  color: #3BB30B
+.carttype
+  margin: 30pt
 
 </style>

@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Vue from 'vue'
+
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
 export const state = () => {
@@ -56,8 +58,15 @@ export const actions = {
 }
 
 export const mutations = {
-  addToCart(state, lineItems) {
-    state.cart.push(lineItems)
+  addToCart(state, { n, product, sellingPoint }) {
+    const i = state.cart.findIndex(i => i.sellingPoint.id == sellingPoint.id)
+    if (n <= 0 && i !== -1) {
+      state.cart.splice(i, 1)
+    } else if (i == -1) {
+      state.cart.push({ n, product, sellingPoint })
+    } else {
+      Vue.set(state.cart, i, Object.assign({}, state.cart[i], { n } ))
+    }
     storeState(state)
   },
   setCart(state, lineItems) {
