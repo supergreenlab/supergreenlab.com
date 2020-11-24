@@ -44,7 +44,7 @@ export default {
   align-items: center
   justify-content: center
   font-size: 2em
-  border: 1px solid #454545
+  border: 1px solid #9a9a9a
   border-radius: 5px
 
 #container > div
@@ -52,6 +52,6 @@ export default {
 
 .control
   cursor: pointer
-  padding: 10pt
+  padding: 2pt 10pt
 
 </style>

@@ -29,6 +29,9 @@
           <LineItem :lineItem='lineItem' />
         </div>
       </div>
+      <div :id='$style.checkoutbutton'>
+        <CheckoutButton :valid='valid' :price='totalPrice' />
+      </div>
     </div>
     <Footer />
   </section>
@@ -39,9 +42,10 @@ import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
 import CartTitle from '~/components/cart/carttitle.vue'
 import LineItem from '~/components/cart/lineitem.vue'
+import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
 export default {
-  components: {Header, Footer, CartTitle, LineItem,},
+  components: {Header, Footer, CartTitle, LineItem, CheckoutButton,},
   computed: {
     valid() {
       return false
@@ -101,5 +105,9 @@ export default {
 
 .carttype
   margin: 30pt
+
+#checkoutbutton
+  display: flex
+  justify-content: flex-end
 
 </style>

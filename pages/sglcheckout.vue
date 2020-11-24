@@ -29,21 +29,7 @@
       </div>
       <div>
         <Shipping />
-        <div :id='$style.buy'>
-          <div :id='$style.promocode'>
-            <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-            <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(totalPrice) }}</b></a>
-            <div :class='$style.block'>
-              <img src='~assets/img/powered-by-stripe.png' width="300"><br />
-            </div>
-            <!--<div :class='$style.block'>
-              <img src='~assets/img/crypto.png'>
-            </div>-->
-            <div :class='$style.block'>
-              <img src='~assets/img/paypal.png'>
-            </div>
-          </div>
-        </div>
+        <CheckoutButton :valid='valid' :price='totalPrice' />
       </div>
     </div>
     <Footer />
@@ -62,11 +48,11 @@ import TextInput from '~/components/shipping/text.vue'
 import Loading from '~/components/widgets/loading.vue'
 import Footer from '~/components/layout/footer.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
+import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
-import priceConv from '~/lib/price.js'
 
 export default {
-  components: {Header, Shipping, TextInput, Loading, Footer, OutOfStock,},
+  components: {Header, Shipping, TextInput, Loading, Footer, OutOfStock, CheckoutButton},
   data() {
     return {
       loading: false,
@@ -104,11 +90,6 @@ export default {
       return this.$store.getters['checkout/getTotalPrice']
     },
  },
-  methods: {
-    priceConv(dols) {
-      return priceConv(dols)
-    },
-  },
 }
 </script>
 
@@ -143,26 +124,6 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 30pt 10pt 20pt 0
 
-#buybutton
-  display: block
-  background-color: #3BB30B
-  padding: 8pt 25pt
-  margin: 5pt 0 0 0
-  border-radius: 5pt
-  color: white
-  text-decoration: none
-  text-align: center
-  font-weight: 500
-
-#buybutton > b
-  font-weight: 600
-
-#promocode
-  text-align: left
-
-#preorderoverlay
-  background-color: white
-
 #loading
   display: flex
   align-items: center
@@ -186,14 +147,6 @@ export default {
 
 .valid:hover
   background-color: #2F880B
-
-.block
-  display: flex
-
-.blockicon
-  width: 20pt
-  height: 20pt
-  margin: 5pt
 
 #shipdisclaimer
   background-color: #f2f2f2

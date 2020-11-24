@@ -25,6 +25,7 @@
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
       <div :id='$style.description' v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></div>
       <div :id='$style.nitems'>
+        QTY
         <Number :value='lineItem.n' v-on:change='changeLineItem' />
       </div>
       <div :id='$style.price'>
@@ -55,6 +56,8 @@ export default {
   },
   methods: {
     deleteLineItem() {
+      const { lineItem } = this.$props
+      this.$store.commit('checkout/addToCart', Object.assign({}, lineItem, { n: 0 }))
     },
     changeLineItem(n) {
       const { lineItem } = this.$props
@@ -89,6 +92,7 @@ export default {
 #body > div
   flex: 1
   display: flex
+  flex-direction: column
   align-items: center
   justify-content: center
  
