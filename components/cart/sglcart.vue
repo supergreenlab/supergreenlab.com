@@ -18,7 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    <CartTitle title='SuperGreenLab Cart' />
     <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
     <div :class='$style.lineItems'>
       <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
@@ -32,12 +31,11 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
-import CartTitle from '~/components/cart/carttitle.vue'
 import LineItem from '~/components/cart/lineitem.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
 export default {
-  components: {Header, Footer, CartTitle, LineItem, CheckoutButton,},
+  components: {Header, Footer, LineItem, CheckoutButton,},
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
   },
@@ -62,7 +60,7 @@ export default {
       return {promocode, discount}
     },
     cart() {
-      return this.$store.state.checkout.cart.filter(li => li.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
+      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
     },
     totalPrice() {
       return this.$store.getters['checkout/getTotalPrice']

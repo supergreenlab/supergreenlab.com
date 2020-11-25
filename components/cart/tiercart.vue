@@ -18,31 +18,34 @@
 
 <template>
   <section :id='$style.container'>
-    <Header />
-    <div :id='$style.body'>
-      <CartTitle title='SuperGreenLab Cart' />
-      <SGLCart />
-      <CartTitle title='Checklist Cart' />
-      <TierCart v-for='seller in tierSellers' :seller='seller' />
+    <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
+    <div :class='$style.lineItems'>
+      <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
     </div>
-    <Footer />
   </section>
 </template>
 
 <script>
 import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
-import CartTitle from '~/components/cart/carttitle.vue'
-import SGLCart from '~/components/cart/sglcart.vue'
-import TierCart from '~/components/cart/tiercart.vue'
+import LineItem from '~/components/cart/lineitem.vue'
+import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
 export default {
-  components: {Header, Footer, CartTitle, SGLCart, TierCart},
-  computed: {
-    tierSellers() {
-      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0]))
-    }
+  props: ['seller'],
+  components: {Header, Footer, LineItem, CheckoutButton,},
+  destroyed() {
+    if (this.timeout) clearTimeout(this.timeout)
   },
+  computed: {
+    cart() {
+      const { seller } = this.$props
+      return this.$store.state.checkout.cart.filter(li => li.sellingPoint.Seller[0] === seller.id)
+    },
+    totalPrice() {
+      return this.$store.getters['checkout/getTotalPrice']
+    },
+ },
 }
 </script>
 
@@ -52,12 +55,20 @@ export default {
   display: flex
   width: 100%
   flex-direction: column
-  justify-content: center
-  align-items: center
+  justify-content: stretch
+  align-items: stretch
 
-#body
-  width: 100%
-  max-width: 900pt
-  padding: 100pt 0 0 0
+.lineItems
+  display: flex
+  flex-direction: column
+  margin: 10pt 30pt
+
+.carttype
+  margin: 10pt 30pt
+
+#checkoutbutton
+  display: flex
+  justify-content: flex-end
+  align-self: flex-end
 
 </style>
