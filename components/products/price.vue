@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='small ? $style.small : ""'>
     <div v-if='promodiscount' :id='$style.pricecontainer'>
       <div :class='$style.price + " " + $style.smallprice'>
         <h1>{{ priceConv(price) }}
@@ -41,7 +41,7 @@
 import priceConv from '~/lib/price.js'
 
 export default {
-  props: ['price', 'promodiscount', 'freeshipping',],
+  props: ['price', 'promodiscount', 'freeshipping', 'small'],
   methods: {
     priceConv(dols) {
       return priceConv(dols)
@@ -104,5 +104,8 @@ export default {
   transform: rotate(-30deg)
   position: absolute
   background-color: #FF0000
+
+.small
+  font-size: 0.8em
 
 </style>

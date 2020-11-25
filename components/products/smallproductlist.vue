@@ -18,24 +18,25 @@
 
 <template>
   <section :id='$style.container'>
-    <h2>{{ name }}</h2>
-    <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${icons.white}`)})`}'></div>
-    <div v-for='b in bullets' v-html='b'></div>
-    <div :class='$style.price'>
-      <Price :price='price' :promodiscount='promodiscount' />
+    <div :id='$style.title'>
+      <SectionTitle title=''
+                    green='- Spare parts -' />
     </div>
-    <OutOfStock v-if='outofstock' />
-    <a :id='$style.goto' :href='url'>View in spare part shop</a>
+    <div :id='$style.body'>
+      <div v-for='product in products' :class='$style.product'>
+        <Item :promodiscount='promodiscount' :product='product' />
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
-import OutOfStock from '~/components/products/outofstock.vue'
-import Price from '~/components/products/price.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Item from '~/components/products/smallproductitem.vue'
 
 export default {
-  components: {Price, OutOfStock,},
-  props: ['name', 'icons', 'bullets', 'price', 'promodiscount', 'url', 'outofstock',],
+  props: ['promodiscount', 'products',],
+  components: {SectionTitle, Item,},
 }
 </script>
 
@@ -43,36 +44,23 @@ export default {
 
 #container
   display: flex
-  flex-direction: column
-  flex-wrap: wrap
-  max-width: 250pt
-  color: #454545
-
-#pic
-  margin: 10pt
   width: 100%
-  height: 150pt
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+  flex-direction: column
+  justify-content: center
+  align-items: center
 
-.price
+#title
+  width: 100%
+  margin: 0pt 0 50pt 0
+
+#body
   display: flex
-  margin: 10pt 0
+  overflow-x: auto
 
-#goto
-  display: block
-  align-self: flex-start
-  background-color: #3BB30B
-  padding: 8pt 25pt
-  border-radius: 5pt
-  color: white
-  text-decoration: none
-
-#goto:hover
-  background-color: #2F880B
-
-#goto > b
-  font-weight: 600
+.product
+  flex-basis: 33%
+  padding: 20pt 30pt
+  @media only screen and (max-width: 600px)
+    flex-basis: 100%
 
 </style>

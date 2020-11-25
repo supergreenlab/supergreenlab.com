@@ -85,6 +85,8 @@ sw.*
 
 assets/img/guides/
 assets/img/products/
+assets/img/brands
+assets/img/brandproducts
 config/products.json
 config/guides.json
 config/guide-*.json

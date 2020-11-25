@@ -40,7 +40,8 @@ module.exports.mkAssetsDir = async (dir) => {
 
 module.exports.fetchAttachement = (p, attachement, dir) => {
   if (attachement.type.indexOf('image/') == 0) {
-    const ext = attachement.type.split('/')[1]
+    let ext = attachement.type.split('/')[1]
+    if (ext == 'svg+xml') ext = 'png'
     const fileLarge = `${dir}/${attachement.id}.${ext}`, fileSmall = `${dir}/${attachement.id}_small.${ext}`
     p = p.then(async () => {
       await fetchFile(attachement.thumbnails.small.url, fileSmall)

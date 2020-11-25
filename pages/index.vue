@@ -54,6 +54,7 @@
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
+      <SmallProductList :products='sglSpareParts' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
@@ -79,14 +80,14 @@ import LatestDiaries from '~/components/home/latest-diaries.vue'
 import Bundle from '~/components/bundle/bundle.vue'
 import Instagram from '~/components/home/instagram.vue'
 import Youtube from '~/components/home/youtube.vue'
-import SpareParts from '~/components/home/spareparts.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, SpareParts, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, SmallProductList, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,
@@ -119,6 +120,9 @@ export default {
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
     },
+    sglSpareParts() {
+      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
+    },
 	},
   methods: {
     closePopup() {
@@ -144,7 +148,7 @@ export default {
           }
         })
       }, 250)
-    },
+    }
   },
 }
 </script>

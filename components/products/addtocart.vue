@@ -17,15 +17,15 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='small ? $style.small : ""'>
     <a href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
-    <p>Our bundles are shipped discreet</p>
+    <p v-if='discreet !== false'>Our bundles are shipped discreet</p>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['product', 'sellingPoint'],
+  props: ['product', 'sellingPoint', 'small', 'discreet',],
   data() {
     return {
       n: 0,
@@ -50,6 +50,7 @@ export default {
   text-align: right
   color: #3bb30b;
   font-weight: 600;
+  height: 40pt
   @media only screen and (max-width: 600px)
     align-self: flex-end
 
@@ -61,8 +62,13 @@ export default {
   border-radius: 5pt
   color: white
   text-decoration: none
-  font-size: 22px
+  font-size: 1.2em
   margin: 4pt 0
+
+#container.small > a
+  padding: 6pt 18pt
+  font-size: 1em
+  border-radius: 4pt
 
 #container > a:hover
   background-color: #2F880B
