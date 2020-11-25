@@ -19,8 +19,8 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title=''
-                    green='- Spare parts -' />
+      <SectionTitle :title='title'
+                    :green='subtitle' />
     </div>
     <div :id='$style.body'>
       <div v-for='product in products' :class='$style.product'>
@@ -35,7 +35,7 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Item from '~/components/products/smallproductitem.vue'
 
 export default {
-  props: ['promodiscount', 'products',],
+  props: ['title', 'subtitle', 'promodiscount', 'products',],
   components: {SectionTitle, Item,},
 }
 </script>
@@ -51,7 +51,7 @@ export default {
 
 #title
   width: 100%
-  margin: 0pt 0 50pt 0
+  margin: 20pt 0 20pt 0
 
 #body
   display: flex

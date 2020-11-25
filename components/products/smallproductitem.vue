@@ -23,8 +23,8 @@
     <div :class='$style.price'>
       <Price :price='product.SellingPoints[0].price' :promodiscount='promodiscount' :small=true />
     </div>
-    <OutOfStock v-if='outofstock' />
-    <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :small='true' :discreet=false />
+    <OutOfStock v-if='product.outofstock' />
+    <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :small='true' :discreet=false :n='n' />
   </section>
 </template>
 
@@ -36,6 +36,11 @@ import AddToCart from '~/components/products/addtocart.vue'
 export default {
   components: {Price, OutOfStock, AddToCart, },
   props: ['product', 'promodiscount'],
+  data() {
+    return {
+      n: 1
+    }
+  },
   computed: {
     pic() {
       const { product } = this.$props
@@ -76,20 +81,5 @@ export default {
 .price
   display: flex
   margin: 10pt 0
-
-#goto
-  display: block
-  align-self: flex-start
-  background-color: #3BB30B
-  padding: 8pt 25pt
-  border-radius: 5pt
-  color: white
-  text-decoration: none
-
-#goto:hover
-  background-color: #2F880B
-
-#goto > b
-  font-weight: 600
 
 </style>

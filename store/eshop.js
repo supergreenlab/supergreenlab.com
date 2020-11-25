@@ -25,20 +25,21 @@ export const state = () => ({
   brands
 })
 
-const productsWithType = (state, type) => state.products.filter(p => p.type.indexOf(type) !== -1)
+const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)
+const productsWithTypes = (state, types) => state.products.filter(p => arrayContained(Array.isArray(types) ? types : [types], p.type))
 
 export const getters = {
   bundles: state => {
-    return productsWithType(state, 'SGL_BUNDLE')
+    return productsWithTypes(state, 'SGL_BUNDLE')
   },
   leds: state => {
-    return productsWithType(state, 'SGL_LED')
+    return productsWithTypes(state, 'SGL_LED')
   },
   accessories: state => {
-    return productsWithType(state, 'SGL_ACCESSORIES')
+    return productsWithTypes(state, 'SGL_ACCESSORIES')
   },
   productWithSlug: state => slug => state.products.find(p => p.slug == slug),
-  productsWithType: state => type => productsWithType(state, type),
+  productsWithTypes: state => types => productsWithTypes(state, types),
   brandProduct: state => id => state.brandProducts.find(bp => bp.id == id),
   brand: state => id => state.brands.find(b => p.id == id)
 }

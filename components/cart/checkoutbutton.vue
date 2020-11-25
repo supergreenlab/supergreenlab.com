@@ -67,6 +67,7 @@ export default {
 
 #container
   display: flex
+  justify-content: flex-end
 
 #buybutton
   display: block

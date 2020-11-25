@@ -8,7 +8,7 @@ module.exports.fetchProducts = async () => {
   await mkAssetsDir('brandproducts')
   await mkAssetsDir('brands')
   const products = await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'specs', 'SellingPoints', 'type'])
-  const sellingPoints = await fetchTable('SellingPoints', ['url', 'regions', 'vendor', 'price', 'currency', 'outofstock', 'canorder', 'params', 'specs', 'BrandProduct'])
+  const sellingPoints = await fetchTable('SellingPoints', ['url', 'regions', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'specs', 'BrandProduct'])
   const sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type'])
   const brandProducts = await fetchTable('BrandProducts', ['slug', 'name', 'description', 'pics', 'url', 'brand'])
   const brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])

@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='small ? $style.small : ""'>
     <div :class='$style.control' @click='change(value-1)'>-</div>
     <div :id='$style.value'>
       {{ value }}
@@ -28,10 +28,10 @@
 
 <script>
 export default {
-  props: ['value'],
+  props: ['value', 'small'],
   methods: {
     change(v) {
-      this.$emit('change', v)
+      this.$emit('input', v)
     }
   },
 }
@@ -57,8 +57,17 @@ export default {
   padding: 2pt 5pt
   width: 30pt
 
+.small .control
+  width: 20pt
+
 #value
   width: 50pt
   text-align: center
+
+.small #value
+  width: 30pt !important
+
+.small
+  font-size: 1.5em !important
 
 </style>

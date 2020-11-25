@@ -26,7 +26,7 @@
       <div :id='$style.description' v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></div>
       <div :id='$style.nitems'>
         QTY
-        <Number :value='lineItem.n' v-on:change='changeLineItem' />
+        <Number :value='lineItem.n' v-on:input='changeLineItem' />
       </div>
       <div :id='$style.price'>
         <Price :price='lineItem.sellingPoint.price' />
@@ -73,6 +73,7 @@ export default {
 #container
   display: flex
   flex-direction: column
+  margin-bottom: 15pt
 
 #title
   display: flex

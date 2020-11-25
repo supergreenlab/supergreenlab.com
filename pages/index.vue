@@ -54,7 +54,8 @@
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
-      <SmallProductList :products='sglSpareParts' />
+      <SmallProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' />
+      <SmallProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
@@ -122,6 +123,9 @@ export default {
     },
     sglSpareParts() {
       return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
+    },
+    soil() {
+      return this.$store.getters['eshop/productsWithTypes'](['SOIL'])
     },
 	},
   methods: {

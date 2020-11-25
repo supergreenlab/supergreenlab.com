@@ -262,7 +262,9 @@ export default {
   margin-bottom: 30pt
 
 #addtocartcontainer
+  display: flex
   margin-top: 20pt
+  justify-content: flex-end
 
 #addtocart
   display: flex

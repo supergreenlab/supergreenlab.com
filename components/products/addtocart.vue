@@ -18,24 +18,29 @@
 
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
-    <a href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
+    <Number v-model='n' :small=true />
+    <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
     <p v-if='discreet !== false'>Our bundles are shipped discreet</p>
   </section>
 </template>
 
 <script>
+import Number from '~/components/widgets/number.vue'
+
 export default {
+  components: {Number,},
   props: ['product', 'sellingPoint', 'small', 'discreet',],
   data() {
     return {
-      n: 0,
+      n: 1,
     }
   },
   methods: {
     addToCartClicked() {
-      const { product, sellingPoint } = this.$props
+      const { product, sellingPoint, } = this.$props
+      const { n } = this.$data
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.id)
-      this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
+      this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
     },
   },
 }
@@ -48,13 +53,11 @@ export default {
   flex-direction: column
   justify-content: flex-end
   text-align: right
-  color: #3bb30b;
   font-weight: 600;
-  height: 40pt
   @media only screen and (max-width: 600px)
     align-self: flex-end
 
-#container > a
+#button
   display: block
   align-self: flex-end
   background-color: #3BB30B
@@ -65,15 +68,18 @@ export default {
   font-size: 1.2em
   margin: 4pt 0
 
-#container.small > a
+#container.small > #button
   padding: 6pt 18pt
   font-size: 1em
   border-radius: 4pt
 
-#container > a:hover
+#button:hover
   background-color: #2F880B
 
-#container > a > b
+#button > b
   font-weight: 600
+
+#number
+  align-self: flex-end
 
 </style>

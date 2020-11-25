@@ -21,9 +21,7 @@
     <CartTitle title='SuperGreenLab Cart' />
     <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
     <div :class='$style.lineItems'>
-      <div v-for='lineItem in cart'>
-        <LineItem :lineItem='lineItem' />
-      </div>
+      <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
       <CheckoutButton :valid='valid' :price='totalPrice' v-model='promocode' :promocodePrompt='true' />
@@ -64,7 +62,7 @@ export default {
       return {promocode, discount}
     },
     cart() {
-      return this.$store.state.checkout.cart
+      return this.$store.state.checkout.cart.filter(li => li.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
     },
     totalPrice() {
       return this.$store.getters['checkout/getTotalPrice']
@@ -85,13 +83,14 @@ export default {
 .lineItems
   display: flex
   flex-direction: column
-  margin: 30pt
+  margin: 10pt 30pt
 
 .carttype
-  margin: 30pt
+  margin: 10pt 30pt
 
 #checkoutbutton
   display: flex
   justify-content: flex-end
+  align-self: flex-end
 
 </style>
