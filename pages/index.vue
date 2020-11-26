@@ -125,7 +125,7 @@ export default {
       return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
     },
     soil() {
-      return this.$store.getters['eshop/productsWithTypes'](['SOIL'])
+      return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])
     },
 	},
   methods: {

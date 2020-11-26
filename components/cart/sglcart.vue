@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.lineItems'>
-      <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
+      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
       <CheckoutButton :valid='valid' :price='totalPrice' v-model='promocode' :promocodePrompt='true' />
@@ -62,8 +62,8 @@ export default {
       return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
     },
     totalPrice() {
-      return this.$store.getters['checkout/getTotalPrice']
-    },
+      return this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
+    }
  },
 }
 </script>

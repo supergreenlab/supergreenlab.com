@@ -25,7 +25,8 @@ export const state = () => ({
   brands
 })
 
-const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)
+//const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)
+const arrayContained = (a1, a2) => a1.findIndex(a => a2.indexOf(a) !== -1) !== -1
 const productsWithTypes = (state, types) => state.products.filter(p => arrayContained(Array.isArray(types) ? types : [types], p.type))
 
 export const getters = {

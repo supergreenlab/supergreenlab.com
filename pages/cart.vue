@@ -25,7 +25,7 @@
       <SGLCart />
       <CartTitle title='Checklist Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
-      <TierCart v-for='seller in tierSellers' :seller='seller' />
+      <TierCart v-for='seller in tierSellers' :key='seller.id' :seller='seller' />
     </div>
     <Footer />
   </section>
@@ -42,7 +42,14 @@ export default {
   components: {Header, Footer, CartTitle, SGLCart, TierCart},
   computed: {
     tierSellers() {
-      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0]))
+      const deduplicate = {}
+      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])).filter(seller => {
+        if (deduplicate[seller.id]) {
+          return false
+        }
+        deduplicate[seller.id] = true
+        return true
+      })
     }
   },
 }

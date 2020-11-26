@@ -25,8 +25,12 @@
         <CheckBox @click='toggleAll' :checked='checked' />
       </div>
     </div>
-    <div :class='$style.lineItems'>
-      <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
+    <div :id='$style.lineItems'>
+      <LineItem :key='lineItem.sellingPoint.id' v-for='lineItem in cart' :lineItem='lineItem' :showCheckbox=true />
+    </div>
+    <div :id='$style.checkout' v-if='isAmazonCart'>
+      This will open {{ seller.url.replace('https://www.', '') }} with a pre-filled shopping cart
+      <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ priceConv(totalPrice) }}</b></a><br />
     </div>
   </section>
 </template>
@@ -38,6 +42,8 @@ import LineItem from '~/components/cart/lineitem.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
 
+import priceConv from '~/lib/price.js'
+
 export default {
   props: ['seller'],
   components: {Header, Footer, LineItem, CheckoutButton, CheckBox,},
@@ -48,6 +54,9 @@ export default {
     toggleAll() {
       const checked = this.checked
       this.cart.forEach(lineItem => this.$store.commit('checkout/checkLineItem', { lineItem, checked: !checked }))
+    },
+    priceConv(dols) {
+      return priceConv(dols)
     },
   },
   computed: {
@@ -64,7 +73,22 @@ export default {
     },
     checked() {
       return this.cart.every(li => li.checked)
-    }
+    },
+    totalPrice() {
+      return this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
+    },
+    isAmazonCart() {
+      const { seller } = this.$props
+      return seller.type.includes('amazon')
+    },
+    amazonCartUrl() {
+      const { seller } = this.$props
+      let url = `${seller.url}/gp/aws/cart/add.html`
+      return url + this.cart.reduce((acc, lineItem, i) => {
+        const asin = new URL(lineItem.sellingPoint.url).pathname.split('/').filter(p => !!p).pop()
+        return acc += `${acc ? '&' : '?'}ASIN.${i+1}=${asin}&Quantity.${i+1}=${lineItem.n}`
+      }, '')
+    },
  },
 }
 </script>
@@ -80,7 +104,7 @@ export default {
   background-color: #eaeaea
   border-radius: 10pt
 
-.lineItems
+#lineItems
   display: flex
   flex-direction: column
   margin: 10pt 30pt
@@ -108,5 +132,33 @@ export default {
   flex: 1
   display: flex
   justify-content: flex-end
+
+#checkout
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  margin: 0 30pt 20pt 0
+
+#button
+  display: block
+  align-self: flex-end
+  background-color: #3BB30B
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+  font-size: 1.2em
+  margin: 4pt 0
+
+#container.small > #button
+  padding: 6pt 18pt
+  font-size: 1em
+  border-radius: 4pt
+
+#button:hover
+  background-color: #2F880B
+
+#button > b
+  font-weight: 600
 
 </style>

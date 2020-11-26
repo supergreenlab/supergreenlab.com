@@ -37,7 +37,7 @@
           <img src='~/assets/img/garbage-can.svg'/>
         </a>
       </div>
-      <CheckBox @click='toggleChecked' :checked='lineItem.checked' />
+      <CheckBox v-if='showCheckbox' @click='toggleChecked' :checked='lineItem.checked' />
     </div>
   </section>
 </template>
@@ -50,7 +50,7 @@ import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   components: {Number, Price, CheckBox,},
-  props: ['lineItem'],
+  props: ['lineItem', 'showCheckbox'],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
