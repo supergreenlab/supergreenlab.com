@@ -21,7 +21,7 @@
     <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${pic}`)})`}'></div>
     <h3>{{ name }}</h3>
     <div :class='$style.price'>
-      <Price :price='product.SellingPoints[0].price' :promodiscount='promodiscount' :small=true />
+      <Price :price='product.SellingPoints[0].price' :promoDiscount='promoDiscount' :small=true />
     </div>
     <OutOfStock v-if='product.outofstock' />
     <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :small='true' :discreet=false :n='n' />
@@ -35,7 +35,7 @@ import AddToCart from '~/components/products/addtocart.vue'
 
 export default {
   components: {Price, OutOfStock, AddToCart, },
-  props: ['product', 'promodiscount'],
+  props: ['product', 'promoDiscount'],
   data() {
     return {
       n: 1
@@ -63,7 +63,7 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: space-between
-  height: 250pt
+  height: 300pt
   color: #454545
 
 #container > h3

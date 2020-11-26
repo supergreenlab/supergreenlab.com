@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' :promodiscount='promo.discount' />
+      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' :promoDiscount='promoDiscount' />
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <div :class='$style.guide'>
@@ -43,14 +43,14 @@
         </div>
       </div>
       <Title icon='package.svg' title='BUNDLE CONTENT' />
-      <Item v-if='bundle.specs.bigleds' :showHarvest='true' :discount='totaldiscount' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
-      <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :discount='totaldiscount' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
-      <Item v-if='bundle.specs.tinyleds' :showHarvest='!bundle.specs.bigleds && !bundle.specs.smallleds' :discount='totaldiscount' :n='bundle.specs.tinyleds' :item='led("sgl-36")' />
-      <Item v-if='bundle.specs.ventilation' :discount='totaldiscount' :n='bundle.specs.ventilation' :item='accessory("sgl-blower")' />
-      <Item v-if='bundle.specs.sensor' :discount='totaldiscount' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
-      <Item n='1' :item='accessory("sgl-controller")' :discount='totaldiscount' last='true' />
+      <Item v-if='bundle.specs.bigleds' :showHarvest='true' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
+      <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
+      <Item v-if='bundle.specs.tinyleds' :showHarvest='!bundle.specs.bigleds && !bundle.specs.smallleds' :n='bundle.specs.tinyleds' :item='led("sgl-36")' />
+      <Item v-if='bundle.specs.ventilation' :n='bundle.specs.ventilation' :item='accessory("sgl-blower")' />
+      <Item v-if='bundle.specs.sensor' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
+      <Item n='1' :item='accessory("sgl-controller")' last='true' />
       <div :class='$style.price'>
-        <Price :price='bundle.SellingPoints[0].price' :promodiscount='promo.discount' :freeshipping='false' />
+        <Price :price='bundle.SellingPoints[0].price' :promoDiscount='promoDiscount' :freeshipping='false' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
@@ -114,16 +114,8 @@ export default {
     accessory() {
       return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
     },
-    promo() {
-      const discount = this.$store.state.checkout.discount.value,
-            promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !discount) return {promocode: '', discount: 0}
-      return {promocode, discount}
-    },
-    totaldiscount() {
-      const bundle = this.bundle,
-            promo = this.promo
-      return parseInt((1 - (1-bundle.discount/100) * (1-promo.discount/100) ) * 100)
+    promoDiscount() {
+      return this.$store.getters['checkout/promoDiscount']
     },
   },
   methods: {

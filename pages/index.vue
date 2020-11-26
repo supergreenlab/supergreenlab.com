@@ -54,7 +54,7 @@
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
-      <SmallProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' />
+      <SmallProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' />
       <SmallProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
@@ -126,6 +126,9 @@ export default {
     },
     soil() {
       return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])
+    },
+    promoDiscount() {
+      return this.$store.getters['checkout/promoDiscount']
     },
 	},
   methods: {

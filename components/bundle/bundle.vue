@@ -23,7 +23,7 @@
         <h1>{{ bundle.name }}</h1>
         <h2>{{ bundle.tagline }}</h2>
       </div>
-      <Price :price='bundle.SellingPoints[0].price' :promodiscount='promodiscount' :freeshipping='false' />
+      <Price :price='bundle.SellingPoints[0].price' :promoDiscount='promoDiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -70,7 +70,7 @@ import AddToCart from '~/components/products/addtocart.vue'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart,},
-  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'showdescription', 'right'],
+  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'showdescription', 'right'],
   data() {
     return {
       showZoom: false,
@@ -110,8 +110,8 @@ export default {
     },
   },
   computed: {
-    promodiscountdef() {
-      return this.$props.promodiscount || 0
+    promoDiscount() {
+      return this.$store.getters['checkout/promoDiscount']
     },
   },
 }

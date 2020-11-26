@@ -93,4 +93,10 @@ export const mutations = {
 }
 
 export const getters = {
+  promoDiscount(state) {
+    const discount = state.discount.value,
+      promocode = state.promocode.value
+    if (!promocode || !discount) return {promocode: '', discount: 0}
+    return {promocode, discount}
+  },
 }

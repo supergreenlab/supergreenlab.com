@@ -30,7 +30,7 @@
         <Number :value='lineItem.n' v-on:input='changeLineItem' />
       </div>
       <div :id='$style.price'>
-        <Price :price='lineItem.sellingPoint.price * lineItem.n' />
+        <Price :price='lineItem.sellingPoint.price * lineItem.n' :promoDiscount='promoDiscount' />
       </div>
       <div :id='$style.buttons'>
         <a href='javascript:void(0)' @click='deleteLineItem'>
@@ -50,7 +50,7 @@ import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   components: {Number, Price, CheckBox,},
-  props: ['lineItem', 'showCheckbox', 'showProductLink'],
+  props: ['lineItem', 'showCheckbox', 'showProductLink', 'promoDiscount'],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props

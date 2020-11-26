@@ -76,7 +76,7 @@ export default {
         this.timeout = setTimeout(() => this.$store.dispatch('checkout/setPromocode', { code: value }), 400)
       },
     },
-    promo() {
+    promodiscount() {
       const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
       if (!promocode || !discount) return {promocode: '', discount: 0}

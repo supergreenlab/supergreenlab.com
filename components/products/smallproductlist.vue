@@ -24,7 +24,7 @@
     </div>
     <div :id='$style.body'>
       <div v-for='product in products' :class='$style.product'>
-        <Item :promodiscount='promodiscount' :product='product' />
+        <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
     </div>
   </section>
@@ -35,7 +35,7 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Item from '~/components/products/smallproductitem.vue'
 
 export default {
-  props: ['title', 'subtitle', 'promodiscount', 'products',],
+  props: ['title', 'subtitle', 'promoDiscount', 'products',],
   components: {SectionTitle, Item,},
 }
 </script>

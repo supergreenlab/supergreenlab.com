@@ -19,10 +19,10 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.lineItems'>
-      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
+      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' :promoDiscount='promoDiscount' />
     </div>
     <div :id='$style.checkoutbutton'>
-      <CheckoutButton :valid='valid' :price='totalPrice' v-model='promocode' :promocodePrompt='true' />
+      <CheckoutButton :price='totalPrice' v-model='promocode' :promocodePrompt='true' @click='' />
     </div>
   </section>
 </template>
@@ -38,10 +38,10 @@ export default {
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
   },
+  methods: {
+    
+  },
   computed: {
-    valid() {
-      return false
-    },
     promocode: {
       get() {
         return this.$store.state.checkout.promocode.value
@@ -52,17 +52,15 @@ export default {
         this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { code: value }), 400)
       },
     },
-    promo() {
-      const discount = this.$store.state.checkout.discount.value,
-            promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !discount) return {promocode: '', discount: 0}
-      return {promocode, discount}
+    promoDiscount() {
+      return this.$store.getters['checkout/promoDiscount']
     },
     cart() {
       return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
     },
     totalPrice() {
-      return this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
+      const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
+      return price - price * this.promoDiscount.discount / 100
     }
  },
 }
