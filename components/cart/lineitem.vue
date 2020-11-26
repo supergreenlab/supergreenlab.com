@@ -30,7 +30,7 @@
         <Number :value='lineItem.n' v-on:input='changeLineItem' />
       </div>
       <div :id='$style.price'>
-        <Price :price='lineItem.sellingPoint.price' />
+        <Price :price='lineItem.sellingPoint.price * lineItem.n' />
       </div>
       <div :id='$style.buttons'>
         <a href='javascript:void(0)' @click='deleteLineItem'>

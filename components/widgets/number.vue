@@ -47,6 +47,7 @@ export default {
   border: 1px solid #9a9a9a
   border-radius: 5px
   user-select: none
+  background-color: white
 
 #container > div
   flex: 1
