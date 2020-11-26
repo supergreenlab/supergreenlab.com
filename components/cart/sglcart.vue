@@ -18,7 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
     <div :class='$style.lineItems'>
       <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
     </div>
@@ -81,9 +80,6 @@ export default {
 .lineItems
   display: flex
   flex-direction: column
-  margin: 10pt 30pt
-
-.carttype
   margin: 10pt 30pt
 
 #checkoutbutton

@@ -18,7 +18,13 @@
 
 <template>
   <section :id='$style.container'>
-    <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
+    <div :id='$style.seller'>
+      <div :class='$style.sideDivs'></div>
+      CHECK THOSE OUT AT <div :id='$style.logo' :style='{"background-image": `url(${sellerPic})`}'></div>
+      <div :class='$style.sideDivs'>
+        <CheckBox @click='toggleAll' :checked='checked' />
+      </div>
+    </div>
     <div :class='$style.lineItems'>
       <LineItem v-for='lineItem in cart' :lineItem='lineItem' />
     </div>
@@ -30,12 +36,19 @@ import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
 import LineItem from '~/components/cart/lineitem.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
+import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   props: ['seller'],
-  components: {Header, Footer, LineItem, CheckoutButton,},
+  components: {Header, Footer, LineItem, CheckoutButton, CheckBox,},
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
+  },
+  methods: {
+    toggleAll() {
+      const checked = this.checked
+      this.cart.forEach(lineItem => this.$store.commit('checkout/checkLineItem', { lineItem, checked: !checked }))
+    },
   },
   computed: {
     cart() {
@@ -45,6 +58,13 @@ export default {
     totalPrice() {
       return this.$store.getters['checkout/getTotalPrice']
     },
+    sellerPic() {
+      const { seller } = this.$props
+      return require(`~/assets/img/${seller.logo[0].fileLarge}`)
+    },
+    checked() {
+      return this.cart.every(li => li.checked)
+    }
  },
 }
 </script>
@@ -57,18 +77,36 @@ export default {
   flex-direction: column
   justify-content: stretch
   align-items: stretch
+  background-color: #eaeaea
+  border-radius: 10pt
 
 .lineItems
   display: flex
   flex-direction: column
   margin: 10pt 30pt
 
-.carttype
-  margin: 10pt 30pt
-
 #checkoutbutton
   display: flex
   justify-content: flex-end
   align-self: flex-end
+
+#seller
+  display: flex
+  align-items: center
+  justify-content: center
+  margin: 10pt 30pt
+
+#logo
+  width: 100pt
+  height: 30pt
+  margin: 0 10pt
+  background-position: left
+  background-size: contain
+  background-repeat: no-repeat
+
+.sideDivs
+  flex: 1
+  display: flex
+  justify-content: flex-end
 
 </style>

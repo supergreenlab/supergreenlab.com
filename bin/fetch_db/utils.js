@@ -56,7 +56,6 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
     })
     return { p, data: { filePath, type: attachement.type } }
   }
-
 }
 
 module.exports.fetchTable = (table, fields) => {

@@ -21,8 +21,10 @@
     <Header />
     <div :id='$style.body'>
       <CartTitle title='SuperGreenLab Cart' />
+      <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <SGLCart />
       <CartTitle title='Checklist Cart' />
+      <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <TierCart v-for='seller in tierSellers' :seller='seller' />
     </div>
     <Footer />
@@ -59,5 +61,8 @@ export default {
   width: 100%
   max-width: 900pt
   padding: 100pt 0 0 0
+
+.carttype
+  margin: 10pt 30pt
 
 </style>

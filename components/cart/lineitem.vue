@@ -20,6 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <h2>{{ lineItem.product.name }}</h2>
+      <a :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
@@ -36,6 +37,7 @@
           <img src='~/assets/img/garbage-can.svg'/>
         </a>
       </div>
+      <CheckBox @click='toggleChecked' :checked='lineItem.checked' />
     </div>
   </section>
 </template>
@@ -44,15 +46,16 @@
 
 import Number from '~/components/widgets/number.vue'
 import Price from '~/components/products/price.vue'
+import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
-  components: {Number, Price,},
+  components: {Number, Price, CheckBox,},
   props: ['lineItem'],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
       return this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
-    }
+    },
   },
   methods: {
     deleteLineItem() {
@@ -62,7 +65,11 @@ export default {
     changeLineItem(n) {
       const { lineItem } = this.$props
       this.$store.commit('checkout/addToCart', Object.assign({}, lineItem, { n }))
-    }
+    },
+    toggleChecked() {
+      const { lineItem } = this.$props
+      this.$store.commit('checkout/checkLineItem', { lineItem, checked: !lineItem.checked })
+    },
   }
 }
 
@@ -77,6 +84,7 @@ export default {
 
 #title
   display: flex
+  justify-content: space-between
   border-bottom: 2px solid #9a9a9a
   color: #454545
 
@@ -86,6 +94,10 @@ export default {
   font-weight: 500
   text-transform: uppercase
   margin: 0
+
+#title > a
+  color: #3bb30b
+  font-weight: bold
 
 #body
   display: flex

@@ -66,7 +66,7 @@ export const mutations = {
     if (n <= 0 && i !== -1) {
       state.cart.splice(i, 1)
     } else if (i == -1) {
-      state.cart.push({ n, product, sellingPoint })
+      state.cart.push({ n, product, sellingPoint, checked: false })
     } else {
       Vue.set(state.cart, i, Object.assign({}, state.cart[i], { n } ))
     }
@@ -74,6 +74,11 @@ export const mutations = {
   },
   setCart(state, lineItems) {
     state.cart = [lineItems]
+    storeState(state)
+  },
+  checkLineItem(state, { lineItem: { sellingPoint }, checked=true }) {
+    const i = state.cart.findIndex(i => i.sellingPoint.id == sellingPoint.id)
+    Vue.set(state.cart, i, Object.assign({}, state.cart[i], { checked } ))
     storeState(state)
   },
   setPromocode(state, promocode) {
