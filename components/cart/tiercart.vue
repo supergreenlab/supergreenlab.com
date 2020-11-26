@@ -26,7 +26,7 @@
       </div>
     </div>
     <div :id='$style.lineItems'>
-      <LineItem :key='lineItem.sellingPoint.id' v-for='lineItem in cart' :lineItem='lineItem' :showCheckbox=true />
+      <LineItem :key='lineItem.sellingPoint.id' v-for='lineItem in cart' :lineItem='lineItem' :showCheckbox=true :showProductLink=true />
     </div>
     <div :id='$style.checkout' v-if='isAmazonCart'>
       This will open {{ seller.url.replace('https://www.', '') }} with a pre-filled shopping cart

@@ -18,8 +18,10 @@
 
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
-    <Number v-model='n' :small=true />
-    <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
+    <div>
+      <Number v-model='n' :small=true />
+      <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
+    </div>
     <p v-if='discreet !== false'>Our bundles are shipped discreet</p>
   </section>
 </template>
@@ -52,6 +54,7 @@ export default {
   display: flex
   flex-direction: column
   justify-content: flex-end
+  align-items: flex-end
   text-align: right
   font-weight: 600;
   @media only screen and (max-width: 600px)
@@ -59,14 +62,15 @@ export default {
 
 #button
   display: block
-  align-self: flex-end
   background-color: #3BB30B
+  text-align: center
   padding: 8pt 25pt
   border-radius: 5pt
   color: white
   text-decoration: none
   font-size: 1.2em
   margin: 4pt 0
+  white-space: nowrap
 
 #container.small > #button
   padding: 6pt 18pt

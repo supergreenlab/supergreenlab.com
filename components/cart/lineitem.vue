@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <h2>{{ lineItem.product.name }}</h2>
-      <a :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
+      <a v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
@@ -50,7 +50,7 @@ import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   components: {Number, Price, CheckBox,},
-  props: ['lineItem', 'showCheckbox'],
+  props: ['lineItem', 'showCheckbox', 'showProductLink'],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
