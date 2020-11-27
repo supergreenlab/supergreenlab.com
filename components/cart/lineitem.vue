@@ -101,6 +101,9 @@ export default {
 
 #body
   display: flex
+  @media only screen and (max-width: 600pt)
+    align-items: center
+    flex-direction: column
 
 #body > div
   flex: 1
@@ -116,11 +119,16 @@ export default {
   background-position: top
   background-size: contain
   background-repeat: no-repeat
+  @media only screen and (max-width: 600pt)
+    flex: auto !important
+    background-position: center
 
 #description
   flex: 2 !important
   padding: 10pt 5pt
   align-items: flex-start !important
+  @media only screen and (max-width: 600pt)
+    display: none !important
 
 #description > strong
   color: #3bb30b
