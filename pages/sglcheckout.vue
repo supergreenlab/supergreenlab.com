@@ -29,7 +29,7 @@
       </div>
       <div>
         <div :id='$style.cart'>
-          Items in your cart
+          <b>Items in your cart</b>
           <div :id='$style.items'>
             <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='require(`~/assets/img/${brandProduct(lineItem).pics[0].fileSmall}`)'/>x{{ lineItem.n }}</div>
             <div :id='$style.separator'></div>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <Shipping />
-        <CheckoutButton :valid='valid' :price='totalPrice' />
+        <CheckoutButton :valid='valid' :price='totalPrice' :promoDiscount='promoDiscount' @click='goToPaiement' />
       </div>
     </div>
     <Footer />
@@ -69,12 +69,16 @@ export default {
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
   },
+  methods: {
+    goToPaiement() {
+    }
+  },
   computed: {
     brandProduct() {
       return (lineItem) => this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
     },
     valid() {
-      return false
+      return this.cart.every(lineItem => lineItem.sellingPoint.canorder) && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
     },
     promocode: {
       get() {
@@ -178,17 +182,17 @@ export default {
 #cart
   margin: 0 50pt
   padding: 10pt
+  border: 1pt solid #dedede
+  border-radius: 5pt
   @media only screen and (max-width: 600px)
-    margin: 0 10pt
+    margin: 0 5pt
 
 #items
   display: flex
   flex-wrap: wrap
   justify-content: center
   align-items: center
-  border: 1pt solid #dedede
-  border-radius: 5pt
-  padding: 8pt
+  padding: 4pt 0
 
 .item
   margin: 5pt
@@ -196,6 +200,6 @@ export default {
 #separator
   flex: 1
   @media only screen and (max-width: 600px)
-    width: 100%
+    display: none
 
 </style>

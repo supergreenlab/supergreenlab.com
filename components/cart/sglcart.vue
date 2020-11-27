@@ -22,7 +22,7 @@
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' :promoDiscount='promoDiscount' />
     </div>
     <div :id='$style.checkoutbutton'>
-      <CheckoutButton :price='totalPrice' v-model='promocode' :promocodePrompt='true' @click='' />
+      <CheckoutButton :price='totalPrice' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :promoDiscount='promoDiscount' />
     </div>
   </section>
 </template>
@@ -39,7 +39,9 @@ export default {
     if (this.timeout) clearTimeout(this.timeout)
   },
   methods: {
-    
+    startCheckout() {
+      window.open('/sglcheckout', '_blank', 'width=800,height=900')
+    }
   },
   computed: {
     promocode: {
