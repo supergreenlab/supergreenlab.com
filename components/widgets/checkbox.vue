@@ -21,12 +21,13 @@
     <div :id='$style.border' :class='checked ? $style.selected : ""' v-on:click='click()'>
       <div :id='$style.checkboxcenter'></div>
     </div>
+    {{ label }} 
   </section>
 </template>
 
 <script>
 export default {
-  props: ['checked',],
+  props: ['label', 'checked',],
   methods: {
     click() {
       this.$emit('click')

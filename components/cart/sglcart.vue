@@ -79,6 +79,8 @@ export default {
   display: flex
   flex-direction: column
   margin: 10pt 30pt
+  @media only screen and (max-width: 600pt)
+    margin: 5pt 15pt
 
 #checkoutbutton
   display: flex

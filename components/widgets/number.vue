@@ -43,7 +43,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  font-size: 2em
+  font-size: 1.8em
   border: 1px solid #9a9a9a
   border-radius: 5px
   user-select: none
@@ -55,11 +55,11 @@ export default {
 .control
   cursor: pointer
   text-align: center
-  padding: 2pt 5pt
-  width: 30pt
+  padding: 2pt 4pt
+  width: 25pt
 
 .small .control
-  width: 20pt
+  width: 15pt
 
 #value
   width: 50pt

@@ -25,7 +25,9 @@
       <SGLCart />
       <CartTitle title='Checklist Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
-      <TierCart v-for='seller in tierSellers' :key='seller.id' :seller='seller' />
+      <div :class='$style.tiercart' v-for='seller in tierSellers' :key='seller.id'>
+        <TierCart :seller='seller' />
+      </div>
     </div>
     <Footer />
   </section>
@@ -71,5 +73,8 @@ export default {
 
 .carttype
   margin: 10pt 30pt
+
+.tiercart
+  margin: 0 5pt
 
 </style>

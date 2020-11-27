@@ -24,7 +24,7 @@
       </div>
       <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='$emit("click")'>PAY NOW <b>{{ priceConv(price) }}</b></a>
       <div :class='$style.block'>
-        <img src='~assets/img/powered-by-stripe.png' width="300"><br />
+        <img src='~assets/img/powered-by-stripe.png' /><br />
       </div>
       <!--<div :class='$style.block'>
         <img src='~assets/img/crypto.png'>
@@ -88,6 +88,11 @@ export default {
 
 .block
   display: flex
+
+.block > img
+  max-width: 200pt
+  @media only screen and (max-width: 600px)
+    max-width: 150pt
 
 .blockicon
   width: 20pt

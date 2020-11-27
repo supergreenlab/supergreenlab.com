@@ -24,20 +24,25 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
-      <div :id='$style.description' v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></div>
-      <div :id='$style.nitems'>
-        QTY
-        <Number :value='lineItem.n' v-on:input='changeLineItem' />
+      <div :id='$style.infos'>
+        <div :id='$style.description' v-html='$md.render(brandProduct.description.substr(0, 150) + "...")'></div>
+        <div :id='$style.price'>
+          <div :id='$style.nitems'>
+            QTY
+            <Number :value='lineItem.n' v-on:input='changeLineItem' />
+          </div>
+          <Price :price='lineItem.sellingPoint.price * lineItem.n' :promoDiscount='promoDiscount' />
+        </div>
+      <div :id='$style.checkbox' v-if='showCheckbox'>
+        <CheckBox @click='toggleChecked' :checked='lineItem.checked' label='Bought it' />
       </div>
-      <div :id='$style.price'>
-        <Price :price='lineItem.sellingPoint.price * lineItem.n' :promoDiscount='promoDiscount' />
+
       </div>
-      <div :id='$style.buttons'>
+      <div :id='$style.delete'>
         <a href='javascript:void(0)' @click='deleteLineItem'>
           <img src='~/assets/img/garbage-can.svg'/>
         </a>
       </div>
-      <CheckBox v-if='showCheckbox' @click='toggleChecked' :checked='lineItem.checked' />
     </div>
   </section>
 </template>
@@ -105,14 +110,28 @@ export default {
     align-items: center
     flex-direction: column
 
-#body > div
+#body > div, #nitems
   flex: 1
   display: flex
   flex-direction: column
   align-items: center
   justify-content: center
+
+#price
+  display: flex
+  flex-direction: column
+
+#infos
+  display: flex
+  flex: 1
+  align-items: center
+  justify-content: center
+  flex-direction: row !important
+  @media only screen and (max-width: 600pt)
+    flex-direction: column !important
  
 #pic
+  flex: 0.3 !important
   width: 150px
   height: 150px
   margin: 10pt 0
@@ -121,6 +140,7 @@ export default {
   background-repeat: no-repeat
   @media only screen and (max-width: 600pt)
     flex: auto !important
+    height: 200px
     background-position: center
 
 #description
@@ -132,5 +152,15 @@ export default {
 
 #description > strong
   color: #3bb30b
- 
+
+#delete
+  flex: 0.2 !important
+  @media only screen and (max-width: 600pt)
+    display: none !important
+
+#checkbox
+  padding: 0 0 0 30pt
+  @media only screen and (max-width: 600pt)
+    padding: 20pt 0 0 10pt
+
 </style>

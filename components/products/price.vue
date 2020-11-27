@@ -64,7 +64,6 @@ export default {
 
 #pricecontainer
   display: flex
-  flex: 1
   justify-content: flex-end
   margin: 10pt 10pt 15pt 0
   color: #454545
@@ -89,6 +88,7 @@ export default {
   position: relative
   margin-bottom: 0
   color: #3BB30B
+  margin: 0
   @media only screen and (max-width: 600px)
     margin-top: 4pt
 

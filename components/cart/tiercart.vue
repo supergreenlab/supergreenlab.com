@@ -22,7 +22,7 @@
       <div :class='$style.sideDivs'></div>
       CHECK THOSE OUT AT <div :id='$style.logo' :style='{"background-image": `url(${sellerPic})`}'></div>
       <div :class='$style.sideDivs'>
-        <CheckBox @click='toggleAll' :checked='checked' />
+        <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />
       </div>
     </div>
     <div :id='$style.lineItems'>
@@ -108,6 +108,8 @@ export default {
   display: flex
   flex-direction: column
   margin: 10pt 30pt
+  @media only screen and (max-width: 600pt)
+    margin: 5pt 15pt
 
 #checkoutbutton
   display: flex
@@ -119,6 +121,8 @@ export default {
   align-items: center
   justify-content: center
   margin: 10pt 30pt
+  @media only screen and (max-width: 600pt)
+    flex-direction: column
 
 #logo
   width: 100pt
@@ -138,6 +142,8 @@ export default {
   flex-direction: column
   align-items: flex-end
   margin: 0 30pt 20pt 0
+  @media only screen and (max-width: 600pt)
+    margin: 0 10pt 5pt 0
 
 #button
   display: block
@@ -149,6 +155,9 @@ export default {
   text-decoration: none
   font-size: 1.2em
   margin: 4pt 0
+  @media only screen and (max-width: 600pt)
+    padding: 6pt 20pt
+    font-size: 1.1em
 
 #container.small > #button
   padding: 6pt 18pt
