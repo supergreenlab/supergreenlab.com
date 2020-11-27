@@ -55,12 +55,13 @@ export default {
 
 #body
   display: flex
+  flex-wrap: wrap
   overflow-x: auto
 
 .product
   flex-basis: 33%
   padding: 20pt 30pt
   @media only screen and (max-width: 600px)
-    flex-basis: 100%
+    padding: 20pt 5pt
 
 </style>

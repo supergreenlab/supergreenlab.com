@@ -28,6 +28,14 @@
         <h4>Thanks for your support:)</h4>
       </div>
       <div>
+        <div :id='$style.cart'>
+          Items in your cart
+          <div :id='$style.items'>
+            <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='require(`~/assets/img/${brandProduct(lineItem).pics[0].fileSmall}`)'/>x{{ lineItem.n }}</div>
+            <div :id='$style.separator'></div>
+            <Price :price='totalPrice' :promoDiscount='promoDiscount' :small=true />
+          </div>
+        </div>
         <Shipping />
         <CheckoutButton :valid='valid' :price='totalPrice' />
       </div>
@@ -48,10 +56,10 @@ import Loading from '~/components/widgets/loading.vue'
 import Footer from '~/components/layout/footer.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
-
+import Price from '~/components/products/price.vue'
 
 export default {
-  components: {Header, Shipping, Loading, Footer, OutOfStock, CheckoutButton},
+  components: {Header, Shipping, Loading, Footer, OutOfStock, CheckoutButton, Price},
   data() {
     return {
       loading: false,
@@ -62,6 +70,9 @@ export default {
     if (this.timeout) clearTimeout(this.timeout)
   },
   computed: {
+    brandProduct() {
+      return (lineItem) => this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
+    },
     valid() {
       return false
     },
@@ -76,18 +87,16 @@ export default {
         this.timeout = setTimeout(() => this.$store.dispatch('checkout/setPromocode', { code: value }), 400)
       },
     },
-    promodiscount() {
-      const discount = this.$store.state.checkout.discount.value,
-            promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !discount) return {promocode: '', discount: 0}
-      return {promocode, discount}
+    promoDiscount() {
+      return this.$store.getters['checkout/promoDiscount']
     },
     cart() {
-      return this.$store.state.checkout.cart
+      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
     },
     totalPrice() {
-      return this.$store.getters['checkout/getTotalPrice']
-    },
+      const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
+      return price - price * this.promoDiscount.discount / 100
+    }
  },
 }
 </script>
@@ -165,5 +174,28 @@ export default {
 
 #shipdisclaimer > a:hover
   color: #3BB30B
+
+#cart
+  margin: 0 50pt
+  padding: 10pt
+  @media only screen and (max-width: 600px)
+    margin: 0 10pt
+
+#items
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+  border: 1pt solid #dedede
+  border-radius: 5pt
+  padding: 8pt
+
+.item
+  margin: 5pt
+
+#separator
+  flex: 1
+  @media only screen and (max-width: 600px)
+    width: 100%
 
 </style>
