@@ -18,7 +18,19 @@
 
 <template>
   <section :id='$style.container'>
-    <div v-if='promodiscount' :id='$style.pricecontainer'>
+    <div v-if='offer' :id='$style.pricecontainer'>
+      <div :class='$style.price + " " + $style.smallprice'>
+        <h1>{{ priceConv((price * 100) / (100 - offer)) }}
+          <div :id='$style.redbar'></div>
+        </h1>
+      </div>
+      <div :class='$style.price'>
+        <h1>{{ priceConv(price) }}</h1><br />
+        <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+        <span>Special offer: <b>-{{ offer }}%</b></span>
+      </div>
+    </div>
+    <div v-else-if='promodiscount' :id='$style.pricecontainer'>
       <div :class='$style.price + " " + $style.smallprice'>
         <h1>{{ priceConv(price) }}
           <div :id='$style.redbar'></div>
@@ -41,7 +53,7 @@
 import priceConv from '~/lib/price.js'
 
 export default {
-  props: ['price', 'promodiscount', 'freeshipping',],
+  props: ['price', 'promodiscount', 'freeshipping', 'offer',],
   methods: {
     priceConv(dols) {
       return priceConv(dols)

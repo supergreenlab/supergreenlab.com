@@ -50,7 +50,7 @@
       <Item v-if='bundle.sensor' :discount='totaldiscount' :n='bundle.sensor' v-bind='accessory("sensor")' />
       <Item n='1' v-bind='accessory("controller")' :discount='totaldiscount' last='true' />
       <div :class='$style.price'>
-        <Price :price='bundle.price' :promodiscount='promo.discount' :freeshipping='false' />
+        <Price :price='bundle.price' :offer='bundle.offer' :promodiscount='promo.discount' :freeshipping='false' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
@@ -86,8 +86,14 @@
         <div :id='$style.buy'>
           <div :id='$style.promocode'>
             <!--<OutOfStock v-if='bundle.outofstock' />-->
-            <TextInput label='Promo code' v-model='promocode' name='promocode' optional='true' />
-            <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b></a>
+            <TextInput v-if='!bundle.offer' label='Promo code' v-model='promocode' name='promocode' optional='true' />
+            <a v-if='bundle.offer' :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>
+              PAY NOW <b>{{ priceConv(bundle.price) }}</b>
+            </a>
+            <a v-else :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='buy'>
+              PAY NOW <b>{{ priceConv(bundle.price - bundle.price*promo.discount / 100) }}</b>
+            </a>
+
             <div :class='$style.block'>
               <img src='~assets/img/powered-by-stripe.png' width="300"><br />
             </div>

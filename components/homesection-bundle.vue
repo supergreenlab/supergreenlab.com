@@ -23,7 +23,7 @@
         <h1>{{ title }}</h1>
         <h2>{{ subtitle }}</h2>
       </div>
-      <Price :price='price' :promodiscount='promodiscount' :freeshipping='false' />
+      <Price :price='price' :offer='offer' :promodiscount='promodiscount' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -80,7 +80,7 @@ import OutOfStock from '~/components/outofstock.vue'
 
 export default {
   components: {Items, Price, OutOfStock,},
-  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock',],
+  props: ['slug', 'title', 'subtitle', 'description', 'icon', 'setupicon', 'setupicon2', 'setupicon3', 'bullets', 'price', 'right', 'bigleds', 'smallleds', 'tinyleds', 'ventilation', 'sensor', 'url', 'nobottom', 'addtocart', 'noframe', 'promodiscount', 'outofstock', 'offer'],
   data() {
     return {
       showZoom: false,
