@@ -17,13 +17,16 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section v-if='cart.length != 0' :id='$style.container'>
     <div :class='$style.lineItems'>
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' :promoDiscount='promoDiscount' />
     </div>
     <div :id='$style.checkoutbutton'>
       <CheckoutButton :price='totalPrice' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :promoDiscount='promoDiscount' />
     </div>
+  </section>
+  <section v-else :id='$style.emptycontainer'>
+    Empty cart
   </section>
 </template>
 
@@ -40,7 +43,15 @@ export default {
   },
   methods: {
     startCheckout() {
-      window.open('/sglcheckout', '_blank', 'width=800,height=900')
+      const width = 800
+      window.open('/sglcheckout', '_blank', `width=${width},height=900,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+      window.addEventListener('message', (event) => {
+        if (event.data == 'sglcheckoutdone') {
+          this.cart.forEach(lineItem => {
+            this.$store.commit('checkout/addToCart', Object.assign({}, lineItem, { n: 0 }))
+          })
+        }
+      })
     }
   },
   computed: {
@@ -76,6 +87,15 @@ export default {
   flex-direction: column
   justify-content: stretch
   align-items: stretch
+
+#emptycontainer
+  display: flex
+  width: 100%
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 20pt 0
+  font-size: 1.1em
 
 .lineItems
   display: flex

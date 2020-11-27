@@ -25,8 +25,13 @@
       <SGLCart />
       <CartTitle title='Checklist Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
-      <div :class='$style.tiercart' v-for='seller in tierSellers' :key='seller.id'>
-        <TierCart :seller='seller' />
+      <div v-if='tierSellers.length != 0'>
+        <div :class='$style.tiercart' v-for='seller in tierSellers' :key='seller.id'>
+          <TierCart :seller='seller' />
+        </div>
+      </div>
+      <div v-else :id='$style.noseller'>
+        Empty checklist cart
       </div>
     </div>
     <Footer />
@@ -76,5 +81,14 @@ export default {
 
 .tiercart
   margin: 0 5pt
+
+#noseller
+  display: flex
+  width: 100%
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 20pt 0
+  font-size: 1.1em
 
 </style>

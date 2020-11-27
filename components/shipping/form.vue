@@ -105,7 +105,6 @@ export default {
 #container
   display: flex
   width: 100%
-  padding: 0 40pt
   flex-direction: column
   @media only screen and (max-width: 600px)
     padding: 0

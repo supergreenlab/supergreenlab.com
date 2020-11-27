@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     goToPaiement() {
+      window.opener.postMessage('sglcheckoutdone', '*')
     }
   },
   computed: {
@@ -113,6 +114,7 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
+  padding: 0 40pt
 
 #header
   position: fixed
