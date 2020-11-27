@@ -94,6 +94,7 @@ export default {
       '/bundle/multi-box-bundle',
       '/bundle/closet-box-bundle',
       '/bundle/micro-box-bundle',
+      '/bundle/micro-box-bundle-black-friday',
     ].concat(fs.readdirSync("config").filter(f => f.indexOf('guide-') == 0).map(f => `/guide/${f.replace(/guide-|.json/g, '')}`)),
   },
 
