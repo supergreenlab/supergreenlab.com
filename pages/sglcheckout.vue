@@ -58,6 +58,10 @@ import OutOfStock from '~/components/products/outofstock.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 import Price from '~/components/products/price.vue'
 
+import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '~/lib/storefront.js'
+
+const SGL_SELLER = 'recT9nIg4ahFv9J29'
+
 export default {
   components: {Header, Shipping, Loading, Footer, OutOfStock, CheckoutButton, Price},
   data() {
@@ -70,8 +74,24 @@ export default {
     if (this.timeout) clearTimeout(this.timeout)
   },
   methods: {
-    goToPaiement() {
-      window.opener.postMessage('sglcheckoutdone', '*')
+    async goToPaiement() {
+      if (!this.valid) return
+      //this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, Math.floor((this.bundle.price - this.bundle.price*this.promo.discount/100) * 100) / 100)
+      this.$data.loading = true
+      const { shopify } = this.$store.getters['eshop/seller'](SGL_SELLER).params
+      const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
+      console.log(cart)
+      const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
+      console.log(checkout)
+      await setShippingAddress(shopify, checkout, this.$store.state.shipping)
+      if (this.$store.state.checkout.promocode) {
+        await applyCoupon(shopify, checkout, this.$store.state.checkout.promocode.value)
+      }
+      await applyShipping(shopify, checkout)
+      setTimeout(() => {
+        window.opener.postMessage('sglcheckoutdone', '*')
+        window.location.href = checkout.webUrl
+      }, 1000)
     }
   },
   computed: {
@@ -96,7 +116,7 @@ export default {
       return this.$store.getters['checkout/promoDiscount']
     },
     cart() {
-      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
+      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === SGL_SELLER)
     },
     totalPrice() {
       const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)

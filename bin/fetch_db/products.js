@@ -9,7 +9,7 @@ module.exports.fetchProducts = async () => {
   await mkAssetsDir('brands')
   const products = await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'specs', 'SellingPoints', 'type'])
   const sellingPoints = await fetchTable('SellingPoints', ['url', 'regions', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'specs', 'BrandProduct'])
-  const sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type'])
+  const sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   const brandProducts = await fetchTable('BrandProducts', ['slug', 'name', 'description', 'pics', 'url', 'brand'])
   const brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let picPromise = Promise.resolve()
@@ -29,6 +29,7 @@ module.exports.fetchProducts = async () => {
       return p
     }),
     sellers: sellers.map(s => {
+      s.params = jsonOrYaml(s.params || '{}')
       if (!s.logo) return s
       s.logo = s.logo.map((pic, i) => {
         const { p, data } = fetchAttachement(picPromise, pic, 'sellers')

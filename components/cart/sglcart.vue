@@ -44,7 +44,7 @@ export default {
   methods: {
     startCheckout() {
       const width = 800
-      window.open('/sglcheckout', '_blank', `width=${width},height=900,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+      window.open('/sglcheckout', '_blank', `width=${width},height=${window.screen.availHeight-100},top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
       window.addEventListener('message', (event) => {
         if (event.data == 'sglcheckoutdone') {
           this.cart.forEach(lineItem => {

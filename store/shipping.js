@@ -46,7 +46,7 @@ export const actions = {
 }
 
 export const mutations = {
-  updateCheckout(state, params) {
+  updateShipping(state, params) {
     state[params.key] = Object.assign({}, state[params.key], {value: params.value})
     storeState(state)
   },
