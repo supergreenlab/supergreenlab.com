@@ -57,7 +57,7 @@
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
-        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0]}`)})`}'></div>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0].fileFull}`)})`}'></div>
       </div>
     </portal>
   </section>

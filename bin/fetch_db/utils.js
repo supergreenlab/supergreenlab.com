@@ -42,12 +42,15 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
   if (attachement.type.indexOf('image/') == 0) {
     let ext = attachement.type.split('/')[1]
     if (ext == 'svg+xml') ext = 'png'
-    const fileLarge = `${dir}/${attachement.id}.${ext}`, fileSmall = `${dir}/${attachement.id}_small.${ext}`
+    const fileLarge = `${dir}/${attachement.id}.${ext}`,
+      fileSmall = `${dir}/${attachement.id}_small.${ext}`,
+      fileFull = `${dir}/${attachement.id}_full.${ext}`
     p = p.then(async () => {
       await fetchFile(attachement.thumbnails.small.url, fileSmall)
       await fetchFile(attachement.thumbnails.large.url, fileLarge)
+      await fetchFile(attachement.thumbnails.full.url, fileFull)
     })
-    return { p, attachement, data: { fileLarge, fileSmall, type: attachement.type } }
+    return { p, attachement, data: { fileLarge, fileSmall, fileFull, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {
     const ext = attachement.type.split('/')[1]
     const filePath = `${dir}/${attachement.id}.${ext}`
