@@ -19,8 +19,8 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <h2>{{ lineItem.product.name }}</h2>
-      <a v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
+      <h2>{{ lineItem.product.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
+      <a :id='linkto' v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
@@ -61,6 +61,9 @@ export default {
       const { lineItem } = this.$props
       return this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
     },
+    brand() {
+      return this.$store.getters['eshop/brand'](this.brandProduct.Brand[0])
+    },
   },
   methods: {
     deleteLineItem() {
@@ -100,7 +103,7 @@ export default {
   text-transform: uppercase
   margin: 0
 
-#title > a
+#linkto
   color: #3bb30b
   font-weight: bold
 
@@ -120,6 +123,9 @@ export default {
 #price
   display: flex
   flex-direction: column
+
+#brand
+  color: #454545
 
 #infos
   display: flex

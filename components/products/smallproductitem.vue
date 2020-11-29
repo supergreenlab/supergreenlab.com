@@ -18,13 +18,15 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${pic}`)})`}'></div>
-    <h3>{{ name }}</h3>
+    <nuxt-link :id='$style.infos' :to='`/product/${sellingPoint.slug}`'>
+      <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+      <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
+    </nuxt-link>
     <div :class='$style.price'>
-      <Price :price='product.SellingPoints[0].price' :promoDiscount='promoDiscount' :small=true />
+      <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
     </div>
     <OutOfStock v-if='product.outofstock' />
-    <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :small='true' :discreet=false :n='n' />
+    <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
   </section>
 </template>
 
@@ -42,15 +44,18 @@ export default {
     }
   },
   computed: {
-    pic() {
+    sellingPoint() {
       const { product } = this.$props
-      const brandProduct = this.$store.getters['eshop/brandProduct'](product.SellingPoints[0].BrandProduct[0])
-      return brandProduct.pics[0].fileLarge
+      return product.SellingPoints[0]
     },
-    name() {
-      const { product } = this.$props
-      const brandProduct = this.$store.getters['eshop/brandProduct'](product.SellingPoints[0].BrandProduct[0])
-      return brandProduct.name
+    brandProduct() {
+      return this.$store.getters['eshop/brandProduct'](this.sellingPoint.BrandProduct[0])
+    },
+    brand() {
+      return this.$store.getters['eshop/brand'](this.brandProduct.Brand[0])
+    },
+    url() {
+      return this.sellingPoint.url
     }
   },
 }
@@ -66,10 +71,22 @@ export default {
   height: 300pt
   color: #454545
 
-#container > h3
+#infos
+  display: flex
+  flex-direction: column
+  align-items: center
+  cursor: pointer
+  text-decoration: none
+  color: #454545
+
+#infos:hover
+  text-decoration: underline
+
+#infos > h3
   display: flex
   align-items: flex-start
   margin: 0
+  text-align: center
 
 #pic
   margin: 10pt

@@ -296,7 +296,7 @@ export default {
   width: 100%
   max-width: 900pt
 
-a 
+#container a 
   color: #4c4c4c;
   font-size: 15px;
 
