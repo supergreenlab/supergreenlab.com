@@ -20,12 +20,15 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <h2>{{ lineItem.product.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
-      <a :id='linkto' v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
+      <a :id='$style.linkto' v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
       <div :id='$style.infos'>
-        <div :id='$style.description' v-html='$md.render(brandProduct.description.substr(0, 150) + "...")'></div>
+        <div :id='$style.description'>
+          <h3>SOLD BY&nbsp;<a :id='$style.seller' :href='seller.url' target='_blank'>{{ seller.name }}</a></h3>
+          <p v-html='$md.render(brandProduct.description.substr(0, 150) + "...")'></p>
+        </div>
         <div :id='$style.price'>
           <div :id='$style.nitems'>
             QTY
@@ -64,6 +67,10 @@ export default {
     brand() {
       return this.$store.getters['eshop/brand'](this.brandProduct.Brand[0])
     },
+    seller() {
+      const { lineItem } = this.$props
+      return this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])
+    }
   },
   methods: {
     deleteLineItem() {
@@ -126,6 +133,10 @@ export default {
 
 #brand
   color: #454545
+
+#seller
+  color: #454545
+  text-transform: uppercase
 
 #infos
   display: flex
