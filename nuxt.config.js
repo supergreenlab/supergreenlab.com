@@ -96,8 +96,9 @@ export default {
   },
 
   router: {
-    scrollBehavior: async (to, from, savedPosition) => {
+    async scrollBehavior(to, from, savedPosition) {
       if (savedPosition) {
+        await new Promise((r) => setTimeout(r, 400))
         return savedPosition
       }
 

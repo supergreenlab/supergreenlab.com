@@ -26,34 +26,14 @@
         <SectionTitle :title='guide.title'
                       :green='guide.subtitle' />
       </div>
-      <div :class='$style.videosection'>
-        <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
-          <source :src="require(`~/assets/img/${guide.media.filePath}`)" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div :class='$style.text'>
-          <h1>INTRODUCTION</h1>
-          <p :class='$style.ps' v-html='$md.render(guide.introduction)'></p>
-        </div>
-      </div>
-
+      <Section :guideSection='guide' />
       <div v-for='section in guide.sections' :ref='section.slug'>
-        <div :class='$style.paragraph'>
-          <div :class='$style.videosection'>
-            <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
-              <source :src="require(`~/assets/img/${section.media.filePath}`)" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div :class='$style.text'>
-              <h1 v-if='section.title'>{{ section.title }}</h1>
-              <p :class='$style.ps' v-html='$md.render(section.text)'></p>
-            </div>
-          </div>
-        </div>
+        <Section :guideSection='section' />
         <div :class='$style.separator'></div>
       </div>
       <div :id='$style.navigation'>
-        <a :id='$style.home' href='javascript:void(0)' @click='back'>BACK</a>
+        <a :class='$style.navbutton' href='javascript:void(0)' @click='back'>BACK</a>&nbsp;
+        <nuxt-link v-if='next' :class='$style.navbutton' :to='next'>NEXT</nuxt-link>
       </div>
     </div>
     <Footer />
@@ -64,9 +44,10 @@
 import Header from '~/components/layout/header.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
+import Section from '~/components/guides/section.vue'
 
 export default {
-  components: { Header, SectionTitle, Footer, },
+  components: { Header, SectionTitle, Footer, Section, },
   created () {
     window.addEventListener('scroll', this.handleScroll);
   },
@@ -80,6 +61,11 @@ export default {
       const guide = require(`~/config/guide-${slug}.json`)
       return guide
     },
+    next() {
+      if (this.guide.nextslug == null || this.guide.nextslug.length == null) return null
+      const next = require(`~/config/guide-${this.guide.nextslug[0]}.json`)
+      return `/guide/${next.slug}`
+    }
   },
   methods: {
     handleScroll(e) {
@@ -142,51 +128,6 @@ export default {
   margin: 20pt 0
   background-color: rgba(255, 255, 255, 0.5)
 
-.paragraph
-  width: 100%
-  font-size: 1.1em
-  margin: 60pt 10pt
-  @media only screen and (max-width: 600pt)
-    margin: 15pt 0pt
-    padding 0 5pt
-
-.text > h1
-  margin: 0 0 20pt 0
-  color: #6D6D6D 
-
-.ps
-  margin: 10pt 0
-
-.ps > b
-  color: #3BB30B
-  font-weight: 600
-
-.ps > h3
-  color: #717171
-
-.video
-  display: block
-  height: 100%
-  max-height: 400px
-  max-width: 400px
-  margin: 0 10pt 0 0
-  @media only screen and (max-width: 600pt)
-    width: 100%
-    margin: 0 0 10pt 0
-  @media only screen and (min-width: 600pt)
-    box-shadow: -1px 1px 5px #888
-
-.videosection
-  display: flex
-  @media only screen and (max-width: 600pt)
-    flex-direction: column
-
-.videosection > *
-  flex-basis: 50%
-
-.videosection > p
-  margin: 10pt
-
 .separator
   height: 2pt
   margin: 30pt 0
@@ -197,7 +138,7 @@ export default {
   align-items: center
   justify-content: center
 
-#home
+.navbutton
   display: block
   background-color: #3BB30B
   padding: 8pt 25pt
@@ -207,5 +148,6 @@ export default {
   text-decoration: none
   text-align: center
   font-weight: 500
+  cursor: pointer
 
 </style>

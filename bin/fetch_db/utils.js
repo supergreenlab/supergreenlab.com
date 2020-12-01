@@ -25,6 +25,12 @@ const fetchFile = async (url, dst) => {
   console.log(`Fetched file ${url} to ${dst}`)
 }
 
+module.exports.noPic = {
+  fileLarge: 'nopic.svg',
+  fileSmall: 'nopic.svg',
+  fileFull: 'nopic.svg'
+}
+
 module.exports.emptyAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
   await fs.rmdir(dir, { recursive: true })
@@ -42,13 +48,18 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
   if (attachement.type.indexOf('image/') == 0) {
     let ext = attachement.type.split('/')[1]
     if (ext == 'svg+xml') ext = 'png'
+    const thumbnails = attachement.thumbnails || {
+      small: {url: attachement.url},
+      large: {url: attachement.url},
+      full: {url: attachement.url}
+    }
     const fileLarge = `${dir}/${attachement.id}.${ext}`,
       fileSmall = `${dir}/${attachement.id}_small.${ext}`,
       fileFull = `${dir}/${attachement.id}_full.${ext}`
     p = p.then(async () => {
-      await fetchFile(attachement.thumbnails.small.url, fileSmall)
-      await fetchFile(attachement.thumbnails.large.url, fileLarge)
-      await fetchFile(attachement.thumbnails.full.url, fileFull)
+      await fetchFile(thumbnails.small.url, fileSmall)
+      await fetchFile(thumbnails.large.url, fileLarge)
+      await fetchFile(thumbnails.full.url, fileFull)
     })
     return { p, attachement, data: { fileLarge, fileSmall, fileFull, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {

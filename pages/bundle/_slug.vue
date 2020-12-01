@@ -73,11 +73,6 @@
       </div>
     </div>
     <Footer />
-    <div :id='$style.loading' v-if='loading'>
-      <div :id='$style.loadingcontainer'>
-        <Loading label='Preparing your order, please wait' />
-      </div>
-    </div>
   </section>
 </template>
 

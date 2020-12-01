@@ -20,10 +20,10 @@
   <section :id='$style.container'>
     <Header />
     <div :id='$style.body'>
-      <CartTitle title='SuperGreenLab Cart' />
+      <Title title='SuperGreenLab Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <SGLCart />
-      <CartTitle title='Checklist Cart' />
+      <Title title='Checklist Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <div v-if='tierSellers.length != 0'>
         <div :class='$style.tiercart' v-for='seller in tierSellers' :key='seller.id'>
@@ -41,12 +41,12 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
-import CartTitle from '~/components/cart/carttitle.vue'
+import Title from '~/components/cart/title.vue'
 import SGLCart from '~/components/cart/sglcart.vue'
 import TierCart from '~/components/cart/tiercart.vue'
 
 export default {
-  components: {Header, Footer, CartTitle, SGLCart, TierCart},
+  components: {Header, Footer, Title, SGLCart, TierCart},
   computed: {
     tierSellers() {
       const deduplicate = {}
