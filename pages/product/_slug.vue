@@ -21,7 +21,6 @@
     <div :id='$style.header'>
       <Header />
     </div>
-
     <div :id='$style.body'>
       <h2 :class='$style.title'>{{ product.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
       <div :id='$style.product'>
@@ -53,7 +52,10 @@
         </div>
       </div>
       <div v-if='guides.length' :id='$style.guides'>
-        Guides
+        <h2>Guides</h2>
+        <Guide v-for='guide in guides' :guide='guide' />
+      </div>
+      <div>
       </div>
     </div>
     <Footer />
@@ -66,10 +68,13 @@ import Title from '~/components/products/title.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
+import Guide from '~/components/products/guide.vue'
 import Footer from '~/components/layout/footer.vue'
 
+import { guides } from '~/config/guides.json'
+
 export default {
-  components: { Header, Title, OutOfStock, Price, AddToCart, Footer, },
+  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, Footer, },
   computed: {
     sellingPoint() {
       const { slug } = this.$route.params
@@ -91,7 +96,7 @@ export default {
       return this.$store.getters['eshop/variants'](this.brandProduct.id)
     },
     guides() {
-      return []
+      return guides.filter(g => !g.first)
     }
   },
 }
@@ -132,6 +137,8 @@ export default {
 
 #product
   display: flex
+  @media only screen and (max-width: 600pt)
+    flex-direction: column
 
 #pic
   flex: 0.4
@@ -204,5 +211,12 @@ export default {
 
 #selected
   border: 1pt solid #3bb30b
+
+#guides
+  background-color: #dedede
+  width: 100%
+  margin: 5pt 2pt
+  padding: 5pt 10pt
+  border-radius: 5pt
 
 </style>
