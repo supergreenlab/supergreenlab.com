@@ -17,7 +17,7 @@ module.exports.fetchGuides = async () => {
     } catch(e) {
       g.media = noPic
     }
-    g.sections = guideSections.filter(gs => g.sections.indexOf(gs.id) != -1).map(gs => {
+    g.sections = guideSections.filter(gs => (g.sections || []).indexOf(gs.id) != -1).map(gs => {
       try {
         const { p, data } = fetchAttachement(picPromise, gs.media[0], 'guides')
         picPromise = p
