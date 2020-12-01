@@ -46,5 +46,12 @@ export const getters = {
   product: state => id => state.products.find(p => p.id == id),
   brandProduct: state => id => state.brandProducts.find(bp => bp.id == id),
   brand: state => id => state.brands.find(b => b.id == id),
-  seller: state => id => state.sellers.find(s => s.id == id)
+  seller: state => id => state.sellers.find(s => s.id == id),
+  variants: state => id => {
+    let brandProduct = state.brandProducts.find(bp => bp.id == id)
+    if (brandProduct.variantOf) {
+      brandProduct = state.brandProducts.find(bp => bp.id == brandProduct.variantOf[0])
+    }
+    return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
+  }
 }

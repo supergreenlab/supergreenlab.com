@@ -15,6 +15,7 @@
     "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/sitemap": "^2.3.0",
     "cross-env": "^5.2.1",
+    "deepmerge": "^4.2.2",
     "markdown-it-attrs": "^3.0.3",
     "markdown-it-div": "^1.1.0",
     "nuxt": "^2.12.2",

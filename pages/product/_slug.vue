@@ -30,19 +30,25 @@
           <div :id='$style.seller'>
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
           </div>
-          <div :id='$style.variants'></div>
+          <div :id='$style.variants'>
+            <div :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants'>
+              {{ v.name }}
+              <div :class='$style.green'>US${{ v.price }}</div>
+            </div>
+          </div>
           <div :id='$style.description' v-html='$md.render(brandProduct.description)'></div>
         </div>
         <div :id='$style.addtocart'>
           <div :id='$style.price'>
-            <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
+            <Price :price='sellingPoint.price' :small=true />
           </div>
           <OutOfStock v-if='product.outofstock' />
           <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
           Specs
           <div :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>
-            <div :class='$style.spec' v-if='brandProduct.specs.pot'>Volume<b>{{ brandProduct.specs.pot.volume }}{{ brandProduct.specs.pot.unit }}</b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.pot'>Volume<b>{{ brandProduct.specs.pot.volume.value }}{{ brandProduct.specs.pot.volume.unit }}</b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.soil'>Volume<b>{{ brandProduct.specs.soil.volume.value }}{{ brandProduct.specs.soil.volume.unit }}</b></div>
           </div>
         </div>
       </div>
@@ -80,6 +86,9 @@ export default {
     },
     seller() {
       return this.$store.getters['eshop/seller'](this.sellingPoint.Seller[0])
+    },
+    variants() {
+      return this.$store.getters['eshop/variants'](this.brandProduct.id)
     },
     guides() {
       return []
@@ -171,5 +180,29 @@ export default {
   border-bottom: 1pt dashed #ababab
   margin: 7pt 0
   padding: 0 0 3pt 0
+
+#variants
+  display: flex
+  align-items: center
+  padding: 5pt 0
+
+.variant
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  padding: 5pt 10pt
+  margin: 0 5pt 0 0
+  border: 1pt solid #b1b1b1
+  border-radius: 3pt
+  cursor: pointer
+  text-transform: uppercase
+  text-align: center
+
+.variant .green
+  color: #3bb30b
+
+#selected
+  border: 1pt solid #3bb30b
 
 </style>

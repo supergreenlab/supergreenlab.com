@@ -1,4 +1,5 @@
 const fs = require('fs/promises')
+const merge = require('deepmerge')
 
 const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir, mkAssetsDir, noPic } = require('./utils.js')
 
@@ -50,6 +51,16 @@ module.exports.fetchProducts = async () => {
         return noPic
       }
     })
+    return bp
+  }).map(bp => {
+    if (!bp.variantOf) return bp
+    const variantOf = brandProducts.find(bp2 => bp2.id == bp.variantOf[0])
+    bp.name = bp.name || variantOf.name
+    bp.tagline = bp.tagline || variantOf.tagline
+    bp.description = bp.description || variantOf.description
+    bp.bulletpoints = bp.bulletpoints || variantOf.bulletpoints
+    bp.specs = merge(bp.specs, variantOf.specs)
+    bp.pics = variantOf.pics
     return bp
   })
   sellingPoints = sellingPoints.map(sp => {
