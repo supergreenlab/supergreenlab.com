@@ -74,8 +74,8 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>NORMAL SHIPPING IS BACK!</b><br /><br />
-        The loooooong wait is over! We're now shipping worlwide, 24h after you order.<br /><br />
+        <b>SHIPPING ESTIMATE FOR BLACK FRIDAY DEALS:</b><br /><br />
+        End of December.
         <h4>Thanks for your support:)</h4>
       </div>
       <div :id='$style.preorderoverlay' v-if='bundle.outofstock || showPreOrderForm'>
