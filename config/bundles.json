@@ -2,42 +2,6 @@
 	"bundles": [
     {
       "ids": {
-        "white": "32221777166406",
-        "black": "32221777166406"
-      },
-      "outofstock": false,
-      "canorder": true,
-      "offer": 20,
-      "slug":"micro-box-bundle-black-friday",
-      "ref":"micro-grow-bundle-black-friday",
-      "title": "NINJA GROW BUNDLE - BLACK FRIDAY DEAL",
-      "subtitle": "6 LED panels to adapt to any spaces.",
-      "icon": "ninja-blackfriday.jpg",
-      "setupicon": "micro.jpg",
-      "setupicon2": "office.jpg",
-      "setupicon3": "tvstand.jpg",
-      "description": "<h3>BLACK FRIDAY DEAL - ETA END OF DECEMBER</h3><br />With 6 full spectrum LED grow lights providing dense light and little heat. This complete grow box bundle lets you build a grow box out of almost anything.<br /><br />With these lights we successfully grew and harvested from space buckets, TV stands, office storages and custom built grow boxes. Some of our users even grew in toolboxes or suitcase ! What will you build ?<br /><br />Coming with a sensor, ventilation, a controller and a companion App. The ninja grow bundle is fully controllable from your smartphone and can be split into 3 different chambers with different light dimming, schedules and ventilation setups.",
-      "bullets": [
-        "<b>BLACK FRIDAY SPECIAL</b>: get 20% off our next batch",
-        "<b>SHIPPING ESTIMATE</b>: End of December",
-        "Now with <b>new controller V3!</b>",
-        "<b>6 LED lights</b> for unlimited possibilities",
-        "Build a grow box <b>out of anything</b> (space buckets, TV stands, toolboxes …)",
-        "Up to <b>2’ x 2’</b> (80cm x 80 cm)",
-        "Up to <b>3 different grow schedules</b>",
-        "<b>Easy setup</b> and control with the Application",
-        "<b>all included</b>: Grow lights, power supplies, sensors and ventilation"
-      ],
-      "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
-      "price": 279.20,
-      "bigleds": 0,
-      "smallleds": 0,
-      "tinyleds": 6,
-      "ventilation": 1,
-      "sensor": 1
-    },
-    {
-      "ids": {
         "white": "29107273826352",
         "black": "29133894352944"
       },
