@@ -74,9 +74,10 @@
       <div id='shipping'></div>
       <Title icon='world.svg' title='ORDER YOURS NOW!' />
       <div :id='$style.shipdisclaimer'>
-        <b>SHIPPING ESTIMATE FOR BLACK FRIDAY DEALS:</b><br /><br />
-        End of December.
-        <h4>Thanks for your support:)</h4>
+        <b>SHIPPING ESTIMATE:</b><br /><br />
+        Good news we sold everything, bad news that was a few weeks to fast:/<br />
+        Next batch shipping end of December.<br />
+        <h4>Thank you all for your support, sorry for the little delay!</h4>
       </div>
       <div :id='$style.preorderoverlay' v-if='bundle.outofstock || showPreOrderForm'>
         <div class="typeform-widget" data-url="https://supergreenlab.typeform.com/to/i0dIP6" data-transparency="100" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>

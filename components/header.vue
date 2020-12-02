@@ -23,7 +23,7 @@
     </div>
     <div :id='$style.menu'>
       <div><nuxt-link @click='onClick' :to="page != 'index' ? '/' : { path: '/', hash: '#top' }">Home</nuxt-link></div>
-      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/micro-box-bundle-black-friday' : { path: '/', hash: '#micro-grow-bundle-black-friday' }">Ninja bundle</nuxt-link></div>
+      <div><nuxt-link @click='onClick' :to="page != 'index' ? '/bundle/micro-box-bundle' : { path: '/', hash: '#micro-grow-bundle' }">Ninja bundle</nuxt-link></div>
     </div>
   </section>
 </template>
