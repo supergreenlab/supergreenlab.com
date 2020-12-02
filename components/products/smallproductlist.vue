@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.title'>
+    <div :id='$style.title' v-if='title || subtitle'>
       <SectionTitle :title='title'
                     :green='subtitle' />
     </div>
@@ -44,18 +44,14 @@ export default {
 
 #container
   display: flex
-  width: 100%
   flex-direction: column
   justify-content: center
-  align-items: center
 
 #title
-  width: 100%
   margin: 20pt 0 20pt 0
 
 #body
   display: flex
-  justify-content: space-around
   align-items: center
   flex-wrap: wrap
   overflow-x: auto

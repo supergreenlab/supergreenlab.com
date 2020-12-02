@@ -30,10 +30,10 @@
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
           </div>
           <div :id='$style.variants'>
-            <div :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants'>
+            <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :to='`/product/${v.sellingPoint.slug}`'>
               {{ v.name }}
               <div :class='$style.green'>US${{ v.price }}</div>
-            </div>
+            </nuxt-link>
           </div>
           <div :id='$style.description' v-html='$md.render(brandProduct.description)'></div>
         </div>
@@ -51,11 +51,13 @@
           </div>
         </div>
       </div>
+      <h2>Guides</h2>
       <div v-if='guides.length' :id='$style.guides'>
-        <h2>Guides</h2>
         <Guide v-for='guide in guides' :guide='guide' />
       </div>
-      <div>
+      <h2>Related products</h2>
+      <div v-if='relatedProducts.length' :id='$style.products'>
+        <SmallProductList :products='relatedProducts' />
       </div>
     </div>
     <Footer />
@@ -69,12 +71,13 @@ import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Guide from '~/components/products/guide.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 import Footer from '~/components/layout/footer.vue'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, Footer, },
+  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, SmallProductList, Footer, },
   computed: {
     sellingPoint() {
       const { slug } = this.$route.params
@@ -93,10 +96,27 @@ export default {
       return this.$store.getters['eshop/seller'](this.sellingPoint.Seller[0])
     },
     variants() {
-      return this.$store.getters['eshop/variants'](this.brandProduct.id)
+      return this.$store.getters['eshop/variants'](this.brandProduct.id).map(bp => {
+        bp.sellingPoint = this.$store.getters['eshop/sellingPointForBrandProduct'](bp.id)
+        return bp
+      })
     },
     guides() {
-      return guides.filter(g => !g.first)
+      return guides.filter(g => {
+        return g.requires && g.requires.indexOf(this.product.id) !== -1
+      }).map(g => {
+        if (g.first) {
+          return guides.find(g2 => g2.id == g.first)
+        }
+        return g
+      }).filter((g, i, a) => {
+        return a.indexOf(g) == i
+      })
+    },
+    relatedProducts() {
+      return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
+        return a.indexOf(p) == i
+    }).filter(p => p.id !== this.product.id)
     }
   },
 }
@@ -111,6 +131,10 @@ export default {
   justify-content: center
   align-items: center
 
+#container h2
+  margin: 5pt 10pt
+  color: #454545
+
 #body
   width: 100%
   max-width: 900pt
@@ -120,7 +144,7 @@ export default {
   font-weight: 400
   text-transform: uppercase
   border-bottom: 2px solid #9a9a9a
-  margin: 0
+  margin: 0 5pt
   color: #454545
 
 .title a
@@ -137,6 +161,7 @@ export default {
 
 #product
   display: flex
+  margin: 0 0 30pt 0
   @media only screen and (max-width: 600pt)
     flex-direction: column
 
@@ -180,6 +205,8 @@ export default {
   margin: 5pt 2pt
   padding: 5pt 10pt
   border-radius: 5pt
+  @media only screen and (max-width: 600pt)
+    width: 80%
 
 .spec
   display: flex
@@ -200,23 +227,25 @@ export default {
   justify-content: center
   padding: 5pt 10pt
   margin: 0 5pt 0 0
-  border: 1pt solid #b1b1b1
+  border: 2pt solid #b1b1b1
   border-radius: 3pt
   cursor: pointer
   text-transform: uppercase
   text-align: center
+  color: #454545
+  text-decoration: none
 
 .variant .green
   color: #3bb30b
 
 #selected
-  border: 1pt solid #3bb30b
+  border: 2pt solid #3bb30b
 
 #guides
   background-color: #dedede
-  width: 100%
-  margin: 5pt 2pt
+  margin: 5pt 10pt 30pt 10pt
   padding: 5pt 10pt
   border-radius: 5pt
+
 
 </style>

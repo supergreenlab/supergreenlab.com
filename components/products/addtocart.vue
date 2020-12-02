@@ -57,8 +57,6 @@ export default {
   align-items: flex-end
   text-align: right
   font-weight: 600;
-  @media only screen and (max-width: 600px)
-    align-self: flex-end
 
 #button
   display: block

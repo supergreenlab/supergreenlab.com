@@ -41,6 +41,7 @@ export const getters = {
     return productsWithTypes(state, 'SGL_ACCESSORIES')
   },
   sellingPointWithSlug: state => slug => state.sellingPoints.find(sp => sp.slug == slug),
+  sellingPointForBrandProduct: state => id => state.sellingPoints.find(sp => sp.BrandProduct[0] == id),
   productWithSlug: state => slug => state.products.find(p => p.slug == slug),
   productsWithTypes: state => types => productsWithTypes(state, types),
   product: state => id => state.products.find(p => p.id == id),

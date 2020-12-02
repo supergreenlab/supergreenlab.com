@@ -59,7 +59,7 @@ module.exports.fetchProducts = async () => {
     bp.tagline = bp.tagline || variantOf.tagline
     bp.description = bp.description || variantOf.description
     bp.bulletpoints = bp.bulletpoints || variantOf.bulletpoints
-    bp.specs = merge(bp.specs, variantOf.specs)
+    bp.specs = merge(variantOf.specs, bp.specs)
     bp.pics = variantOf.pics
     return bp
   })

@@ -23,7 +23,7 @@
       <h3>{{ guide.name }}</h3>
       <p v-html='$md.render(guide.text || "")'></p>
       <div>
-        <a :id='$style.button'>VIEW GUIDE</a>
+        <nuxt-link :id='$style.button' :to='`/guide/${guide.slug}`'>VIEW GUIDE</nuxt-link>
       </div>
     </div>
   </section>
@@ -42,23 +42,30 @@ export default {
 #container
   display: flex
   margin: 10pt 0
+  @media only screen and (max-width: 600pt)
+    flex-direction: column
+    align-items: center
 
 #infos > h3
   color: #454545
 
 #pic
-  width: 130px
-  height: 130px
-  margin-right: 10pt
-  background-position: top
+  flex: 1
+  max-width: 150px
+  height: 150px
+  margin: 0 10pt 0 0
+  background-position: center
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 600pt)
-    flex: auto !important
-    background-position: center
+    width: 150px
+    max-height: 150px
+    flex: auto
+    margin: 0 0 10pt 0
 
 #infos
   display: flex
+  flex: 1
   flex-direction: column
 
 #infos > p
