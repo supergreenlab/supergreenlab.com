@@ -72,6 +72,10 @@ export default {
   padding: 25pt 0 25pt 0
   border-top: 2pt solid #efefef
   flex-direction: column
+  color: #343434
+
+#container a
+  color: #343434
 
 #nav
   display: flex
