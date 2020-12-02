@@ -29,7 +29,7 @@
           <div :id='$style.seller'>
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
           </div>
-          <div :id='$style.variants'>
+          <div v-if='variants.length > 1' :id='$style.variants'>
             <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :to='`/product/${v.sellingPoint.slug}`'>
               {{ v.name }}
               <div :class='$style.green'>US${{ v.price }}</div>
@@ -51,13 +51,13 @@
           </div>
         </div>
       </div>
-      <h2>Guides</h2>
+      <h2 v-if='guides.length'>Guides</h2>
       <div v-if='guides.length' :id='$style.guides'>
         <Guide v-for='guide in guides' :guide='guide' />
       </div>
-      <h2>Related products</h2>
+      <h2 v-if='relatedProducts.length'>Related products</h2>
       <div v-if='relatedProducts.length' :id='$style.products'>
-        <SmallProductList :products='relatedProducts' />
+        <ProductList :products='relatedProducts' />
       </div>
     </div>
     <Footer />
@@ -71,13 +71,13 @@ import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Guide from '~/components/products/guide.vue'
-import SmallProductList from '~/components/products/smallproductlist.vue'
+import ProductList from '~/components/products/productlist.vue'
 import Footer from '~/components/layout/footer.vue'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, SmallProductList, Footer, },
+  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, ProductList, Footer, },
   computed: {
     sellingPoint() {
       const { slug } = this.$route.params

@@ -54,8 +54,8 @@
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
-      <SmallProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' />
-      <SmallProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' />
+      <ProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' />
+      <ProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
@@ -81,14 +81,14 @@ import LatestDiaries from '~/components/home/latest-diaries.vue'
 import Bundle from '~/components/bundle/bundle.vue'
 import Instagram from '~/components/home/instagram.vue'
 import Youtube from '~/components/home/youtube.vue'
-import SmallProductList from '~/components/products/smallproductlist.vue'
+import ProductList from '~/components/products/productlist.vue'
 import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, SmallProductList, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, ProductList, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,

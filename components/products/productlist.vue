@@ -32,7 +32,7 @@
 
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
-import Item from '~/components/products/smallproductitem.vue'
+import Item from '~/components/products/productitem.vue'
 
 export default {
   props: ['title', 'subtitle', 'promoDiscount', 'products',],
@@ -52,9 +52,13 @@ export default {
 
 #body
   display: flex
-  flex-direction: column
+  align-items: center
+  flex-wrap: wrap
+  overflow-x: auto
 
 .product
+  flex-basis: 33%
+  padding: 20pt 30pt
   @media only screen and (max-width: 600px)
     padding: 20pt 5pt
 

@@ -47,7 +47,7 @@ import Footer from '~/components/layout/footer.vue'
 import Section from '~/components/guides/section.vue'
 
 export default {
-  components: { Header, SectionTitle, Footer, Section, },
+  components: { Header, SectionTitle, Section, Footer, },
   created () {
     window.addEventListener('scroll', this.handleScroll);
   },
@@ -65,7 +65,7 @@ export default {
       if (this.guide.nextslug == null || this.guide.nextslug.length == null) return null
       const next = require(`~/config/guide-${this.guide.nextslug[0]}.json`)
       return `/guide/${next.slug}`
-    }
+    },
   },
   methods: {
     handleScroll(e) {
@@ -105,6 +105,10 @@ export default {
   padding-top: 80pt
   @media only screen and (max-width: 600pt)
     padding-top: 30pt
+
+#container h2
+  margin-left: 5pt
+  color: #454545
 
 #header
   position: fixed

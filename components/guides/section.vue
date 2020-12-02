@@ -25,15 +25,23 @@
         <p :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></p>
       </div>
     </div>
+    <h2 v-if='requires.length'>Required items</h2>
+    <SmallProductList v-if='requires.length' :products='requires' />
   </section>
 </template>
 
 <script>
 import Media from '~/components/guides/media.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 
 export default {
   props: [ 'guideSection', ],
-  components: { Media, },
+  components: { Media, SmallProductList, },
+  computed: {
+    requires() {
+      return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r))
+    }
+  }
 }
 </script>
 
@@ -54,6 +62,9 @@ export default {
 .ps
   margin: 10pt 0
   color: #454545
+
+.ps p
+  margin-bottom: 10pt
 
 .ps strong
   color: #3BB30B

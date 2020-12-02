@@ -17,26 +17,22 @@
  -->
 
 <template>
-  <section :id='$style.container'>
-    <div :id='$style.title' v-if='title || subtitle'>
-      <SectionTitle :title='title'
-                    :green='subtitle' />
-    </div>
-    <div :id='$style.body'>
-      <div v-for='product in products' :class='$style.product'>
-        <Item :promoDiscount='promoDiscount' :product='product' />
-      </div>
-    </div>
+  <section :id='$style.container' :class='small ? $style.small : ""'>
+    <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
   </section>
 </template>
 
 <script>
-import SectionTitle from '~/components/widgets/sectiontitle.vue'
-import Item from '~/components/products/smallproductitem.vue'
-
 export default {
-  props: ['title', 'subtitle', 'promoDiscount', 'products',],
-  components: {SectionTitle, Item,},
+  components: {},
+  props: ['product', 'sellingPoint',],
+  methods: {
+    addToCartClicked() {
+      const { product, sellingPoint, } = this.$props
+      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.id)
+      this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
+    },
+  },
 }
 </script>
 
@@ -45,17 +41,32 @@ export default {
 #container
   display: flex
   flex-direction: column
-  justify-content: center
+  justify-content: flex-end
+  align-items: flex-end
+  text-align: right
+  font-weight: 600;
 
-#title
-  margin: 20pt 0 20pt 0
+#button
+  display: block
+  background-color: #3BB30B
+  text-align: center
+  padding: 4pt 12pt
+  border-radius: 3pt
+  color: white
+  text-decoration: none
+  font-size: 1em
+  margin: 4pt 10pt
+  white-space: nowrap
 
-#body
-  display: flex
-  flex-direction: column
+#container.small > #button
+  padding: 6pt 18pt
+  font-size: 1em
+  border-radius: 4pt
 
-.product
-  @media only screen and (max-width: 600px)
-    padding: 20pt 5pt
+#button:hover
+  background-color: #2F880B
+
+#button > b
+  font-weight: 600
 
 </style>

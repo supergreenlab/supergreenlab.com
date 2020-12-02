@@ -20,30 +20,23 @@
   <section :id='$style.container'>
     <nuxt-link :id='$style.infos' :to='`/product/${sellingPoint.slug}`'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+      <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
     </nuxt-link>
-    <div :id='$style.infocontainer'>
-      <div :id='$style.description'>
-        <nuxt-link :to='`/product/${sellingPoint.slug}`'>
-          <h3>{{ brandProduct.name }} BY {{ brand.name }}</h3>
-        </nuxt-link>
-        <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
-      </div>
-      <div :id='$style.price'>
-        <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
-      </div>
-      <OutOfStock v-if='product.outofstock' />
-      <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
+    <div :class='$style.price'>
+      <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
     </div>
+    <OutOfStock v-if='product.outofstock' />
+    <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
   </section>
 </template>
 
 <script>
 import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
-import SmallAddToCart from '~/components/products/smalladdtocart.vue'
+import AddToCart from '~/components/products/addtocart.vue'
 
 export default {
-  components: {Price, OutOfStock, SmallAddToCart, },
+  components: {Price, OutOfStock, AddToCart, },
   props: ['product', 'promoDiscount'],
   data() {
     return {
@@ -72,17 +65,11 @@ export default {
 
 #container
   display: flex
+  flex-direction: column
   align-items: center
   justify-content: space-between
+  height: 300pt
   color: #454545
-
-#infocontainer
-  display: flex
-  align-items: center
-  flex: 1
-  @media only screen and (max-width: 600px)
-    flex-direction: column
-    align-items: flex-start
 
 #infos
   display: flex
@@ -103,29 +90,14 @@ export default {
 
 #pic
   margin: 10pt
-  width: 70pt
-  height: 70pt
+  width: 100pt
+  height: 100pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
 
-#description
-  flex: 1
-  margin: 0 20pt 0 5pt
-
-#description a
-  color: #454545
-  text-decoration: none
-
-#container:hover #description a
-  text-decoration: underline
-
-#description > div
-  @media only screen and (max-width: 600px)
-    display: none
-
-#price
+.price
   display: flex
-  margin: 10pt 10pt
+  margin: 10pt 0
 
 </style>
