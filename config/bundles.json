@@ -2,21 +2,22 @@
 	"bundles": [
     {
       "ids": {
-        "white": "29107273826352",
-        "black": "29133894352944"
+        "white": "32227034169414",
+        "black": "32227034169414"
       },
       "outofstock": false,
       "canorder": true,
       "discount": 15,
+      "offer": 10,
       "slug":"micro-box-bundle",
       "ref":"micro-grow-bundle",
-      "title": "NINJA GROW BUNDLE",
+      "title": "[HOLIDAY SPECIAL 🎁] Ninja Gow Bundle",
       "subtitle": "6 LED panels to adapt to any spaces.",
       "icon": "ninja.jpg",
       "setupicon": "micro.jpg",
       "setupicon2": "office.jpg",
       "setupicon3": "tvstand.jpg",
-      "description": "With 6 full spectrum LED grow lights providing dense light and little heat. This complete grow box bundle lets you build a grow box out of almost anything.<br /><br />With these lights we successfully grew and harvested from space buckets, TV stands, office storages and custom built grow boxes. Some of our users even grew in toolboxes or suitcase ! What will you build ?<br /><br />Coming with a sensor, ventilation, a controller and a companion App. The ninja grow bundle is fully controllable from your smartphone and can be split into 3 different chambers with different light dimming, schedules and ventilation setups.",
+      "description": "<h3>SUPER IMPORTANT NOTICE (READ IT!)</h3><br />With COVID-19, others like you realized it was time to start growing their own.<br /><br /><b>Good news</b>: there are now more people in the SGL community sharing their grows and helping out :)<br/><br /><b>Bad news</b>: we're out of stock just a few weeks short of receiving the next batch...<br /><br /><b>So, for those who want a discount and don't mind waiting a bit this is the deal for you!</b><br /><br />Holiday Special; <b>10% off</b><br /><br /><b>Shipping end of December 🎅🎁</b><br /><br /><b>Limited offer until stock arrives (mid-December).</b><br /><br />When will I receive it?<br /><br /><b>Our goal is to ship it to you for Christmas/end of December 🎅🚀</b><br /><br />The next batch is estimated to arrive within the next 2 weeks which gives us enough time to do so 🙏🤞<br /><br />With 6 full spectrum LED grow lights providing dense light and little heat. This complete grow box bundle lets you build a grow box out of almost anything.<br /><br />With these lights we successfully grew and harvested from space buckets, TV stands, office storages and custom built grow boxes. Some of our users even grew in toolboxes or suitcase ! What will you build ?<br /><br />Coming with a sensor, ventilation, a controller and a companion App. The ninja grow bundle is fully controllable from your smartphone and can be split into 3 different chambers with different light dimming, schedules and ventilation setups.",
       "bullets": [
         "<b>ONLY A FEW LEFT</b>: Next batch shipping by end of December",
         "<b>Next-day shipping</b>: don't wait until next batch",
@@ -29,7 +30,7 @@
         "<b>all included</b>: Grow lights, power supplies, sensors and ventilation"
       ],
       "url": "https://shop.supergreenlab.com/pages/loading-cart#29107330154544:1",
-      "price": 349,
+      "price": 314.10,
       "bigleds": 0,
       "smallleds": 0,
       "tinyleds": 6,
