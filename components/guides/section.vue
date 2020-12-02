@@ -25,7 +25,7 @@
         <p :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></p>
       </div>
     </div>
-    <h2 v-if='requires.length'>Required items</h2>
+    <h2 v-if='requires.length'>What you'll need</h2>
     <SmallProductList v-if='requires.length' :products='requires' />
   </section>
 </template>

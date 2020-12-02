@@ -53,12 +53,14 @@ export default {
 #body
   display: flex
   align-items: center
+  justify-content: center
   flex-wrap: wrap
-  overflow-x: auto
 
 .product
   flex-basis: 33%
   padding: 20pt 30pt
+  @media only screen and (min-width: 1200px)
+    flex-basis: 20%
   @media only screen and (max-width: 600px)
     padding: 20pt 5pt
 
