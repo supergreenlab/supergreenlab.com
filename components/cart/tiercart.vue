@@ -76,7 +76,7 @@ export default {
     },
     isAmazonCart() {
       const { seller } = this.$props
-      return seller.type.includes('amazon')
+      return (seller.type || []).includes('amazon')
     },
     amazonCartUrl() {
       const { seller } = this.$props
@@ -128,6 +128,8 @@ export default {
   background-position: left
   background-size: contain
   background-repeat: no-repeat
+  @media only screen and (max-width: 600pt)
+    background-position: center
 
 .sideDivs
   flex: 1

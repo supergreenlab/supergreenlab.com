@@ -55,6 +55,11 @@ export default {
     margin: 15pt 0pt
     padding 0 5pt
 
+#container h2
+  margin: 20pt 0 0 5pt
+  font-size: 1em
+  color: #454545
+
 .text > h1
   margin: 0 0 20pt 0
   color: #6D6D6D 

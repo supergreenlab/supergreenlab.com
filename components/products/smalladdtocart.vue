@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container' :class='small ? $style.small : ""'>
+  <section :id='$style.container'>
     <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
   </section>
 </template>
@@ -54,14 +54,9 @@ export default {
   border-radius: 3pt
   color: white
   text-decoration: none
-  font-size: 1em
+  font-size: 0.9em
   margin: 4pt 10pt
   white-space: nowrap
-
-#container.small > #button
-  padding: 6pt 18pt
-  font-size: 1em
-  border-radius: 4pt
 
 #button:hover
   background-color: #2F880B

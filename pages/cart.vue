@@ -23,6 +23,7 @@
       <Title title='SuperGreenLab Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <SGLCart />
+      <div :id='$style.space'></div>
       <Title title='Checklist Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <div v-if='tierSellers.length != 0'>
@@ -82,7 +83,7 @@ export default {
   margin: 10pt 30pt
 
 .tiercart
-  margin: 0 5pt
+  margin: 0 5pt 30pt 0
 
 #noseller
   display: flex
@@ -92,5 +93,8 @@ export default {
   align-items: center
   padding: 20pt 0
   font-size: 1.1em
+
+#space
+  height: 40pt
 
 </style>

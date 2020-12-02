@@ -58,21 +58,17 @@ export default {
   left: 0
   z-index: 1000
   display: flex
-  width: 100%
+  width: 100vw
   background-color: rgba(255, 255, 255, 0.8)
   align-items: center
   justify-content: space-between
   padding: 0 0 0 10pt
   @media only screen and (max-width: 600px)
-    justify-content: center
-    padding: 10pt 0 10pt 0
     font-size: 1.2em
 
 #menu
   display: flex
   font-size: 0.8em
-  @media only screen and (max-width: 600px)
-      display: none
 
 #menu > div > a
   display: block

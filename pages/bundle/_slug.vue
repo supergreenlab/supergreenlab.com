@@ -23,25 +23,6 @@
     </div>
     <div :id='$style.body'>
       <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' :promoDiscount='promoDiscount' />
-      <Title icon='guides.svg' title='GUIDES' />
-      <div :id='$style.guides'>
-        <div :class='$style.guide'>
-          <Guide icon='guide-mobile.svg'
-                 analytics='guide-setup-with-the-app'
-                 title='HOW TO'
-                 subtitle='SETUP WITH THE APP'
-                 slug='how-to-setup-controller'
-                 button='LEARN MORE' />
-        </div>
-        <div :class='$style.guide'>
-          <Guide icon='guide-install-led.svg'
-                 analytics='guide-install-led'
-                 title='HOW TO'
-                 subtitle='INSTALL A LED PANEL'
-                 slug='how-to-install-a-led-panel'
-                 button='LEARN MORE' />
-        </div>
-      </div>
       <Title icon='package.svg' title='BUNDLE CONTENT' />
       <Item v-if='bundle.specs.bigleds' :showHarvest='true' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
       <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
@@ -51,6 +32,10 @@
       <Item n='1' :item='accessory("sgl-controller")' last='true' />
       <div :class='$style.price'>
         <Price :price='bundle.SellingPoints[0].price' :promoDiscount='promoDiscount' :freeshipping='false' />
+      </div>
+      <Title icon='guides.svg' title='GUIDES' />
+      <div :id='$style.guides'>
+        <ProductGuide v-for='guide in guides' :guide='guide' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
@@ -71,6 +56,10 @@
                  button='START CHAT' />
         </div>
       </div>
+      <Title icon='icon-see-shop.svg' title='SEE ALSO' />
+      <div v-if='relatedProducts.length' :id='$style.products'>
+        <ProductList :products='relatedProducts' />
+      </div>
     </div>
     <Footer />
   </section>
@@ -79,16 +68,18 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Guide from '~/components/bundle/guide.vue'
+import ProductGuide from '~/components/products/guide.vue'
+import ProductList from '~/components/products/productlist.vue'
 import Bundle from '~/components/bundle/bundle.vue'
 import Item from '~/components/bundle/item.vue'
 import Title from '~/components/bundle/title.vue'
 import Price from '~/components/products/price.vue'
 import Footer from '~/components/layout/footer.vue'
 
-import priceConv from '~/lib/price.js'
+import { guides } from '~/config/guides.json'
 
 export default {
-  components: {Header, Guide, Bundle, Title, Price, Item, Footer,},
+  components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer,},
   data() {
     return {
       loading: false,
@@ -112,11 +103,25 @@ export default {
     promoDiscount() {
       return this.$store.getters['checkout/promoDiscount']
     },
+    guides() {
+      return guides.filter(g => {
+        return g.requires && g.requires.indexOf(this.bundle.id) !== -1
+      }).map(g => {
+        if (g.first) {
+          return guides.find(g2 => g2.id == g.first)
+        }
+        return g
+      }).filter((g, i, a) => {
+        return a.indexOf(g) == i
+      })
+    },
+    relatedProducts() {
+      return [].concat(...this.bundle.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
+        return a.indexOf(p) == i
+      }).filter(p => p.id !== this.bundle.id)
+    }
   },
   methods: {
-    priceConv(dols) {
-      return priceConv(dols)
-    },
   },
 }
 </script>
@@ -150,6 +155,7 @@ export default {
 #guides
   display: flex
   flex-wrap: wrap
+  margin: 0 10pt
 
 .guide
   margin: 20pt 0

@@ -32,7 +32,7 @@
         <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
       </div>
       <OutOfStock v-if='product.outofstock' />
-      <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
+      <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :discreet=false :n='n' />
     </div>
   </section>
 </template>
@@ -112,6 +112,7 @@ export default {
 #description
   flex: 1
   margin: 0 20pt 0 5pt
+  font-size: 0.8em
 
 #description a
   color: #454545
