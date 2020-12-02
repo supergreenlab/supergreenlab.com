@@ -22,7 +22,7 @@
       <SectionTitle :title='title'
                     :green='subtitle' />
     </div>
-    <div :id='$style.body'>
+    <div :id='$style.body' :class='center ? $style.center : ""'>
       <div v-for='product in products' :class='$style.product'>
         <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
@@ -35,7 +35,7 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Item from '~/components/products/productitem.vue'
 
 export default {
-  props: ['title', 'subtitle', 'promoDiscount', 'products',],
+  props: ['title', 'subtitle', 'promoDiscount', 'products', 'center',],
   components: {SectionTitle, Item,},
 }
 </script>
@@ -53,8 +53,10 @@ export default {
 #body
   display: flex
   align-items: center
-  justify-content: center
   flex-wrap: wrap
+
+.center
+  justify-content: center
 
 .product
   flex-basis: 33%

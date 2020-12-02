@@ -54,8 +54,8 @@
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
-      <ProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' />
-      <ProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' />
+      <ProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' :center=true />
+      <ProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' :center=true />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
