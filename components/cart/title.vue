@@ -35,9 +35,14 @@ export default {
   display: flex
   width: 100%
   border-bottom: 2px solid #9a9a9a
+  @media only screen and (max-width: 600pt)
+    font-size: 0.8em
 
 #container > img
   margin: 5pt 10pt 5pt 0
+  @media only screen and (max-width: 600pt)
+    width: 20pt
+    height: 20pt
 
 #container > h1
   display: flex

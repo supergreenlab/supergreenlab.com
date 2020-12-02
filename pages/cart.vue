@@ -75,6 +75,8 @@ export default {
   width: 100%
   max-width: 900pt
   padding: 100pt 0 0 0
+  @media only screen and (max-width: 600pt)
+    padding: 100pt 5pt 0 5pt
 
 .carttype
   margin: 10pt 30pt

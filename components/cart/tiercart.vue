@@ -19,16 +19,13 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.seller'>
-      <div :class='$style.sideDivs'></div>
       CHECK THOSE OUT AT <div :id='$style.logo' :style='{"background-image": `url(${sellerPic})`}'></div>
-      <div :class='$style.sideDivs'>
-        <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />
-      </div>
     </div>
     <div :id='$style.lineItems'>
       <LineItem :key='lineItem.sellingPoint.id' v-for='lineItem in cart' :lineItem='lineItem' :showCheckbox=true :showProductLink=true />
     </div>
     <div :id='$style.checkout' v-if='isAmazonCart'>
+      <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />
       This will open {{ seller.url.replace('https://www.', '') }} with a pre-filled shopping cart
       <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ priceConv(totalPrice) }}</b></a><br />
     </div>

@@ -48,6 +48,8 @@ export default {
   border-radius: 5px
   user-select: none
   background-color: white
+  @media only screen and (max-width: 600pt)
+    font-size: 1.5em
 
 #container > div
   flex: 1

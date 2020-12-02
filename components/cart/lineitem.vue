@@ -26,20 +26,22 @@
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
       <div :id='$style.infos'>
         <div :id='$style.description'>
-          <h3>SOLD BY&nbsp;<a :id='$style.seller' :href='seller.url' target='_blank'>{{ seller.name }}</a></h3>
+          <h3 :id='$style.soldby'>SOLD BY&nbsp;<a :id='$style.seller' :href='seller.url' target='_blank'>{{ seller.name }}</a></h3>
           <p v-html='$md.render(brandProduct.description.substr(0, 150) + "...")'></p>
         </div>
         <div :id='$style.price'>
+          <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.mobilecheckbox'>
+            <CheckBox @click='toggleChecked' :checked='lineItem.checked' label='Bought it' />
+          </div>
           <div :id='$style.nitems'>
             QTY
             <Number :value='lineItem.n' v-on:input='changeLineItem' />
           </div>
           <Price :price='lineItem.sellingPoint.price * lineItem.n' :promoDiscount='promoDiscount' />
         </div>
-      <div :id='$style.checkbox' v-if='showCheckbox'>
-        <CheckBox @click='toggleChecked' :checked='lineItem.checked' label='Bought it' />
       </div>
-
+      <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.desktopcheckbox'>
+        <CheckBox @click='toggleChecked' :checked='lineItem.checked' label='Bought it' />
       </div>
       <div :id='$style.delete'>
         <a href='javascript:void(0)' @click='deleteLineItem'>
@@ -96,16 +98,19 @@ export default {
   display: flex
   flex-direction: column
   margin-bottom: 15pt
+  padding-bottom: 10pt
+  border-bottom: 1pt dashed #cccccc
 
 #title
   display: flex
   justify-content: space-between
+  align-items: center
   border-bottom: 2px solid #9a9a9a
   color: #454545
+  @media only screen and (max-width: 600pt)
+    font-size: 0.8em
 
 #title > h2
-  display: flex
-  align-items: flex-end
   font-weight: 500
   text-transform: uppercase
   margin: 0
@@ -113,15 +118,14 @@ export default {
 #linkto
   color: #3bb30b
   font-weight: bold
+  white-space: nowrap
 
 #body
   display: flex
-  @media only screen and (max-width: 600pt)
-    align-items: center
-    flex-direction: column
+  align-items: center
+  justify-content: center
 
-#body > div, #nitems
-  flex: 1
+#nitems
   display: flex
   flex-direction: column
   align-items: center
@@ -129,6 +133,8 @@ export default {
 
 #price
   display: flex
+  align-items: center
+  justify-content: center
   flex-direction: column
 
 #brand
@@ -141,29 +147,37 @@ export default {
 #infos
   display: flex
   flex: 1
-  align-items: center
-  justify-content: center
   flex-direction: row !important
   @media only screen and (max-width: 600pt)
+    align-items: center
+    justify-content: center
     flex-direction: column !important
+
+#soldby
+  margin: 2pt 0 10pt 0
+  color: #454545
+  @media only screen and (max-width: 600pt)
+    margin: 2pt 0 2pt 0
  
 #pic
-  flex: 0.3 !important
-  width: 150px
+  flex: 0.3
   height: 150px
   margin: 10pt 0
   background-position: top
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 600pt)
-    flex: auto !important
-    height: 200px
+    flex: 0.4
+    height: 110px
+    margin: 10pt 15pt 10pt 5pt
     background-position: center
 
 #description
-  flex: 2 !important
+  flex: 2
   padding: 10pt 5pt
-  align-items: flex-start !important
+  justify-self: stretch
+
+#description > p
   @media only screen and (max-width: 600pt)
     display: none !important
 
@@ -171,13 +185,24 @@ export default {
   color: #3bb30b
 
 #delete
-  flex: 0.2 !important
+  flex: 0.2
+  display: flex
+  align-items: center
+  justify-content: center
   @media only screen and (max-width: 600pt)
     display: none !important
 
 #checkbox
+  flex: 0.2
+
+.mobilecheckbox
+  padding-bottom: 10pt
+  @media only screen and (min-width: 600pt)
+    display: none
+
+.desktopcheckbox
   padding: 0 0 0 30pt
   @media only screen and (max-width: 600pt)
-    padding: 20pt 0 0 10pt
+    display: none
 
 </style>

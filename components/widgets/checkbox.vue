@@ -43,6 +43,8 @@ export default {
   align-items: center
   justify-content: center
   white-space: nowrap
+  font-weight: bold
+  color: #454545
 
 #border
   position: relative
