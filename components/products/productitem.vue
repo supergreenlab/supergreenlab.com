@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <nuxt-link :id='$style.infos' :to='`/product/${sellingPoint.slug}`'>
+    <nuxt-link :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
     </nuxt-link>
@@ -46,7 +46,7 @@ export default {
   computed: {
     sellingPoint() {
       const { product } = this.$props
-      return product.SellingPoints[0]
+      return this.$store.getters['eshop/sellingPointForProduct'](product.id)
     },
     brandProduct() {
       return this.$store.getters['eshop/brandProduct'](this.sellingPoint.BrandProduct[0])

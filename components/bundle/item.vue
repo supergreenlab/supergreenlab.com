@@ -24,7 +24,7 @@
       </div>
       <div :id='$style.description'>
         <div :id='$style.header'>
-          <h3>{{ item.name }}</h3>
+          <h3><nuxt-link :to='`/product/${item.SellingPoints[0].slug}`'>{{ item.name }}</nuxt-link></h3>
           <h2 :id='$style.n'>x{{ n }}</h2>
         </div>
         <div :id='$style.bullets'>
@@ -145,7 +145,7 @@ export default {
   border-bottom: 2pt solid #BEBEBE
   margin-bottom: 20pt
 
-#header > h3
+#header > h3 > a
   color: #6F6F6F
 
 #n

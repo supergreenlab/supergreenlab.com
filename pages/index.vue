@@ -54,8 +54,10 @@
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
-      <ProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' :center=true />
-      <ProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' :center=true />
+      <div :id='$style.shop'>
+        <ProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' :center=true />
+        <ProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' :center=true />
+      </div>
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
     </div>
@@ -178,6 +180,10 @@ export default {
 
 #body
   width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
 
 #title
   margin: 20pt 0 20pt 0
@@ -188,12 +194,7 @@ export default {
   background-color: #efefef
 
 #shop
-  height: 150pt
-  margin: 30pt
-  background-image: url('~assets/img/shop.svg')
-  background-position: center
-  background-repeat: no-repeat
-  background-size: contain
+  max-width: 900pt
 
 #bundles
   display: flex

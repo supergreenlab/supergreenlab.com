@@ -53,7 +53,7 @@ export default {
   computed: {
     sellingPoint() {
       const { product } = this.$props
-      return product.SellingPoints[0]
+      return this.$store.getters['eshop/sellingPointForProduct'](product.id)
     },
     brandProduct() {
       return this.$store.getters['eshop/brandProduct'](this.sellingPoint.BrandProduct[0])

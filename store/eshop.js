@@ -61,7 +61,6 @@ export const getters = {
     return productsWithTypes(state, 'SGL_ACCESSORIES')
   },
   sellingPointWithSlug: state => slug => state.sellingPoints.find(sp => sp.slug == slug),
-  sellingPointForBrandProduct: state => id => state.sellingPoints.find(sp => sp.BrandProduct[0] == id),
   productWithSlug: state => slug => state.products.find(p => p.slug == slug),
   productsWithTypes: state => types => productsWithTypes(state, types),
 
@@ -76,4 +75,18 @@ export const getters = {
     }
     return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
   },
+
+  sellingPoint: state => sellingPoints => {
+    let { region } = state
+    const findSellingPoint = (region) => {
+      let sellingPoint = sellingPoints.find(sp => sp.regions.indexOf(region) != -1)
+      if (!sellingPoint && region.in) {
+        return findSellingPoint(state.regions.find(r => r.id == region.in[0]))
+      }
+      return sellingPoint
+    }
+    return findSellingPoint(region)
+  },
+  sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
+  sellingPointForProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.Product[0] == id)),
 }
