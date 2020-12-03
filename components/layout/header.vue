@@ -69,6 +69,7 @@ export default {
 #menu
   display: flex
   font-size: 0.8em
+  margin-right: 10pt
 
 #menu > div > a
   display: block

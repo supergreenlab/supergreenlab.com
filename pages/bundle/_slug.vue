@@ -35,7 +35,7 @@
       </div>
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
-        <ProductGuide v-for='guide in guides' :guide='guide' />
+        <ProductGuide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />

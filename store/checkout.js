@@ -27,8 +27,9 @@ export const state = () => {
     promocode: {value: '', valid: true, optional: true,},
     discount: {value: 0, valid: true, optional: true},
   };
-  if (window.localStorage.getItem('checkout')) {
-    defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('checkout')))
+  const saved = window.localStorage.getItem('checkout')
+  if (saved) {
+    defaults = Object.assign(defaults, JSON.parse(saved))
   }
   return defaults
 };

@@ -41,12 +41,13 @@ export default {
 
 #container
   display: flex
-  margin: 10pt 0
+  margin: 10pt 0 20pt 0
   @media only screen and (max-width: 600pt)
     flex-direction: column
     align-items: center
 
 #infos > h3
+  margin: 0 0 10pt 0
   color: #454545
 
 #pic
@@ -54,10 +55,11 @@ export default {
   max-width: 150px
   height: 150px
   margin: 0 10pt 0 0
-  background-position: center
+  background-position: top
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 600pt)
+    background-position: center
     width: 150px
     max-height: 150px
     flex: auto
@@ -80,7 +82,7 @@ export default {
   color: white
   text-decoration: none
   font-size: 1em
-  margin: 4pt 0
+  margin: 10pt 0 0 0
   white-space: nowrap
   font-weight: bold
 

@@ -16,19 +16,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { products, sellingPoints, sellers, brandProducts, brands } from '~/config/products.json'
+import { products, sellingPoints, sellers, brandProducts, brands, regions } from '~/config/products.json'
 
-export const state = () => ({
-  products,
-  sellingPoints,
-  sellers,
-  brandProducts,
-  brands
-})
+export const state = () => {
+  let defaults = {
+    region: regions[0],
+    regions,
+    products,
+    sellingPoints,
+    sellers,
+    brandProducts,
+    brands
+  }
+  const saved = window.localStorage.getItem('eshop')
+  if (saved) {
+    defaults = Object.assign({}, defaults, saved)
+  }
+  return defaults
+}
+
+const storeState = (state) => {
+  window.localStorage.setItem('eshop', JSON.stringify(state))
+}
 
 //const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)
 const arrayContained = (a1, a2) => a1.findIndex(a => a2.indexOf(a) !== -1) !== -1
 const productsWithTypes = (state, types) => state.products.filter(p => arrayContained(Array.isArray(types) ? types : [types], p.type))
+
+export const mutations = {
+  setRegion(state, region) {
+    state.region = region
+    storeState(state)
+  },
+}
 
 export const getters = {
   bundles: state => {
@@ -44,6 +64,7 @@ export const getters = {
   sellingPointForBrandProduct: state => id => state.sellingPoints.find(sp => sp.BrandProduct[0] == id),
   productWithSlug: state => slug => state.products.find(p => p.slug == slug),
   productsWithTypes: state => types => productsWithTypes(state, types),
+
   product: state => id => state.products.find(p => p.id == id),
   brandProduct: state => id => state.brandProducts.find(bp => bp.id == id),
   brand: state => id => state.brands.find(b => b.id == id),
@@ -54,5 +75,5 @@ export const getters = {
       brandProduct = state.brandProducts.find(bp => bp.id == brandProduct.variantOf[0])
     }
     return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
-  }
+  },
 }

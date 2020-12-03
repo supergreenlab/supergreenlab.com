@@ -30,7 +30,7 @@
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
           </div>
           <div v-if='variants.length > 1' :id='$style.variants'>
-            <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :to='`/product/${v.sellingPoint.slug}`'>
+            <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :key='v.id' :to='`/product/${v.sellingPoint.slug}`'>
               {{ v.name }}
               <div :class='$style.green'>US${{ v.price }}</div>
             </nuxt-link>
@@ -53,7 +53,7 @@
       </div>
       <h2 v-if='guides.length'>Guides</h2>
       <div v-if='guides.length' :id='$style.guides'>
-        <Guide v-for='guide in guides' :guide='guide' />
+        <Guide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
       <h2 v-if='relatedProducts.length'>Related products</h2>
       <div v-if='relatedProducts.length' :id='$style.products'>
@@ -242,9 +242,9 @@ export default {
   border: 2pt solid #3bb30b
 
 #guides
-  background-color: #dedede
+  background-color: #EAEAEA
   margin: 5pt 10pt 30pt 10pt
-  padding: 5pt 10pt
+  padding: 5pt 15pt
   border-radius: 5pt
 
 
