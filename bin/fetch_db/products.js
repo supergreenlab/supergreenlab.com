@@ -84,7 +84,7 @@ module.exports.fetchProducts = async () => {
     sp.params = jsonOrYaml(sp.params || '{}')
     return sp
   })
-  products = products.map(p => {
+  products = products.filter(p => p.SellingPoints).map(p => {
     p.pics = (p.pics || []).map((pic, i) => {
       try {
         const { p, data } = fetchAttachement(picPromise, pic, 'products')
@@ -96,8 +96,9 @@ module.exports.fetchProducts = async () => {
     })
     p.specs = jsonOrYaml(p.specs || '{}')
     p.SellingPoints = sellingPoints.filter(v => p.SellingPoints.indexOf(v.id) != -1)
-    if (p.SellingPoints.length >= 1 && !p.name) {
-      const bp = brandProducts.find(bp => bp.id == p.SellingPoints[0].BrandProduct[0])
+    const bps = Object.keys(p.SellingPoints.reduce((acc, sp) => { acc[sp.BrandProduct[0]] = true; return acc }, {}))
+    if (bps.length == 1) {
+      const bp = brandProducts.find(bp => bp.id == bps[0])
       p.name = bp.name
       p.tagline = bp.tagline
       p.description = bp.description

@@ -79,9 +79,12 @@ export const getters = {
   sellingPoint: state => sellingPoints => {
     let { region } = state
     const findSellingPoint = (region) => {
-      let sellingPoint = sellingPoints.find(sp => sp.regions.indexOf(region) != -1)
+      let sellingPoint = sellingPoints.find(sp => sp.regions.indexOf(region.id) != -1)
+      console.log(region, sellingPoints, sellingPoint)
       if (!sellingPoint && region.in) {
         return findSellingPoint(state.regions.find(r => r.id == region.in[0]))
+      } else if (!sellingPoint) {
+        return sellingPoints[0]
       }
       return sellingPoint
     }
