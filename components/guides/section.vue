@@ -39,7 +39,7 @@ export default {
   components: { Media, SmallProductList, },
   computed: {
     requires() {
-      return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r))
+      return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r)).filter(r => r)
     }
   }
 }

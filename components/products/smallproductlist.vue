@@ -22,6 +22,9 @@
       <SectionTitle :title='title'
                     :green='subtitle' />
     </div>
+    <div :id='$style.region'>
+      <Region />
+    </div>
     <div :id='$style.body'>
       <div v-for='product in products' :class='$style.product'>
         <Item :promoDiscount='promoDiscount' :product='product' />
@@ -33,10 +36,11 @@
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Item from '~/components/products/smallproductitem.vue'
+import Region from '~/components/products/region.vue'
 
 export default {
   props: ['title', 'subtitle', 'promoDiscount', 'products',],
-  components: {SectionTitle, Item,},
+  components: {SectionTitle, Item, Region,},
 }
 </script>
 
@@ -57,5 +61,9 @@ export default {
 .product
   @media only screen and (max-width: 600px)
     padding: 20pt 5pt
+
+#region
+  display: flex
+  justify-content: flex-end
 
 </style>

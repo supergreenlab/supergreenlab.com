@@ -18,12 +18,12 @@
 
 <template>
   <section :id='$style.container'>
-    <nuxt-link :id='$style.infos' :to='`/product/${sellingPoint.slug}`'>
+    <nuxt-link :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
       <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
     </nuxt-link>
     <div :id='$style.infocontainer'>
       <div :id='$style.description'>
-        <nuxt-link :to='`/product/${sellingPoint.slug}`'>
+        <nuxt-link :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
           <h3>{{ brandProduct.name }} BY {{ brand.name }}</h3>
         </nuxt-link>
         <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
