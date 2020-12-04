@@ -229,6 +229,9 @@ export default {
 #buy > a > b
   font-weight: 600
 
+.bullet
+  color: #454545
+
 .bullet strong
   color: #3BB30B
   font-weight: 600

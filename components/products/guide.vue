@@ -46,10 +46,6 @@ export default {
     flex-direction: column
     align-items: center
 
-#infos > h3
-  margin: 0 0 10pt 0
-  color: #454545
-
 #pic
   flex: 1
   max-width: 150px
@@ -69,9 +65,16 @@ export default {
   display: flex
   flex: 1
   flex-direction: column
+  color: #454545
 
 #infos > p
   flex: 1
+
+#infos > p strong
+  color #3bb30b
+
+#infos > h3
+  margin: 0 0 10pt 0
 
 #button
   display: inline-block

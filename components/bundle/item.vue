@@ -152,6 +152,7 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
+  color: #454545
 
 .bullet strong
   color: #3BB30B
