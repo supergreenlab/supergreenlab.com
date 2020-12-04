@@ -65,7 +65,6 @@
 
 <script>
 import KeyMetrics from '~/components/bundle/keymetrics.vue'
-import priceConv from '~/lib/price.js'
 
 export default {
   components: {KeyMetrics,},
@@ -82,9 +81,6 @@ export default {
       this.$matomo && this.$matomo.trackEvent('bundle', 'show-keymetrics', this.$props.name)
       this.$data.keymetricsHeight = this.$refs.keymetrics.clientHeight
       this.$data.shownMetrics = !this.$data.shownMetrics
-    },
-    priceConv(dols) {
-      return priceConv(dols)
     },
     toggleZoom() {
       this.$data.showZoom = !this.$data.showZoom

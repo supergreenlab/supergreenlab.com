@@ -21,13 +21,15 @@ import axios from 'axios'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
+const STORAGE_ITEM='checkout2'
+
 export const state = () => {
   let defaults = {
     cart: [],
     promocode: {value: '', valid: true, optional: true,},
     discount: {value: 0, valid: true, optional: true},
   };
-  const saved = window.localStorage.getItem('checkout')
+  const saved = window.localStorage.getItem(STORAGE_ITEM)
   if (saved) {
     defaults = Object.assign(defaults, JSON.parse(saved))
   }
@@ -35,7 +37,7 @@ export const state = () => {
 };
 
 const storeState = (state) => {
-  window.localStorage.setItem('checkout', JSON.stringify(state))
+  window.localStorage.setItem(STORAGE_ITEM, JSON.stringify(state))
 }
 
 let cancel

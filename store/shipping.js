@@ -18,6 +18,8 @@
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
+const STORAGE_ITEM='shipping2'
+
 export const state = () => {
   let defaults = {
     firstname: {value: '', valid: false,},
@@ -32,14 +34,14 @@ export const state = () => {
     province: {value: '', valid: false,},
     zip: {value: '', valid: false,},
   };
-  if (window.localStorage.getItem('shipping')) {
-    defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem('shipping')))
+  if (window.localStorage.getItem(STORAGE_ITEM)) {
+    defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem(STORAGE_ITEM)))
   }
   return defaults
 };
 
 const storeState = (state) => {
-  window.localStorage.setItem('shipping', JSON.stringify(state))
+  window.localStorage.setItem(STORAGE_ITEM, JSON.stringify(state))
 }
 
 export const actions = {

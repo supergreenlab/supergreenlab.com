@@ -18,9 +18,22 @@
 
 import { products, sellingPoints, sellers, brandProducts, brands, regions } from '~/config/products.json'
 
+const guessDefautRegion = () => {
+  const off = new Date().getTimezoneOffset() / 60
+  console.log(off)
+  if (off <= 0 && off >= -3) {
+    return regions.find(r => r.code == 'EU')
+  } else if (off >= 3 && off <= 8) {
+    return regions.find(r => r.code == 'NA')
+  }
+  return regions[0]
+}
+
+const STORAGE_ITEM='eshop2'
+
 export const state = () => {
   let defaults = {
-    region: regions[0],
+    region: guessDefautRegion(),
     regions,
     products,
     sellingPoints,
@@ -28,7 +41,7 @@ export const state = () => {
     brandProducts,
     brands
   }
-  const saved = window.localStorage.getItem('eshop')
+  const saved = window.localStorage.getItem(STORAGE_ITEM)
   if (saved) {
     defaults = Object.assign({}, defaults, JSON.parse(saved))
   }
@@ -36,7 +49,7 @@ export const state = () => {
 }
 
 const storeState = (state) => {
-  window.localStorage.setItem('eshop', JSON.stringify(state))
+  window.localStorage.setItem(STORAGE_ITEM, JSON.stringify(state))
 }
 
 //const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)

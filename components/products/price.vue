@@ -38,8 +38,6 @@
 </template>
 
 <script>
-import priceConv from '~/lib/price.js'
-
 export default {
   props: ['lineItems', 'freeshipping', 'small'],
   computed: {

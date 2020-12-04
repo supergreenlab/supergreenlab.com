@@ -88,7 +88,7 @@ module.exports.fetchProducts = async () => {
     bp.pics = variantOf.pics
     return bp
   })
-  sellingPoints = sellingPoints.map(sp => {
+  sellingPoints = sellingPoints.filter(sp => sp.regions).map(sp => {
     sp.params = jsonOrYaml(sp.params || '{}')
     sp.regions = regionTree(regions.find(r => r.id == sp.regions[0]))
     return sp

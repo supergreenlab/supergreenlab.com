@@ -64,7 +64,6 @@
 <script>
 import Price from '~/components/products/price.vue'
 import Items from '~/components/bundle/items.vue'
-import priceConv from '~/lib/price.js'
 import OutOfStock from '~/components/products/outofstock.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 
@@ -89,9 +88,6 @@ export default {
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
-    },
-    priceConv(dols) {
-      return priceConv(dols)
     },
     toggleZoom(url) {
       this.$data.zoomPic =  this.$props.bundle.pics[this.$data.n].fileFull

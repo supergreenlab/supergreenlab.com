@@ -1,6 +1,6 @@
 import fs from 'fs';
 import pkg from './package'
-import { products } from './config/products.json'
+import { products, sellingPoints, } from './config/products.json'
 
 export default {
   mode: 'spa',
@@ -92,6 +92,7 @@ export default {
   generate: {
     routes: [
     ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
+    .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
     .concat(fs.readdirSync("config").filter(f => f.indexOf('guide-') == 0).map(f => `/guide/${f.replace(/guide-|.json/g, '')}`)),
   },
 
