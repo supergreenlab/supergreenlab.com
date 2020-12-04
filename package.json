@@ -11,14 +11,14 @@
     "fetch_db": "bin/fetch_db/fetch_db.js"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/axios": "^5.12.3",
     "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/sitemap": "^2.3.0",
     "cross-env": "^5.2.1",
     "deepmerge": "^4.2.2",
     "markdown-it-attrs": "^3.0.3",
     "markdown-it-div": "^1.1.0",
-    "nuxt": "^2.12.2",
+    "nuxt": "^2.14.9",
     "nuxt-matomo": "^1.2.3",
     "portal-vue": "^2.1.7",
     "stylus": "^0.54.7",
@@ -29,9 +29,9 @@
     "airtable": "^0.10.1",
     "gulp-postcss": "^9.0.0",
     "nodemon": "^1.19.4",
-    "postcss": "^8.1.2",
+    "postcss": "^8.1.14",
     "postcss-hexrgba": "^2.0.1",
-    "postcss-nested": "^5.0.1",
+    "postcss-nested": "^5.0.2",
     "postcss-responsive-type": "^1.0.0",
     "postcss-url": "^8.0.0",
     "yaml": "^1.10.0"

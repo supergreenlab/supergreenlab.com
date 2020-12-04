@@ -46,7 +46,9 @@ const productsWithTypes = (state, types) => state.products.filter(p => arrayCont
 export const mutations = {
   setRegion(state, region) {
     state.region = region
-    storeState(state)
+    storeState({
+      region
+    })
   },
 }
 
