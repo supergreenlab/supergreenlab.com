@@ -39,10 +39,10 @@
         </div>
         <div :id='$style.addtocart'>
           <div :id='$style.price'>
-            <Price :price='sellingPoint.price' :small=true />
+            <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
           </div>
           <OutOfStock v-if='product.outofstock' />
-          <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
+          <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false />
           Specs
           <div :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>

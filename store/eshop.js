@@ -30,7 +30,7 @@ export const state = () => {
   }
   const saved = window.localStorage.getItem('eshop')
   if (saved) {
-    defaults = Object.assign({}, defaults, saved)
+    defaults = Object.assign({}, defaults, JSON.parse(saved))
   }
   return defaults
 }
@@ -50,16 +50,6 @@ export const mutations = {
       region
     })
   },
-}
-
-const findSellingPoint = (region, sellingPoints) => {
-  let sellingPoint = sellingPoints.find(sp => sp.regions.indexOf(region.id) != -1)
-  if (!sellingPoint && region.in) {
-    return findSellingPoint(state.regions.find(r => r.id == region.in[0]))
-  } else if (!sellingPoint) {
-    return sellingPoints[0]
-  }
-  return sellingPoint
 }
 
 export const getters = {
@@ -89,9 +79,21 @@ export const getters = {
   },
 
   sellingPoint: state => sellingPoints => {
-    let { region } = state
-    return findSellingPoint(region, sellingPoints)
+    const { region } = state
+    const regionTree = (region, acc=[]) => {
+      acc.push(region)
+      if (region.in) {
+        return regionTree(state.regions.find(r => r.id == region.in[0]), acc)
+      }
+      return acc
+    }
+    const regions = regionTree(region).map(r => r.id)
+    for (let i in regions) {
+      const region = regions[i]
+      const sp = sellingPoints.find(sp => sp.regions.find(r => r.id == region))
+      if (sp) return sp
+    }
   },
-  sellingPointForBrandProduct: (state, getters) => id => findSellingPoint(state.regions, state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
-  sellingPointForProduct: (state, getters) => id => findSellingPoint(state.regions, state.sellingPoints.filter(sp => sp.Product[0] == id)),
+  sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
+  sellingPointForProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.Product[0] == id)),
 }

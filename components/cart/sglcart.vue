@@ -19,10 +19,10 @@
 <template>
   <section v-if='cart.length != 0' :id='$style.container'>
     <div :class='$style.lineItems'>
-      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' :promoDiscount='promoDiscount' />
+      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
-      <CheckoutButton :price='totalPrice' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :promoDiscount='promoDiscount' />
+      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' />
     </div>
   </section>
   <section v-else :id='$style.emptycontainer'>

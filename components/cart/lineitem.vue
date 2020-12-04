@@ -37,7 +37,7 @@
             QTY
             <Number :value='lineItem.n' v-on:input='changeLineItem' />
           </div>
-          <Price :price='lineItem.sellingPoint.price * lineItem.n' :promoDiscount='promoDiscount' />
+          <Price :lineItems='[lineItem]' :promoDiscount='promoDiscount' />
         </div>
       </div>
       <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.desktopcheckbox'>

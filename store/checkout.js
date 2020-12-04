@@ -94,10 +94,21 @@ export const mutations = {
 }
 
 export const getters = {
-  promoDiscount(state) {
+  promoDiscount: state => sellingPoint => {
+    if (sellingPoint.Seller[0] != 'recT9nIg4ahFv9J29') return {promocode: '', discount: 0}
     const discount = state.discount.value,
       promocode = state.promocode.value
     if (!promocode || !discount) return {promocode: '', discount: 0}
     return {promocode, discount}
   },
+
+  lineItemsPrice: (state, getters) => (lineItems, promo=true) => {
+    const currency = lineItems[0].sellingPoint.currency
+    const total = lineItems.reduce((acc, lineItem) => acc + (lineItem.sellingPoint.price * lineItem.n), 0)
+    let discount = 0
+    if (promo) {
+      discount = getters.promoDiscount(lineItems[0].sellingPoint).discount
+    }
+    return `${currency}${(total - total * discount / 100).toFixed(2)}`
+  }
 }

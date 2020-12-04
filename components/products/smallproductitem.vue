@@ -29,7 +29,7 @@
         <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
       </div>
       <div :id='$style.price'>
-        <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
+        <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
       </div>
       <OutOfStock v-if='product.outofstock' />
       <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :discreet=false :n='n' />

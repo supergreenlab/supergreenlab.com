@@ -16,6 +16,14 @@ module.exports.fetchProducts = async () => {
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in'])
 
+  const regionTree = (region, acc=[]) => {
+    acc.push(region)
+    if (region.in) {
+      return regionTree(regions.find(r => r.id == region.in[0]), acc)
+    }
+    return acc
+  }
+
   let picPromise = Promise.resolve()
   const regionLevels = ['world', 'continent', 'country', 'city']
   regions = regions.map(r => {
@@ -82,6 +90,7 @@ module.exports.fetchProducts = async () => {
   })
   sellingPoints = sellingPoints.map(sp => {
     sp.params = jsonOrYaml(sp.params || '{}')
+    sp.regions = regionTree(regions.find(r => r.id == sp.regions[0]))
     return sp
   })
   products = products.filter(p => p.SellingPoints).map(p => {

@@ -18,20 +18,20 @@
 
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
-    <div v-if='promoDiscountDef' :id='$style.pricecontainer'>
+    <div v-if='discount' :id='$style.pricecontainer'>
       <div :class='$style.price + " " + $style.smallprice'>
-        <h1>{{ priceConv(price) }}
+        <h1>{{ price(false) }}
           <div :id='$style.redbar'></div>
         </h1>
       </div>
       <div :class='$style.price'>
-        <h1>{{ priceConv(price - price * promoDiscountDef / 100) }}</h1><br />
+        <h1>{{ price(true) }}</h1><br />
         <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
-        <span>promocode: <b>-{{ promoDiscountDef }}%</b></span>
+        <span>promocode: <b>-{{ discount }}%</b></span>
       </div>
     </div>
     <div v-else :class='$style.price'>
-      <h1>{{ priceConv(price - price*promoDiscountDef/100) }}</h1>
+      <h1>{{ price(false) }}</h1>
       <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
   </section>
@@ -41,17 +41,15 @@
 import priceConv from '~/lib/price.js'
 
 export default {
-  props: ['price', 'promoDiscount', 'freeshipping', 'small'],
-  methods: {
-    priceConv(dols) {
-      return priceConv(dols)
-    },
-  },
+  props: ['lineItems', 'freeshipping', 'small'],
   computed: {
-    promoDiscountDef() {
-      const { promoDiscount } = this.$props
-      if (!promoDiscount) return 0
-      return promoDiscount.discount
+    discount() {
+      const { discount } = this.$store.getters['checkout/promoDiscount'](this.$props.lineItems[0].sellingPoint)
+      return discount
+    },
+    price() {
+      const { lineItems } = this.$props
+      return (promo) => this.$store.getters['checkout/lineItemsPrice'](lineItems, promo)
     },
   },
 }

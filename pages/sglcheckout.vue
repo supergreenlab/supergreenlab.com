@@ -33,11 +33,11 @@
           <div :id='$style.items'>
             <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='require(`~/assets/img/${brandProduct(lineItem).pics[0].fileSmall}`)'/>x{{ lineItem.n }}</div>
             <div :id='$style.separator'></div>
-            <Price :price='totalPrice' :promoDiscount='promoDiscount' :small=true />
+            <Price :lineItems='cart' :small=true />
           </div>
         </div>
         <Shipping />
-        <CheckoutButton :valid='valid' :price='totalPrice' :promoDiscount='promoDiscount' @click='goToPaiement' />
+        <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
     </div>
     <Footer />
@@ -118,10 +118,6 @@ export default {
     cart() {
       return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === SGL_SELLER)
     },
-    totalPrice() {
-      const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
-      return price - price * this.promoDiscount.discount / 100
-    }
  },
 }
 </script>

@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' :promoDiscount='promoDiscount' />
+      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' />
       <Title icon='package.svg' title='BUNDLE CONTENT' />
       <Item v-if='bundle.specs.bigleds' :showHarvest='true' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
       <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
@@ -31,7 +31,7 @@
       <Item v-if='bundle.specs.sensor' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
       <Item n='1' :item='accessory("sgl-controller")' last='true' />
       <div :class='$style.price'>
-        <Price :price='bundle.SellingPoints[0].price' :promoDiscount='promoDiscount' :freeshipping='false' />
+        <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
       </div>
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
@@ -100,9 +100,6 @@ export default {
     accessory() {
       return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
     },
-    promoDiscount() {
-      return this.$store.getters['checkout/promoDiscount']
-    },
     guides() {
       return guides.filter(g => {
         return g.requires && g.requires.indexOf(this.bundle.id) !== -1
@@ -120,8 +117,6 @@ export default {
         return a.indexOf(p) == i
       }).filter(p => p.id !== this.bundle.id)
     }
-  },
-  methods: {
   },
 }
 </script>

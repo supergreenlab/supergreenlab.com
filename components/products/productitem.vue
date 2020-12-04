@@ -23,7 +23,7 @@
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
     </nuxt-link>
     <div :class='$style.price'>
-      <Price :price='sellingPoint.price' :promoDiscount='promoDiscount' :small=true />
+      <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
     </div>
     <OutOfStock v-if='product.outofstock' />
     <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />

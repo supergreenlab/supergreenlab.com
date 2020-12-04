@@ -32,7 +32,7 @@
     <div :id='$style.checkout' v-if='isAmazonCart'>
       <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />
       This will open {{ seller.url.replace('https://www.', '') }} with a pre-filled shopping cart
-      <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ priceConv(totalPrice) }}</b></a><br />
+      <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ price }}</b></a><br />
     </div>
   </section>
 </template>
@@ -43,8 +43,6 @@ import Footer from '~/components/layout/footer.vue'
 import LineItem from '~/components/cart/lineitem.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
-
-import priceConv from '~/lib/price.js'
 
 export default {
   props: ['seller'],
@@ -57,17 +55,14 @@ export default {
       const checked = this.checked
       this.cart.forEach(lineItem => this.$store.commit('checkout/checkLineItem', { lineItem, checked: !checked }))
     },
-    priceConv(dols) {
-      return priceConv(dols)
-    },
   },
   computed: {
     cart() {
       const { seller } = this.$props
       return this.$store.state.checkout.cart.filter(li => li.sellingPoint.Seller[0] === seller.id)
     },
-    totalPrice() {
-      return this.$store.getters['checkout/getTotalPrice']
+    price() {
+      return this.$store.getters['checkout/lineItemsPrice'](this.cart)
     },
     sellerPic() {
       const { seller } = this.$props

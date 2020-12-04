@@ -22,7 +22,7 @@
       <div :id='$style.promocode' v-if='promocodePrompt'>
         <TextInput label='SGL Promo code' v-model='code' name='promocode' optional='true' />
       </div>
-      <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='$emit("click")'>PAY NOW <b>{{ priceConv(price - price*promoDiscountDef/100) }}</b></a>
+      <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='$emit("click")'>PAY NOW <b>{{ price }}</b></a>
       <div :class='$style.block'>
         <img src='~assets/img/powered-by-stripe.png' /><br />
       </div>
@@ -37,14 +37,11 @@
 </template>
 
 <script>
-
-import priceConv from '~/lib/price.js'
-
 import TextInput from '~/components/shipping/text.vue'
 
 export default {
   components: { TextInput, },
-  props: ['valid', 'price', 'value', 'promocodePrompt', 'promoDiscount',],
+  props: ['valid', 'cart', 'value', 'promocodePrompt',],
   computed: {
     code: {
       get() {
@@ -54,15 +51,9 @@ export default {
         this.$emit('input', value)
       },
     },
-    promoDiscountDef() {
-      const { promoDiscount } = this.$props
-      if (!promoDiscount) return 0
-      return promoDiscount.discount
-    },
-  },
-  methods: {
-    priceConv(dols) {
-      return priceConv(dols)
+    price() {
+      const { lineItems } = this.$props
+      return this.$store.getters['checkout/lineItemsPrice'](this.$props.cart)
     },
   },
 }

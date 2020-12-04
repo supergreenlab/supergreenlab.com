@@ -23,7 +23,7 @@
         <h1>{{ bundle.name }}</h1>
         <h2>{{ bundle.tagline }}</h2>
       </div>
-      <Price :price='bundle.SellingPoints[0].price' :promoDiscount='promoDiscount' :freeshipping='false' />
+      <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
