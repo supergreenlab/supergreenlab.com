@@ -49,7 +49,7 @@
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
       <div :id='$style.bundles'>
-        <div :class='$style.bundle' v-for='b in bundles'>
+        <div :class='$style.bundle' v-for='b in bundles' :key='b.id'>
           <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>

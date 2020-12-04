@@ -22,7 +22,12 @@
       CHECK THOSE OUT AT <div :id='$style.logo' :style='{"background-image": `url(${sellerPic})`}'></div>
     </div>
     <div :id='$style.lineItems'>
-      <LineItem :key='lineItem.sellingPoint.id' v-for='lineItem in cart' :lineItem='lineItem' :showCheckbox=true :showProductLink=true />
+      <LineItem
+        :key='lineItem.sellingPoint.id'
+        v-for='lineItem in cart'
+        :lineItem='lineItem'
+        :showCheckbox=true
+        :showProductLink=true />
     </div>
     <div :id='$style.checkout' v-if='isAmazonCart'>
       <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />

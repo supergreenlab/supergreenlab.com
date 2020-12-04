@@ -27,7 +27,7 @@
                       :green='guide.subtitle' />
       </div>
       <Section :guideSection='guide' />
-      <div v-for='section in guide.sections' :ref='section.slug'>
+      <div v-for='section in guide.sections' :key='section.id' :ref='section.slug'>
         <Section :guideSection='section' />
         <div :class='$style.separator'></div>
       </div>

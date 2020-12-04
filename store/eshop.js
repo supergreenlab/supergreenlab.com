@@ -50,6 +50,16 @@ export const mutations = {
   },
 }
 
+const findSellingPoint = (region, sellingPoints) => {
+  let sellingPoint = sellingPoints.find(sp => sp.regions.indexOf(region.id) != -1)
+  if (!sellingPoint && region.in) {
+    return findSellingPoint(state.regions.find(r => r.id == region.in[0]))
+  } else if (!sellingPoint) {
+    return sellingPoints[0]
+  }
+  return sellingPoint
+}
+
 export const getters = {
   bundles: state => {
     return productsWithTypes(state, 'SGL_BUNDLE')
@@ -78,17 +88,8 @@ export const getters = {
 
   sellingPoint: state => sellingPoints => {
     let { region } = state
-    const findSellingPoint = (region) => {
-      let sellingPoint = sellingPoints.find(sp => sp.regions.indexOf(region.id) != -1)
-      if (!sellingPoint && region.in) {
-        return findSellingPoint(state.regions.find(r => r.id == region.in[0]))
-      } else if (!sellingPoint) {
-        return sellingPoints[0]
-      }
-      return sellingPoint
-    }
-    return findSellingPoint(region)
+    return findSellingPoint(region, sellingPoints)
   },
-  sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
-  sellingPointForProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.Product[0] == id)),
+  sellingPointForBrandProduct: (state, getters) => id => findSellingPoint(state.regions, state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
+  sellingPointForProduct: (state, getters) => id => findSellingPoint(state.regions, state.sellingPoints.filter(sp => sp.Product[0] == id)),
 }

@@ -26,7 +26,7 @@
                     separator='true'/>
     </div>
     <div :id='$style.mosaic'>
-      <div v-for='i in posts' :class='$style.post' @click='open(i.url)'>
+      <div v-for='i in posts' :key='i.url' :class='$style.post' @click='open(i.url)'>
         <video v-if='i.pic.indexOf("mp4") != -1' autoplay loop playsinline muted defaultMuted>
           <source :src='require(`~/assets/img/instagram/${i.pic}`)' type="video/mp4">
           Your browser does not support the video tag.

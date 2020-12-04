@@ -26,7 +26,7 @@
       <Region />
     </div>
     <div :id='$style.body' :class='center ? $style.center : ""'>
-      <div v-for='product in products' :class='$style.product'>
+      <div v-for='product in products' :key='product.id' :class='$style.product'>
         <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
     </div>

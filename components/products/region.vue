@@ -19,7 +19,12 @@
 <template>
   <section :id='$style.container'>
     <div v-if='expanded' :id='$style.regions'>
-      <div :class='$style.region + " " + (i !== regions.length - 1 ? $style.rightborder : "")' :id='region.code == r.code ? $style.selected : ""' v-for='(r, i) in regions' @click='setRegion(r)'>
+      <div
+        :class='$style.region + " " + (i !== regions.length - 1 ? $style.rightborder : "")'
+        :id='region.code == r.code ? $style.selected : ""'
+        v-for='(r, i) in regions'
+        :key='r.id'
+        @click='setRegion(r)'>
         <div :class='$style.flag' :style='{"background-image": `url(${require(`~/assets/img/${r.flag.fileSmall}`)})`}'></div>
         {{ r.code }}
       </div>

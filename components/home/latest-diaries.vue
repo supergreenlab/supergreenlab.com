@@ -25,7 +25,7 @@
                     separator='true'/>
     </div>
     <div :id='$style.plants'>
-      <a :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>
+      <a :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :key='plant.id' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>
         {{ plant.name }}
       </a>
     </div>

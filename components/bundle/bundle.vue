@@ -27,7 +27,7 @@
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
-        <div v-for='(p, i) in bundle.pics' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p.fileLarge}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
+        <div v-for='(p, i) in bundle.pics' :key='p.fileLarge' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p.fileLarge}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
         <div :id='$style.leftarrow' @click='previous'></div>
         <div :id='$style.rightarrow' @click='next'></div>
       </div>

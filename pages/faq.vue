@@ -22,7 +22,7 @@
       <Header responsiveHide='true' />
     </div>
     <div :id='$style.body'>
-      <div v-for='f in faq'>
+      <div v-for='(f, i) in faq' :key='i'>
         <h2 :class='$style.question'>{{ f.q }}</h2>
         <p :class='$style.answer' v-html='f.a'></p>
       </div>
