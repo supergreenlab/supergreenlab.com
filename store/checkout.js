@@ -102,13 +102,26 @@ export const getters = {
     return {promocode, discount}
   },
 
-  lineItemsPrice: (state, getters) => (lineItems, promo=true) => {
+  lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems, promo=true) => {
+    const regionTree = (region, acc=[]) => {
+      acc.push(region)
+      if (region.in) {
+        return regionTree(rootState.eshop.regions.find(r => r.id == region.in[0]), acc)
+      }
+      return acc
+    }
+
+    const region = rootState.eshop.region
+    let vat = 0
+    if (lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29' && regionTree(region).find(r => r.code == 'EU')) {
+      vat = 21
+    }
     const currency = lineItems[0].sellingPoint.currency
     const total = lineItems.reduce((acc, lineItem) => acc + (lineItem.sellingPoint.price * lineItem.n), 0)
     let discount = 0
     if (promo) {
       discount = getters.promoDiscount(lineItems[0].sellingPoint).discount
     }
-    return `${currency}${(total - total * discount / 100).toFixed(2)}`
+    return `${currency}${((total - total * discount / 100) * (1 + vat / 100)).toFixed(2)}`
   }
 }
