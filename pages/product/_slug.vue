@@ -27,7 +27,7 @@
         <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
         <div :id='$style.center'>
           <div v-if='closerProduct' :id='$style.closer'>
-            This product might seem closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
+            This product might be closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
           </div>
           <div :id='$style.region'>
             <Region />
@@ -278,6 +278,7 @@ export default {
   border-radius: 5pt
 
 #closer
+  margin-bottom: 5pt
   font-weight: bold
   color: #3bb30b
 
