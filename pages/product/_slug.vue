@@ -119,7 +119,7 @@ export default {
     relatedProducts() {
       return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
-      }).filter(p => p.id !== this.product.id)
+      })
     }
   },
 }
