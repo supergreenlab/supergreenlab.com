@@ -32,7 +32,7 @@
           <div v-if='variants.length > 1' :id='$style.variants'>
             <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :key='v.id' :to='`/product/${v.sellingPoint.slug}`'>
               {{ v.name }}
-              <div :class='$style.green'>US${{ v.price }}</div>
+              <div :class='$style.green'>{{ variantPrice(v) }}</div>
             </nuxt-link>
           </div>
           <div :id='$style.description' v-html='$md.render(brandProduct.description)'></div>
@@ -100,6 +100,9 @@ export default {
         bp.sellingPoint = this.$store.getters['eshop/sellingPointForBrandProduct'](bp.id)
         return bp
       })
+    },
+    variantPrice() {
+      return ({ sellingPoint }) => this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint}])
     },
     guides() {
       return guides.filter(g => {
