@@ -49,11 +49,36 @@
           </div>
           <OutOfStock v-if='product.outofstock' />
           <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false />
-          Specs
-          <div :id='$style.specs'>
+          <div v-if='Object.keys(brandProduct.specs).length'>Specs</div>
+          <div v-if='Object.keys(brandProduct.specs).length' :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.pot'>Volume<b>{{ brandProduct.specs.pot.volume.value }}{{ brandProduct.specs.pot.volume.unit }}</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.soil'>Volume<b>{{ brandProduct.specs.soil.volume.value }}{{ brandProduct.specs.soil.volume.unit }}</b></div>
+
+            <div :class='$style.spec' v-if='brandProduct.specs.power'>Power<b>From <nuxt-link to='/product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-WORLD'>Controller</nuxt-link></b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.width'>Width<b>{{ brandProduct.specs.width }}cm</b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.width'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
+
+            <div :class='$style.spec' v-if='brandProduct.specs.width'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
+
+            <div v-if='brandProduct.specs.dimensions'>
+              <b>Dimensions</b>
+              <div :class='$style.spec'>Width<b>{{ brandProduct.specs.dimensions.width }}{{ brandProduct.specs.dimensions.unit }}</b></div>
+              <div :class='$style.spec'>Height<b>{{ brandProduct.specs.dimensions.height }}{{ brandProduct.specs.dimensions.unit }}</b></div>
+              <div :class='$style.spec'>Depth<b>{{ brandProduct.specs.dimensions.depth }}{{ brandProduct.specs.dimensions.unit }}</b></div>
+            </div>
+            <div v-if='brandProduct.specs.ventilation'>
+              <b>Ventilation</b>
+              <div :class='$style.spec'>Voltage<b>{{ brandProduct.specs.ventilation.V }}V</b></div>
+              <div :class='$style.spec'>CFM<b>{{ brandProduct.specs.ventilation.CFM }}</b></div>
+              <div :class='$style.spec'>A<b>{{ brandProduct.specs.ventilation.A }}</b></div>
+            </div>
+            <div v-if='brandProduct.specs.accuracy'>
+              <b>Accuracy</b>
+              <div :class='$style.spec'>Temperature<b>+/-{{ brandProduct.specs.accuracy.temperature }}°</b></div>
+              <div :class='$style.spec'>Humidity<b>+/-{{ brandProduct.specs.accuracy.humidity }}%</b></div>
+            </div>
+
           </div>
         </div>
       </div>
