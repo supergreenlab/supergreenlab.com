@@ -26,6 +26,12 @@
       <div :id='$style.product'>
         <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
         <div :id='$style.center'>
+          <div v-if='closerProduct' :id='$style.closer'>
+            This product might seem closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
+          </div>
+          <div :id='$style.region'>
+            <Region />
+          </div>
           <div :id='$style.seller'>
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
           </div>
@@ -72,13 +78,34 @@ import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Guide from '~/components/products/guide.vue'
 import ProductList from '~/components/products/productlist.vue'
+import Region from '~/components/products/region.vue'
 import Footer from '~/components/layout/footer.vue'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, ProductList, Footer, },
+  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, ProductList, Region, Footer, },
   computed: {
+    closerProduct() {
+      const { region } = this.$store.state.eshop
+      if (this.sellingPoint.regions.findIndex(r => r.id == region.id) != 0) {
+        const sp = this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
+        if (sp.id == this.sellingPoint.id) return null
+        return sp
+      }
+    },
+    closerBrandProduct() {
+      const sp = this.closerProduct
+      if (sp) {
+        return this.$store.getters['eshop/brandProduct'](sp.BrandProduct[0])
+      }
+    },
+    closerSeller() {
+      const sp = this.closerProduct
+      if (sp) {
+        return this.$store.getters['eshop/seller'](sp.Seller[0])
+      }
+    },
     sellingPoint() {
       const { slug } = this.$route.params
       return this.$store.getters['eshop/sellingPointWithSlug'](slug)
@@ -250,5 +277,14 @@ export default {
   padding: 5pt 15pt
   border-radius: 5pt
 
+#closer
+  font-weight: bold
+  color: #3bb30b
+
+#closer a
+  color: #454545
+
+#region
+  display: flex
 
 </style>
