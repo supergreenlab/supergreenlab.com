@@ -58,17 +58,19 @@ export default {
   display: flex
   align-items: center
   flex-wrap: wrap
+  @media only screen and (max-width: 600px)
+    justify-content: center
 
 .center
   justify-content: center
 
 .product
   flex-basis: 33%
-  padding: 20pt 30pt
   @media only screen and (min-width: 1200px)
-    flex-basis: 20%
+    padding: 20pt 9pt
+    flex-basis: 25%
   @media only screen and (max-width: 600px)
-    padding: 20pt 5pt
+    padding: 20pt 3pt
 
 #region
   display: flex

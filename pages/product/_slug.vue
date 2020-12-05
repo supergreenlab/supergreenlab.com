@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <h2 :class='$style.title'>{{ product.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
+      <h2 :class='$style.title'>{{ brandProduct.name }} BY&nbsp;<a :id='$style.brand' :href='brandProduct.url' target='_blank'>{{ brand.name }}</a></h2>
       <div :id='$style.product'>
         <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
         <div :id='$style.center'>
