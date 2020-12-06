@@ -100,6 +100,7 @@ export default {
   margin-bottom: 15pt
   padding-bottom: 10pt
   border-bottom: 1pt dashed #cccccc
+  color: #454545
 
 #title
   display: flex

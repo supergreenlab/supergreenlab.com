@@ -6,10 +6,10 @@ const { FETCH_DEV_GUIDES } = process.env
 
 module.exports.fetchGuides = async () => {
   await mkAssetsDir('guides')
-  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first'])
+  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides'])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order'])
   let picPromise = Promise.resolve()
-  guides = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
+  const guidesWithSections = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
     try {
       const { p, data } = fetchAttachement(picPromise, g.media[0], 'guides')
       picPromise = p
@@ -38,8 +38,8 @@ module.exports.fetchGuides = async () => {
     return g
   })
   await picPromise
-  for (i in guides) {
-    const g = guides[i]
+  for (i in guidesWithSections) {
+    const g = guidesWithSections[i]
     await fs.writeFile(`config/guide-${g.slug}.json`, JSON.stringify(g))
   }
   await fs.writeFile(`config/guides.json`, JSON.stringify({ guides }))

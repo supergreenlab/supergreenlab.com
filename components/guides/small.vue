@@ -23,7 +23,7 @@
       <h3>{{ guide.name }}</h3>
       <p v-html='$md.render(guide.text || "")'></p>
       <div>
-        <nuxt-link :id='$style.button' :to='`/guide/${guide.slug}`'>VIEW GUIDE</nuxt-link>
+        <nuxt-link :id='$style.button' :to='`/guide/${guide.slug}`'>{{ button || 'VIEW GUIDE' }}</nuxt-link>
       </div>
     </div>
   </section>
@@ -32,7 +32,7 @@
 <script>
 
 export default {
-  props: ['guide'],
+  props: ['guide', 'button'],
 }
 
 </script>

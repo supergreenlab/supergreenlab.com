@@ -26,14 +26,28 @@
         <SectionTitle :title='guide.title'
                       :green='guide.subtitle' />
       </div>
+      <div :id='$style.first' v-if='first'>
+        <h2>This guide is part of:</h2>
+        <Guide :guide='first' button='BACK TO FIRST' />
+        <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>View/hide all series</a>
+        <Guide v-if='showTableOfContent' v-for='g in allGuides' :guide='g' />
+      </div>
       <Section :guideSection='guide' />
       <div v-for='section in guide.sections' :key='section.id' :ref='section.slug'>
         <Section :guideSection='section' />
         <div :class='$style.separator'></div>
       </div>
-      <div :id='$style.navigation'>
-        <a :class='$style.navbutton' href='javascript:void(0)' @click='back'>BACK</a>&nbsp;
-        <nuxt-link v-if='next' :class='$style.navbutton' :to='next'>NEXT</nuxt-link>
+      <div v-if='first && !next' :id='$style.congrats'>
+        <h1>CONGRATULATIONS!</h1>
+        <h2>You made it through this guide:)</h2>
+      </div>
+      <div :id='$style.guides' v-if='next'>
+        <h2>Next</h2>
+        <Guide :guide='next' button='GO TO NEXT GUIDE >' />
+      </div>
+      <div :id='$style.guides' v-if='relatedGuides.length'>
+        <h2>Guides to see next</h2>
+        <Guide v-for='g in relatedGuides' :key='g.id' :guide='g' />
       </div>
     </div>
     <Footer />
@@ -44,10 +58,18 @@
 import Header from '~/components/layout/header.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
+import Guide from '~/components/guides/small.vue'
 import Section from '~/components/guides/section.vue'
 
+import { guides } from '~/config/guides.json'
+
 export default {
-  components: { Header, SectionTitle, Section, Footer, },
+  components: { Header, SectionTitle, Section, Guide, Footer, },
+  data() {
+    return {
+      showTableOfContent: false
+    }
+  },
   created () {
     window.addEventListener('scroll', this.handleScroll);
   },
@@ -61,10 +83,24 @@ export default {
       const guide = require(`~/config/guide-${slug}.json`)
       return guide
     },
+    relatedGuides() {
+      return (this.guide.relatedGuides || []).map(rg => guides.find(g => g.id == rg))
+    },
+    first() {
+      if (this.guide.first == null || this.guide.first.length == 0) return null
+      let first = guides.find(g => g.id == this.guide.first[0])
+      if (!first) return null
+      first = require(`~/config/guide-${first.slug}.json`)
+      return first
+    },
+    allGuides() {
+      if (this.first == null) return null
+      return guides.filter(g => g.first == this.first.id)
+    },
     next() {
-      if (this.guide.nextslug == null || this.guide.nextslug.length == null) return null
+      if (this.guide.nextslug == null || this.guide.nextslug.length == 0) return null
       const next = require(`~/config/guide-${this.guide.nextslug[0]}.json`)
-      return `/guide/${next.slug}`
+      return next
     },
   },
   methods: {
@@ -153,5 +189,40 @@ export default {
   text-align: center
   font-weight: 500
   cursor: pointer
+
+#guides
+  margin: 5pt 0
+  @media only screen and (max-width: 600pt)
+    margin: 5pt 10pt
+
+#guides > h2
+  margin: 0 0 20pt 0
+  color: #454545
+
+#congrats
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  color: #454545
+  text-align: center
+  margin: 0 0 50pt 0
+
+#congrats > h1
+  color: #3bb30b
+
+#first
+  background-color: #dedede
+  padding: 15pt
+  border-radius: 5pt
+  @media only screen and (max-width: 600pt)
+    margin: 5pt 10pt
+
+#first > h2
+  margin: 0 0 20pt 0
+  color: #454545
+
+#first > a
+  color: #454545
 
 </style>

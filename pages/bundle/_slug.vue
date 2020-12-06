@@ -68,7 +68,7 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Guide from '~/components/bundle/guide.vue'
-import ProductGuide from '~/components/products/guide.vue'
+import ProductGuide from '~/components/guides/small.vue'
 import ProductList from '~/components/products/productlist.vue'
 import Bundle from '~/components/bundle/bundle.vue'
 import Item from '~/components/bundle/item.vue'
