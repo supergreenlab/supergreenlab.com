@@ -23,7 +23,7 @@
     <div v-if='!hideArrow && pics.length > 1' :id='$style.rightarrow' @click='next'></div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
-        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${pics[n].fileLarge}`)})`}'></div>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${pics[n].fileFull}`)})`}'></div>
       </div>
     </portal>
   </section>
