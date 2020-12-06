@@ -19,7 +19,9 @@
 <template>
   <section :id='$style.container'>
     <nuxt-link :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
-      <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+      <div :id='$style.pic'>
+        <Pics :pics='brandProduct.pics' :hideArrow=true />
+      </div>
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
     </nuxt-link>
     <div :class='$style.price'>
@@ -34,15 +36,11 @@
 import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
+import Pics from '~/components/products/pics.vue'
 
 export default {
-  components: {Price, OutOfStock, AddToCart, },
-  props: ['product', 'promoDiscount'],
-  data() {
-    return {
-      n: 1
-    }
-  },
+  components: {Price, OutOfStock, AddToCart, Pics,},
+  props: ['product',],
   computed: {
     sellingPoint() {
       const { product } = this.$props

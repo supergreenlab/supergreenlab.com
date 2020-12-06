@@ -28,9 +28,15 @@
       </div>
       <div :id='$style.first' v-if='first'>
         <h2>This guide is part of:</h2>
-        <Guide :guide='first' button='BACK TO FIRST' />
-        <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>View/hide all series</a>
-        <Guide v-if='showTableOfContent' v-for='g in allGuides' :guide='g' />
+        <div :class='$style.guide'>
+          <Guide :guide='first' button='BACK TO FIRST' />
+        </div>
+        <h2 v-if='showTableOfContent'>Table of content</h2>
+        <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
+        <div v-if='showTableOfContent' v-for='g in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
+          <Guide :guide='g' />
+        </div>
+        <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
       <Section :guideSection='guide' />
       <div v-for='section in guide.sections' :key='section.id' :ref='section.slug'>
@@ -67,7 +73,7 @@ export default {
   components: { Header, SectionTitle, Section, Guide, Footer, },
   data() {
     return {
-      showTableOfContent: false
+      showTableOfContent: false,
     }
   },
   created () {
@@ -213,16 +219,19 @@ export default {
 
 #first
   background-color: #dedede
-  padding: 15pt
   border-radius: 5pt
+
+#first > h2, #first > a
+  display: block
+  padding: 20pt 0 10pt 10pt
+  color: #454545
+
+.guide
+  padding: 3pt 15pt
   @media only screen and (max-width: 600pt)
     margin: 5pt 10pt
 
-#first > h2
-  margin: 0 0 20pt 0
-  color: #454545
-
-#first > a
-  color: #454545
+#selected
+  background-color: #cdcdcd
 
 </style>

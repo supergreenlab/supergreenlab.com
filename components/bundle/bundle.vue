@@ -27,9 +27,7 @@
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
-        <div v-for='(p, i) in bundle.pics' :key='p.fileLarge' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p.fileLarge}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
-        <div :id='$style.leftarrow' @click='previous'></div>
-        <div :id='$style.rightarrow' @click='next'></div>
+        <Pics :pics='bundle.pics' />
       </div>
       <div :id='$style.description'>
         <p v-html='$md.render(bundle.bulletpoints)' :class='$style.bullet'></p>
@@ -53,11 +51,6 @@
         <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
       </div>
     </div>
-    <portal v-if='showZoom' to='root'>
-      <div :id='$style.fullscreen' @click='toggleZoom'>
-        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${zoomPic}`)})`}'></div>
-      </div>
-    </portal>
   </section>
 </template>
 
@@ -66,48 +59,14 @@ import Price from '~/components/products/price.vue'
 import Items from '~/components/bundle/items.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
 import AddToCart from '~/components/products/addtocart.vue'
+import Pics from '~/components/products/pics.vue'
 
 export default {
-  components: {Items, Price, OutOfStock, AddToCart,},
+  components: {Items, Price, OutOfStock, AddToCart, Pics,},
   props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'showdescription', 'right'],
-  data() {
-    return {
-      showZoom: false,
-      zoomPic: '',
-      n: 0,
-    }
-  },
-  created() {
-    this.interval = setInterval(() => {
-      this.$data.n = (this.$data.n+1) % 4
-    }, 3000)
-  },
-  destroyed() {
-    if (this.interval) clearInterval(this.interval)
-  },
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
-    },
-    toggleZoom(url) {
-      this.$data.zoomPic =  this.$props.bundle.pics[this.$data.n].fileFull
-      this.$data.showZoom = !this.$data.showZoom
-    },
-    next() {
-      this.$data.n = (this.$data.n+1) % 4
-      clearInterval(this.interval)
-      this.interval = null
-    },
-    previous() {
-      this.$data.n = (this.$data.n-1)
-      if (this.$data.n < 0) this.$data.n = 3
-      clearInterval(this.interval)
-      this.interval = null
-    },
-  },
-  computed: {
-    promoDiscount() {
-      return this.$store.getters['checkout/promoDiscount']
     },
   },
 }
@@ -165,35 +124,7 @@ export default {
   @media only screen and (max-width: 600px)
     width: 100%
     height: 300pt
-    margin: 20pt 0pt 20pt 0pt
-
-.icon
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  height: 100%
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
-  transition: opacity 1s
-
-#leftarrow, #rightarrow
-  width: 30pt
-  height: 30pt
-  position: absolute
-  top: calc(50% - 15pt)
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
-
-#leftarrow
-  left: 5pt
-  background-image: url('~assets/img/leftarrow.png')
-
-#rightarrow
-  right: 5pt
-  background-image: url('~assets/img/rightarrow.png')
+    margin: 20pt 0pt 20pt 0pt  
 
 #description
   display: flex

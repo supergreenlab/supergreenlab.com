@@ -20,7 +20,6 @@ import { products, sellingPoints, sellers, brandProducts, brands, regions } from
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
-  console.log(off)
   if (off <= 0 && off >= -3) {
     return regions.find(r => r.code == 'EU')
   } else if (off >= 3 && off <= 8) {

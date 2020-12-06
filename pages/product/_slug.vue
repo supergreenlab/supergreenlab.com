@@ -24,7 +24,9 @@
     <div :id='$style.body'>
       <h2 :class='$style.title'>{{ brandProduct.name }} BY&nbsp;<a :id='$style.brand' :href='brandProduct.url' target='_blank'>{{ brand.name }}</a></h2>
       <div :id='$style.product'>
-        <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+        <div :id='$style.pic'>
+          <Pics :pics='brandProduct.pics'/>
+        </div>
         <div :id='$style.center'>
           <div v-if='closerProduct' :id='$style.closer'>
             This product might be closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
@@ -99,6 +101,7 @@
 import Header from '~/components/layout/header.vue'
 import Title from '~/components/products/title.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
+import Pics from '~/components/products/pics.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Guide from '~/components/guides/small.vue'
@@ -109,7 +112,7 @@ import Footer from '~/components/layout/footer.vue'
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, Title, OutOfStock, Price, AddToCart, Guide, ProductList, Region, Footer, },
+  components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductList, Region, Footer, },
   computed: {
     closerProduct() {
       const { region } = this.$store.state.eshop

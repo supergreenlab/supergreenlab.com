@@ -26,7 +26,7 @@
       </div>
     </div>
     <h2 v-if='requires.length'>What you'll need</h2>
-    <SmallProductList v-if='requires.length' :products='requires' />
+    <SmallProductList v-if='requires.length' :products='requires' maxItems='4' />
   </section>
 </template>
 
