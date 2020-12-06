@@ -29,7 +29,7 @@
       <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
         <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
-      <a v-if='maxItems' href='javascript:void(0)' @click='showAllProducts = !showAllProducts'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
+      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='showAllProducts = !showAllProducts'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
     </div>
   </section>
 </template>

@@ -49,7 +49,7 @@
       </div>
       <div :id='$style.guides' v-if='next'>
         <h2>Next</h2>
-        <Guide :guide='next' button='GO TO NEXT GUIDE >' />
+        <Guide :guide='next' button='CONTINUE >' />
       </div>
       <div :id='$style.guides' v-if='relatedGuides.length'>
         <h2>Guides to see next</h2>
@@ -197,6 +197,9 @@ export default {
   cursor: pointer
 
 #guides
+  background-color: #dedede
+  border-radius: 5pt
+  padding: 10pt 10pt 4pt 10pt
   margin: 5pt 0
   @media only screen and (max-width: 600pt)
     margin: 5pt 10pt
