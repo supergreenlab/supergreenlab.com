@@ -19,7 +19,9 @@
 <template>
   <section :id='$style.container'>
     <nuxt-link :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
-      <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+      <div :id='$style.pic'>
+        <Pics :pics='brandProduct.pics' :hideArrow=true />
+      </div>
     </nuxt-link>
     <div :id='$style.infocontainer'>
       <div :id='$style.description'>
@@ -32,7 +34,7 @@
         <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
       </div>
       <OutOfStock v-if='product.outofstock' />
-      <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :discreet=false :n='n' />
+      <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
     </div>
   </section>
 </template>
@@ -41,15 +43,11 @@
 import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
 import SmallAddToCart from '~/components/products/smalladdtocart.vue'
+import Pics from '~/components/products/pics.vue'
 
 export default {
-  components: {Price, OutOfStock, SmallAddToCart, },
-  props: ['product', 'promoDiscount'],
-  data() {
-    return {
-      n: 1
-    }
-  },
+  components: {Price, OutOfStock, SmallAddToCart, Pics,},
+  props: ['product'],
   computed: {
     sellingPoint() {
       const { product } = this.$props

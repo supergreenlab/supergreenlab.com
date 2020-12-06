@@ -28,7 +28,7 @@
       <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
     </div>
     <OutOfStock v-if='product.outofstock' />
-    <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='n' />
+    <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
   </section>
 </template>
 
