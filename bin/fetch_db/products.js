@@ -122,6 +122,7 @@ module.exports.fetchProducts = async () => {
       p.description = (p.description || "").trim() || bp.description
       p.bulletpoints = (p.bulletpoints || "").trim() || bp.bulletpoints
       p.pics = bp.pics
+      p.specs = bp.specs
     }
     return p
   })
