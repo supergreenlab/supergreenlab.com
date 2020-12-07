@@ -56,6 +56,8 @@
                  button='START CHAT' />
         </div>
       </div>
+      <Title icon='icon-see-shop.svg' title='SPARE PARTS' />
+      <ProductList :products='sglSpareParts' :center=true />
       <Title icon='icon-see-shop.svg' title='SEE ALSO' />
       <div v-if='relatedProducts.length' :id='$style.products'>
         <ProductList :products='relatedProducts' />
@@ -111,6 +113,9 @@ export default {
       }).filter((g, i, a) => {
         return a.indexOf(g) == i
       })
+    },
+    sglSpareParts() {
+      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
     },
     relatedProducts() {
       return [].concat(...this.bundle.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {

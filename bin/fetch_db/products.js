@@ -77,15 +77,17 @@ module.exports.fetchProducts = async () => {
       }
     })
     return bp
-  }).map(bp => {
+  })
+  brandProducts = brandProducts.map(bp => {
     if (!bp.variantOf) return bp
     const variantOf = brandProducts.find(bp2 => bp2.id == bp.variantOf[0])
-    bp.name = bp.name || variantOf.name
-    bp.tagline = bp.tagline || variantOf.tagline
-    bp.description = bp.description || variantOf.description
-    bp.bulletpoints = bp.bulletpoints || variantOf.bulletpoints
+    bp.name = (bp.name || "").trim() || variantOf.name
+    bp.tagline = (bp.tagline || "").trim() || variantOf.tagline
+    bp.description = (bp.description || "").trim() || variantOf.description
+    bp.bulletpoints = (bp.bulletpoints || "").trim() || variantOf.bulletpoints
     bp.specs = merge(variantOf.specs, bp.specs)
     bp.pics = variantOf.pics
+    console.log(bp, variantOf)
     return bp
   })
   sellingPoints = sellingPoints.filter(sp => sp.regions).map(sp => {
@@ -105,14 +107,21 @@ module.exports.fetchProducts = async () => {
     })
     p.specs = jsonOrYaml(p.specs || '{}')
     p.SellingPoints = sellingPoints.filter(v => p.SellingPoints.indexOf(v.id) != -1)
-    const bps = Object.keys(p.SellingPoints.reduce((acc, sp) => { acc[sp.BrandProduct[0]] = true; return acc }, {}))
+    const bps = Object.keys(p.SellingPoints.reduce((acc, sp) => {
+      const bp = brandProducts.find(bp => bp.id == sp.BrandProduct[0])
+      if (bp.variantOf) {
+        acc[bp.variantOf[0]] = true
+      } else {
+        acc[sp.BrandProduct[0]] = true
+      }
+      return acc
+    }, {}))
     if (bps.length == 1) {
       const bp = brandProducts.find(bp => bp.id == bps[0])
-      p.name = bp.name
-      p.tagline = bp.tagline
-      p.description = bp.description
-      p.bulletpoints = bp.bulletpoints
-      p.specs = bp.specs
+      p.name = (p.name || "").trim() || bp.name
+      p.tagline = (p.tagline || "").trim() || bp.tagline
+      p.description = (p.description || "").trim() || bp.description
+      p.bulletpoints = (p.bulletpoints || "").trim() || bp.bulletpoints
       p.pics = bp.pics
     }
     return p

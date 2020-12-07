@@ -48,15 +48,23 @@
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
+      <div :class='$style.shop'>
+        <ProductList title='STEP 1' subtitle='CHOOSE YOUR FURNITURE' :products='furnitures' :center=true />
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='STEP 2'
+                     green='GET A BUNDLE' />
+      </div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id'>
           <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
-      <div :id='$style.shop'>
-        <ProductList title='SGL BUNDLE' subtitle='SPARE PARTS' :products='sglSpareParts' :promoDiscount='promoDiscount' :center=true />
-        <ProductList title='SGL CHECKLIST' subtitle='SOIL EDITION' :products='soil' :center=true />
+      <div :class='$style.shop'>
+        <ProductList title='STEP 3' subtitle='GET YOUR GROWING MEDIUM' :products='soil' :center=true />
+        <ProductList title='STEP 4' subtitle='GET NUTRIENTS' :products='nutrients' :center=true />
+        <ProductList title='STEP 5' subtitle='MIGHT NEED SOME TOOLS TOO' :products='tools' :center=true />
       </div>
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
@@ -123,11 +131,17 @@ export default {
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
     },
-    sglSpareParts() {
-      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
+    furnitures() {
+      return this.$store.getters['eshop/productsWithTypes'](['FURNITURE', 'CARBON FILTER'])
     },
     soil() {
       return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])
+    },
+    nutrients() {
+      return this.$store.getters['eshop/productsWithTypes'](['NUTRIENT'])
+    },
+    tools() {
+      return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
     },
     promoDiscount() {
       return this.$store.getters['checkout/promoDiscount']
@@ -178,6 +192,9 @@ export default {
   left: 0
   z-index: 1000
 
+.title
+  margin: 20pt 0 20pt 0
+
 #body
   width: 100%
   display: flex
@@ -193,7 +210,7 @@ export default {
   margin: 30pt 0
   background-color: #efefef
 
-#shop
+.shop
   max-width: 900pt
 
 #bundles
