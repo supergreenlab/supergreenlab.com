@@ -29,6 +29,9 @@
       <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
         <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
+      <div :id='$style.propose'>
+        <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+      </div>
       <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='showAllProducts = !showAllProducts'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
     </div>
   </section>
@@ -46,6 +49,12 @@ export default {
     console.log(this.$props.maxItems)
     return {
       showAllProducts: this.$props.maxItems ? false : true,
+    }
+  },
+  methods: {
+    proposeSellingPoint() {
+      const width = 800
+      window.open('https://airtable.com/shr9gPKiJcWOc1V6E', '_blank', `width=${width},height=600,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
     }
   },
 }
@@ -75,5 +84,14 @@ export default {
 #region
   display: flex
   justify-content: flex-end
+
+#propose
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  font-size: 0.9em
+
+#propose a
+  color: #454545
 
 </style>

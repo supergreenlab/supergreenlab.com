@@ -30,6 +30,9 @@
         <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
     </div>
+    <div :id='$style.propose'>
+      <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+    </div>
   </section>
 </template>
 
@@ -41,6 +44,12 @@ import Region from '~/components/products/region.vue'
 export default {
   props: ['title', 'subtitle', 'promoDiscount', 'products', 'center',],
   components: {SectionTitle, Item, Region,},
+  methods: {
+    proposeSellingPoint() {
+      const width = 800
+      window.open('https://airtable.com/shr9gPKiJcWOc1V6E', '_blank', `width=${width},height=600,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+    }
+  },
 }
 </script>
 
@@ -74,6 +83,15 @@ export default {
 
 #region
   display: flex
-  justify-content: flex-end
+  flex-direction: column
+  align-items: flex-end
+
+#propose
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+
+#propose a
+  color: #454545
 
 </style>

@@ -31,11 +31,17 @@
           <div v-if='closerProduct' :id='$style.closer'>
             This product might be closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
           </div>
+          <div v-else-if='askCloserProduct' :id='$style.closer'>
+            This product might not be available in your region.
+          </div>
           <div :id='$style.region'>
             <Region />
           </div>
           <div :id='$style.seller'>
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
+          </div>
+          <div :id='$style.propose'>
+            <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
           </div>
           <div v-if='variants.length > 1' :id='$style.variants'>
             <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :key='v.id' :to='`/product/${v.sellingPoint.slug}`'>
@@ -113,10 +119,15 @@ import { guides } from '~/config/guides.json'
 
 export default {
   components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductList, Region, Footer, },
+  data() {
+    return {
+      showProposeSellingPoint: false
+    }
+  },
   computed: {
     closerProduct() {
       const { region } = this.$store.state.eshop
-      if (this.sellingPoint.regions.findIndex(r => r.id == region.id) != 0) {
+      if (this.sellingPoint.regions[0] != region.id) {
         const sp = this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
         if (sp.id == this.sellingPoint.id) return null
         return sp
@@ -133,6 +144,11 @@ export default {
       if (sp) {
         return this.$store.getters['eshop/seller'](sp.Seller[0])
       }
+    },
+    askCloserProduct() {
+      const { region } = this.$store.state.eshop
+      if (this.sellingPoint.regions[0].id == this.$store.state.eshop.regions[0].id) return false
+      return this.sellingPoint.regions[0].id != region.id
     },
     sellingPoint() {
       const { slug } = this.$route.params
@@ -175,6 +191,12 @@ export default {
       return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
       })
+    }
+  },
+  methods: {
+    proposeSellingPoint() {
+      const width = 800
+      window.open('https://airtable.com/shr9gPKiJcWOc1V6E', '_blank', `width=${width},height=533,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
     }
   },
 }
@@ -315,5 +337,12 @@ export default {
 
 #region
   display: flex
+
+#propose
+  display: flex
+  flex-direction: column
+
+#propose a
+  color: #454545
 
 </style>
