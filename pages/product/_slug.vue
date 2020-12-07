@@ -196,7 +196,7 @@ export default {
   methods: {
     proposeSellingPoint() {
       const width = 800
-      window.open('https://airtable.com/shr9gPKiJcWOc1V6E', '_blank', `width=${width},height=533,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+      window.open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=533,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
     }
   },
 }
