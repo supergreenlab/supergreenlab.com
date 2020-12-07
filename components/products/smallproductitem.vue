@@ -27,6 +27,7 @@
       <div :id='$style.description'>
         <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
           <h3>{{ brandProduct.name }} BY {{ brand.name }}</h3>
+          From {{ seller.name }}
         </nuxt-link>
         <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
       </div>
@@ -61,7 +62,10 @@ export default {
     },
     url() {
       return this.sellingPoint.url
-    }
+    },
+    seller() {
+      return this.$store.getters['eshop/seller'](this.sellingPoint.Seller[0])
+    },
   },
   methods: {
     click() {

@@ -23,6 +23,7 @@
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
+      From {{ seller.name }}
     </nuxt-link>
     <div :class='$style.price'>
       <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
@@ -54,7 +55,10 @@ export default {
     },
     url() {
       return this.sellingPoint.url
-    }
+    },
+    seller() {
+      return this.$store.getters['eshop/seller'](this.sellingPoint.Seller[0])
+    },
   },
   methods: {
     click() {
