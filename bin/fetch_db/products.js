@@ -87,7 +87,6 @@ module.exports.fetchProducts = async () => {
     bp.bulletpoints = (bp.bulletpoints || "").trim() || variantOf.bulletpoints
     bp.specs = merge(variantOf.specs, bp.specs)
     bp.pics = variantOf.pics
-    console.log(bp, variantOf)
     return bp
   })
   sellingPoints = sellingPoints.filter(sp => sp.regions).map(sp => {
