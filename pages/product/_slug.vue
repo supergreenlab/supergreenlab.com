@@ -40,7 +40,7 @@
           <div :id='$style.seller'>
             SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
           </div>
-          <div :id='$style.propose'>
+          <div :id='$style.propose' v-if='seller.name != "SuperGreenLab"'>
             <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
           </div>
           <div v-if='variants.length > 1' :id='$style.variants'>
