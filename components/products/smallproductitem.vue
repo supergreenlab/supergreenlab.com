@@ -18,14 +18,14 @@
 
 <template>
   <section :id='$style.container'>
-    <nuxt-link :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+    <nuxt-link @click.native='click' :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
       <div :id='$style.pic'>
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
     </nuxt-link>
     <div :id='$style.infocontainer'>
       <div :id='$style.description'>
-        <nuxt-link :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+        <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
           <h3>{{ brandProduct.name }} BY {{ brand.name }}</h3>
         </nuxt-link>
         <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
@@ -63,6 +63,11 @@ export default {
       return this.sellingPoint.url
     }
   },
+  methods: {
+    click() {
+      this.$matomo && this.$matomo.trackEvent('smallproductitem', 'viewproduct', sellingPoint.slug)
+    }
+  }
 }
 </script>
 

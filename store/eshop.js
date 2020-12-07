@@ -32,6 +32,7 @@ const STORAGE_ITEM='eshop2'
 
 export const state = () => {
   let defaults = {
+    offsetRegion: guessDefautRegion(),
     region: guessDefautRegion(),
     regions,
     products,
@@ -90,8 +91,7 @@ export const getters = {
     return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
   },
 
-  sellingPoint: state => sellingPoints => {
-    const { region } = state
+  regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {
       acc.push(region)
       if (region.in) {
@@ -99,7 +99,12 @@ export const getters = {
       }
       return acc
     }
-    const regions = regionTree(region).map(r => r.id)
+    return regionTree(region)
+  },
+
+  sellingPoint: (state, getters) => sellingPoints => {
+    const { region } = state
+    const regions = getters.regionTree(region).map(r => r.id)
     for (let i in regions) {
       const region = regions[i]
       const sp = sellingPoints.find(sp => sp.regions.find(r => r.id == region))
@@ -108,4 +113,6 @@ export const getters = {
   },
   sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
   sellingPointForProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.Product[0] == id)),
+
+  availableRegions: (state, getters) => state.regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id)))
 }

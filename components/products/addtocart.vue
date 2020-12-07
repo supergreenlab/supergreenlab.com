@@ -41,7 +41,7 @@ export default {
     addToCartClicked() {
       const { product, sellingPoint, } = this.$props
       const { n } = this.$data
-      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.id)
+      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.slug)
       this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
     },
   },

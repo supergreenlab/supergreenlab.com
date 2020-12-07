@@ -62,7 +62,7 @@ export default {
       return this.$store.state.eshop.region
     },
     regions() {
-      return this.$store.state.eshop.regions
+      return this.$store.getters['eshop/availableRegions']
     },
   }
 }
