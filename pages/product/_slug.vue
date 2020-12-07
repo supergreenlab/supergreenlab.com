@@ -63,7 +63,7 @@
             <div :class='$style.spec' v-if='brandProduct.specs.pot'>Volume<b>{{ brandProduct.specs.pot.volume.value }}{{ brandProduct.specs.pot.volume.unit }}</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.soil'>Volume<b>{{ brandProduct.specs.soil.volume.value }}{{ brandProduct.specs.soil.volume.unit }}</b></div>
 
-            <div :class='$style.spec' v-if='brandProduct.specs.power'>Power<b>From <nuxt-link to='/product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-WORLD'>Controller</nuxt-link></b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.power'>Power<b>From <nuxt-link to='/product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-world'>Controller</nuxt-link></b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.width'>Width<b>{{ brandProduct.specs.width }}cm</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.width'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
 
