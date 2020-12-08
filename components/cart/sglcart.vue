@@ -22,7 +22,7 @@
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
-      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' />
+      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :valid=true />
     </div>
   </section>
   <section v-else :id='$style.emptycontainer'>

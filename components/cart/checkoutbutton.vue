@@ -95,4 +95,11 @@ export default {
   height: 20pt
   margin: 5pt
 
+.invalid
+  opacity: 0.6
+  cursor: default !important
+
+.valid:hover
+  background-color: #2F880B
+
 </style>

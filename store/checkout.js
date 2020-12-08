@@ -104,7 +104,7 @@ export const getters = {
     return {promocode, discount}
   },
 
-  lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems, promo=true) => {
+  lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems, promo=true, number=false) => {
     const regionTree = (region, acc=[]) => {
       acc.push(region)
       if (region.in) {
@@ -119,11 +119,15 @@ export const getters = {
       vat = 21
     }
     const currency = lineItems[0].sellingPoint.currency
-    const total = lineItems.reduce((acc, lineItem) => acc + (lineItem.sellingPoint.price * lineItem.n), 0)
+    const totalWithPromo = lineItems.filter(({ sellingPoint }) => !sellingPoint.offer).reduce((acc, lineItem) => acc + (lineItem.sellingPoint.price * lineItem.n), 0) || 0
+    const totalWithoutPromo = lineItems.filter(({ sellingPoint }) => sellingPoint.offer).reduce((acc, lineItem) => acc + (lineItem.sellingPoint.price * lineItem.n), 0) || 0
     let discount = 0
     if (promo) {
       discount = getters.promoDiscount(lineItems[0].sellingPoint).discount
     }
-    return `${currency}${((total - total * discount / 100) * (1 + vat / 100)).toFixed(2)}`
+    if (number) {
+      return Math.floor((totalWithoutPromo + (totalWithPromo - totalWithPromo * discount / 100)) * (1 + vat / 100) * 100) / 100
+    }
+    return `${currency}${((totalWithoutPromo + (totalWithPromo - totalWithPromo * discount / 100)) * (1 + vat / 100)).toFixed(2)}`
   }
 }

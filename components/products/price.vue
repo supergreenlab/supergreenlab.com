@@ -18,7 +18,20 @@
 
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
-    <div v-if='discount' :id='$style.pricecontainer'>
+    <div v-if='offer' :id='$style.pricecontainer'>
+      <div :class='$style.price + " " + $style.smallprice'>
+        <h1>{{ offer.currency }}{{ ((offer.price * 100) / (100 - offer.value)).toFixed(2) }}
+          <div :id='$style.redbar'></div>
+        </h1>
+      </div>
+      <div :class='$style.price'>
+        <h1>{{ price(true) }}</h1><br />
+        <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+        <small v-if='!isSGL'>*price may vary</small>
+        <span>Special offer: <b>-{{ offer.value }}%</b></span>
+      </div>
+    </div>
+    <div v-else-if='discount' :id='$style.pricecontainer'>
       <div :class='$style.price + " " + $style.smallprice'>
         <h1>{{ price(false) }}
           <div :id='$style.redbar'></div>
@@ -44,6 +57,11 @@
 export default {
   props: ['lineItems', 'freeshipping', 'small'],
   computed: {
+    offer() {
+      const { lineItems } = this.$props
+      if (lineItems.length != 1 || !lineItems[0].sellingPoint.offer) return 0 
+      return { currency: lineItems[0].sellingPoint.currency, price: this.$store.getters['checkout/lineItemsPrice'](lineItems, true, true), value: lineItems[0].sellingPoint.offer }
+    },
     discount() {
       const { discount } = this.$store.getters['checkout/promoDiscount'](this.$props.lineItems[0].sellingPoint)
       return discount

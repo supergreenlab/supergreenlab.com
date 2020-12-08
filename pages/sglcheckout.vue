@@ -76,13 +76,11 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
-      //this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, Math.floor((this.bundle.price - this.bundle.price*this.promo.discount/100) * 100) / 100)
+      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart, true, true))
       this.$data.loading = true
       const { shopify } = this.$store.getters['eshop/seller'](SGL_SELLER).params
       const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
-      console.log(cart)
       const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
-      console.log(checkout)
       await setShippingAddress(shopify, checkout, this.$store.state.shipping)
       if (this.$store.state.checkout.promocode) {
         await applyCoupon(shopify, checkout, this.$store.state.checkout.promocode.value)
@@ -99,7 +97,7 @@ export default {
       return (lineItem) => this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
     },
     valid() {
-      return this.cart.every(lineItem => lineItem.sellingPoint.canorder) && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
+      return this.cart.every(lineItem => lineItem.sellingPoint.canorder) && Object.keys(this.$store.state.shipping).findIndex((k) => typeof this.$store.state.shipping[k].value !== 'undefined' && !this.$store.state.shipping[k].value && !this.$store.state.shipping[k].optional) == -1
     },
     promocode: {
       get() {
