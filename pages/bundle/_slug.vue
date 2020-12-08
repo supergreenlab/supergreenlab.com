@@ -60,7 +60,7 @@
       <ProductList :products='sglSpareParts' :center=true />
       <Title icon='icon-see-shop.svg' title='SEE ALSO' />
       <div v-if='relatedProducts.length' :id='$style.products'>
-        <ProductList :products='relatedProducts' />
+        <ProductList :products='relatedProducts' :maxItems=4 />
       </div>
     </div>
     <Footer />
@@ -118,7 +118,10 @@ export default {
       return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
     },
     relatedProducts() {
-      return [].concat(...this.bundle.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
+      /*return this.$store.getters['eshop/productsWithTypes'](['FURNITURE', 'CARBON FILTER', 'SOIL']).filter((p, i, a) => {
+        return a.indexOf(p) == i
+      }).filter(p => p.id !== this.bundle.id)*/
+      return [].concat(...['FURNITURE', 'CARBON FILTER', 'SOIL', 'NUTRIENT'].map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
       }).filter(p => p.id !== this.bundle.id)
     }

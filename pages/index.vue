@@ -64,7 +64,7 @@
       <div :class='$style.shop'>
         <ProductList title='STEP 3' subtitle='GET YOUR GROWING MEDIUM' :products='soil' :center=true />
         <ProductList title='STEP 4' subtitle='GET NUTRIENTS' :products='nutrients' :center=true />
-        <ProductList title='STEP 5' subtitle='MIGHT NEED SOME TOOLS TOO' :products='tools' :center=true />
+        <ProductList title='STEP 5' subtitle='MIGHT NEED SOME TOOLS TOO' :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />

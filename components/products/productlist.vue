@@ -26,11 +26,12 @@
       <Region />
     </div>
     <div :id='$style.body' :class='center ? $style.center : ""'>
-      <div v-for='product in products' :key='product.id' :class='$style.product'>
+      <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
         <Item :promoDiscount='promoDiscount' :product='product' />
       </div>
     </div>
     <div :id='$style.propose'>
+      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='showAllProducts = !showAllProducts'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
       <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
     </div>
   </section>
@@ -42,8 +43,13 @@ import Item from '~/components/products/productitem.vue'
 import Region from '~/components/products/region.vue'
 
 export default {
-  props: ['title', 'subtitle', 'promoDiscount', 'products', 'center',],
+  props: ['title', 'subtitle', 'promoDiscount', 'products', 'center', 'maxItems',],
   components: {SectionTitle, Item, Region,},
+  data() {
+    return {
+      showAllProducts: this.$props.maxItems ? false : true,
+    }
+  },
   methods: {
     proposeSellingPoint() {
       const width = 800

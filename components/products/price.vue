@@ -23,15 +23,18 @@
         <h1>{{ price(false) }}
           <div :id='$style.redbar'></div>
         </h1>
+        <small v-if='!isSGL'>*price may vary</small>
       </div>
       <div :class='$style.price'>
         <h1>{{ price(true) }}</h1><br />
         <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+        <small v-if='!isSGL'>*price may vary</small>
         <span>promocode: <b>-{{ discount }}%</b></span>
       </div>
     </div>
     <div v-else :class='$style.price'>
       <h1>{{ price(false) }}</h1>
+      <small v-if='!isSGL'>*price may vary</small>
       <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
   </section>
@@ -49,6 +52,10 @@ export default {
       const { lineItems } = this.$props
       return (promo) => this.$store.getters['checkout/lineItemsPrice'](lineItems, promo)
     },
+    isSGL() {
+      const { lineItems } = this.$props
+      return lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29'
+    }
   },
 }
 </script>

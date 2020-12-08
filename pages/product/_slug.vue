@@ -49,7 +49,10 @@
               <div :class='$style.green'>{{ variantPrice(v) }}</div>
             </nuxt-link>
           </div>
-          <div :id='$style.description' v-html='$md.render(brandProduct.description)'></div>
+          <div :id='$style.description' v-if='product.description' v-html='$md.render(product.description)'></div>
+          <div :id='$style.description' v-if='brandProduct.description' v-html='$md.render(brandProduct.description)'></div>
+          <div :id='$style.description' v-if='product.bulletpoints' v-html='$md.render(product.bulletpoints)'></div>
+          <div :id='$style.description' v-if='brandProduct.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
         </div>
         <div :id='$style.addtocart'>
           <div :id='$style.price'>
@@ -96,7 +99,7 @@
       </div>
       <h2 v-if='relatedProducts.length'>Related products</h2>
       <div v-if='relatedProducts.length' :id='$style.products'>
-        <ProductList :products='relatedProducts' />
+        <ProductList :products='relatedProducts' :maxItems=4 />
       </div>
     </div>
     <Footer />
@@ -127,9 +130,12 @@ export default {
   computed: {
     closerProduct() {
       const { region } = this.$store.state.eshop
-      if (this.sellingPoint.regions[0] != region.id) {
+      if (this.sellingPoint.regions[0].id != region.id) {
         const sp = this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
         if (sp.id == this.sellingPoint.id) return null
+        /*const bp = this.$store.getters['eshop/brandProduct'](sp.BrandProduct[0])
+        if (bp.variantOf && this.sellingPoint.BrandProduct[0].id == bp.variantOf[0]) return null
+        if (this.brandProduct.variantOf && this.brandProduct.variantOf[0] == bp.id) return null*/
         return sp
       }
     },
@@ -262,6 +268,18 @@ export default {
   flex: 1
   padding: 20pt 15pt
 
+#description ul, #description ol
+  padding: 0
+  list-style-type: none
+
+#description li
+  margin: 5pt 0
+
+#description li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
+
 #description strong
   color: #3bb30b
 
@@ -341,6 +359,7 @@ export default {
 #propose
   display: flex
   flex-direction: column
+  margin-bottom: 10pt
 
 #propose a
   color: #454545
