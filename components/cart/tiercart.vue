@@ -83,8 +83,8 @@ export default {
       let url = `${seller.url}/gp/aws/cart/add.html`
       return url + this.cart.reduce((acc, lineItem, i) => {
         const asin = new URL(lineItem.sellingPoint.url).pathname.split('/').filter(p => !!p).pop()
-        return acc += `${acc ? '&' : '?'}ASIN.${i+1}=${asin}&Quantity.${i+1}=${lineItem.n}`
-      }, '')
+        return acc += `${acc ? '&' : ''}ASIN.${i+1}=${asin}&Quantity.${i+1}=${lineItem.n}`
+      }, `?AssociateTag=${seller.params.amazon.tag}`)
     },
  },
 }

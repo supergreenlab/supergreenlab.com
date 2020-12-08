@@ -38,7 +38,7 @@
             <Region />
           </div>
           <div :id='$style.seller'>
-            SOLD BY <a :href='sellingPoint.url' target='_blank'>{{ seller.name }}</a>
+            SOLD BY <a :href='productURL' target='_blank'>{{ seller.name }}</a>
           </div>
           <div :id='$style.propose' v-if='seller.name != "SuperGreenLab"'>
             <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
@@ -197,6 +197,10 @@ export default {
       return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
       })
+    },
+    productURL() {
+      if (this.seller.type == 'amazon') return `${this.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
+      return this.sellingPoint.url
     }
   },
   methods: {

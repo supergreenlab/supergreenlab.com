@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.title'>
       <h2>{{ lineItem.product.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
-      <a :id='$style.linkto' v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
+      <a :id='$style.linkto' v-if='showProductLink' :href='productURL' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
       <nuxt-link :id='$style.piccontainer' :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
@@ -76,6 +76,11 @@ export default {
     seller() {
       const { lineItem } = this.$props
       return this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])
+    },
+    productURL() {
+      const { lineItem } = this.$props
+      if (this.seller.type == 'amazon') return `${lineItem.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
+      return lineItem.sellingPoint.url
     }
   },
   methods: {

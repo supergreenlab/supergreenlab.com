@@ -20,7 +20,7 @@
   <section :id='$style.container' :class='small ? $style.small : ""'>
     <div>
       <Number v-model='n' :small=true />
-      <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
+      <a :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a><br />
     </div>
     <p v-if='discreet !== false'>Our bundles are shipped discreet</p>
   </section>
@@ -35,14 +35,20 @@ export default {
   data() {
     return {
       n: 1,
+      activated: false,
+      added: false
     }
   },
   methods: {
     addToCartClicked() {
+      if (this.$data.activated) return
       const { product, sellingPoint, } = this.$props
       const { n } = this.$data
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.slug)
       this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
+      this.$data.activated = true
+      setTimeout(() => {this.$data.activated = false; this.$data.added = true}, 800)
+      setTimeout(() => this.$data.added = false, 1500)
     },
   },
 }
@@ -69,6 +75,7 @@ export default {
   font-size: 1.2em
   margin: 4pt 0
   white-space: nowrap
+  transition: opacity 0.2s
 
 #container.small > #button
   padding: 6pt 18pt
