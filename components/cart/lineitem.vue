@@ -23,11 +23,15 @@
       <a :id='$style.linkto' v-if='showProductLink' :href='lineItem.sellingPoint.url' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
-      <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+      <nuxt-link :id='$style.piccontainer' :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
+        <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+      </nuxt-link>
       <div :id='$style.infos'>
         <div :id='$style.description'>
           <h3 :id='$style.soldby'>SOLD BY&nbsp;<a :id='$style.seller' :href='seller.url' target='_blank'>{{ seller.name }}</a></h3>
-          <p v-html='$md.render(brandProduct.description.substr(0, 150) + "...")'></p>
+          <nuxt-link :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
+            <p v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></p>
+          </nuxt-link>
         </div>
         <div :id='$style.price'>
           <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.mobilecheckbox'>
@@ -134,6 +138,7 @@ export default {
 
 #price
   display: flex
+  flex: 0.7
   align-items: center
   justify-content: center
   flex-direction: column
@@ -159,18 +164,21 @@ export default {
   color: #454545
   @media only screen and (max-width: 600pt)
     margin: 2pt 0 2pt 0
+
+#piccontainer
+  flex: 0.3
+  margin: 10pt 0
+  @media only screen and (max-width: 600pt)
+    flex: 0.45
+    height: 110px
+    margin: 10pt 15pt 10pt 5pt
  
 #pic
-  flex: 0.3
   height: 150px
-  margin: 10pt 0
   background-position: top
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 600pt)
-    flex: 0.4
-    height: 110px
-    margin: 10pt 15pt 10pt 5pt
     background-position: center
 
 #description
@@ -184,6 +192,25 @@ export default {
 
 #description > strong
   color: #3bb30b
+
+#description ul, #description ol
+  padding: 0
+  list-style-type: none
+
+#description li
+  margin: 2pt 0
+
+#description li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
+
+#description a
+  color: #454545
+  text-decoration: none
+
+#description a:hover
+  text-decoration: underline
 
 #delete
   flex: 0.2

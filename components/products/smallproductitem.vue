@@ -120,6 +120,7 @@ export default {
   flex: 1
   margin: 0 20pt 0 5pt
   font-size: 0.8em
+  color #454545
 
 #description a
   color: #454545
@@ -131,9 +132,6 @@ export default {
 #description > div
   @media only screen and (max-width: 600px)
     display: none
-
-#description
-  color #454545
 
 #description ul, #description ol
   padding: 0
