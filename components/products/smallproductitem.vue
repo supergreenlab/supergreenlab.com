@@ -132,6 +132,27 @@ export default {
   @media only screen and (max-width: 600px)
     display: none
 
+#description
+  color #454545
+
+#description ul, #description ol
+  padding: 0
+  list-style-type: none
+
+#description li
+  margin: 2pt 0
+
+#description li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
+
+#description strong
+  color: #3bb30b
+
+#description p
+  margin: 5pt 0
+
 #price
   display: flex
   margin: 10pt 10pt
