@@ -28,15 +28,15 @@
     <div :id='$style.body'>
       <div :class='$style.yt'>
         <h2>How to build an Automated LED Grow Box</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/DXwtIjdDvHs?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-grow-bundle"}'>
+        <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
+        <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-box-bundle"}'>
           <b class="hvr-grow">Build yours now</b>
         </nuxt-link>
       </div>
       <div :class='$style.yt'>
         <h2>How to build the cheapest growbox ever</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/7cbxxOMGKCg?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#mono-box-bundle"}'>
+        <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-cheapest-growbox-ever.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'></a></div>
+        <nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-box-bundle"}'>
           <b class="hvr-grow">Build yours now</b>
         </nuxt-link>
       </div>
@@ -88,12 +88,34 @@ export default {
   color: #717171
   margin: 10pt
 
-.yt > iframe
+.thumbnail
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
   width: 560px
   height: 315px
   margin: 10pt 0 20pt 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
   @media only screen and (max-width: 600px)
     width: 100%
+    height: 200px
+
+.thumbnail > img
+  transition: opacity 0.2s
+  @media only screen and (max-width: 600px)
+    max-width: 25%
+
+.thumbnail:hover > img
+  opacity: 90%
+
+.thumbnail > a
+  display: block
+  position: absolute
+  width: 100%
+  height: 100%
 
 #cta
   display: flex

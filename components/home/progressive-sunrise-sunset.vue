@@ -22,8 +22,7 @@
       <SectionTitle title='SuperGreenOS feature highlight'
                     green='Progressive sunrise/sunset'
                     title2="Just like the sun, in a box"
-                    smalltitle="The sun doesn't switch to midday position in a second, why would your lamp?"
-                    separator='true'/>
+                    smalltitle="The sun doesn't switch to midday position in a second, why would your lamp?" />
     </div>
     <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
       <source src="/progressive_sunrise_sunset.mp4" type="video/mp4">
@@ -36,9 +35,6 @@
       it <b>simulates sunrise and sunsets</b>, and allows to choose <b>independent dimming</b> for each led channels,<br />
       smart schedules for <b>UV</b> and <b>IR</b> panels are coming soon.
     </div>
-    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
-      <b class="hvr-grow">Buy now</b>
-    </nuxt-link>
   </section>
 </template>
 

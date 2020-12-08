@@ -21,8 +21,7 @@
     <div :id='$style.title'>
       <SectionTitle title='Checkout the'
                     green="Latest diaries in the app"
-                    title2='(install the app before clicking)'
-                    separator='true'/>
+                    title2='(install the app before clicking)' />
     </div>
     <div :id='$style.plants'>
       <a :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :key='plant.id' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>

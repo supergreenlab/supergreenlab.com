@@ -22,8 +22,7 @@
       <SectionTitle title='Our hardware is'
                     green="The first continuous supply setup"
                     title2='Harvest twice as fast'
-                    smalltitle="Don't wait until harvest to start the next plant!"
-                    separator='true'/>
+                    smalltitle="Don't wait until harvest to start the next plant!" />
     </div>
     <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
       <source src="/continuous_supply.mp4" type="video/mp4">
@@ -34,9 +33,6 @@
       <b>You don't have to wait until harvest</b> to start the next plant! <b>Harvest twice as fast</b> with continuous supply.<br />
       The Controller can control <b>up to 3 spaces</b> with different schedules to do <b>vegging and blooming at the same time</b>.
     </div>
-    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
-      <b class="hvr-grow">Buy now</b>
-    </nuxt-link>
   </section>
 </template>
 

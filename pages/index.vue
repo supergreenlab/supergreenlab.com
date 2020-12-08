@@ -26,48 +26,66 @@
     <div :id='$style.body'>
       <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
-      <div :class='$style.space'></div>
-      <div :class='$style.space'></div>
-      <PreOrder ref='preorder' />
       <div id='use-steps'></div>
+      <div :class='$style.space'></div>
       <UseSteps ref='use-steps' />
-      <div :class='$style.space'></div>
-      <ContinuousSupply ref='continuous_supply' />
-      <div :class='$style.space'></div>
-      <ProgressiveSunriseSunset ref='progressive_sunrise_sunset' />
-      <div :class='$style.space'></div>
-      <App ref='app' />
-      <div :class='$style.space'></div>
-      <LatestDiaries ref='latest_diaries' />
       <div :class='$style.space'></div>
       <Instagram ref='instagram' />
       <div :class='$style.space'></div>
       <Youtube ref='youtube' />
       <div :class='$style.space'></div>
-      <Social />
-      <div :class='$style.space'></div>
-      <BundleIntro ref='bundle-intro' />
-      <div :class='$style.space'></div>
+      <div :class='$style.title'>
+        <SectionTitle title='STEP 1'
+                      green='CHOOSE YOUR FURNITURE'
+                      :separator=true />
+      </div>
       <div :class='$style.shop'>
-        <ProductList title='STEP 1' subtitle='CHOOSE YOUR FURNITURE' :products='furnitures' :center=true />
+        <ProductList :products='furnitures' :center=true />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 2'
-                     green='GET A BUNDLE' />
+                     green='GET A BUNDLE'
+                     :separator=true />
       </div>
+      <div :class='$style.space'></div>
+      <BundleIntro ref='bundle-intro' />
+      <div :class='$style.space'></div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id'>
           <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
         </div>
       </div>
+      <div :class='$style.title'>
+        <SectionTitle title='STEP 3'
+                      green='GET YOUR GROWING MEDIUM'
+                      :separator=true />
+      </div>
       <div :class='$style.shop'>
-        <ProductList title='STEP 3' subtitle='GET YOUR GROWING MEDIUM' :products='soil' :center=true />
-        <ProductList title='STEP 4' subtitle='GET NUTRIENTS' :products='nutrients' :center=true />
+        <ProductList :products='soil' :center=true />
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='STEP 4'
+                      green='GET NUTRIENTS'
+                      :separator=true />
+      </div>
+      <div :class='$style.shop'>
+        <ProductList :products='nutrients' :center=true />
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='STEP 5'
+                      green='MIGHT NEED SOME TOOLS TOO'
+                      :separator=true />
+      </div>
+      <div :class='$style.shop'>
         <ProductList title='STEP 5' subtitle='MIGHT NEED SOME TOOLS TOO' :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
+      <Social />
+      <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
+      <div :class='$style.space'></div>
+      <PreOrder ref='preorder' />
     </div>
     <Footer />
     <transition name="popup">
@@ -192,9 +210,6 @@ export default {
   left: 0
   z-index: 1000
 
-.title
-  margin: 20pt 0 20pt 0
-
 #body
   width: 100%
   display: flex
@@ -202,13 +217,14 @@ export default {
   justify-content: center
   align-items: center
 
-#title
+.title
+  width: 100%
   margin: 20pt 0 20pt 0
 
 .separator
   height: 2pt
   margin: 30pt 0
-  background-color: #efefef
+  background-color: #eaeaea
 
 .shop
   max-width: 900pt

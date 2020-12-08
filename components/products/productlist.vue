@@ -18,10 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.title' v-if='title || subtitle'>
-      <SectionTitle :title='title'
-                    :green='subtitle' />
-    </div>
     <div :id='$style.region'>
       <Region />
     </div>
@@ -43,7 +39,7 @@ import Item from '~/components/products/productitem.vue'
 import Region from '~/components/products/region.vue'
 
 export default {
-  props: ['title', 'subtitle', 'promoDiscount', 'products', 'center', 'maxItems',],
+  props: ['promoDiscount', 'products', 'center', 'maxItems',],
   components: {SectionTitle, Item, Region,},
   data() {
     return {

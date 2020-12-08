@@ -33,10 +33,18 @@
       <div :class='$style.price'>
         <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
       </div>
+      <div :class='$style.space'></div>
+      <ContinuousSupply ref='continuous_supply' />
+      <div :class='$style.space'></div>
+      <ProgressiveSunriseSunset ref='progressive_sunrise_sunset' />
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <ProductGuide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
+      <div :class='$style.space'></div>
+      <App ref='app' />
+      <div :class='$style.space'></div>
+      <LatestDiaries ref='latest_diaries' />
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
         <div :class='$style.guide'>
@@ -77,11 +85,15 @@ import Item from '~/components/bundle/item.vue'
 import Title from '~/components/bundle/title.vue'
 import Price from '~/components/products/price.vue'
 import Footer from '~/components/layout/footer.vue'
+import ContinuousSupply from '~/components/home/continuous-supply.vue'
+import ProgressiveSunriseSunset from '~/components/home/progressive-sunrise-sunset.vue'
+import App from '~/components/home/app.vue'
+import LatestDiaries from '~/components/home/latest-diaries.vue'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer,},
+  components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries,},
   data() {
     return {
       loading: false,
@@ -166,5 +178,8 @@ export default {
   @media only screen and (max-width: 600px)
     flex-basis: 100% 
     margin: 20pt 5pt
+
+.space
+  height: 40pt
 
 </style>

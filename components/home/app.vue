@@ -21,8 +21,7 @@
     <div :id='$style.title'>
       <SectionTitle title='Proudly introducting:'
                     green='The SuperGreenLab App'
-                    title2='Now on apple & android stores!'
-                    separator='true'/>
+                    title2='Now on apple & android stores!' />
     </div>
     <div :id='$style.screens'>
 

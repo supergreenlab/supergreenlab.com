@@ -43,9 +43,9 @@ export default {
     font-size: 0.8em
 
 .separator
-  background-color: #efefef
   width: 100%
   padding: 15pt 0 15pt 0
+  background-color: #eaeaea
 
 #title
   color: #5E5E5E
