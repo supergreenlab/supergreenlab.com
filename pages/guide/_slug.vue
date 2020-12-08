@@ -33,7 +33,8 @@
         </div>
         <h2 v-if='showTableOfContent'>Table of content</h2>
         <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
-        <div v-if='showTableOfContent' v-for='g in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
+        <div v-if='showTableOfContent' v-for='(g, i) in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
+          <h1>#{{ i+1 }}</h1>
           <Guide :guide='g' />
         </div>
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
@@ -101,7 +102,16 @@ export default {
     },
     allGuides() {
       if (this.first == null) return null
-      return guides.filter(g => g.first == this.first.id)
+      let current = guides.find(g => g.slug == this.first.nextslug[0])
+      const ordered = []
+      const fn = (current) => {
+        ordered.push(current)
+        current = guides.find(g => g.slug == current.nextslug)
+        if (current) return fn(current)
+      }
+      fn(current)
+
+      return ordered
     },
     next() {
       if (this.guide.nextslug == null || this.guide.nextslug.length == 0) return null
@@ -234,7 +244,11 @@ export default {
   @media only screen and (max-width: 600pt)
     margin: 5pt 10pt
 
+.guide > h1
+  color: #3bb30b
+
 #selected
+  border-radius: 5pt
   background-color: #cdcdcd
 
 </style>
