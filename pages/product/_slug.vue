@@ -268,6 +268,9 @@ export default {
   flex: 1
   padding: 20pt 15pt
 
+#description
+  color #454545
+
 #description ul, #description ol
   padding: 0
   list-style-type: none

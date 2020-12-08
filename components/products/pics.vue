@@ -75,8 +75,8 @@ export default {
   width: 100%
   height: 100%
   cursor: pointer
-  @media only screen and (max-width: 600px)
-    margin: 20pt 0pt 20pt 0pt
+  /*@media only screen and (max-width: 600px)
+    margin: 20pt 0pt 20pt 0pt*/
 
 .icon
   position: absolute

@@ -40,6 +40,9 @@
         </div>
 
         <div :id='$style.addtocartcontainer' v-if='addtocart && !showdescription'>
+          <div :class='$style.price'>
+            <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+          </div>
           <AddToCart :product='bundle' :sellingPoint='bundle.sellingPoints[0]' />
         </div>
       </div>
@@ -48,6 +51,9 @@
       <h1>Description</h1>
       <div v-html='$md.render(bundle.description)'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
+        <div :class='$style.price'>
+          <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+        </div>
         <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
       </div>
     </div>
@@ -193,8 +199,12 @@ export default {
 
 #addtocartcontainer
   display: flex
+  flex-direction: column
   margin-top: 20pt
-  justify-content: flex-end
+  align-items: flex-end
+
+.price
+  margin-bottom: 10pt
 
 #addtocart
   display: flex
