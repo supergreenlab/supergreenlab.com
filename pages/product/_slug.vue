@@ -297,9 +297,10 @@ export default {
   flex: 0.3
   display: flex
   flex-direction: column
-  justify-content: center
   align-items: center
   padding: 20pt 0
+  @media only screen and (max-width: 600pt)
+    justify-content: center
 
 #price
   margin-bottom: 5pt
