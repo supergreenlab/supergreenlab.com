@@ -48,7 +48,7 @@ export default {
       this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
       this.$data.activated = true
       setTimeout(() => {this.$data.activated = false; this.$data.added = true}, 800)
-      setTimeout(() => this.$data.added = false, 1500)
+      setTimeout(() => this.$data.added = false, 2000)
     },
   },
 }
