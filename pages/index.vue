@@ -40,7 +40,7 @@
                       :separator=true />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='furnitures' :center=true />
+        <ProductList :products='furnitures' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 2'
@@ -60,7 +60,7 @@
                       :separator=true />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='soil' :center=true />
+        <ProductList :products='soil' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 4'
@@ -68,7 +68,7 @@
                       :separator=true />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='nutrients' :center=true />
+        <ProductList :products='nutrients' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 5'
