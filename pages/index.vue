@@ -48,8 +48,6 @@
                      :separator=true />
       </div>
       <div :class='$style.space'></div>
-      <BundleIntro ref='bundle-intro' />
-      <div :class='$style.space'></div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id'>
           <div :id='b.slug'></div>
@@ -150,7 +148,7 @@ export default {
       return {promocode, discount}
     },
     furnitures() {
-      return this.$store.getters['eshop/productsWithTypes'](['FURNITURE', 'CARBON FILTER'])
+      return this.$store.getters['eshop/productsWithTypes'](['FURNITURE', 'TENT', 'CARBON FILTER'])
     },
     soil() {
       return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])

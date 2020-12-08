@@ -147,6 +147,7 @@ export default {
 #buy
   display: flex
   flex-direction: column
+  font-weight: bold
   @media only screen and (max-width: 600px)
     margin: 30pt 10pt 0 0
     align-self: flex-end

@@ -23,6 +23,16 @@
     </div>
     <div :id='$style.body'>
       <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' />
+      <div :class='$style.space'></div>
+      <BundleIntro ref='bundle-intro' />
+      <div :class='$style.space'></div>
+      <ContinuousSupply ref='continuous_supply' />
+      <div :class='$style.space'></div>
+      <ProgressiveSunriseSunset ref='progressive_sunrise_sunset' />
+      <div :class='$style.space'></div>
+      <App ref='app' />
+      <div :class='$style.space'></div>
+      <LatestDiaries ref='latest_diaries' />
       <Title icon='package.svg' title='BUNDLE CONTENT' />
       <Item v-if='bundle.specs.bigleds' :showHarvest='true' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
       <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
@@ -32,19 +42,12 @@
       <Item n='1' :item='accessory("sgl-controller")' last='true' />
       <div :class='$style.price'>
         <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+        <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
       </div>
-      <div :class='$style.space'></div>
-      <ContinuousSupply ref='continuous_supply' />
-      <div :class='$style.space'></div>
-      <ProgressiveSunriseSunset ref='progressive_sunrise_sunset' />
       <Title icon='guides.svg' title='GUIDES' />
       <div :id='$style.guides'>
         <ProductGuide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
-      <div :class='$style.space'></div>
-      <App ref='app' />
-      <div :class='$style.space'></div>
-      <LatestDiaries ref='latest_diaries' />
       <div :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
         <div :class='$style.guide'>
@@ -85,15 +88,17 @@ import Item from '~/components/bundle/item.vue'
 import Title from '~/components/bundle/title.vue'
 import Price from '~/components/products/price.vue'
 import Footer from '~/components/layout/footer.vue'
+import BundleIntro from '~/components/home/bundle.vue'
 import ContinuousSupply from '~/components/home/continuous-supply.vue'
 import ProgressiveSunriseSunset from '~/components/home/progressive-sunrise-sunset.vue'
 import App from '~/components/home/app.vue'
 import LatestDiaries from '~/components/home/latest-diaries.vue'
+import AddToCart from '~/components/products/addtocart.vue'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries,},
+  components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, BundleIntro, LatestDiaries, AddToCart,},
   data() {
     return {
       loading: false,
@@ -133,7 +138,7 @@ export default {
       /*return this.$store.getters['eshop/productsWithTypes'](['FURNITURE', 'CARBON FILTER', 'SOIL']).filter((p, i, a) => {
         return a.indexOf(p) == i
       }).filter(p => p.id !== this.bundle.id)*/
-      return [].concat(...['FURNITURE', 'CARBON FILTER', 'SOIL', 'NUTRIENT'].map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
+      return [].concat(...['FURNITURE', 'TENT', 'CARBON FILTER', 'SOIL', 'NUTRIENT'].map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
       }).filter(p => p.id !== this.bundle.id)
     }
@@ -164,8 +169,10 @@ export default {
 
 .price
   display: flex
-  justify-content: flex-end
+  flex-direction: column
+  align-items: flex-end
   margin: 10pt 10pt 10pt 20pt
+  color: #454545
 
 #guides
   display: flex
