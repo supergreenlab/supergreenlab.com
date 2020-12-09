@@ -108,6 +108,7 @@ export default {
     margin: 10pt 0
 
 .thumbnail > img
+  width: 80px
   transition: opacity 0.2s
   @media only screen and (max-width: 600px)
     max-width: 25%
