@@ -18,11 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.title'>
-      <SectionTitle title='Checkout our latest guide'
-                    green='How to build'
-                    title2='and IKEA stealth grow box' />
-    </div>
     <div :id='$style.body'>
       <div :id='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-eketv2.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
       <div :id='$style.text'>

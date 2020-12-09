@@ -19,26 +19,22 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='follow the guide to becoming'
-                    green='a ninja grower'
-                    title2='we publish guides on youtube'
-                    smalltitle='and offer free 24/7/365 support'
-                    separator='true'/>
+      <h2>More from our Youtube channel</h2>
     </div>
     <div :id='$style.body'>
       <div :class='$style.yt'>
-        <h2>How to build an Automated LED Grow Box</h2>
         <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
-        <!--<nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-box-bundle"}'>
-          <b class="hvr-grow">Build yours now</b>
-        </nuxt-link>-->
+        <div :class='$style.text'>
+          <h2>How to build an Automated LED Grow Box</h2>
+          <p>Using a swedish furniture and a ninja bundle from our shop you can easily get yourself a stealthy and cheap nano growbox for your personal need. The controller can also manage a second side box for vegging your next grow, so you can harvest every 2 months (depending which strain) instead of every 4 months (typical complete cycle duration).</p>
+        </div>
       </div>
       <div :class='$style.yt'>
-        <h2>How to build the cheapest growbox ever</h2>
         <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-cheapest-growbox-ever.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'></a></div>
-        <!--<nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-box-bundle"}'>
-          <b class="hvr-grow">Build yours now</b>
-        </nuxt-link>-->
+        <div :class='$style.text'>
+          <h2>How to build the cheapest growbox ever</h2>
+          <p>Thanks to the low heating led panels, you could even make a grow box out of a cardboard box. Cardboard actually has great properties when it comes to humidity and temperature. We've done a few grows in various cardboard grow box designs, and it surprisingly ended up being one of the best and easiest way to get started.</p>
+        </div>
       </div>
       <h1></h1>
     </div>
@@ -60,48 +56,56 @@ export default {
   display: flex
   width: 100%
   flex-direction: column
-  justify-content: center
   align-items: center
+  justify-content: center
+  color: #454545
 
 #title
-  width: 100%
-  margin: 0pt 0 50pt 0
+  margin: 10pt 0 20pt 0
 
 #body
   display: flex
-  flex-wrap: wrap
   align-items: center
-  justify-content: center
+  width: 100%
+  max-width: 900pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 .yt
   display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  flex-basis: 50%
+  width: 100%
   padding: 10pt
   @media only screen and (max-width: 600px)
-    flex-basis: 100%
+    align-items: center
+    justify-content: center
+    flex-direction: column
 
-.yt > h2
-  height: 50pt
-  color: #717171
-  margin: 10pt
+.text
+  display: flex
+  flex: 1
+  flex-direction: column
+  align-items: space-between
+  padding: 0 10pt
+
+.text h2
+  margin-bottom: 5pt
+  @media only screen and (max-width: 600px)
+    font-size: 1.1em
 
 .thumbnail
   position: relative
   display: flex
   align-items: center
   justify-content: center
-  width: 560px
-  height: 315px
-  margin: 10pt 0 20pt 0
+  width: 250px
+  height: 140px
   background-position: center
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 600px)
-    width: 100%
-    height: 200px
+    width: 210px
+    height: 120px
+    margin: 10pt 0
 
 .thumbnail > img
   transition: opacity 0.2s

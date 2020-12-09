@@ -32,9 +32,16 @@
       <div :class='$style.space'></div>
       <Instagram ref='instagram' />
       <div :class='$style.space'></div>
-      <Youtube ref='youtube' />
-      <div :class='$style.space'></div>
+      <div :class='$style.title'>
+        <SectionTitle title='follow the guide to becoming'
+                      green='a ninja grower'
+                      title2='we publish guides on youtube'
+                      smalltitle='and offer free 24/7/365 support'
+                      separator='true'/>
+      </div>
       <LatestGuide />
+      <div :class='$style.space'></div>
+      <Youtube ref='youtube' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 1'
