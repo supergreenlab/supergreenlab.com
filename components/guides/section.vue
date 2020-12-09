@@ -23,10 +23,23 @@
       <div :class='$style.text'>
         <h1 v-if='!guideSection.sections && guideSection.title'>{{ guideSection.title }}</h1>
         <p :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></p>
+        <b v-if='guideSection.links.length'>Useful links</b>
+        <div v-if='guideSection.links.length' :id='$style.links'>
+          <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+            <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+              <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+            </div>
+            <div :class='$style.linktext'>
+              <b>{{ l.title }}</b>
+              <p v-html='$md.render(l.description)'></p>
+              <small>{{ l.url }}</small>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
     <h2 v-if='requires.length'>What you'll need</h2>
-    <SmallProductList v-if='requires.length' :products='requires' maxItems='4' />
+    <SmallProductList v-if='requires.length' :products='requires' maxItems='2' />
   </section>
 </template>
 
@@ -34,13 +47,18 @@
 import Media from '~/components/guides/media.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
+import { bookmarks } from '~/config/guides.json'
+
 export default {
   props: [ 'guideSection', ],
   components: { Media, SmallProductList, },
   computed: {
     requires() {
       return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r)).filter(r => r)
-    }
+    },
+    youtubeLink() {
+      return (l) => l.indexOf('youtube.com') != -1
+    },
   }
 }
 </script>
@@ -59,6 +77,9 @@ export default {
   margin: 20pt 0 0 5pt
   font-size: 1em
   color: #454545
+
+.text
+  color #454545
 
 .text > h1
   margin: 0 0 20pt 0
@@ -88,5 +109,43 @@ export default {
 
 .videosection > p
   margin: 10pt
+
+#links
+  display: flex
+
+.link
+  display: flex
+  color: #454545
+  text-decoration: none
+  margin: 5pt 0
+
+.link:hover
+  text-decoration: underline
+
+.linktext
+  flex: 1
+
+.linktext small
+  color: #787878
+  text-decoration: underline
+
+.linkpic
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100pt
+  height: 60pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+  margin-right: 10pt
+
+.playbutton
+  width: 30pt
+  height: 30pt
+  transition: opacity 0.2s
+
+.link:hover .playbutton
+  opacity: 0.7
 
 </style>

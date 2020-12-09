@@ -6,8 +6,11 @@ const { FETCH_DEV_GUIDES } = process.env
 
 module.exports.fetchGuides = async () => {
   await mkAssetsDir('guides')
-  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides'])
-  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order'])
+  await mkAssetsDir('links')
+  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links'])
+  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links'])
+  let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
+
   let picPromise = Promise.resolve()
   const guidesWithSections = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
     try {
@@ -24,6 +27,7 @@ module.exports.fetchGuides = async () => {
     } catch(e) {
       g.thumbnail = noPic
     }
+    g.links = (g.links || []).map(l => bookmarks.find(b => b.id == l))
 
     g.sections = guideSections.filter(gs => (g.sections || []).indexOf(gs.id) != -1).map(gs => {
       try {
@@ -33,14 +37,25 @@ module.exports.fetchGuides = async () => {
       } catch(e) {
         gs.media = noPic
       }
+      gs.links = (gs.links || []).map(l => bookmarks.find(b => b.id == l))
       return gs
     }).sort((gs1, gs2) => gs1.order - gs2.order)
     return g
+  })
+  bookmarks = bookmarks.map(b => {
+    try {
+      const { p, data } = fetchAttachement(picPromise, b.icon[0], 'links')
+      picPromise = p
+      b.icon = data
+    } catch(e) {
+      b.icon = noPic
+    }
+    return b
   })
   await picPromise
   for (i in guidesWithSections) {
     const g = guidesWithSections[i]
     await fs.writeFile(`config/guide-${g.slug}.json`, JSON.stringify(g))
   }
-  await fs.writeFile(`config/guides.json`, JSON.stringify({ guides }))
+  await fs.writeFile(`config/guides.json`, JSON.stringify({ guides, bookmarks }))
 }

@@ -34,6 +34,8 @@
       <div :class='$style.space'></div>
       <Youtube ref='youtube' />
       <div :class='$style.space'></div>
+      <LatestGuide />
+      <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 1'
                       green='CHOOSE YOUR FURNITURE'
@@ -82,8 +84,8 @@
       <Social />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
-      <div :class='$style.space'></div>
-      <PreOrder ref='preorder' />
+      <!--<div :class='$style.space'></div>
+      <PreOrder ref='preorder' />-->
     </div>
     <Footer />
     <transition name="popup">
@@ -107,6 +109,7 @@ import LatestDiaries from '~/components/home/latest-diaries.vue'
 import Bundle from '~/components/bundle/bundle.vue'
 import Instagram from '~/components/home/instagram.vue'
 import Youtube from '~/components/home/youtube.vue'
+import LatestGuide from '~/components/home/latestguide.vue'
 import ProductList from '~/components/products/productlist.vue'
 import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
@@ -114,7 +117,7 @@ import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, ProductList, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, },
   data() {
     return {
       showPopup: false,

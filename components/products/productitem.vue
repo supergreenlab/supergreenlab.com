@@ -23,7 +23,7 @@
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
-      From {{ seller.name }}
+      From <b :id='seller.id == "recT9nIg4ahFv9J29" ? $style.green : $style.normal'>{{ seller.name }}</b>
     </nuxt-link>
     <div :class='$style.price'>
       <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
@@ -106,5 +106,12 @@ export default {
 .price
   display: flex
   margin: 10pt 0
+
+#green
+  color: #3bb30b
+  font-weight: 600
+
+#normal
+  font-weight: 300
 
 </style>

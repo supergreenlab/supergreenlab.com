@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -19,28 +19,21 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <SectionTitle title='follow the guide to becoming'
-                    green='a ninja grower'
-                    title2='we publish guides on youtube'
-                    smalltitle='and offer free 24/7/365 support'
-                    separator='true'/>
+      <SectionTitle title='Checkout our latest guide'
+                    green='How to build'
+                    title2='and IKEA stealth grow box' />
     </div>
     <div :id='$style.body'>
-      <div :class='$style.yt'>
-        <h2>How to build an Automated LED Grow Box</h2>
-        <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
-        <!--<nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-box-bundle"}'>
-          <b class="hvr-grow">Build yours now</b>
-        </nuxt-link>-->
+      <div :id='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-eketv2.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
+      <div :id='$style.text'>
+        <div>
+          <h2>{{ guide.name }}</h2>
+          <p v-html='$md.render(guide.text)'></p>
+        </div>
+        <nuxt-link  :id='$style.cta' :to='`/guide/${guide.slug}`'>
+          <b class="hvr-grow">View guide</b>
+        </nuxt-link>
       </div>
-      <div :class='$style.yt'>
-        <h2>How to build the cheapest growbox ever</h2>
-        <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-cheapest-growbox-ever.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'></a></div>
-        <!--<nuxt-link  :id='$style.cta' :to='{path: "/", hash: "#micro-box-bundle"}'>
-          <b class="hvr-grow">Build yours now</b>
-        </nuxt-link>-->
-      </div>
-      <h1></h1>
     </div>
   </section>
 </template>
@@ -50,7 +43,12 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
   components: {SectionTitle,},
-
+  computed: {
+    guide() {
+      const guide = require('~/config/guide-how-to-build-a-ikea-eket-connected-grow-box.json')
+      return guide
+    }
+  }
 }
 </script>
 
@@ -62,6 +60,7 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
+  color: #717171
 
 #title
   width: 100%
@@ -69,26 +68,26 @@ export default {
 
 #body
   display: flex
-  flex-wrap: wrap
   align-items: center
   justify-content: center
-
-.yt
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  flex-basis: 50%
-  padding: 10pt
+  max-width: 900pt
   @media only screen and (max-width: 600px)
-    flex-basis: 100%
+    padding: 5pt 10pt
+    flex-direction: column
 
-.yt > h2
-  height: 50pt
-  color: #717171
-  margin: 10pt
+#text
+  flex: 1
+  display: flex
+  height: 100%
+  flex-direction: column
+  justify-content: space-between
+  align-items: flex-end
 
-.thumbnail
+#text h2
+  margin: 0 0 15pt 0
+
+#thumbnail
+  flex: 1
   position: relative
   display: flex
   align-items: center
@@ -100,26 +99,25 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 600px)
+    flex: auto
     width: 100%
     height: 200px
 
-.thumbnail > img
+#thumbnail > img
   transition: opacity 0.2s
   @media only screen and (max-width: 600px)
     max-width: 25%
 
-.thumbnail:hover > img
+#thumbnail:hover > img
   opacity: 90%
 
-.thumbnail > a
+#thumbnail > a
   display: block
   position: absolute
   width: 100%
   height: 100%
 
 #cta
-  display: flex
-  flex-direction: column
   text-transform: uppercase
   color: white
   background-color: #3BB30B
@@ -131,6 +129,7 @@ export default {
   margin-bottom: 20pt
   font-size: 1.5em
   @media only screen and (max-width: 600px)
+    margin-top: 15pt
     font-size: 1.1em
 
 #cta > small
