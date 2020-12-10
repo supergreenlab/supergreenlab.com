@@ -119,6 +119,8 @@ export default {
 #tagline
   text-align: center
   font-size: 0.9em
-  margin: 5pt 0
+  margin: 5pt 40pt
+  @media only screen and (max-width: 600pt)
+    margin: 5pt 20pt
 
 </style>
