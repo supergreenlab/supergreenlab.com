@@ -108,7 +108,7 @@
       <div v-if='guides.length' :id='$style.guides'>
         <Guide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
-      <h2 v-if='sameTypeProduct.length'>Related products</h2>
+      <h2 v-if='sameTypeProduct.length'>Products in the same category</h2>
       <div v-if='sameTypeProduct.length' :id='$style.products'>
         <ProductList :products='sameTypeProduct' :maxItems=4 />
       </div>
