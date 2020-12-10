@@ -30,8 +30,6 @@
       <div :class='$style.space'></div>
       <UseSteps ref='use-steps' />
       <div :class='$style.space'></div>
-      <Instagram ref='instagram' />
-      <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='follow the guide to becoming'
                       green='a ninja grower'
@@ -42,6 +40,14 @@
       <LatestGuide />
       <div :class='$style.space'></div>
       <Youtube ref='youtube' />
+      <div :class='$style.space'></div>
+      <div :class='$style.title'>
+        <SectionTitle title='Join the community'
+                      green='of growbox builders'
+                      title2='What will you build?'
+                      separator='true'/>
+      </div>
+      <Examples ref='examples' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 1'
@@ -122,9 +128,10 @@ import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
+import Examples from '~/components/home/examples.vue'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples,},
   data() {
     return {
       showPopup: false,
