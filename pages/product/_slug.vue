@@ -50,7 +50,6 @@
             </nuxt-link>
           </div>
           <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
-          <div :id='$style.tagline' v-if='brandProduct.tagline && brandProduct.tagline != product.tagline' v-html='$md.render(product.tagline)'></div>
           <div :id='$style.description' v-if='product.description' v-html='$md.render(product.description)'></div>
           <div :id='$style.description' v-if='brandProduct.description && brandProduct.description != product.description' v-html='$md.render(brandProduct.description)'></div>
           <div :id='$style.description' v-if='product.bulletpoints' v-html='$md.render(product.bulletpoints)'></div>

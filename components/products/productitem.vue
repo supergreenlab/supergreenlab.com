@@ -25,7 +25,6 @@
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
       From <b :id='seller.id == "recT9nIg4ahFv9J29" ? $style.green : $style.normal'>{{ seller.name }}</b>
       <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
-      <div :id='$style.tagline' v-if='brandProduct.tagline && brandProduct.tagline != product.tagline' v-html='$md.render(product.tagline)'></div>
     </nuxt-link>
     <div :class='$style.price'>
       <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />

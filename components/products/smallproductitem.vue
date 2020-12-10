@@ -30,7 +30,6 @@
           From <b>{{ seller.name }}</b>
         </nuxt-link>
         <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
-        <div :id='$style.tagline' v-if='brandProduct.tagline && brandProduct.tagline != product.tagline' v-html='$md.render(product.tagline)'></div>
         <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
       </div>
       <div :id='$style.price'>
