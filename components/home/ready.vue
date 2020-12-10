@@ -69,6 +69,7 @@ export default {
   color: #454545
   text-decoration: none
   text-align: center
+  margin: 0 5pt
 
 .step:hover
   text-decoration: underline
@@ -77,15 +78,15 @@ export default {
   transform: scale(1.05)
 
 .logo
-  width: 100pt
-  height: 100pt
+  width: 70pt
+  height: 70pt
   margin-bottom: 5pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
   transition: transform 0.2s
   @media only screen and (max-width: 600pt)
-    width: 70pt
-    height: 70pt
+    width: 50pt
+    height: 50pt
 
 </style>
