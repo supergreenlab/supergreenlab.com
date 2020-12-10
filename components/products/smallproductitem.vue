@@ -27,8 +27,10 @@
       <div :id='$style.description'>
         <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
           <h3>{{ brandProduct.name }} BY {{ brand.name }}</h3>
-          From {{ seller.name }}
+          From <b>{{ seller.name }}</b>
         </nuxt-link>
+        <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
+        <div :id='$style.tagline' v-if='brandProduct.tagline && brandProduct.tagline != product.tagline' v-html='$md.render(product.tagline)'></div>
         <div v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
       </div>
       <div :id='$style.price'>
@@ -154,5 +156,12 @@ export default {
 #price
   display: flex
   margin: 10pt 10pt
+
+#tagline
+  font-size: 0.9em
+  font-weight: bold
+
+#tagline p
+  margin: 0
 
 </style>
