@@ -22,7 +22,7 @@
       Checkout some of the amazing builds <b>made by the community</b>.
       From the fanciest to the cheapest, going through the most functional ones.
       All those builds have been made by our <b>community of hundreds of creative growers</b>.<br /><br />
-      <b>Ordering a bundle</b> unlocks access to all those amazing individuals <b>willing to help</b> each other in the comfort of our private discord server.
+      <b>Ordering a bundle</b> unlocks access to all those amazing individuals <b>willing to help</b> each other in the comfort of our <b>private discord server.</b>
       <h2>Join us now!</h2>
     </div>
     <div :id='$style.examples'>

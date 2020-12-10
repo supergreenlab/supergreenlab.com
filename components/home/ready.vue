@@ -69,6 +69,9 @@ export default {
   text-decoration: none
   text-align: center
 
+.step:hover
+  text-decoration: underline
+  
 .step:hover .logo
   transform: scale(1.05)
 
