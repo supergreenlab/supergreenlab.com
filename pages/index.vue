@@ -50,17 +50,22 @@
       <Examples ref='examples' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
+        <SectionTitle title='Ready to grow?'
+                      green='Follow the steps below'
+                      separator='true'/>
+      </div>
+      <Ready ref='ready' />
+      <div :class='$style.space'></div>
+      <div :class='$style.title'>
         <SectionTitle title='STEP 1'
-                      green='CHOOSE YOUR FURNITURE'
-                      :separator=true />
+                      green='CHOOSE YOUR FURNITURE' />
       </div>
       <div :class='$style.shop'>
         <ProductList :products='furnitures' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 2'
-                     green='GET A BUNDLE'
-                     :separator=true />
+                      green='GET A BUNDLE' />
       </div>
       <div :class='$style.space'></div>
       <div :id='$style.bundles'>
@@ -71,27 +76,24 @@
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 3'
-                      green='GET YOUR GROWING MEDIUM'
-                      :separator=true />
+                      green='GET YOUR GROWING MEDIUM' />
       </div>
       <div :class='$style.shop'>
         <ProductList :products='soil' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 4'
-                      green='GET NUTRIENTS'
-                      :separator=true />
+                      green='GET NUTRIENTS' />
       </div>
       <div :class='$style.shop'>
         <ProductList :products='nutrients' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 5'
-                      green='MIGHT NEED SOME TOOLS TOO'
-                      :separator=true />
+                      green='MIGHT NEED SOME TOOLS TOO' />
       </div>
       <div :class='$style.shop'>
-        <ProductList title='STEP 5' subtitle='MIGHT NEED SOME TOOLS TOO' :products='tools' :center=true :maxItems=4 />
+        <ProductList :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
       <Social />
@@ -129,9 +131,10 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 import Examples from '~/components/home/examples.vue'
+import Ready from '~/components/home/ready.vue'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples,},
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
   data() {
     return {
       showPopup: false,

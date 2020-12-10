@@ -47,7 +47,7 @@ export default {
   margin: 0 0 5pt 0
   font-weight: 600
   font-size: 1.1em
-  color: #717171
+  color: #454545
 
 #label > span
   color: red
@@ -56,6 +56,6 @@ export default {
   width: 100%
   border: 1pt solid #ABABAB
   font-weight: 400
-  color: #717171
+  color: #454545
 
 </style>

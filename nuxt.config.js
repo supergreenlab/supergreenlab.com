@@ -42,6 +42,7 @@ export default {
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
     { src: '~plugins/vue-agile.js', ssr: false },
+    { src: '~plugins/vue-touch.js', ssr: false },
     //{ src: '~plugins/pixel.js', ssr: false },
   ],
 

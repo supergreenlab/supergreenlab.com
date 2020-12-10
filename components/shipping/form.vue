@@ -111,7 +111,7 @@ export default {
 
 #container > h2
   margin: 0 0 0 8pt
-  color: #717171
+  color: #454545
   padding: 20pt 0
 
 #nb

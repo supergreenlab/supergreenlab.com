@@ -55,7 +55,7 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
-  color: #717171
+  color: #454545
 
 #title
   width: 100%

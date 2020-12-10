@@ -114,7 +114,7 @@ export default {
     margin-top: 4pt
 
 .price > small
-  color: #717171
+  color: #454545
 
 .smallprice > h1
   color: #787878

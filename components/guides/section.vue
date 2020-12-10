@@ -97,7 +97,7 @@ export default {
   font-weight: 600
 
 .ps h3
-  color: #717171
+  color: #454545
 
 .videosection
   display: flex

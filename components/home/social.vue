@@ -60,7 +60,7 @@ export default {
 
 #container
   display: flex
-  width: 100%
+  width: 100vw
   flex-direction: column
   justify-content: center
   align-items: center
@@ -84,6 +84,9 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   cursor: pointer
+  @media only screen and (max-width: 600px)
+    width: 90pt
+    height: 45pt
 
 #youtube
   background-image: url('~assets/img/youtube.svg')

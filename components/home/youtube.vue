@@ -25,15 +25,21 @@
       <div :class='$style.yt'>
         <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-automated-led-grow-box.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
         <div :class='$style.text'>
-          <h2>How to build an Automated LED Grow Box</h2>
-          <p>Using a swedish furniture and a ninja bundle from our shop you can easily get yourself a stealthy and cheap nano growbox for your personal need. The controller can also manage a second side box for vegging your next grow, so you can harvest every 2 months (depending which strain) instead of every 4 months (typical complete cycle duration).</p>
+          <a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'>
+            <h2>How to build an Automated LED Grow Box</h2>
+            <small>https://www.youtube.com/watch?v=DXwtIjdDvHs</small>
+            <p>Using a swedish furniture and a ninja bundle from our shop you can easily get yourself a stealthy and cheap nano growbox for your personal need. The controller can also manage a second side box for vegging your next grow, so you can harvest every 2 months (depending which strain) instead of every 4 months (typical complete cycle duration).</p>
+          </a>
         </div>
       </div>
       <div :class='$style.yt'>
         <div :class='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-cheapest-growbox-ever.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'></a></div>
         <div :class='$style.text'>
-          <h2>How to build the cheapest growbox ever</h2>
-          <p>Thanks to the low heating led panels, you could even make a grow box out of a cardboard box. Cardboard actually has great properties when it comes to humidity and temperature. We've done a few grows in various cardboard grow box designs, and it surprisingly ended up being one of the best and easiest way to get started.</p>
+          <a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'>
+            <h2>How to build the cheapest growbox ever</h2>
+            <small>https://www.youtube.com/watch?v=7cbxxOMGKCg</small>
+            <p>Thanks to the low heating led panels, you could even make a grow box out of a cardboard box. Cardboard actually has great properties when it comes to humidity and temperature. We've done a few grows in various cardboard grow box designs, and it surprisingly ended up being one of the best and easiest way to get started.</p>
+          </a>
         </div>
       </div>
       <h1></h1>
@@ -88,9 +94,19 @@ export default {
   padding: 0 10pt
 
 .text h2
-  margin-bottom: 5pt
   @media only screen and (max-width: 600px)
     font-size: 1.1em
+
+.text small
+  text-decoration: underline
+
+.text p
+  margin: 5pt 0
+
+.text a
+  display: block
+  text-decoration: none
+  color: #454545
 
 .thumbnail
   position: relative

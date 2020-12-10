@@ -17,34 +17,32 @@
  -->
 
 <template>
-  <v-touch ref="swiper" @swipe="handleSwipe">
-    <section :id='$style.container'>
-      <div :id='$style.intro'>
-        Checkout some of the amazing builds <b>made by the community</b>.
-        From the fanciest to the cheapest, going through the most functional ones.
-        All those builds have been made by our <b>community of hundreds of creative growers</b>.<br /><br />
-        <b>Ordering a bundle</b> unlocks access to all those amazing individuals <b>willing to help</b> each other in the comfort of our private discord server.
-        <h2>Join us now!</h2>
-      </div>
-      <div :id='$style.examples'>
-        <div :class='$style.examplepair' :style='{"opacity": i == n ? 1 : 0}' v-for='(pair, i) in builds'>
-          <div :class='$style.example' v-for='b in pair'>
-            <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
-              <source :src='require(`~/assets/img/${b.video}`)' type="video/mp4">
-              Your browser does not support the video tag.
-            </video> 
-            <div :class='$style.text'>
-              <h2>{{ b.title }}</h2>
-              <p>{{ b.description }}</p>
-            </div>
+  <section v-touch:swipe='handleSwipe' :id='$style.container' ref="swiper" @swipe="handleSwipe">
+    <div :id='$style.intro'>
+      Checkout some of the amazing builds <b>made by the community</b>.
+      From the fanciest to the cheapest, going through the most functional ones.
+      All those builds have been made by our <b>community of hundreds of creative growers</b>.<br /><br />
+      <b>Ordering a bundle</b> unlocks access to all those amazing individuals <b>willing to help</b> each other in the comfort of our private discord server.
+      <h2>Join us now!</h2>
+    </div>
+    <div :id='$style.examples'>
+      <div :class='$style.examplepair' :style='{"opacity": i == n ? 1 : 0}' v-for='(pair, i) in builds'>
+        <div :class='$style.example' v-for='b in pair'>
+          <video :class='$style.video' autoplay loop playsinline muted defaultMuted>
+            <source :src='require(`~/assets/img/${b.video}`)' type="video/mp4">
+            Your browser does not support the video tag.
+          </video> 
+          <div :class='$style.text'>
+            <h2>{{ b.title }}</h2>
+            <p>{{ b.description }}</p>
           </div>
         </div>
       </div>
-      <div :id='$style.pagination'>
-        <div :class='$style.page' v-for='(p, i) in builds' @click='setPage(i)' :id='i == n ? $style.selected : ""'></div>
-      </div>
-    </section>
-  </v-touch>
+    </div>
+    <div :id='$style.pagination'>
+      <div :class='$style.page' v-for='(p, i) in builds' @click='setPage(i)' :id='i == n ? $style.selected : ""'></div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -75,11 +73,16 @@ export default {
       this.$data.n = this.$data.n % this.builds.length
     },
     setPage(n) {
+      n = (n < 0 ? this.builds.length-1 : n) % this.builds.length
       this.$data.n = n
       clearInterval(this.interval)
     },
-    handleSwipe() {
-      console.log('poeut')
+    handleSwipe(e) {
+      if (e == 'left') {
+        this.setPage(this.$data.n + 1)
+      } else if (e == 'right') {
+        this.setPage(this.$data.n - 1)
+      }
     }
   },
   computed: {
