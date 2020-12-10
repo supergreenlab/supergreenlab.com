@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { products, sellingPoints, sellers, brandProducts, brands, regions } from '~/config/products.json'
+import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, relatedProducts } from '~/config/products.json'
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
@@ -39,7 +39,9 @@ export const state = () => {
     sellingPoints,
     sellers,
     brandProducts,
-    brands
+    brands,
+    collections,
+    relatedProducts,
   }
   const saved = window.localStorage.getItem(STORAGE_ITEM)
   if (saved) {
@@ -114,5 +116,7 @@ export const getters = {
   sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
   sellingPointForProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.Product[0] == id)),
 
-  availableRegions: (state, getters) => state.regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id)))
+  availableRegions: (state, getters) => state.regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
+
+  relatedProducts: (state, getters) => id => state.relatedProducts.filter(rp => rp.to[0] == id),
 }

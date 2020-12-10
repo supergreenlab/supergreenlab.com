@@ -60,6 +60,16 @@
           </div>
           <OutOfStock v-if='product.outofstock' />
           <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false />
+          <div v-if='relatedProducts.length' :id='$style.relatedProducts'>
+            <h4>Checkout those too:</h4>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+              <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
+              <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
+              <div>
+                <b>{{ rp.price }}</b>
+              </div>
+            </nuxt-link>
+          </div>
           <div v-if='Object.keys(brandProduct.specs).length'>Specs</div>
           <div v-if='Object.keys(brandProduct.specs).length' :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>
@@ -97,9 +107,9 @@
       <div v-if='guides.length' :id='$style.guides'>
         <Guide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
-      <h2 v-if='relatedProducts.length'>Related products</h2>
-      <div v-if='relatedProducts.length' :id='$style.products'>
-        <ProductList :products='relatedProducts' :maxItems=4 />
+      <h2 v-if='sameTypeProduct.length'>Related products</h2>
+      <div v-if='sameTypeProduct.length' :id='$style.products'>
+        <ProductList :products='sameTypeProduct' :maxItems=4 />
       </div>
     </div>
     <Footer />
@@ -181,6 +191,14 @@ export default {
     variantPrice() {
       return ({ sellingPoint }) => this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint}])
     },
+    relatedProducts() {
+      return this.$store.getters['eshop/relatedProducts'](this.product.id).map(rp => {
+        rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
+        rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
+        rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
+        return rp
+      })
+    },
     guides() {
       return guides.filter(g => {
         return g.requires && g.requires.indexOf(this.product.id) !== -1
@@ -193,7 +211,7 @@ export default {
         return a.indexOf(g) == i
       })
     },
-    relatedProducts() {
+    sameTypeProduct() {
       return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
       })
@@ -371,5 +389,42 @@ export default {
 
 #propose a
   color: #454545
+
+#relatedProducts
+  flex: 1
+  display: flex
+  flex-direction: column
+  align-self: stretch
+  margin: 0 0 10pt 0
+  color: #454545
+  @media only screen and (max-width: 600pt)
+    margin: 0 10pt 10pt 10pt
+
+.relatedProduct
+  display: flex
+  padding: 5pt 0
+  align-items: center
+  justify-content: space-between
+  text-decoration: none
+  font-size: 0.9em
+  color: #454545
+
+.relatedProduct b
+  color: #3bb30b
+
+.relatedProduct:hover
+  text-decoration: underline !important
+  background-color: #dedede !important
+
+.relatedProductPic
+  width: 30pt
+  height: 30pt
+  margin: 0 5pt 0 0
+  background-position: top
+  background-size: contain
+  background-repeat: no-repeat
+
+.relatedProduct:hover .relatedProductText
+  flex: 1
 
 </style>

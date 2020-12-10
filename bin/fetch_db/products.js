@@ -9,12 +9,14 @@ module.exports.fetchProducts = async () => {
   await mkAssetsDir('brandproducts')
   await mkAssetsDir('brands')
   await mkAssetsDir('regions')
-  let products = await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type', 'relatedProducts'])
+  let products = await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type'])
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer'])).filter(sp => sp.ready)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in'])
+  let collections = await fetchTable('Collections', ['slug', 'Product', 'order'])
+  let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
 
   const regionTree = (region, acc=[]) => {
     acc.push(region)
@@ -135,6 +137,8 @@ module.exports.fetchProducts = async () => {
     brandProducts,
     brands,
     regions,
+    collections,
+    relatedProducts,
   })
   await fs.writeFile('config/products.json', productsJSON)
 }
