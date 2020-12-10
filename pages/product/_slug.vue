@@ -312,7 +312,7 @@ export default {
   margin: 10pt 0
 
 #addtocart
-  flex: 0.3
+  flex: 0.4
   display: flex
   flex-direction: column
   align-items: center
@@ -414,7 +414,6 @@ export default {
 
 .relatedProduct:hover
   text-decoration: underline !important
-  background-color: #dedede !important
 
 .relatedProductPic
   width: 30pt
@@ -424,7 +423,7 @@ export default {
   background-size: contain
   background-repeat: no-repeat
 
-.relatedProduct:hover .relatedProductText
+.relatedProductText
   flex: 1
 
 </style>

@@ -118,5 +118,5 @@ export const getters = {
 
   availableRegions: (state, getters) => state.regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
 
-  relatedProducts: (state, getters) => id => state.relatedProducts.filter(rp => rp.to[0] == id),
+  relatedProducts: (state, getters) => id => state.relatedProducts.filter(rp => rp.to[0] == id).sort((rp1, rp2) => rp1.order - rp2.order),
 }
