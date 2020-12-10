@@ -27,8 +27,8 @@
         <div :class='$style.text'>
           <a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'>
             <h2>How to build an Automated LED Grow Box</h2>
-            <small>https://www.youtube.com/watch?v=DXwtIjdDvHs</small>
             <p>Using a swedish furniture and a ninja bundle from our shop you can easily get yourself a stealthy and cheap nano growbox for your personal need. The controller can also manage a second side box for vegging your next grow, so you can harvest every 2 months (depending which strain) instead of every 4 months (typical complete cycle duration).</p>
+            <small>https://www.youtube.com/watch?v=DXwtIjdDvHs</small>
           </a>
         </div>
       </div>
@@ -37,8 +37,8 @@
         <div :class='$style.text'>
           <a href='https://www.youtube.com/watch?v=7cbxxOMGKCg' target='_blank'>
             <h2>How to build the cheapest growbox ever</h2>
-            <small>https://www.youtube.com/watch?v=7cbxxOMGKCg</small>
             <p>Thanks to the low heating led panels, you could even make a grow box out of a cardboard box. Cardboard actually has great properties when it comes to humidity and temperature. We've done a few grows in various cardboard grow box designs, and it surprisingly ended up being one of the best and easiest way to get started.</p>
+            <small>https://www.youtube.com/watch?v=7cbxxOMGKCg</small>
           </a>
         </div>
       </div>

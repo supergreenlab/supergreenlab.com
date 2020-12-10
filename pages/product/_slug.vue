@@ -72,7 +72,6 @@
               </div>
             </nuxt-link>
           </div>
-          <div v-if='Object.keys(brandProduct.specs).length'>Specs</div>
           <div v-if='Object.keys(brandProduct.specs).length' :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.pot'>Volume<b>{{ brandProduct.specs.pot.volume.value }}{{ brandProduct.specs.pot.volume.unit }}</b></div>
@@ -331,6 +330,7 @@ export default {
   margin: 5pt 2pt
   padding: 5pt 10pt
   border-radius: 5pt
+  color: #454545
   @media only screen and (max-width: 600pt)
     width: 80%
 
