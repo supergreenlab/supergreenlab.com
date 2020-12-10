@@ -27,7 +27,7 @@
       <b>&nbsp;then&nbsp;</b>
       <nuxt-link :class='$style.step' to='/discord'>
         <div :class='$style.logo' :id='$style.discord'></div>
-        <small>Still got question?</small>
+        <small>Still got questions?</small>
         Join the discord server<br />
         <small>Ask us anything!</small>
       </nuxt-link>
