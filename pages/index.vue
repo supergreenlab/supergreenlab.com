@@ -245,6 +245,8 @@ export default {
   background-color: #eaeaea
 
 .shop
+  display: flex
+  width: 100%
   max-width: 900pt
 
 #bundles

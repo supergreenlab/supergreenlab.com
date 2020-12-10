@@ -59,6 +59,7 @@ export default {
 
 #container
   display: flex
+  width: 100%
   flex-direction: column
   justify-content: center
 
