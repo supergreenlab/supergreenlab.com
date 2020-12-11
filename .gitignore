@@ -90,6 +90,7 @@ assets/img/brandproducts
 assets/img/sellers
 assets/img/regions
 assets/img/links
+static/guides/
 config/products.json
 config/guides.json
 config/guide-*.json

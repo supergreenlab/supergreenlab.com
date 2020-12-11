@@ -60,8 +60,8 @@
             <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
           </div>
           <OutOfStock v-if='product.outofstock' />
-          <AddToCart :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false />
-          <div v-if='relatedProducts.length' :id='$style.relatedProducts'>
+          <AddToCart :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
+          <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>Checkout those too:</h4>
             <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
@@ -134,7 +134,8 @@ export default {
   components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductList, Region, Footer, },
   data() {
     return {
-      showProposeSellingPoint: false
+      showProposeSellingPoint: false,
+      addedToCart: false
     }
   },
   computed: {
@@ -225,6 +226,9 @@ export default {
     proposeSellingPoint() {
       const width = 800
       window.open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=533,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+    },
+    handleAddToCart() {
+      this.$data.addedToCart = true
     }
   },
 }
@@ -396,14 +400,18 @@ export default {
   display: flex
   flex-direction: column
   align-self: stretch
+  border-radius: 5pt
   margin: 0 0 10pt 0
   color: #454545
   @media only screen and (max-width: 600pt)
     margin: 0 10pt 10pt 10pt
 
+#relatedProducts h4
+  margin: 5pt 5pt
+
 .relatedProduct
   display: flex
-  padding: 5pt 0
+  padding: 5pt 5pt
   align-items: center
   justify-content: space-between
   text-decoration: none
@@ -430,5 +438,14 @@ export default {
 #tagline
   font-weight: bold
   color: #454545
+
+@keyframes highlight {
+  0%  {background-color: transparent;}
+  50%  {background-color: #d5d5d5;}
+  100%  {background-color: transparent;}
+}
+
+.highlight
+  animation: highlight 0.8s linear 2
 
 </style>

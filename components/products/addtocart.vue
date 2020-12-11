@@ -45,9 +45,13 @@ export default {
       const { product, sellingPoint, } = this.$props
       const { n } = this.$data
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.slug)
-      this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
       this.$data.activated = true
-      setTimeout(() => {this.$data.activated = false; this.$data.added = true}, 800)
+      setTimeout(() => {
+        this.$data.activated = false
+        this.$data.added = true
+        this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
+        this.$emit('click')
+      }, 800)
       setTimeout(() => this.$data.added = false, 2000)
     },
   },
