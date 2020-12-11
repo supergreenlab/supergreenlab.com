@@ -227,7 +227,7 @@ export default {
     sameTypeProduct() {
       return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
-      })
+      }).sort((p1, p2) => (Math.random() * 2) - 1)
     },
     productURL() {
       if (this.seller.type == 'amazon') return `${this.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
