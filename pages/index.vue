@@ -61,14 +61,14 @@
                       green='CHOOSE YOUR FURNITURE' />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='furnitures' :center=true :maxItems=4 />
+        <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 2'
                       green='GET A BUNDLE' />
       </div>
       <div :class='$style.space'></div>
-      <div :id='$style.bundles'>
+      <div ref='bundles' :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id'>
           <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
@@ -79,24 +79,24 @@
                       green='GET YOUR GROWING MEDIUM' />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='soil' :center=true :maxItems=4 />
+        <ProductList ref='homepage-soil' :products='soil' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 4'
                       green='GET NUTRIENTS' />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='nutrients' :center=true :maxItems=4 />
+        <ProductList ref='homepage-nutrients' :products='nutrients' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 5'
                       green='MIGHT NEED SOME TOOLS TOO' />
       </div>
       <div :class='$style.shop'>
-        <ProductList :products='tools' :center=true :maxItems=4 />
+        <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
-      <Social />
+      <Social ref='social' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
       <!--<div :class='$style.space'></div>
@@ -195,8 +195,9 @@ export default {
           if (this.lastEvent == name) {
             return;
           }
-          const ref = this.$refs[name],
-                { y, height } = ref.$el.getBoundingClientRect(),
+          const ref = this.$refs[name]
+          let $el = ref.$el ? ref.$el : ref
+          const { y, height } = $el.getBoundingClientRect(),
                 centery = y + height / 2,
                 winh = window.innerHeight
 

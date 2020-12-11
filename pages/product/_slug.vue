@@ -73,14 +73,15 @@
           </div>
           <div v-if='Object.keys(brandProduct.specs).length' :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.color'>Color<b>{{ brandProduct.specs.color }}</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.pot'>Volume<b>{{ brandProduct.specs.pot.volume.value }}{{ brandProduct.specs.pot.volume.unit }}</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.soil'>Volume<b>{{ brandProduct.specs.soil.volume.value }}{{ brandProduct.specs.soil.volume.unit }}</b></div>
 
+            <div :class='$style.spec' v-if='brandProduct.specs.weight'>Weight<b>{{ brandProduct.specs.weight.value }}{{ brandProduct.specs.weight.unit }}</b></div>
+
             <div :class='$style.spec' v-if='brandProduct.specs.power'>Power<b>From <nuxt-link to='/product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-world'>Controller</nuxt-link></b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.width'>Width<b>{{ brandProduct.specs.width }}cm</b></div>
-            <div :class='$style.spec' v-if='brandProduct.specs.width'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
-
-            <div :class='$style.spec' v-if='brandProduct.specs.width'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.height'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
 
             <div v-if='brandProduct.specs.dimensions'>
               <b>Dimensions</b>
@@ -94,12 +95,33 @@
               <div :class='$style.spec'>CFM<b>{{ brandProduct.specs.ventilation.CFM }}</b></div>
               <div :class='$style.spec'>A<b>{{ brandProduct.specs.ventilation.A }}</b></div>
             </div>
+            <div v-if='brandProduct.specs.tape'>
+              <b>Tape dimensions</b>
+              <div :class='$style.spec'>Width<b>{{ brandProduct.specs.tape.width.value }}{{ brandProduct.specs.tape.width.unit }}</b></div>
+              <div :class='$style.spec'>Length<b>{{ brandProduct.specs.tape.length.value }}{{ brandProduct.specs.tape.length.unit }}</b></div>
+            </div>
             <div v-if='brandProduct.specs.accuracy'>
               <b>Accuracy</b>
               <div :class='$style.spec'>Temperature<b>+/-{{ brandProduct.specs.accuracy.temperature }}°</b></div>
               <div :class='$style.spec'>Humidity<b>+/-{{ brandProduct.specs.accuracy.humidity }}%</b></div>
             </div>
-
+            <div v-if='brandProduct.specs.keymetrics'>
+              <div v-if='brandProduct.specs.keymetrics.distance'>
+                <b>Distance to plant</b>
+                <div :class='$style.spec'>Min<b>{{ brandProduct.specs.keymetrics.distance.min }}{{ brandProduct.specs.keymetrics.distance.unit }}</b></div>
+                <div :class='$style.spec'>Max<b>{{ brandProduct.specs.keymetrics.distance.max }}{{ brandProduct.specs.keymetrics.distance.unit }}</b></div>
+              </div>
+              <div v-if='brandProduct.specs.keymetrics.power'>
+                <b>Consumption</b>
+                <div :class='$style.spec'>Min<b>{{ brandProduct.specs.keymetrics.power.min }}{{ brandProduct.specs.keymetrics.power.unit }}</b></div>
+                <div :class='$style.spec'>Max<b>{{ brandProduct.specs.keymetrics.power.max }}{{ brandProduct.specs.keymetrics.power.unit }}</b></div>
+              </div>
+              <div v-if='brandProduct.specs.keymetrics.coverage'>
+                <b>Coverage</b>
+                <div :class='$style.spec'>Min<b>{{ brandProduct.specs.keymetrics.coverage.min }}x{{ brandProduct.specs.keymetrics.coverage.min }}{{ brandProduct.specs.keymetrics.coverage.unit }}</b></div>
+                <div :class='$style.spec'>Max<b>{{ brandProduct.specs.keymetrics.coverage.max }}x{{ brandProduct.specs.keymetrics.coverage.max }}{{ brandProduct.specs.keymetrics.coverage.unit }}</b></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
