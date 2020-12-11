@@ -168,7 +168,7 @@ export default {
       return {promocode, discount}
     },
     furnitures() {
-      return this.$store.getters['eshop/productsWithTypes'](['FURNITURE'])
+      return this.$store.getters['eshop/collection']('homepage-furniture')
     },
     soil() {
       return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])

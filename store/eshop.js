@@ -92,6 +92,7 @@ export const getters = {
     }
     return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
   },
+  collection: (state, getters) => slug => state.collections.filter(c => c.slug == slug).sort((c1, c2) => c1.order - c2.order).map(c => getters.product(c.Product[0])),
 
   regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {
