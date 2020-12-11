@@ -54,7 +54,7 @@ export default {
     },
     toggleShowAll() {
       this.$data.showAllProducts = !this.$data.showAllProducts
-      if (showAllProducts) {
+      if (this.$data.showAllProducts) {
         this.$matomo && this.$matomo.trackEvent('productlist', 'showAll')
       }
     }
