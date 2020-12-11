@@ -363,8 +363,8 @@ export default {
 
 #specs
   background-color: #dedede
-  width: 100%
-  margin: 5pt 2pt
+  align-self: stretch
+  margin: 5pt 20pt
   padding: 5pt 10pt
   border-radius: 5pt
   color: #454545
@@ -375,7 +375,7 @@ export default {
   display: flex
   justify-content: space-between
   border-bottom: 1pt dashed #ababab
-  margin: 7pt 0
+  margin: 7pt 10pt
   padding: 0 0 3pt 0
 
 #variants
