@@ -134,7 +134,7 @@ export default {
   components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductList, Region, Footer, },
   head() {
     return {
-      title: `SuperGreenLab - ${this.brandProduct.name}`,
+      title: `SuperGreenLab - ${this.brandProduct.name} - ${this.product.tagline}`,
       meta: [
         {
           hid: 'description',
