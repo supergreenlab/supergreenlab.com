@@ -1,18 +1,28 @@
 const fs = require('fs/promises')
 
-const { fetchTable, fetchAttachement, emptyAssetsDir, mkAssetsDir, noPic } = require('./utils.js')
+const { fetchTable, fetchAttachement, emptyAssetsDir, mkAssetsDir, mkStaticDir, noPic } = require('./utils.js')
 
 const { FETCH_DEV_GUIDES } = process.env
 
 module.exports.fetchGuides = async () => {
   await mkAssetsDir('guides')
   await mkAssetsDir('links')
-  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links'])
-  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links'])
+  await mkStaticDir('guides')
+  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements',])
+  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements',])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
   let picPromise = Promise.resolve()
   const guidesWithSections = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
+    g.attachements = (g.attachements || []).map(a => {
+      try {
+        const { p, data } = fetchAttachement(picPromise, a, 'guides')
+        picPromise = p
+        return data
+      } catch(e) {
+        return noPic
+      }
+    })
     try {
       const { p, data } = fetchAttachement(picPromise, g.media[0], 'guides')
       picPromise = p
@@ -30,6 +40,15 @@ module.exports.fetchGuides = async () => {
     g.links = (g.links || []).map(l => bookmarks.find(b => b.id == l))
 
     g.sections = guideSections.filter(gs => (g.sections || []).indexOf(gs.id) != -1).map(gs => {
+      gs.attachements = (gs.attachements || []).map(a => {
+        try {
+          const { p, data } = fetchAttachement(picPromise, a, 'guides')
+          picPromise = p
+          return data
+        } catch(e) {
+          return noPic
+        }
+      })
       try {
         const { p, data } = fetchAttachement(picPromise, gs.media[0], 'guides')
         picPromise = p

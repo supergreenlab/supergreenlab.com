@@ -23,6 +23,13 @@
       <div :class='$style.text'>
         <h1 v-if='!guideSection.sections && guideSection.title'>{{ guideSection.title }}</h1>
         <p :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></p>
+        <b v-if='guideSection.attachements.length'>Attachements</b>
+        <div v-if='guideSection.attachements.length' :id='$style.attachements'>
+          <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank'>
+            <img src='~/assets/img/pdf_icon.png' />
+            {{ a.fileName }}
+          </a>
+        </div>
         <b v-if='guideSection.links.length'>Useful links</b>
         <div v-if='guideSection.links.length' :id='$style.links'>
           <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
@@ -109,6 +116,20 @@ export default {
 
 .videosection > p
   margin: 10pt
+
+#attachements
+  display: flex
+  flex-direction: column
+
+.attachement
+  display: flex
+  align-items: center
+  color: #454545
+  margin: 5pt 0
+
+.attachement img
+  margin-right: 5pt
+  width: 20pt
 
 #links
   display: flex

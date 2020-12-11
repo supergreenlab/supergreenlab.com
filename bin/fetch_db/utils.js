@@ -4,6 +4,7 @@ const YAML = require('yaml')
 const axios = require('axios')
 
 const assetsPath = 'assets/img'
+const staticPath = 'static'
 
 const Airtable = require('airtable')
 
@@ -11,8 +12,8 @@ const { AIRTABLE_BASE, AIRTABLE_APIKEY } = process.env
 Airtable.configure({ apiKey: AIRTABLE_APIKEY })
 const eshop = Airtable.base(AIRTABLE_BASE)
 
-const fetchFile = async (url, dst) => {
-  dst = `${assetsPath}/${dst}`
+const fetchFile = async (url, dst, path=assetsPath) => {
+  dst = `${path}/${dst}`
   console.log(`Fetching file ${url} to ${dst}`)
   try {
     if (await fs.access(dst) == null) {
@@ -44,6 +45,12 @@ module.exports.mkAssetsDir = async (dir) => {
   } catch(e) {}
 }
 
+module.exports.mkStaticDir = async (dir) => {
+  dir = `${staticPath}/${dir}`
+  try {
+    await fs.mkdir(dir)
+  } catch(e) {}
+}
 module.exports.fetchAttachement = (p, attachement, dir) => {
   if (attachement.type.indexOf('image/') == 0) {
     let ext = attachement.type.split('/')[1]
@@ -68,7 +75,17 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
     p = p.then(async () => {
       await fetchFile(attachement.url, filePath)
     })
-    return { p, data: { filePath, type: attachement.type } }
+    return { p, attachement, data: { filePath, type: attachement.type } }
+  } else if (attachement.type == 'application/pdf') {
+    const filePath = `${dir}/${attachement.id}.pdf`,
+      fileLarge = `${dir}/${attachement.id}.png`,
+      fileSmall = `${dir}/${attachement.id}_small.png`
+    p = p.then(async () => {
+      await fetchFile(attachement.url, filePath, staticPath)
+      await fetchFile(attachement.thumbnails.small.url, fileSmall)
+      await fetchFile(attachement.thumbnails.large.url, fileLarge)
+    })
+    return { p, attachement, data: { fileName: attachement.filename, fileLarge, fileSmall, filePath, type: attachement.type } }
   }
 }
 
