@@ -40,8 +40,8 @@
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
       <Section :guideSection='guide' />
-      <div v-for='section in guide.sections' :key='section.id' :ref='section.slug'>
-        <Section :guideSection='section' />
+      <div v-for='(section, i) in guide.sections' :key='section.id' :ref='section.slug'>
+        <Section :guideSection='section' :index='i' />
         <div :class='$style.separator'></div>
       </div>
       <div v-if='first && !next' :id='$style.congrats'>
@@ -72,6 +72,18 @@ import { guides } from '~/config/guides.json'
 
 export default {
   components: { Header, SectionTitle, Section, Guide, Footer, },
+  head() {
+    return {
+      title: `SuperGreenLab Guides - ${this.guide.name}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.guide.text
+        },
+      ],
+    }
+  },
   data() {
     return {
       showTableOfContent: false,

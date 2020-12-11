@@ -132,6 +132,18 @@ import { guides } from '~/config/guides.json'
 
 export default {
   components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductList, Region, Footer, },
+  head() {
+    return {
+      title: `SuperGreenLab - ${this.brandProduct.name}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.brandProduct.description
+        },
+      ],
+    }
+  },
   data() {
     return {
       showProposeSellingPoint: false,

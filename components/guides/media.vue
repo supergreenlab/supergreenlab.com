@@ -23,12 +23,13 @@
       Your browser does not support the video tag.
     </video>
     <div v-else :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/${media.fileLarge}`)})`}'></div>
+    <div v-if='typeof index != "undefined"' :id='$style.index'>#{{ index+1 }}</div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['media',],
+  props: ['media', 'index',],
 }
 </script>
 
@@ -36,6 +37,7 @@ export default {
 
 #container
   display: flex
+  position: relative
 
 #video
   display: block
@@ -67,5 +69,14 @@ export default {
   @media only screen and (min-width: 600pt)
     box-shadow: -1px 1px 5px #888
 
+#index
+  position: absolute
+  font-family: 'PlumeAd'
+  top: 5pt
+  left: 5pt
+  font-size: 2em
+  -webkit-text-stroke: 1pt white
+  font-weight: bold
+  color: #3bb30b
 
 </style>

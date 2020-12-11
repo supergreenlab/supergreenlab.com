@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.videosection'>
-      <Media :media='guideSection.media' />
+      <Media :index='index' :media='guideSection.media' />
       <div :class='$style.text'>
         <h1 v-if='!guideSection.sections && guideSection.title'>{{ guideSection.title }}</h1>
         <p :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></p>
@@ -57,7 +57,7 @@ import SmallProductList from '~/components/products/smallproductlist.vue'
 import { bookmarks } from '~/config/guides.json'
 
 export default {
-  props: [ 'guideSection', ],
+  props: [ 'index', 'guideSection', ],
   components: { Media, SmallProductList, },
   computed: {
     requires() {
@@ -86,6 +86,7 @@ export default {
   color: #454545
 
 .text
+  flex-basis: 60% !important
   color #454545
 
 .text > h1
@@ -112,7 +113,7 @@ export default {
     flex-direction: column
 
 .videosection > *
-  flex-basis: 50%
+  flex-basis: 40%
 
 .videosection > p
   margin: 10pt
