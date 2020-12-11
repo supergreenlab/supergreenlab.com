@@ -110,9 +110,6 @@ export default {
         this.timeout = setTimeout(() => this.$store.dispatch('checkout/setPromocode', { code: value }), 400)
       },
     },
-    promoDiscount() {
-      return this.$store.getters['checkout/promoDiscount']
-    },
     cart() {
       return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === SGL_SELLER)
     },

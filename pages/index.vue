@@ -68,10 +68,10 @@
                       green='GET A BUNDLE' />
       </div>
       <div :class='$style.space'></div>
-      <div ref='bundles' :id='$style.bundles'>
-        <div :class='$style.bundle' v-for='b in bundles' :key='b.id'>
+      <div :id='$style.bundles'>
+        <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
           <div :id='b.slug'></div>
-          <Bundle :bundle='b' :showdescription='false' :promodiscount='promo.discount' />
+          <Bundle :bundle='b' :showdescription='false' />
         </div>
       </div>
       <div :class='$style.title'>
@@ -179,9 +179,6 @@ export default {
     tools() {
       return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
     },
-    promoDiscount() {
-      return this.$store.getters['checkout/promoDiscount']
-    },
 	},
   methods: {
     closePopup() {
@@ -195,17 +192,20 @@ export default {
           if (this.lastEvent == name) {
             return;
           }
-          const ref = this.$refs[name]
-          let $el = ref.$el ? ref.$el : ref
-          const { y, height } = $el.getBoundingClientRect(),
-                centery = y + height / 2,
-                winh = window.innerHeight
+          let ref = this.$refs[name]
+          if (!ref.length) ref = [ref]
+          ref.forEach((ref) => {
+            const $el = ref.$el ? ref.$el : ref
+            const { y, height } = $el.getBoundingClientRect(),
+              centery = y + height / 2,
+              winh = window.innerHeight
 
-          if (centery > winh / 4 && centery < winh * 3/4) {
-            this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
-            this.lastEvent = name
-            this.$data.currentRef = name
-          }
+            if (centery > winh / 4 && centery < winh * 3/4) {
+              this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
+              this.lastEvent = name
+              this.$data.currentRef = name
+            }
+          })
         })
       }, 250)
     }

@@ -39,9 +39,9 @@
         </div>
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
-      <Section :guideSection='guide' />
-      <div v-for='(section, i) in guide.sections' :key='section.id' :ref='section.slug'>
-        <Section :guideSection='section' :index='i' />
+      <Section :guideSection='guide' :ref='guide.slug' />
+      <div v-for='(section, i) in guide.sections' :key='section.id'>
+        <Section :guideSection='section' :index='i' :ref='section.slug' />
         <div :class='$style.separator'></div>
       </div>
       <div v-if='first && !next' :id='$style.congrats'>
@@ -139,15 +139,20 @@ export default {
           if (this.lastEvent == name) {
             return;
           }
-          const ref = this.$refs[name][0],
-                { y, height } = ref.getBoundingClientRect(),
-                centery = y + height / 2,
-                winh = window.innerHeight
+          let ref = this.$refs[name]
+          if (!ref.length) ref = [ref]
+          ref.forEach((ref) => {
+            const $el = ref.$el ? ref.$el : ref
+            const { y, height } = $el.getBoundingClientRect(),
+              centery = y + height / 2,
+              winh = window.innerHeight
 
-          if (centery > winh / 4 && centery < winh * 3/4) {
-            this.$matomo && this.$matomo.trackEvent(`guide-${this.guide.slug}`, 'scrollto', name)
-            this.lastEvent = name
-          }
+            if (centery > winh / 4 && centery < winh * 3/4) {
+              this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)
+              this.lastEvent = name
+              this.$data.currentRef = name
+            }
+          })
         })
       }, 250)
     },

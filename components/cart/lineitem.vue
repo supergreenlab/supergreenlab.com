@@ -42,7 +42,7 @@
             QTY
             <Number :value='lineItem.n' v-on:input='changeLineItem' />
           </div>
-          <Price :lineItems='[lineItem]' :promoDiscount='promoDiscount' />
+          <Price :lineItems='[lineItem]' />
         </div>
       </div>
       <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.desktopcheckbox'>
@@ -65,7 +65,7 @@ import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   components: {Number, Price, CheckBox,},
-  props: ['lineItem', 'showCheckbox', 'showProductLink', 'promoDiscount'],
+  props: ['lineItem', 'showCheckbox', 'showProductLink'],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
@@ -97,7 +97,6 @@ export default {
       const { lineItem } = this.$props
       this.$store.commit('checkout/checkLineItem', { lineItem, checked: !lineItem.checked })
       if (!lineItem.checked) {
-        console.log('pouet')
         this.$matomo && this.$matomo.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
       }
     },

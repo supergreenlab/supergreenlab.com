@@ -23,11 +23,11 @@
     </div>
     <div :id='$style.body' :class='center ? $style.center : ""'>
       <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
-        <Item :promoDiscount='promoDiscount' :product='product' />
+        <Item :product='product' />
       </div>
     </div>
     <div :id='$style.propose'>
-      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='showAllProducts = !showAllProducts'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
+      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
       <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
     </div>
   </section>
@@ -39,7 +39,7 @@ import Item from '~/components/products/productitem.vue'
 import Region from '~/components/products/region.vue'
 
 export default {
-  props: ['promoDiscount', 'products', 'center', 'maxItems',],
+  props: ['products', 'center', 'maxItems',],
   components: {SectionTitle, Item, Region,},
   data() {
     return {
@@ -50,6 +50,13 @@ export default {
     proposeSellingPoint() {
       const width = 800
       window.open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+      this.$matomo && this.$matomo.trackEvent('productlist', 'propose')
+    },
+    toggleShowAll() {
+      this.$data.showAllProducts = !this.$data.showAllProducts
+      if (showAllProducts) {
+        this.$matomo && this.$matomo.trackEvent('productlist', 'showAll')
+      }
     }
   },
 }

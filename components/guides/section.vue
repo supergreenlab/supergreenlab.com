@@ -73,7 +73,6 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 100%
   font-size: 1.1em
   margin: 60pt 10pt
   @media only screen and (max-width: 600pt)
