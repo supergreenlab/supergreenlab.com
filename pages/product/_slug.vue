@@ -228,7 +228,7 @@ export default {
       window.open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=533,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
     },
     handleAddToCart() {
-      this.$data.addedToCart = true
+      setTimeout(() => this.$data.addedToCart = true, 1000)
     }
   },
 }
@@ -316,7 +316,7 @@ export default {
   margin: 10pt 0
 
 #addtocart
-  flex: 0.4
+  flex: 0.45
   display: flex
   flex-direction: column
   align-items: center
@@ -446,6 +446,6 @@ export default {
 }
 
 .highlight
-  animation: highlight 0.8s linear 2
+  animation: highlight 0.7s linear 2
 
 </style>
