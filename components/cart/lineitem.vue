@@ -28,7 +28,7 @@
       </nuxt-link>
       <div :id='$style.infos'>
         <div :id='$style.description'>
-          <h3 :id='$style.soldby'>SOLD BY&nbsp;<a :id='$style.seller' :href='seller.url' target='_blank'>{{ seller.name }}</a></h3>
+          <h3 :id='$style.soldby'>SOLD AT&nbsp;<a :id='$style.seller' :href='productURL' target='_blank'>{{ seller.name }}</a></h3>
           <nuxt-link :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
             <b>{{ brandProduct.tagline }}</b>
             <p v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></p>
@@ -96,6 +96,10 @@ export default {
     toggleChecked() {
       const { lineItem } = this.$props
       this.$store.commit('checkout/checkLineItem', { lineItem, checked: !lineItem.checked })
+      if (!lineItem.checked) {
+        console.log('pouet')
+        this.$matomo && this.$matomo.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
+      }
     },
   }
 }

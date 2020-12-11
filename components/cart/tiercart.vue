@@ -35,6 +35,9 @@
       <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ price }}</b></a><br />
       <small>*price may vary</small>
     </div>
+    <div v-else :id='$style.checkout'>
+      <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />
+    </div>
   </section>
 </template>
 
@@ -54,7 +57,12 @@ export default {
   methods: {
     toggleAll() {
       const checked = this.checked
-      this.cart.forEach(lineItem => this.$store.commit('checkout/checkLineItem', { lineItem, checked: !checked }))
+      this.cart.forEach(lineItem => {
+        this.$store.commit('checkout/checkLineItem', { lineItem, checked: !checked })
+        if (!checked && !lineItem.checked) {
+          this.$matomo && this.$matomo.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
+        }
+      })
     },
   },
   computed: {

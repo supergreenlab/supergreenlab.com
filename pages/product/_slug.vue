@@ -38,7 +38,7 @@
             <Region />
           </div>
           <div :id='$style.seller'>
-            SOLD BY <a :href='productURL' target='_blank'>{{ seller.name }}</a>
+            SOLD AT <a :href='productURL' target='_blank'>{{ seller.name }}</a>
           </div>
           <div :id='$style.propose' v-if='seller.name != "SuperGreenLab"'>
             <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
@@ -51,9 +51,20 @@
           </div>
           <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
           <div :id='$style.description' v-if='product.description' v-html='$md.render(product.description)'></div>
+
           <div :id='$style.description' v-if='brandProduct.description && brandProduct.description != product.description' v-html='$md.render(brandProduct.description)'></div>
           <div :id='$style.description' v-if='product.bulletpoints' v-html='$md.render(product.bulletpoints)'></div>
           <div :id='$style.description' v-if='brandProduct.bulletpoints && brandProduct.bulletpoints != product.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
+          <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
+            <h4>This product can be used with:</h4>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+              <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
+              <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
+              <div>
+                <b>{{ rp.price }}</b>
+              </div>
+            </nuxt-link>
+          </div>
         </div>
         <div :id='$style.addtocart'>
           <div :id='$style.price'>
@@ -363,11 +374,12 @@ export default {
 
 #specs
   background-color: #dedede
-  align-self: stretch
-  margin: 5pt 20pt
-  padding: 5pt 10pt
+  margin: 5pt 2pt
+  padding: 5pt 20pt
   border-radius: 5pt
   color: #454545
+  @media only screen and (min-width: 600pt)
+    align-self: stretch
   @media only screen and (max-width: 600pt)
     width: 80%
 
@@ -375,7 +387,7 @@ export default {
   display: flex
   justify-content: space-between
   border-bottom: 1pt dashed #ababab
-  margin: 7pt 10pt
+  margin: 7pt 0
   padding: 0 0 3pt 0
 
 #variants
@@ -433,11 +445,13 @@ export default {
   flex: 1
   display: flex
   flex-direction: column
-  align-self: stretch
   border-radius: 5pt
   margin: 0 0 10pt 0
   color: #454545
+  @media only screen and (min-width: 600pt)
+    align-self: stretch
   @media only screen and (max-width: 600pt)
+    width: 80%
     margin: 0 10pt 10pt 10pt
 
 #relatedProducts h4

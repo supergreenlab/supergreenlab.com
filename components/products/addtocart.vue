@@ -20,7 +20,8 @@
   <section :id='$style.container' :class='small ? $style.small : ""'>
     <div>
       <Number v-model='n' :small=true />
-      <a :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a><br />
+      <nuxt-link v-if='done' :id='$style.button' to='/cart'><b>GO TO CART</b></nuxt-link>
+      <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
     </div>
     <p v-if='discreet !== false'>Our bundles are shipped discreet</p>
   </section>
@@ -36,8 +37,12 @@ export default {
     return {
       n: 1,
       activated: false,
-      added: false
+      added: false,
+      done: false
     }
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeout)
   },
   methods: {
     addToCartClicked() {
@@ -46,13 +51,15 @@ export default {
       const { n } = this.$data
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.slug)
       this.$data.activated = true
-      setTimeout(() => {
+      this.timeout = setTimeout(() => {
         this.$data.activated = false
         this.$data.added = true
         this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
         this.$emit('click')
+        this.timeout = setTimeout(() => {
+          this.$data.done = true
+        }, 2000)
       }, 800)
-      setTimeout(() => this.$data.added = false, 2000)
     },
   },
 }
