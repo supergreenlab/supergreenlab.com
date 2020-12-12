@@ -7,7 +7,7 @@
     "dev": "nuxt",
     "build": "bin/fetch_db/fetch_db.js && nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "generate": "bin/fetch_db/fetch_db.js && nuxt generate",
     "fetch_db": "bin/fetch_db/fetch_db.js"
   },
   "dependencies": {
