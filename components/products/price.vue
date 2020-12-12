@@ -59,19 +59,24 @@ export default {
   computed: {
     offer() {
       const { lineItems } = this.$props
+      if (lineItems.length == 0) return 0
       if (lineItems.length != 1 || !lineItems[0].sellingPoint.offer) return 0 
       return { currency: lineItems[0].sellingPoint.currency, price: this.$store.getters['checkout/lineItemsPrice'](lineItems, true, true), value: lineItems[0].sellingPoint.offer }
     },
     discount() {
-      const { discount } = this.$store.getters['checkout/promoDiscount'](this.$props.lineItems[0].sellingPoint)
+      const { lineItems } = this.$props
+      if (lineItems.length == 0) return 0
+      const { discount } = this.$store.getters['checkout/promoDiscount'](lineItems[0].sellingPoint)
       return discount
     },
     price() {
       const { lineItems } = this.$props
+      if (lineItems.length == 0) return () => 0
       return (promo) => this.$store.getters['checkout/lineItemsPrice'](lineItems, promo)
     },
     isSGL() {
       const { lineItems } = this.$props
+      if (lineItems.length == 0) return false
       return lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29'
     }
   },

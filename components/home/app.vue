@@ -25,7 +25,6 @@
     </div>
     <div :id='$style.screens'>
 
-      <!-- Keep track screen -->
       <div :class='$style.screen' :style='screen == 0 ? {"opacity": 1} : {"opacity": 0}'>
         <div :class='$style.previous' @click='previous'></div>
         <div :class='$style.screenpic' :id='$style.keeptrack'></div>
@@ -46,9 +45,7 @@
         </div>
         <div :class='$style.next' @click='next'></div>
       </div>
-      <!-- Keep track screen -->
 
-      <!-- Record actions & progress screen -->
       <div :class='$style.screen' :style='screen == 1 ? {"opacity": 1} : {"opacity": 0}'>
         <div :class='$style.previous' @click='previous'></div>
         <div :class='$style.screenpic' :id='$style.recordactionsprogress'></div>
@@ -65,9 +62,7 @@
         </div>
         <div :class='$style.next' @click='next'></div>
       </div>
-      <!-- Keep track screen -->
 
-      <!-- Learn directly from the Community screen -->
       <div :class='$style.screen' :style='screen == 2 ? {"opacity": 1} : {"opacity": 0}'>
         <div :class='$style.previous' @click='previous'></div>
         <div :class='$style.screenpic' :id='$style.explore'></div>
@@ -82,9 +77,7 @@
         </div>
         <div :class='$style.next' @click='next'></div>
       </div>
-      <!-- Learn directly from the Community screen -->
 
-      <!-- Alerts & Reminders to prevent disasters screen -->
       <div :class='$style.screen' :style='screen == 3 ? {"opacity": 1} : {"opacity": 0}'>
         <div :class='$style.previous' @click='previous'></div>
         <div :class='$style.screenpic' :id='$style.alerts'></div>
@@ -100,7 +93,6 @@
         </div>
         <div :class='$style.next' @click='next'></div>
       </div>
-      <!-- Alerts & Reminders to prevent disasters screen -->
 
     </div>
     <div :class='$style.stores'>

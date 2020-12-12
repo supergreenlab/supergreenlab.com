@@ -99,8 +99,6 @@
       <Social ref='social' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
-      <!--<div :class='$style.space'></div>
-      <PreOrder ref='preorder' />-->
     </div>
     <Footer />
     <transition name="popup">
@@ -133,8 +131,22 @@ import Promocode from '~/components/layout/overlay-promocode.vue'
 import Examples from '~/components/home/examples.vue'
 import Ready from '~/components/home/ready.vue'
 
+import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
+
 export default {
   components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
+  head() {
+    return {
+      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Ultimate grow shop and guides for home growing stealth grow boxes building. Build your own connected grow box with our app and our complete bundle for DIY furniture-as-a-growbox: automated and controlled with an app. Comes with light, ventilation, and sensors (temp and RH).'
+        },
+      ],
+    }
+  },
   data() {
     return {
       showPopup: false,
@@ -142,16 +154,16 @@ export default {
     }
   },
   created () {
-    window.addEventListener('scroll', this.handleScroll);
+    addEventListener('scroll', this.handleScroll);
   },
   destroyed () {
     if (this.timeout) clearTimeout(this.timeout)
-    window.removeEventListener('scroll', this.handleScroll);
+    removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    if (!(this.$store.state.checkout.promocode.value || window.localStorage.getItem('popupShown2'))) {
-      const nVisits = parseInt(window.localStorage.getItem('nVisits2') || '1')
-      window.localStorage.setItem('nVisits2', nVisits+1)
+    if (!process.server && !(this.$store.state.checkout.promocode.value || loadFromStorage('popupShown2'))) {
+      const nVisits = parseInt(loadFromStorage('nVisits2') || '1')
+      saveToStorage('nVisits2', nVisits+1)
       if (nVisits > 3) {
         setTimeout(() => this.$data.showPopup = true, 3000)
       }
@@ -182,7 +194,7 @@ export default {
 	},
   methods: {
     closePopup() {
-      window.localStorage.setItem('popupShown2', 1)
+      saveToStorage('popupShown2', 1)
       this.$data.showPopup = false
     },
     handleScroll(e) {
@@ -198,7 +210,7 @@ export default {
             const $el = ref.$el ? ref.$el : ref
             const { y, height } = $el.getBoundingClientRect(),
               centery = y + height / 2,
-              winh = window.innerHeight
+              winh = innerHeight()
 
             if (centery > winh / 4 && centery < winh * 3/4) {
               this.$matomo && this.$matomo.trackEvent('front-page', 'scrollto', name)

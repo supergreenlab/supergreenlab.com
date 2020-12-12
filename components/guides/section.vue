@@ -22,23 +22,23 @@
       <Media :index='index' :media='guideSection.media' />
       <div :class='$style.text'>
         <h1 v-if='!guideSection.sections && guideSection.title'>{{ guideSection.title }}</h1>
-        <p :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></p>
-        <b v-if='guideSection.attachements.length'>Attachements</b>
-        <div v-if='guideSection.attachements.length' :id='$style.attachements'>
+        <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
+        <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
+        <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>
           <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank'>
             <img src='~/assets/img/pdf_icon.png' />
             {{ a.fileName }}
           </a>
         </div>
-        <b v-if='guideSection.links.length'>Useful links</b>
-        <div v-if='guideSection.links.length' :id='$style.links'>
+        <b v-if='guideSection.links && guideSection.links.length'>Useful links</b>
+        <div v-if='guideSection.links && guideSection.links.length' :id='$style.links'>
           <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
             <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
               <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
             </div>
             <div :class='$style.linktext'>
               <b>{{ l.title }}</b>
-              <p v-html='$md.render(l.description)'></p>
+              <div v-html='$md.render(l.description)'></div>
               <small>{{ l.url }}</small>
             </div>
           </a>

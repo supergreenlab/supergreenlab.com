@@ -41,6 +41,8 @@
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
+import { open } from '~/lib/client-side.js'
+
 export default {
   components: {SectionTitle,},
   computed: {
@@ -50,7 +52,7 @@ export default {
   },
   methods: {
     open(url) {
-      window.open(url, '_blank')
+      open(url, '_blank')
     }
   },
 }

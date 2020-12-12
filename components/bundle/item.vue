@@ -27,8 +27,7 @@
           <h3><nuxt-link :to='`/product/${item.SellingPoints[0].slug}`'>{{ item.name }}</nuxt-link></h3>
           <h2 :id='$style.n'>x{{ n }}</h2>
         </div>
-        <div :id='$style.bullets'>
-          <p v-html='$md.render(item.bulletpoints)' :class='$style.bullet'></p>
+        <div :id='$style.bullets' v-html='$md.render(item.bulletpoints)'>
         </div>
         <div :id='$style.bottom'>
           <a href='javascript:void(0)' v-if='item.specs.keymetrics' :id='$style.showmetrics' :class='shownMetrics ? $style.shown : ""' @click='showMetrics'>
@@ -36,17 +35,6 @@
             <div :id='$style.metricsarrow'></div>
           </a>
           <div v-else :id='$style.spacer'></div>
-          <!--<div :id='$style.pricecontainer'>
-            <div :class='$style.price'>
-              <h1>{{ priceConv(Math.floor((price - price * discount / 100) * 100) / 100) }}</h1>
-            </div>
-            <div :class='$style.price + " " + $style.smallprice'>
-              <h1>
-                {{ priceConv(price) }}
-                <div :id='$style.redbar'></div>
-              </h1>
-            </div>
-          </div>-->
         </div>
       </div>
     </div>

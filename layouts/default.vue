@@ -1,3 +1,21 @@
+<!--
+      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
+      Author: Constantin Clauzel <constantin.clauzel@gmail.com>
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public License
+      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
 <template>
   <section :id='$style.container'>
     <nuxt/>
@@ -21,6 +39,8 @@
 <script>
 import Disclaimer from '~/components/layout/overlay-major.vue'
 
+import { loadFromStorage, saveToStorage, setHref } from '~/lib/client-side.js'
+
 export default {
   components: {Disclaimer,},
   data() {
@@ -29,7 +49,7 @@ export default {
     }
   },
   mounted() {
-    if (!window.localStorage.getItem('disclaimerShown')) {
+    if (!loadFromStorage('disclaimerShown')) {
       this.$data.showDisclaimer = true
     }
   },
@@ -45,9 +65,9 @@ export default {
     closeDisclaimer(ok) {
       if (ok) {
         this.$data.showDisclaimer = false
-        window.localStorage.setItem('disclaimerShown', 1)
+        saveToStorage('disclaimerShown', 1)
       } else {
-        document.location.href='https://www.google.com'
+        setHref('https://www.google.com')
       }
     },
   },

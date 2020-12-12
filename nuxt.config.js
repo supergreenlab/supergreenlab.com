@@ -1,19 +1,21 @@
 import fs from 'fs';
 import pkg from './package'
 import { products, sellingPoints, } from './config/products.json'
+import { guides } from './config/guides.json'
 
 export default {
-  mode: 'spa',
+  target: 'static',
 
   /*
   ** Headers of the page
   */
   head: {
-    title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Ultimate grow shop and guides for home growing stealth grow boxes building. Build your own connected grow box with our app and our complete bundle for DIY furniture-as-a-growbox: automated and controlled with an app. Comes with light, ventilation, and sensors (temp and RH).'},
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
@@ -56,6 +58,7 @@ export default {
     '@nuxtjs/markdownit',
     ['nuxt-matomo', { matomoUrl: '//analytics.supergreenlab.com/', trackerUrl: '//analytics.supergreenlab.com/matomo.php', scriptUrl: '//analytics.supergreenlab.com/matomo.js', siteId: 1 }],
     'portal-vue/nuxt',
+    'nuxt-client-init-module',
   ],
   sitemap: {
     hostname: 'https://www.supergreenlab.com',
@@ -94,7 +97,7 @@ export default {
     routes: [
     ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
     .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
-    .concat(fs.readdirSync("config").filter(f => f.indexOf('guide-') == 0).map(f => `/guide/${f.replace(/guide-|.json/g, '')}`)),
+    .concat(guides.map(g => `/guide/${g.slug}`)),
   },
 
   router: {

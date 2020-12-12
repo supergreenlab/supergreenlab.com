@@ -23,7 +23,7 @@
       <div :id='$style.text'>
         <div>
           <h2>{{ guide.name }}</h2>
-          <p v-html='$md.render(guide.text)'></p>
+          <div v-html='$md.render(guide.text)'></div>
         </div>
         <nuxt-link  :id='$style.cta' :to='`/guide/${guide.slug}`'>
           <b class="hvr-grow">View guide</b>

@@ -42,7 +42,7 @@ export default {
     }
   },
   beforeDestroy() {
-    clearTimeout(this.timeout)
+    if (this.timeout) clearTimeout(this.timeout)
   },
   methods: {
     addToCartClicked() {

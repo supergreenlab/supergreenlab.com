@@ -31,7 +31,7 @@
           <h3 :id='$style.soldby'>SOLD AT&nbsp;<a :id='$style.seller' :href='productURL' target='_blank'>{{ seller.name }}</a></h3>
           <nuxt-link :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
             <b>{{ brandProduct.tagline }}</b>
-            <p v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></p>
+            <div v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></div>
           </nuxt-link>
         </div>
         <div :id='$style.price'>

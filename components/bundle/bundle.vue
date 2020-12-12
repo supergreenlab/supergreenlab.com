@@ -30,11 +30,11 @@
         <Pics :pics='bundle.pics' />
       </div>
       <div :id='$style.description'>
-        <p v-html='$md.render(bundle.bulletpoints)' :class='$style.bullet'></p>
+        <div v-html='$md.render(bundle.bulletpoints)' :class='$style.bullet'></div>
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
-            <!--<OutOfStock v-if='outofstock' />-->
+            <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${bundle.slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>

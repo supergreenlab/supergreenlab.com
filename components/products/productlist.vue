@@ -38,6 +38,8 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Item from '~/components/products/productitem.vue'
 import Region from '~/components/products/region.vue'
 
+import { open, screenX, availWidth } from '~/lib/client-side.js'
+
 export default {
   props: ['products', 'center', 'maxItems',],
   components: {SectionTitle, Item, Region,},
@@ -49,7 +51,8 @@ export default {
   methods: {
     proposeSellingPoint() {
       const width = 800
-      window.open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+      console.log(screenX(), availWidth())
+      open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
       this.$matomo && this.$matomo.trackEvent('productlist', 'propose')
     },
     toggleShowAll() {

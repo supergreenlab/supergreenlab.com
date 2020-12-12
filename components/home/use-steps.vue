@@ -24,10 +24,6 @@
                     smalltitle='(like.. around 3 steps)'
                     separator='true'/>
     </div>
-    <!--<video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source src="/intro.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video> -->
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=1
@@ -51,9 +47,6 @@
               :vertical=true />
       </div>
     </div>
-    <!--<nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#micro-grow-bundle"}'>
-      <b class="hvr-grow">Buy now</b>
-    </nuxt-link>-->
   </section>
 </template>
 

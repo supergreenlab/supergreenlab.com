@@ -19,6 +19,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
+
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
 const STORAGE_ITEM='checkout2'
@@ -29,20 +31,22 @@ export const state = () => {
     promocode: {value: '', valid: true, optional: true,},
     discount: {value: 0, valid: true, optional: true},
   };
-  const saved = window.localStorage.getItem(STORAGE_ITEM)
-  if (saved) {
-    defaults = Object.assign(defaults, JSON.parse(saved))
-  }
   return defaults
 };
 
 const storeState = (state) => {
-  window.localStorage.setItem(STORAGE_ITEM, JSON.stringify(state))
+  saveToStorage(STORAGE_ITEM, JSON.stringify(state))
 }
 
 let cancel
 const CancelToken = axios.CancelToken
 export const actions = {
+  nuxtClientInit(context) {
+    const saved = loadFromStorage(STORAGE_ITEM)
+    if (saved) {
+      context.commit('setState', JSON.parse(saved))
+    }
+  },
   async fetchPromocode(context, {code}) {
     try {
       if (cancel) {
@@ -64,12 +68,18 @@ export const actions = {
 }
 
 export const mutations = {
+  setState(state, newState/*{ cart, promocode, discount }*/) {
+    Object.assign(state, newState)
+      /*state.cart.push(...cart)
+    state.promocode = promocode
+    state.discount = discount*/
+  },
   addToCart(state, { n, product, sellingPoint }) {
-    const i = state.cart.findIndex(i => i.sellingPoint.id == sellingPoint.id)
+    const i = state.cart.findIndex(i => i.sellingPoint == sellingPoint.id)
     if (n <= 0 && i !== -1) {
       state.cart.splice(i, 1)
     } else if (i == -1) {
-      state.cart.push({ n, product, sellingPoint, checked: false })
+      state.cart.push({ n, product: product.id, sellingPoint: sellingPoint.id, checked: false })
     } else {
       Vue.set(state.cart, i, Object.assign({}, state.cart[i], { n } ))
     }
@@ -80,7 +90,7 @@ export const mutations = {
     storeState(state)
   },
   checkLineItem(state, { lineItem: { sellingPoint }, checked=true }) {
-    const i = state.cart.findIndex(i => i.sellingPoint.id == sellingPoint.id)
+    const i = state.cart.findIndex(li => li.sellingPoint == sellingPoint.id)
     Vue.set(state.cart, i, Object.assign({}, state.cart[i], { checked } ))
     storeState(state)
   },
@@ -105,6 +115,7 @@ export const getters = {
   },
 
   lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems, promo=true, number=false) => {
+    if (!lineItems || lineItems.length == 0) return 0
     const regionTree = (region, acc=[]) => {
       acc.push(region)
       if (region.in) {
@@ -129,5 +140,12 @@ export const getters = {
       return Math.floor((totalWithoutPromo + (totalWithPromo - totalWithPromo * discount / 100)) * (1 + vat / 100) * 100) / 100
     }
     return `${currency}${((totalWithoutPromo + (totalWithPromo - totalWithPromo * discount / 100)) * (1 + vat / 100)).toFixed(2)}`
-  }
+  },
+
+  cart: (state, getters, rootState, rootGetters) => state.cart.map(li => {
+    return Object.assign({}, li, {
+      product: rootState.eshop.products.find(p => p.id == li.product),
+      sellingPoint: rootState.eshop.sellingPoints.find(sp => sp.id == li.sellingPoint),
+    })
+  })
 }

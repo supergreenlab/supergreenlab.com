@@ -21,7 +21,7 @@
     <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${guide.thumbnail.fileLarge}`)})`}'></div>
     <div :id='$style.infos'>
       <h3>{{ guide.name }}</h3>
-      <p v-html='$md.render(guide.text || "")'></p>
+      <div v-html='$md.render(guide.text || "")'></div>
       <div>
         <nuxt-link :id='$style.button' :to='`/guide/${guide.slug}`'>{{ button || 'VIEW GUIDE' }}</nuxt-link>
       </div>

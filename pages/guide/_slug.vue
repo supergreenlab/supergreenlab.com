@@ -68,6 +68,8 @@ import Footer from '~/components/layout/footer.vue'
 import Guide from '~/components/guides/small.vue'
 import Section from '~/components/guides/section.vue'
 
+import { addEventListener, removeEventListener, innerHeight } from '~/lib/client-side.js'
+
 import { guides } from '~/config/guides.json'
 
 export default {
@@ -90,11 +92,11 @@ export default {
     }
   },
   created () {
-    window.addEventListener('scroll', this.handleScroll);
+    addEventListener('scroll', this.handleScroll);
   },
   destroyed () {
     if (this.timeout) clearTimeout(this.timeout)
-    window.removeEventListener('scroll', this.handleScroll);
+    removeEventListener('scroll', this.handleScroll);
   },
   computed: {
     guide() {
@@ -145,7 +147,7 @@ export default {
             const $el = ref.$el ? ref.$el : ref
             const { y, height } = $el.getBoundingClientRect(),
               centery = y + height / 2,
-              winh = window.innerHeight
+              winh = innerHeight()
 
             if (centery > winh / 4 && centery < winh * 3/4) {
               this.$matomo && this.$matomo.trackEvent('guide', 'scrollto', name)

@@ -26,9 +26,6 @@
       <div :class='$style.block'>
         <img src='~assets/img/powered-by-stripe.png' /><br />
       </div>
-      <!--<div :class='$style.block'>
-        <img src='~assets/img/crypto.png'>
-      </div>-->
       <div :class='$style.block'>
         <img src='~assets/img/paypal.png'>
       </div>
@@ -52,8 +49,9 @@ export default {
       },
     },
     price() {
-      const { lineItems } = this.$props
-      return this.$store.getters['checkout/lineItemsPrice'](this.$props.cart)
+      const { cart } = this.$props
+      if (cart.length == 0) return 0
+      return this.$store.getters['checkout/lineItemsPrice'](cart)
     },
   },
 }

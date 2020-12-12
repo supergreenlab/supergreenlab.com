@@ -18,6 +18,8 @@
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
+import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
+
 const STORAGE_ITEM='shipping2'
 
 export const state = () => {
@@ -34,20 +36,27 @@ export const state = () => {
     province: {value: '', valid: false,},
     zip: {value: '', valid: false,},
   };
-  if (window.localStorage.getItem(STORAGE_ITEM)) {
-    defaults = Object.assign(defaults, JSON.parse(window.localStorage.getItem(STORAGE_ITEM)))
-  }
   return defaults
 };
 
 const storeState = (state) => {
-  window.localStorage.setItem(STORAGE_ITEM, JSON.stringify(state))
+  saveToStorage(STORAGE_ITEM, JSON.stringify(state))
 }
 
 export const actions = {
+  nuxtClientInit(context) {
+    const saved = loadFromStorage(STORAGE_ITEM)
+    if (saved) {
+      context.commit('setState', JSON.parse(saved))
+    }
+  },
 }
 
 export const mutations = {
+  setState(state, newState) {
+    console.log('shipping', newState)
+    Object.assign(state, newState)
+  },
   updateShipping(state, params) {
     state[params.key] = Object.assign({}, state[params.key], {value: params.value})
     storeState(state)

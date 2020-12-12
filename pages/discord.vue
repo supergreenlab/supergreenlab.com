@@ -22,9 +22,11 @@
 </template>
 
 <script>
+import { setHref } from '~/lib/client-side.js'
+
 export default {
   created() {
-    window.location.href = 'https://discord.gg/n4MvwMh'
+    setHref('https://discord.gg/n4MvwMh')
   },
 }
 </script>

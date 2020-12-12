@@ -36,6 +36,8 @@ import Footer from '~/components/layout/footer.vue'
 import LineItem from '~/components/cart/lineitem.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 
+import { addEventListener, availHeight, availWidth, screenX } from '~/lib/client-side.js'
+
 export default {
   components: {Header, Footer, LineItem, CheckoutButton,},
   destroyed() {
@@ -44,8 +46,8 @@ export default {
   methods: {
     startCheckout() {
       const width = 800
-      window.open('/sglcheckout', '_blank', `width=${width},height=${window.screen.availHeight-100},top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
-      window.addEventListener('message', (event) => {
+      open('/sglcheckout', '_blank', `width=${width},height=${availHeight()-100},top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      addEventListener('message', (event) => {
         if (event.data == 'sglcheckoutdone') {
           this.cart.forEach(lineItem => {
             this.$store.commit('checkout/addToCart', Object.assign({}, lineItem, { n: 0 }))
@@ -69,7 +71,7 @@ export default {
       return this.$store.getters['checkout/promoDiscount']
     },
     cart() {
-      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
     },
     totalPrice() {
       const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)

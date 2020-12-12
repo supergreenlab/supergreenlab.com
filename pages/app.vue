@@ -42,20 +42,22 @@
 <script>
 import Header from '~/components/layout/header.vue'
 
+import { setHref, userAgent } from '~/lib/client-side.js'
+
 export default {
   components: {Header,},
   mounted() {
     setTimeout(() => {
       if (this.isAndroid) {
-        document.location.href = 'https://play.google.com/store/apps/details?id=com.supergreenlab.app2'
+        setHref('https://play.google.com/store/apps/details?id=com.supergreenlab.app2')
       } else {
-        document.location.href = 'https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318'
+        setHref('https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318')
       }
     }, 1000)
   },
   computed: {
     isAndroid() {
-      return navigator.userAgent.toLowerCase().includes('android')
+      return userAgent.toLowerCase().includes('android')
     }
   },
 }

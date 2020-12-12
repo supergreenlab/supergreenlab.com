@@ -51,7 +51,7 @@ export default {
   computed: {
     tierSellers() {
       const deduplicate = {}
-      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])).filter(seller => {
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])).filter(seller => {
         if (deduplicate[seller.id]) {
           return false
         }

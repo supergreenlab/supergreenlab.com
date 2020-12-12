@@ -18,6 +18,8 @@
 
 import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, relatedProducts } from '~/config/products.json'
 
+import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
+
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
   if (off <= 0 && off >= -3) {
@@ -32,8 +34,8 @@ const STORAGE_ITEM='eshop2'
 
 export const state = () => {
   let defaults = {
-    offsetRegion: guessDefautRegion(),
-    region: guessDefautRegion(),
+    offsetRegion: regions[0],
+    region: regions[0],
     regions,
     products,
     sellingPoints,
@@ -43,25 +45,39 @@ export const state = () => {
     collections,
     relatedProducts,
   }
-  const saved = window.localStorage.getItem(STORAGE_ITEM)
-  if (saved) {
-    defaults = Object.assign({}, defaults, JSON.parse(saved))
-  }
   return defaults
 }
 
 const storeState = (state) => {
-  window.localStorage.setItem(STORAGE_ITEM, JSON.stringify(state))
+  saveToStorage(STORAGE_ITEM, JSON.stringify(state))
 }
 
 //const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)
 const arrayContained = (a1, a2) => a1.findIndex(a => a2.indexOf(a) !== -1) !== -1
 const productsWithTypes = (state, types) => state.products.filter(p => arrayContained(Array.isArray(types) ? types : [types], p.type))
 
+export const actions = {
+  nuxtClientInit(context) {
+    const saved = loadFromStorage(STORAGE_ITEM)
+    if (saved) {
+      context.commit('setState', JSON.parse(saved))
+    } else {
+      context.commit('setState', {
+        offsetRegion: guessDefautRegion(),
+        region: guessDefautRegion(),
+      })
+    }
+  },
+}
+
 export const mutations = {
+  setState(state, newState) {
+    Object.assign(state, newState)
+  },
   setRegion(state, region) {
     state.region = region
     storeState({
+      offsetRegion: state.offsetRegion,
       region
     })
   },

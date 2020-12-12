@@ -40,6 +40,7 @@ export default {
     }
   },
   created() {
+    if (process.server) return
     this.interval = setInterval(() => {
       this.$data.n = (this.$data.n+1) % this.$props.pics.length
     }, 3000)
@@ -54,13 +55,13 @@ export default {
     },
     next() {
       this.$data.n = (this.$data.n+1) % this.$props.pics.length
-      clearInterval(this.interval)
+      if (this.interval) clearInterval(this.interval)
       this.interval = null
     },
     previous() {
       this.$data.n = (this.$data.n-1)
       if (this.$data.n < 0) this.$data.n = this.$props.pics.length-1
-      clearInterval(this.interval)
+      if (this.interval) clearInterval(this.interval)
       this.interval = null
     },
   },

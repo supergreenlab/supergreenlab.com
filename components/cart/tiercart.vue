@@ -68,7 +68,7 @@ export default {
   computed: {
     cart() {
       const { seller } = this.$props
-      return this.$store.state.checkout.cart.filter(li => li.sellingPoint.Seller[0] === seller.id)
+      return this.$store.getters['checkout/cart'].filter(li => li.sellingPoint.Seller[0] === seller.id)
     },
     price() {
       return this.$store.getters['checkout/lineItemsPrice'](this.cart)

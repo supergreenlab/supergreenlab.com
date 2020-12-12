@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <h2 :class='$style.title'>{{ brandProduct.name }} BY&nbsp;<a :id='$style.brand' :href='brandProduct.url' target='_blank'>{{ brand.name }}</a></h2>
+      <h1 :class='$style.title'>{{ brandProduct.name }} BY&nbsp;<a :id='$style.brand' :href='brandProduct.url' target='_blank'>{{ brand.name }}</a></h1>
       <div :id='$style.product'>
         <div :id='$style.pic'>
           <Pics :pics='brandProduct.pics'/>
@@ -161,6 +161,8 @@ import ProductList from '~/components/products/productlist.vue'
 import Region from '~/components/products/region.vue'
 import Footer from '~/components/layout/footer.vue'
 
+import { open, screenX, availWidth } from '~/lib/client-side.js'
+
 import { guides } from '~/config/guides.json'
 
 export default {
@@ -230,8 +232,7 @@ export default {
     },
     variants() {
       return this.$store.getters['eshop/variants'](this.brandProduct.id).map(bp => {
-        bp.sellingPoint = this.$store.getters['eshop/sellingPointForBrandProduct'](bp.id)
-        return bp
+        return Object.assign({}, bp, { sellingPoint: this.$store.getters['eshop/sellingPointForBrandProduct'](bp.id)})
       })
     },
     variantPrice() {
@@ -260,7 +261,7 @@ export default {
     sameTypeProduct() {
       return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
         return a.indexOf(p) == i
-      }).sort((p1, p2) => (Math.random() * 2) - 1)
+      })//.sort((p1, p2) => (Math.random() * 2) - 1)
     },
     productURL() {
       if (this.seller.type == 'amazon') return `${this.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
@@ -270,7 +271,7 @@ export default {
   methods: {
     proposeSellingPoint() {
       const width = 800
-      window.open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=533,top=100,left=${window.screenX + window.screen.availWidth/2 - width/2}`)
+      open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=533,top=100,left=${screenX() + availWidth()/2 - width/2}`)
     },
     handleAddToCart() {
       setTimeout(() => this.$data.addedToCart = true, 1000)
@@ -288,7 +289,7 @@ export default {
   justify-content: center
   align-items: center
 
-#container h2
+#container h2, #container h1
   margin: 5pt 10pt
   color: #454545
 
@@ -303,6 +304,8 @@ export default {
   border-bottom: 2px solid #9a9a9a
   margin: 0 5pt
   color: #454545
+  @media only screen and (max-width: 600pt)
+    font-size: 1.5em
 
 .title a
   color: #454545

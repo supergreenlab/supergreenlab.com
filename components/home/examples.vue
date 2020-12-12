@@ -46,36 +46,39 @@
 </template>
 
 <script>
+import { addEventListener, removeEventListener, innerWidth } from '~/lib/client-side.js'
+
 export default {
   data() {
     return {
       n: 0,
-      windowWidth: window.innerWidth,
+      windowWidth: innerWidth(),
     }
   },
   created() {
+    if (process.server) return
     this.interval = setInterval(() => {
       this.$data.n = (this.$data.n + 1) % this.builds.length
     }, 10000)
   },
   mounted() {
     this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
+      addEventListener('resize', this.onResize);
     })
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.onResize)
-    clearInterval(this.interval)
+    removeEventListener('resize', this.onResize)
+    if (this.interval) clearInterval(this.interval)
   },
   methods: {
     onResize() {
-      this.$data.windowWidth = window.innerWidth
+      this.$data.windowWidth = innerWidth()
       this.$data.n = this.$data.n % this.builds.length
     },
     setPage(n) {
       n = (n < 0 ? this.builds.length-1 : n) % this.builds.length
       this.$data.n = n
-      clearInterval(this.interval)
+      if (this.interval) clearInterval(this.interval)
     },
     handleSwipe(e) {
       if (e == 'left') {

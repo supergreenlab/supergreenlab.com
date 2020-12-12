@@ -58,6 +58,7 @@ import OutOfStock from '~/components/products/outofstock.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 import Price from '~/components/products/price.vue'
 
+import { setHref, postMessage } from '~/lib/client-side.js'
 import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '~/lib/storefront.js'
 
 const SGL_SELLER = 'recT9nIg4ahFv9J29'
@@ -87,8 +88,8 @@ export default {
       }
       await applyShipping(shopify, checkout)
       setTimeout(() => {
-        window.opener.postMessage('sglcheckoutdone', '*')
-        window.location.href = checkout.webUrl
+        postMessage()('sglcheckoutdone', '*')
+        setHref(checkout.webUrl)
       }, 1000)
     }
   },
@@ -97,6 +98,7 @@ export default {
       return (lineItem) => this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
     },
     valid() {
+      // TODO move to store
       return this.cart.every(lineItem => lineItem.sellingPoint.canorder) && Object.keys(this.$store.state.shipping).findIndex((k) => typeof this.$store.state.shipping[k].value !== 'undefined' && !this.$store.state.shipping[k].value && !this.$store.state.shipping[k].optional) == -1
     },
     promocode: {
@@ -111,7 +113,7 @@ export default {
       },
     },
     cart() {
-      return this.$store.state.checkout.cart.filter(lineItem => lineItem.sellingPoint.Seller[0] === SGL_SELLER)
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === SGL_SELLER)
     },
  },
 }

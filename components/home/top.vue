@@ -18,7 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    <!--<div :id='$style.ad'>Head over to our shop to design your home grow bundle!</div>-->
     <div :id='$style.background' v-if='startanimation' :style='{"background-image": `url(${require(`~/assets/img/top-bg${n % 9 + 1}.jpg`)})`}'></div>
     <div :id='$style.background' :style='{"background-image": `url(${require(`~/assets/img/top-bg0.jpg`)})`, opacity: n == -1 ? 1 : 0}'></div>
     <div :id='$style.background' v-if='startanimation' v-for='i in 12' :key='i' :style='{"background-image": `url(${require(`~/assets/img/top-bg${i}.jpg`)})`, opacity: i == (n % 9 + 1) ? 1 : 0}'></div>
@@ -97,11 +96,6 @@
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
       <b class="hvr-grow">Start growing</b>
     </nuxt-link>
-    <!--<small :id='$style.legal'>
-      By proceeding, you explicitly agree that you are acting in coordinance with<br />
-      local, state, and federal laws. SuperGreenLab will not be liable for<br />
-      consequences surrounding the legality of how the lights or grow bundle are used. 
-    </small>-->
   </section>
 </template>
 
@@ -119,6 +113,7 @@ export default {
     }
   },
   created() {
+    if (process.server) return
     setTimeout(() => {
       this.$data.startanimation = true
       this.interval = setInterval(() => {
@@ -127,7 +122,7 @@ export default {
     }, 1000)
   },
   destroyed() {
-    clearInterval(this.interval)
+    if (this.interval) clearInterval(this.interval)
   },
   methods: {
     ctaClicked() {
