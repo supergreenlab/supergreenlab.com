@@ -45,7 +45,9 @@ export default {
         return this.$props.value
       },
       set(value) {
-        this.$emit('input', value)
+        if (value != this.$props.value) {
+          this.$emit('input', value)
+        }
       },
     },
     price() {
