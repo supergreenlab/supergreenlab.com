@@ -46,7 +46,7 @@
         </div>
       </div>
       <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.desktopcheckbox'>
-        <CheckBox @click='toggleChecked' :checked='lineItem.checked' label='Bought it' />
+        <CheckBox @click='toggleChecked' :checked='lineItem.checked' :label='checkboxLabel || "Bought it"' />
       </div>
       <div :id='$style.delete'>
         <a href='javascript:void(0)' @click='deleteLineItem'>
@@ -65,7 +65,7 @@ import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   components: {Number, Price, CheckBox,},
-  props: ['lineItem', 'showCheckbox', 'showProductLink', 'onDeleteLineItem', 'onChangeLineItem', 'onToggleChecked'],
+  props: ['lineItem', 'showCheckbox', 'showProductLink', 'onDeleteLineItem', 'onChangeLineItem', 'onToggleChecked', 'checkboxLabel',],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
