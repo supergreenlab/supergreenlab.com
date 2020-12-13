@@ -95,6 +95,8 @@ export default {
 .ps
   margin: 10pt 0
   color: #454545
+  @media only screen and (min-width: 600pt)
+    margin: 10pt 100pt 10pt 0
 
 .ps p
   margin-bottom: 10pt

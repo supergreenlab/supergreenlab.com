@@ -20,6 +20,10 @@
   <section :id='$style.container'>
     <Header />
     <div :id='$style.body'>
+      <div :id='$style.sharecart'>
+        <a v-if='!shared' href='javascript:void(0)' @click='exportCart'><img src='~/assets/img/icon_share.svg' />share this cart</a>
+        <div v-else>Cart URL copied to clipboard!</div>
+      </div>
       <Title title='SuperGreenLab Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
       <SGLCart />
@@ -46,8 +50,27 @@ import Title from '~/components/cart/title.vue'
 import SGLCart from '~/components/cart/sglcart.vue'
 import TierCart from '~/components/cart/tiercart.vue'
 
+import { baseUrl } from '~/lib/client-side.js'
+
 export default {
+  head() {
+    return {
+      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Ultimate grow shop and guides for home growing stealth grow boxes building. Build your own connected grow box with our app and our complete bundle for DIY furniture-as-a-growbox: automated and controlled with an app. Comes with light, ventilation, and sensors (temp and RH).'
+        },
+      ],
+    }
+  },
   components: {Header, Footer, Title, SGLCart, TierCart},
+  data() {
+    return {
+      shared: false
+    }
+  },
   computed: {
     tierSellers() {
       const deduplicate = {}
@@ -59,6 +82,16 @@ export default {
         return true
       })
     }
+  },
+  methods: {
+    async exportCart() {
+      const cart = this.$store.state.checkout.cart
+      const cartData = btoa(cart.map(li => `${li.n};${li.product};${li.sellingPoint};${li.checked}`).join('|'))
+      const url = `${baseUrl}/c?d=${cartData}`
+      await navigator.clipboard.writeText(url)
+      this.$data.shared = true
+      setTimeout(() => this.$data.shared = false, 1000)
+    },
   },
 }
 </script>
@@ -78,6 +111,27 @@ export default {
   padding: 100pt 0 0 0
   @media only screen and (max-width: 600pt)
     padding: 100pt 5pt 0 5pt
+
+#sharecart
+  display: flex
+  height: 15pt
+  justify-content: flex-end
+  color: #454545
+  font-size: 1.1em
+
+#sharecart a
+  display: flex
+  align-items: center
+  justify-content: center
+  color: #454545
+  text-decoration: none
+
+#sharecart a:hover
+  text-decoration: underline
+
+#sharecart img
+  width: 15pt
+  margin-right: 5pt
 
 .carttype
   margin: 10pt 30pt

@@ -98,6 +98,7 @@ export const getters = {
   productsWithTypes: state => types => productsWithTypes(state, types),
 
   product: state => id => state.products.find(p => p.id == id),
+  sellingPointWithID: state => id => state.sellingPoints.find(sp => sp.id == id),
   brandProduct: state => id => state.brandProducts.find(bp => bp.id == id),
   brand: state => id => state.brands.find(b => b.id == id),
   seller: state => id => state.sellers.find(s => s.id == id),

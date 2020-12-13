@@ -65,7 +65,7 @@ import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   components: {Number, Price, CheckBox,},
-  props: ['lineItem', 'showCheckbox', 'showProductLink'],
+  props: ['lineItem', 'showCheckbox', 'showProductLink', 'onDeleteLineItem', 'onChangeLineItem', 'onToggleChecked'],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
@@ -86,15 +86,27 @@ export default {
   },
   methods: {
     deleteLineItem() {
-      const { lineItem } = this.$props
+      const { lineItem, onDeleteLineItem } = this.$props
+      if (onDeleteLineItem) {
+        onDeleteLineItem()
+        return
+      }
       this.$store.commit('checkout/addToCart', Object.assign({}, lineItem, { n: 0 }))
     },
     changeLineItem(n) {
-      const { lineItem } = this.$props
+      const { lineItem, onChangeLineItem } = this.$props
+      if (onChangeLineItem) {
+        onChangeLineItem(n)
+        return
+      }
       this.$store.commit('checkout/addToCart', Object.assign({}, lineItem, { n }))
     },
     toggleChecked() {
-      const { lineItem } = this.$props
+      const { lineItem, onToggleChecked } = this.$props
+      if (onToggleChecked) {
+        onToggleChecked()
+        return
+      }
       this.$store.commit('checkout/checkLineItem', { lineItem, checked: !lineItem.checked })
       if (!lineItem.checked) {
         this.$matomo && this.$matomo.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
