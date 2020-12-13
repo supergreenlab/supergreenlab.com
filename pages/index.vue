@@ -90,7 +90,8 @@
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 5'
-                      green='MIGHT NEED SOME TOOLS TOO' />
+                      green='MIGHT NEED SOME TOOLS TOO'
+                      title2='The SGL basics :)' />
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
