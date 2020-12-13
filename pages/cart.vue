@@ -88,7 +88,7 @@ export default {
   methods: {
     async exportCart() {
       const cart = this.$store.state.checkout.cart
-      const cartData = btoa(cart.map(li => `${li.n};${li.product};${li.sellingPoint};${li.checked}`).join('|'))
+      const cartData = btoa(cart.map(li => `${li.n};${li.product};${li.sellingPoint}`).join('|'))
       const url = `${baseUrl}/c?d=${cartData}`
       await navigator.clipboard.writeText(url)
       this.$data.shared = true
