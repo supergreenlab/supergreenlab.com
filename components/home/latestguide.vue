@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.body'>
-      <div :id='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-eketv2.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=DXwtIjdDvHs' target='_blank'></a></div>
+      <div :id='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-eketv2.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=1tHfZttB2Fg' target='_blank'></a></div>
       <div :id='$style.text'>
         <div>
           <h2>{{ guide.name }}</h2>
