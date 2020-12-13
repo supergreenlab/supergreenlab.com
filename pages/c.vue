@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import md5 from 'blueimp-md5'
+
 import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
 import Title from '~/components/cart/title.vue'
@@ -100,6 +102,8 @@ export default {
           }, 2000)
         }, 800)
       })
+      const { d: data } = this.$route.query
+      this.$matomo && this.$matomo.trackEvent('cart', 'import', md5(data))
     },
   },
 }
