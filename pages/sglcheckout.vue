@@ -22,11 +22,11 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <div :id='$style.shipdisclaimer'>
+      <!--<div :id='$style.shipdisclaimer'>
         <b>NORMAL SHIPPING IS BACK!</b><br /><br />
         The loooooong wait is over! We're now shipping worlwide, 24h after you order.<br /><br />
         <h4>Thanks for your support:)</h4>
-      </div>
+      </div>-->
       <div>
         <div :id='$style.cart'>
           <b>Items in your cart</b>
@@ -36,7 +36,9 @@
             <Price :lineItems='cart' :small=true />
           </div>
         </div>
-        <Shipping />
+        <form name='sglcheckout'>
+          <Shipping />
+        </form>
         <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
     </div>
