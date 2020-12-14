@@ -25,7 +25,7 @@
         </h1>
       </div>
       <div :class='$style.price'>
-        <h1>{{ price(true) }}</h1><br />
+        <h1 :id='$style.green'>{{ price(true) }}</h1><br />
         <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
         <small v-if='!isSGL'>*price may vary</small>
         <span>Special offer: <b>-{{ offer.value }}%</b></span>
@@ -39,14 +39,14 @@
         <small v-if='!isSGL'>*price may vary</small>
       </div>
       <div :class='$style.price'>
-        <h1>{{ price(true) }}</h1><br />
+        <h1 :id='$style.green'>{{ price(true) }}</h1><br />
         <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
         <small v-if='!isSGL'>*price may vary</small>
         <span>promocode: <b>-{{ discount }}%</b></span>
       </div>
     </div>
     <div v-else :class='$style.price'>
-      <h1>{{ price(false) }}</h1>
+      <h1 :id='$style.green'>{{ price(false) }}</h1>
       <small v-if='!isSGL'>*price may vary</small>
       <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
@@ -113,13 +113,12 @@ export default {
 .price > h1
   position: relative
   margin-bottom: 0
-  color: #3BB30B !important
   margin: 0
   @media only screen and (max-width: 600px)
     margin-top: 4pt
 
 .price > small
-  color: #454545
+  color: #454545 !important
 
 .smallprice > h1
   color: #787878
@@ -132,6 +131,9 @@ export default {
   transform: rotate(-30deg)
   position: absolute
   background-color: #FF0000
+
+#green
+  color: #3BB30B !important
 
 .small
   font-size: 0.8em
