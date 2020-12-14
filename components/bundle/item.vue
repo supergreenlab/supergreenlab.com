@@ -142,16 +142,21 @@ export default {
   justify-content: center
   color: #454545
 
-.bullet strong
+#bullets strong
   color: #3BB30B
   font-weight: 600
 
-.bullet > ul
+#bullets ul
   padding: 0
   list-style-type: none
 
-.bullet > ul > li
+#bullets ul li
   margin-bottom:7pt
+
+#bullets ul li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
 
 #bottom
   display: flex

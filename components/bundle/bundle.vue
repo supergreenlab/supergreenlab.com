@@ -30,7 +30,7 @@
         <Pics :pics='bundle.pics' />
       </div>
       <div :id='$style.description'>
-        <div v-html='$md.render(bundle.bulletpoints)' :class='$style.bullet'></div>
+        <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
@@ -167,19 +167,24 @@ export default {
 #buy > a > b
   font-weight: 600
 
-.bullet
+#bullets
   color: #454545
 
-.bullet strong
+#bullets strong
   color: #3BB30B
   font-weight: 600
 
-.bullet > ul
+#bullets ul
   padding: 0
   list-style-type: none
 
-.bullet > ul > li
+#bullets ul li
   margin-bottom:7pt
+
+#bullets ul li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
 
 #bottom 
   display: flex
