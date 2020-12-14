@@ -113,7 +113,7 @@ export default {
 .price > h1
   position: relative
   margin-bottom: 0
-  color: #3BB30B
+  color: #3BB30B !important
   margin: 0
   @media only screen and (max-width: 600px)
     margin-top: 4pt
