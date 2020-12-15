@@ -25,7 +25,7 @@
     </div>
     <div :id='$style.body'>
       <div>
-        <div :class='$style.button'><a :href='`sglapp://supergreenlab.com/public/plant?id=${$route.query.id}`'>Open public plant in the app</a></div>
+        <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
       </div>
       <div>
         Don't have the app installed yet?<br />
@@ -39,7 +39,32 @@
 import Header from '~/components/layout/header.vue'
 
 export default {
+  head() {
+    return {
+      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Checkout this plant in the SuperGreenLab app - Grow diary and community for growers.',
+        },
+      ],
+    }
+  },
   components: {Header,},
+  data() {
+    return {
+      url: ''
+    }
+  },
+  mounted() {
+    this.$data.url = this.plantURL
+  },
+  computed: {
+    plantURL() {
+      return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}`
+    }
+  },
 }
 </script>
 
