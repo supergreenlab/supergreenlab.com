@@ -23,7 +23,7 @@
                     title='Welcome back:)'
                     green='Sorry for the interruption!' />
       <div v-if='showTypeForm' :id='$style.typeform'>
-        <div class="typeform-widget" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/n2oKQ2?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+        <div class="typeform-widget" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/n2oKQ2?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div>
       </div>
       <div v-if='!showTypeForm' :id='$style.typeformintro'>
         <h3>Can you help us improve</h3>
@@ -73,6 +73,7 @@ export default {
     },
     takeSurvey() {
       this.$data.showTypeForm = true
+      setTimeout(this.loadTypeform, 200)
     },
     no() {
       this.close()
@@ -86,6 +87,17 @@ export default {
     },
     onSubmit() {
       this.ok()
+    },
+    loadTypeform() {
+      console.log('pouet')
+      var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/";
+      if(!gi.call(d,id)) {
+        js=ce.call(d,"script");
+        js.id=id;
+        js.src=b+"embed.js";
+        q=gt.call(d,"script")[0];
+        q.parentNode.insertBefore(js,q)
+      }
     }
   },
 }
