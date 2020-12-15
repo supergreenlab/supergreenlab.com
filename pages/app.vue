@@ -45,6 +45,18 @@ import Header from '~/components/layout/header.vue'
 import { setHref, userAgent } from '~/lib/client-side.js'
 
 export default {
+  head() {
+    return {
+      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'SuperGreenLab App - Grow diary and community for growers.',
+        },
+      ],
+    }
+  },
   components: {Header,},
   mounted() {
     setTimeout(() => {
