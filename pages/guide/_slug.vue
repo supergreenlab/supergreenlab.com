@@ -33,13 +33,20 @@
         </div>
         <h2 v-if='showTableOfContent'>Table of content</h2>
         <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
-        <div v-if='showTableOfContent' v-for='(g, i) in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
+        <div v-if='g.first && showTableOfContent' v-for='(g, i) in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
           <h1>#{{ i+1 }}</h1>
           <Guide :guide='g' />
         </div>
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
       <Section :guideSection='guide' :ref='guide.slug' />
+      <div v-if='!first && next' :id='$style.tocs'>
+        <h2>Table of contents</h2>
+        <nuxt-link v-for='(g, i) in allGuides' :key='g.slug' v-if='g.first' :class='$style.toc' :to='`/guide/${g.slug}`'>
+          <div><b>#{{ i+1 }}</b>&nbsp;{{ g.name }}</div>
+          <div>{{ g.sections.length+1 }} steps</div>
+        </nuxt-link>
+      </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>
         <Section :guideSection='section' :index='i' :ref='section.slug' />
         <div :class='$style.separator'></div>
@@ -69,8 +76,6 @@ import Guide from '~/components/guides/small.vue'
 import Section from '~/components/guides/section.vue'
 
 import { addEventListener, removeEventListener, innerHeight } from '~/lib/client-side.js'
-
-import { guides } from '~/config/guides.json'
 
 export default {
   components: { Header, SectionTitle, Section, Guide, Footer, },
@@ -105,22 +110,21 @@ export default {
       return guide
     },
     relatedGuides() {
-      return (this.guide.relatedGuides || []).map(rg => guides.find(g => g.id == rg))
+      return (this.guide.relatedGuides || []).map(rg => this.$store.state.guides.guides.find(g => g.id == rg))
     },
     first() {
       if (this.guide.first == null || this.guide.first.length == 0) return null
-      let first = guides.find(g => g.id == this.guide.first[0])
+      let first = this.$store.state.guides.guides.find(g => g.id == this.guide.first[0])
       if (!first) return null
       first = require(`~/config/guide-${first.slug}.json`)
       return first
     },
     allGuides() {
-      if (this.first == null) return null
-      let current = guides.find(g => g.slug == this.first.nextslug[0])
+      let current = this.first == null ? this.guide : this.$store.state.guides.guides.find(g => g.slug == this.first.nextslug[0])
       const ordered = []
       const fn = (current) => {
         ordered.push(current)
-        current = guides.find(g => g.slug == current.nextslug)
+        current = this.$store.state.guides.guides.find(g => g.slug == current.nextslug)
         if (current) return fn(current)
       }
       fn(current)
@@ -269,5 +273,24 @@ export default {
 #selected
   border-radius: 5pt
   background-color: #cdcdcd
+
+#tocs
+  display: flex
+  flex-direction: column
+
+#tocs h2
+  margin-bottom: 5pt
+
+.toc
+  display: flex
+  justify-content: space-between
+  color: #454545
+  text-decoration: none
+  margin-left: 10pt
+  margin-bottom: 4pt
+  border-bottom: 1pt dashed #dedede
+
+.toc:hover
+  text-decoration: underline
 
 </style>

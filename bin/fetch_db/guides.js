@@ -8,12 +8,13 @@ module.exports.fetchGuides = async () => {
   await mkAssetsDir('guides')
   await mkAssetsDir('links')
   await mkStaticDir('guides')
-  const guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements',])
+  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements',])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements',])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
   let picPromise = Promise.resolve()
-  const guidesWithSections = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
+  guides = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
+    g = Object.assign({}, g)
     g.attachements = (g.attachements || []).map(a => {
       try {
         const { p, data } = fetchAttachement(picPromise, a, 'guides')
@@ -37,9 +38,14 @@ module.exports.fetchGuides = async () => {
     } catch(e) {
       g.thumbnail = noPic
     }
+    return g
+  })
+  const guidesWithSections = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
+    g = Object.assign({}, g)
     g.links = (g.links || []).map(l => bookmarks.find(b => b.id == l))
 
     g.sections = guideSections.filter(gs => (g.sections || []).indexOf(gs.id) != -1).map(gs => {
+      gs = Object.assign({}, gs)
       gs.attachements = (gs.attachements || []).map(a => {
         try {
           const { p, data } = fetchAttachement(picPromise, a, 'guides')
@@ -61,6 +67,16 @@ module.exports.fetchGuides = async () => {
     }).sort((gs1, gs2) => gs1.order - gs2.order)
     return g
   })
+  const guidesWithLiteSections = guides.filter(g => !!FETCH_DEV_GUIDES || g.ready).map(g => {
+    g = Object.assign({}, g)
+    g.sections = guideSections.filter(gs => (g.sections || []).indexOf(gs.id) != -1).map(gs => {
+      return {
+        id: gs.id,
+        slug: gs.slug,
+      }
+    })
+    return g
+  })
   bookmarks = bookmarks.map(b => {
     try {
       const { p, data } = fetchAttachement(picPromise, b.icon[0], 'links')
@@ -76,5 +92,5 @@ module.exports.fetchGuides = async () => {
     const g = guidesWithSections[i]
     await fs.writeFile(`config/guide-${g.slug}.json`, JSON.stringify(g))
   }
-  await fs.writeFile(`config/guides.json`, JSON.stringify({ guides, bookmarks }))
+  await fs.writeFile(`config/guides.json`, JSON.stringify({ guides: guidesWithLiteSections, bookmarks }))
 }

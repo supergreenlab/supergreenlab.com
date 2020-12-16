@@ -54,8 +54,6 @@
 import Media from '~/components/guides/media.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
-import { bookmarks } from '~/config/guides.json'
-
 export default {
   props: [ 'index', 'guideSection', ],
   components: { Media, SmallProductList, },
