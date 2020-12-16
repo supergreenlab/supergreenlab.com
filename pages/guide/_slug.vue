@@ -44,7 +44,7 @@
         <h2>Table of contents</h2>
         <nuxt-link v-for='(g, i) in allGuides' :key='g.slug' :class='$style.toc' :to='`/guide/${g.slug}`'>
           <div><b>#{{ i+1 }}</b>&nbsp;{{ g.name }}</div>
-          <div><b :class='nChecked(g) == g.sections.length ? $style.green : (nChecked(g) != 0 ? $style.orange : "")'>{{ nChecked(g) }}/{{ g.sections.length }}</b> steps <img src='' /></div>
+          <div><b :class='nChecked(g) == g.sections.length ? $style.green : (nChecked(g) != 0 ? $style.orange : "")'>{{ nChecked(g) }}/{{ g.sections.length }}</b> steps</div>
         </nuxt-link>
       </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>

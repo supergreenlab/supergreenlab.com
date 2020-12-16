@@ -46,6 +46,7 @@
             </div>
           </a>
         </div>
+        <a v-if='!guideSection.sections' href='javascript:void(0)' @click='feedback' :id='$style.feedback'>Got a feedback/suggestion? click here</a>
       </div>
     </div>
     <h2 v-if='requires.length'>What you'll need</h2>
@@ -57,6 +58,8 @@
 import Media from '~/components/guides/media.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
+
+import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
   props: [ 'index', 'guideSection', ],
@@ -75,6 +78,11 @@ export default {
   methods: {
     checkDone() {
       this.$store.commit('guides/checkSection', { slug: this.$props.guideSection.slug, checked: !this.checked, })
+    },
+    feedback() {
+      const width = 800
+      open(`https://airtable.com/shrXcK5fyNpfMH5n9?prefill_GuideSection=${this.guideSection.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      this.$matomo && this.$matomo.trackEvent('guide', 'feedback')
     },
   },
 }
@@ -95,6 +103,8 @@ export default {
   color: #454545
 
 .text
+  display: flex
+  flex-direction: column
   flex-basis: 60% !important
   color #454545
 
@@ -186,5 +196,10 @@ export default {
 
 .link:hover .playbutton
   opacity: 0.7
+
+#feedback
+  text-align: right
+  font-size: 0.8em
+  color: #454545
 
 </style>
