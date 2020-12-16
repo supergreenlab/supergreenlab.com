@@ -17,8 +17,8 @@
  -->
 
 <template>
-  <section :id='$style.container'>
-    <div :id='$style.border' :class='checked ? $style.selected : ""' v-on:click='click()'>
+  <section :id='$style.container' v-on:click='click()'>
+    <div :id='$style.border' :class='checked ? $style.selected : ""'>
       <div :id='$style.checkboxcenter'></div>
     </div>
     {{ label }} 
@@ -45,6 +45,7 @@ export default {
   white-space: nowrap
   font-weight: bold
   color: #454545
+  cursor: pointer
 
 #border
   position: relative
@@ -56,7 +57,6 @@ export default {
   margin-right: 5pt
   border: 1px solid #C4C4C4
   border-radius: 2pt
-  cursor: pointer
   transition: box-shadow 0.2s
 
 #checkboxcenter

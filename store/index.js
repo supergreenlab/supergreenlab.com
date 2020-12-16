@@ -24,6 +24,7 @@ export const actions = {
       context.dispatch('eshop/nuxtClientInit')
       context.dispatch('shipping/nuxtClientInit')
       context.dispatch('checkout/nuxtClientInit')
+      context.dispatch('guides/nuxtClientInit')
     })
   }
 }

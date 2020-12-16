@@ -51,8 +51,8 @@ export const mutations = {
   setState(state, newState) {
     Object.assign(state, newState)
   },
-  updateShipping(state, params) {
-    state[params.key] = Object.assign({}, state[params.key], {value: params.value})
+  checkSection(state, { slug, checked }) {
+    state[slug].checked = checked
     storeState(state)
   },
 }

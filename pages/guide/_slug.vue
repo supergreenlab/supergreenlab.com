@@ -42,9 +42,9 @@
       <Section :guideSection='guide' :ref='guide.slug' />
       <div v-if='!first && next' :id='$style.tocs'>
         <h2>Table of contents</h2>
-        <nuxt-link v-for='(g, i) in allGuides' :key='g.slug' v-if='g.first' :class='$style.toc' :to='`/guide/${g.slug}`'>
+        <nuxt-link v-for='(g, i) in allGuides' :key='g.slug' :class='$style.toc' :to='`/guide/${g.slug}`'>
           <div><b>#{{ i+1 }}</b>&nbsp;{{ g.name }}</div>
-          <div>{{ g.sections.length+1 }} steps</div>
+          <div><b :class='nChecked(g) == g.sections.length ? $style.green : (nChecked(g) != 0 ? $style.orange : "")'>{{ nChecked(g) }}/{{ g.sections.length }}</b> steps <img src='' /></div>
         </nuxt-link>
       </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>
@@ -135,6 +135,11 @@ export default {
       if (this.guide.nextslug == null || this.guide.nextslug.length == 0) return null
       const next = require(`~/config/guide-${this.guide.nextslug[0]}.json`)
       return next
+    },
+    nChecked() {
+      return (guide) => {
+        return guide.sections.filter(gs => this.$store.state.guides[gs.slug].checked).length
+      }
     },
   },
   methods: {
@@ -292,5 +297,13 @@ export default {
 
 .toc:hover
   text-decoration: underline
+
+.green
+  color: #3bb30b
+  font-weight: bold
+
+.orange
+  color: #e37120
+  font-weight: bold
 
 </style>

@@ -21,7 +21,10 @@
     <div :class='$style.videosection'>
       <Media :index='index' :media='guideSection.media' />
       <div :class='$style.text'>
-        <h1 v-if='!guideSection.sections && guideSection.title'>{{ guideSection.title }}</h1>
+        <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
+          <h1>{{ guideSection.title }}</h1>
+          <CheckBox label='done' @click='checkDone' :checked='checked' />
+        </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
         <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>
@@ -53,10 +56,11 @@
 <script>
 import Media from '~/components/guides/media.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
+import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
   props: [ 'index', 'guideSection', ],
-  components: { Media, SmallProductList, },
+  components: { Media, SmallProductList, CheckBox, },
   computed: {
     requires() {
       return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r)).filter(r => r)
@@ -64,7 +68,15 @@ export default {
     youtubeLink() {
       return (l) => l.indexOf('youtube.com') != -1
     },
-  }
+    checked() {
+      return this.$store.state.guides[this.$props.guideSection.slug].checked
+    },
+  },
+  methods: {
+    checkDone() {
+      this.$store.commit('guides/checkSection', { slug: this.$props.guideSection.slug, checked: !this.checked, })
+    },
+  },
 }
 </script>
 
@@ -86,9 +98,15 @@ export default {
   flex-basis: 60% !important
   color #454545
 
-.text > h1
-  margin: 0 0 20pt 0
+#title h1
+  padding-right: 10pt
   color: #6D6D6D 
+
+#title
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin: 0 0 20pt 0
 
 .ps
   margin: 10pt 0
