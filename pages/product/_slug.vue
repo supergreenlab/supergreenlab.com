@@ -68,7 +68,7 @@
         </div>
         <div :id='$style.addtocart'>
           <div :id='$style.price'>
-            <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+            <Price :lineItems='[{sellingPoint, n: 1}]' :small=true :notify=true />
           </div>
           <OutOfStock v-if='product.outofstock' />
           <AddToCart :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />

@@ -148,6 +148,7 @@ export default {
 #attachements
   display: flex
   flex-direction: column
+  margin-bottom: 10pt
 
 .attachement
   display: flex

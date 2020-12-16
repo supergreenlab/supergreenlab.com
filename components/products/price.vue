@@ -50,12 +50,15 @@
       <small v-if='!isSGL'>*price may vary</small>
       <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
+    <a v-if='notify' :id='$style.notify' href='javascript:void(0)' @click='notifyForm'>Notify me of price changes</a>
   </section>
 </template>
 
 <script>
+import { open, screenX, availWidth } from '~/lib/client-side.js'
+
 export default {
-  props: ['lineItems', 'freeshipping', 'small'],
+  props: ['lineItems', 'freeshipping', 'small', 'notify'],
   computed: {
     offer() {
       const { lineItems } = this.$props
@@ -80,6 +83,13 @@ export default {
       return lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29'
     }
   },
+  methods: {
+    notifyForm() {
+      const width = 800
+      open(`https://airtable.com/shrB2zJ3H5jF9f6fl?prefill_SellingPoint=${this.$props.lineItems[0].sellingPoint.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      this.$matomo && this.$matomo.trackEvent('guide', 'feedback')
+    }
+  },
 }
 </script>
 
@@ -87,6 +97,8 @@ export default {
 
 #container
   display: flex
+  flex-direction: column
+  align-items: flex-end
 
 #pricecontainer
   display: flex
@@ -103,6 +115,7 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
+  text-align: right
 
 .smallprice
   margin: 0 10pt 10pt 10pt
@@ -112,8 +125,7 @@ export default {
 
 .price > h1
   position: relative
-  margin-bottom: 0
-  margin: 0
+  margin: 0 !important
   @media only screen and (max-width: 600px)
     margin-top: 4pt
 
@@ -137,5 +149,9 @@ export default {
 
 .small
   font-size: 0.8em
+
+#notify
+  font-size: 0.9em
+  color: #454545
 
 </style>
