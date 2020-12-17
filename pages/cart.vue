@@ -29,7 +29,7 @@
       <SGLCart />
       <div :id='$style.space'></div>
       <Title title='Checklist Cart' />
-      <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
+      <div :class='$style.carttype'>Those are the items you selected that are available in other shops.</div>
       <div v-if='tierSellers.length != 0'>
         <div :class='$style.tiercart' v-for='seller in tierSellers' :key='seller.id'>
           <TierCart :seller='seller' />

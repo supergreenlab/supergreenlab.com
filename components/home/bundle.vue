@@ -44,7 +44,7 @@
       <div :class='$style.step'>
         <Step n=''
               title='Free app'
-              text='<b>Fine-tuning, monitoring and having a live view on your grow</b>, all from your <b>phone!</b> The app also includes tips and tricks to ensure the <b>best yield<b> from your grow!'
+              text='<b>Fine-tuning, monitoring and having a live view on your grow</b>, all from your <b>phone!</b> The app also includes tips and tricks to ensure the <b>best yield</b> from your grow!'
               icon='app.svg' />
       </div>
     </div>

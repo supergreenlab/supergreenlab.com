@@ -22,7 +22,7 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle nobottom='true' :bundle='bundle' addtocart='true' noframe='true' :showdescription='true' />
+      <Bundle :nobottom=true :bundle='bundle' :addtocart=true :noframe=true :showdescription=true :showRelatedProducts=true />
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>

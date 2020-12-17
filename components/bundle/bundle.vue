@@ -32,6 +32,17 @@
       <div :id='$style.description'>
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
 
+        <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
+          <h4>This product can be used with:</h4>
+          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+            <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
+            <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
+            <div>
+              <b>{{ rp.price }}</b>
+            </div>
+          </nuxt-link>
+        </div>
+
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
@@ -54,7 +65,7 @@
         <div :class='$style.price'>
           <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
         </div>
-        <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
+        <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' @click='handleAddToCart' />
       </div>
     </div>
   </section>
@@ -69,10 +80,29 @@ import Pics from '~/components/products/pics.vue'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart, Pics,},
-  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'showdescription', 'right'],
+  props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'showdescription', 'right', 'showRelatedProducts',],
+  data() {
+    return {
+      addedToCart: false
+    }
+  },
   methods: {
     bundleClicked() {
       this.$matomo && this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
+    },
+    handleAddToCart() {
+      setTimeout(() => this.$data.addedToCart = true, 1000)
+    }
+  },
+  computed: {
+    relatedProducts() {
+      return this.$store.getters['eshop/relatedProducts'](this.bundle.id).map(rp => {
+        rp = Object.assign({}, rp)
+        rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
+        rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
+        rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
+        return rp
+      })
     },
   },
 }
@@ -84,6 +114,7 @@ export default {
   display: flex
   width: 100%
   flex-direction: column
+  color: #454545
 
 #header
   display: flex
@@ -185,6 +216,35 @@ export default {
   content: '- '
   color: #3bb30b
   font-weight: bold
+
+#relatedProducts h4
+  margin: 5pt 5pt
+
+.relatedProduct
+  display: flex
+  padding: 5pt 5pt
+  align-items: center
+  justify-content: space-between
+  text-decoration: none
+  font-size: 0.9em
+  color: #454545
+
+.relatedProduct b
+  color: #3bb30b
+
+.relatedProduct:hover .relatedProductText
+  text-decoration: underline !important
+
+.relatedProductPic
+  width: 30pt
+  height: 30pt
+  margin: 0 5pt 0 0
+  background-position: top
+  background-size: contain
+  background-repeat: no-repeat
+
+.relatedProductText
+  flex: 1
 
 #bottom 
   display: flex

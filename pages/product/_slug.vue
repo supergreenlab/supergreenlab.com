@@ -240,6 +240,7 @@ export default {
     },
     relatedProducts() {
       return this.$store.getters['eshop/relatedProducts'](this.product.id).map(rp => {
+        rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])

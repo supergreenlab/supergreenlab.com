@@ -21,10 +21,10 @@
     <div :id='vertical ? (nohorizontal ? $style.iconav : $style.iconv) : $style.iconh' :style='{"background-image": `url(${require(`~/assets/img/${icon}`)})`}'></div>
     <div :id='$style.body' :style='{"text-align": center ? "center" : ""}'>
       <h1 v-if='n'>{{ n }}</h1>
-      <p :id='$style.title' :style='{"margin-top": !n ? "10pt" : ""}'>
+      <div :id='$style.title' :style='{"margin-top": !n ? "10pt" : ""}'>
         {{ title }}
-      </p>
-      <p :id='$style.text' :style='{height: textheight || ""}' v-html='text'></p>
+      </div>
+      <div :id='$style.text' :style='{height: textheight || ""}' v-html='text'></div>
     </div>
   </section>
 </template>
