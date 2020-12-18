@@ -107,6 +107,7 @@ export default {
 #icon
   width: 100%
   height: 100%
+  min-height: 280pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
@@ -114,8 +115,8 @@ export default {
   @media only screen and (max-width: 400px)
     height: 220pt
   @media only screen and (min-width: 400px) and (max-width: 800px)
-    max-width: 300pt
-    height: 300pt
+    max-width: 280pt
+    height: 280pt
 
 #description
   flex: 0.7
