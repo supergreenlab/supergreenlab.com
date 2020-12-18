@@ -42,6 +42,7 @@
       <Item v-if='bundle.specs.ventilation' :n='bundle.specs.ventilation' :item='accessory("sgl-blower")' />
       <Item v-if='bundle.specs.sensor' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
       <Item n='1' :item='accessory("sgl-controller")' last='true' />
+      <Item n='1' :item='accessory("power-supply-24v-6-25a")' last='true' />
       <div :class='$style.price'>
         <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
         <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
@@ -99,6 +100,18 @@ import { guides } from '~/config/guides.json'
 
 export default {
   components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, BundleIntro, LatestDiaries, AddToCart,},
+  head() {
+    return {
+      title: `SuperGreenLab - ${this.brandProduct.name} - ${this.bundle.tagline}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.brandProduct.description
+        },
+      ],
+    }
+  },
   data() {
     return {
       loading: false,
@@ -112,6 +125,9 @@ export default {
     bundle() {
       const { slug } = this.$route.params
       return this.$store.getters['eshop/productWithSlug'](slug)
+    },
+    brandProduct() {
+      return this.$store.getters['eshop/brandProduct'](this.bundle.SellingPoints[0].BrandProduct[0])
     },
     led() {
       return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
