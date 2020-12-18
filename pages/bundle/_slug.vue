@@ -23,6 +23,8 @@
     </div>
     <div :id='$style.body'>
       <Bundle :nobottom=true :bundle='bundle' :addtocart=true :noframe=true :showdescription=true :showRelatedProducts=true />
+      <Title icon='icon-see-shop.svg' title='SPARE PARTS' />
+      <ProductList :products='sglSpareParts' :center=true :maxItems=4 />
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
@@ -67,8 +69,6 @@
                  button='START CHAT' />
         </div>
       </div>
-      <Title icon='icon-see-shop.svg' title='SPARE PARTS' />
-      <ProductList :products='sglSpareParts' :center=true />
       <Title icon='icon-see-shop.svg' title='SEE ALSO' />
       <div v-if='relatedProducts.length' :id='$style.products'>
         <ProductList :products='relatedProducts' :maxItems=4 />
