@@ -63,7 +63,7 @@ export default {
       trackerUrl: 'https://analytics.supergreenlab.com/matomo.php',
       scriptUrl: 'https://analytics.supergreenlab.com/matomo.js',
       onMetaChange: true,
-      siteId: isDev ? 7 : 4,
+      siteId: process.env.MATOMO_SITEID,
       debug: true,
     }],
     'portal-vue/nuxt',
