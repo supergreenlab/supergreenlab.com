@@ -3,6 +3,8 @@ import pkg from './package'
 import { products, sellingPoints, } from './config/products.json'
 import { guides } from './config/guides.json'
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 export default {
   target: 'static',
 
@@ -39,7 +41,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~plugins/analytics.js', ssr: false },
+    //{ src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/init.js', ssr: false },
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
@@ -56,7 +58,14 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     '@nuxtjs/markdownit',
-    ['nuxt-matomo', { matomoUrl: '//analytics.supergreenlab.com/', trackerUrl: '//analytics.supergreenlab.com/matomo.php', scriptUrl: '//analytics.supergreenlab.com/matomo.js', siteId: 1 }],
+    ['nuxt-matomo', {
+      matomoUrl: 'https://analytics.supergreenlab.com/',
+      trackerUrl: 'https://analytics.supergreenlab.com/matomo.php',
+      scriptUrl: 'https://analytics.supergreenlab.com/matomo.js',
+      onMetaChange: true,
+      siteId: isDev ? 7 : 4,
+      debug: true,
+    }],
     'portal-vue/nuxt',
     'nuxt-client-init-module',
   ],

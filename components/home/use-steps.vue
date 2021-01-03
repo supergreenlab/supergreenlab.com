@@ -47,17 +47,20 @@
               :vertical=true />
       </div>
     </div>
+    <Cta title='View guides' anchor='guides' @click='ctaClicked' />
   </section>
 </template>
 
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Step from '~/components/home/step.vue'
+import Cta from '~/components/home/cta.vue'
 
 export default {
-  components: { SectionTitle, Step, },
+  components: { SectionTitle, Cta, Step, },
   methods: {
     ctaClicked() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage CTA', 'Homepage steps CTA')
     }
   },
 }
@@ -100,29 +103,5 @@ export default {
   flex-basis: 25%
   @media only screen and (max-width: 600px)
     margin-bottom: 20pt
-
-#cta
-  display: flex
-  flex-direction: column
-  text-transform: uppercase
-  color: white
-  background-color: #3BB30B
-  padding: 10pt 35pt
-  border-radius: 3pt
-  text-decoration: none
-  text-align: center
-  z-index: 100
-  margin-bottom: 20pt
-  font-size: 1.5em
-  @media only screen and (max-width: 600px)
-    font-size: 1.1em
-
-#cta > small
-  padding-top: 5pt
-  font-weight: 300
-  font-size: 1.1em
-
-#cta > b
-  font-weight: 600
 
 </style>

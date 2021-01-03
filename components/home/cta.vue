@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2021  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -16,36 +16,42 @@
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
-<template>
-  <section :id='$style.container'>
-  </section>
-</template>
+ <template>
+   <nuxt-link  :id='$style.cta' @click.native='$emit("click")' :to='anchor ? {path: "/", hash: `#${anchor}`} : to'>
+     <b>{{ title }}</b>
+   </nuxt-link>
+ </template>
 
 <script>
-import { setHref } from '~/lib/client-side.js'
-
 export default {
-  head() {
-    return {
-      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Ultimate grow shop and guides for home growing stealth grow boxes building. Build your own connected grow box with our app and our complete bundle for DIY furniture-as-a-growbox: automated and controlled with an app. Comes with light, ventilation, and sensors (temp and RH).'
-        },
-      ],
-    }
-  },
-  created() {
-    setHref('https://discord.gg/n4MvwMh')
-  },
+  props: ['title', 'anchor', 'to',]
 }
 </script>
 
 <style module lang=stylus>
 
-#container
+#cta
   display: flex
+  flex-direction: column
+  text-transform: uppercase
+  color: white
+  background-color: #3BB30B
+  padding: 10pt 35pt
+  border-radius: 3pt
+  text-decoration: none
+  text-align: center
+  z-index: 100
+  margin: 10pt 10pt 50pt 10pt
+  font-size: 1.5em
+  @media only screen and (max-width: 600px)
+    font-size: 1.1em
+
+#cta > small
+  padding-top: 5pt
+  font-weight: 300
+  font-size: 1.1em
+
+#cta > b
+  font-weight: 600
 
 </style>

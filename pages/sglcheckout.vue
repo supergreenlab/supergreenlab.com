@@ -66,6 +66,18 @@ import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '
 const SGL_SELLER = 'recT9nIg4ahFv9J29'
 
 export default {
+  head() {
+    return {
+      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Ultimate grow shop and guides for home growing stealth grow boxes building. Build your own connected grow box with our app and our complete bundle for DIY furniture-as-a-growbox: automated and controlled with an app. Comes with light, ventilation, and sensors (temp and RH).'
+        },
+      ],
+    }
+  },
   components: {Header, Shipping, Loading, Footer, OutOfStock, CheckoutButton, Price},
   data() {
     return {

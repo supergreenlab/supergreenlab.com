@@ -19,15 +19,15 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.body'>
-      <div :id='$style.thumbnail' :style='{"background-image": `url(${require("~/assets/img/yt-thumbnail-eketv2.jpg")})`}'><img src='~assets/img/youtube-play.png' /><a href='https://www.youtube.com/watch?v=1tHfZttB2Fg' target='_blank'></a></div>
+      <div :id='$style.thumbnail'>
+        <Thumbnail @click='clickVideo' @mouseover='hoverVideo' asset='yt-thumbnail-eketv2.jpg' url='https://www.youtube.com/watch?v=1tHfZttB2Fg' />
+      </div>
       <div :id='$style.text'>
         <div>
           <h2>{{ guide.name }}</h2>
           <div v-html='$md.render(guide.text)'></div>
         </div>
-        <nuxt-link  :id='$style.cta' :to='`/guide/${guide.slug}`'>
-          <b class="hvr-grow">View guide</b>
-        </nuxt-link>
+        <Cta title='View guide' :to='`/guide/${guide.slug}`' @click='ctaClicked' />
       </div>
     </div>
   </section>
@@ -35,23 +35,39 @@
 
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Cta from '~/components/home/cta.vue'
+import Thumbnail from '~/components/home/thumbnail.vue'
 
 export default {
-  components: {SectionTitle,},
+  components: {SectionTitle, Cta, Thumbnail,},
   computed: {
     guide() {
       const guide = require('~/config/guide-how-to-build-a-ikea-eket-connected-grow-box.json')
       return guide
-    }
-  }
+    },
+    videoName() {
+      return 'How to build a stealth growbox - Perpetual harvest edition - Vegging and blooming at the same time!'
+    },
+  },
+  methods: {
+    ctaClicked() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage click', 'Homepage Click Featured Guide', this.guide.name)
+    },
+    hoverVideo() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage hover', 'Homepage hover featured video', this.videoName)
+    },
+    clickVideo() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage click', 'Homepage click featured video', this.videoName)
+    },
+  },
 }
 </script>
 
 <style module lang=stylus>
 
 #container
-  display: flex
   width: 100%
+  display: flex
   flex-direction: column
   justify-content: center
   align-items: center
@@ -77,62 +93,18 @@ export default {
   flex-direction: column
   justify-content: space-between
   align-items: flex-end
+  padding: 0 10pt
 
 #text h2
   margin: 0 0 15pt 0
 
 #thumbnail
-  flex: 1
-  position: relative
-  display: flex
-  align-items: center
-  justify-content: center
   width: 560px
   height: 315px
   margin: 10pt 0 20pt 0
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
   @media only screen and (max-width: 600px)
-    flex: auto
     width: 100%
-    height: 200px
-
-#thumbnail > img
-  transition: opacity 0.2s
-  @media only screen and (max-width: 600px)
-    max-width: 25%
-
-#thumbnail:hover > img
-  opacity: 90%
-
-#thumbnail > a
-  display: block
-  position: absolute
-  width: 100%
-  height: 100%
-
-#cta
-  text-transform: uppercase
-  color: white
-  background-color: #3BB30B
-  padding: 10pt 35pt
-  border-radius: 3pt
-  text-decoration: none
-  text-align: center
-  z-index: 100
-  margin-bottom: 20pt
-  font-size: 1.5em
-  @media only screen and (max-width: 600px)
-    margin-top: 15pt
-    font-size: 1.1em
-
-#cta > small
-  padding-top: 5pt
-  font-weight: 300
-  font-size: 1.1em
-
-#cta > b
-  font-weight: 600
+    height: 250px
+    margin: 10pt 0
 
 </style>

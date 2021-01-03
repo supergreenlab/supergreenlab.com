@@ -150,7 +150,6 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
 
 export default {
-  components: {Header, SectionTitle, Footer},
   head () {
     return {
       title: 'Terms & Conditions - SuperGreenLab',
@@ -159,6 +158,7 @@ export default {
       ]
     }
   },
+  components: {Header, SectionTitle, Footer},
 }
 </script>
 

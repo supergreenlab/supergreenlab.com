@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2021  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -17,35 +17,46 @@
  -->
 
 <template>
-  <section :id='$style.container'>
-  </section>
+  <div
+    @mouseover='$emit("mouseover")'
+    :id='$style.thumbnail'
+    :style='{"background-image": `url(${require(`~/assets/img/${asset}`)})`}'>
+    <img src='~assets/img/youtube-play.png' />
+    <a @click='$emit("click")' :href='url' target='_blank'></a>
+  </div>
 </template>
 
 <script>
-import { setHref } from '~/lib/client-side.js'
-
 export default {
-  head() {
-    return {
-      title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Ultimate grow shop and guides for home growing stealth grow boxes building. Build your own connected grow box with our app and our complete bundle for DIY furniture-as-a-growbox: automated and controlled with an app. Comes with light, ventilation, and sensors (temp and RH).'
-        },
-      ],
-    }
-  },
-  created() {
-    setHref('https://discord.gg/n4MvwMh')
-  },
+  props: ['asset', 'url',],
 }
 </script>
 
 <style module lang=stylus>
 
-#container
+#thumbnail
+  width: 100%
+  height: 100%
+  position: relative
   display: flex
+  align-items: center
+  justify-content: center
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+#thumbnail > img
+  transition: opacity 0.2s
+  @media only screen and (max-width: 600px)
+    max-width: 25%
+
+#thumbnail:hover > img
+  opacity: 90%
+
+#thumbnail > a
+  display: block
+  position: absolute
+  width: 100%
+  height: 100%
 
 </style>

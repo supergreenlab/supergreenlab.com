@@ -263,7 +263,6 @@ import Footer from '~/components/layout/footer.vue'
 
 
 export default {
-  components: { Header, SectionTitle, Footer},
   head () {
     return {
       title: 'Privacy Policy - SuperGreenLab',
@@ -272,6 +271,7 @@ export default {
       ]
     }
   },
+  components: { Header, SectionTitle, Footer},
 }
 </script>
 

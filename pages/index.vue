@@ -25,7 +25,7 @@
     </div>
     <div :id='$style.body'>
       <div id='top'></div>
-      <Top ref='top' :focus='currentRef == "top"' />
+      <Top ref='top' />
       <div id='use-steps'></div>
       <div :class='$style.space'></div>
       <UseSteps ref='use-steps' />
@@ -37,9 +37,12 @@
                       smalltitle='and offer free 24/7/365 support'
                       separator='true'/>
       </div>
-      <LatestGuide />
-      <div :class='$style.space'></div>
-      <Youtube ref='youtube' />
+      <div id='guides'></div>
+      <div :id='$style.guides' ref='guides'>
+        <LatestGuide />
+        <div :class='$style.space'></div>
+        <Youtube />
+      </div>
       <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='Join the community'
@@ -47,7 +50,7 @@
                       title2='What will you build?'
                       separator='true'/>
       </div>
-      <Examples ref='examples' />
+      <Examples ref='community' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='Ready to grow?'
@@ -135,7 +138,6 @@ import Ready from '~/components/home/ready.vue'
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -148,10 +150,10 @@ export default {
       ],
     }
   },
+  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
   data() {
     return {
       showPopup: false,
-      currentRef: 'top',
     }
   },
   created () {
@@ -170,10 +172,10 @@ export default {
       }
     }
   },
-	computed: {
-		bundles() {
-			return this.$store.getters['eshop/bundles']
-		},
+  computed: {
+    bundles() {
+      return this.$store.getters['eshop/bundles']
+    },
     promo() {
       const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
@@ -192,7 +194,7 @@ export default {
     tools() {
       return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
     },
-	},
+  },
   methods: {
     closePopup() {
       saveToStorage('popupShown2', 1)
@@ -214,8 +216,8 @@ export default {
               winh = innerHeight()
 
             if (centery > winh / 4 && centery < winh * 3/4) {
+              this.$matomo.trackEvent('Homepage navigation', 'Homepage Scroll To', `Homepage Scroll to ${name.replace('-', ' ')}`)
               this.lastEvent = name
-              this.$data.currentRef = name
             }
           })
         })
@@ -256,6 +258,10 @@ export default {
   height: 2pt
   margin: 30pt 0
   background-color: #eaeaea
+
+#guides
+  width: 100%
+  max-width: 900pt
 
 .shop
   display: flex

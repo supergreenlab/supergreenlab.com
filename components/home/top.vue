@@ -93,19 +93,18 @@
                         smalltitle="and it's open-source btw"/>
         </div>
     </div>
-    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
-      <b class="hvr-grow">Start growing</b>
-    </nuxt-link>
+    <Cta title='Start growing' anchor='use-steps' @click='ctaClicked' />
   </section>
 </template>
 
 <script>
 import Logo from '~/components/widgets/logo.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Cta from '~/components/home/cta.vue'
 
 export default {
-  components: { Logo, SectionTitle, },
-  props: ['focus'],
+  components: { Logo, SectionTitle, Cta, },
+  props: [],
   data() {
     return {
       n: -1,
@@ -126,6 +125,7 @@ export default {
   },
   methods: {
     ctaClicked() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage CTA', 'Homepage Start Growing CTA')
     }
   },
 }
@@ -195,30 +195,6 @@ export default {
 
 .shown
   opacity: 1
-
-#cta
-  display: flex
-  flex-direction: column
-  text-transform: uppercase
-  color: white
-  background-color: #3BB30B
-  padding: 10pt 35pt
-  border-radius: 3pt
-  text-decoration: none
-  text-align: center
-  z-index: 100
-  margin-bottom: 50pt
-  font-size: 1.5em
-  @media only screen and (max-width: 600px)
-    font-size: 1.1em
-
-#cta > small
-  padding-top: 5pt
-  font-weight: 300
-  font-size: 1.1em
-
-#cta > b
-  font-weight: 600
 
 #legal
   color: white
