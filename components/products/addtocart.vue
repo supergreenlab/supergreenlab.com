@@ -49,7 +49,6 @@ export default {
       if (this.$data.activated) return
       const { product, sellingPoint, } = this.$props
       const { n } = this.$data
-      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', sellingPoint.slug)
       this.$data.activated = true
       this.timeout = setTimeout(() => {
         this.$data.activated = false

@@ -87,7 +87,6 @@ export default {
     notifyForm() {
       const width = 800
       open(`https://airtable.com/shrB2zJ3H5jF9f6fl?prefill_SellingPoint=${this.$props.lineItems[0].sellingPoint.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo && this.$matomo.trackEvent('guide', 'feedback')
     }
   },
 }

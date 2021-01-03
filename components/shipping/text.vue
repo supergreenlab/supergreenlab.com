@@ -31,7 +31,6 @@ export default {
       this.$emit('input', e.target.value);
     },
     onChange(e) {
-      this.$matomo && this.$matomo.trackEvent('shipping-form', this.$props.name, e.target.value)
       this.$emit('input', e.target.value);
     },
   },

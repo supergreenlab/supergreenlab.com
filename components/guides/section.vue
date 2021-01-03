@@ -82,7 +82,6 @@ export default {
     feedback() {
       const width = 800
       open(`https://airtable.com/shrXcK5fyNpfMH5n9?prefill_GuideSection=${this.guideSection.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo && this.$matomo.trackEvent('guide', 'feedback')
     },
   },
 }

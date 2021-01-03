@@ -107,7 +107,6 @@ export default {
         this.$data.done = true
       }, 2000)
       const { d: data } = this.$route.query
-      this.$matomo && this.$matomo.trackEvent('cart', 'import', md5(data))
     },
   },
   computed: {

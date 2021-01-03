@@ -35,7 +35,6 @@ export default {
   methods: {
     onClick() {
       const { analytics } = this.$props
-      this.$matomo && this.$matomo.trackEvent('guide', 'clicked', analytics)
     }
   },
 }

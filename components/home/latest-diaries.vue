@@ -52,7 +52,6 @@ export default {
   },
   methods: {
     ctaClicked() {
-      this.$matomo && this.$matomo.trackEvent('front-page', 'cta-continuous', 'buy-now')
     },
     open(plant) {
       document.location.href = '';

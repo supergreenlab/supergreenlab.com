@@ -60,7 +60,6 @@ export default {
       this.cart.forEach(lineItem => {
         this.$store.commit('checkout/checkLineItem', { lineItem, checked: !checked })
         if (!checked && !lineItem.checked) {
-          this.$matomo && this.$matomo.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
         }
       })
     },

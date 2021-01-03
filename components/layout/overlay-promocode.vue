@@ -59,17 +59,14 @@ export default {
   },
   components: { SectionTitle ,},
   created() {
-    this.$matomo && this.$matomo.trackEvent('popup', 'shown')
   },
   methods: {
     close() {
       this.$props.onClose()
-      this.$matomo && this.$matomo.trackEvent('popup', 'close')
     },
     ok() {
       this.close()
       this.$store.dispatch('storefront/setPromocode', {code: 'SGL_LOVE'})
-      this.$matomo && this.$matomo.trackEvent('popup', 'activate')
     },
     takeSurvey() {
       this.$data.showTypeForm = true
@@ -77,7 +74,6 @@ export default {
     },
     no() {
       this.close()
-      this.$matomo && this.$matomo.trackEvent('popup', 'nothanks')
     },
     cancelClick(e) {
       e.stopPropagation()
@@ -89,7 +85,6 @@ export default {
       this.ok()
     },
     loadTypeform() {
-      console.log('pouet')
       var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/";
       if(!gi.call(d,id)) {
         js=ce.call(d,"script");

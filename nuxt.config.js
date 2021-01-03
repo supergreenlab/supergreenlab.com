@@ -63,8 +63,6 @@ export default {
   sitemap: {
     hostname: 'https://www.supergreenlab.com',
     exclude: [
-      '/designer',
-      '/designer/*',
     ]
   },
   /*

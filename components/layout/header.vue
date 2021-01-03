@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     onClick(e) {
-      this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
     },
   },
 }

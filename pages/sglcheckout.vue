@@ -79,7 +79,6 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
-      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart, true, true))
       this.$data.loading = true
       const { shopify } = this.$store.getters['eshop/seller'](SGL_SELLER).params
       const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))

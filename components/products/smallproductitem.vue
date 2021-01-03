@@ -70,7 +70,6 @@ export default {
   },
   methods: {
     click() {
-      this.$matomo && this.$matomo.trackEvent('smallproductitem', 'viewproduct', sellingPoint.slug)
     }
   }
 }

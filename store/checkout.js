@@ -68,11 +68,8 @@ export const actions = {
 }
 
 export const mutations = {
-  setState(state, newState/*{ cart, promocode, discount }*/) {
+  setState(state, newState) {
     Object.assign(state, newState)
-      /*state.cart.push(...cart)
-    state.promocode = promocode
-    state.discount = discount*/
   },
   addToCart(state, { n, product, sellingPoint }) {
     const i = state.cart.findIndex(i => i.sellingPoint == sellingPoint.id)

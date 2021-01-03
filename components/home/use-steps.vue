@@ -58,7 +58,6 @@ export default {
   components: { SectionTitle, Step, },
   methods: {
     ctaClicked() {
-      this.$matomo && this.$matomo.trackEvent('front-page', 'cta', 'buy-now')
     }
   },
 }

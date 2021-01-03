@@ -109,7 +109,6 @@ export default {
       }
       this.$store.commit('checkout/checkLineItem', { lineItem, checked: !lineItem.checked })
       if (!lineItem.checked) {
-        this.$matomo && this.$matomo.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
       }
     },
   }

@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     setRegion(region) {
-      this.$matomo && this.$matomo.trackEvent('regions', 'change', region.code)
       this.$store.commit('eshop/setRegion', region)
       this.$data.expanded = false
     }
