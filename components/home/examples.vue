@@ -78,6 +78,7 @@ export default {
     setPage(n) {
       n = (n < 0 ? this.builds.length-1 : n) % this.builds.length
       this.$data.n = n
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage click', `Homepage Community Click Carrousel Button`)
       if (this.interval) clearInterval(this.interval)
     },
     handleSwipe(e) {

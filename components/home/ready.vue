@@ -19,13 +19,13 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.body'>
-      <nuxt-link :class='$style.step' to='/app'>
+      <nuxt-link @click.native='clickApp' :class='$style.step' to='/app'>
         <div :class='$style.logo' :id='$style.appstores'></div>
         Install the app<br />
         <small>checkout the explorer tab<br />for inspiration</small>
       </nuxt-link>
       <b>&nbsp;then&nbsp;</b>
-      <nuxt-link :class='$style.step' to='/discord'>
+      <nuxt-link @click.native='clickDiscord' :class='$style.step' to='/discord'>
         <div :class='$style.logo' :id='$style.discord'></div>
         <small>Still got questions?</small>
         Join the discord server<br />
@@ -37,6 +37,14 @@
 
 <script>
 export default {
+  methods: {
+    clickApp() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage click', 'Homepage Community Click Install App')
+    },
+    clickDiscord() {
+      this.$matomo.trackEvent('Homepage navigation', 'Homepage click', 'Homepage Community Click Join Discord')
+    },
+  },
 }
 </script>
 
