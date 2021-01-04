@@ -23,7 +23,7 @@ import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
-const STORAGE_ITEM='checkout2'
+const STORAGE_ITEM='checkout3'
 
 export const state = () => {
   let defaults = {
