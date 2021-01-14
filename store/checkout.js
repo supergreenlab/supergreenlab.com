@@ -126,7 +126,7 @@ export const getters = {
 
     const region = rootState.eshop.region
     let vat = 0
-    if (lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29' && regionTree(region).find(r => r.code == 'EU')) {
+    if (lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29' && regionTree(region).find(r => r.code == 'EU') && region.code != 'UK') {
       vat = 21
     }
     const currency = lineItems[0].sellingPoint.currency
