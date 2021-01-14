@@ -73,6 +73,12 @@
           <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' />
         </div>
+        <div :class='$style.title'>
+          <SectionTitle title='SPARE PARTS' smalltitle='More to come very soon:)' />
+        </div>
+        <div :class='$style.shop'>
+          <ProductList ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
+        </div>
       </div>
       <div :class='$style.title'>
         <SectionTitle title='STEP 3'
@@ -182,6 +188,9 @@ export default {
     },
     furnitures() {
       return this.$store.getters['eshop/collection']('homepage-furniture')
+    },
+    sglSpareParts() {
+      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
     },
     soil() {
       return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])
