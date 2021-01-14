@@ -23,7 +23,7 @@
         <h1>{{ bundle.name }}</h1>
         <h2>{{ bundle.tagline }}</h2>
       </div>
-      <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+      <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' v-if='nobottom' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
@@ -45,6 +45,7 @@
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
+            <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
             <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${bundle.slug}`'>LEARN MORE</nuxt-link><br />
           </div>
@@ -54,7 +55,6 @@
           <div :class='$style.price'>
             <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
           </div>
-          <AddToCart :product='bundle' :sellingPoint='bundle.sellingPoints[0]' />
         </div>
       </div>
     </div>
@@ -178,6 +178,7 @@ export default {
 #buy
   display: flex
   flex-direction: column
+  justify-content: center
   font-weight: bold
   @media only screen and (max-width: 600px)
     margin: 30pt 10pt 0 0
@@ -185,7 +186,7 @@ export default {
 
 #buy > a
   display: block
-  align-self: flex-start
+  align-self: flex-end
   background-color: #3BB30B
   padding: 8pt 25pt
   border-radius: 5pt
@@ -248,6 +249,7 @@ export default {
 
 #bottom 
   display: flex
+  justify-content: flex-end
   padding: 10pt 0
   @media only screen and (max-width: 600px)
     padding: 0
