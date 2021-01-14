@@ -50,7 +50,7 @@
     </div>
 
     <div>
-      <font size="3" style="font-weight: 500;" >© 2020 SuperGreenLab. All Rights Reserved</font>
+      <font size="3" style="font-weight: 500;" >© 2021 SuperGreenLab. All Rights Reserved</font>
     </div>
   </section>
 </template>
