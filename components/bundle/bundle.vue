@@ -190,6 +190,7 @@ export default {
   background-color: #3BB30B
   padding: 8pt 25pt
   border-radius: 5pt
+  margin-top: 10pt
   color: white
   text-decoration: none
 
