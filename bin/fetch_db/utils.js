@@ -67,19 +67,22 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
     }
     const fileLarge = `${attachement.id}.${ext}`,
       fileSmall = `${attachement.id}_small.${ext}`,
-      fileFull = `${attachement.id}_full.${ext}`
+      fileFull = `${attachement.id}_full.${ext}`,
+      finalFileLarge = `${attachement.id}.jpg`,
+      finalFileSmall = `${attachement.id}_small.jpg`,
+      finalFileFull = `${attachement.id}_full.jpg`
     p = p.then(async () => {
       await fetchFile(thumbnails.small.url, `tmp/${fileSmall}`)
       await fetchFile(thumbnails.large.url, `tmp/${fileLarge}`)
       await fetchFile(thumbnails.full.url, `tmp/${fileFull}`)
 
       console.log(`resizing:\n${dir}/${fileSmall} ${dir}/${fileLarge} ${dir}/${fileFull}`)
-      await sharp(`${assetsPath}/tmp/${fileSmall}`).resize(100, 100, {fit: 'inside', withoutEnlargement: true}).toFile(`${assetsPath}/${dir}/${fileSmall}`)
-      await sharp(`${assetsPath}/tmp/${fileLarge}`).resize(400, 400, {fit: 'inside', withoutEnlargement: true}).toFile(`${assetsPath}/${dir}/${fileLarge}`)
-      await sharp(`${assetsPath}/tmp/${fileFull}`).resize(600, 600, {fit: 'inside', withoutEnlargement: true}).toFile(`${assetsPath}/${dir}/${fileFull}`)
+      await sharp(`${assetsPath}/tmp/${fileSmall}`).resize(100, 100, {fit: 'inside', withoutEnlargement: true}).jpeg().toFile(`${assetsPath}/${dir}/${finalFileSmall}`)
+      await sharp(`${assetsPath}/tmp/${fileLarge}`).resize(400, 400, {fit: 'inside', withoutEnlargement: true}).jpeg().toFile(`${assetsPath}/${dir}/${finalFileLarge}`)
+      await sharp(`${assetsPath}/tmp/${fileFull}`).resize(600, 600, {fit: 'inside', withoutEnlargement: true}).jpeg().toFile(`${assetsPath}/${dir}/${finalFileFull}`)
     })
 
-    return { p, attachement, data: { fileLarge: `${dir}/${fileLarge}`, fileSmall: `${dir}/${fileSmall}`, fileFull: `${dir}/${fileFull}`, type: attachement.type } }
+    return { p, attachement, data: { fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {
     const ext = attachement.type.split('/')[1]
     const filePath = `${dir}/${attachement.id}.${ext}`

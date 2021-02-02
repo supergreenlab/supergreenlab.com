@@ -189,16 +189,16 @@ export default {
   color: #676767
 
 #keeptrack
-  background-image: url('~assets/img/app-keep-track.png')
+  background-image: url('~assets/img/app-keep-track.jpg')
 
 #recordactionsprogress
-  background-image: url('~assets/img/app-record-actions-progress.png')
+  background-image: url('~assets/img/app-record-actions-progress.jpg')
 
 #explore
-  background-image: url('~assets/img/app-explore.png')
+  background-image: url('~assets/img/app-explore.jpg')
 
 #alerts
-  background-image: url('~assets/img/app-alerts-reminders.png')
+  background-image: url('~assets/img/app-alerts-reminders.jpg')
 
 .previous, .next
   position: absolute

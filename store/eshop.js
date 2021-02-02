@@ -30,7 +30,7 @@ const guessDefautRegion = () => {
   return regions[0]
 }
 
-const STORAGE_ITEM='eshop2'
+const STORAGE_ITEM='eshop3'
 
 export const state = () => {
   let defaults = {
