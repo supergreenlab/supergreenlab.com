@@ -4,11 +4,15 @@ const merge = require('deepmerge')
 const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir, mkAssetsDir, noPic } = require('./utils.js')
 
 module.exports.fetchProducts = async () => {
+  await mkAssetsDir('tmp')
   await mkAssetsDir('products')
   await mkAssetsDir('sellers')
   await mkAssetsDir('brandproducts')
   await mkAssetsDir('brands')
   await mkAssetsDir('regions')
+
+  await emptyAssetsDir('tmp')
+
   let products = await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type'])
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer'])).filter(sp => sp.ready)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
@@ -141,4 +145,5 @@ module.exports.fetchProducts = async () => {
     relatedProducts,
   })
   await fs.writeFile('config/products.json', productsJSON)
+  await emptyAssetsDir('tmp')
 }

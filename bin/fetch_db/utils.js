@@ -3,6 +3,8 @@ const fs = require('fs/promises')
 const YAML = require('yaml')
 const axios = require('axios')
 
+const sharp = require('sharp')
+
 const assetsPath = 'assets/img'
 const staticPath = 'static'
 
@@ -32,18 +34,21 @@ module.exports.noPic = {
   fileFull: 'nopic.svg'
 }
 
-module.exports.emptyAssetsDir = async (dir) => {
+const emptyAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
   await fs.rmdir(dir, { recursive: true })
   await fs.mkdir(dir)
 }
 
-module.exports.mkAssetsDir = async (dir) => {
+module.exports.emptyAssetsDir = emptyAssetsDir
+
+const mkAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
   try {
     await fs.mkdir(dir)
   } catch(e) {}
 }
+module.exports.mkAssetsDir = mkAssetsDir
 
 module.exports.mkStaticDir = async (dir) => {
   dir = `${staticPath}/${dir}`
@@ -60,15 +65,21 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
       large: {url: attachement.url},
       full: {url: attachement.url}
     }
-    const fileLarge = `${dir}/${attachement.id}.${ext}`,
-      fileSmall = `${dir}/${attachement.id}_small.${ext}`,
-      fileFull = `${dir}/${attachement.id}_full.${ext}`
+    const fileLarge = `${attachement.id}.${ext}`,
+      fileSmall = `${attachement.id}_small.${ext}`,
+      fileFull = `${attachement.id}_full.${ext}`
     p = p.then(async () => {
-      await fetchFile(thumbnails.small.url, fileSmall)
-      await fetchFile(thumbnails.large.url, fileLarge)
-      await fetchFile(thumbnails.full.url, fileFull)
+      await fetchFile(thumbnails.small.url, `tmp/${fileSmall}`)
+      await fetchFile(thumbnails.large.url, `tmp/${fileLarge}`)
+      await fetchFile(thumbnails.full.url, `tmp/${fileFull}`)
+
+      console.log(`resizing:\n${dir}/${fileSmall} ${dir}/${fileLarge} ${dir}/${fileFull}`)
+      await sharp(`${assetsPath}/tmp/${fileSmall}`).resize(100, 100, {fit: 'inside', withoutEnlargement: true}).toFile(`${assetsPath}/${dir}/${fileSmall}`)
+      await sharp(`${assetsPath}/tmp/${fileLarge}`).resize(400, 400, {fit: 'inside', withoutEnlargement: true}).toFile(`${assetsPath}/${dir}/${fileLarge}`)
+      await sharp(`${assetsPath}/tmp/${fileFull}`).resize(600, 600, {fit: 'inside', withoutEnlargement: true}).toFile(`${assetsPath}/${dir}/${fileFull}`)
     })
-    return { p, attachement, data: { fileLarge, fileSmall, fileFull, type: attachement.type } }
+
+    return { p, attachement, data: { fileLarge: `${dir}/${fileLarge}`, fileSmall: `${dir}/${fileSmall}`, fileFull: `${dir}/${fileFull}`, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {
     const ext = attachement.type.split('/')[1]
     const filePath = `${dir}/${attachement.id}.${ext}`
