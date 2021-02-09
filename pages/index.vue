@@ -31,9 +31,19 @@
       <UseSteps ref='use-steps' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
+        <SectionTitle title='Join the community'
+                      green='of growbox builders'
+                      title2='What will you build?'
+                      separator='true'/>
+      </div>
+      <Examples ref='examples' />
+      <div :class='$style.space'></div>
+      <div :class='$style.title'>
         <SectionTitle title='Ready to grow?'
                       green='Follow the steps below'
                       separator='true'/>
+      <div :class='$style.space'></div>
+      <Ready ref='ready' />
       </div>
       <div :class='$style.title'>
         <TitleStep title='STEP 1'
@@ -46,9 +56,8 @@
       <div :class='$style.title'>
         <TitleStep title='STEP 2'
                       green='Get a bundle'
-                      introduction="Here we are, this is what we sell! A bundle with all of what you need to control the best environment in your closet, from your smartphone, and get the most healthy and massive plant(sss) you ever see" />
+                      introduction="Here we are, this is what we sell! A bundle with all of what you need to control the best environment in your closet, from your smartphone, and get the most healthy and massive plant(s) you ever see" />
       </div>
-      <div :class='$style.space'></div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
           <div :id='b.slug'></div>
@@ -56,9 +65,10 @@
         </div>
         <div :class='$style.title'>
           <TitleStep green='Install your bundle'
-                      introduction= "Learn how to install your bundle with 'Stant' one creators of SuperGreenLab, thumbs up for the video please!" />
+                      introduction= "Learn how to install your bundle with Stant, don't forget to subscribe and thumbs up for the video please!" />
         </div>
         <LatestGuide />
+        <Youtube ref='youtube' />
         <div :class='$style.space'></div>
         <div :class='$style.title'>
           <TitleStep green='Spare parts'
@@ -88,20 +98,10 @@
         <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
-      <div :class='$style.title'>
-        <SectionTitle title='Join the community'
-                      green='of growbox builders'
-                      title2='What will you build?'
-                      separator='true'/>
-      </div>
-      <Examples ref='examples' />
-      <Ready ref='ready' />
-      <div :class='$style.space'></div>
       <Social ref='social' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
       <div :class='$style.space'></div>
-      <Youtube ref='youtube' />
     </div>
     <Footer />
     <transition name="popup">

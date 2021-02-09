@@ -36,10 +36,15 @@ export default {
   justify-content: flex-start
   @media only screen and (max-width: 600px)
     font-size: 0.8em
+
 #title
   margin-left: 100px
   font-size: 1.5em
   color: #5E5E5E
+  @media only screen and (max-width: 600px)
+    margin-left: 10px
+    font-size: 2.3em
+
 #green
   margin-left: 160px
   color: #3BB30B
@@ -47,6 +52,9 @@ export default {
   text-transform: capitalize
   margin-bottom: 0.2em
   margin-top: 0.2em
+  @media only screen and (max-width: 600px)
+    margin-left: 30px
+    font-size: 2em
 
 #introduction
   margin-left: 250px
@@ -56,5 +64,8 @@ export default {
   font-size: 0.5em
   font-style: italic
   @media only screen and (max-width: 600px)
-    font-size: 1.3em
+    font-size: 1.1em
+    margin-left: 60px
+    padding-right: 0%
+
 </style>
