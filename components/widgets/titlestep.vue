@@ -1,77 +1,60 @@
 <!--
       Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
-
       This program is free software: you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
       the Free Software Foundation, either version 3 of the License, or
       (at your option) any later version.
-
       This program is distributed in the hope that it will be useful,
       but WITHOUT ANY WARRANTY; without even the implied warranty of
       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
       GNU General Public License for more details.
-
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
 <template>
-  <section :id='$style.container' :class='separator ? $style.separator : ""'>
-    <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title }}</h2>
-    <h1 :id='$style.green' :style='white ? {color: "#7CCC5C"} : {}'>{{ green }}</h1>
-    <h2 :id='$style.title2' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
-    <small :id='$style.smalltitle' :style='white ? {color: "white"} : {}'>{{ smalltitle }}</small>
+  <section :id='$style.container'>
+    <h2 :id='$style.title'>{{ title }}</h2>
+    <h1 :id='$style.green'>{{ green }}</h1>
+    <p :id='$style.introduction'>{{ introduction }}</p>
   </section>
 </template>
 
 <script>
-
 export default {
-  props: ['title', 'title2', 'green', 'smalltitle', 'separator', 'white',],
+  props: ['title', 'green', 'introduction'],
 }
 </script>
 
 <style module lang=stylus>
-
 #container
+  width: 90%
   display: flex
+  font-size: 2.1em
   flex-direction: column
-  align-items: center
-  justify-content: center
+  justify-content: flex-start
   @media only screen and (max-width: 600px)
     font-size: 0.8em
-
-.separator
-  width: 100%
-  padding: 15pt 0 15pt 0
-  background-color: #eaeaea
-
 #title
-  font-size: 2.7em
+  margin-left: 100px
+  font-size: 1.5em
   color: #5E5E5E
-  text-align: center
-  text-transform: uppercase
-
-#title2
-  font-size: 1.6em
-  color: #5E5E5E
-  text-align: center
-  text-transform: uppercase
-
 #green
+  margin-left: 160px
   color: #3BB30B
-  font-size: 2.1em
-  text-align: center
-  text-transform: uppercase
-  margin: 0pt
+  font-size: 1em
+  text-transform: capitalize
+  margin-bottom: 0.2em
+  margin-top: 0.2em
 
-#smalltitle
-  margin-top: 5pt
+#introduction
+  margin-left: 250px
+  margin-bottom: 0em
+  padding-right: 30%
   color: #5E5E5E
-  font-size: 1.1em
-  text-align: center
+  font-size: 0.5em
+  font-style: italic
   @media only screen and (max-width: 600px)
     font-size: 1.3em
-
 </style>

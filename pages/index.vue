@@ -31,41 +31,22 @@
       <UseSteps ref='use-steps' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
-        <SectionTitle title='follow the guide to becoming'
-                      green='a ninja grower'
-                      title2='we publish guides on youtube'
-                      smalltitle='and offer free 24/7/365 support'
-                      separator='true'/>
-      </div>
-      <LatestGuide />
-      <div :class='$style.space'></div>
-      <Youtube ref='youtube' />
-      <div :class='$style.space'></div>
-      <div :class='$style.title'>
-        <SectionTitle title='Join the community'
-                      green='of growbox builders'
-                      title2='What will you build?'
-                      separator='true'/>
-      </div>
-      <Examples ref='examples' />
-      <div :class='$style.space'></div>
-      <div :class='$style.title'>
         <SectionTitle title='Ready to grow?'
                       green='Follow the steps below'
                       separator='true'/>
       </div>
-      <Ready ref='ready' />
-      <div :class='$style.space'></div>
       <div :class='$style.title'>
-        <SectionTitle title='STEP 1'
-                      green='CHOOSE YOUR FURNITURE' />
+        <TitleStep title='STEP 1'
+                      green='Choose your furniture'
+                      introduction= "Welcome the micro growing's world, to begin just get a closet or two"/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <SectionTitle title='STEP 2'
-                      green='GET A BUNDLE' />
+        <TitleStep title='STEP 2'
+                      green='Get a bundle'
+                      introduction="Here we are, this is what we sell! A bundle with all of what you need to control the best environment in your closet, from your smartphone, and get the most healthy and massive plant(sss) you ever see" />
       </div>
       <div :class='$style.space'></div>
       <div :id='$style.bundles'>
@@ -74,38 +55,53 @@
           <Bundle :bundle='b' :showdescription='false' />
         </div>
         <div :class='$style.title'>
-          <SectionTitle title='SPARE PARTS' smalltitle='More to come very soon:)' />
+          <TitleStep green='Install your bundle'
+                      introduction= "Learn how to install your bundle with 'Stant' one creators of SuperGreenLab, thumbs up for the video please!" />
+        </div>
+        <LatestGuide />
+        <div :class='$style.space'></div>
+        <div :class='$style.title'>
+          <TitleStep green='Spare parts'
+                      introduction='More to come very soon:)' />
         </div>
         <div :class='$style.shop'>
           <ProductList ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
         </div>
       </div>
       <div :class='$style.title'>
-        <SectionTitle title='STEP 3'
-                      green='GET YOUR GROWING MEDIUM' />
+        <TitleStep title='STEP 3'
+                      green='Get your growing medium' />
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-soil' :products='soil' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <SectionTitle title='STEP 4'
-                      green='GET NUTRIENTS' />
+        <TitleStep green='Get nutrients' />
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-nutrients' :products='nutrients' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <SectionTitle title='STEP 5'
-                      green='MIGHT NEED SOME TOOLS TOO'
-                      title2='The SGL basics :)' />
+        <TitleStep green='Might need some tools too' />
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
+      <div :class='$style.title'>
+        <SectionTitle title='Join the community'
+                      green='of growbox builders'
+                      title2='What will you build?'
+                      separator='true'/>
+      </div>
+      <Examples ref='examples' />
+      <Ready ref='ready' />
+      <div :class='$style.space'></div>
       <Social ref='social' />
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
+      <div :class='$style.space'></div>
+      <Youtube ref='youtube' />
     </div>
     <Footer />
     <transition name="popup">
@@ -133,6 +129,7 @@ import LatestGuide from '~/components/home/latestguide.vue'
 import ProductList from '~/components/products/productlist.vue'
 import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import TitleStep from '~/components/widgets/titlestep.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 import Examples from '~/components/home/examples.vue'
@@ -141,7 +138,7 @@ import Ready from '~/components/home/ready.vue'
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -247,7 +244,7 @@ export default {
 #header
   position: fixed
   width: 100%
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
 
