@@ -53,7 +53,7 @@ export default {
   margin-bottom: 0.2em
   margin-top: 0.2em
   @media only screen and (max-width: 600px)
-    margin-left: 30px
+    margin-left: 0px
     font-size: 2em
 
 #introduction

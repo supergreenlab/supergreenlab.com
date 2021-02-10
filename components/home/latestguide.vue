@@ -121,10 +121,9 @@ export default {
   text-decoration: none
   text-align: center
   z-index: 100
-  margin-bottom: 20pt
   font-size: 1.5em
   @media only screen and (max-width: 600px)
-    margin-top: 15pt
+    margin-top: 20pt
     font-size: 1.1em
 
 #cta > small
