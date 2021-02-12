@@ -122,6 +122,7 @@ export default {
   text-align: center
   z-index: 100
   font-size: 1.5em
+  margin-top: 50px
   @media only screen and (max-width: 600px)
     margin-top: 20pt
     font-size: 1.1em

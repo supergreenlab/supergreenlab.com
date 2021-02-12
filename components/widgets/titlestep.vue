@@ -16,18 +16,39 @@
 <template>
   <section :id='$style.container'>
     <h2 :id='$style.title'>{{ title }}</h2>
-    <h1 :id='$style.green'>{{ green }}</h1>
+    <div :id='$style.checkstep'>
+      <CheckBox v-if='checkbox' :checked='checked' @click='click()'></CheckBox>
+      <h1 :id='$style.green'>{{ green }}</h1>
+    </div>
     <p :id='$style.introduction'>{{ introduction }}</p>
   </section>
 </template>
 
 <script>
+import CheckBox from '~/components/widgets/checkbox.vue'
 export default {
-  props: ['title', 'green', 'introduction'],
+  data() {
+    return {checked: false}
+  },
+  props: ['title','green', 'checkbox', 'introduction'],
+  components: { CheckBox },
+  methods: {
+    click() {
+      this.$data.checked = !this.$data.checked
+      this.$emit('click', this.$data.checked)
+    },
+  },
 }
 </script>
 
 <style module lang=stylus>
+
+#bluebaloon
+  background-color:blue
+  height:100px
+  width:100px
+  border-radius:50px
+
 #container
   width: 90%
   display: flex
@@ -37,8 +58,17 @@ export default {
   @media only screen and (max-width: 600px)
     font-size: 0.8em
 
-#title
+#checkstep
   margin-left: 100px
+  display: flex
+  align-items: center
+  /* cursor: pointer */
+  @media only screen and (max-width: 600px)
+    margin-left: 10px
+    font-size: 2em
+
+#title
+  margin-left: 50px
   font-size: 1.5em
   color: #5E5E5E
   @media only screen and (max-width: 600px)
@@ -46,15 +76,14 @@ export default {
     font-size: 2.3em
 
 #green
-  margin-left: 160px
   color: #3BB30B
   font-size: 1em
   text-transform: capitalize
   margin-bottom: 0.2em
   margin-top: 0.2em
-  @media only screen and (max-width: 600px)
-    margin-left: 0px
-    font-size: 2em
+  /* @media only screen and (max-width: 600px)
+    margin-left: 10px
+    font-size: 2em */
 
 #introduction
   margin-left: 250px
@@ -62,10 +91,9 @@ export default {
   padding-right: 30%
   color: #5E5E5E
   font-size: 0.5em
-  font-style: italic
   @media only screen and (max-width: 600px)
     font-size: 1.1em
-    margin-left: 60px
+    margin-left: 20px
     padding-right: 0%
 
 </style>

@@ -32,23 +32,23 @@
       <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='Join the community'
-                      green='of growbox builders'
-                      title2='What will you build?'
-                      separator='true'/>
+                        green='of growbox builders'
+                        title2='What will you build?'
+                        separator='true'/>
       </div>
       <Examples ref='examples' />
       <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='Ready to grow?'
-                      green='Follow the steps below'
-                      separator='true'/>
+                        green='Follow the steps below'
+                        separator='true'/>
       <div :class='$style.space'></div>
       <Ready ref='ready' />
       </div>
       <div :class='$style.title'>
         <TitleStep title='STEP 1'
                       green='Choose your furniture'
-                      introduction= "Welcome the micro growing's world, to begin just get a closet or two"/>
+                      introduction= "Welcome to the micro growing's world, to begin just get a closet or two"/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
@@ -80,19 +80,37 @@
       </div>
       <div :class='$style.title'>
         <TitleStep title='STEP 3'
-                      green='Get your growing medium' />
-      </div>
-      <div :class='$style.shop'>
-        <ProductList ref='homepage-soil' :products='soil' :center=true :maxItems=4 />
+                      green='Start growing'
+                      introduction='There is a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
       </div>
       <div :class='$style.title'>
-        <TitleStep green='Get nutrients' />
+        <TitleStep @click='oneForAll'
+                    checkbox='true'
+                    green='One for all Pack'
+                    introduction='Description, pros and cons'/>
       </div>
       <div :class='$style.shop'>
-        <ProductList ref='homepage-nutrients' :products='nutrients' :center=true :maxItems=4 />
+        <ProductList ref='one-for-all' :products='allInOnePack' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <TitleStep green='Might need some tools too' />
+        <TitleStep checkbox='true'
+                      green='Organic Pack'
+                      introduction= 'Description, pros and cons'/>
+      </div>
+      <div :class='$style.shop'>
+        <ProductList ref='organic-pack' :products='organicPack' :center=true :maxItems=4 />
+      </div>
+      <div :class='$style.title'>
+        <TitleStep checkbox='true'
+                      green='Option Pack'
+                      introduction= 'Description'/>
+      </div>
+      <div :class='$style.shop'>
+        <ProductList ref='option-pack' :products='optionPack' :center=true :maxItems=4 />
+      </div>
+      <div :class='$style.title'>
+        <TitleStep green='Might need some tools too'
+                    introduction= 'Blabla'/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
@@ -198,8 +216,20 @@ export default {
     tools() {
       return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
     },
+    organicPack() {
+      return this.$store.getters['eshop/collection']('organic-pack')
+    },
+    allInOnePack() {
+      return this.$store.getters['eshop/collection']('all-in-one-pack')
+    },
+    optionPack()  {
+      return this.$store.getters['eshop/collection']('option-pack')
+    },
 	},
   methods: {
+    oneForAll(checked) {
+      console.log('coucou', checked)
+    },
     closePopup() {
       saveToStorage('popupShown2', 1)
       this.$data.showPopup = false
