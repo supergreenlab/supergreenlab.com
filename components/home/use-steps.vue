@@ -96,6 +96,7 @@ export default {
   max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column
+    margin: 0%
 
 .step
   flex-basis: 25%

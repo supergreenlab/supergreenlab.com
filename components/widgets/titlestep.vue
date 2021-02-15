@@ -17,7 +17,7 @@
   <section :id='$style.container'>
     <h2 :id='$style.title'>{{ title }}</h2>
     <div :id='$style.checkstep'>
-      <CheckBox v-if='checkbox' :checked='checked' @click='click()'></CheckBox>
+      <CheckBox v-if='checkbox' :checked='checked' @click='click()' />
       <h1 :id='$style.green'>{{ green }}</h1>
     </div>
     <p :id='$style.introduction'>{{ introduction }}</p>
@@ -43,14 +43,8 @@ export default {
 
 <style module lang=stylus>
 
-#bluebaloon
-  background-color:blue
-  height:100px
-  width:100px
-  border-radius:50px
-
 #container
-  width: 90%
+  width: 100%
   display: flex
   font-size: 2.1em
   flex-direction: column

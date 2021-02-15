@@ -84,16 +84,16 @@
                       introduction='There is a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
       </div>
       <div :class='$style.title'>
-        <TitleStep @click='oneForAll'
-                    checkbox='true'
+        <TitleStep checkbox='true'
                     green='One for all Pack'
                     introduction='Description, pros and cons'/>
       </div>
       <div :class='$style.shop'>
-        <ProductList ref='one-for-all' :products='allInOnePack' :center=true :maxItems=4 />
+        <ProductList ref='one-for-all' :products='oneForAllPack' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <TitleStep checkbox='true'
+        <TitleStep @click='organic'
+                      checkbox='true'
                       green='Organic Pack'
                       introduction= 'Description, pros and cons'/>
       </div>
@@ -101,7 +101,8 @@
         <ProductList ref='organic-pack' :products='organicPack' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <TitleStep checkbox='true'
+        <TitleStep @click='options'
+                      checkbox='true'
                       green='Option Pack'
                       introduction= 'Description'/>
       </div>
@@ -141,6 +142,7 @@ import ProgressiveSunriseSunset from '~/components/home/progressive-sunrise-suns
 import App from '~/components/home/app.vue'
 import LatestDiaries from '~/components/home/latest-diaries.vue'
 import Bundle from '~/components/bundle/bundle.vue'
+import Price from '~/components/products/price.vue'
 import Instagram from '~/components/home/instagram.vue'
 import Youtube from '~/components/home/youtube.vue'
 import LatestGuide from '~/components/home/latestguide.vue'
@@ -156,7 +158,7 @@ import Ready from '~/components/home/ready.vue'
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -173,6 +175,7 @@ export default {
     return {
       showPopup: false,
       currentRef: 'top',
+      n: 1,
     }
   },
   created () {
@@ -219,16 +222,28 @@ export default {
     organicPack() {
       return this.$store.getters['eshop/collection']('organic-pack')
     },
-    allInOnePack() {
-      return this.$store.getters['eshop/collection']('all-in-one-pack')
+    oneForAllPack() {
+      return this.$store.getters['eshop/collection']('one-for-all-pack')
     },
     optionPack()  {
       return this.$store.getters['eshop/collection']('option-pack')
     },
 	},
+  // props: ['product', 'sellingPoint'],
   methods: {
     oneForAll(checked) {
-      console.log('coucou', checked)
+      if (this.$data.checked) return
+      const { product, sellingPoint, } = this.$props
+      const { n } = this.$data
+      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', sellingPoint.slug)
+      this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
+        console.log(checked)
+    },
+    organic(checked) {
+      console.log(checked)
+    },
+    options(checked) {
+      console.log(checked)
     },
     closePopup() {
       saveToStorage('popupShown2', 1)
