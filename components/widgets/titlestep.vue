@@ -27,15 +27,11 @@
 <script>
 import CheckBox from '~/components/widgets/checkbox.vue'
 export default {
-  data() {
-    return {checked: false}
-  },
-  props: ['title','green', 'checkbox', 'introduction'],
+  props: ['title','green', 'checkbox', 'checked', 'introduction'],
   components: { CheckBox },
   methods: {
     click() {
-      this.$data.checked = !this.$data.checked
-      this.$emit('click', this.$data.checked)
+      this.$emit('click', !this.$props.checked)
     },
   },
 }

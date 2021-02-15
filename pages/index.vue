@@ -84,27 +84,31 @@
                       introduction='There is a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
       </div>
       <div :class='$style.title'>
-        <TitleStep checkbox='true'
-                    green='One for all Pack'
-                    introduction='Description, pros and cons'/>
+        <TitleStep  :checked='collectionInCart("one-for-all-pack")'
+                   @click='oneForAll'
+                   :checkbox=true
+                   green='One for all Pack'
+                   introduction='Description, pros and cons'/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='one-for-all' :products='oneForAllPack' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <TitleStep @click='organic'
-                      checkbox='true'
-                      green='Organic Pack'
-                      introduction= 'Description, pros and cons'/>
+        <TitleStep :checked='collectionInCart("organic-pack")'
+                   @click='organic'
+                   :checkbox=true
+                   green='Organic Pack'
+                   introduction= 'Description, pros and cons'/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='organic-pack' :products='organicPack' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <TitleStep @click='options'
-                      checkbox='true'
-                      green='Option Pack'
-                      introduction= 'Description'/>
+        <TitleStep :checked='collectionInCart("option-pack")'
+                     @click='options'
+                     :checkbox=true
+                     green='Option Pack'
+                     introduction= 'Description'/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='option-pack' :products='optionPack' :center=true :maxItems=4 />
@@ -175,7 +179,6 @@ export default {
     return {
       showPopup: false,
       currentRef: 'top',
-      n: 1,
     }
   },
   created () {
@@ -228,22 +231,53 @@ export default {
     optionPack()  {
       return this.$store.getters['eshop/collection']('option-pack')
     },
+    collectionInCart() {
+      return (name) => {
+        const cart = this.$store.getters['checkout/cart']
+        const pack = this.$store.getters['eshop/collection'](name)
+        const isInCart = pack.findIndex(p => cart.findIndex(li => li.sellingPoint.id == this.$store.getters['eshop/sellingPointForProduct'](p.id).id) == -1) == -1
+        return isInCart
+      }
+    },
 	},
   // props: ['product', 'sellingPoint'],
   methods: {
+    addCollection(name) {
+      const products = this.$store.getters['eshop/collection'](name)
+      products.forEach(product => {
+        const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
+        this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
+      })
+    },
+    removeCollection(name) {
+      const products = this.$store.getters['eshop/collection'](name)
+      products.forEach(product => {
+        const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
+        this.$store.commit('checkout/addToCart', { n: 0, product, sellingPoint })
+      })
+    },
     oneForAll(checked) {
-      if (this.$data.checked) return
-      const { product, sellingPoint, } = this.$props
-      const { n } = this.$data
-      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', sellingPoint.slug)
-      this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
-        console.log(checked)
+      if (!checked) {
+        this.removeCollection('one-for-all-pack')
+        return
+      }
+      this.removeCollection('organic-pack')
+      this.addCollection('one-for-all-pack')
     },
     organic(checked) {
-      console.log(checked)
+      if (!checked) {
+        this.removeCollection('organic-pack')
+        return
+      }
+      this.removeCollection('one-for-all-pack')
+      this.addCollection('organic-pack')
     },
     options(checked) {
-      console.log(checked)
+      if (!checked) {
+        this.removeCollection('option-pack')
+        return
+      }
+      this.addCollection('option-pack')
     },
     closePopup() {
       saveToStorage('popupShown2', 1)
