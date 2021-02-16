@@ -76,7 +76,7 @@ export default {
     font-size: 2em */
 
 #introduction
-  margin-left: 250px
+  margin-left: 190px
   margin-bottom: 0em
   padding-right: 30%
   color: #5E5E5E

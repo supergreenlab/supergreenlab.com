@@ -83,39 +83,38 @@
                       green='Start growing'
                       introduction='There is a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
       </div>
-      <div :class='$style.title'>
-        <TitleStep  :checked='collectionInCart("one-for-all-pack")'
+      <div :class='$style.pack'>
+        <!-- <TitleStep  :checked='collectionInCart("one-for-all-pack")'
                    @click='oneForAll'
                    :checkbox=true
-                   green='One for all Pack'
-                   introduction='Description, pros and cons'/>
+                   green='Mega Crop Pack' /> -->
+        <Pack descriptionPack='Description'/>
       </div>
-      <div :class='$style.shop'>
+      <!-- <div :class='$style.shop'>
         <ProductList ref='one-for-all' :products='oneForAllPack' :center=true :maxItems=4 />
-      </div>
-      <div :class='$style.title'>
-        <TitleStep :checked='collectionInCart("organic-pack")'
+      </div> -->
+      <div :class='$style.pack'>
+        <!-- <TitleStep :checked='collectionInCart("organic-pack")'
                    @click='organic'
                    :checkbox=true
-                   green='Organic Pack'
-                   introduction= 'Description, pros and cons'/>
+                   green='Bio Tabs Pack'/>
+        <Pack descriptionPack='Description organic pack' /> -->
       </div>
-      <div :class='$style.shop'>
+      <!-- <div :class='$style.shop'>
         <ProductList ref='organic-pack' :products='organicPack' :center=true :maxItems=4 />
-      </div>
-      <div :class='$style.title'>
+      </div> -->
+      <div :class='$style.pack'>
         <TitleStep :checked='collectionInCart("option-pack")'
                      @click='options'
                      :checkbox=true
-                     green='Option Pack'
+                     green='Options'
                      introduction= 'Description'/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='option-pack' :products='optionPack' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
-        <TitleStep green='Might need some tools too'
-                    introduction= 'Blabla'/>
+        <TitleStep green='Might need some tools too'/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
@@ -149,6 +148,7 @@ import Bundle from '~/components/bundle/bundle.vue'
 import Price from '~/components/products/price.vue'
 import Instagram from '~/components/home/instagram.vue'
 import Youtube from '~/components/home/youtube.vue'
+import Pack from '~/components/home/pack.vue'
 import LatestGuide from '~/components/home/latestguide.vue'
 import ProductList from '~/components/products/productlist.vue'
 import Social from '~/components/home/social.vue'
@@ -162,7 +162,7 @@ import Ready from '~/components/home/ready.vue'
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -240,7 +240,7 @@ export default {
       }
     },
 	},
-  // props: ['product', 'sellingPoint'],
+
   methods: {
     addCollection(name) {
       const products = this.$store.getters['eshop/collection'](name)
@@ -337,6 +337,12 @@ export default {
 .title
   width: 100%
   margin: 20pt 0 20pt 0
+
+.pack
+  width: 80%
+  display: flex
+  flex-direction: column
+  justify-content: center
 
 .separator
   height: 2pt
