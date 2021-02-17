@@ -18,56 +18,69 @@
 
  <template>
   <section :id='$style.container'>
-    <div :id='$style.region'>
-      <Region />
-    </div>
     <TitleStep :checked='collectionInCart("one-for-all-pack")'
                    @click='oneForAll'
                    :checkbox=true
                    green='Mega Crop Pack' />
     <div :id='$style.body'>
-      <div>Image Logo Brand {{ brand }}</div>
+      <div :id='$style.logo'>
+        <img src="~assets/img/brands/attGe1tOGm4kTIeCJ_small.png" alt="" width="200px">
+      </div>
       <div>
-        <div> {{ descriptionPack }}</div>
+        <div style="text-align:left">Description Crop Pack</div>
       </div>
       <div  :id='$style.priceButton'>
         <div :id='$style.price'>XX.XX€</div>
-        <div  :id='$style.cta'>
-          <b class="hvr-grow">Add To Cart</b>
-        </div>
-        <!-- <Price :lineItems='[{sellingPoint, n: 1}]' :small=true /> -->
-        <!-- <AddToCart /> -->
+        <nuxt-link v-if='done' :id='$style.cta' to='/cart'><b>GO TO CART</b></nuxt-link>
+        <a :id='$style.cta' v-else :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='oneForAll'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
       </div>
     </div>
     <div :id='$style.cropPack' :style='{"display" : (isActive? "none" : "flex" )}'>
       <ProductList ref='one-for-all' :products='oneForAllPack' :center=true :maxItems=4  />
     </div>
-    <a :class='$style.packSeparator'  @click='toggleClass()'>View X products in this pack</a>
-    <div :id='$style.region'>
-      <Region />
-    </div>
+    <a :class='$style.packSeparator'  @click='toggleClass()'>View <div :class='$style.number'>{{ oneForAllPack.length }}</div> products in this pack <span :class="$style.arrow"><span></span><span></span></span></a>
     <TitleStep :checked='collectionInCart("organic-pack")'
                    @click='organic'
                    :checkbox=true
                    green='Bio Tabs Pack' />
     <div :id='$style.body'>
-      <div>Image Logo Brand {{ brand }}</div>
+      <div :id='$style.logo'>
+        <img src="~assets/img/brands/attHFsMczLP8xVS9E.png" alt="" width="150px">
+      </div>
       <div>
-        <div> {{ descriptionPack }}</div>
+        <div>Description Organic Pack</div>
       </div>
       <div  :id='$style.priceButton'>
         <div :id='$style.price'>XX.XX€</div>
-        <div  :id='$style.cta'>
-          <b class="hvr-grow">Add To Cart</b>
-        </div>
-        <!-- <Price />
-        <AddToCart /> -->
+        <nuxt-link v-if='doneOrganic' :id='$style.cta' to='/cart'><b>GO TO CART</b></nuxt-link>
+        <a :id='$style.cta' v-else :style='{"opacity": activatedOrganic ? 0.5 : 1}' href='javascript:void(0);' @click='organic'><b>{{ activatedOrganic ? "PLEASE WAIT" : (addedOrganic ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
       </div>
     </div>
-    <div :id='$style.organicPack' :style='{"display" : (isActiveTwo? "none" : "flex" )}'>
+    <div :id='$style.organicPack' :style='{"display" : (isActiveOrganic? "none" : "flex" )}'>
       <ProductList ref='organic-pack' :products='organicPack' :center=true :maxItems=4  />
     </div>
-    <a :class='$style.packSeparator'  @click='toggleClassTwo()'>View X products in this pack</a>
+    <a :class='$style.packSeparator'  @click='toggleClassOrganic()'>View <div :class='$style.number'>{{ organicPack.length }}</div> products in this pack <span :class="$style.arrow"><span></span><span></span></span></a>
+    <TitleStep :checked='collectionInCart("option-pack")'
+                     @click='options'
+                     :checkbox=true
+                     green='Options' />
+    <div :id='$style.body'>
+      <div :id='$style.logo'>
+        <img src="~assets/img/brands/attUA2jsnGS3G34XG.png" alt="" width="150px">
+      </div>
+      <div>
+        <div>Description Option Pack</div>
+      </div>
+      <div  :id='$style.priceButton'>
+        <div :id='$style.price'>XX.XX€</div>
+        <nuxt-link v-if='doneOptions' :id='$style.cta' to='/cart'><b>GO TO CART</b></nuxt-link>
+        <a :id='$style.cta' v-else :style='{"opacity": activatedOptions ? 0.5 : 1}' href='javascript:void(0);' @click='options'><b>{{ activatedOptions ? "PLEASE WAIT" : (addedOptions ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
+      </div>
+    </div>
+    <div :id='$style.optionPack' :style='{"display" : (isActiveOption? "none" : "flex" )}'>
+       <ProductList ref='option-pack' :products='optionPack' :center=true :maxItems=4 />
+    </div>
+    <a :class='$style.packSeparator'  @click='toggleClassOption()'>View <div :class='$style.number'>{{ optionPack.length }}</div> products in this pack <span :class="$style.arrow"><span></span><span></span></span></a>
   </section>
 </template>
 
@@ -76,23 +89,32 @@ import AddToCart from '~/components/products/addtocart.vue'
 import Price from '~/components/products/price.vue'
 import TitleStep from '~/components/widgets/titlestep.vue'
 import ProductList from '~/components/products/productlist.vue'
-import Region from '~/components/products/region.vue'
 
 export default {
-  components: { Price, AddToCart, TitleStep, ProductList, Region},
+  components: { Price, AddToCart, TitleStep, ProductList},
   data() {
     return{
+      activated: false,
+      added: false,
+      done: false,
       isActive: true,
-      isActiveTwo: true
+      activatedOrganic: false,
+      addedOrganic: false,
+      doneOrganic: false,
+      isActiveOrganic: true,
+      activatedOptions: false,
+      addedOptions: false,
+      doneOptions: false,
+      isActiveOption: true,
     }
   },
-  props: ['brand', 'descriptionPack'],
+  props: [],
   computed: {
-    organicPack() {
-      return this.$store.getters['eshop/collection']('organic-pack')
-    },
     oneForAllPack() {
       return this.$store.getters['eshop/collection']('one-for-all-pack')
+    },
+    organicPack() {
+      return this.$store.getters['eshop/collection']('organic-pack')
     },
     optionPack()  {
       return this.$store.getters['eshop/collection']('option-pack')
@@ -107,11 +129,17 @@ export default {
     },
   },
   methods: {
+    // $(".arrow").on("click", function () {
+    //   $(this).toggleClass("active");
+    // });
     toggleClass: function(){
-      this.isActive = !this.isActive;
+      this.isActive = !this.isActive
     },
-    toggleClassTwo: function(){
-      this.isActiveTwo = !this.isActiveTwo
+    toggleClassOrganic: function(){
+      this.isActiveOrganic = !this.isActiveOrganic
+    },
+    toggleClassOption: function(){
+      this.isActiveOption = !this.isActiveOption
     },
     addCollection(name) {
       const products = this.$store.getters['eshop/collection'](name)
@@ -129,25 +157,74 @@ export default {
     },
     oneForAll(checked) {
       if (!checked) {
+        this.$data.activated = true
+        this.timeout = setTimeout(() => {
+          this.$data.activated = false
+        }, 500)
+        this.$data.added = false
+        this.$data.done = false
         this.removeCollection('one-for-all-pack')
         return
       }
+      if (this.$data.activated) return
+      this.$data.activated = true
+      this.timeout = setTimeout(() => {
+        this.$data.activated = false
+        this.$data.added = true
+        this.timeout = setTimeout(() => {
+          this.$data.done = true
+        }, 1500)
+      }, 700)
+      this.$data.addedOrganic = false
+      this.$data.doneOrganic = false
       this.removeCollection('organic-pack')
       this.addCollection('one-for-all-pack')
     },
     organic(checked) {
       if (!checked) {
+        this.$data.activatedOrganic = true
+        this.timeout = setTimeout(() => {
+          this.$data.activatedOrganic = false
+        }, 500)
+        this.$data.addedOrganic = false
+        this.$data.doneOrganic = false
         this.removeCollection('organic-pack')
         return
       }
+      if (this.$data.activatedOrganic) return
+      this.$data.activatedOrganic = true
+      this.timeout = setTimeout(() => {
+        this.$data.activatedOrganic = false
+        this.$data.addedOrganic = true
+        this.timeout = setTimeout(() => {
+          this.$data.doneOrganic = true
+        }, 1500)
+      }, 700)
+      this.$data.added = false
+      this.$data.done = false
       this.removeCollection('one-for-all-pack')
       this.addCollection('organic-pack')
     },
     options(checked) {
       if (!checked) {
+        this.$data.activatedOptions = true
+        this.timeout = setTimeout(() => {
+          this.$data.activatedOptions = false
+        }, 500)
+        this.$data.addedOptions = false
+        this.$data.doneOptions = false
         this.removeCollection('option-pack')
         return
       }
+      if (this.$data.activatedOptions) return
+      this.$data.activatedOptions = true
+      this.timeout = setTimeout(() => {
+        this.$data.activatedOptions = false
+        this.$data.addedOptions = true
+        this.timeout = setTimeout(() => {
+          this.$data.doneOptions = true
+        }, 1500)
+      }, 700)
       this.addCollection('option-pack')
     },
   },
@@ -191,6 +268,7 @@ export default {
     flex-direction: column
 
 #cta
+  cursor: pointer
   text-transform: uppercase
   color: white
   background-color: #3BB30B
@@ -213,24 +291,83 @@ export default {
 #cta > b
   font-weight: 600
 
+#button:hover
+  background-color: #2F880B
+
+#button > b
+  font-weight: 600
+
 .packSeparator
+  display: flex
+  justify-content: flex-end
   text-transform: uppercase
   text-align: right
   width: 90%
   border: 1px solid
   border-style: none none dashed none
   margin-bottom: 30px
+  @media only screen and (max-width: 600px)
+    justify-content: center
+    text-align: center
 
 a
   cursor: pointer
 
 #cropPack
+  margin-bottom:10px
   width: 100%
   max-width: 900pt
   display: none
 
 #organicPack
+  margin-bottom:10px
   width: 100%
   max-width: 900pt
   display: none
+
+#optionPack
+  margin-bottom:10px
+  width: 100%
+  max-width: 900pt
+  display: none
+
+.number
+  color: #3bb30b
+  font-weight: bold
+  padding: 0em 0.2em 0em 0.2em
+
+#arrow
+  width 1.25rem
+  height 1.25rem
+  display inline-block
+  position relative
+  margin 0 1rem
+
+.arrow
+  width 1.25rem
+  height 1.25rem
+  display inline-block
+  position relative
+  margin 0 1rem
+  span
+    top .5rem
+    position absolute
+    width .75rem
+    height .1rem
+    background-color #616A6B
+    display inline-block
+    transition all .2s ease
+    &:first-of-type
+      left 0
+      transform rotate(45deg)
+    &:last-of-type
+      right 0
+      transform rotate(-45deg)
+  &.active
+    span
+      &:first-of-type
+        transform rotate(-45deg)
+
+      &:last-of-type
+        transform rotate(45deg)
 </style>

@@ -84,34 +84,7 @@
                       introduction='There is a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
       </div>
       <div :class='$style.pack'>
-        <!-- <TitleStep  :checked='collectionInCart("one-for-all-pack")'
-                   @click='oneForAll'
-                   :checkbox=true
-                   green='Mega Crop Pack' /> -->
-        <Pack descriptionPack='Description'/>
-      </div>
-      <!-- <div :class='$style.shop'>
-        <ProductList ref='one-for-all' :products='oneForAllPack' :center=true :maxItems=4 />
-      </div> -->
-      <div :class='$style.pack'>
-        <!-- <TitleStep :checked='collectionInCart("organic-pack")'
-                   @click='organic'
-                   :checkbox=true
-                   green='Bio Tabs Pack'/>
-        <Pack descriptionPack='Description organic pack' /> -->
-      </div>
-      <!-- <div :class='$style.shop'>
-        <ProductList ref='organic-pack' :products='organicPack' :center=true :maxItems=4 />
-      </div> -->
-      <div :class='$style.pack'>
-        <TitleStep :checked='collectionInCart("option-pack")'
-                     @click='options'
-                     :checkbox=true
-                     green='Options'
-                     introduction= 'Description'/>
-      </div>
-      <div :class='$style.shop'>
-        <ProductList ref='option-pack' :products='optionPack' :center=true :maxItems=4 />
+        <Pack />
       </div>
       <div :class='$style.title'>
         <TitleStep green='Might need some tools too'/>
@@ -222,63 +195,9 @@ export default {
     tools() {
       return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
     },
-    organicPack() {
-      return this.$store.getters['eshop/collection']('organic-pack')
-    },
-    oneForAllPack() {
-      return this.$store.getters['eshop/collection']('one-for-all-pack')
-    },
-    optionPack()  {
-      return this.$store.getters['eshop/collection']('option-pack')
-    },
-    collectionInCart() {
-      return (name) => {
-        const cart = this.$store.getters['checkout/cart']
-        const pack = this.$store.getters['eshop/collection'](name)
-        const isInCart = pack.findIndex(p => cart.findIndex(li => li.sellingPoint.id == this.$store.getters['eshop/sellingPointForProduct'](p.id).id) == -1) == -1
-        return isInCart
-      }
-    },
 	},
 
   methods: {
-    addCollection(name) {
-      const products = this.$store.getters['eshop/collection'](name)
-      products.forEach(product => {
-        const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
-        this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
-      })
-    },
-    removeCollection(name) {
-      const products = this.$store.getters['eshop/collection'](name)
-      products.forEach(product => {
-        const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
-        this.$store.commit('checkout/addToCart', { n: 0, product, sellingPoint })
-      })
-    },
-    oneForAll(checked) {
-      if (!checked) {
-        this.removeCollection('one-for-all-pack')
-        return
-      }
-      this.removeCollection('organic-pack')
-      this.addCollection('one-for-all-pack')
-    },
-    organic(checked) {
-      if (!checked) {
-        this.removeCollection('organic-pack')
-        return
-      }
-      this.removeCollection('one-for-all-pack')
-      this.addCollection('organic-pack')
-    },
-    options(checked) {
-      if (!checked) {
-        this.removeCollection('option-pack')
-        return
-      }
-      this.addCollection('option-pack')
-    },
     closePopup() {
       saveToStorage('popupShown2', 1)
       this.$data.showPopup = false
