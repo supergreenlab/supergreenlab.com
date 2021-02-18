@@ -68,7 +68,7 @@ export default {
 #green
   color: #3BB30B
   font-size: 1em
-  text-transform: capitalize
+  text-transform: uppercase
   margin-bottom: 0.2em
   margin-top: 0.2em
   /* @media only screen and (max-width: 600px)
