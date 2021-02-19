@@ -23,8 +23,8 @@
                    :checkbox=true
                    green='Mega Crop Pack' />
     <div :class='$style.body'>
-      <div>
-        <img src="~assets/img/brands/attGe1tOGm4kTIeCJ_small.png" alt="" width="200px">
+      <div :class='$style.logo'>
+        <img src="~assets/img/mega-crop-logo.png" alt="logo-mega-crop">
       </div>
       <div>
         <div>Description Crop Pack</div>
@@ -49,7 +49,7 @@
                    green='Bio Tabs Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/brands/attHFsMczLP8xVS9E.png" alt="" width="150px">
+        <img src="~assets/img/bio-tabs-logo.png" alt="logo-bio-tabs" width="150px">
       </div>
       <div>
         <div>Description Organic Pack</div>
@@ -74,7 +74,7 @@
                      green='Options' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/brands/attUA2jsnGS3G34XG.png" alt="" width="150px">
+        <img src="~assets/img/sgl-logo.png" alt="logo-SGL" width="200px">
       </div>
       <div>
         <div>Description Option Pack</div>
@@ -276,6 +276,11 @@ export default {
     padding: 5pt 10pt
     flex-direction: column
 
+.logo
+  width: 150px
+  display: flex
+  justify-content: center
+
 #cta
   cursor: pointer
   text-transform: uppercase
@@ -320,19 +325,16 @@ a
   margin-bottom:10px
   width: 100%
   max-width: 900pt
-  display: flex
 
 #organicPack
   margin-bottom:10px
   width: 100%
   max-width: 900pt
-  display: flex
 
 #optionPack
   margin-bottom:10px
   width: 100%
   max-width: 900pt
-  display: flex
 
 .number
   color: #3bb30b
