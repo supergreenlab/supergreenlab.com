@@ -84,6 +84,6 @@ export default {
   @media only screen and (max-width: 600px)
     font-size: 1.1em
     margin-left: 20px
-    padding-right: 0%
+    padding-right: 5px
 
 </style>
