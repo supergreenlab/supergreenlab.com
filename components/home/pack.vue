@@ -30,9 +30,8 @@
         <div>Description Crop Pack</div>
       </div>
       <div  :id='$style.priceButton'>
-        <div :id='$style.price'>XX.XX€</div>
-        <nuxt-link v-if='done' :id='$style.cta' to='/cart'><b>GO TO CART</b></nuxt-link>
-        <a :id='$style.cta' v-else :style='{"opacity": activated ? 0.5 : 1 ,"background-color": added ? " #006600" : ""}' href='javascript:void(0);' @click='oneForAll'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
+        <Price :lineItems='oneForAllPackLineItems' />
+        <AddToCart name='one-for-all-pack' :lineItems='oneForAllPackLineItems' :discreet=false @click='removeCollection("organic-pack")' />
       </div>
     </div>
     <ProductList ref='one-for-all' :id='$style.cropPack' v-if="isActive" :products='oneForAllPack' :center=true :maxItems=4  />
@@ -55,9 +54,8 @@
         <div>Description Organic Pack</div>
       </div>
       <div  :id='$style.priceButton'>
-        <div :id='$style.price'>XX.XX€</div>
-        <nuxt-link v-if='doneOrganic' :id='$style.cta' to='/cart'><b>GO TO CART</b></nuxt-link>
-        <a :id='$style.cta' v-else :style='{"opacity": activatedOrganic ? 0.5 : 1, "background-color": addedOrganic ? " #006600" : "" }' href='javascript:void(0);' @click='organic'><b>{{ activatedOrganic ? "PLEASE WAIT" : (addedOrganic ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
+        <Price :lineItems='organicPackLineItems' />
+        <AddToCart name='organic-pack' :lineItems='organicPackLineItems' :discreet=false @click='removeCollection("one-for-all-pack")' />
       </div>
     </div>
     <ProductList ref='organic-pack' :id='$style.organicPack' v-if="isActiveOrganic" :products='organicPack' :center=true :maxItems=4 />
@@ -80,9 +78,8 @@
         <div>Description Option Pack</div>
       </div>
       <div  :id='$style.priceButton'>
-        <div :id='$style.price'>XX.XX€</div>
-        <nuxt-link v-if='doneOptions' :id='$style.cta' to='/cart'><b>GO TO CART</b></nuxt-link>
-        <a :id='$style.cta' v-else :style='{"opacity": activatedOptions ? 0.5 : 1, "background-color": addedOptions ? " #006600" : ""}' href='javascript:void(0);' @click='options'><b>{{ activatedOptions ? "PLEASE WAIT" : (addedOptions ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
+        <Price :lineItems='optionPackLineItems' />
+        <AddToCart name='option-pack' :lineItems='optionPackLineItems' :discreet=false />
       </div>
     </div>
     <ProductList ref='option-pack' :products='optionPack' :id='$style.optionPack' v-if="isActiveOptions" :center=true :maxItems=4 />
@@ -106,17 +103,8 @@ export default {
   components: { Price, AddToCart, TitleStep, ProductList},
   data() {
     return{
-      activated: false,
-      added: false,
-      done: false,
       isActive: false,
-      activatedOrganic: false,
-      addedOrganic: false,
-      doneOrganic: false,
       isActiveOrganic: false,
-      activatedOptions: false,
-      addedOptions: false,
-      doneOptions: false,
       isActiveOptions: false,
     }
   },
@@ -124,11 +112,20 @@ export default {
     oneForAllPack() {
       return this.$store.getters['eshop/collection']('one-for-all-pack')
     },
+    oneForAllPackLineItems() {
+      return this.oneForAllPack.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
+    },
     organicPack() {
       return this.$store.getters['eshop/collection']('organic-pack')
     },
+    organicPackLineItems() {
+      return this.organicPack.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
+    },
     optionPack()  {
       return this.$store.getters['eshop/collection']('option-pack')
+    },
+    optionPackLineItems() {
+      return this.optionPack.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
     },
     collectionInCart() {
       return (name) => {
@@ -159,6 +156,7 @@ export default {
     },
     removeCollection(name) {
       const products = this.$store.getters['eshop/collection'](name)
+      console.log('removeCollection', name, products.length)
       products.forEach(product => {
         const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
         this.$store.commit('checkout/addToCart', { n: 0, product, sellingPoint })
@@ -166,74 +164,25 @@ export default {
     },
     oneForAll(checked) {
       if (!checked) {
-        this.$data.activated = true
-        this.timeout = setTimeout(() => {
-          this.$data.activated = false
-        }, 500)
-        this.$data.added = false
-        this.$data.done = false
         this.removeCollection('one-for-all-pack')
         return
       }
-      if (this.$data.activated) return
-      this.$data.activated = true
-      this.timeout = setTimeout(() => {
-        this.$data.activated = false
-        this.$data.added = true
-        this.timeout = setTimeout(() => {
-          this.$data.done = true
-        }, 700)
-      }, 700)
-      this.$data.addedOrganic = false
-      this.$data.doneOrganic = false
       this.removeCollection('organic-pack')
       this.addCollection('one-for-all-pack')
     },
     organic(checked) {
       if (!checked) {
-        this.$data.activatedOrganic = true
-        this.timeout = setTimeout(() => {
-          this.$data.activatedOrganic = false
-        }, 500)
-        this.$data.addedOrganic = false
-        this.$data.doneOrganic = false
         this.removeCollection('organic-pack')
         return
       }
-      if (this.$data.activatedOrganic) return
-      this.$data.activatedOrganic = true
-      this.timeout = setTimeout(() => {
-        this.$data.activatedOrganic = false
-        this.$data.addedOrganic = true
-        this.timeout = setTimeout(() => {
-          this.$data.doneOrganic = true
-        }, 700)
-      }, 700)
-      this.$data.added = false
-      this.$data.done = false
       this.removeCollection('one-for-all-pack')
       this.addCollection('organic-pack')
     },
     options(checked) {
       if (!checked) {
-        this.$data.activatedOptions = true
-        this.timeout = setTimeout(() => {
-          this.$data.activatedOptions = false
-        }, 500)
-        this.$data.addedOptions = false
-        this.$data.doneOptions = false
         this.removeCollection('option-pack')
         return
       }
-      if (this.$data.activatedOptions) return
-      this.$data.activatedOptions = true
-      this.timeout = setTimeout(() => {
-        this.$data.activatedOptions = false
-        this.$data.addedOptions = true
-        this.timeout = setTimeout(() => {
-          this.$data.doneOptions = true
-        }, 700)
-      }, 700)
       this.addCollection('option-pack')
     },
   },
@@ -254,7 +203,6 @@ export default {
 #priceButton
   display: flex
   flex-direction: column
-  align-items: center
 
 #price
   font-size: 2.7em
@@ -281,30 +229,6 @@ export default {
   display: flex
   justify-content: center
 
-#cta
-  cursor: pointer
-  text-transform: uppercase
-  color: white
-  background-color: #3BB30B
-  padding: 10pt 35pt
-  border-radius: 3pt
-  text-decoration: none
-  text-align: center
-  z-index: 100
-  font-size: 1.5em
-  margin: 20px
-  @media only screen and (max-width: 600px)
-    margin-top: 20pt
-    font-size: 1.1em
-
-#cta > small
-  padding-top: 5pt
-  font-weight: 300
-  font-size: 1.1em
-
-#cta > b
-  font-weight: 600
-
 .packSeparator
   display: flex
   justify-content: flex-end
@@ -313,13 +237,12 @@ export default {
   width: 90%
   border: 1px solid
   border-style: none none dashed none
+  padding-bottom: 5pt
   margin-bottom: 30px
+  cursor: pointer
   @media only screen and (max-width: 600px)
     justify-content: center
     text-align: center
-
-a
-  cursor: pointer
 
 #cropPack
   margin-bottom:10px
@@ -367,10 +290,5 @@ a
   display inline-block
   transition all .2s ease
   right 0
-
-.home-enter-active, .home-leave-active
-  transition: opacity 0.5s
-.home-enter, .home-leave-to
-  opacity: 0
 
 </style>
