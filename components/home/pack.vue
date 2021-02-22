@@ -24,10 +24,10 @@
                    green='Mega Crop Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/mega-crop-logo.png" alt="logo-mega-crop">
+        <img src="~assets/img/mega-crop-logo.png" alt="logo-mega-crop" width="200px">
       </div>
       <div>
-        <div>Description Crop Pack</div>
+        <div :class='$style.descriptionPack'>MEGA CROP PACK is an all in one, complete plant nutrient designed from the ground up. You get everything you need from start to finish, to grow the best quality plants. Regulate pH from your water is recommanded</div>
       </div>
       <div  :id='$style.priceButton'>
         <Price :lineItems='oneForAllPackLineItems' />
@@ -48,11 +48,10 @@
                    green='Bio Tabs Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/bio-tabs-logo.png" alt="logo-bio-tabs" width="150px">
+        <img src="~assets/img/bio-tabs-logo.png" alt="logo-bio-tabs" width="200px">
       </div>
       <div>
-        <div>Description Organic Pack</div>
-      </div>
+        <div :class='$style.descriptionPack'>This Pack is for 100% organic growth, it is best to prepare your soil with a rich mix of beneficial bacteria and microorganisms. The method consists of preparing the substrate with the BioTabs products in the quantities indicated and repeating the same procedure each time the plant is transplanted into a new pot. The formula is so simple, you only need to add water not even with ph control. Certified 100% Organic. </div></div>
       <div  :id='$style.priceButton'>
         <Price :lineItems='organicPackLineItems' />
         <AddToCart name='organic-pack' :lineItems='organicPackLineItems' :discreet=false @click='removeCollection("one-for-all-pack")' />
@@ -72,10 +71,10 @@
                      green='Options' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/sgl-logo.png" alt="logo-SGL" width="200px">
+        <img src="~assets/img/sgl-logo.png" alt="logo-SGL"  width="200px">
       </div>
       <div>
-        <div>Description Option Pack</div>
+        <div :class='$style.descriptionPack'>Sometimes growing is difficult and mistakes are easily made, this pack will help you to reduce all those mistakes with tools who are not mandatory but really recommanded for massive success</div>
       </div>
       <div  :id='$style.priceButton'>
         <Price :lineItems='optionPackLineItems' />
@@ -203,10 +202,32 @@ export default {
 #priceButton
   display: flex
   flex-direction: column
+  @media only screen and (max-width: 600px)
+    align-items: center
+    justify-content: center
+    text-align: center
 
-#price
-  font-size: 2.7em
-  color : #3bb30b
+.logo
+
+  @media only screen and (max-width: 600px)
+    margin-top: 10px
+    margin-bot: 10px
+
+.descriptionPack
+  color: #5E5E5E
+  margin-right: 20px
+  margin-left: 20px
+  @media only screen and (max-width: 600px)
+    font-size: 0.9em
+    text-align: center
+    margin-top: 10px
+    margin-bottom: 10px
+    font-weight: 300
+
+.price
+  @media only screen and (max-width: 600px)
+    margin-top: 15px
+    margin-bottom: 15px
 
 #region
   width : 100%
@@ -218,16 +239,10 @@ export default {
   width: 100%
   display: flex
   align-items: center
-  justify-content: space-around
-  margin: 20px
+  justify-content: space-between
   @media only screen and (max-width: 600px)
-    padding: 5pt 10pt
+    margin: 5px 10px 5px 10px
     flex-direction: column
-
-.logo
-  width: 150px
-  display: flex
-  justify-content: center
 
 .packSeparator
   display: flex

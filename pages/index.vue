@@ -81,7 +81,7 @@
       <div :class='$style.title'>
         <TitleStep title='STEP 3'
                       green='Start growing'
-                      introduction='There is a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
+                      introduction='There are a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
       </div>
       <div :class='$style.pack'>
         <Pack />
