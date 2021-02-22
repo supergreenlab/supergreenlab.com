@@ -24,7 +24,7 @@
                    green='Mega Crop Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/mega-crop-logo.png" alt="logo-mega-crop" width="200px">
+        <img src="~assets/img/mega-crop-logo2.png" alt="logo-mega-crop" width="150px">
       </div>
       <div>
         <div :class='$style.descriptionPack'>MEGA CROP PACK is an all in one, complete plant nutrient designed from the ground up. You get everything you need from start to finish, to grow the best quality plants. Regulate pH from your water is recommanded</div>
@@ -48,7 +48,7 @@
                    green='Bio Tabs Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/bio-tabs-logo.png" alt="logo-bio-tabs" width="200px">
+        <img src="~assets/img/bio-tabs-logo.png" alt="logo-bio-tabs" width="150px">
       </div>
       <div>
         <div :class='$style.descriptionPack'>This Pack is for 100% organic growth, it is best to prepare your soil with a rich mix of beneficial bacteria and microorganisms. The method consists of preparing the substrate with the BioTabs products in the quantities indicated and repeating the same procedure each time the plant is transplanted into a new pot. The formula is so simple, you only need to add water not even with ph control. Certified 100% Organic. </div></div>
@@ -71,7 +71,7 @@
                      green='Options' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/sgl-logo.png" alt="logo-SGL"  width="200px">
+        <img src="~assets/img/sgl-logo.png" alt="logo-SGL"  width="150px">
       </div>
       <div>
         <div :class='$style.descriptionPack'>Sometimes growing is difficult and mistakes are easily made, this pack will help you to reduce all those mistakes with tools who are not mandatory but really recommanded for massive success</div>
@@ -208,7 +208,9 @@ export default {
     text-align: center
 
 .logo
-
+  display: flex
+  align-items: center
+  height: 150px
   @media only screen and (max-width: 600px)
     margin-top: 10px
     margin-bot: 10px
@@ -253,6 +255,7 @@ export default {
   border: 1px solid
   border-style: none none dashed none
   padding-bottom: 5pt
+  margin-top: 20px
   margin-bottom: 30px
   cursor: pointer
   @media only screen and (max-width: 600px)
