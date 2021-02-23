@@ -122,4 +122,8 @@ export default {
   @media only screen and (max-width: 600pt)
     margin: 5pt 20pt
 
+#tagline strong
+  color: #3bb30b
+  font-weight: bold
+
 </style>

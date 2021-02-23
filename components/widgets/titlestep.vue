@@ -20,7 +20,7 @@
       <CheckBox v-if='checkbox' :checked='checked' @click='click()' />
       <h1 :id='$style.green'>{{ green }}</h1>
     </div>
-    <p :id='$style.introduction'>{{ introduction }}</p>
+    <p :id='$style.introduction' v-html='$md.render(introduction || "")'></p>
   </section>
 </template>
 
@@ -85,5 +85,9 @@ export default {
     font-size: 1.1em
     margin-left: 20px
     padding-right: 5px
+
+#introduction strong
+  color: #3bb30b
+  font-weight: bold
 
 </style>

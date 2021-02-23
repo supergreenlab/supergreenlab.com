@@ -100,6 +100,7 @@ export default {
 
 .step
   flex-basis: 25%
+  padding: 0 10pt 0 0
   @media only screen and (max-width: 600px)
     margin-bottom: 20pt
 

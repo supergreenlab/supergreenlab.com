@@ -81,6 +81,10 @@ export default {
 #text h2
   margin: 0 0 15pt 0
 
+#text strong
+  color: #3bb30b
+  font-weight: bold
+
 #thumbnail
   flex: 1
   position: relative

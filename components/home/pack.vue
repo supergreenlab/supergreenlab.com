@@ -226,6 +226,10 @@ export default {
     margin-bottom: 10px
     font-weight: 300
 
+.descriptionPack strong
+  color: #3bb30b
+  font-weight: bold
+
 .price
   @media only screen and (max-width: 600px)
     margin-top: 15px

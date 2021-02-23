@@ -56,7 +56,7 @@
       <div :class='$style.title'>
         <TitleStep title='STEP 2'
                       green='Get a bundle'
-                      introduction="Here we are, this is what we sell! A bundle with all of what you need to control the best environment in your closet, from your smartphone, and get the most healthy and massive plant(s) you ever see" />
+                      introduction="Here we are, this is what we sell! A **bundle with all** of what you need to control the best environment in your closet, from your smartphone, and get the most healthy and massive plant(s) you ever see" />
       </div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>

@@ -195,6 +195,7 @@ export default {
   text-align: center
   width: 100%
   max-width: 500pt
+  padding: 0 20pt
 
 #intro b
   color: #3bb30b
