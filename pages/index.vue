@@ -48,7 +48,9 @@
       <div :class='$style.title'>
         <TitleStep title='STEP 1'
                       green='Choose your furniture'
-                      introduction= "Welcome to the micro growing's world, to begin just get a closet or two"/>
+                      introduction= "Welcome to **micro growing**, the best hobby ever 💚
+                        Start by picking a piece of furniture that fits your space.
+                        **pro tip**: flat white is great for reflecting light 💡"/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
@@ -56,7 +58,8 @@
       <div :class='$style.title'>
         <TitleStep title='STEP 2'
                       green='Get a bundle'
-                      introduction="Here we are, this is what we sell! A **bundle with all** of what you need to control the best environment in your closet, from your smartphone, and get the most healthy and massive plant(s) you ever see" />
+                      introduction="We designed and put together a bundle to **transform your furniture** into a connected stealth growbox.
+                      It has everything you need to get started 🙂" />
       </div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
@@ -65,14 +68,15 @@
         </div>
         <div :class='$style.title'>
           <TitleStep green='Install your bundle'
-                      introduction= "Learn how to install your bundle with Stant, don't forget to subscribe and thumbs up for the video please!" />
+                      introduction= "Learn **how to install your bundle** with Stant, don't forget to **like & subscribe** over on YouTube to not miss our next build 👍
+                      **Need extra help?** Send us a message :)" />
         </div>
         <LatestGuide />
         <Youtube ref='youtube' />
         <div :class='$style.space'></div>
         <div :class='$style.title'>
           <TitleStep green='Spare parts'
-                      introduction='More to come very soon:)' />
+                      introduction='Stay tuned for **new modules** and **add-ons** coming soon™' />
         </div>
         <div :class='$style.shop'>
           <ProductList ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
@@ -81,13 +85,15 @@
       <div :class='$style.title'>
         <TitleStep title='STEP 3'
                       green='Start growing'
-                      introduction='There are a lot of way to achieve a succesful harvest, growing medium is an important part of this success. Some growers prefer organic soil, others prefer to use hydro, coco, perlite or vermiculite... SuperGreenLab tried and prepared soils packs containing the strict minimum for decent and high quality plants' />
+                      introduction="There are a lot of ways to achieve a **successful harvest** but every grow needs a growing medium (soil/soilless) and nutrients (organic/mineral).
+                      To help you get started we curated **grow packs** from **recommendations by** the **SGL community**.
+                      **pro tip**: keep it simple, experiment, and don't hesitate to ask for advice over on [Discord](https://www.supergreenlab.com/discord) :)" />
       </div>
       <div :class='$style.pack'>
         <Pack />
       </div>
       <div :class='$style.title'>
-        <TitleStep green='Might need some tools too'/>
+        <TitleStep green="It's dangerous to go alone! Take this." introduction="Here's a non exhaustive list of **tools and materials** we used in some shape or form to **build and grow**."/>
       </div>
       <div :class='$style.shop'>
         <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
