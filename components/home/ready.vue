@@ -21,15 +21,16 @@
     <div :id='$style.body'>
       <nuxt-link :class='$style.step' to='/app'>
         <div :class='$style.logo' :id='$style.appstores'></div>
-        Install the app<br />
-        <small>checkout the explorer tab<br />for inspiration</small>
+        Want to see more?<br />
+        <small>Install the app to check out all the shared grow diaries<br />and learn from what the SGL community is doing.</small>
+        <div :class='$style.cta'>Install app</div>
       </nuxt-link>
-      <b>&nbsp;then&nbsp;</b>
       <nuxt-link :class='$style.step' to='/discord'>
         <div :class='$style.logo' :id='$style.discord'></div>
         <small>Still got questions?</small>
-        Join the discord server<br />
+        Join the community over on Discord;<br />it’s where we all hang out 💚<br />
         <small>Ask us anything!</small>
+        <div :class='$style.cta'>Join discord</div>
       </nuxt-link>
     </div>
   </section>
@@ -51,7 +52,6 @@ export default {
 
 #body
   display: flex
-  align-items: center
   justify-content: center
 
 #appstores
@@ -64,16 +64,13 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
-  justify-content: center
+  justify-content: space-between
   font-weight: bold
   color: #454545
   text-decoration: none
   text-align: center
-  margin: 0 5pt
+  margin: 0 10pt
 
-.step:hover
-  text-decoration: underline
-  
 .step:hover .logo
   transform: scale(1.05)
 
@@ -88,5 +85,21 @@ export default {
   @media only screen and (max-width: 600pt)
     width: 50pt
     height: 50pt
+
+.cta
+  display: block
+  background-color: #3BB30B
+  text-align: center
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+  font-size: 1.2em
+  margin: 4pt 0
+  white-space: nowrap
+  transition: opacity 0.2s
+
+.step:hover .cta
+  background-color: #2F880B
 
 </style>

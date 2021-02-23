@@ -78,9 +78,9 @@ export const mutations = {
     const i = state.cart.findIndex(i => i.sellingPoint == sellingPoint.id)
     if (n <= 0 && i !== -1) {
       state.cart.splice(i, 1)
-    } else if (i == -1) {
+    } else if (i == -1 && n > 0) {
       state.cart.push({ n, product: product.id, sellingPoint: sellingPoint.id, checked: false })
-    } else {
+    } else if (n > 0) {
       Vue.set(state.cart, i, Object.assign({}, state.cart[i], { n } ))
     }
     storeState(state)

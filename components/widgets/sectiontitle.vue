@@ -20,7 +20,7 @@
   <section :id='$style.container' :class='separator ? $style.separator : ""'>
     <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title }}</h2>
     <h1 :id='$style.green' :style='white ? {color: "#7CCC5C"} : {}'>{{ green }}</h1>
-    <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
+    <h2 :id='$style.title2' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
     <small :id='$style.smalltitle' :style='white ? {color: "white"} : {}'>{{ smalltitle }}</small>
   </section>
 </template>
@@ -48,6 +48,13 @@ export default {
   background-color: #eaeaea
 
 #title
+  font-size: 2.7em
+  color: #5E5E5E
+  text-align: center
+  text-transform: uppercase
+
+#title2
+  font-size: 1.6em
   color: #5E5E5E
   text-align: center
   text-transform: uppercase

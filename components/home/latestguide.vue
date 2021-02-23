@@ -81,6 +81,10 @@ export default {
 #text h2
   margin: 0 0 15pt 0
 
+#text strong
+  color: #3bb30b
+  font-weight: bold
+
 #thumbnail
   flex: 1
   position: relative
@@ -121,10 +125,10 @@ export default {
   text-decoration: none
   text-align: center
   z-index: 100
-  margin-bottom: 20pt
   font-size: 1.5em
+  margin-top: 50px
   @media only screen and (max-width: 600px)
-    margin-top: 15pt
+    margin-top: 20pt
     font-size: 1.1em
 
 #cta > small

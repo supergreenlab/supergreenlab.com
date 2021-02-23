@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
     <div>
-      <Number v-model='n' :small=true />
+      <Number v-if='!lineItems' v-model='n' :small=true />
       <nuxt-link v-if='done' :id='$style.button' to='/cart'><b>GO TO CART</b></nuxt-link>
       <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
     </div>
@@ -32,7 +32,7 @@ import Number from '~/components/widgets/number.vue'
 
 export default {
   components: {Number,},
-  props: ['product', 'sellingPoint', 'small', 'discreet',],
+  props: ['product', 'sellingPoint', 'name', 'lineItems', 'small', 'discreet',],
   data() {
     return {
       n: 1,
@@ -47,15 +47,16 @@ export default {
   methods: {
     addToCartClicked() {
       if (this.$data.activated) return
-      const { product, sellingPoint, } = this.$props
+      const { product, sellingPoint, lineItems, name,} = this.$props
       const { n } = this.$data
-      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', sellingPoint.slug)
+      const cart = lineItems ? lineItems : [{ n, product, sellingPoint }]
+      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', name || sellingPoint.slug)
       this.$data.activated = true
       this.timeout = setTimeout(() => {
         this.$data.activated = false
         this.$data.added = true
-        this.$store.commit('checkout/addToCart', { n, product, sellingPoint })
         this.$emit('click')
+        cart.forEach(li => this.$store.commit('checkout/addToCart', li))
         this.timeout = setTimeout(() => {
           this.$data.done = true
         }, 2000)
