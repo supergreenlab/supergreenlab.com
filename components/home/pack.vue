@@ -155,7 +155,6 @@ export default {
     },
     removeCollection(name) {
       const products = this.$store.getters['eshop/collection'](name)
-      console.log('removeCollection', name, products.length)
       products.forEach(product => {
         const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
         this.$store.commit('checkout/addToCart', { n: 0, product, sellingPoint })
@@ -166,6 +165,7 @@ export default {
         this.removeCollection('one-for-all-pack')
         return
       }
+      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', 'one-for-all-pack')
       this.removeCollection('organic-pack')
       this.addCollection('one-for-all-pack')
     },
@@ -174,6 +174,7 @@ export default {
         this.removeCollection('organic-pack')
         return
       }
+      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', 'organic-pack')
       this.removeCollection('one-for-all-pack')
       this.addCollection('organic-pack')
     },
@@ -182,6 +183,7 @@ export default {
         this.removeCollection('option-pack')
         return
       }
+      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', 'option-pack')
       this.addCollection('option-pack')
     },
   },
