@@ -38,12 +38,13 @@
       </div>
       <Examples ref='examples' />
       <div :class='$style.space'></div>
+      <Ready ref='ready' />
+      <div :class='$style.space'></div>
       <div :class='$style.title'>
         <SectionTitle title='Ready to grow?'
                         green='Follow the steps below'
                         separator='true'/>
-      <div :class='$style.space'></div>
-      <Ready ref='ready' />
+        <div :class='$style.space'></div>
       </div>
       <div :class='$style.title'>
         <TitleStep title='STEP 1'
