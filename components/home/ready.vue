@@ -71,9 +71,6 @@ export default {
   text-align: center
   margin: 0 10pt
 
-.step:hover
-  text-decoration: underline
-  
 .step:hover .logo
   transform: scale(1.05)
 
@@ -102,5 +99,7 @@ export default {
   white-space: nowrap
   transition: opacity 0.2s
 
+.step:hover .cta
+  background-color: #2F880B
 
 </style>
