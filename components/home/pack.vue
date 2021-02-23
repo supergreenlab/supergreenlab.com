@@ -68,10 +68,10 @@
     <TitleStep :checked='collectionInCart("option-pack")'
                      @click='options'
                      :checkbox=true
-                     green='Options' />
+                     green='Recommendations' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/sgl-logo.png" alt="logo-SGL"  width="150px">
+        <img src="~assets/img/icon_sgl_basics.png" alt="logo-SGL"  width="150px">
       </div>
       <div>
         <div :class='$style.descriptionPack'>Sometimes growing is difficult and mistakes are easily made, this pack will help you to reduce all those mistakes with tools who are not mandatory but really recommanded for massive success</div>
