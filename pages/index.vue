@@ -272,6 +272,7 @@ export default {
   display: flex
   width: 100%
   max-width: 900pt
+  padding: 0 15pt
 
 #bundles
   display: flex
@@ -282,7 +283,7 @@ export default {
 .bundle
   margin: 0 0 30pt 0
   width: 100%
-  max-width: 1000pt
+  max-width: 920pt
 
 .space
   height: 40pt
