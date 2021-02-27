@@ -62,7 +62,11 @@ export default {
   },
   computed: {
     plantURL() {
-      return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}&feid=${this.$route.query.feid}`
+      if (this.$route.query.feid) {
+        return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}&feid=${this.$route.query.feid}`
+      } else {
+        return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}`
+      }
     }
   },
 }
