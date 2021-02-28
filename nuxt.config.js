@@ -3,6 +3,11 @@ import pkg from './package'
 import { products, sellingPoints, } from './config/products.json'
 import { guides } from './config/guides.json'
 
+  /*console.log([
+    ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
+    .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
+    .concat(guides.map(g => `/guide/${g.slug}`)));*/
+
 export default {
   target: 'static',
 
