@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { addEventListener } from '~/lib/client-side.js'
+import { onNuxtReady } from '~/lib/client-side.js'
 
 export const actions = {
   nuxtClientInit(context) {
-    addEventListener('load', () => {
+    onNuxtReady(() => {
       context.dispatch('eshop/nuxtClientInit')
       context.dispatch('shipping/nuxtClientInit')
       context.dispatch('checkout/nuxtClientInit')
