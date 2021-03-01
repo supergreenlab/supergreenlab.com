@@ -20,7 +20,7 @@ import { addEventListener } from '~/lib/client-side.js'
 
 export const actions = {
   nuxtClientInit(context) {
-    addEventListener('DOMContentLoaded', () => {
+    addEventListener('load', () => {
       context.dispatch('eshop/nuxtClientInit')
       context.dispatch('shipping/nuxtClientInit')
       context.dispatch('checkout/nuxtClientInit')
