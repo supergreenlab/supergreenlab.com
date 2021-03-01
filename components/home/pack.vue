@@ -24,7 +24,7 @@
                    green='Mega Crop Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/mega-crop-logo2.png" alt="logo-mega-crop" width="150px">
+        <img src="~assets/img/mega-crop-logo2.jpg" alt="logo-mega-crop" width="150px">
       </div>
       <div>
         <div :class='$style.descriptionPack'>MEGA CROP PACK is an all in one, complete plant nutrient designed from the ground up. You get everything you need from start to finish, to grow the best quality plants. Regulate pH from your water is recommanded</div>
