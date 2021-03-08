@@ -22,6 +22,7 @@
       <Logo subtitle='Growshop.' />
     </div>
     <div :id='$style.menu'>
+      <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
   </section>
@@ -54,7 +55,7 @@ export default {
 
 #container
   position: fixed
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
   display: flex
