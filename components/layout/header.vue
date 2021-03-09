@@ -21,7 +21,12 @@
     <div :id='$style.logo'>
       <Logo subtitle='Growshop.' />
     </div>
-    <div :id='$style.menu'>
+    <a :id='$style.burgerMenu' @click='toggleClass()'>
+      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (isActive? "rotate(135deg)" : ""), "background":  (isActive? "#3BB30B" : ""), "margin-top":  (isActive? "0px" : "")}' ></span>
+      <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (isActive? "0" : "1")}'></span>
+      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "rotate(-135deg)" : ""), "background":  (isActive? "#3BB30B" : ""), "margin-top":  (isActive? "0px" : "")}'></span>
+    </a>
+    <div :id='$style.menu' :style='{"display": (isActive? "flex" : "none")}'>
       <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
@@ -32,6 +37,11 @@
 import Logo from '~/components/widgets/logo.vue'
 
 export default {
+  data() {
+    return{
+      isActive: false
+    }
+  },
   components: { Logo, },
   props: ['responsiveHide',],
   computed: {
@@ -43,6 +53,9 @@ export default {
     }
   },
   methods: {
+    toggleClass: function(){
+      this.isActive = !this.isActive
+    },
     onClick(e) {
       this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
     },
@@ -67,10 +80,30 @@ export default {
   @media only screen and (max-width: 600px)
     font-size: 1.2em
 
+#burgerMenu
+  display: none
+  @media only screen and (max-width: 600px)
+   position: absolute
+   right: 0
+   top: 10pt
+   display: block
+   margin-right: 35px
+
 #menu
   display: flex
   font-size: 0.8em
   margin-right: 10pt
+  @media only screen and (max-width: 600px)
+   display: none
+   flex-direction: column
+   position: absolute
+   top: 28pt
+   min-height: 100vh
+   min-width: 25vh
+   right: 0pt
+   background: rgba(255, 255, 255, 0.8)
+   margin-right: 0pt
+   transition: all 0.5s
 
 #menu > div > a
   display: block
@@ -91,5 +124,22 @@ export default {
 
 #logo
   font-size: 1.5em
+
+.burgerBar
+  width: 22px
+  height: 4px
+  border-radius: 15px
+  background: #5D5D5D
+  position: absolute
+  transition: all 0.3s
+
+#middleBar
+  display: block
+
+#topBar
+  margin-top: -7px
+
+#bottomBar
+  margin-top: 6.5px
 
 </style>

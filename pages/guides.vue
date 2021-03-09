@@ -36,20 +36,6 @@
       <div :class='$style.containerSeparator'>
         <div :class='$style.separator'></div>
       </div>
-      <div :class='$style.topicContainer'>
-        <div :class='$style.cardContainer'>
-          <TitleGuide title='how to guides'
-                      green='Swedish house mafia'
-                      content='Lorem ipsum dolor sit amet, dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut **labore** et dolore magna aliqua. Ut ..Lorem ipsum dolor sit amet'/>
-        </div>
-        <CardGuide v-for='guide in guides' :key="guide.name"
-                       :class='$style.cardContainer'
-                       :guide='guide'
-                       userStep='0'/>
-      </div>
-      <div :class='$style.containerSeparator'>
-        <div :class='$style.separator'></div>
-      </div>
     </div>
     <Footer />
   </section>
