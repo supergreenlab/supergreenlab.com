@@ -22,11 +22,11 @@
       <Logo subtitle='Growshop.' />
     </div>
     <a :id='$style.burgerMenu' @click='toggleClass()'>
-      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (isActive? "rotate(135deg)" : ""), "background":  (isActive? "#3BB30B" : ""), "margin-top":  (isActive? "0px" : "")}' ></span>
-      <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (isActive? "0" : "1")}'></span>
-      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "rotate(-135deg)" : ""), "background":  (isActive? "#3BB30B" : ""), "margin-top":  (isActive? "0px" : "")}'></span>
+      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (isActive? "" : "rotate(135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}' ></span>
+      <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (isActive? "1" : "0")}'></span>
+      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "" : "rotate(-135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}'></span>
     </a>
-    <div :id='$style.menu' :style='{"display": (isActive? "flex" : "none")}'>
+    <div :id='$style.menu' :style='{"right": (isActive? "-25vh" : "0vh")}'>
       <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
@@ -39,7 +39,7 @@ import Logo from '~/components/widgets/logo.vue'
 export default {
   data() {
     return{
-      isActive: false
+      isActive: true
     }
   },
   components: { Logo, },
@@ -81,6 +81,7 @@ export default {
     font-size: 1.2em
 
 #burgerMenu
+  margin-top: 2px
   display: none
   @media only screen and (max-width: 600px)
    position: absolute
@@ -94,7 +95,6 @@ export default {
   font-size: 0.8em
   margin-right: 10pt
   @media only screen and (max-width: 600px)
-   display: none
    flex-direction: column
    position: absolute
    top: 28pt
@@ -103,7 +103,7 @@ export default {
    right: 0pt
    background: rgba(255, 255, 255, 0.8)
    margin-right: 0pt
-   transition: all 0.5s
+   transition: all 0.420s
 
 #menu > div > a
   display: block
@@ -128,18 +128,18 @@ export default {
 .burgerBar
   width: 22px
   height: 4px
-  border-radius: 15px
+  border-radius: 30px
   background: #5D5D5D
   position: absolute
-  transition: all 0.3s
+  transition: all 0.420s
 
 #middleBar
   display: block
 
 #topBar
-  margin-top: -7px
+  margin-top: -0.4em
 
 #bottomBar
-  margin-top: 6.5px
+  margin-top: 0.4em
 
 </style>

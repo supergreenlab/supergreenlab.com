@@ -25,7 +25,7 @@
     </div>
     <div :id="$style.titlecontainer">
       <div :id="$style.title">
-        <h2> {{ guide.name.substring(6, 15) }}<span :class="$style.green">{{ guide.name.substring(15, 60) }} </span></h2>
+        <h2> {{ guide.name.substring(0, 7) }}<span :class="$style.green">{{ guide.name.substring(7, 50) }} </span></h2>
       </div>
       <div :id="$style.stepdonecontainer">
         <span :class="$style.green">{{ userStep }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
