@@ -50,8 +50,13 @@ import CardGuide from '~/components/guides/cardguide.vue'
 export default {
   components: { Header, Footer, TitleGuide, SectionTitle, CardGuide },
   computed: {
-    guides() {
+    guide() {
       return this.$store.state.guides.guides
+    },
+    guides: function () {
+        return this.guide.filter(function (guide) {
+          return guide.first == null || guide.first.length == 0
+        })
     }
   }
 }

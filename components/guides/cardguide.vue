@@ -25,15 +25,15 @@
     </div>
     <div :id="$style.titlecontainer">
       <div :id="$style.title">
-        <h2> {{ guide.name.substring(0, 7) }}<span :class="$style.green">{{ guide.name.substring(7, 50) }} </span></h2>
+        <h2> {{ guide.name.substring(0, 7) }}<span :class="$style.green">{{ guide.name.substring(7, 28) }}... </span></h2>
       </div>
-      <div :id="$style.stepdonecontainer">
-        <span :class="$style.green">{{ userStep }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
+      <div :id="$style.stepdonecontainer" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
+        <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
       </div>
     </div>
     <p :id="$style.introduction"> {{ guide.text.substring(0, 93) }}...</p>
     <div :id="$style.readmorecontainer">
-      <div :id="$style.readmorebtn">Read More</div>
+      <nuxt-link :to='`/guide/${guide.slug}`'  :id="$style.readmorebtn">Read More</nuxt-link>
     </div>
   </section>
 </template>
@@ -41,6 +41,13 @@
 <script>
 export default {
   props: ['guide', 'userStep'],
+  computed: {
+    nChecked() {
+      return (guide) => {
+        return guide.sections.filter(guides => this.$store.state.guides[guides.slug].checked).length
+      }
+    }
+  }
 }
 
 </script>
@@ -124,6 +131,7 @@ export default {
     margint-bottom: 10px
 
 #readmorebtn
+  text-decoration: none
   cursor: pointer
   text-align: center
   padding: 5px
