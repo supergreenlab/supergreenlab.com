@@ -76,9 +76,6 @@ export default {
   @media only screen and (max-width: 600pt)
     height: 150px
 
-#gradient
-
-
 #guidelogo
   margin: 10px
   position: absolute

@@ -86,6 +86,7 @@ export default {
   @media only screen and (max-width: 600px)
    display: block
    margin-right: 35px
+   margin-bottom: 5px
 
 #menu
   display: flex
@@ -94,7 +95,7 @@ export default {
   @media only screen and (max-width: 600px)
    flex-direction: column
    position: absolute
-   top: 28pt
+   top: 38.5pt
    min-height: 100vh
    min-width: 25vh
    right: 0pt
