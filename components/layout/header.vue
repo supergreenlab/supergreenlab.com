@@ -79,14 +79,11 @@ export default {
   padding: 0 0 0 10pt
   @media only screen and (max-width: 600px)
     font-size: 1.2em
+    padding: 5pt
 
 #burgerMenu
-  margin-top: 2px
   display: none
   @media only screen and (max-width: 600px)
-   position: absolute
-   right: 0
-   top: 10pt
    display: block
    margin-right: 35px
 

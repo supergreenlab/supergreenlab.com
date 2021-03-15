@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image": `url(${require(`~/assets/img/${ guide.thumbnail.fileLarge }`)})`}'>
+    <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(${require(`~/assets/img/${ guide.thumbnail.fileLarge }`) })`}'>
       <div :id="$style.guidelogo" >
         <img src="~assets/img/logoguidecard.png" alt="logo-supergreenlab">
       </div>
@@ -31,7 +31,7 @@
         <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
       </div>
     </div>
-    <p :id="$style.introduction"> {{ guide.text.substring(0, 93) }}...</p>
+    <p v-html="$md.render(guide.text.substring(0, 80))" :id="$style.introduction"></p>
     <div :id="$style.readmorecontainer">
       <nuxt-link :to='`/guide/${guide.slug}`'  :id="$style.readmorebtn">Read More</nuxt-link>
     </div>
@@ -66,7 +66,6 @@ export default {
   height: 300px
 
 #guideimgcontainer
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%)
   display: flex
   justify-content: flex-end
   margin-top: 20px
@@ -76,6 +75,9 @@ export default {
     height: 150px
   @media only screen and (max-width: 600pt)
     height: 150px
+
+#gradient
+
 
 #guidelogo
   margin: 10px
