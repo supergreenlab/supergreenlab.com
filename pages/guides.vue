@@ -26,7 +26,7 @@
         <div :class='$style.cardContainer'>
           <TitleGuide title='Growing Guides'
                     green='SuperGreenPedia'
-                    content='Lorem ipsum dolor sit amet, dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut **labore** et dolore magna aliqua. Ut ..Lorem ipsum dolor sit amet'/>
+                    content="Welcome to the brand new Guides page! As you can see we still need a bit of work to fill with guides 😅 Well good news we're full at it right now, stay tuned! You'll find here all our quick-guides related to growing awesome plants and building stealth growboxes."/>
         </div>
         <CardGuide v-for='guide in guides' :key="guide.id"
                        :class='$style.cardContainer'
