@@ -8,7 +8,7 @@ module.exports.fetchGuides = async () => {
   await mkAssetsDir('guides')
   await mkAssetsDir('links')
   await mkStaticDir('guides')
-  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements',])
+  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements','order'])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements',])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 

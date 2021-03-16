@@ -21,7 +21,13 @@
     <div :id='$style.logo'>
       <Logo subtitle='Growshop.' />
     </div>
-    <div :id='$style.menu'>
+    <a :id='$style.burgerMenu' @click='toggleClass()'>
+      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (isActive? "" : "rotate(135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}' ></span>
+      <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (isActive? "1" : "0")}'></span>
+      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "" : "rotate(-135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}'></span>
+    </a>
+    <div :id='$style.menu' :style='{"right": (isActive? "-25vh" : "0vh")}'>
+      <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
   </section>
@@ -31,6 +37,11 @@
 import Logo from '~/components/widgets/logo.vue'
 
 export default {
+  data() {
+    return{
+      isActive: true
+    }
+  },
   components: { Logo, },
   props: ['responsiveHide',],
   computed: {
@@ -42,6 +53,9 @@ export default {
     }
   },
   methods: {
+    toggleClass: function(){
+      this.isActive = !this.isActive
+    },
     onClick(e) {
       this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
     },
@@ -54,7 +68,7 @@ export default {
 
 #container
   position: fixed
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
   display: flex
@@ -65,11 +79,29 @@ export default {
   padding: 0 0 0 10pt
   @media only screen and (max-width: 600px)
     font-size: 1.2em
+    padding: 5pt
+
+#burgerMenu
+  display: none
+  @media only screen and (max-width: 600px)
+   display: block
+   margin-right: 35px
+   margin-bottom: 5px
 
 #menu
   display: flex
   font-size: 0.8em
   margin-right: 10pt
+  @media only screen and (max-width: 600px)
+   flex-direction: column
+   position: absolute
+   top: 38.5pt
+   min-height: 100vh
+   min-width: 25vh
+   right: 0pt
+   background: rgba(255, 255, 255, 0.8)
+   margin-right: 0pt
+   transition: all 0.420s
 
 #menu > div > a
   display: block
@@ -90,5 +122,22 @@ export default {
 
 #logo
   font-size: 1.5em
+
+.burgerBar
+  width: 22px
+  height: 4px
+  border-radius: 30px
+  background: #5D5D5D
+  position: absolute
+  transition: all 0.420s
+
+#middleBar
+  display: block
+
+#topBar
+  margin-top: -0.4em
+
+#bottomBar
+  margin-top: 0.4em
 
 </style>

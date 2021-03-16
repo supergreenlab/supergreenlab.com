@@ -193,7 +193,7 @@ export default {
     flex: 0.45
     height: 110px
     margin: 10pt 15pt 10pt 5pt
- 
+
 #pic
   height: 150px
   background-position: top
