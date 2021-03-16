@@ -20,7 +20,7 @@
   <section :id="$style.container">
     <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(${require(`~/assets/img/${ guide.thumbnail.fileLarge }`) })`}'>
       <div :id="$style.guidelogo" >
-        <img src="~assets/img/logoguidecard.png" alt="logo-supergreenlab">
+        <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
       </div>
     </div>
     <div :id="$style.titlecontainer">
