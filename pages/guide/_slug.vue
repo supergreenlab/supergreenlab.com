@@ -77,6 +77,8 @@ import Section from '~/components/guides/section.vue'
 
 import { addEventListener, removeEventListener, innerHeight } from '~/lib/client-side.js'
 
+import { guides } from '~/config/guides.json'
+
 export default {
   components: { Header, SectionTitle, Section, Guide, Footer, },
   head() {
@@ -110,21 +112,21 @@ export default {
       return guide
     },
     relatedGuides() {
-      return (this.guide.relatedGuides || []).map(rg => this.$store.state.guides.guides.find(g => g.id == rg))
+      return (this.guide.relatedGuides || []).map(rg => guides.find(g => g.id == rg))
     },
     first() {
       if (this.guide.first == null || this.guide.first.length == 0) return null
-      let first = this.$store.state.guides.guides.find(g => g.id == this.guide.first[0])
+      let first = guides.find(g => g.id == this.guide.first[0])
       if (!first) return null
       first = require(`~/config/guide-${first.slug}.json`)
       return first
     },
     allGuides() {
-      let current = this.first == null ? this.guide : this.$store.state.guides.guides.find(g => g.slug == this.first.nextslug[0])
+      let current = this.first == null ? this.guide : guides.find(g => g.slug == this.first.nextslug[0])
       const ordered = []
       const fn = (current) => {
         ordered.push(current)
-        current = this.$store.state.guides.guides.find(g => g.slug == current.nextslug)
+        current = guides.find(g => g.slug == current.nextslug)
         if (current) return fn(current)
       }
       fn(current)

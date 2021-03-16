@@ -47,11 +47,14 @@ import Footer from '~/components/layout/footer.vue'
 import TitleGuide from '~/components/widgets/sectiontitleguide.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import CardGuide from '~/components/guides/cardguide.vue'
+
+import { guides } from '~/config/guides.json'
+
 export default {
   components: { Header, Footer, TitleGuide, SectionTitle, CardGuide },
   computed: {
     guides: function () {
-      return this.$store.state.guides.guides.filter(function (guide) {
+      return guides.filter(function (guide) {
         return guide.first == null && guide.sections.length != 0
       }).sort(function (g1, g2){
         return g1.order - g2.order
