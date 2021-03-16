@@ -111,7 +111,7 @@ export default {
 #body
   width: 100%
   max-width: 900pt
-  padding: 100pt 0 0 0
+  padding: 100pt 15pt 0 15pt
   @media only screen and (max-width: 600pt)
     padding: 100pt 5pt 0 5pt
 
