@@ -55,7 +55,7 @@ export default {
   computed: {
     guides: function () {
       return guides.filter(function (guide) {
-        return guide.first == null && guide.sections.length != 0
+        return guide.first == null
       }).sort(function (g1, g2){
         return g1.order - g2.order
       })
