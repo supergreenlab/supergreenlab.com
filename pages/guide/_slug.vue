@@ -76,7 +76,6 @@ import Guide from '~/components/guides/small.vue'
 import Section from '~/components/guides/section.vue'
 
 import { addEventListener, removeEventListener, innerHeight } from '~/lib/client-side.js'
-import { guides } from '~/config/guides.json'
 
 import { guides } from '~/config/guides.json'
 

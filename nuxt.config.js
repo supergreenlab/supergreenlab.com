@@ -25,6 +25,11 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' }
+    ],
+    script: [
+      {
+        src: 'https://api.goaffpro.com/loader.js?shop=supergreenlab.myshopify.com',
+      },
     ]
   },
 
