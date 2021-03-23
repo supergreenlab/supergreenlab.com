@@ -58,7 +58,7 @@ module.exports.mkStaticDir = async (dir) => {
 }
 module.exports.fetchAttachement = (p, attachement, dir) => {
   if (attachement.type.indexOf('image/') == 0) {
-    let ext = attachement.type.split('/')[1]
+    let ext = attachement.type.split('/')[1].toLowerCase()
     if (ext == 'svg+xml') ext = 'png'
     const thumbnails = attachement.thumbnails || {
       small: {url: attachement.url},
@@ -84,7 +84,7 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
 
     return { p, attachement, data: { fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {
-    const ext = attachement.type.split('/')[1]
+    const ext = attachement.type.split('/')[1].toLowerCase()
     const filePath = `${dir}/${attachement.id}.${ext}`
     p = p.then(async () => {
       await fetchFile(attachement.url, filePath)

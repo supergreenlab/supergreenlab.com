@@ -93,27 +93,21 @@ export default {
   height: 40pt
 
 .topicContainer
-  display: grid
-  grid-template-columns: 1fr 1fr 1fr
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
   width: 100%
-  justify-items: center
-  @media only screen and (max-width: 600pt)
-    display: flex
-    flex-direction: column
-    align-items: center
 
 .cardContainer
   display: flex
   flex-direction: column
-  width : 400px
-  height: 400px
+  width : 300px
   margin: 10px
   @media only screen and (max-width: 1000pt)
-    width : 300px
-    height: 300px
+    width : 250px
   @media only screen and (max-width: 600pt)
-    width : 300px
-    height: 300px
+    width : 200px
 
 .titlestep
   width: 100%

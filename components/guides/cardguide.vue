@@ -57,27 +57,23 @@ export default {
  border: 3px solid #EFEFEF
  color: #5D5D5D
  @media only screen and (max-width: 1000pt)
-  width: 300px
-  height: 300px
   font-size: 0.8rem
- @media only screen and (max-width: 600pt)
-  font-size: 0.8em
-  width: 300px
-  height: 300px
 
 #guideimgcontainer
+  position: relative
   display: flex
   justify-content: flex-end
   margin-top: 20px
   width: 100%
-  height: 200px
+  height: 300px
   @media only screen and (max-width: 1000pt)
-    height: 150px
+    height: 250px
   @media only screen and (max-width: 600pt)
-    height: 150px
+    height: 200px
 
 #guidelogo
-  margin: 10px
+  top: 10px
+  right: 10px
   position: absolute
 
 #titlecontainer
@@ -94,6 +90,7 @@ export default {
 #title
   font-weight: bold
   text-transform: capitalize
+  font-size: 0.7em
 
 .green
   color: #3BB30B
