@@ -44,7 +44,7 @@ export default {
   computed: {
     nChecked() {
       return (guide) => {
-        return guide.sections.filter(guides => this.$store.state.guides[guides.slug].checked).length
+        return guide.sections.filter(gs => this.$store.state.guides[gs.slug].checked).length
       }
     }
   }

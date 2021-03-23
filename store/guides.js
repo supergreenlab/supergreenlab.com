@@ -25,7 +25,6 @@ const STORAGE_ITEM='guides3'
 
 export const state = () => {
   let defaults = {
-    guides,
   };
   [].concat(guides).concat(...guides.map(g => g.sections)).forEach(gs => Object.assign(defaults, { [gs.slug]: {
     checked: false,
