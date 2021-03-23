@@ -88,6 +88,7 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
+  align-items: center
 
 .space
   height: 40pt
@@ -96,8 +97,7 @@ export default {
   display: flex
   flex-wrap: wrap
   align-items: center
-  justify-content: center
-  width: 100%
+  max-width: 1300px
 
 .cardContainer
   display: flex
