@@ -31,7 +31,7 @@
         <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
       </div>
     </div>
-    <p v-html="$md.render(guide.text.substring(0, 80))" :id="$style.introduction"></p>
+    <div v-html="$md.render(guide.text.substring(0, 80))" :id="$style.introduction"></div>
     <div :id="$style.readmorecontainer">
       <nuxt-link :to='`/guide/${guide.slug}`'  :id="$style.readmorebtn">Read More</nuxt-link>
     </div>
