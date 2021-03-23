@@ -25,13 +25,13 @@
     </div>
     <div :id="$style.titlecontainer">
       <div :id="$style.title">
-        <h2> {{ guide.name.substring(0, 7) }}<span :class="$style.green">{{ guide.name.substring(7, 28) }}... </span></h2>
+        <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
       </div>
       <div :id="$style.stepdonecontainer" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
         <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
       </div>
     </div>
-    <div v-html="$md.render(guide.text.substring(0, 80))" :id="$style.introduction"></div>
+    <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
     <div :id="$style.readmorecontainer">
       <nuxt-link :to='`/guide/${guide.slug}`'  :id="$style.readmorebtn">Read More</nuxt-link>
     </div>
@@ -98,7 +98,7 @@ export default {
 #stepdonecontainer
   display: flex
   align-items: center
-  font-size: 2.3em
+  font-size: 2em
 
 #stepdonestring
   font-size: 0.5rem
@@ -107,6 +107,7 @@ export default {
 
 #introduction
   height: 50px
+  overflow: hidden
   margin: 10px
   @media only screen and (max-width: 1000pt)
     margin-bottom: 0px
