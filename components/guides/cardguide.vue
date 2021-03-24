@@ -18,23 +18,25 @@
 
 <template>
   <section :id="$style.container">
-    <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(${require(`~/assets/img/${ guide.thumbnail.fileLarge }`) })`}'>
-      <div :id="$style.guidelogo" >
-        <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
+    <nuxt-link :id="$style.cardLink" :to='`/guide/${guide.slug}`'>
+      <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(${require(`~/assets/img/${ guide.thumbnail.fileLarge }`) })`}'>
+        <div :id="$style.guidelogo" >
+          <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
+        </div>
       </div>
-    </div>
-    <div :id="$style.titlecontainer">
-      <div :id="$style.title">
-        <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
+      <div :id="$style.titlecontainer">
+        <div :id="$style.title">
+          <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
+        </div>
+        <div :id="$style.stepdone" v-if="guide.sections.length === 0 ? '' : $style.stepdonecontainer " :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
+          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
+        </div>
       </div>
-      <div :id="$style.stepdonecontainer" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-        <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
+      <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
+      <div :id="$style.readmorecontainer">
+        <button :id="$style.readmorebtn">Read More</button>
       </div>
-    </div>
-    <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
-    <div :id="$style.readmorecontainer">
-      <nuxt-link :to='`/guide/${guide.slug}`'  :id="$style.readmorebtn">Read More</nuxt-link>
-    </div>
+    </nuxt-link>
   </section>
 </template>
 
@@ -58,6 +60,9 @@ export default {
  color: #5D5D5D
  @media only screen and (max-width: 1000pt)
   font-size: 0.8rem
+
+#cardLink
+  text-decoration: none
 
 #guideimgcontainer
   position: relative
@@ -95,10 +100,12 @@ export default {
 .green
   color: #3BB30B
 
-#stepdonecontainer
+#stepdone
   display: flex
   align-items: center
-  font-size: 2em
+
+#stepdonecontainer
+  font-size: 2.7em
 
 #stepdonestring
   font-size: 0.5rem
@@ -132,6 +139,7 @@ export default {
   cursor: pointer
   text-align: center
   padding: 5px
+  border: none
   background-color: #3BB30B
   color: white
   text-transform: uppercase

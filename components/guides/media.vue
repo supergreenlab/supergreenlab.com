@@ -53,8 +53,8 @@ export default {
 
 #picture
   display: block
-  width: 100%
-  height: 100%
+  width: 400px
+  height: 400px
   min-width: 200px
   min-height: 200px
   background-position: center
