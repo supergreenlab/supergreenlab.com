@@ -63,6 +63,7 @@ export default {
 
 #cardLink
   text-decoration: none
+  color: #5e5e5e
 
 #guideimgcontainer
   position: relative

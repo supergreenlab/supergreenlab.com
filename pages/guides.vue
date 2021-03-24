@@ -96,6 +96,7 @@ export default {
 .topicContainer
   display: flex
   flex-wrap: wrap
+  justify-content: center
   align-items: center
   max-width: 1300px
 
