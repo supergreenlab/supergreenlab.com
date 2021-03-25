@@ -55,6 +55,20 @@
           <div :id='$style.description' v-if='brandProduct.description && brandProduct.description != product.description' v-html='$md.render(brandProduct.description)'></div>
           <div :id='$style.description' v-if='product.bulletpoints' v-html='$md.render(product.bulletpoints)'></div>
           <div :id='$style.description' v-if='brandProduct.bulletpoints && brandProduct.bulletpoints != product.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
+          <b v-if='product.links && product.links.length'>Useful links</b>
+          <div v-if='product.links && product.links.length' :id='$style.links'>
+            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+              </div>
+              <div :class='$style.linktext'>
+                <b>{{ l.title }}</b>
+                <div v-html='$md.render(l.description)'></div>
+                <small>{{ l.url }}</small>
+              </div>
+            </a>
+          </div>
+
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>This product can be used with:</h4>
             <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
@@ -65,6 +79,7 @@
               </div>
             </nuxt-link>
           </div>
+
         </div>
         <div :id='$style.addtocart'>
           <div :id='$style.price'>
@@ -499,5 +514,43 @@ export default {
 
 .highlight
   animation: highlight 0.7s linear 2
+
+#links
+  display: flex
+
+.link
+  display: flex
+  color: #454545
+  text-decoration: none
+  margin: 5pt 0
+
+.link:hover
+  text-decoration: underline
+
+.linktext
+  flex: 1
+
+.linktext small
+  color: #787878
+  text-decoration: underline
+
+.linkpic
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100pt
+  height: 60pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+  margin-right: 10pt
+
+.playbutton
+  width: 30pt
+  height: 30pt
+  transition: opacity 0.2s
+
+.link:hover .playbutton
+  opacity: 0.7
 
 </style>

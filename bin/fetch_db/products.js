@@ -11,9 +11,9 @@ module.exports.fetchProducts = async () => {
   await mkAssetsDir('brands')
   await mkAssetsDir('regions')
 
-  await emptyAssetsDir('tmp')
+  //await emptyAssetsDir('tmp')
 
-  let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type', 'ready'])).filter(p => p.ready)
+  let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type', 'ready', 'links'])).filter(p => p.ready)
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer'])).filter(sp => sp.ready)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
@@ -21,6 +21,7 @@ module.exports.fetchProducts = async () => {
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in'])
   let collections = await fetchTable('Collections', ['slug', 'Product', 'order'])
   let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
+  let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
   const regionTree = (region, acc=[]) => {
     acc.push(region)
@@ -46,6 +47,17 @@ module.exports.fetchProducts = async () => {
     if (regionLevels.indexOf(l1) != regionLevels.indexOf(l2)) return regionLevels.indexOf(l1) - regionLevels.indexOf(l2)
     return r1.code.localeCompare(r2.code)
   })
+  bookmarks = bookmarks.map(b => {
+    try {
+      const { p, data } = fetchAttachement(picPromise, b.icon[0], 'links')
+      picPromise = p
+      b.icon = data
+    } catch(e) {
+      b.icon = noPic
+    }
+    return b
+  })
+
   sellers = sellers.map(s => {
     s.params = jsonOrYaml(s.params || '{}')
     s.logo = (s.logo || []).map((pic, i) => {
@@ -101,6 +113,7 @@ module.exports.fetchProducts = async () => {
     return sp
   })
   products = products.filter(p => p.SellingPoints).map(p => {
+    p.links = (p.links || []).map(l => bookmarks.find(b => b.id == l))
     p.pics = (p.pics || []).map((pic, i) => {
       try {
         const { p, data } = fetchAttachement(picPromise, pic, 'products')
@@ -143,7 +156,8 @@ module.exports.fetchProducts = async () => {
     regions,
     collections,
     relatedProducts,
+    bookmarks,
   })
   await fs.writeFile('config/products.json', productsJSON)
-  await emptyAssetsDir('tmp')
+  //await emptyAssetsDir('tmp')
 }

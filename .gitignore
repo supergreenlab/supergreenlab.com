@@ -94,3 +94,4 @@ static/guides/
 config/products.json
 config/guides.json
 config/guide-*.json
+assets/img/tmp/
