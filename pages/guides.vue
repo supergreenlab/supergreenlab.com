@@ -96,19 +96,16 @@ export default {
 .topicContainer
   display: flex
   flex-wrap: wrap
-  justify-content: center
   align-items: center
   max-width: 1300px
+  @media only screen and (max-width: 600pt)
+    justify-content: center
 
 .cardContainer
   display: flex
   flex-direction: column
   width : 300px
   margin: 10px
-  @media only screen and (max-width: 1000pt)
-    width : 250px
-  @media only screen and (max-width: 600pt)
-    width : 200px
 
 .titlestep
   width: 100%
