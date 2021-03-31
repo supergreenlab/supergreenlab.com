@@ -27,6 +27,7 @@
       <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "" : "rotate(-135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}'></span>
     </a>
     <div :id='$style.menu' :style='{"right": (isActive? "-25vh" : "0vh")}'>
+      <div><nuxt-link to='/product/sgl-2x-sticker-sheets-tomtomtom-01-supergreenlab-2x-sticker-sheets-pack-tomtomtom-1st-edition-supergreenlab-world'>Stickers!</nuxt-link></div>
       <div><nuxt-link to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>
       <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
