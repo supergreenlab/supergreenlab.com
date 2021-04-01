@@ -31,6 +31,7 @@
       <div><nuxt-link to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>
       <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/discord'>Discord</nuxt-link></div>
+      <div><a href='https://growmies.supergreenlab.com' target='_blank'>Affiliate</a></div>
       <div><nuxt-link to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
   </section>
