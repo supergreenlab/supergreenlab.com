@@ -64,6 +64,8 @@
         <Guide v-for='g in relatedGuides' :key='g.id' :guide='g' />
       </div>
     </div>
+    <CallToAction />
+    <Newsletter />
     <Footer />
   </section>
 </template>
@@ -74,13 +76,15 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Footer from '~/components/layout/footer.vue'
 import Guide from '~/components/guides/small.vue'
 import Section from '~/components/guides/section.vue'
+import CallToAction from '~/components/guides/calltoaction.vue'
+import Newsletter from '~/components/layout/newsletter.vue'
 
 import { addEventListener, removeEventListener, innerHeight } from '~/lib/client-side.js'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, SectionTitle, Section, Guide, Footer, },
+  components: { Header, SectionTitle, Section, Guide, Footer, CallToAction, Newsletter},
   head() {
     return {
       title: `SuperGreenLab Guides - ${this.guide.name}`,
@@ -195,7 +199,7 @@ export default {
 #header
   position: fixed
   width: 100%
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
 

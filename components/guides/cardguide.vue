@@ -18,22 +18,37 @@
 
 <template>
   <section :id="$style.container">
-    <nuxt-link :id="$style.cardLink" :to='`/guide/${guide.slug}`'>
+    <nuxt-link :class="$style.cardLink" :to='`/guide/${guide.slug}`'>
+      <div :id="$style.headerImg">
+        <div :id="$style.headerLabel">
+          <div :class="$style.headerLabel" :id="$style.headerDate">
+            Date: {{ guide.createdat | formatDate }}
+          </div>
+          <div :class="$style.headerLabel" :id="$style.headerDuration">
+            Duration: {{ guide.duration }}min
+          </div>
+          <div :class="$style.headerLabel" :id="$style.headerDifficulty">
+            Difficulty: {{ guide.difficulty }}/5
+          </div>
+        </div>
+      </div>
       <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(${require(`~/assets/img/${ guide.thumbnail.fileLarge }`) })`}'>
         <div :id="$style.guidelogo" >
           <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
         </div>
       </div>
-      <div :id="$style.titlecontainer">
-        <div :id="$style.title">
+      <div :id="$style.footerImg">
+        <div>Author: {{ guide.author | tostring }}</div>
+        <div>Credit:  {{ guide.credit }}</div>
+      </div>
+       <div :id="$style.title">
           <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
-        </div>
-        <div :id="$style.stepdone" v-if="guide.sections.length === 0 ? '' : $style.stepdonecontainer " :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
-        </div>
       </div>
       <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
       <div :id="$style.readmorecontainer">
+        <div :id="$style.stepdone" v-if="guide.sections.length === 0 ? '' : $style.stepdonecontainer " :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
+          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Progress Enabled</div>
+        </div>
         <button :id="$style.readmorebtn">Read More</button>
       </div>
     </nuxt-link>
@@ -42,6 +57,12 @@
 
 <script>
 export default {
+  filters: {
+    formatDate: (dateStr) =>
+      Intl.DateTimeFormat("us-EN").format(new Date(dateStr)),
+    tostring: (authorStr) =>
+      authorStr = String(authorStr),
+  },
   props: ['guide', 'userStep'],
   computed: {
     nChecked() {
@@ -61,15 +82,41 @@ export default {
  @media only screen and (max-width: 1000pt)
   font-size: 0.8rem
 
-#cardLink
+.cardLink
   text-decoration: none
   color: #5e5e5e
+
+#headerImg
+  display: flex
+  justify-content: space-between
+  margin: 8px 3px 2px 3px
+
+#headerLabel
+  display: flex
+
+.headerLabel
+  font-weight: bold
+  text-transform: uppercase
+  align-self: center
+  font-size: 0.7em
+  color: white
+  padding: 2px
+  border-radius: 3px
+  margin: 1px
+
+#headerDate
+  background-color: #5f939a
+
+#headerDuration
+  background-color: #e4bad4
+
+#headerDifficulty
+  background-color: #ffb037
 
 #guideimgcontainer
   position: relative
   display: flex
   justify-content: flex-end
-  margin-top: 20px
   width: 100%
   height: 300px
   @media only screen and (max-width: 1000pt)
@@ -82,21 +129,26 @@ export default {
   right: 10px
   position: absolute
 
-#titlecontainer
+#footerImg
+  font-weight: bold
+  text-transform: uppercase
+  align-self: center
+  font-size: 0.7em
   display: flex
   justify-content: space-between
-  align-items: center
-  margin: 10px
-  height: 38px
-  @media only screen and (max-width: 1000pt)
-    height: 24px
-  @media only screen and (max-width: 600pt)
-    height: 24px
+  background-color: #EFEFEF
+  color: #adadad
+  margin-bottom: 5px
 
 #title
+  text-align: center
   font-weight: bold
   text-transform: capitalize
-  font-size: 0.7em
+  font-size: 0.9em
+  height: 50px
+  @media only screen and (max-width: 1000pt)
+    height: 25px
+    margin-bottom: 3px
 
 .green
   color: #3BB30B
@@ -116,19 +168,16 @@ export default {
 #introduction
   height: 50px
   overflow: hidden
-  margin: 10px
+  margin: 7px
   @media only screen and (max-width: 1000pt)
     margin-bottom: 0px
     height: 25px
     font-size: 0.8rem
-  @media only screen and (max-width: 600pt)
-    margin-bottom: 0px
-    height: 25px
-    font-size: 0.8rem
+
 
 #readmorecontainer
   display: flex
-  justify-content: flex-end
+  justify-content: space-between
   margin: 10px
   @media only screen and (max-width: 1000pt)
     margint-bottom: 10px
