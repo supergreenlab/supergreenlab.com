@@ -506,8 +506,8 @@ export default {
   text-decoration: underline !important
 
 .relatedProductPic
-  width: 30pt
-  height: 30pt
+  width: 60pt
+  height: 60pt
   margin: 0 5pt 0 0
   background-position: top
   background-size: contain
@@ -552,7 +552,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  width: 100pt
+  width: 60pt
   height: 60pt
   background-position: center
   background-size: contain

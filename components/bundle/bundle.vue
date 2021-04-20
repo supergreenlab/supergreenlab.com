@@ -43,6 +43,20 @@
           </nuxt-link>
         </div>
 
+          <b v-if='bundle.links && bundle.links.length'>Useful links</b>
+          <div v-if='bundle.links && bundle.links.length' :id='$style.links'>
+            <a v-for='l in bundle.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+              </div>
+              <div :class='$style.linktext'>
+                <b>{{ l.title }}</b>
+                <div v-html='$md.render(l.description)'></div>
+                <small>{{ l.url }}</small>
+              </div>
+            </a>
+          </div>
+
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
@@ -225,7 +239,7 @@ export default {
 
 .relatedProduct
   display: flex
-  padding: 5pt 5pt
+  padding: 2pt 5pt
   align-items: center
   justify-content: space-between
   text-decoration: none
@@ -239,8 +253,8 @@ export default {
   text-decoration: underline !important
 
 .relatedProductPic
-  width: 30pt
-  height: 30pt
+  width: 60pt
+  height: 60pt
   margin: 0 5pt 0 0
   background-position: top
   background-size: contain
@@ -343,5 +357,35 @@ export default {
   font-weight: 600
   color: red
   margin: 5pt 0
+
+#links
+  display: flex
+
+.link
+  display: flex
+  color: #454545
+  text-decoration: none
+  margin: 5pt 0
+
+.link:hover
+  text-decoration: underline
+
+.linktext
+  flex: 1
+
+.linktext small
+  color: #787878
+  text-decoration: underline
+
+.linkpic
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 60pt
+  height: 60pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+  margin-right: 10pt
 
 </style>

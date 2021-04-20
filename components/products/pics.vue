@@ -21,7 +21,7 @@
     <div v-for='(p, i) in pics' :key='p.fileLarge' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p.fileLarge}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
     <div v-if='!hideArrow && pics.length > 1' :id='$style.leftarrow' @click='previous'></div>
     <div v-if='!hideArrow && pics.length > 1' :id='$style.rightarrow' @click='next'></div>
-    <marquee v-if='offertext' :id='$style.offertext' v-html='$md.render(offertext.trim())' truespeed scrolldelay='16' scrollamount='3' loop='infinite'></marquee>
+    <marquee v-if='offertext' :id='$style.offertext' v-html='$md.render(offertext.trim())' truespeed scrolldelay='16' scrollamount='2' loop='infinite'></marquee>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
         <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${pics[n].fileFull}`)})`}'></div>
