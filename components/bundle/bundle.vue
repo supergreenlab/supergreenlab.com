@@ -27,14 +27,14 @@
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
-        <Pics :pics='bundle.pics' />
+        <Pics :pics='bundle.pics' :offertext='bundle.SellingPoints[0].offertext' />
       </div>
       <div :id='$style.description'>
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
 
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
-          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
             <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
             <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
             <div>
@@ -100,6 +100,7 @@ export default {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
+        rp.product = this.$store.getters['eshop/product'](rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
@@ -332,7 +333,7 @@ export default {
     padding: 10pt 10pt 40pt 10pt
 
 #text p
-  margin: 5pt 0
+  margin: 10pt 0
 
 #text strong
   color: #3bb30b

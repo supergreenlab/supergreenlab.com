@@ -79,6 +79,19 @@
               </div>
             </nuxt-link>
           </div>
+          <b v-if='product.links && product.links.length'>Useful links</b>
+          <div v-if='product.links && product.links.length' :id='$style.links'>
+            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+              </div>
+              <div :class='$style.linktext'>
+                <b>{{ l.title }}</b>
+                <div v-html='$md.render(l.description)'></div>
+                <small>{{ l.url }}</small>
+              </div>
+            </a>
+          </div>
 
         </div>
         <div :id='$style.addtocart'>
@@ -89,7 +102,7 @@
           <AddToCart :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>Checkout those too:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
@@ -258,6 +271,7 @@ export default {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
+        rp.product = this.$store.getters['eshop/product'](rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })

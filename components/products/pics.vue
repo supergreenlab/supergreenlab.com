@@ -21,6 +21,7 @@
     <div v-for='(p, i) in pics' :key='p.fileLarge' :class='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${p.fileLarge}`)})`, opacity: n == i ? 1 : 0}' @click='toggleZoom'></div>
     <div v-if='!hideArrow && pics.length > 1' :id='$style.leftarrow' @click='previous'></div>
     <div v-if='!hideArrow && pics.length > 1' :id='$style.rightarrow' @click='next'></div>
+    <marquee v-if='offertext' :id='$style.offertext' v-html='$md.render(offertext.trim())' truespeed scrolldelay='16' scrollamount='3' loop='infinite'></marquee>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
         <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${pics[n].fileFull}`)})`}'></div>
@@ -31,7 +32,7 @@
 
 <script>
 export default {
-  props: ['pics', 'hideArrow',],
+  props: ['pics', 'hideArrow', 'offertext',],
   data() {
     return {
       showZoom: false,
@@ -125,5 +126,24 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+
+#offertext
+  position: absolute
+  font-size: 1.5em
+  bottom: 0
+  left: 0
+  right: 0
+  height: 50
+  background-color: rgba(255, 255, 255, 0.3)
+  font-family: 'PlumeAd'
+  text-transform: uppercase
+  white-space: nowrap
+  -webkit-text-fill-color: black
+  -webkit-text-stroke-width: 1px
+  -webkit-text-stroke-color: white
+
+#offertext strong
+  -webkit-text-fill-color: #3BB30B
+  font-weight: 600
 
 </style>

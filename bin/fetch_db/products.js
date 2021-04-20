@@ -14,7 +14,7 @@ module.exports.fetchProducts = async () => {
   //await emptyAssetsDir('tmp')
 
   let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type', 'ready', 'links'])).filter(p => p.ready)
-  let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer'])).filter(sp => sp.ready)
+  let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer', 'offertext'])).filter(sp => sp.ready)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
