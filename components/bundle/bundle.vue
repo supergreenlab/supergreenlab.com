@@ -43,19 +43,19 @@
           </nuxt-link>
         </div>
 
-          <b v-if='bundle.links && bundle.links.length'>Useful links</b>
-          <div v-if='bundle.links && bundle.links.length' :id='$style.links'>
-            <a v-for='l in bundle.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
-              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
-                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
-              </div>
-              <div :class='$style.linktext'>
-                <b>{{ l.title }}</b>
-                <div v-html='$md.render(l.description)'></div>
-                <small>{{ l.url }}</small>
-              </div>
-            </a>
-          </div>
+        <div v-if='showRelatedProducts && bundle.links && bundle.links.length' :id='$style.links'>
+          <h4>Useful links</h4>
+          <a v-for='l in bundle.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+            <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+              <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+            </div>
+            <div :class='$style.linktext'>
+              <b>{{ l.title }}</b>
+              <div v-html='$md.render(l.description)'></div>
+              <small>{{ l.url }}</small>
+            </div>
+          </a>
+        </div>
 
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
@@ -118,6 +118,9 @@ export default {
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
+    },
+    youtubeLink() {
+      return (l) => l.indexOf('youtube.com') != -1
     },
   },
 }
@@ -360,6 +363,10 @@ export default {
 
 #links
   display: flex
+  flex-direction: column
+
+#links h4
+  margin: 5pt 5pt
 
 .link
   display: flex

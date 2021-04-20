@@ -55,20 +55,6 @@
           <div :id='$style.description' v-if='brandProduct.description && brandProduct.description != product.description' v-html='$md.render(brandProduct.description)'></div>
           <div :id='$style.description' v-if='product.bulletpoints' v-html='$md.render(product.bulletpoints)'></div>
           <div :id='$style.description' v-if='brandProduct.bulletpoints && brandProduct.bulletpoints != product.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
-          <b v-if='product.links && product.links.length'>Useful links</b>
-          <div v-if='product.links && product.links.length' :id='$style.links'>
-            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
-              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
-                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
-              </div>
-              <div :class='$style.linktext'>
-                <b>{{ l.title }}</b>
-                <div v-html='$md.render(l.description)'></div>
-                <small>{{ l.url }}</small>
-              </div>
-            </a>
-          </div>
-
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>This product can be used with:</h4>
             <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
@@ -79,11 +65,11 @@
               </div>
             </nuxt-link>
           </div>
-          <b v-if='product.links && product.links.length'>Useful links</b>
           <div v-if='product.links && product.links.length' :id='$style.links'>
+            <h4>Useful links</h4>
             <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
               <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
-                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+                <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
               </div>
               <div :class='$style.linktext'>
                 <b>{{ l.title }}</b>
@@ -296,7 +282,10 @@ export default {
     productURL() {
       if (this.seller.type == 'amazon') return `${this.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
       return this.sellingPoint.url
-    }
+    },
+    youtubeLink() {
+      return (l) => l.indexOf('youtube.com') != -1
+    },
   },
   methods: {
     proposeSellingPoint() {
@@ -531,6 +520,10 @@ export default {
 
 #links
   display: flex
+  flex-direction: column
+
+#links h4
+  margin: 5pt 5pt
 
 .link
   display: flex

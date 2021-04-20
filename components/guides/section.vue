@@ -37,7 +37,7 @@
         <div v-if='guideSection.links && guideSection.links.length' :id='$style.links'>
           <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
             <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
-              <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+              <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
             </div>
             <div :class='$style.linktext'>
               <b>{{ l.title }}</b>
@@ -162,6 +162,7 @@ export default {
 
 #links
   display: flex
+  flex-direction: column
 
 .link
   display: flex
