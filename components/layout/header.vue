@@ -26,9 +26,10 @@
       <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (isActive? "1" : "0")}'></span>
       <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "" : "rotate(-135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}'></span>
     </a>
-    <div :id='$style.menu' :style='{"right": (isActive? "-25vh" : "0vh")}'>
+    <div :id='$style.menu' :style='{"right": (!isActive? "-150pt" : "0pt")}'>
       <div><nuxt-link to='/product/sgl-2x-sticker-sheets-tomtomtom-01-supergreenlab-2x-sticker-sheets-pack-tomtomtom-1st-edition-supergreenlab-world'>Stickers!</nuxt-link></div>
       <div><nuxt-link to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>
+      <div><nuxt-link to='/bundle/my-first-stealth-grow-box'>Nano bundle <span :class='$style.new'>New!</span></nuxt-link></div>
       <div><nuxt-link to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link to='/discord'>Discord</nuxt-link></div>
       <div><a href='https://growmies.supergreenlab.com' target='_blank'>Affiliate</a></div>
@@ -43,7 +44,7 @@ import Logo from '~/components/widgets/logo.vue'
 export default {
   data() {
     return{
-      isActive: true
+      isActive: false
     }
   },
   components: { Logo, },
@@ -143,5 +144,9 @@ export default {
 
 #bottomBar
   margin-top: 0.4em
+
+.new
+  color: red !important
+  font-size: 0.8em
 
 </style>
