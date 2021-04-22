@@ -372,7 +372,7 @@ export default {
   display: flex
   color: #454545
   text-decoration: none
-  margin: 5pt 0
+  padding: 2pt 5pt
 
 .link:hover
   text-decoration: underline

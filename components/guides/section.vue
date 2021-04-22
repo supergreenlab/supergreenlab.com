@@ -23,7 +23,7 @@
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
           <h1>{{ guideSection.title }}</h1>
-          <CheckBox label='done' @click='checkDone' :checked='checked' />
+          <CheckBox v-if='guideSection.showdone' label='done' @click='checkDone' :checked='checked' />
         </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>

@@ -9,7 +9,7 @@ module.exports.fetchGuides = async () => {
   await mkAssetsDir('links')
   await mkStaticDir('guides')
   let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements','order'])
-  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements',])
+  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements', 'showdone',])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
   let picPromise = Promise.resolve()
@@ -73,6 +73,7 @@ module.exports.fetchGuides = async () => {
       return {
         id: gs.id,
         slug: gs.slug,
+        showdone: gs.showdone,
       }
     })
     return g

@@ -36,7 +36,6 @@ export default {
   data() {
     return {
       showZoom: false,
-      zoomPic: '',
       n: 0,
     }
   },
@@ -51,7 +50,6 @@ export default {
   },
   methods: {
     toggleZoom(url) {
-      this.$data.zoomPic = url
       this.$data.showZoom = !this.$data.showZoom
     },
     next() {
