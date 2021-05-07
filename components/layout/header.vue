@@ -22,9 +22,9 @@
       <Logo subtitle='Growshop.' />
     </div>
     <a :id='$style.burgerMenu' @click='toggleClass()'>
-      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (isActive? "" : "rotate(135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}' ></span>
-      <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (isActive? "1" : "0")}'></span>
-      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (isActive? "" : "rotate(-135deg)"), "background":  (isActive? "" : "#3BB30B"), "margin-top":  (isActive? "" : "0px")}'></span>
+      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (!isActive? "" : "rotate(135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0px")}' ></span>
+      <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (!isActive? "1" : "0")}'></span>
+      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (!isActive? "" : "rotate(-135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0px")}'></span>
     </a>
     <div :id='$style.menu' :style='{"right": (!isActive? "-150pt" : "0pt")}'>
       <div><nuxt-link :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01-supergreenlab-2x-sticker-sheets-pack-tomtomtom-1st-edition-supergreenlab-world") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01-supergreenlab-2x-sticker-sheets-pack-tomtomtom-1st-edition-supergreenlab-world'>Stickers!</nuxt-link></div>
