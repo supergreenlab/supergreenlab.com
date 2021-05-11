@@ -138,9 +138,14 @@ export default {
       const next = require(`~/config/guide-${this.guide.nextslug[0]}.json`)
       return next
     },
+    nSteps() {
+      return (guide) => {
+        return guide.sections.filter(gs => gs.showdone).length
+      }
+    },
     nChecked() {
       return (guide) => {
-        return guide.sections.filter(gs => this.$store.state.guides[gs.slug].checked).length
+        return guide.sections.filter(gs => gs.showdone && this.$store.state.guides[gs.slug].checked).length
       }
     },
   },

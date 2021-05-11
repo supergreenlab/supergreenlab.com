@@ -28,8 +28,8 @@
         <div :id="$style.title">
           <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
         </div>
-        <div :id="$style.stepdone" v-if="guide.sections.length === 0 ? '' : $style.stepdonecontainer " :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Steps Done</div>
+        <div :id="$style.stepdone" v-if="nSteps(guide) === 0 ? '' : $style.stepdonecontainer " :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
+          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ nSteps(guide) }}<div :id="$style.stepdonestring">Steps Done</div>
         </div>
       </div>
       <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
@@ -41,14 +41,45 @@
 </template>
 
 <script>
+import { guides } from '~/config/guides.json'
+
 export default {
   props: ['guide', 'userStep'],
   computed: {
+    nSteps() {
+      return (guide) => {
+        return this.sections(guide).filter(gs => gs.showdone).length
+      }
+    },
     nChecked() {
       return (guide) => {
-        return guide.sections.filter(gs => this.$store.state.guides[gs.slug].checked).length
+        return this.sections(guide).filter(gs => gs.showdone && this.$store.state.guides[gs.slug].checked).length
       }
-    }
+    },
+    first() {
+      return (guide) => {
+        if (guide.first == null || guide.first.length == 0) return null
+        let first = guides.find(g => g.id == guide.first[0])
+        if (!first) return null
+        first = require(`~/config/guide-${first.slug}.json`)
+        return first
+      }
+    },
+    sections() {
+      return (guide) => {
+        //guide = require(`~/config/guide-${guide.slug}.json`)
+        let current = this.first(guide) == null ? guide : guides.find(g => g.slug == this.first(guide).nextslug[0])
+        const sections = []
+        const fn = (current) => {
+          sections.push(...current.sections)
+          if (!current.nextslug) return
+          current = require(`~/config/guide-${current.nextslug}.json`)
+          if (current) return fn(current)
+        }
+        fn(current)
+        return sections
+      }
+    },
   }
 }
 

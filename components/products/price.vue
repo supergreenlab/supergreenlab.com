@@ -26,7 +26,7 @@
       </div>
       <div :class='$style.price'>
         <h1 :id='$style.green'>{{ price(true) }}</h1><br />
-        <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+        <small><span v-if='includesTaxes'>incl.tax</span><span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
         <small v-if='!isSGL'>*price may vary</small>
         <span>Special offer: <b>-{{ offer.value }}%</b></span>
       </div>
@@ -40,7 +40,7 @@
       </div>
       <div :class='$style.price'>
         <h1 :id='$style.green'>{{ price(true) }}</h1><br />
-        <small>incl.tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+        <small><span v-if='includesTaxes'>incl.tax</span><span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
         <small v-if='!isSGL'>*price may vary</small>
         <span>promocode: <b>-{{ discount }}%</b></span>
       </div>
@@ -48,7 +48,7 @@
     <div v-else :class='$style.price'>
       <h1 :id='$style.green'>{{ price(false) }}</h1>
       <small v-if='!isSGL'>*price may vary</small>
-      <small>incl. tax<span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+      <small><span v-if='includesTaxes'>incl. tax</span><span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
     <a v-if='notify' :id='$style.notify' href='javascript:void(0)' @click='notifyForm'>Notify me of price changes</a>
   </section>
@@ -81,7 +81,11 @@ export default {
       const { lineItems } = this.$props
       if (lineItems.length == 0) return false
       return lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29'
-    }
+    },
+    includesTaxes() {
+      const { lineItems } = this.$props
+      return this.$store.getters['checkout/hasVAT'](lineItems)
+    },
   },
   methods: {
     notifyForm() {
