@@ -20,9 +20,11 @@
   <section :id='$style.container'>
     <div :class="$style.section">Bundle</div>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">Affiliate</div>
+    <div :class="$style.section">SGL Family</div>
     <span :class="$style.separation"></span>
     <div :class="$style.section">Spotlight</div>
+    <span :class="$style.separation"></span>
+    <div :class="$style.section">3d Printing</div>
     <span :class="$style.separation"></span>
     <div :class="$style.section">SGL Products</div>
     <span :class="$style.separation"></span>

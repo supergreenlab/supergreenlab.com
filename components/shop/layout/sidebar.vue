@@ -18,14 +18,11 @@
 
 <template>
   <section :id="$style.container">
-    <div :id="$style.test">
-      Banner
-    </div>
+    <!-- <div :id="$style.test"></div> -->
   </section>
 </template>
 
 <script>
-
 export default {
 
 }
@@ -33,24 +30,17 @@ export default {
 
 <style module lang=stylus>
 #container
-  height: 220px
-  width: 100%
+  position: absolute
+  background-color: #3BB30B
+  width: 200px
+  height: 100%
   @media only screen and (max-width: 600px)
-    height: 320px
-    display: flex
-    justify-content: center
+    display: none
 
-#test
-  font-family: plumeAd
-  font-size: 2.7em
-  color: white
-  -webkit-text-stroke: 0.5px #3BB30B
-  text-align:center
-  height: 200px
-  background-color: yellow
-  margin: 10px
-  @media only screen and (max-width: 600px)
-    width: 300px
-    height: 300px
+
+/* #test
+  background-color: #3BB30B
+  width: 100%
+  height: 100% */
 
 </style>
