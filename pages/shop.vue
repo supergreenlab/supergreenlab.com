@@ -18,27 +18,33 @@
 
 <template>
   <section :id="$style.container">
-    <div id='header'>
       <div :id='$style.header'>
         <Header/>
       </div>
-      <div :id='$style.content'>
-        <div>
-          Left column
+      <div :id='$style.fullcontent'>
+        <div :id='$style.leftcolumn'>
+          <Banner/>
         </div>
-        <div>center</div>
-        <div>Right column</div>
+        <div :id='$style.content'>
+
+          <Banner/>
+          <Newsletter/>
+        </div>
+        <div :id='$style.rightcolumn'>
+          <Newsletter/>
+        </div>
       </div>
-    </div>
   </section>
 </template>
 
 <script>
 import Header from '~/components/shop/layout/header.vue'
-
+import Banner from '~/components/shop/widgets/banner.vue'
+import SideBar from '~/components/shop/layout/sidebar.vue'
+import Newsletter from '~/components/shop/widgets/newsletter.vue'
 
 export default{
-  components: {Header,}
+  components: {Header, Banner, SideBar, Newsletter}
 }
 </script>
 
@@ -58,11 +64,46 @@ export default{
   left: 0
   z-index: 1000
 
-#content
-  position relative
+
+#fullcontent
   display: flex
   justify-content: space-around
   height: 3000px
   width: 100%
-  background-color: green
+  margin-top: 83px
+  @media only screen and (max-width: 600px)
+    display: flex
+    justify-content: center
+
+#content
+  display: flex
+  align-items: center
+  flex-direction: column
+  margin: 0px 220px
+  width: 100%
+  height: 100%
+  background-color: grey
+  @media only screen and (max-width: 600px)
+    margin 20px 0px
+
+#leftcolumn
+  background-color: #E4E4E4
+  position: fixed
+  left: 0
+  width: 220px
+  height: 100%
+  @media only screen and (max-width: 600px)
+    display: none
+
+#rightcolumn
+  position: fixed
+  right: 0
+  background-color: #E4E4E4
+  width: 220px
+  height: 100%
+  font-size: 0.7em
+  @media only screen and (max-width: 600px)
+    display: none
+
+
 </style>

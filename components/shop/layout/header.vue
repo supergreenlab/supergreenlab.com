@@ -40,7 +40,10 @@
     <div :id="$style.responsivesearch" :style='{"transform": (!showHeader? "translateY(-50px)" : "translateY(0)")}'>
       <SearchBar />
     </div>
-    <div :id="$style.navbar" :style='{"transform": (!showHeader? "translateY(-103px)" : "translateY(0)")}'>
+    <div :id="$style.navbar">
+      <NavBar />
+    </div>
+    <div :id="$style.navbarresponsive" :style='{"transform": (!showHeader? "translateY(-50px)" : "translateY(0)")}'>
       <NavBar />
     </div>
   </section>
@@ -97,7 +100,10 @@ export default {
 <style module lang=stylus>
 
 #body
-  height: 300vh;
+  height: 83px
+  background-color: rgba(255, 255, 255, 0.8)
+  @media only screen and (max-width: 600px)
+    background-color: transparent
 
 #container
   position: fixed
@@ -106,27 +112,22 @@ export default {
   z-index: 1000
   display: flex
   width: 100vw
-  background-color: rgba(255, 255, 255, 0.8)
   align-items: center
   justify-content: space-between
   padding: 0 0 0 10pt
   @media only screen and (max-width: 600px)
     display: none
-    /* font-size: 1.2em
-    padding: 5pt
-    height: 50px
-    transition: transform 420ms linear */
 
 #containerresponsive
   display: none
   @media only screen and (max-width: 600px)
     position: fixed
+    background-color: rgba(255, 255, 255, 0.8)
     top: 0
     left: 0
     z-index: 1000
     display: flex
     width: 100vw
-    background-color: rgba(255, 255, 255, 0.8)
     align-items: center
     justify-content: space-between
     font-size: 1.2em
@@ -185,13 +186,19 @@ export default {
   border-bottom: 3pt solid #3bb30b
 
 #navbar
-  transition: transform 420ms linear
   position: fixed
   width: 100%
-  top: 56px
-  background-color: rgba(255, 255, 255, 0.8)
+  top: 53px
   @media only screen and (max-width: 600px)
+    display: none
+
+#navbarresponsive
+  display: none
+  @media only screen and (max-width: 600px)
+    display: block
+    width: 100%
+    position: fixed
+    background-color: rgba(255, 255, 255, 0.8)
+    transition: transform 420ms linear
     top: 83px
-
-
 </style>
