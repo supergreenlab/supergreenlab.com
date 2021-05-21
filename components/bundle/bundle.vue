@@ -26,12 +26,11 @@
       <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' v-if='nobottom' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
-      <div :id='$style.iconcontainer'>
+      <div :id='$style.iconcontainer '>
         <Pics :pics='bundle.pics' :offertext='bundle.SellingPoints[0].offertext' />
       </div>
       <div :id='$style.description'>
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
-
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
           <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
@@ -56,7 +55,6 @@
             </div>
           </a>
         </div>
-
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
             <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
@@ -64,7 +62,6 @@
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${bundle.slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
-
         <div :id='$style.addtocartcontainer' v-if='addtocart && !showdescription'>
           <div :class='$style.price'>
             <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
@@ -97,7 +94,7 @@ export default {
   props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'showdescription', 'right', 'showRelatedProducts',],
   data() {
     return {
-      addedToCart: false
+      addedToCart: false,
     }
   },
   methods: {
@@ -179,7 +176,7 @@ export default {
   @media only screen and (max-width: 600px)
     width: 100%
     height: 300pt
-    margin: 20pt 0pt 20pt 0pt  
+    margin: 20pt 0pt 20pt 0pt
 
 #description
   display: flex
@@ -266,7 +263,7 @@ export default {
 .relatedProductText
   flex: 1
 
-#bottom 
+#bottom
   display: flex
   justify-content: flex-end
   padding: 10pt 0

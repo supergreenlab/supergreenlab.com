@@ -18,7 +18,7 @@
 
  <template>
   <section :id='$style.container'>
-    <div :class="$style.section">Bundle</div>
+    <div :class="$style.section">Bundles</div>
     <span :class="$style.separation"></span>
     <div :class="$style.section">SGL Family</div>
     <span :class="$style.separation"></span>

@@ -65,7 +65,7 @@
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
           <div :id='b.slug'></div>
-          <Bundle :bundle='b' :showdescription='false' />
+          <Bundle :bundle='b' :showdescription='false'/>
         </div>
         <div :class='$style.title'>
           <TitleStep green='Install your bundle'

@@ -32,6 +32,7 @@
             </div>
             <div :id="$style.footer">
               <slot name="footer">
+<!--faire lien airtable comme pour "propose a better product or shop" pour enregistrer info sur la bdd -->
                 <div :id='$style.btnSubscribe' @click="$emit('close')">
                   OK
                 </div>
