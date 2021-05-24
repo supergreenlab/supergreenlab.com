@@ -23,10 +23,10 @@
       </div>
       <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
-          <Banner/>
-          <Newsletter/>
+          <SideBar/>
         </div>
         <div :id='$style.content'>
+          <Banner/>
           <div :class='$style.title'>
             <SectionTitle title='Bundles'/>
           </div>
@@ -37,17 +37,28 @@
             </div>
           </div>
           <div :class='$style.title'>
-            <SectionTitle title='SGL Products'/>
+            <SectionTitle title='Spotlight'/>
           </div>
-          <div :class='$style.shop'>
-           <ProductList :products='sglSpareParts' :center=true :maxItems=4 />
+          <Spotlight/>
+          <div :class='$style.title'>
+            <SectionTitle title='Sgl Addons'/>
           </div>
+          <!-- <div :class='$style.shop'>
+           <ProductList ref='sgl-addons' :products='sglAddons' :center=true :maxItems=4 />
+          </div> -->
           <Banner/>
           <div :class='$style.title'>
             <SectionTitle title='Growing pack'/>
           </div>
           <div :class='$style.pack'>
             <Pack />
+          </div>
+          <Newsletter/>
+          <div :class='$style.title'>
+            <SectionTitle title='SGL Products'/>
+          </div>
+          <div :class='$style.shop'>
+           <ProductList :products='sglSpareParts' :center=true :maxItems=4 />
           </div>
           <div :class='$style.title'>
             <SectionTitle title='Furniture'/>
@@ -61,11 +72,11 @@
           <div :class='$style.shop'>
             <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
           </div>
-          <Newsletter/>
           <Footer/>
         </div>
         <div :id='$style.rightcolumn'>
           <Newsletter/>
+          <Banner/>
           <Banner/>
         </div>
       </div>
@@ -79,13 +90,14 @@ import Footer from '~/components/layout/footer.vue'
 import Header from '~/components/shop/layout/header.vue'
 import Banner from '~/components/shop/widgets/banner.vue'
 import SideBar from '~/components/shop/layout/sidebar.vue'
+import Spotlight from '~/components/shop/layout/spotlight.vue'
 import Newsletter from '~/components/shop/widgets/newsletter.vue'
 import ProductList from '~/components/products/productlist.vue'
 import Pack from '~/components/home/pack.vue'
 import Bundle from '~/components/shop/layout/sectionbundles.vue'
 
 export default{
-  components: {TitleStep, SectionTitle ,ProductList, Bundle, Pack ,Footer, Header, Banner, SideBar, Newsletter},
+  components: {TitleStep, SectionTitle ,ProductList, Bundle, Pack ,Footer, Header, Banner, SideBar, Newsletter, Spotlight},
 
   computed: {
     bundles() {
@@ -99,6 +111,9 @@ export default{
     },
     tools() {
       return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
+    },
+    sglAddons() {
+      return this.$store.getters['eshop/collection']('sgl-addons')
     },
 	},
 
@@ -120,7 +135,6 @@ export default{
   top: 0
   left: 0
   z-index: 1000
-
 
 #fullcontent
   display: flex
@@ -144,9 +158,10 @@ export default{
     margin 20px 0px
 
 #leftcolumn
-  background-color: #E4E4E4
+  display:flex
+  flex-direction: column
+  left: 0px
   position: fixed
-  left: 0
   width: 220px
   height: 100%
   font-size: 0.7em
@@ -154,9 +169,10 @@ export default{
     display: none
 
 #rightcolumn
+  display:flex
+  flex-direction: column
+  right: 0px
   position: fixed
-  right: 0
-  background-color: #E4E4E4
   width: 220px
   height: 100%
   font-size: 0.7em
