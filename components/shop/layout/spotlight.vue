@@ -18,9 +18,13 @@
 
 <template>
   <section :id="$style.container">
-    <div :class="$style.sidebar">Content Sidebar 1</div>
-    <div :class="$style.sidebar">Content Sidebar 2</div>
-    <div :class="$style.sidebar">Content Sidebar 3</div>
+    <div :id="$style.spotlight"></div>
+    <div :id="$style.minispot">
+      <div :class="$style.minispot"></div>
+      <div :class="$style.minispot"></div>
+      <div :class="$style.minispot"></div>
+    </div>
+
   </section>
 </template>
 
@@ -33,19 +37,26 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 220px
+  width: 100%
+  height: 550px
   display: flex
-  flex-direction: column
+  justify-content: center
+  align-items: center
 
-.sidebar
-  background-color: #3BB30B
-  font-family: plumeAd
-  font-size: 2.7em
-  color: white
-  -webkit-text-stroke: 0.5px #3BB30B
-  text-align:center
-  height: 200px
-  width: 200px
+#spotlight
+  background-color: lightblue
+  width: 40%
+  height: 490px
+
+#minispot
+ display: flex
+ flex-direction: column
+ justify-content: space-around
+
+.minispot
+  width: 150px
+  height: 150px
+  background-color: lightblue
   margin: 10px
 
 </style>

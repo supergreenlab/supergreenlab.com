@@ -60,7 +60,7 @@ export default {
 #subscribe
   text-align: center
   height: 200px
-  background-color: #dedede
+  background-color: red
   margin: 10px
   justify-content: center
   display: flex
