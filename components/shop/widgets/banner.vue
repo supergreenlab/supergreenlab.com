@@ -19,7 +19,8 @@
 <template>
   <section :id="$style.container">
     <div :id="$style.test">
-      Banner
+      {{ picture }}
+      {{ link }}
     </div>
   </section>
 </template>

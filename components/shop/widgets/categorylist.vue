@@ -18,7 +18,8 @@
 
 <template>
   <section :id="$style.container">
-    <slot>Category list</slot>
+    <slot> {{ title }}</slot>
+    <slot> {{ tags }}</slot>
   </section>
 </template>
 

@@ -18,18 +18,8 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.region'>
-      <Region />
-    </div>
-    <div :id='$style.body' :class='center ? $style.center : ""'>
-      <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
-        <Item :product='product' />
-      </div>
-    </div>
-    <div :id='$style.propose'>
-      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
-      <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
-    </div>
+   {{ title }}
+   {{ product }}
   </section>
 </template>
 
