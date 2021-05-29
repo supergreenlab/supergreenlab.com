@@ -18,19 +18,19 @@
 
  <template>
   <section :id='$style.container'>
-    <div :class="$style.section">Bundles</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#bundles'}" :class="$style.section">Bundles</nuxt-link>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">Spotlight</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#spotlight'}" :class="$style.section">Spotlight</nuxt-link>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">SGL Addons</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#addons'}" :class="$style.section">SGL Addons</nuxt-link>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">Growing Pack</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#growing'}" :class="$style.section">Growing Pack</nuxt-link>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">SGL Products</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#products'}" :class="$style.section">SGL Products</nuxt-link>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">Furniture</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#furnitures'}" :class="$style.section">Furnitures</nuxt-link>
     <span :class="$style.separation"></span>
-    <div :class="$style.section">Tools</div>
+    <nuxt-link :to="{ path: '/shop',hash:'#tools'}" :class="$style.section">Tools</nuxt-link>
   </section>
 </template>
 
@@ -60,6 +60,8 @@ export default {
   display: none
 
 .section
+  text-decoration: none
+  color: #4c4c4c
   text-transform: uppercase
   cursor: pointer
 

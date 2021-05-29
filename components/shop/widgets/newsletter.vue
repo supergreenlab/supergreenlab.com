@@ -19,6 +19,7 @@
       <div :id='$style.title'>
         Newsletter
       </div>
+      <!-- Check overlay-major and promocode -->
       <div :id='$style.content'>
         <p>Stay tunned with our newsletter and get exclusive promotion</p>
       </div>
