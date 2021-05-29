@@ -21,7 +21,7 @@
       <div :id='$style.header'>
         <Header/>
       </div>
-      <div :id='$style.fullcontent'>
+      <!-- <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
           <LeftColumn />
         </div>
@@ -31,7 +31,7 @@
         <div :id='$style.rightcolumn'>
           <RightColumn />
         </div>
-      </div>
+      </div> -->
   </section>
 </template>
 
@@ -58,7 +58,7 @@ import Leftcolumn from '../components/shop/layout/leftcolumn.vue'
 
 
 export default{
-  components: {NavBar ,Header, LeftColumn, RightColumn, Product, BannerContent, CarrouselContent, HorizontalContainer, VerticalContainer, Banner, CategoryList, ProductList, SingleProduct, Newsletter, Spotlight, Footer, Leftcolumn,},
+  components: {Header, LeftColumn, RightColumn, Product, BannerContent, CarrouselContent, HorizontalContainer, VerticalContainer, Banner, CategoryList, ProductList, Newsletter, Spotlight, Footer, Leftcolumn,},
 
   computed: {
     bundles() {
