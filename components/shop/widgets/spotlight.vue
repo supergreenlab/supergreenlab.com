@@ -24,6 +24,11 @@
       <div :class="$style.minispot"></div>
       <div :class="$style.minispot"></div>
     </div>
+    <div>{{ title }}</div>
+    <div>{{ picture }}</div>
+    <div>{{ description }}</div>
+    <div>{{ plantId }}</div>
+    <div>{{ products }}</div>
 
   </section>
 </template>

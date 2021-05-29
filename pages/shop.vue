@@ -21,31 +21,27 @@
       <div :id='$style.header'>
         <Header/>
       </div>
-      <!-- <div :id='$style.fullcontent'>
+      <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
-          <LeftColumn />
+          Colonne gauche
         </div>
         <div :id='$style.content'>
-
+          Contenu
         </div>
         <div :id='$style.rightcolumn'>
-          <RightColumn />
+         Colonne droite
         </div>
-      </div> -->
+      </div>
   </section>
 </template>
 
 <script>
 
 import Header from '~/components/shop/layout/header.vue'
-import LeftColumn from '~/components/shop/layout/leftcolumn.vue'
-import RightColumn from '~/components/shop/layout/rightcolumn.vue'
 import Product from '~/components/shop/layout/singleproduct.vue'
 
 import BannerContent from '~/components/shop/components/bannercontainer.vue'
 import CarrouselContent from '~/components/shop/components/carrouselcontainer.vue'
-import HorizontalContainer from '~/components/shop/components/horizontalcontainer.vue'
-import VerticalContainer from '~/components/shop/components/verticalcontainer.vue'
 
 import Banner from '~/components/shop/widgets/banner.vue'
 import CategoryList from '~/components/shop/widgets/categorylist.vue'
@@ -54,11 +50,9 @@ import Spotlight from '~/components/shop/widgets/spotlight.vue'
 import ProductList from '~/components/shop/widgets/productlist.vue'
 
 import Footer from '~/components/layout/footer.vue'
-import Leftcolumn from '../components/shop/layout/leftcolumn.vue'
-
 
 export default{
-  components: {Header, LeftColumn, RightColumn, Product, BannerContent, CarrouselContent, HorizontalContainer, VerticalContainer, Banner, CategoryList, ProductList, Newsletter, Spotlight, Footer, Leftcolumn,},
+  components: {Header, Product, BannerContent, CarrouselContent, Banner, CategoryList, ProductList, Newsletter, Spotlight, Footer},
 
   computed: {
     bundles() {
@@ -125,7 +119,6 @@ export default{
   position: fixed
   width: 220px
   height: 100%
-  font-size: 0.7em
   @media only screen and (max-width: 1200px)
     display: none
 
@@ -136,7 +129,6 @@ export default{
   position: fixed
   width: 220px
   height: 100%
-  font-size: 0.7em
   @media only screen and (max-width: 1200px)
     display: none
 

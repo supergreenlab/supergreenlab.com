@@ -17,7 +17,7 @@
   <section :id='$style.container'>
     <div :id='$style.subscribe'>
       <div :id='$style.title'>
-        Newsletter
+       {{ Title }}
       </div>
       <!-- Check overlay-major and promocode -->
       <div :id='$style.content'>
