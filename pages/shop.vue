@@ -23,81 +23,42 @@
       </div>
       <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
-          <SideBar/>
+          <LeftColumn />
         </div>
         <div :id='$style.content'>
-          <Banner/>
-          <div :class='$style.title'>
-            <SectionTitle title='Bundles'/>
-          </div>
-          <div :id='$style.bundles'>
-            <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
-              <div :id='b.slug'></div>
-              <Bundle :bundle='b' :showdescription='false' :showAll='false' />
-            </div>
-          </div>
-          <div :class='$style.title'>
-            <SectionTitle title='Spotlight'/>
-          </div>
-          <Spotlight/>
-          <div :class='$style.title'>
-            <SectionTitle title='Sgl Addons'/>
-          </div>
-          <!-- <div :class='$style.shop'>
-           <ProductList ref='sgl-addons' :products='sglAddons' :center=true :maxItems=4 />
-          </div> -->
-          <Banner/>
-          <div :class='$style.title'>
-            <SectionTitle title='Growing pack'/>
-          </div>
-          <div :class='$style.pack'>
-            <Pack />
-          </div>
-          <Newsletter/>
-          <div :class='$style.title'>
-            <SectionTitle title='SGL Products'/>
-          </div>
-          <div :class='$style.shop'>
-           <ProductList :products='sglSpareParts' :center=true :maxItems=4 />
-          </div>
-          <div :class='$style.title'>
-            <SectionTitle title='Furniture'/>
-          </div>
-          <div :class='$style.shop'>
-            <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
-          </div>
-          <div :class='$style.title'>
-            <SectionTitle title='Tools'/>
-          </div>
-          <div :class='$style.shop'>
-            <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
-          </div>
-          <Footer/>
+
         </div>
         <div :id='$style.rightcolumn'>
-          <Newsletter/>
-          <Banner/>
-          <Banner/>
+          <RightColumn />
         </div>
       </div>
   </section>
 </template>
 
 <script>
-import SectionTitle from '~/components/widgets/sectiontitle.vue'
-import TitleStep from '~/components/widgets/titlestep.vue'
-import Footer from '~/components/layout/footer.vue'
+
 import Header from '~/components/shop/layout/header.vue'
+import LeftColumn from '~/components/shop/layout/leftcolumn.vue'
+import RightColumn from '~/components/shop/layout/rightcolumn.vue'
+import Product from '~/components/shop/layout/singleproduct.vue'
+
+import BannerContent from '~/components/shop/components/bannercontainer.vue'
+import CarrouselContent from '~/components/shop/components/carrouselcontainer.vue'
+import HorizontalContainer from '~/components/shop/components/horizontalcontainer.vue'
+import VerticalContainer from '~/components/shop/components/verticalcontainer.vue'
+
 import Banner from '~/components/shop/widgets/banner.vue'
-import SideBar from '~/components/shop/layout/sidebar.vue'
-import Spotlight from '~/components/shop/layout/spotlight.vue'
+import CategoryList from '~/components/shop/widgets/categorylist.vue'
 import Newsletter from '~/components/shop/widgets/newsletter.vue'
-import ProductList from '~/components/products/productlist.vue'
-import Pack from '~/components/home/pack.vue'
-import Bundle from '~/components/shop/layout/sectionbundles.vue'
+import Spotlight from '~/components/shop/widgets/spotlight.vue'
+import ProductList from '~/components/shop/widgets/productlist.vue'
+
+import Footer from '~/components/layout/footer.vue'
+import Leftcolumn from '../components/shop/layout/leftcolumn.vue'
+
 
 export default{
-  components: {TitleStep, SectionTitle ,ProductList, Bundle, Pack ,Footer, Header, Banner, SideBar, Newsletter, Spotlight},
+  components: {NavBar ,Header, LeftColumn, RightColumn, Product, BannerContent, CarrouselContent, HorizontalContainer, VerticalContainer, Banner, CategoryList, ProductList, SingleProduct, Newsletter, Spotlight, Footer, Leftcolumn,},
 
   computed: {
     bundles() {
@@ -212,6 +173,12 @@ export default{
 
 .title
   width: 100%
-  margin: 20pt 0 20pt 0
+  margin: 20pt 0pt 20pt 0
+
+.space
+  width: 100%
+  margin: 60px
+  @media only screen and (max-width: 600px)
+    margin: 30px
 
 </style>

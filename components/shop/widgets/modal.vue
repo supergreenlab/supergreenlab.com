@@ -20,6 +20,7 @@
         <div :id="$style.wrapper">
           <div :class="$style.container">
             <div :id="$style.header">
+              <!-- Check overlay-major and promocode -->
               <slot name="header">
                 Subscribe to SuperGreenNewsletters
               </slot>

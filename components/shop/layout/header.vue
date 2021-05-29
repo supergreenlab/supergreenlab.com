@@ -52,7 +52,8 @@
 <script>
 import Logo from '~/components/widgets/logo.vue'
 import SearchBar from '~/components/shop/widgets/searchbar.vue'
-import NavBar from '~/components/shop/layout/navbar.vue'
+import NavBar from '~/components/shop/widgets/navbar.vue'
+
 export default {
   components: { Logo, SearchBar, NavBar},
   data() {

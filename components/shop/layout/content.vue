@@ -18,34 +18,28 @@
 
 <template>
   <section :id="$style.container">
-    <div :class="$style.sidebar">Content Sidebar 1</div>
-    <div :class="$style.sidebar">Content Sidebar 2</div>
-    <div :class="$style.sidebar">Content Sidebar 3</div>
+    <slot></slot>
   </section>
 </template>
 
 <script>
+
 export default {
 
 }
+
 </script>
+
 
 <style module lang=stylus>
 
 #container
-  width: 220px
-  display: flex
-  flex-direction: column
-
-.sidebar
-  background-color: #3BB30B
-  font-family: plumeAd
-  font-size: 2.7em
-  color: white
-  -webkit-text-stroke: 0.5px #3BB30B
-  text-align:center
+  width: 100%
   height: 200px
-  width: 200px
   margin: 10px
+  background-color: lightgrey
+  display: flex
+  justify-content: center
+
 
 </style>
