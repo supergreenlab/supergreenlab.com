@@ -23,13 +23,19 @@
       </div>
       <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
-          Colonne gauche
+          <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' v-bind='c'>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' v-bind='w'></component>
+          </component>
         </div>
         <div :id='$style.content'>
-          Contenu
+          <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' v-bind='c'>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' v-bind='w'></component>
+          </component>
         </div>
         <div :id='$style.rightcolumn'>
-         Colonne droite
+         <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' v-bind='c'>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' v-bind='w'></component>
+          </component>
         </div>
       </div>
   </section>
@@ -39,9 +45,12 @@
 
 import Header from '~/components/shop/layout/header.vue'
 import Product from '~/components/shop/layout/singleproduct.vue'
+import Footer from '~/components/layout/footer.vue'
 
-import BannerContent from '~/components/shop/components/bannercontainer.vue'
-import CarrouselContent from '~/components/shop/components/carrouselcontainer.vue'
+import BannerContainer from '~/components/shop/containers/bannercontainer.vue'
+import CarrouselContainer from '~/components/shop/containers/carrouselcontainer.vue'
+import VerticalContainer from '~/components/shop/containers/verticalcontainer.vue'
+import HorizontalContainer from '~/components/shop/containers/horizontalcontainer.vue'
 
 import Banner from '~/components/shop/widgets/banner.vue'
 import CategoryList from '~/components/shop/widgets/categorylist.vue'
@@ -49,29 +58,19 @@ import Newsletter from '~/components/shop/widgets/newsletter.vue'
 import Spotlight from '~/components/shop/widgets/spotlight.vue'
 import ProductList from '~/components/shop/widgets/productlist.vue'
 
-import Footer from '~/components/layout/footer.vue'
+import widgets from '~/config/widgets.json'
+
+const components = {Header, Product, BannerContainer, CarrouselContainer, VerticalContainer, HorizontalContainer, Banner, CategoryList, ProductList, Newsletter, Spotlight, Footer}
 
 export default{
-  components: {Header, Product, BannerContent, CarrouselContent, Banner, CategoryList, ProductList, Newsletter, Spotlight, Footer},
-
+  components,
   computed: {
-    bundles() {
-			return this.$store.getters['eshop/bundles']
-		},
-    sglSpareParts() {
-      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
-    },
-    furnitures() {
-      return this.$store.getters['eshop/collection']('homepage-furniture')
-    },
-    tools() {
-      return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
-    },
-    sglAddons() {
-      return this.$store.getters['eshop/collection']('sgl-addons')
-    },
-	},
-
+    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location),
+    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)),
+  },
+  methods: {
+    componentForName: name => components[name],
+  }
 }
 </script>
 
@@ -173,4 +172,6 @@ export default{
   @media only screen and (max-width: 600px)
     margin: 30px
 
+.test
+  margin: 10px
 </style>

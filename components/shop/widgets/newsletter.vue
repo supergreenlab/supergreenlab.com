@@ -17,7 +17,7 @@
   <section :id='$style.container'>
     <div :id='$style.subscribe'>
       <div :id='$style.title'>
-       {{ Title }}
+       {{ title }}
       </div>
       <!-- Check overlay-major and promocode -->
       <div :id='$style.content'>
@@ -35,6 +35,7 @@
 import Modal from '~/components/shop/widgets/modal.vue'
 
 export default {
+  props: ['title',],
   components: {Modal},
   data() {
     return{
