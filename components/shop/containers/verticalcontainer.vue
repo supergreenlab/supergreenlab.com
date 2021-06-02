@@ -18,9 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div>
-      Vertical container
-    </div>
+    <slot></slot>
   </section>
 </template>
 
