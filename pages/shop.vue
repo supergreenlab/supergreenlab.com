@@ -80,7 +80,6 @@ export default{
   display: flex
   width: 100%
   flex-direction: column
-  justify-content: center
   align-items: center
 
 #header
@@ -103,7 +102,6 @@ export default{
 #content
   display: flex
   align-items: center
-  flex-direction: column
   margin: 0px 220px
   width: 100%
   height: 100%
@@ -115,7 +113,6 @@ export default{
   display:flex
   flex-direction: column
   left: 0px
-  position: fixed
   width: 220px
   height: 100%
   @media only screen and (max-width: 1200px)
@@ -125,7 +122,6 @@ export default{
   display:flex
   flex-direction: column
   right: 0px
-  position: fixed
   width: 220px
   height: 100%
   @media only screen and (max-width: 1200px)

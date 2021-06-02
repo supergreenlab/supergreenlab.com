@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <slot>Horizontal Container</slot>
+    <slot></slot>
   </section>
 </template>
 
