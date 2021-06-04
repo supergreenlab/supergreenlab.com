@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id="$style.container">
+  <section>
     <slot></slot>
   </section>
 </template>
@@ -32,14 +32,6 @@ export default {
 
 
 <style module lang=stylus>
-
-#container
-  width: 100%
-  height: 200px
-  margin: 10px
-  display: flex
-  justify-content: center
-  background-color: grey
 
 
 </style>

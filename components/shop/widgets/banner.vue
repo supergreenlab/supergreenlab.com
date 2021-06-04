@@ -17,10 +17,11 @@
  -->
 
 <template>
-  <section :id="$style.container">
-    <div :id="$style.test">
-      {{ picture }}
-      {{ link }}
+  <section >
+    <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${picture[0].fileLarge}`)})`}'>
+      <div :id='$style.titleBanner'>title: {{ title }}</div>
+      <div :id='$style.productsBanner'>products: {{ products }}</div>
+      <div :id='$style.linkBanner'>link: {{ link }}</div>
     </div>
   </section>
 </template>
@@ -28,30 +29,18 @@
 <script>
 
 export default {
-
+  props: ['title', 'picture','products', 'link']
 }
 </script>
 
 <style module lang=stylus>
-#container
-  height: 220px
-  width: 100%
-  @media only screen and (max-width: 600px)
-    height: 320px
-    display: flex
-    justify-content: center
 
-#test
-  font-family: plumeAd
-  font-size: 2.7em
-  color: white
-  -webkit-text-stroke: 0.5px #3BB30B
-  text-align:center
+#pictureBanner
+  width: 100%
   height: 200px
-  background-color: yellow
-  margin: 10px
-  @media only screen and (max-width: 600px)
-    width: 300px
-    height: 300px
+  margin: 5px
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

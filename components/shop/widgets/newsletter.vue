@@ -21,7 +21,7 @@
       </div>
       <!-- Check overlay-major and promocode -->
       <div :id='$style.content'>
-        <p>Stay tunned with our newsletter and get exclusive promotion</p>
+        {{ description }}
       </div>
       <div :id='$style.btnSubscribe' @click="toggleClass()">
         Subscribe
@@ -35,7 +35,7 @@
 import Modal from '~/components/shop/widgets/modal.vue'
 
 export default {
-  props: ['title',],
+  props: ['title','description'],
   components: {Modal},
   data() {
     return{
@@ -54,23 +54,22 @@ export default {
 #container
   height: 220px
   width: 100%
-  @media only screen and (max-width: 600px)
+  /* @media only screen and (max-width: 600px)
     height: 320px
     display: flex
-    justify-content: center
+    justify-content: center */
 
 #subscribe
   text-align: center
   height: 200px
-  background-color: red
   margin: 10px
   justify-content: center
   display: flex
   flex-direction: column
   align-items: center
-  @media only screen and (max-width: 600px)
+  /* @media only screen and (max-width: 600px)
     width: 300px
-    height: 300px
+    height: 300px */
 
 #btnSubscribe
   cursor: pointer
@@ -86,14 +85,5 @@ export default {
   font-size: 1em
   white-space: nowrap
   font-weight: bold
-
-#title
-  font-family: plumeAd
-  font-size: 2.7em
-  color: white
-  -webkit-text-stroke: 0.5px #3BB30B
-  margin: 5pt
-  @media only screen and (max-width: 600pt)
-    margin: 10pt
 
 </style>
