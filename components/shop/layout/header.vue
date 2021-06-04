@@ -16,89 +16,115 @@
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
- <template>
-  <section :id='$style.body'>
-    <div :id='$style.container'>
-      <div :class='$style.logo'>
-        <Logo subtitle='Growshop.' />
+<template>
+  <section :id="$style.body">
+    <div :id="$style.container">
+      <div :class="$style.logo">
+        <Logo subtitle="Growshop." />
       </div>
-      <div :id='$style.searchbar'>
-        <SearchBar />
-      </div>
-      <div :class='$style.menu'>
-        <div><nuxt-link :class='$route.path.includes("/cart") ? $style.selected : ""' to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
+      <div :class="$style.menu">
+        <div>
+          <nuxt-link
+            :class="$route.path.includes('/cart') ? $style.selected : ''"
+            to="/cart"
+            >Cart<span v-if="nCartItems != 0"
+              >({{ nCartItems }})</span
+            ></nuxt-link
+          >
+        </div>
       </div>
     </div>
-      <div :id='$style.containerresponsive' :style='{"transform": (!showHeader? "translateY(-100%)" : "translateY(0)")}'>
-        <div :class='$style.logo'>
-          <Logo subtitle='Growshop.' />
-        </div>
-        <div :class='$style.menu'>
-          <div><nuxt-link :class='$route.path.includes("/cart") ? $style.selected : ""' to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
+    <div
+      :id="$style.containerresponsive"
+      :style="{
+        transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'
+      }"
+    >
+      <div :class="$style.logo">
+        <Logo subtitle="Growshop." />
+      </div>
+      <div :class="$style.menu">
+        <div>
+          <nuxt-link
+            :class="$route.path.includes('/cart') ? $style.selected : ''"
+            to="/cart"
+            >Cart<span v-if="nCartItems != 0"
+              >({{ nCartItems }})</span
+            ></nuxt-link
+          >
         </div>
       </div>
-    <div :id="$style.responsivesearch" :style='{"transform": (!showHeader? "translateY(-50px)" : "translateY(0)")}'>
-      <SearchBar />
     </div>
     <div :id="$style.navbar">
       <NavBar />
     </div>
-    <div :id="$style.navbarresponsive" :style='{"transform": (!showHeader? "translateY(-50px)" : "translateY(0)")}'>
+    <div
+      :id="$style.navbarresponsive"
+      :style="{
+        transform: !showHeader ? 'translateY(-50px)' : 'translateY(0)'
+      }"
+    >
       <NavBar />
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/widgets/logo.vue'
-import SearchBar from '~/components/shop/widgets/searchbar.vue'
-import NavBar from '~/components/shop/widgets/navbar.vue'
+import Logo from "~/components/widgets/logo.vue";
+import SearchBar from "~/components/shop/widgets/searchbar.vue";
+import NavBar from "~/components/shop/widgets/navbar.vue";
 
 export default {
-  components: { Logo, SearchBar, NavBar},
+  components: { Logo, SearchBar, NavBar },
   data() {
     return {
       showHeader: true,
       lastScrollPosition: 0,
-      scrollOffset: 100,
-    }
+      scrollOffset: 100
+    };
   },
-  mounted () {
-    this.lastScrollPosition = window.pageYOffset
-    window.addEventListener('scroll', this.onScroll)
-    },
-  beforeDestroy () {
-    window.removeEventListener('scroll', this.onScroll)
-    },
+  mounted() {
+    this.lastScrollPosition = window.pageYOffset;
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
   computed: {
     page() {
-      return this.$route.name
+      return this.$route.name;
     },
     nCartItems() {
-      return this.$store.state.checkout.cart.reduce((acc, i) => acc + i.n, 0)
+      return this.$store.state.checkout.cart.reduce((acc, i) => acc + i.n, 0);
     }
   },
   methods: {
     onClick(e) {
-      this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
+      this.$matomo &&
+        this.$matomo.trackEvent(
+          "front-page-menu",
+          "click",
+          e.target.href.split("#")[1]
+        );
     },
-    onScroll () {
+    onScroll() {
       if (window.pageYOffset < 0) {
-        return
+        return;
       }
-      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < this.scrollOffset) {
-        return
+      if (
+        Math.abs(window.pageYOffset - this.lastScrollPosition) <
+        this.scrollOffset
+      ) {
+        return;
       }
-    this.showHeader = window.pageYOffset < this.lastScrollPosition
-    this.lastScrollPosition = window.pageYOffset
-
+      this.showHeader = window.pageYOffset < this.lastScrollPosition;
+      this.lastScrollPosition = window.pageYOffset;
     }
-  },
-}
-
+  }
+};
 </script>
 
-<style module lang=stylus>
+<style module lang="stylus">
 
 #body
   height: 83px

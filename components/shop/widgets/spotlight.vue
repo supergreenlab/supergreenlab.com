@@ -18,50 +18,33 @@
 
 <template>
   <section :id="$style.container">
-    <div :id="$style.spotlight"></div>
-    <div :id="$style.minispot">
-      <div :class="$style.minispot"></div>
-      <div :class="$style.minispot"></div>
-      <div :class="$style.minispot"></div>
-    </div>
-    <div>{{ title }}</div>
-    <div>{{ picture }}</div>
+    <div :class='$style.bannerPic' :style='{"background-image": `url(${require(`~/assets/img/${picture[0].fileLarge}`)})`}'></div>
+    <div :id="$style.test">{{ title }}</div>
     <div>{{ description }}</div>
-    <div>{{ plantId }}</div>
     <div>{{ products }}</div>
-
   </section>
 </template>
 
 <script>
 export default {
-
+  props: ['title','description', 'plantId', 'products','picture']
 }
 </script>
 
 <style module lang=stylus>
 
 #container
-  width: 100%
-  height: 550px
   display: flex
-  justify-content: center
-  align-items: center
-
-#spotlight
-  background-color: lightblue
-  width: 40%
-  height: 490px
-
-#minispot
- display: flex
- flex-direction: column
- justify-content: space-around
-
-.minispot
-  width: 150px
-  height: 150px
-  background-color: lightblue
   margin: 10px
+
+#bannerPic
+  width: 100%
+  height: 200px
+  margin: 5px
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+
 
 </style>

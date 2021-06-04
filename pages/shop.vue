@@ -65,7 +65,9 @@ const components = {Header, Product, BannerContainer, CarrouselContainer, Vertic
 export default{
   components,
   computed: {
-    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location),
+    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location).sort(function (g1, g2){
+        return g1.order - g2.order
+      }),
     widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)),
   },
   methods: {
@@ -91,8 +93,8 @@ export default{
 
 #fullcontent
   display: flex
-  justify-content: space-around
-  height: 3000px
+  justify-content: space-between
+  height: auto
   width: 100%
   margin-top: 83px
   @media only screen and (max-width: 600px)
@@ -101,8 +103,8 @@ export default{
 
 #content
   display: flex
-  align-items: center
-  margin: 0px 220px
+  flex-direction: column
+  margin: 0px
   width: 100%
   height: 100%
   background-color: #fff
@@ -112,7 +114,6 @@ export default{
 #leftcolumn
   display:flex
   flex-direction: column
-  left: 0px
   width: 220px
   height: 100%
   @media only screen and (max-width: 1200px)
@@ -121,7 +122,6 @@ export default{
 #rightcolumn
   display:flex
   flex-direction: column
-  right: 0px
   width: 220px
   height: 100%
   @media only screen and (max-width: 1200px)
