@@ -18,8 +18,8 @@
 
 <template>
   <section :id='$style.container'>
-   {{ title }}
-   {{ product }}
+   {{ config.title }}
+   {{ config.product }}
   </section>
 </template>
 
@@ -31,7 +31,7 @@ import Region from '~/components/products/region.vue'
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
-  props: ['products', 'center', 'maxItems',],
+  props: ['config',],
   components: {SectionTitle, Item, Region,},
   data() {
     return {

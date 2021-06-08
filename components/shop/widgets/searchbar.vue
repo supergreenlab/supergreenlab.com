@@ -32,7 +32,6 @@ export default {
 <style module lang=stylus>
 
 #searchcontainer
-  width: 100%
   display: flex
   align-items: center
   background-color: #EDEDED

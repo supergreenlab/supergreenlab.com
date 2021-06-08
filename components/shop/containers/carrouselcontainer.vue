@@ -18,39 +18,33 @@
 
 <template>
   <section :id="$style.container">
-    <client-only>
-      <VueSlickCarousel v-bind="settings">
-        <slot></slot>
-      </VueSlickCarousel>
-    </client-only>
-
+    <VueSlickCarousel v-bind="settings">
+      <slot></slot>
+    </VueSlickCarousel>
   </section>
 </template>
 
 <script>
 export default {
+  props: ['config',],
   components: { Slick: () => (typeof window !== 'undefined') ? import('vue-slick-carousel') : 'undefined' },
   data() {
     return {
       settings: {
         arrows: true,
         dots: true,
-        infinite: true,
-        slidesToScroll: 1,
-        rtl: true
+        infinite: false,
+        slideWidth: '100%',
       }
     };
   }
 };
 </script>
 
-<style module lang="stylus">
+<style module lang=stylus>
 
 #container
-  width: 100vh
-  flex: 1
   display: block
 
-/* .slot
-  text-decoration: underline
+
 </style>

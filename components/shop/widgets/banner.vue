@@ -17,26 +17,23 @@
  -->
 
 <template>
-  <section >
-    <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${picture[0].fileLarge}`)})`}'>
-      <div :id='$style.titleBanner'>title: {{ title }}</div>
-      <div :id='$style.productsBanner'>products: {{ products }}</div>
-      <div :id='$style.linkBanner'>link: {{ link }}</div>
-    </div>
-  </section>
+  <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'>
+    <div :id='$style.titleBanner'>title: {{ config.title }}</div>
+    <div :id='$style.productsBanner'>products: {{ config.products }}</div>
+    <div :id='$style.linkBanner'>link: {{ config.link }}</div>
+  </div>
 </template>
 
 <script>
 
 export default {
-  props: ['title', 'picture','products', 'link']
+  props: ['config']
 }
 </script>
 
 <style module lang=stylus>
 
 #pictureBanner
-  width: 100%
   height: 200px
   margin: 5px
   background-position: center

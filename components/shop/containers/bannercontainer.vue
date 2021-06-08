@@ -25,11 +25,10 @@
 <script>
 
 export default {
-
+  props: ['config'],
 }
 
 </script>
-
 
 <style module lang=stylus>
 

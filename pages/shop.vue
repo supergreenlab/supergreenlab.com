@@ -23,18 +23,18 @@
       </div>
       <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
-          <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' v-bind='c'>
-            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' v-bind='w'></component>
+          <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
         </div>
         <div :id='$style.content'>
-          <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' v-bind='c'>
-            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' v-bind='w'></component>
+          <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
         </div>
         <div :id='$style.rightcolumn'>
-         <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' v-bind='c'>
-            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' v-bind='w'></component>
+         <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
         </div>
       </div>
@@ -80,22 +80,21 @@ export default{
 
 #container
   display: flex
-  width: 100%
+  width: 100vw
   flex-direction: column
   align-items: center
 
 #header
   position: fixed
-  width: 100%
+  width: 100vw
   top: 0
   left: 0
   z-index: 1000
 
 #fullcontent
   display: flex
-  justify-content: space-between
-  height: auto
   width: 100%
+  max-width: 1000pt
   margin-top: 83px
   @media only screen and (max-width: 600px)
     display: flex
@@ -104,70 +103,31 @@ export default{
 #content
   display: flex
   flex-direction: column
-  margin: 0px
+  flex-grow: 1
   width: 100%
+  margin: 0px
   height: 100%
   background-color: #fff
+  position: relative
   @media only screen and (max-width: 1200px)
     margin 20px 0px
 
 #leftcolumn
   display:flex
   flex-direction: column
-  width: 220px
+  flex: 220px
   height: 100%
+  position: relative
   @media only screen and (max-width: 1200px)
     display: none
 
 #rightcolumn
   display:flex
   flex-direction: column
-  width: 220px
+  flex: 220px
   height: 100%
+  position: relative
   @media only screen and (max-width: 1200px)
     display: none
 
-
-.shop
-  display: flex
-  width: 100%
-  max-width: 900pt
-  padding: 0 15pt
-
-.pack
-  width: 80%
-  display: flex
-  justify-content: center
-
-#bundles
-  display: flex
-  justify-content: space-around
-  align-items: center
-  width: 100%
-  @media only screen and (max-width: 600px)
-    flex-direction: column
-
-.bundle
-  margin: 10px
-  width: 100%
-  /* max-width: 920pt */
-  height: 100%
-  /* border-radius: 10px
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-  @media only screen and (max-width: 600px)
-    width: 100%
-    height: 100%
-
-.title
-  width: 100%
-  margin: 20pt 0pt 20pt 0
-
-.space
-  width: 100%
-  margin: 60px
-  @media only screen and (max-width: 600px)
-    margin: 30px
-
-.test
-  margin: 10px
 </style>

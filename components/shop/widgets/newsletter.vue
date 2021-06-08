@@ -17,11 +17,11 @@
   <section :id='$style.container'>
     <div :id='$style.subscribe'>
       <div :id='$style.title'>
-       {{ title }}
+       {{ config.title }}
       </div>
       <!-- Check overlay-major and promocode -->
       <div :id='$style.content'>
-        {{ description }}
+        {{ config.description }}
       </div>
       <div :id='$style.btnSubscribe' @click="toggleClass()">
         Subscribe
@@ -35,7 +35,7 @@
 import Modal from '~/components/shop/widgets/modal.vue'
 
 export default {
-  props: ['title','description'],
+  props: ['config',],
   components: {Modal},
   data() {
     return{
@@ -53,7 +53,6 @@ export default {
 <style module lang=stylus>
 #container
   height: 220px
-  width: 100%
   /* @media only screen and (max-width: 600px)
     height: 320px
     display: flex

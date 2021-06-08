@@ -18,16 +18,16 @@
 
 <template>
   <section :id="$style.container">
-    <div :class='$style.bannerPic' :style='{"background-image": `url(${require(`~/assets/img/${picture[0].fileLarge}`)})`}'></div>
-    <div :id="$style.test">{{ title }}</div>
-    <div>{{ description }}</div>
-    <div>{{ products }}</div>
+    <div :class='$style.bannerPic' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'></div>
+    <div :id="$style.test">{{ config.title }}</div>
+    <div>{{ config.description }}</div>
+    <div>{{ config.products }}</div>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['title','description', 'plantId', 'products','picture']
+  props: ['config']
 }
 </script>
 
@@ -38,7 +38,6 @@ export default {
   margin: 10px
 
 #bannerPic
-  width: 100%
   height: 200px
   margin: 5px
   background-position: center
