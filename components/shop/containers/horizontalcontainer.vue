@@ -28,18 +28,12 @@
 <script>
 
 export default {
-
+  props: ['config',],
 }
 
 </script>
 
 
 <style module lang=stylus>
-
-.slot
-  width: 100%
-  height: 200px
-
-
 
 </style>

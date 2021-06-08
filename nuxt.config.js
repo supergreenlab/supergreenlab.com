@@ -44,6 +44,7 @@ export default {
   css: [
     '@/assets/css/global.css',
     'vue-slick-carousel/dist/vue-slick-carousel.css',
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css',
   ],
 
   /*
