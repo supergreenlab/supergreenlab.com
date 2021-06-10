@@ -35,8 +35,8 @@ export default {
 <style module lang=stylus>
 
 #container
-  height: 120px
-  margin: 10px
+  height: 200px
+  margin: 5pt
   display: flex
   justify-content: center
 

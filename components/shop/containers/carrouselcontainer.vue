@@ -31,10 +31,14 @@ export default {
   data() {
     return {
       settings: {
-        arrows: true,
+        arrows: false,
         dots: true,
-        infinite: false,
-        slideWidth: '100%',
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2700,
+        autoplaySpeed: 3000,
       }
     };
   }
@@ -43,8 +47,8 @@ export default {
 
 <style module lang=stylus>
 
-#container
-  display: block
+/* #container
+  display: block */
 
 
 </style>

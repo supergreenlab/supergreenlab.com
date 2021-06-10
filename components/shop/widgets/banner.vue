@@ -17,11 +17,14 @@
  -->
 
 <template>
+<section :id="$style.container">
   <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'>
-    <div :id='$style.titleBanner'>title: {{ config.title }}</div>
-    <div :id='$style.productsBanner'>products: {{ config.products }}</div>
-    <div :id='$style.linkBanner'>link: {{ config.link }}</div>
+    <div :id='$style.titleBanner'>{{ config.title }}</div>
+    <div :id='$style.productsBanner'>{{ config.products }}</div>
+    <div :id='$style.linkBanner'>{{ config.link }}</div>
   </div>
+</section>
+
 </template>
 
 <script>
@@ -33,9 +36,12 @@ export default {
 
 <style module lang=stylus>
 
+#container
+  width: 100%
+  height: 100%
+
 #pictureBanner
-  height: 200px
-  margin: 5px
+  height: 100%
   background-position: center
   background-size: contain
   background-repeat: no-repeat

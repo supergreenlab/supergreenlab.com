@@ -17,8 +17,11 @@
  -->
 
 <template>
-  <section>
-    <slot></slot>
+  <section :id='$style.container'>
+    <div :id="$style.verticalContainer">
+      <slot></slot>
+    </div>
+
   </section>
 </template>
 
@@ -30,5 +33,16 @@ export default {
 </script>
 
 <style module lang=stylus>
+
+#container
+  width: 165pt
+  height: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+#verticalContainer
+  width: 100%
+  height: 165pt
 
 </style>
