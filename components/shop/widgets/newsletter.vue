@@ -53,10 +53,7 @@ export default {
 <style module lang=stylus>
 #container
   height: 220px
-  /* @media only screen and (max-width: 600px)
-    height: 320px
-    display: flex
-    justify-content: center */
+  width: 100%
 
 #subscribe
   text-align: center
@@ -66,9 +63,6 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
-  /* @media only screen and (max-width: 600px)
-    width: 300px
-    height: 300px */
 
 #btnSubscribe
   cursor: pointer

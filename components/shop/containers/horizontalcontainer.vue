@@ -17,11 +17,10 @@
  -->
 
 <template>
-  <section :class="$style.container">
-    <div :class="$style.slot">
-      <slot></slot>
+  <section :id='$style.container'>
+      <div :id='$style.horizontalContainer'>
+        <slot></slot>
     </div>
-
   </section>
 </template>
 
@@ -35,5 +34,15 @@ export default {
 
 
 <style module lang=stylus>
+
+#container
+  width: 100%
+  height: 165pt
+
+#horizontalContainer
+  width: 100%
+  height: 165pt
+  display: flex
+  justify-content: space-around
 
 </style>

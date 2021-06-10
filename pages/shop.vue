@@ -93,41 +93,48 @@ export default{
 
 #fullcontent
   display: flex
+  justify-content: space-between
   width: 100%
-  max-width: 1000pt
-  margin-top: 83px
-  @media only screen and (max-width: 600px)
-    display: flex
+  margin-top: 62.25pt
+  @media only screen and (max-width: 900px)
     justify-content: center
 
 #content
   display: flex
   flex-direction: column
-  flex-grow: 1
-  width: 100%
-  margin: 0px
+  justify-content: space-around
+  min-width: 420pt
+  margin: 5pt
   height: 100%
-  background-color: #fff
-  position: relative
+  background-color: red
   @media only screen and (max-width: 1200px)
-    margin 20px 0px
+    justify-content: center
+
+/* .content
+  min-width: 420pt
+  display: flex
+  justify-content: center */
 
 #leftcolumn
+  margin-top: 5pt
+  margin-left: 5pt
+  background-color: green
   display:flex
   flex-direction: column
-  flex: 220px
+  width: 165pt
   height: 100%
-  position: relative
-  @media only screen and (max-width: 1200px)
+  @media only screen and (max-width: 900px)
     display: none
 
 #rightcolumn
+  margin-top: 5pt
+  margin-right: 5pt
+  background-color: yellow
   display:flex
   flex-direction: column
-  flex: 220px
+  width: 165pt
   height: 100%
-  position: relative
-  @media only screen and (max-width: 1200px)
+  @media only screen and (max-width: 900px)
     display: none
 
 </style>

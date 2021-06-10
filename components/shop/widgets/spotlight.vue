@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div :class='$style.bannerPic' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'></div>
+    <!-- <div :class='$style.bannerPic' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'></div> -->
     <div :id="$style.test">{{ config.title }}</div>
     <div>{{ config.description }}</div>
     <div>{{ config.products }}</div>
@@ -34,12 +34,17 @@ export default {
 <style module lang=stylus>
 
 #container
+  width: 100%
+  height: 165pt
+  text-align: center
   display: flex
-  margin: 10px
+  flex-direction: column
+  justify-content: center
+  align-items: center
 
 #bannerPic
-  height: 200px
-  margin: 5px
+  width: 100%
+  height: 100%
   background-position: center
   background-size: contain
   background-repeat: no-repeat
