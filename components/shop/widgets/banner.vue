@@ -20,30 +20,55 @@
 <section :id="$style.container">
   <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'>
     <div :id='$style.titleBanner'>{{ config.title }}</div>
-    <div :id='$style.productsBanner'>{{ config.products }}</div>
     <div :id='$style.linkBanner'>{{ config.link }}</div>
+    <div :id='$style.productsBanner'>{{ config.products }}</div>
+    <!-- <ProductList :products='config.products.pics' :id='$style.productsBanner'></ProductList> -->
   </div>
 </section>
 
 </template>
 
 <script>
+// import ProductList from '~/components/products/productlist.vue'
+
+// import { products } from '~/config/products.json'
 
 export default {
-  props: ['config']
+  props: ['config',],
+  // components: {ProductList,},
+  // computed: {
+  //   products() {
+  //     const { config } = this.$props
+  //     return config.products.map(p => products.find(p2 => p2.id == p))
+  //   }
+  // }
 }
 </script>
 
 <style module lang=stylus>
 
-#container
-  width: 100%
-  height: 100%
-
 #pictureBanner
-  height: 100%
+  height: 160pt
+  width: 100%
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+  display: flex
+  flex-direction: column
+
+#titleBanner
+  font-family: plumeAd
+  color: white
+  -webkit-text-stroke: 0.5px black
+  margin-top: 20pt
+  margin-left: 20pt
+  text-transform: uppercase
+  font-weight: bold
+  font-size: 1.5em
+  color: #ffffff
+
+#productsBanner
+  align-self: flex-end
+  margin-right: 20pt
 
 </style>

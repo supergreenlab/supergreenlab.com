@@ -35,14 +35,18 @@ export default {
 
 <style module lang=stylus>
 
-#container
+/* #container
   width: 100%
-  height: 165pt
+  display: flex
+  justify-content:center
+  align-items: center */
 
 #horizontalContainer
+  margin-top: 20pt
+  margin-bottom: 20pt
   width: 100%
-  height: 165pt
   display: flex
-  justify-content: space-around
+  justify-content:center
+  align-items: center
 
 </style>
