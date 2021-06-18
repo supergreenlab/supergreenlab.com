@@ -17,11 +17,18 @@
  -->
 
 <template>
-  <section :id="$style.container">
-    <!-- <div :class='$style.bannerPic' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'></div> -->
-    <div :id="$style.test">{{ config.title }}</div>
-    <div>{{ config.description }}</div>
-    <div>{{ config.products }}</div>
+  <section>
+    <div :id="$style.container">
+      <div>
+        <div :id="$style.pictureBanner" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'></div>
+      </div>
+      <div :id="$style.spotlightContent">
+        <div :id="$style.title">{{ config.title }}</div>
+        <div>{{ config.description }}</div>
+        <div>{{ config.products }}</div>
+    </div>
+    </div>
+
   </section>
 </template>
 
@@ -34,21 +41,29 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 100%
-  height: 165pt
-  text-align: center
   display: flex
-  flex-direction: column
   justify-content: center
   align-items: center
+  margin: 5pt
 
-#bannerPic
-  width: 100%
-  height: 100%
+#title
+  text-transform: uppercase
+  font-weight: bold
+  font-size: 1.5em
+  color: #5E5E5E
+
+#pictureBanner
+  height: 160pt
+  width: 160pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
 
-
+#spotlightContent
+  height: 150pt
+  margin-left: 5pt
+  display:flex
+  flex-direction: column
+  justify-content: flex-start
 
 </style>

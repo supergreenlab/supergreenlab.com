@@ -79,6 +79,7 @@ export default {
   display: flex
   align-items: center
   flex-wrap: wrap
+  justify-content: center
   @media only screen and (max-width: 600px)
     justify-content: center
 

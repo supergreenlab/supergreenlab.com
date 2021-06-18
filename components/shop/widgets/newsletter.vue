@@ -15,58 +15,58 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.subscribe'>
-      <div :id='$style.title'>
-       {{ config.title }}
-      </div>
-      <!-- Check overlay-major and promocode -->
-      <div :id='$style.content'>
-        {{ config.description }}
-      </div>
-      <div :id='$style.btnSubscribe' @click="toggleClass()">
-        Subscribe
-      </div>
-      <Modal v-if="showModal" @close="toggleClass()" />
+    <div :id='$style.content'>
+      <div :id='$style.title'>{{ config.title }}</div>
+      <div :id='$style.description'>{{ config.description }}</div>
+      <div :id='$style.btnSubscribe'  @click='proposeSellingPoint'>{{ config.link }}</div>
     </div>
   </section>
 </template>
 
 <script>
-import Modal from '~/components/shop/widgets/modal.vue'
+
+import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
   props: ['config',],
-  components: {Modal},
-  data() {
-    return{
-      showModal: false
-    }
-  },
   methods: {
-    toggleClass: function(){
-      this.showModal = !this.showModal
+    proposeSellingPoint() {
+      const width = 800
+      open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      this.$matomo && this.$matomo.trackEvent('productlist', 'propose')
     }
   }
 }
 </script>
 
 <style module lang=stylus>
-#container
-  height: 220px
-  width: 100%
+/* #container
+  margin: 5pt */
 
-#subscribe
-  text-align: center
-  height: 200px
-  margin: 10px
+#content
+  background-color: #3bb30b
+  height: 160pt
+  width: 100%
   justify-content: center
   display: flex
   flex-direction: column
   align-items: center
 
+#title
+  font-family: plumeAd
+  color: white
+  -webkit-text-stroke: 0.5px black
+  font-size: 1.8em
+  margin-bottom: 10pt
+  text-align: center
+
+#description
+  margin-bottom: 5pt
+
 #btnSubscribe
+  border: solid 1px
   cursor: pointer
-  width: 170px
+  width: 100pt
   margin: 10pt
   background-color: #3BB30B
   text-align: center
@@ -78,5 +78,9 @@ export default {
   font-size: 1em
   white-space: nowrap
   font-weight: bold
+
+#btnSubscribe:hover
+  background-color: #ffffff
+  color: #5E5E5E
 
 </style>

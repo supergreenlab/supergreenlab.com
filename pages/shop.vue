@@ -65,9 +65,7 @@ const components = {Header, Product, BannerContainer, CarrouselContainer, Vertic
 export default{
   components,
   computed: {
-    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location).sort(function (g1, g2){
-        return g1.order - g2.order
-      }),
+    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location).sort((o1, o2) => o1.order - o2.order),
     widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)),
   },
   methods: {
@@ -106,35 +104,28 @@ export default{
   min-width: 420pt
   margin: 5pt
   height: 100%
-  background-color: red
   @media only screen and (max-width: 1200px)
     justify-content: center
-
-/* .content
-  min-width: 420pt
-  display: flex
-  justify-content: center */
 
 #leftcolumn
   margin-top: 5pt
   margin-left: 5pt
-  background-color: green
   display:flex
   flex-direction: column
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
   width: 165pt
-  height: 100%
   @media only screen and (max-width: 900px)
     display: none
 
 #rightcolumn
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
   margin-top: 5pt
   margin-right: 5pt
-  background-color: yellow
   display:flex
   flex-direction: column
   width: 165pt
-  height: 100%
   @media only screen and (max-width: 900px)
     display: none
+
 
 </style>

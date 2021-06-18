@@ -37,8 +37,8 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 2700,
-        autoplaySpeed: 3000,
+        speed: 3500,
+        autoplaySpeed: 3500,
       }
     };
   }
@@ -47,8 +47,10 @@ export default {
 
 <style module lang=stylus>
 
-/* #container
-  display: block */
+#container
+  margin-top: 20pt
+  margin-bottom: 20pt
+  position: relative
 
 
 </style>

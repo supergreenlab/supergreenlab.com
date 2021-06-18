@@ -17,8 +17,10 @@
  -->
 
 <template>
-  <section>
-    <slot></slot>
+  <section :id='$style.container'>
+    <div :id="$style.bannercontainer">
+      <slot></slot>
+    </div>
   </section>
 </template>
 
@@ -31,6 +33,13 @@ export default {
 </script>
 
 <style module lang=stylus>
+#container
+  position: relative
+  height: 165pt
+  margin: 5pt
 
+/* #bannercontainer
+  width: 100%
+  height: 100% */
 
 </style>

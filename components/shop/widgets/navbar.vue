@@ -24,11 +24,11 @@
     <span :class="$style.separation"></span>
     <nuxt-link :to="{ path: '/shop',hash:'#addons'}" :class="$style.section">SGL Addons</nuxt-link>
     <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#growing'}" :class="$style.section">Growing Pack</nuxt-link>
+    <nuxt-link :to="{ path: '/shop',hash:'#growing'}" :class="$style.section">Spare Parts</nuxt-link>
     <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#products'}" :class="$style.section">SGL Products</nuxt-link>
+    <nuxt-link :to="{ path: '/shop',hash:'#products'}" :class="$style.section">Growspace</nuxt-link>
     <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#furnitures'}" :class="$style.section">Furnitures</nuxt-link>
+    <nuxt-link :to="{ path: '/shop',hash:'#furnitures'}" :class="$style.section">Growing</nuxt-link>
     <span :class="$style.separation"></span>
     <nuxt-link :to="{ path: '/shop',hash:'#tools'}" :class="$style.section">Tools</nuxt-link>
   </section>

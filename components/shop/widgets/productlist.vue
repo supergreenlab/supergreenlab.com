@@ -18,38 +18,28 @@
 
 <template>
   <section :id='$style.container'>
-   {{ config.title }}
-   {{ config.product }}
+    <div :id="$style.titleList">{{config.title}}</div>
+    <div :id='$style.description'>{{config.description}}</div>
+    <ProductList :products='products'></ProductList>
   </section>
 </template>
 
 <script>
-import SectionTitle from '~/components/widgets/sectiontitle.vue'
-import Item from '~/components/products/productitem.vue'
-import Region from '~/components/products/region.vue'
+import ProductList from '~/components/products/productlist.vue'
 
-import { open, screenX, availWidth } from '~/lib/client-side.js'
+import { products } from '~/config/products.json'
 
 export default {
   props: ['config',],
-  components: {SectionTitle, Item, Region,},
-  data() {
-    return {
-      showAllProducts: this.$props.maxItems ? false : true,
+  components: {ProductList,},
+  computed: {
+    products() {
+      const { config } = this.$props
+      return config.products.map(p => products.find(p2 => p2.id == p))
     }
   },
   methods: {
-    proposeSellingPoint() {
-      const width = 800
-      open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo && this.$matomo.trackEvent('productlist', 'propose')
-    },
-    toggleShowAll() {
-      this.$data.showAllProducts = !this.$data.showAllProducts
-      if (this.$data.showAllProducts) {
-        this.$matomo && this.$matomo.trackEvent('productlist', 'showAll')
-      }
-    }
+
   },
 }
 </script>
@@ -72,7 +62,7 @@ export default {
   @media only screen and (max-width: 600px)
     justify-content: center
 
-.center
+/* .center
   justify-content: center
 
 .product
@@ -94,6 +84,15 @@ export default {
   align-items: flex-end
 
 #propose a
-  color: #454545
+  color: #454545 */
 
+#titleList
+  text-transform: uppercase
+  font-weight: bold
+  margin-left: 50px
+  font-size: 2.5em
+  color: #5E5E5E
+
+#description
+  color: #3bb30b
 </style>
