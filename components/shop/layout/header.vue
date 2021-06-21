@@ -17,53 +17,16 @@
  -->
 
 <template>
-  <section :id="$style.body">
+  <section :id="$style.body" :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
     <div :id="$style.container">
       <div :class="$style.logo">
         <Logo subtitle="Growshop." />
       </div>
       <div :class="$style.menu">
-        <div>
-          <nuxt-link
-            :class="$route.path.includes('/cart') ? $style.selected : ''"
-            to="/cart"
-            >Cart<span v-if="nCartItems != 0"
-              >({{ nCartItems }})</span
-            ></nuxt-link
-          >
-        </div>
-      </div>
-    </div>
-    <div
-      :id="$style.containerresponsive"
-      :style="{
-        transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'
-      }"
-    >
-      <div :class="$style.logo">
-        <Logo subtitle="Growshop." />
-      </div>
-      <div :class="$style.menu">
-        <div>
-          <nuxt-link
-            :class="$route.path.includes('/cart') ? $style.selected : ''"
-            to="/cart"
-            >Cart<span v-if="nCartItems != 0"
-              >({{ nCartItems }})</span
-            ></nuxt-link
-          >
-        </div>
+        <div><nuxt-link :class="$route.path.includes('/cart') ? $style.selected : ''" to="/cart">Cart<span v-if="nCartItems != 0">({{ nCartItems }})</span></nuxt-link></div>
       </div>
     </div>
     <div :id="$style.navbar">
-      <NavBar />
-    </div>
-    <div
-      :id="$style.navbarresponsive"
-      :style="{
-        transform: !showHeader ? 'translateY(-50px)' : 'translateY(0)'
-      }"
-    >
       <NavBar />
     </div>
   </section>
@@ -121,7 +84,7 @@ export default {
       this.lastScrollPosition = window.pageYOffset;
     }
   }
-};
+}
 </script>
 
 <style module lang="stylus">
@@ -129,8 +92,9 @@ export default {
 #body
   height: 83px
   background-color: rgba(255, 255, 255, 0.8)
+  transition: transform 420ms linear
   @media only screen and (max-width: 600px)
-    background-color: transparent
+    width: 100%
 
 #container
   position: fixed
@@ -142,43 +106,6 @@ export default {
   align-items: center
   justify-content: space-between
   padding: 0 0 0 10pt
-  @media only screen and (max-width: 600px)
-    display: none
-
-#containerresponsive
-  display: none
-  @media only screen and (max-width: 600px)
-    position: fixed
-    background-color: rgba(255, 255, 255, 0.8)
-    top: 0
-    left: 0
-    z-index: 1000
-    display: flex
-    width: 100vw
-    align-items: center
-    justify-content: space-between
-    font-size: 1.2em
-    padding: 5pt
-    height: 50px
-    transition: transform 420ms linear
-
-#searchbar
-  width: 100%
-  margin: 0px 20px 0px
-  @media only screen and (max-width: 600px)
-    display: none
-
-#responsivesearch
-  display: none
-  width: 100%
-  @media only screen and (max-width: 600px)
-    top: 50px
-    display: flex
-    position: fixed
-    width: 100%
-    padding-left: 2pt
-    padding-right: 2pt
-    transition: transform 420ms linear
 
 .menu
   display: flex
@@ -216,16 +143,5 @@ export default {
   position: fixed
   width: 100%
   top: 53px
-  @media only screen and (max-width: 600px)
-    display: none
 
-#navbarresponsive
-  display: none
-  @media only screen and (max-width: 600px)
-    display: block
-    width: 100%
-    position: fixed
-    background-color: rgba(255, 255, 255, 0.8)
-    transition: transform 420ms linear
-    top: 83px
 </style>
