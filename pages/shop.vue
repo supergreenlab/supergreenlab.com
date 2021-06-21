@@ -106,6 +106,7 @@ export default{
   height: 100%
   @media only screen and (max-width: 1200px)
     justify-content: center
+    min-width: 0
 
 #leftcolumn
   margin-top: 5pt

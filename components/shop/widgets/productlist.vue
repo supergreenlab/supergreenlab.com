@@ -92,6 +92,8 @@ export default {
   margin-left: 50px
   font-size: 2.5em
   color: #5E5E5E
+  @media only screen and (max-width: 600px)
+    margin-left: 5px
 
 #description
   color: #3bb30b
