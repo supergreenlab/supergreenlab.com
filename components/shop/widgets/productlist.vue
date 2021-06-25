@@ -62,30 +62,6 @@ export default {
   @media only screen and (max-width: 600px)
     justify-content: center
 
-/* .center
-  justify-content: center
-
-.product
-  flex-basis: 33%
-  @media only screen and (min-width: 1200px)
-    padding: 20pt 9pt
-    flex-basis: 25%
-  @media only screen and (max-width: 600px)
-    padding: 20pt 3pt
-
-#region
-  display: flex
-  flex-direction: column
-  align-items: flex-end
-
-#propose
-  display: flex
-  flex-direction: column
-  align-items: flex-end
-
-#propose a
-  color: #454545 */
-
 #titleList
   text-transform: uppercase
   font-weight: bold
