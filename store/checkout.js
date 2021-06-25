@@ -23,7 +23,7 @@ import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
-const STORAGE_ITEM='checkout4'
+const STORAGE_ITEM='checkout5'
 
 export const state = () => {
   let defaults = {
@@ -105,6 +105,14 @@ export const mutations = {
   },
 }
 
+const regionTree = (rootState, region, acc=[]) => {
+  acc.push(region)
+  if (region.in) {
+    return regionTree(rootState, rootState.eshop.regions.find(r => r.id == region.in[0]), acc)
+  }
+  return acc
+}
+
 export const getters = {
   promoDiscount: state => sellingPoint => {
     if (sellingPoint.Seller[0] != 'recT9nIg4ahFv9J29') return {promocode: '', discount: 0}
@@ -116,17 +124,9 @@ export const getters = {
 
   lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems, promo=true, number=false) => {
     if (!lineItems || lineItems.length == 0) return 0
-    const regionTree = (region, acc=[]) => {
-      acc.push(region)
-      if (region.in) {
-        return regionTree(rootState.eshop.regions.find(r => r.id == region.in[0]), acc)
-      }
-      return acc
-    }
-
     const region = rootState.eshop.region
     let vat = 0
-    if (lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29' && regionTree(region).find(r => r.code == 'EU') && region.code != 'UK') {
+    if (lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29' && regionTree(rootState, region).find(r => r.code == 'EU') && region.code != 'UK') {
       vat = 21
     }
     const currency = lineItems[0].sellingPoint.currency
@@ -140,6 +140,15 @@ export const getters = {
       return Math.floor((totalWithoutPromo + (totalWithPromo - totalWithPromo * discount / 100)) * (1 + vat / 100) * 100) / 100
     }
     return `${currency}${((totalWithoutPromo + (totalWithPromo - totalWithPromo * discount / 100)) * (1 + vat / 100)).toFixed(2)}`
+  },
+
+  hasVAT: (state, getters, rootState, rootGetters) => (lineItems) => {
+    if (!lineItems || lineItems.length == 0) return false
+    const region = rootState.eshop.region
+    if (lineItems[0].sellingPoint.Seller[0] != 'recT9nIg4ahFv9J29') {
+      return true
+    }
+    return regionTree(rootState, region).find(r => r.code == 'EU') && region.code != 'UK'
   },
 
   cart: (state, getters, rootState, rootGetters) => state.cart.map(li => {

@@ -27,11 +27,11 @@
       <a href="https://www.youtube.com/c/supergreenlab"><i class="fa fa-youtube"></i></a>
       <a href="https://github.com/supergreenlab"><i class="fa fa-github"></i></a>
     </div>
-    <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted>
+    <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted @click='toggleZoom'>
       <source :src="require(`~/assets/img/${media.filePath}`)" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div v-else :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/${media.fileLarge}`)})`}'></div>
+    <div v-else :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/${media.fileLarge}`)})`}' @click='toggleZoom'></div>
     <!-- <div v-if='typeof index != "undefined"' :id='$style.index'>#{{ index+1 }}</div> -->
     <div :id="$style.guidelogo" >
       <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
@@ -40,12 +40,32 @@
       <div>Author:</div>
       <div>Credit:</div>
     </div>
+    <portal v-if='showZoom' to='root'>
+      <div :id='$style.fullscreen' @click='toggleZoom'>
+        <video v-if='media.type == "video/mp4"' :id='$style.mediafullscreen' autoplay loop playsinline muted defaultMuted>
+          <source :src="require(`~/assets/img/${media.filePath}`)" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div v-else :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/${media.fileLarge}`)})`}'></div>
+      </div>
+    </portal>
   </section>
 </template>
 
 <script>
 export default {
   props: ['media', 'index',],
+  data() {
+    return {
+      showZoom: false,
+    }
+  },
+  methods: {
+    toggleZoom() {
+      console.log('pouet')
+      this.$data.showZoom = !this.$data.showZoom
+    },
+  },
 }
 </script>
 
@@ -128,5 +148,25 @@ export default {
   -webkit-text-stroke: 1pt white
   font-weight: bold
   color: #3bb30b
+
+#fullscreen
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: white
+
+
+#mediafullscreen
+  height: 90%
+  width: 90%
+  margin: 0 15pt 0 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

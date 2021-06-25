@@ -55,20 +55,6 @@
           <div :id='$style.description' v-if='brandProduct.description && brandProduct.description != product.description' v-html='$md.render(brandProduct.description)'></div>
           <div :id='$style.description' v-if='product.bulletpoints' v-html='$md.render(product.bulletpoints)'></div>
           <div :id='$style.description' v-if='brandProduct.bulletpoints && brandProduct.bulletpoints != product.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
-          <b v-if='product.links && product.links.length'>Useful links</b>
-          <div v-if='product.links && product.links.length' :id='$style.links'>
-            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
-              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
-                <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
-              </div>
-              <div :class='$style.linktext'>
-                <b>{{ l.title }}</b>
-                <div v-html='$md.render(l.description)'></div>
-                <small>{{ l.url }}</small>
-              </div>
-            </a>
-          </div>
-
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>This product can be used with:</h4>
             <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
@@ -78,6 +64,19 @@
                 <b>{{ rp.price }}</b>
               </div>
             </nuxt-link>
+          </div>
+          <div v-if='product.links && product.links.length' :id='$style.links'>
+            <h4>Useful links</h4>
+            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+              <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+                <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+              </div>
+              <div :class='$style.linktext'>
+                <b>{{ l.title }}</b>
+                <div v-html='$md.render(l.description)'></div>
+                <small>{{ l.url }}</small>
+              </div>
+            </a>
           </div>
 
         </div>
@@ -89,7 +88,7 @@
           <AddToCart :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>Checkout those too:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
@@ -258,6 +257,7 @@ export default {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
+        rp.product = this.$store.getters['eshop/product'](rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
@@ -282,7 +282,10 @@ export default {
     productURL() {
       if (this.seller.type == 'amazon') return `${this.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
       return this.sellingPoint.url
-    }
+    },
+    youtubeLink() {
+      return (l) => l.indexOf('youtube.com') != -1
+    },
   },
   methods: {
     proposeSellingPoint() {
@@ -492,8 +495,8 @@ export default {
   text-decoration: underline !important
 
 .relatedProductPic
-  width: 30pt
-  height: 30pt
+  width: 60pt
+  height: 60pt
   margin: 0 5pt 0 0
   background-position: top
   background-size: contain
@@ -517,6 +520,10 @@ export default {
 
 #links
   display: flex
+  flex-direction: column
+
+#links h4
+  margin: 5pt 5pt
 
 .link
   display: flex
@@ -538,7 +545,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  width: 100pt
+  width: 60pt
   height: 60pt
   background-position: center
   background-size: contain

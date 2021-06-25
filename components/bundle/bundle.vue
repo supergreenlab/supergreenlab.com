@@ -27,20 +27,34 @@
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer'>
-        <Pics :pics='bundle.pics' />
+        <Pics :pics='bundle.pics' :offertext='bundle.SellingPoints[0].offertext' />
       </div>
       <div :id='$style.description'>
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
 
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
-          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='`/product/${rp.sellingPoint.slug}`'>
+          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
             <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
             <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
             <div>
               <b>{{ rp.price }}</b>
             </div>
           </nuxt-link>
+        </div>
+
+        <div v-if='showRelatedProducts && bundle.links && bundle.links.length' :id='$style.links'>
+          <h4>Useful links</h4>
+          <a v-for='l in bundle.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+            <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+              <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+            </div>
+            <div :class='$style.linktext'>
+              <b>{{ l.title }}</b>
+              <div v-html='$md.render(l.description)'></div>
+              <small>{{ l.url }}</small>
+            </div>
+          </a>
         </div>
 
         <div :id='$style.bottom' v-if='!nobottom'>
@@ -100,9 +114,13 @@ export default {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
+        rp.product = this.$store.getters['eshop/product'](rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
+    },
+    youtubeLink() {
+      return (l) => l.indexOf('youtube.com') != -1
     },
   },
 }
@@ -224,7 +242,7 @@ export default {
 
 .relatedProduct
   display: flex
-  padding: 5pt 5pt
+  padding: 2pt 5pt
   align-items: center
   justify-content: space-between
   text-decoration: none
@@ -238,8 +256,8 @@ export default {
   text-decoration: underline !important
 
 .relatedProductPic
-  width: 30pt
-  height: 30pt
+  width: 60pt
+  height: 60pt
   margin: 0 5pt 0 0
   background-position: top
   background-size: contain
@@ -332,7 +350,7 @@ export default {
     padding: 10pt 10pt 40pt 10pt
 
 #text p
-  margin: 5pt 0
+  margin: 10pt 0
 
 #text strong
   color: #3bb30b
@@ -342,5 +360,39 @@ export default {
   font-weight: 600
   color: red
   margin: 5pt 0
+
+#links
+  display: flex
+  flex-direction: column
+
+#links h4
+  margin: 5pt 5pt
+
+.link
+  display: flex
+  color: #454545
+  text-decoration: none
+  padding: 2pt 5pt
+
+.link:hover
+  text-decoration: underline
+
+.linktext
+  flex: 1
+
+.linktext small
+  color: #787878
+  text-decoration: underline
+
+.linkpic
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 60pt
+  height: 60pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+  margin-right: 10pt
 
 </style>

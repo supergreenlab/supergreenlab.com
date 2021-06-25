@@ -23,7 +23,7 @@
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
           <h1>{{ guideSection.title }}</h1>
-          <CheckBox label='Got it!' @click='checkDone' :checked='checked' />
+          <CheckBox v-if='guideSection.showdone' label='Got it!' @click='checkDone' :checked='checked' />
         </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
@@ -37,7 +37,7 @@
         <div v-if='guideSection.links && guideSection.links.length' :id='$style.links'>
           <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
             <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
-              <img v-if='youtubeLink' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
+              <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
             </div>
             <div :class='$style.linktext'>
               <b>{{ l.title }}</b>
@@ -162,6 +162,7 @@ export default {
 
 #links
   display: flex
+  flex-direction: column
 
 .link
   display: flex
