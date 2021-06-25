@@ -25,7 +25,7 @@
       <div :id="$style.spotlightContent">
         <div :id="$style.title">{{ config.title }}</div>
         <div>{{ config.description }}</div>
-        <div>{{ config.products }}</div>
+        <!-- <div>{{ config.products }}</div> -->
     </div>
     </div>
 
