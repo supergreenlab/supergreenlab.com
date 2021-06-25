@@ -37,8 +37,8 @@
       <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
     </div>
     <div :id="$style.footerMedia">
-      <div>Author:</div>
-      <div>Credit:</div>
+      <div v-if='guideSection.author'>Author: {{ guideSection.author }}</div>
+      <div v-if='guideSection.credit'>Credit:  {{ guideSection.credit }}</div>
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  props: ['media', 'index',],
+  props: ['media', 'index', 'guideSection', ],
   data() {
     return {
       showZoom: false,

@@ -38,8 +38,8 @@
         </div>
       </div>
       <div :id="$style.footerImg">
-        <div>Author: {{ guide.author | tostring }}</div>
-        <div>Credit:  {{ guide.credit }}</div>
+        <div v-if='guide.author'>Author: {{ guide.author }}</div>
+        <div v-if='guide.credit'>Credit:  {{ guide.credit }}</div>
       </div>
        <div :id="$style.title">
           <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>

@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.videosection'>
-      <Media :index='index' :media='guideSection.media' />
+      <Media :index='index' :media='guideSection.media' :guideSection='guideSection'/>
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
           <h1>{{ guideSection.title }}</h1>
