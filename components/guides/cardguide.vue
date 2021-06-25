@@ -28,7 +28,7 @@
         <div :id="$style.title">
           <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
         </div>
-        <div :id="$style.stepdone" v-if="nSteps(guide) === 0 ? '' : $style.stepdonecontainer " :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
+        <div :id="$style.stepdone" v-if="nSteps(guide)" :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
           <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ nSteps(guide) }}<div :id="$style.stepdonestring">Steps Done</div>
         </div>
       </div>
