@@ -215,12 +215,13 @@ export default {
   align-items: center
 
 #stepdonestring
+  font-size: 0.8em
   width 20px
   margin: 3px
 
 #readmorecontainer
   display: flex
-  justify-content: space-between
+  justify-content: space-around
   margin: 10px
   @media only screen and (max-width: 1000pt)
     margint-bottom: 10px
