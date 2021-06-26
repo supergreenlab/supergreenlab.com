@@ -22,26 +22,38 @@
       <div :class='$style.title'>
         <h2>Subscribe</h2>
       </div>
-      <div :class='$style.title'>
-        <h3>Stay tunned with our newsletter and get exclusive promotion</h3>
+      <div :class='$style.text'>
+        Stay tuned with our <b>newsletter</b> and get <b>exclusive promotions</b>.
       </div>
       <div :class='$style.title' :id="$style.email">
           <label for="email"> Email :</label>
-          <input type="email" name="email" id="email">
+          <input type="email" name="email" id="email" v-model='email'>
       </div>
-      <div :class='$style.buttons' :id='$style.btnSubscribe'>Subscribe</div>
-      <div :id="$style.guidelogo" >
+      <div :class='$style.buttons' :id='$style.btnSubscribe' @click='newsletterForm'>Subscribe</div>
+      <!--<div :id="$style.guidelogo" >
         <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
-      </div>
+      </div>-->
     </div>
-
   </section>
 </template>
 
 <script>
+import { open, screenX, availWidth } from '~/lib/client-side.js'
 
-
-
+export default {
+  data() {
+    return {
+      email: ''
+    }
+  },
+  methods: {
+    newsletterForm() {
+      const width = 800
+      open(`https://airtable.com/shrge8dNrpLul19IR?prefill_email=${this.$data.email}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      this.$matomo && this.$matomo.trackEvent('guide', 'newsletter')
+    }
+  },
+}
 </script>
 
 <style module lang=stylus>
@@ -52,6 +64,7 @@
   display: flex
   align-items: center
   flex-direction: column
+  padding: 10pt 0
 
 #subscribe
   width: 100%
@@ -61,12 +74,21 @@
   align-items: center
 
 #btnSubscribe
+  cursor: pointer
   width: 170px
   @media only screen and (max-width: 600pt)
     width: 100px
 
 .title
   margin: 5pt
+
+.text
+  margin: 10pt
+  font-size: 1.2em
+  text-align: center
+
+.text > b
+  color: #3bb30b
 
 h3
  text-align: center
@@ -90,7 +112,7 @@ h3
   white-space: nowrap
   font-weight: bold
   @media only screen and (max-width: 600pt)
-    font-size: 0.7em
+    font-size: 0.9em
     padding: 5pt 3pt
     margin: 3pt
 
@@ -119,6 +141,5 @@ label
   font-size: 1em
   margin: 10pt
   font-weight: bold
-
 
 </style>

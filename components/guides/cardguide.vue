@@ -24,7 +24,7 @@
           <div :class="$style.headerLabel" :id="$style.headerDate">
             Date: {{ guide.createdat | formatDate }}
           </div>
-          <div v-if='guide.duration' :class="$style.headerLabel" :id="$style.headerDuration">
+          <div v-if='duration(guide)' :class="$style.headerLabel" :id="$style.headerDuration">
             Duration: {{ guide.duration }}min
           </div>
           <div v-if='guide.difficulty' :class="$style.headerLabel" :id="$style.headerDifficulty">
@@ -47,7 +47,7 @@
       <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
       <div :id="$style.readmorecontainer">
         <div :id="$style.stepdone" v-if="guide.sections.length" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ sections(guide).length }}<div :id="$style.stepdonestring">Progress Enabled</div>
+          <span :id='$style.progress'><span :class="$style.green">{{ nChecked(guide) }}</span>/{{ sections(guide).length }}</span><div :id="$style.stepdonestring">STEPS DONE</div>
         </div>
         <button :id="$style.readmorebtn">Read More</button>
       </div>
@@ -99,6 +99,21 @@ export default {
         }
         fn(current)
         return sections
+      }
+    },
+    duration() {
+      return (guide) => {
+        //guide = require(`~/config/guide-${guide.slug}.json`)
+        let current = this.first(guide) == null ? guide : guides.find(g => g.slug == this.first(guide).nextslug[0])
+        let duration = 0
+        const fn = (current) => {
+          duration += current.duration
+          if (!current.nextslug) return
+          current = require(`~/config/guide-${current.nextslug}.json`)
+          if (current) return fn(current)
+        }
+        fn(current)
+        return duration
       }
     },
   }
@@ -172,7 +187,6 @@ export default {
   margin-bottom: 5px
 
 #title
-  text-align: center
   font-weight: bold
   text-transform: capitalize
   font-size: 0.9em
@@ -184,17 +198,8 @@ export default {
 .green
   color: #3BB30B
 
-#stepdone
-  display: flex
-  align-items: center
-
-#stepdonecontainer
-  font-size: 2.7em
-
-#stepdonestring
-  font-size: 0.5rem
-  width 20px
-  margin: 3px
+#progress
+  font-size: 1.5em
 
 #introduction
   height: 50px
@@ -205,6 +210,13 @@ export default {
     height: 25px
     font-size: 0.8rem
 
+#stepdone
+  display: flex
+  align-items: center
+
+#stepdonestring
+  width 20px
+  margin: 3px
 
 #readmorecontainer
   display: flex
@@ -225,7 +237,7 @@ export default {
   color: white
   text-transform: uppercase
   border-radius: 3px
-  width: 150px
+  width: 120px
 
 #readmorebtn:hover
   background-color: #2F880B

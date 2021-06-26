@@ -27,8 +27,6 @@
 </template>
 
 <script>
-
-
 </script>
 
 <style module lang=stylus>
