@@ -24,10 +24,10 @@
           <div :class="$style.headerLabel" :id="$style.headerDate">
             Date: {{ guide.createdat | formatDate }}
           </div>
-          <div :class="$style.headerLabel" :id="$style.headerDuration">
+          <div v-if='guide.duration' :class="$style.headerLabel" :id="$style.headerDuration">
             Duration: {{ guide.duration }}min
           </div>
-          <div :class="$style.headerLabel" :id="$style.headerDifficulty">
+          <div v-if='guide.difficulty' :class="$style.headerLabel" :id="$style.headerDifficulty">
             Difficulty: {{ guide.difficulty }}/5
           </div>
         </div>
@@ -47,7 +47,7 @@
       <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
       <div :id="$style.readmorecontainer">
         <div :id="$style.stepdone" v-if="guide.sections.length" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Progress Enabled</div>
+          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ sections(guide).length }}<div :id="$style.stepdonestring">Progress Enabled</div>
         </div>
         <button :id="$style.readmorebtn">Read More</button>
       </div>
@@ -120,7 +120,7 @@ export default {
 #headerImg
   display: flex
   justify-content: space-between
-  margin: 8px 3px 2px 3px
+  margin: 8px 3px 2px 0px
 
 #headerLabel
   display: flex
@@ -131,9 +131,9 @@ export default {
   align-self: center
   font-size: 0.7em
   color: white
-  padding: 2px
+  padding: 2px 3px
   border-radius: 3px
-  margin: 1px
+  margin-right: 2px
 
 #headerDate
   background-color: #5f939a
