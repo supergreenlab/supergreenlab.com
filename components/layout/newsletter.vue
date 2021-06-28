@@ -61,7 +61,7 @@ export default {
   display: flex
   align-items: center
   flex-direction: column
-  padding: 10pt 0
+  padding: 20pt 0
 
 #subscribe
   width: 100%
