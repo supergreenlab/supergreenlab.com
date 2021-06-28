@@ -24,10 +24,10 @@
           <div :class="$style.headerLabel" :id="$style.headerDate">
             Date: {{ guide.createdat | formatDate }}
           </div>
-          <div :class="$style.headerLabel" :id="$style.headerDuration">
+          <div v-if='duration(guide)' :class="$style.headerLabel" :id="$style.headerDuration">
             Duration: {{ guide.duration }}min
           </div>
-          <div :class="$style.headerLabel" :id="$style.headerDifficulty">
+          <div v-if='guide.difficulty' :class="$style.headerLabel" :id="$style.headerDifficulty">
             Difficulty: {{ guide.difficulty }}/5
           </div>
         </div>
@@ -38,8 +38,8 @@
         </div>
       </div>
       <div :id="$style.footerImg">
-        <div>Author: {{ guide.author | tostring }}</div>
-        <div>Credit:  {{ guide.credit }}</div>
+        <div v-if='guide.author'>Author: {{ guide.author }}</div>
+        <div v-if='guide.credit'>Credit:  {{ guide.credit }}</div>
       </div>
        <div :id="$style.title">
           <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
@@ -47,7 +47,7 @@
       <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
       <div :id="$style.readmorecontainer">
         <div :id="$style.stepdone" v-if="guide.sections.length" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-          <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ guide.sections.length }}<div :id="$style.stepdonestring">Progress Enabled</div>
+          <span :id='$style.progress'><span :class="$style.green">{{ nChecked(guide) }}</span>/{{ sections(guide).length }}</span><div :id="$style.stepdonestring">STEPS DONE</div>
         </div>
         <button :id="$style.readmorebtn">Read More</button>
       </div>
@@ -101,6 +101,21 @@ export default {
         return sections
       }
     },
+    duration() {
+      return (guide) => {
+        //guide = require(`~/config/guide-${guide.slug}.json`)
+        let current = this.first(guide) == null ? guide : guides.find(g => g.slug == this.first(guide).nextslug[0])
+        let duration = 0
+        const fn = (current) => {
+          duration += current.duration
+          if (!current.nextslug) return
+          current = require(`~/config/guide-${current.nextslug}.json`)
+          if (current) return fn(current)
+        }
+        fn(current)
+        return duration
+      }
+    },
   }
 }
 
@@ -120,7 +135,7 @@ export default {
 #headerImg
   display: flex
   justify-content: space-between
-  margin: 8px 3px 2px 3px
+  margin: 8px 3px 2px 0px
 
 #headerLabel
   display: flex
@@ -131,9 +146,9 @@ export default {
   align-self: center
   font-size: 0.7em
   color: white
-  padding: 2px
+  padding: 2px 3px
   border-radius: 3px
-  margin: 1px
+  margin-right: 2px
 
 #headerDate
   background-color: #5f939a
@@ -172,7 +187,6 @@ export default {
   margin-bottom: 5px
 
 #title
-  text-align: center
   font-weight: bold
   text-transform: capitalize
   font-size: 0.9em
@@ -184,17 +198,8 @@ export default {
 .green
   color: #3BB30B
 
-#stepdone
-  display: flex
-  align-items: center
-
-#stepdonecontainer
-  font-size: 2.7em
-
-#stepdonestring
-  font-size: 0.5rem
-  width 20px
-  margin: 3px
+#progress
+  font-size: 1.5em
 
 #introduction
   height: 50px
@@ -205,10 +210,18 @@ export default {
     height: 25px
     font-size: 0.8rem
 
+#stepdone
+  display: flex
+  align-items: center
+
+#stepdonestring
+  font-size: 0.8em
+  width 20px
+  margin: 3px
 
 #readmorecontainer
   display: flex
-  justify-content: space-between
+  justify-content: space-around
   margin: 10px
   @media only screen and (max-width: 1000pt)
     margint-bottom: 10px
@@ -225,7 +238,7 @@ export default {
   color: white
   text-transform: uppercase
   border-radius: 3px
-  width: 150px
+  width: 120px
 
 #readmorebtn:hover
   background-color: #2F880B

@@ -64,8 +64,10 @@
         <Guide v-for='g in relatedGuides' :key='g.id' :guide='g' />
       </div>
     </div>
-    <CallToAction />
-    <Newsletter />
+    <div :id='$style.prefooter'>
+      <CallToAction v-if='!first && !next' />
+      <Newsletter/>
+    </div>
     <Footer />
   </section>
 </template>
@@ -316,5 +318,9 @@ export default {
 .orange
   color: #e37120
   font-weight: bold
+
+#prefooter
+  width: 100%
+  margin: 20pt 0 0 0
 
 </style>

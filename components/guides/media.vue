@@ -19,13 +19,11 @@
 <template>
   <section :id='$style.container'>
     <div :id="$style.socialLink">
-      <a href="https://www.facebook.com/supergreenlab"><i class="fa fa-facebook-square"></i></a>
-      <a href="https://twitter.com/SuperGreenLab"><i class="fa fa-twitter"></i></a>
-      <a href="https://www.instagram.com/sgreenlab/"><i class="fa fa-instagram"></i></a>
-      <a href="https://supergreenlab.tumblr.com/"><i class="fa fa-tumblr-square"></i></a>
-      <a href="https://www.reddit.com/r/SuperGreenLab/"><i class="fa fa-reddit"></i></a>
       <a href="https://www.youtube.com/c/supergreenlab"><i class="fa fa-youtube"></i></a>
+      <a href="https://www.instagram.com/sgreenlab/"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.reddit.com/r/SuperGreenLab/"><i class="fa fa-reddit"></i></a>
       <a href="https://github.com/supergreenlab"><i class="fa fa-github"></i></a>
+      <a href="https://twitter.com/SuperGreenLab"><i class="fa fa-twitter"></i></a>
     </div>
     <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted @click='toggleZoom'>
       <source :src="require(`~/assets/img/${media.filePath}`)" type="video/mp4">
@@ -37,8 +35,8 @@
       <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
     </div>
     <div :id="$style.footerMedia">
-      <div>Author:</div>
-      <div>Credit:</div>
+      <div v-if='guideSection.author'>Author: {{ guideSection.author }}</div>
+      <div v-if='guideSection.credit'>Credit:  {{ guideSection.credit }}</div>
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
@@ -54,7 +52,7 @@
 
 <script>
 export default {
-  props: ['media', 'index',],
+  props: ['media', 'index', 'guideSection', ],
   data() {
     return {
       showZoom: false,
