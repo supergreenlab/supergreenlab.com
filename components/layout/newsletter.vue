@@ -30,9 +30,6 @@
           <input type="email" name="email" id="email" v-model='email'>
       </div>
       <div :class='$style.buttons' :id='$style.btnSubscribe' @click='newsletterForm'>Subscribe</div>
-      <!--<div :id="$style.guidelogo" >
-        <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
-      </div>-->
     </div>
   </section>
 </template>
@@ -76,11 +73,6 @@ export default {
 #btnSubscribe
   cursor: pointer
   width: 170px
-  @media only screen and (max-width: 600pt)
-    width: 100px
-
-.title
-  margin: 5pt
 
 .text
   margin: 10pt
@@ -90,8 +82,6 @@ export default {
 .text > b
   color: #3bb30b
 
-h3
- text-align: center
 
 #buttons
   width: 100%
@@ -102,7 +92,7 @@ h3
 .buttons
   background-color: #3BB30B
   text-align: center
-  padding: 3pt 15pt
+  padding: 10pt 15pt
   border-radius: 3pt
   color: white
   text-transform: uppercase
@@ -111,19 +101,15 @@ h3
   margin: 10pt
   white-space: nowrap
   font-weight: bold
-  @media only screen and (max-width: 600pt)
-    font-size: 0.9em
-    padding: 5pt 3pt
-    margin: 3pt
 
 #email
   background-color: #3BB30B
-  border-radius: 5pt
+  border-radius: 3pt
 
 input
   border: none
   padding: 5pt
-  border-radius: 0pt 5pt 5pt 0pt
+  border-radius: 0pt 3pt 3pt 0pt
 
 #guidelogo
   position: absolute
