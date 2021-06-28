@@ -25,7 +25,7 @@
             Date: {{ guide.createdat | formatDate }}
           </div>
           <div v-if='duration(guide)' :class="$style.headerLabel" :id="$style.headerDuration">
-            Duration: {{ guide.duration }}min
+            Duration: {{ duration(guide) }}min
           </div>
           <div v-if='guide.difficulty' :class="$style.headerLabel" :id="$style.headerDifficulty">
             Difficulty: {{ guide.difficulty }}/5
@@ -46,8 +46,8 @@
       </div>
       <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
       <div :id="$style.readmorecontainer">
-        <div :id="$style.stepdone" v-if="guide.sections.length" :class='nChecked(guide) == guide.sections.length ? $style.green : ""'>
-          <span :id='$style.progress'><span :class="$style.green">{{ nChecked(guide) }}</span>/{{ sections(guide).length }}</span><div :id="$style.stepdonestring">STEPS DONE</div>
+        <div :id="$style.stepdone" v-if="nSteps(guide)" :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
+          <span :id='$style.progress'><span :class="$style.green">{{ nChecked(guide) }}</span>/{{ nSteps(guide) }}</span><div :id="$style.stepdonestring">STEPS DONE</div>
         </div>
         <button :id="$style.readmorebtn">Read More</button>
       </div>
@@ -107,7 +107,7 @@ export default {
         let current = this.first(guide) == null ? guide : guides.find(g => g.slug == this.first(guide).nextslug[0])
         let duration = 0
         const fn = (current) => {
-          duration += current.duration
+          duration += current.duration || 0
           if (!current.nextslug) return
           current = require(`~/config/guide-${current.nextslug}.json`)
           if (current) return fn(current)
@@ -123,7 +123,6 @@ export default {
 
 <style module lang=stylus>
 #container
- border: 3px solid #EFEFEF
  color: #5D5D5D
  @media only screen and (max-width: 1000pt)
   font-size: 0.8rem
