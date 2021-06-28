@@ -18,15 +18,24 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.buttons'>
-      <div><nuxt-link to='#' :class='$style.buttons'> Previous Guide </nuxt-link></div>
-      <div><nuxt-link to='/guides' :class='$style.buttons'>Back to SuperGreenPedia</nuxt-link></div>
-      <div><nuxt-link to='#' :class='$style.buttons'>Next Guide</nuxt-link></div>
-    </div>
+      <h2>Welcome to</h2>
+      <div :class='$style.logo'><Logo /></div>
+      <div :class='$style.text'>Super<b>Green</b>Lab is a <b>community</b>  of <b>stealth growers</b>. <br>checkout our <b>dedicated grow lights</b> and <b>smart controller</b> and <b>join the community!</b></div>
+      <div :class='$style.buttons' v-on:click='backToHome()'>Start growing</div>
   </section>
 </template>
 
 <script>
+import Logo from '~/components/widgets/logo.vue'
+export default {
+  components: { Logo, },
+  props: ['guide'],
+  methods: {
+    backToHome() {
+      this.$router.push('/#top')
+    }
+  }
+}
 </script>
 
 <style module lang=stylus>
@@ -37,28 +46,37 @@
   display: flex
   align-items: center
   flex-direction: column
-
-#buttons
-  width: 100%
-  display: flex
-  justify-content: space-between
-  margin: 10pt
+  padding: 10pt 0
 
 .buttons
   background-color: #3BB30B
   text-align: center
-  padding: 3pt 15pt
+  padding: 10pt 15pt
   border-radius: 3pt
   color: white
   text-transform: uppercase
   text-decoration: none
   font-size: 1em
-  margin: 10pt
   white-space: nowrap
   font-weight: bold
+  cursor: pointer
+
+.logo
+  font-size: 2.8em
+  margin: 10pt
   @media only screen and (max-width: 600pt)
-    font-size: 0.7em
-    padding: 5pt 3pt
-    margin: 3pt
+    font-size: 2.5em
+
+.text
+  text-align: center
+  margin-bottom: 15pt
+  font-size: 1.2em
+
+.text > b
+  color: #3bb30b
+
+h2
+  margin: 5pt
+
 
 </style>

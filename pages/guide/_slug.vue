@@ -65,7 +65,7 @@
       </div>
     </div>
     <div :id='$style.prefooter'>
-      <CallToAction v-if='!first && !next' />
+      <CallToAction :guide='guide' v-if='!first && !next' />
       <Newsletter/>
     </div>
     <Footer />
