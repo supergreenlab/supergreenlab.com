@@ -47,24 +47,13 @@ export default {
 <style module lang=stylus>
 
 #pictureBanner
-  height: 160pt
+  height: 165pt
   width: 100%
   background-position: center
   background-size: cover
   background-repeat: no-repeat
   display: flex
   flex-direction: column
-
-#titleBanner
-  font-family: plumeAd
-  color: white
-  -webkit-text-stroke: 0.5px black
-  margin-top: 20pt
-  margin-left: 20pt
-  text-transform: uppercase
-  font-weight: bold
-  font-size: 1.5em
-  color: #ffffff
 
 #productsBanner
   align-self: flex-end

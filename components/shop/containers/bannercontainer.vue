@@ -36,7 +36,6 @@ export default {
 #container
   position: relative
   height: 165pt
-  margin: 5pt
 
 /* #bannercontainer
   width: 100%

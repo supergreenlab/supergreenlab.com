@@ -44,7 +44,6 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-  margin: 5pt
 
 #title
   text-transform: uppercase
@@ -60,8 +59,7 @@ export default {
   background-repeat: no-repeat
 
 #spotlightContent
-  height: 150pt
-  margin-left: 5pt
+  height: 165pt
   display:flex
   flex-direction: column
   justify-content: flex-start
