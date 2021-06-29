@@ -19,7 +19,6 @@
 <template>
 <section :id="$style.container">
   <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'>
-    <div :id='$style.titleBanner'>{{ config.title }}</div>
     <div :id='$style.linkBanner'>{{ config.link }}</div>
     <!-- <div :id='$style.productsBanner'>{{ config.products }}</div> -->
     <!-- <ProductList :products='config.products.pics' :id='$style.productsBanner'></ProductList> -->
@@ -51,7 +50,7 @@ export default {
   height: 160pt
   width: 100%
   background-position: center
-  background-size: contain
+  background-size: cover
   background-repeat: no-repeat
   display: flex
   flex-direction: column

@@ -48,7 +48,6 @@ export default {
 <style module lang=stylus>
 
 #container
-  margin-top: 20pt
   margin-bottom: 20pt
   position: relative
 
