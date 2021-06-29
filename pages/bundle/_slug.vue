@@ -174,7 +174,7 @@ export default {
 #header
   position: fixed
   width: 100%
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
 
@@ -197,9 +197,9 @@ export default {
 
 .guide
   margin: 20pt 0
-  flex-basis: 50% 
+  flex-basis: 50%
   @media only screen and (max-width: 600px)
-    flex-basis: 100% 
+    flex-basis: 100%
     margin: 20pt 5pt
 
 .space

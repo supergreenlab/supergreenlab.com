@@ -27,6 +27,7 @@
       <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (!isActive? "" : "rotate(-135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0px")}'></span>
     </a>
     <div :id='$style.menu' :style='{"right": (!isActive? "-150pt" : "0pt")}'>
+      <div><nuxt-link :class='$route.path.includes("/shop") ? $style.selected : ""' to='/shop'>Shop</nuxt-link></div>
       <div><nuxt-link :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01-supergreenlab-2x-sticker-sheets-pack-tomtomtom-1st-edition-supergreenlab-world") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01-supergreenlab-2x-sticker-sheets-pack-tomtomtom-1st-edition-supergreenlab-world'>Stickers!</nuxt-link></div>
       <div><nuxt-link :class='$route.path.includes("/bundle/micro-box-bundle") ? $style.selected : ""' to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>
       <div><nuxt-link :class='$route.path.includes("/bundle/my-first-stealth-grow-box") ? $style.selected : ""' to='/bundle/my-first-stealth-grow-box'>Nano bundle <span :class='$style.new'>New!</span></nuxt-link></div>

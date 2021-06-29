@@ -43,6 +43,8 @@ export default {
   */
   css: [
     '@/assets/css/global.css',
+    'vue-slick-carousel/dist/vue-slick-carousel.css',
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css',
   ],
 
   /*
@@ -55,6 +57,7 @@ export default {
     { src: '~plugins/crisp.js', ssr: false },
     { src: '~plugins/vue-agile.js', ssr: false },
     { src: '~plugins/vue-touch.js', ssr: false },
+    { src: '~plugins/vue-slick-carousel.js', ssr: false },
     //{ src: '~plugins/pixel.js', ssr: false },
   ],
 

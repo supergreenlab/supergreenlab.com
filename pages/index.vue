@@ -65,7 +65,7 @@
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
           <div :id='b.slug'></div>
-          <Bundle :bundle='b' :showdescription='false' />
+          <Bundle :bundle='b' :showdescription='false'/>
         </div>
         <div :class='$style.title'>
           <TitleStep green='Install your bundle'
@@ -75,13 +75,6 @@
         <LatestGuide />
         <Youtube ref='youtube' />
         <div :class='$style.space'></div>
-        <!--<div :class='$style.title'>
-          <TitleStep green='Spare parts'
-                      introduction='Stay tuned for **new modules** and **add-ons** coming soon™' />
-        </div>
-        <div :class='$style.shop'>
-          <ProductList ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
-        </div>-->
       </div>
       <div :class='$style.title'>
         <TitleStep title='STEP 3'

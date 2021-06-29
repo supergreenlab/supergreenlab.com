@@ -84,6 +84,7 @@ dist
 sw.*
 
 assets/img/guides/
+assets/img/widgets/
 assets/img/products/
 assets/img/brands
 assets/img/brandproducts
@@ -93,5 +94,6 @@ assets/img/links
 static/guides/
 config/products.json
 config/guides.json
+config/widgets.json
 config/guide-*.json
 assets/img/tmp/
