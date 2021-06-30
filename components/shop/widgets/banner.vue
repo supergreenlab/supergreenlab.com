@@ -18,7 +18,7 @@
 
 <template>
 <section :id="$style.container">
-  <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileLarge}`)})`}'>
+  <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
     <div :id='$style.linkBanner'>{{ config.link }}</div>
     <!-- <div :id='$style.productsBanner'>{{ config.products }}</div> -->
     <!-- <ProductList :products='config.products.pics' :id='$style.productsBanner'></ProductList> -->

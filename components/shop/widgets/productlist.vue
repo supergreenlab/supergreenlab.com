@@ -34,6 +34,7 @@ export default {
   props: ['config',],
   components: {ProductList,},
   computed: {
+<<<<<<< HEAD
     soil() {
       const { config } = this.$props
       console.log(config)
@@ -54,6 +55,14 @@ export default {
     // }
     // if products is null then return map widget producttype
 
+=======
+    products() {
+      const { config } = this.$props
+      return (config.products || []).map(p => products.find(p2 => p2.id == p))
+    }
+  },
+  methods: {
+>>>>>>> f61757adec98fc65db79efa064afffb99ba7af75
   }
 }
 </script>
@@ -87,4 +96,5 @@ export default {
 
 #description
   color: #3bb30b
+
 </style>

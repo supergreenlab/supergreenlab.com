@@ -18,9 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id="$style.bannercontainer">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </section>
 </template>
 
