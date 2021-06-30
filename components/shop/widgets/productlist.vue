@@ -34,35 +34,13 @@ export default {
   props: ['config',],
   components: {ProductList,},
   computed: {
-<<<<<<< HEAD
-    soil() {
-      const { config } = this.$props
-      console.log(config)
-      return this.$store.getters['eshop/widgetsWithProducttypes'](['TOOLS'])
-    }
-    // coucou: () => (products) =>  widgets['products'].filter(st => st.product == products),
-    // coucou() {
-    //   const { config } = this.$props
-    //   return console.log(config)
-    // }
-    // products: () => (products) =>  widgets['producttypes'].filter(st => st.product == products),
-    // products() {
-    //   const { config } = this.$props
-    //   return config.products.map(p => products.find(p2 => p2.id == p))
-      // if (config.length == 0) {
-      //   console.log(config.length)
-      // }
-    // }
-    // if products is null then return map widget producttype
-
-=======
     products() {
       const { config } = this.$props
       return (config.products || []).map(p => products.find(p2 => p2.id == p))
     }
   },
   methods: {
->>>>>>> f61757adec98fc65db79efa064afffb99ba7af75
+
   }
 }
 </script>
