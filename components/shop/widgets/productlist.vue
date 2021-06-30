@@ -21,6 +21,7 @@
     <div :id="$style.titleList">{{config.title}}</div>
     <div :id='$style.description'>{{config.description}}</div>
     <ProductList :products='products'></ProductList>
+    <!-- <ProductList :products='coucou'></ProductList> -->
   </section>
 </template>
 
@@ -28,19 +29,29 @@
 import ProductList from '~/components/products/productlist.vue'
 
 import { products } from '~/config/products.json'
+// import widgets from '~/config/widgets.json'
+// import {producttypes}  from '~/config/widgets.json'
 
 export default {
   props: ['config',],
   components: {ProductList,},
   computed: {
-    products() {
-      const { config } = this.$props
-      return config.products.map(p => products.find(p2 => p2.id == p))
-    }
-  },
-  methods: {
+    // coucou: () => (products) =>  widgets['products'].filter(st => st.product == products),
+    // coucou() {
+    //   const { config } = this.$props
+    //   return console.log(config)
+    // }
+    products: () => (products) =>  widgets['producttypes'].filter(st => st.product == products),
+    // products() {
+    //   const { config } = this.$props
+    //   return config.products.map(p => products.find(p2 => p2.id == p))
+      // if (config.length == 0) {
+      //   console.log(config.length)
+      // }
+    // }
+    // if products is null then return map widget producttype
 
-  },
+  }
 }
 </script>
 

@@ -15,33 +15,36 @@
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
-
 <template>
-  <section :id='$style.container'>
-      <div :id='$style.horizontalContainer'>
-        <slot></slot>
+  <section>
+    <div :id="$style.container">
+        <div :id="$style.title">{{ config.title }}</div>
+        <div :id="$style.description">{{ config.description }}</div>
     </div>
   </section>
 </template>
 
 <script>
-
 export default {
-  props: ['config',],
+  props: ['config']
 }
-
 </script>
-
 
 <style module lang=stylus>
 
-
-#horizontalContainer
-  margin-top: 20pt
-  margin-bottom: 20pt
+#container
   width: 100%
   display: flex
-  justify-content:center
+  justify-content: center
   align-items: center
+
+#title
+  text-transform: uppercase
+  font-weight: bold
+  font-size: 1.5em
+  color: #5E5E5E
+
+#description
+  color: #3bb30b
 
 </style>

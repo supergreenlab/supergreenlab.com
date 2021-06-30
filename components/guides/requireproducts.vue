@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -15,33 +15,3 @@
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
-
-<template>
-  <section :id='$style.container'>
-      <div :id='$style.horizontalContainer'>
-        <slot></slot>
-    </div>
-  </section>
-</template>
-
-<script>
-
-export default {
-  props: ['config',],
-}
-
-</script>
-
-
-<style module lang=stylus>
-
-
-#horizontalContainer
-  margin-top: 20pt
-  margin-bottom: 20pt
-  width: 100%
-  display: flex
-  justify-content:center
-  align-items: center
-
-</style>

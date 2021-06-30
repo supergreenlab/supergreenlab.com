@@ -19,12 +19,7 @@
 <template>
   <section :id="$style.body" :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
     <div :id="$style.container">
-      <div :class="$style.logo">
-        <Logo subtitle="Growshop." />
-      </div>
-      <div :class="$style.menu">
-        <div><nuxt-link :class="$route.path.includes('/cart') ? $style.selected : ''" to="/cart">Cart<span v-if="nCartItems != 0">({{ nCartItems }})</span></nuxt-link></div>
-      </div>
+      <Header/>
     </div>
     <div :id="$style.navbar">
       <NavBar />
@@ -33,12 +28,11 @@
 </template>
 
 <script>
-import Logo from "~/components/widgets/logo.vue";
-import SearchBar from "~/components/shop/widgets/searchbar.vue";
+import Header from "~/components/layout/header.vue";
 import NavBar from "~/components/shop/widgets/navbar.vue";
 
 export default {
-  components: { Logo, SearchBar, NavBar },
+  components: { Header, NavBar },
   data() {
     return {
       showHeader: true,
@@ -142,6 +136,8 @@ export default {
 #navbar
   position: fixed
   width: 100%
-  top: 53px
+  top: 48pt
+  @media only screen and (max-width: 600px)
+    top: 35pt
 
 </style>
