@@ -35,7 +35,7 @@ export default {
   computed: {
     products() {
       const { config } = this.$props
-      return config.products.map(p => products.find(p2 => p2.id == p))
+      return (config.products || []).map(p => products.find(p2 => p2.id == p))
     }
   },
   methods: {
@@ -73,4 +73,5 @@ export default {
 
 #description
   color: #3bb30b
+
 </style>
