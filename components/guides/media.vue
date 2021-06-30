@@ -19,11 +19,11 @@
 <template>
   <section :id='$style.container'>
     <div :id="$style.socialLink">
-      <a href="https://www.youtube.com/c/supergreenlab"><i class="fa fa-youtube"></i></a>
-      <a href="https://www.instagram.com/sgreenlab/"><i class="fa fa-instagram"></i></a>
-      <a href="https://www.reddit.com/r/SuperGreenLab/"><i class="fa fa-reddit"></i></a>
-      <a href="https://github.com/supergreenlab"><i class="fa fa-github"></i></a>
-      <a href="https://twitter.com/SuperGreenLab"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.youtube.com/c/supergreenlab" target="_blank"><i class="fa fa-youtube"></i></a>
+      <a href="https://www.instagram.com/sgreenlab/" target="_blank"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.reddit.com/r/SuperGreenLab/" target="_blank"><i class="fa fa-reddit"></i></a>
+      <a href="https://github.com/supergreenlab" target="_blank"><i class="fa fa-github"></i></a>
+      <a href="https://twitter.com/SuperGreenLab" target="_blank"><i class="fa fa-twitter"></i></a>
     </div>
     <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted @click='toggleZoom'>
       <source :src="require(`~/assets/img/${media.filePath}`)" type="video/mp4">
