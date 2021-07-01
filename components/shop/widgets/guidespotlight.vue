@@ -18,8 +18,9 @@
 <template>
   <section>
     <div :id="$style.container">
+        <div>Coucou</div>
         <div :id="$style.title">{{ config.title }}</div>
-        <div :id="$style.description">{{ config.description }}</div>
+        <div v-html='$md.render(config.description)'></div>
     </div>
   </section>
 </template>
@@ -34,6 +35,7 @@ export default {
 
 #container
   width: 100%
+  height: 160pt
   display: flex
   justify-content: center
   align-items: center

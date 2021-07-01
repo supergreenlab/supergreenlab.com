@@ -53,7 +53,7 @@ import VerticalContainer from '~/components/shop/containers/verticalcontainer.vu
 import HorizontalContainer from '~/components/shop/containers/horizontalcontainer.vue'
 
 import Banner from '~/components/shop/widgets/banner.vue'
-import CategoryList from '~/components/shop/widgets/categorylist.vue'
+
 import Newsletter from '~/components/shop/widgets/newsletter.vue'
 import Spotlight from '~/components/shop/widgets/spotlight.vue'
 import PlantSpotlight from '~/components/shop/widgets/plantspotlight.vue'
@@ -61,7 +61,7 @@ import ProductList from '~/components/shop/widgets/productlist.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, Product, BannerContainer, CarrouselContainer, VerticalContainer, HorizontalContainer, Banner, CategoryList, ProductList, Newsletter, Spotlight, PlantSpotlight, Footer}
+const components = {Header, Product, BannerContainer, CarrouselContainer, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, Spotlight, PlantSpotlight, Footer}
 
 export default{
   components,

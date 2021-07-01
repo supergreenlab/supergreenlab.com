@@ -34,12 +34,6 @@ export default {
 
 <style module lang=stylus>
 
-/* #container
-  width: 100%
-  display: flex
-  flex-direction: column
-  align-items: center */
-
 #verticalContainer
   margin-top: 5pt
   width: 165pt

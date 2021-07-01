@@ -20,34 +20,22 @@
 <section :id="$style.container">
   <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
     <div :id='$style.linkBanner'>{{ config.link }}</div>
-    <!-- <div :id='$style.productsBanner'>{{ config.products }}</div> -->
-    <!-- <ProductList :products='config.products.pics' :id='$style.productsBanner'></ProductList> -->
   </div>
 </section>
 
 </template>
 
 <script>
-// import ProductList from '~/components/products/productlist.vue'
-
-// import { products } from '~/config/products.json'
 
 export default {
   props: ['config',],
-  // components: {ProductList,},
-  // computed: {
-  //   products() {
-  //     const { config } = this.$props
-  //     return config.products.map(p => products.find(p2 => p2.id == p))
-  //   }
-  // }
 }
 </script>
 
 <style module lang=stylus>
 
 #pictureBanner
-  height: 165pt
+  height: 160pt
   width: 100%
   background-position: center
   background-size: cover

@@ -20,8 +20,7 @@
   <section :id='$style.container'>
     <div :id="$style.titleList">{{config.title}}</div>
     <div :id='$style.description'>{{config.description}}</div>
-    <ProductList :products='soil'></ProductList>
-    <!-- <ProductList :products='coucou'></ProductList> -->
+    <ProductList :products='products'></ProductList>
   </section>
 </template>
 
@@ -36,8 +35,12 @@ export default {
   computed: {
     products() {
       const { config } = this.$props
-      return (config.products || []).map(p => products.find(p2 => p2.id == p))
-    }
+      console.log(config)
+      return [].concat(...(config.producttypes || []).map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
+        return a.indexOf(p) == i
+      })
+    },
+
   },
   methods: {
 

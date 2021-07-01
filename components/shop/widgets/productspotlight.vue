@@ -17,7 +17,8 @@
  -->
 <template>
   <section>
-    <div :id="$style.container">
+    <div :id="$style.container" v-if='console'>
+        <div>Coucou</div>
         <div :id="$style.title">{{ config.title }}</div>
         <div :id="$style.description">{{ config.description }}</div>
     </div>
@@ -26,7 +27,14 @@
 
 <script>
 export default {
-  props: ['config']
+  props: ['config'],
+  computed: {
+    console() {
+      console.log('config')
+    }
+
+  }
+
 }
 </script>
 

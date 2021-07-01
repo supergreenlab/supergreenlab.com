@@ -27,8 +27,8 @@
           <div v-html='$md.render(config.description)'></div>
         </div>
         <div :id='$style.button'>
-          <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`'>Open plant</a><br />
-          <i><nuxt-link :id='$style.appbutton' to='/app'>Install app first</nuxt-link></i>
+          <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
+          <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
         </div>
       </div>
     </div>
