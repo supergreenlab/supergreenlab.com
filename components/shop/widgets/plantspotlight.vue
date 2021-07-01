@@ -76,7 +76,8 @@ export default {
 #title
   text-transform: uppercase
   font-weight: bold
-  font-size: 1.5em
+  font-size: 2.5em
+  margin-bottom: 10pt
   color: #5E5E5E
 
 #plantcontainer

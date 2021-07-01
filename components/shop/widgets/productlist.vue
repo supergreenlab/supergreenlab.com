@@ -19,7 +19,12 @@
 <template>
   <section :id='$style.container'>
     <div :id="$style.titleList">{{config.title}}</div>
-    <div :id='$style.description'>{{config.description}}</div>
+    <div :id="$style.headerProductList">
+      <div :id="$style.picContainer">
+        <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+      </div>
+      <div :id='$style.description'>{{config.description}}</div>
+    </div>
     <ProductList :products='products'></ProductList>
   </section>
 </template>
@@ -56,9 +61,6 @@ export default {
   flex-direction: column
   justify-content: center
 
-#title
-  margin: 20pt 0 20pt 0
-
 #body
   display: flex
   align-items: center
@@ -69,13 +71,26 @@ export default {
 #titleList
   text-transform: uppercase
   font-weight: bold
-  margin-left: 50px
+  margin-bottom: 10pt
   font-size: 2.5em
   color: #5E5E5E
   @media only screen and (max-width: 600px)
-    margin-left: 5px
+    margin-left: 5pt
 
 #description
-  color: #3bb30b
+  margin-left: 5pt
+  text-align: justify
+
+#pic
+  width: 100pt
+  height: 100pt
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+#headerProductList
+  display: flex
+  width: 70%
+  align-self: center
 
 </style>
