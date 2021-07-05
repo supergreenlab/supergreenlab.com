@@ -15,13 +15,16 @@
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
+
 <template>
   <section>
     <div :id="$style.container">
-        <div>Coucou</div>
-        <div :id="$style.title">{{ config.title }}</div>
-        <div v-html='$md.render(config.description)'></div>
+      <div :id="$style.title">{{ config.title }}</div>
+      <div :id="$style.spotlightContent">
+          <div>Coucou</div>
+          <div>{{ config.description }}</div>
     </div>
+  </div>
   </section>
 </template>
 
@@ -34,19 +37,30 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 100%
-  height: 160pt
   display: flex
-  justify-content: center
-  align-items: center
+  flex-direction: column
+  justify-content: flex-start
+  position: relative
+  height: 100%
 
 #title
   text-transform: uppercase
   font-weight: bold
-  font-size: 1.5em
+  font-size: 2.5em
+  margin-bottom: 10pt
   color: #5E5E5E
 
-#description
-  color: #3bb30b
+#pictureBanner
+  height: 160pt
+  width: 160pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+#spotlightContent
+  height: 165pt
+  display:flex
+  flex-direction: column
+  justify-content: flex-start
 
 </style>
