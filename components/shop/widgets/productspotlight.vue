@@ -20,23 +20,23 @@
   <section>
     <div :id="$style.container">
       <div :id="$style.spotlightcontainer">
-        <div :id="$style.title" v-html='$md.render(config.title)'></div>
+        <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
         <div v-for='product in products' :key='product.id' :class='$style.productspotlight'>
           <div :id='$style.pics'>
+            <!-- <div>{{ product }}</div> -->
             <Pics :pics='product.pics' :hideArrow=true />
           </div>
           <div :id='$style.content'>
             <h3 v-html='$md.render(product.name)'></h3>
-            <div v-html='$md.render(product.tagline)'></div>
-            <div v-html='$md.render(product.description)'></div>
-          </div>
+            <div v-html='$md.render(product.tagline)' :id='$style.tagline'></div>
+            <div v-html='$md.render(product.bulletpoints)' :id='$style.bullets'></div>
           <div :id='$style.pricing'>
             <Price :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
             <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
-            <!-- <nuxt-link v-if='done' :id='$style.button' to='/cart'><b>GO TO CART</b></nuxt-link>
-            <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='buyNow'><b>{{ activated ? "PLEASE WAIT" : (added ? "ADDED IN CART!" : "BUY NOW") }}</b></a> -->
           </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -57,13 +57,7 @@ export default {
   data() {
     return {
       addedToCart: false,
-      // activated: false,
-      // added: false,
-      // done: false
     }
-  },
-  beforeDestroy() {
-    if (this.timeout) clearTimeout(this.timeout)
   },
   computed: {
     products() {
@@ -76,24 +70,7 @@ export default {
     handleAddToCart() {
       setTimeout(() => this.$data.addedToCart = true, 1000)
     }
-    // buyNow() {
-    //   if (this.$data.activated) return
-    //   const { product, sellingPoint, lineItems, name,} = this.$props
-    //   const { n } = this.$data
-    //   const cart = lineItems ? lineItems : [{ n, product, sellingPoint }]
-    //   this.$matomo && this.$matomo.trackEvent('product', 'addtocart', name || sellingPoint.slug)
-    //   this.$data.activated = true
-    //   this.timeout = setTimeout(() => {
-    //     this.$data.activated = false
-    //     this.$data.added = true
-    //     this.$emit('click')
-    //     cart.forEach(li => this.$store.commit('checkout/addToCart', li))
-    //     this.timeout = setTimeout(() => {
-    //       this.$data.done = true
-    //     }, 2000)
-    //   }, 800)
-    },
-
+  }
 }
 
 </script>
@@ -102,7 +79,7 @@ export default {
 
 #container
   display: flex
-  justify-content: center
+
   align-items: center
 
 #spotlightcontainer
@@ -136,7 +113,7 @@ export default {
   justify-content: center
 
 #pics
-  width: 300pt
+  width: 40%
   height: 300pt
   background-position: center
   background-size: contain
@@ -147,23 +124,27 @@ export default {
   flex-direction: column
   align-self: flex-end
 
-#button
-  display: block
-  background-color: #3BB30B
-  text-align: center
-  padding: 8pt 25pt
-  border-radius: 5pt
-  color: white
-  text-decoration: none
-  font-size: 1.2em
-  margin: 4pt 0
-  white-space: nowrap
-  transition: opacity 0.2s
+#bullets
+  color: #454545
+
+#bullets strong
+  color: #3BB30B
+  font-weight: 600
+
+#bullets ul
+  padding: 0
+  list-style-type: none
+
+#bullets ul li
+  margin-bottom:7pt
+
+#bullets ul li::before
+  content: '- '
+  color: #3bb30b
   font-weight: bold
-  cursor: pointer
 
-
-#button:hover
-  background-color: #2F880B
+#tagline
+  color: #3bb30b
+  font-weight: bold
 
 </style>

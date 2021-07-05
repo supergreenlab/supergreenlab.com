@@ -21,7 +21,6 @@
     <div :id="$style.container">
       <div :id="$style.title">{{ config.title }}</div>
       <div :id="$style.spotlightContent">
-          <div>Coucou</div>
           <div>{{ config.description }}</div>
     </div>
   </div>

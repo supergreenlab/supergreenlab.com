@@ -18,8 +18,32 @@
 
 <template>
   <section :id="$style.container">
-    <h2 :id="$style.title">{{ config.title }}</h2>
-    <div v-if='loading==false' :id='$style.plantcontainer'>
+    <div :id="$style.spotlightcontainer">
+      <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
+      <div v-if='loading==false' :id='$style.plantcontainer'>
+        <div :id='$style.pic'>
+          <div :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}'></div>
+        </div>
+        <div :id='$style.description'>
+          <div :id='$style.descriptionbody'>
+            <h3>{{ plant.name }}</h3>
+            <div v-html='$md.render(config.description)'></div>
+          </div>
+          <div :id='$style.button'>
+          <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
+          <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
+        </div>
+        </div>
+      </div>
+      <div v-else :id='$style.loading'>
+      <div :id='$style.loadingdiv'>
+        <Loading label='Loading plant..' />
+      </div>
+    </div>
+    </div>
+
+
+    <!-- <div v-if='loading==false' :id='$style.plantcontainer'>
       <div :id='$style.pic' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}'></div>
       <div :id='$style.description'>
         <div :id='$style.descriptionbody'>
@@ -36,7 +60,7 @@
       <div :id='$style.loadingdiv'>
         <Loading label='Loading plant..' />
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -68,10 +92,12 @@ export default {
 
 #container
   display: flex
+  justify-content: center
+  align-items: center
+
+#spotlightcontainer
+  display:flex
   flex-direction: column
-  justify-content: flex-start
-  position: relative
-  height: 100%
 
 #title
   text-transform: uppercase
@@ -81,14 +107,19 @@ export default {
   color: #5E5E5E
 
 #plantcontainer
+  width: 80%
   display: flex
-  height: 100%
+  justify-content:center
+  align-self : center
 
 #pic
-  min-width: 161pt
-  min-height: 100%
+  height: 160pt
+
+#pic > div
+  width: 160pt
+  height: 100%
   background-position: center
-  background-size: cover
+  background-size: contain
   background-repeat: no-repeat
 
 #description
@@ -99,8 +130,13 @@ export default {
 #descriptionbody
   flex: 1
 
+#descriptionbody strong
+  color: #3BB30B
+  font-weight: 600
+
 #descriptionbody > h3
-  color: #454545
+  color: #5E5E5E
+  margin-bottom: 5pt
 
 #button
   display: flex
@@ -108,15 +144,28 @@ export default {
   flex-direction: column
 
 #plantbutton
-  text-decoration: none
+  display: block
   background-color: #3bb30b
-  padding: 5pt 10pt
-  color: white
-  border-radius: 3pt
+  text-align: center
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: #ffffff
+  text-decoration: none
+  font-size: 1.2em
+  margin: 4pt 0
+  white-space: nowrap
+  text-transform: uppercase
+  font-weight: bold
+
+#plantbutton:hover
+  background-color: #2F880B
+
+
 
 #appbutton
   color: #3bb30b
   font-weight: bold
+  font-size: 1.2em
 
 #loading
   display: flex
