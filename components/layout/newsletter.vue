@@ -25,9 +25,9 @@
       <div :class='$style.text'>
         Stay tuned with our <b>newsletter</b> and get <b>exclusive promotions</b>.
       </div>
-      <div :class='$style.title' :id="$style.email">
-          <label for="email"> Email :</label>
-          <input type="email" name="email" id="email" v-model='email'>
+      <div :class='$style.title' :id="$style.emailcontainer">
+          <label :id="$style.label" for="email"> Email :</label>
+          <input type="email" name="email" id="email" v-model='email' :class="$style.email">
       </div>
       <div :class='$style.buttons' :id='$style.btnSubscribe' @click='newsletterForm'>Subscribe</div>
     </div>
@@ -102,24 +102,16 @@ export default {
   white-space: nowrap
   font-weight: bold
 
-#email
+#emailcontainer
   background-color: #3BB30B
   border-radius: 3pt
 
-input
-  border: none
+.email
   padding: 5pt
   border-radius: 0pt 3pt 3pt 0pt
 
-#guidelogo
-  position: absolute
-  right: 50px
-  margin-top: 100px
-  @media only screen and (max-width: 600pt)
-    position: static
-    margin-top: 8px
 
-label
+#label
   text-align: center
   padding: 5pt 0pt 5pt 0pt
   color: white
@@ -128,4 +120,6 @@ label
   margin: 10pt
   font-weight: bold
 
+input
+  border: none
 </style>

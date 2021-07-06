@@ -18,9 +18,9 @@
     <div :id='$style.content'>
       <h2 :id='$style.title'>{{ config.title }}</h2>
       <div :id='$style.description'>{{ config.description }}</div>
-      <div :class='$style.title' :id="$style.email">
-          <label for="email"> Email :</label>
-          <input type="email" name="email" id="email" v-model='email'>
+      <div :class='$style.title' :id="$style.emailcontainer">
+          <label for="email" :id="$style.label"> Email :</label>
+          <input type="email" name="email" id="email" v-model='email' :class="$style.email">
       </div>
       <div :id='$style.btnSubscribe'  @click='newsletterForm'>{{ config.link }}</div>
     </div>
@@ -33,6 +33,11 @@ import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
   props: ['config',],
+  data() {
+    return {
+      email: ''
+    }
+  },
   methods: {
     newsletterForm() {
       const width = 800
@@ -57,24 +62,24 @@ export default {
 
 #title
   font-weight: bold
-  font-size: 2em
+  font-size: 1.5em
   margin-bottom: 10pt
-  color: #5E5E5E
   text-align: center
 
 #description
   margin-bottom: 5pt
+  text-align: center
 
 #btnSubscribe
   display: block
   background-color: #3bb30b
   text-align: center
-  padding: 8pt 25pt
-  border-radius: 5pt
+  padding: 3pt 15pt
+  border-radius: 3pt
   color: #ffffff
   text-decoration: none
-  font-size: 1.2em
-  margin: 4pt 0
+  font-size: 1em
+  margin: 5pt 0
   white-space: nowrap
   text-transform: uppercase
   font-weight: bold
@@ -83,23 +88,22 @@ export default {
 #btnSubscribe:hover
   background-color: #2F880B
 
-#email
+#emailcontainer
   background-color: #3BB30B
   border-radius: 3pt
+  display: flex
+  margin-bottom: 5pt
 
-input
-  border: none
-  padding: 5pt
+.email
   border-radius: 0pt 3pt 3pt 0pt
 
 
-label
+#label
   text-align: center
-  padding: 5pt 0pt 5pt 0pt
   color: white
   text-transform: uppercase
-  font-size: 1em
-  margin: 10pt
   font-weight: bold
+  padding: 3pt
+  font-size: 0.8em
 
 </style>

@@ -31,12 +31,11 @@
             <h3 v-html='$md.render(product.name)'></h3>
             <div v-html='$md.render(product.tagline)' :id='$style.tagline'></div>
             <div v-html='$md.render(product.bulletpoints)' :id='$style.bullets'></div>
-          <div :id='$style.pricing'>
-            <Price :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
-            <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
+            <div :id='$style.pricing'>
+              <Price :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
+              <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
+            </div>
           </div>
-          </div>
-
         </div>
       </div>
     </div>

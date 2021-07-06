@@ -107,7 +107,6 @@ export default {
   color: #5E5E5E
 
 #plantcontainer
-  width: 80%
   display: flex
   justify-content:center
   align-self : center

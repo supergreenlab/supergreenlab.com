@@ -19,17 +19,44 @@
 <template>
   <section>
     <div :id="$style.container">
-      <div :id="$style.title">{{ config.title }}</div>
+      <div :id="$style.title" v-html='$md.render(config.title)'></div>
+      <div :id="$style.description" v-html='$md.render(config.description)'></div>
       <div :id="$style.spotlightContent">
-          <div>{{ config.description }}</div>
+        <CardGuide :guide='guide' userStep='0' :class='$style.cardContainer' />
+        <div :id="$style.require">
+          <h3 :id="$style.tagline">What you'll need</h3>
+          <SmallProductList :products='products' maxItems='3' />
+        </div>
+      </div>
+
     </div>
-  </div>
   </section>
 </template>
 
 <script>
+import CardGuide from '~/components/guides/cardguide.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
+
+import { products } from '~/config/products.json'
+
 export default {
-  props: ['config']
+  props: ['config'],
+  components: { CardGuide, SmallProductList },
+  computed: {
+    guide() {
+      const { config } = this.$props
+      const slug = config.guideslug
+      const guide = require(`~/config/guide-${slug}.json`)
+      // console.log(guide)
+      return guide
+    },
+    products() {
+      const { config } = this.$props
+      const slug = config.guideslug
+      const guide = require(`~/config/guide-${slug}.json`)
+      return (guide.requires || []).map(p => products.find(p1 => p1.id == p))
+    }
+  }
 }
 </script>
 
@@ -40,7 +67,6 @@ export default {
   flex-direction: column
   justify-content: flex-start
   position: relative
-  height: 100%
 
 #title
   text-transform: uppercase
@@ -49,17 +75,26 @@ export default {
   margin-bottom: 10pt
   color: #5E5E5E
 
-#pictureBanner
-  height: 160pt
-  width: 160pt
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+#description
+  margin: 10pt 0
 
 #spotlightContent
-  height: 165pt
   display:flex
+  justify-content: center
+  align-items: center
+
+.cardContainer
+  display: flex
   flex-direction: column
-  justify-content: flex-start
+  width : 300px
+
+#tagline
+  color: #5E5E5E
+  font-weight: bold
+
+#require
+  display: flex
+  flex-direction: column
+  margin: 10pt
 
 </style>
