@@ -18,8 +18,12 @@
 
 <template>
 <section :id="$style.container">
-  <div :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
-    <div :id='$style.linkBanner'>{{ config.link }}</div>
+  <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted @click='toggleZoom'>
+    <source :src="require(`~/assets/img/${config.picture[0].filePath}`)" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div v-else :id='$style.pictureBanner'  @click='toggleZoom' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+    <!-- <div :id='$style.linkBanner'>{{ config }}</div> -->
   </div>
 </section>
 
@@ -29,13 +33,26 @@
 
 export default {
   props: ['config',],
+  computed: {
+    media() {
+      const { config } = this.$props
+      const media = config.picture[0]
+      return media
+    }
+  },
+  methods: {
+    toggleZoom() {
+      console.log('pouet')
+      this.$data.showZoom = !this.$data.showZoom
+    },
+  },
 }
 </script>
 
 <style module lang=stylus>
 
 #pictureBanner
-  height: 160pt
+  height: 200pt
   width: 100%
   background-position: center
   background-size: cover
@@ -43,8 +60,13 @@ export default {
   display: flex
   flex-direction: column
 
-#productsBanner
-  align-self: flex-end
-  margin-right: 20pt
-
+#video
+  display: block
+  height: 100%
+  max-height: 200pt
+  width: 100%
+  /* @media only screen and (max-width: 600pt)
+    width: 100%
+  @media only screen and (min-width: 600pt)
+    box-shadow: -1px 1px 5px #888 */
 </style>
