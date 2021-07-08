@@ -61,12 +61,15 @@ export default {
   flex-direction: column
 
 #video
-  display: block
-  height: 100%
-  max-height: 200pt
   width: 100%
+
+
+
+
+
   /* @media only screen and (max-width: 600pt)
     width: 100%
   @media only screen and (min-width: 600pt)
     box-shadow: -1px 1px 5px #888 */
 </style>
+

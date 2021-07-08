@@ -88,7 +88,7 @@ export default {
 
 #headerProductList
   display: flex
-  width: 70%
+  width: 100%
   align-self: center
 
 </style>
