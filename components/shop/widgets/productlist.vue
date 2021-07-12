@@ -25,7 +25,7 @@
       </div>
       <div :id='$style.description'>{{config.description}}</div>
     </div>
-    <ProductList :products='products'></ProductList>
+    <ProductList :products='products' :center=false ></ProductList>
   </section>
 </template>
 

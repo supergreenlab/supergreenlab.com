@@ -150,6 +150,7 @@ export default {
   font-weight: bold
 
 #enddate
+  text-align: right
   margin: 10px
   font-size: 20pt
   font-weight: bold

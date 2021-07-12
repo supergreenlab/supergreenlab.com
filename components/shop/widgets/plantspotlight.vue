@@ -25,52 +25,45 @@
           <div :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}'></div>
         </div>
         <div :id='$style.description'>
-          <div :id='$style.descriptionbody'>
+          <div :id='$style.descriptionbody' v-for="product in products" :key="product.id">
             <h3>{{ plant.name }}</h3>
-            <div v-html='$md.render(config.description)'></div>
+            <div :class='$style.description' v-html='$md.render(config.description)'></div>
+            <h3>Grow with {{ product.name }}</h3>
+            <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :class='$style.relatedProduct'>
+              <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${product.pics[0].fileLarge}`)})`}'></div>
+              <div>
+                <div :class='$style.relatedProductTagline'  v-html='$md.render(product.tagline)'></div>
+                <div :class='$style.description'  v-html='$md.render(product.description)'></div>
+              </div>
+              <div :id="$style.price"> {{product.SellingPoints[0].price}}</div>
+            </nuxt-link>
+            <div :id='$style.button'>
+              <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
+              <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
+            </div>
+        <!-- <ProductList :products='products' maxItems='1' /> -->
           </div>
-          <div :id='$style.button'>
-          <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
-          <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
-        </div>
         </div>
       </div>
       <div v-else :id='$style.loading'>
-      <div :id='$style.loadingdiv'>
-        <Loading label='Loading plant..' />
-      </div>
-    </div>
-    </div>
-
-
-    <!-- <div v-if='loading==false' :id='$style.plantcontainer'>
-      <div :id='$style.pic' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}'></div>
-      <div :id='$style.description'>
-        <div :id='$style.descriptionbody'>
-          <h3>{{ plant.name }}</h3>
-          <div v-html='$md.render(config.description)'></div>
-        </div>
-        <div :id='$style.button'>
-          <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
-          <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
+        <div :id='$style.loadingdiv'>
+          <Loading label='Loading plant..' />
         </div>
       </div>
     </div>
-    <div v-else :id='$style.loading'>
-      <div :id='$style.loadingdiv'>
-        <Loading label='Loading plant..' />
-      </div>
-    </div> -->
   </section>
 </template>
 
 <script>
 import axios from 'axios'
 import Loading from '~/components/widgets/loading.vue'
+import ProductList from '~/components/products/productlist.vue'
+
+import { products } from '~/config/products.json'
 
 export default {
   props: ['config',],
-  components: {Loading,},
+  components: {Loading, ProductList},
   data() {
     return {
       plant: null,
@@ -83,7 +76,11 @@ export default {
     this.$data.plant = plant
     this.$data.loading = false
   },
-  methods: {
+  computed: {
+    products() {
+      const { config } = this.$props
+      return (config.products || []).map(p => products.find(p1 => p1.id == p))
+    }
   },
 }
 </script>
@@ -172,7 +169,33 @@ export default {
   justify-content: center
 
 #loadingdiv
-  width: 50%
-  height: 50%
+  position: relative
+  width: 140pt
+  height: 70pt
+
+.relatedProduct
+  display: flex
+  justify-content: space-around
+  cursor: pointer
+  text-decoration: none
+
+.relatedProduct:hover
+  text-decoration: underline
+
+.relatedProductPic
+  width: 200pt
+  margin: 0 5pt 0 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+.relatedProductTagline
+  color: #3bb30b
+
+.description
+ margin-bottom: 10pt
+ color: black
+
+
 
 </style>
