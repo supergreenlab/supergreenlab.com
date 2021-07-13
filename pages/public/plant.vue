@@ -24,6 +24,30 @@
       </div>
     </div>
     <div :id='$style.body'>
+      <div :class="$style.plant_header">
+        <div v-if="plant">
+          <h1>{{plant.name}}</h1>
+          <span>Strain name: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
+          <span>Plant Type: {{plant.settings.plantType}}</span>
+          <span>Medium: {{plant.settings.medium}}</span>
+          <span>Lab dimensions: {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}</span>
+
+          <h2>Life event dates</h2>
+          <span>Germination: {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}</span>
+          <span>Vegging: {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}</span>
+          <span>Blooming: {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}</span>
+          <span>Drying: {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}</span>
+          <span>Curing: {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}</span>
+
+          <h2>Toolbox</h2>
+          <span>Seeds: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
+          <span>Furniture: {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}</span>
+
+          <img src="https://via.placeholder.com/200x250"/>
+        </div>
+      </div>
+      <feed-entry v-for="feedEntry in feedEntries" :feedEntry="feedEntry"></feed-entry>
+      <!--
       <div>
         <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
       </div>
@@ -31,12 +55,15 @@
         Don't have the app installed yet?<br />
         <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
       </div>
+      -->
     </div>
   </section>
 </template>
 
 <script>
 import Header from '~/components/layout/header.vue'
+import FeedEntry from "~/components/plant-feed/feed-entry";
+import {getPlantById, getFeedEntriesById} from "~/lib/plant";
 
 export default {
   head() {
@@ -51,14 +78,30 @@ export default {
       ],
     }
   },
-  components: {Header,},
+  components: {FeedEntry, Header,},
   data() {
     return {
-      url: ''
+      url: '',
+      plant: null,
+      feedEntries: [],
     }
   },
   mounted() {
-    this.$data.url = this.plantURL
+    this.$data.url = this.plantURL;
+    getPlantById('316ae47b-4a84-45eb-be31-dfa31dd04e66')
+      .then(plant => {
+        this.plant = plant;
+        this.plant.settings = JSON.parse(this.plant.settings);
+        this.plant.boxSettings = JSON.parse(this.plant.boxSettings);
+        console.log(this.plant);
+      })
+      .catch(err => console.log(err.message));
+    getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', 5, 0)
+      .then(feedEntries => {
+        this.feedEntries = this.feedEntries.concat(feedEntries.entries);
+        console.log('entries:', this.feedEntries);
+      })
+      .catch(err => console.log(err.message));
   },
   computed: {
     plantURL() {
@@ -96,8 +139,9 @@ export default {
   width: 100vw
   height: 100vh
   align-items: center
-  justify-content: center
+  justify-content: flex-start
   text-align: center
+  margin-top: 100px
 
 .button:nth-of-type(1)
   margin-bottom: 30pt
@@ -111,6 +155,10 @@ export default {
   color: white
   text-decoration: none
   font-size: 1.1em
+
+.plant_header
+  background-color: blue
+  color: white
   
 
 </style>
