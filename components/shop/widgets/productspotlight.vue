@@ -28,9 +28,11 @@
             <Pics :pics='product.pics' :hideArrow=true />
           </div>
           <div :id='$style.content'>
-            <h3 v-html='$md.render(product.name)'></h3>
-            <div v-html='$md.render(product.tagline)' :id='$style.tagline'></div>
-            <div v-html='$md.render(product.bulletpoints)' :id='$style.bullets'></div>
+            <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :id='$style.contentlink'>
+              <h3 v-html='$md.render(product.name)'></h3>
+              <div v-html='$md.render(product.tagline)' :id='$style.tagline'></div>
+              <div v-html='$md.render(product.bulletpoints)' :id='$style.bullets'></div>
+            </nuxt-link>
             <div :id='$style.pricing'>
               <Price :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
               <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
@@ -85,7 +87,6 @@ export default {
   display:flex
   flex-direction: column
 
-
 #title
   text-transform: uppercase
   font-weight: bold
@@ -100,10 +101,16 @@ export default {
   flex-direction: column
   margin: 0 10pt
 
-#content > h3
+#contentlink
+  text-decoration: none
+
+#contentlink:hover
+  text-decoration: underline
+
+#contentlink > h3
   color: #5E5E5E
 
-#content > div
+#contentlink > div
   margin-bottom: 5pt
 
 .productspotlight

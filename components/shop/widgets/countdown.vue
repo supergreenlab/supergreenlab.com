@@ -17,11 +17,10 @@
  -->
 
  <template>
-  <section>
-    <div :id="$style.container">
+  <section :id="$style.container">
+    <div :id="$style.countdowncontainer">
       <div :id="$style.title" v-html='$md.render(config.title)'></div>
       <div :id="$style.description" v-html='$md.render(config.description)'></div>
-      <!-- <div> {{ now }}</div> -->
       <div :id="$style.countdown">
         <div :class="$style.countdown">
           <div :class="$style.block">
@@ -41,8 +40,12 @@
             <div :class="$style.unit">Seconds</div>
           </div>
         </div>
-        <div :id="$style.enddate">Before: <br />{{ endDate | formatDate }}</div>
       </div>
+      <div v-if="now < dateInMilliseconds" :id="$style.enddate">Before {{ endDate | formatDate }}</div>
+      <div v-else :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
+      <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+      <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'></div>
+
     </div>
   </section>
 </template>
@@ -81,7 +84,7 @@ export default {
     },
     days() {
       return Math.trunc((this.dateInMilliseconds - this.now) / 60 / 60 / 24)
-    }
+    },
   },
   filters: {
     formatDate: (dateStr) =>
@@ -108,8 +111,12 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 100%
   display: flex
+  justify-content: center
+  align-items: center
+
+#countdowncontainer
+  display:flex
   flex-direction: column
 
 #title
@@ -124,7 +131,7 @@ export default {
 
 #countdown
   display: flex
-  justify-content: space-between
+  justify-content: center
   align-items: center
 
 .countdown
@@ -150,7 +157,7 @@ export default {
   font-weight: bold
 
 #enddate
-  text-align: right
+  text-align: center
   margin: 10px
   font-size: 20pt
   font-weight: bold
@@ -160,5 +167,12 @@ export default {
   -webkit-text-fill-color: white
   -webkit-text-stroke-width: 1px
   -webkit-text-stroke-color: black
+
+.countdownpic
+  width: 100%
+  height: 200pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

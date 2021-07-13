@@ -17,19 +17,25 @@
  -->
 
 <template>
-<section :id="$style.container">
-  <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted @click='toggleZoom'>
-    <source :src="require(`~/assets/img/${config.picture[0].filePath}`)" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div v-else :id='$style.pictureBanner'  @click='toggleZoom' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+<section :id="$style.container" >
+  <!-- <nuxt-link :to="config.link">Coucou</nuxt-link> -->
+  <div @click='open(config.link)'>
+    <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted>
+      <source :src="require(`~/assets/img/${config.picture[0].filePath}`)" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div v-else :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
     <!-- <div :id='$style.linkBanner'>{{ config }}</div> -->
+    </div>
   </div>
+
 </section>
 
 </template>
 
 <script>
+
+import { open } from '~/lib/client-side.js'
 
 export default {
   props: ['config',],
@@ -38,21 +44,29 @@ export default {
       const { config } = this.$props
       const media = config.picture[0]
       return media
+    },
+    link() {
+      const { config } = this.$props
+      const link = config.link
+      console.log(config)
+      return link
     }
   },
   methods: {
-    toggleZoom() {
-      console.log('pouet')
-      this.$data.showZoom = !this.$data.showZoom
-    },
+    open(link) {
+      open(link, '_blank')
+    }
   },
 }
 </script>
 
 <style module lang=stylus>
 
+#container > div
+  cursor: pointer
+
 #pictureBanner
-  height: 200pt
+  height: 250pt
   width: 100%
   background-position: center
   background-size: cover
@@ -62,7 +76,7 @@ export default {
 
 #video
   width: 100%
-  max-height: 200pt
+  max-height: 250pt
   object-fit: cover
 
 </style>
