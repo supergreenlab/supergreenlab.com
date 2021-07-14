@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "feed-entry-media",
+        name: "feed-entry-ventilation",
         props: ['feedEntry']
     }
 </script>

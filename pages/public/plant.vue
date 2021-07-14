@@ -23,30 +23,32 @@
         <Header responsiveHide='true' />
       </div>
     </div>
-    <div :id='$style.body'>
+    <div :id='$style.body' v-if="plant">
+      <h1>{{plant.name}}</h1>
       <div :class="$style.plant_header">
-        <div v-if="plant">
-          <h1>{{plant.name}}</h1>
-          <span>Strain name: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
-          <span>Plant Type: {{plant.settings.plantType}}</span>
-          <span>Medium: {{plant.settings.medium}}</span>
-          <span>Lab dimensions: {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}</span>
+        <span>Strain name: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
+        <span>Plant Type: {{plant.settings.plantType}}</span>
+        <span>Medium: {{plant.settings.medium}}</span>
+        <span>Lab dimensions: {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}</span>
 
-          <h2>Life event dates</h2>
-          <span>Germination: {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}</span>
-          <span>Vegging: {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}</span>
-          <span>Blooming: {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}</span>
-          <span>Drying: {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}</span>
-          <span>Curing: {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}</span>
+        <h2>Life event dates</h2>
+        <span>Germination: {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}</span>
+        <span>Vegging: {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}</span>
+        <span>Blooming: {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}</span>
+        <span>Drying: {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}</span>
+        <span>Curing: {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}</span>
 
-          <h2>Toolbox</h2>
-          <span>Seeds: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
-          <span>Furniture: {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}</span>
+        <h2>Toolbox</h2>
+        <span>Seeds: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
+        <span>Furniture: {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}</span>
 
-          <img src="https://via.placeholder.com/200x250"/>
-        </div>
+        <!-- TODO: use real thumbnail image -->
+        <!--<img :src="`https://storage2.supergreenlab.com${plant.thumbnailPath}`" />-->
+        <img src="https://via.placeholder.com/200x250"/>
+
       </div>
       <feed-entry v-for="feedEntry in feedEntries" :feedEntry="feedEntry"></feed-entry>
+      <button v-on:click="loadNextFeedEntriesById()">Load more</button>
       <!--
       <div>
         <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
@@ -84,6 +86,8 @@ export default {
       url: '',
       plant: null,
       feedEntries: [],
+      page: 0,
+      pageSize: 5
     }
   },
   mounted() {
@@ -96,7 +100,7 @@ export default {
         console.log(this.plant);
       })
       .catch(err => console.log(err.message));
-    getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', 5, 0)
+    getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', this.pageSize, this.page)
       .then(feedEntries => {
         this.feedEntries = this.feedEntries.concat(feedEntries.entries);
         console.log('entries:', this.feedEntries);
@@ -112,6 +116,18 @@ export default {
       }
     }
   },
+  methods: {
+    loadNextFeedEntriesById() {
+      this.page++;
+      getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', this.pageSize, this.page * this.pageSize)
+              .then(feedEntries => {
+                // TODO: only add entries if they are older than latest entry? any other way to check this?
+                this.feedEntries = this.feedEntries.concat(feedEntries.entries);
+                console.log('entries:', this.feedEntries);
+              })
+              .catch(err => console.log(err.message));
+    }
+  }
 }
 </script>
 
@@ -141,7 +157,8 @@ export default {
   align-items: center
   justify-content: flex-start
   text-align: center
-  margin-top: 100px
+  margin-top: 56px
+  background-color: #E5E5E5
 
 .button:nth-of-type(1)
   margin-bottom: 30pt
@@ -157,8 +174,9 @@ export default {
   font-size: 1.1em
 
 .plant_header
-  background-color: blue
+  background-color: #3F51B5
   color: white
+  width: 100%
   
 
 </style>

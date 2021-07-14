@@ -1,6 +1,6 @@
 <template>
     <div>
-        This is a Light Feed Entry
+        TODO
     </div>
 </template>
 
