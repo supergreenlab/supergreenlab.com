@@ -4,7 +4,7 @@
             <img class="feed-entry-header-image" :src="getHeaderIcon(feedEntry.type)">
             {{getFeedEntryHeading(feedEntry.type)}}
         </div>
-        <div>
+        <div class="feed-entry-content">
             <feed-entry-light v-if="feedEntry.type === 'FE_LIGHT'" :feedEntry="feedEntry"></feed-entry-light>
             <feed-entry-water v-else-if="feedEntry.type === 'FE_WATER'" :feedEntry="feedEntry"></feed-entry-water>
             <feed-entry-media v-else-if="feedEntry.type === 'FE_MEDIA'" :feedEntry="feedEntry"></feed-entry-media>
@@ -13,10 +13,13 @@
             <div v-else>UNKNOWN: {{feedEntry.type}}</div>
         </div>
         <div class="feed-entry-footer">
-            <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_like.png')" />
-            <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_comment.png')" />
-            <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_share.png')" />
-            <img class="feed-entry-footer-icon flex-end clickable" :src="require('~/assets/img/feed_card/button_bookmark.png')" />
+            <div class="feed-entry-footer-icon-container">
+                <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_like.png')" />
+                <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_comment.png')" />
+                <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_share.png')" />
+                <img class="feed-entry-footer-icon flex-end clickable" :src="require('~/assets/img/feed_card/button_bookmark.png')" />
+            </div>
+            <div class="flex-start">{{getFormattedDate(feedEntry.date)}}</div>
         </div>
     </div>
 
@@ -35,6 +38,11 @@
             FeedEntryVentilation, FeedEntryLifeEvent, FeedEntryMedia, FeedEntryWater, FeedEntryLight
         },
         props: ['feedEntry'],
+        mounted() {
+            if (this.feedEntry.params) {
+                this.feedEntry.params = JSON.parse(this.feedEntry.params);
+            }
+        },
         methods: {
             getFeedEntryHeading(type) {
                 switch(type){
@@ -63,6 +71,10 @@
                     case 'FE_VENTILATION':
                         return require('~/assets/img/feed_card/icon_blower.svg');
                 }
+            },
+            getFormattedDate(date) {
+                date = new Date(date);
+                return date.toDateString();
             }
         }
     }
@@ -88,9 +100,17 @@
         margin-right: 10px;
     }
 
+    .feed-entry-content {
+        padding: 15px 0;
+    }
+
     .feed-entry-footer {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+    }
+
+    .feed-entry-footer-icon-container {
+        display: flex;
     }
 
     .feed-entry-footer-icon {
@@ -101,6 +121,11 @@
     .flex-end {
         margin-right: 0;
         margin-left: auto;
+    }
+
+    .flex-start {
+        margin-left: 0;
+        margin-right: auto;
     }
 
     .clickable {

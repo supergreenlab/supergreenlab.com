@@ -47,7 +47,7 @@
         <img src="https://via.placeholder.com/200x250"/>
 
       </div>
-      <feed-entry v-for="feedEntry in feedEntries" :feedEntry="feedEntry"></feed-entry>
+      <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry"></feed-entry>
       <button v-on:click="loadNextFeedEntriesById()">Load more</button>
       <!--
       <div>

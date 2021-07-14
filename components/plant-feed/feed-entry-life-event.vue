@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="feed-entry-life-event">
         {{getLifeEventLabel(feedEntry.params.phase)}}
     </div>
 </template>
@@ -8,18 +8,13 @@
     export default {
         name: "feed-entry-life-event",
         props: ['feedEntry'],
-        mounted() {
-            if (this.feedEntry.params) {
-                this.feedEntry.params = JSON.parse(this.feedEntry.params);
-            }
-        },
         methods: {
             getLifeEventLabel(phase) {
                 switch(phase) {
                     case 'BLOOMING':
-                        return 'Blooming started!';
+                        return 'Blooming Started!';
                     case 'VEGGING':
-                        return 'Vegging started!';
+                        return 'Vegging Started!';
                     case 'GERMINATING':
                         return 'Germination!';
                     default:
@@ -31,5 +26,11 @@
 </script>
 
 <style scoped>
-
+    .feed-entry-life-event {
+        color: #15A01A;
+        font-weight: bold;
+        font-size: 35px;
+        width: 206px;
+        margin: auto;
+    }
 </style>
