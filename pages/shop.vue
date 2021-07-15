@@ -29,7 +29,8 @@
         </div>
         <div :id='$style.content'>
           <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+            <component v-if='widgetExpiration(w) == false' v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+            <!-- <div v-for='w in widgetsForContainer(c)' :key='w.id'> {{ widgetExpiration(w) }}</div> -->
           </component>
         </div>
         <div :id='$style.rightcolumn'>
@@ -70,10 +71,15 @@ export default{
   computed: {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location).sort((o1, o2) => o1.order - o2.order),
     widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)),
+    widgetExpiration: () => (widget) => {
+      return Date.parse(widget.expiration) < (new Date()).getTime()
+    }
   },
+
   methods: {
     componentForName: name => components[name],
-  }
+  },
+
 }
 </script>
 

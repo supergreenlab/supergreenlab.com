@@ -48,7 +48,7 @@ export default {
     link() {
       const { config } = this.$props
       const link = config.link
-      console.log(config)
+      // console.log(config)
       return link
     }
   },

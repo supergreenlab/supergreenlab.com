@@ -89,7 +89,7 @@ export default {
       this.ok()
     },
     loadTypeform() {
-      console.log('pouet')
+      // console.log('pouet')
       var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/";
       if(!gi.call(d,id)) {
         js=ce.call(d,"script");

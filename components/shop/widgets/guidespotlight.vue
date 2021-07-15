@@ -19,16 +19,17 @@
 <template>
   <section>
     <div :id="$style.container">
-      <div :id="$style.title" v-html='$md.render(config.title)'></div>
-      <div :id="$style.description" v-html='$md.render(config.description)'></div>
-      <div :id="$style.spotlightContent">
-        <CardGuide :guide='guide' userStep='0' :class='$style.cardContainer' />
-        <div :id="$style.require">
-          <h3 :id="$style.tagline">What you'll need</h3>
-          <SmallProductList :products='products' maxItems='3' />
+      <div :id="$style.guidespotlightcontainer">
+        <div :id="$style.title" v-html='$md.render(config.title)'></div>
+        <div :id="$style.description" v-html='$md.render(config.description)'></div>
+        <div :id="$style.spotlightContent">
+          <CardGuide :guide='guide' userStep='0' :class='$style.cardContainer' />
+          <div :id="$style.require">
+            <h3 :id="$style.tagline">What you'll need</h3>
+            <SmallProductList :products='products' maxItems='3' />
+          </div>
         </div>
       </div>
-
     </div>
   </section>
 </template>
@@ -64,9 +65,12 @@ export default {
 
 #container
   display: flex
+  justify-content: center
+  align-items: center
+
+#guidespotlightcontainer
+  display:flex
   flex-direction: column
-  justify-content: flex-start
-  position: relative
 
 #title
   text-transform: uppercase

@@ -175,4 +175,5 @@ export default {
   background-size: contain
   background-repeat: no-repeat
 
+
 </style>
