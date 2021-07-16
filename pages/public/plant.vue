@@ -281,7 +281,7 @@ export default {
   max-width: 970px
   display: inline-flex
   flex-flow: wrap
-  padding-bottom: 15px
+  padding-bottom: 20px
 
 .plant_header_data
   width: 50%
