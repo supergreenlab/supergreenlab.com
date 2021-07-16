@@ -7,7 +7,13 @@
 <script>
     export default {
         name: "feed-entry-life-event",
-        props: ['feedEntry'],
+        props: {
+            feedEntry: {
+                type: Object,
+                required: true,
+                default: {}
+            }
+        },
         methods: {
             getLifeEventLabel(phase) {
                 switch(phase) {

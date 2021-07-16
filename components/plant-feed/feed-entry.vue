@@ -37,7 +37,13 @@
         components: {
             FeedEntryVentilation, FeedEntryLifeEvent, FeedEntryMedia, FeedEntryWater, FeedEntryLight
         },
-        props: ['feedEntry'],
+        props: {
+            feedEntry: {
+                type: Object,
+                required: true,
+                default: {}
+            }
+        },
         mounted() {
             if (this.feedEntry.params) {
                 this.feedEntry.params = JSON.parse(this.feedEntry.params);

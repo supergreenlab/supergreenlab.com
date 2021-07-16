@@ -16,7 +16,13 @@
 <script>
     export default {
         name: "feed-entry-water",
-        props: ['feedEntry']
+        props: {
+            feedEntry: {
+                type: Object,
+                required: true,
+                default: {}
+            }
+        },
     }
 </script>
 

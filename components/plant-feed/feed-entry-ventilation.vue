@@ -31,7 +31,13 @@
 <script>
     export default {
         name: "feed-entry-ventilation",
-        props: ['feedEntry']
+        props: {
+            feedEntry: {
+                type: Object,
+                required: true,
+                default: {}
+            }
+        },
     }
 </script>
 
