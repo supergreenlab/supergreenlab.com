@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <img v-if="imgUrl" :src='imgUrl'/>
-    </div>
+    <img v-if="imgUrl" :src='imgUrl' class="feed-entry-media-image"/>
 </template>
 
 <script>
@@ -24,7 +22,7 @@
         mounted() {
             getFeedMediasByFeedEntryId(this.feedEntry.id)
                 .then(data => {
-                    this.imgUrl = 'https://storage2.supergreenlab.com' + data.medias[0].filePath;
+                    this.imgUrl = 'https://storage.supergreenlab.com' + data.medias[0].filePath;
                     console.log(data, 'in feed-entry-media');
                 })
                 .catch(err => console.log(err.message));
@@ -35,5 +33,7 @@
 </script>
 
 <style scoped>
-
+    .feed-entry-media-image {
+        max-width: 100%;
+    }
 </style>

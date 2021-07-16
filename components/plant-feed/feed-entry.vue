@@ -88,7 +88,7 @@
 
 <style scoped>
     .feed-entry {
-        padding: 12px 20px;
+        padding: 12px 0;
         background: #FFFFFF;
         border: 1px solid #D9D9D9;
         box-sizing: border-box;
@@ -100,6 +100,7 @@
     .feed-entry-header {
         display: flex;
         align-items: center;
+        padding: 0 20px;
     }
 
     .feed-entry-header-image {
@@ -113,6 +114,7 @@
     .feed-entry-footer {
         display: flex;
         flex-direction: column;
+        padding: 0 20px;
     }
 
     .feed-entry-footer-icon-container {

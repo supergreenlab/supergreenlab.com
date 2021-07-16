@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="feed-entry-water-wrapper">
         <div  class="feed-entry-water-header">
             <span>Was dry: {{feedEntry.params.tooDry ? 'YES' : 'NO'}}</span>
             <span>With nutes: {{feedEntry.params.nutrients ? 'YES' : 'NO'}}</span>
@@ -27,6 +27,10 @@
 </script>
 
 <style scoped>
+    .feed-entry-water-wrapper {
+        padding: 0 20px;
+    }
+
     .feed-entry-water-header {
         display: flex;
         justify-content: space-between;

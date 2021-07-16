@@ -23,32 +23,77 @@
         <Header responsiveHide='true' />
       </div>
     </div>
+    <!-- TODO: this header could maybe be moved to a separate component, to keep this file a little bit more clean -->
     <div :id='$style.body' v-if="plant">
-      <h1>{{plant.name}}</h1>
       <div :class="$style.plant_header">
-        <span>Strain name: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
-        <span>Plant Type: {{plant.settings.plantType}}</span>
-        <span>Medium: {{plant.settings.medium}}</span>
-        <span>Lab dimensions: {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}</span>
+        <h1>{{plant.name}}</h1>
+        <div :class="$style.plant_header_data">
+          <div>
+            <label>Strain name</label>
+            {{plant.settings.strain}}
+            <span>from
+              <span :class="$style.green">{{plant.settings.seedBank}}</span>
+            </span>
+          </div>
+          <div>
+            <label>Plant Type</label>
+            {{plant.settings.plantType}}
+          </div>
+          <div>
+            <label>Medium</label>
+            {{plant.settings.medium}}
+          </div>
+          <div>
+            <label>Lab dimensions</label>
+            {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}
+          </div>
+          <h2>Life event dates</h2>
+          <div>
+            <label>Germination</label>
+            {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}
+          </div>
+          <div>
+            <label>Vegging</label>
+            {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}
+          </div>
+          <div>
+            <label>Blooming</label>
+            {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}
+          </div>
+          <div>
+            <label>
+              Drying
+            </label>
+            {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}
+          </div>
+          <div>
+            <label>
+              Curing
+            </label>
+            {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}
+          </div>
 
-        <h2>Life event dates</h2>
-        <span>Germination: {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}</span>
-        <span>Vegging: {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}</span>
-        <span>Blooming: {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}</span>
-        <span>Drying: {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}</span>
-        <span>Curing: {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}</span>
-
-        <h2>Toolbox</h2>
-        <span>Seeds: {{plant.settings.strain}} from {{plant.settings.seedbank}}</span>
-        <span>Furniture: {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}</span>
-
-        <!-- TODO: use real thumbnail image -->
-        <!--<img :src="`https://storage2.supergreenlab.com${plant.thumbnailPath}`" />-->
-        <img src="https://via.placeholder.com/200x250"/>
+          <h2>Toolbox</h2>
+          <div>
+            <label>Seeds</label>
+            {{plant.settings.strain}} from {{plant.settings.seedbank}}
+          </div>
+          <div>
+            <label>Furniture</label>
+            {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}
+          </div>
+        </div>
+        <img :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`" />
 
       </div>
       <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry"></feed-entry>
-      <button v-on:click="loadNextFeedEntriesById()">Load more</button>
+      <div :class="$style.spinner_container">
+        <infinite-loading
+                spinner="spiral"
+                @infinite="loadNextFeedEntriesById">
+          <div slot="no-more">TODO: Download App CTA</div>
+        </infinite-loading>
+      </div>
       <!--
       <div>
         <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
@@ -80,14 +125,18 @@ export default {
       ],
     }
   },
-  components: {FeedEntry, Header,},
+  components: {
+    FeedEntry,
+    Header
+  },
   data() {
     return {
       url: '',
       plant: null,
       feedEntries: [],
       page: 0,
-      pageSize: 5
+      pageSize: 5,
+      hasMorePages: true
     }
   },
   mounted() {
@@ -117,13 +166,16 @@ export default {
     }
   },
   methods: {
-    loadNextFeedEntriesById() {
+    loadNextFeedEntriesById($state) {
       this.page++;
       getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', this.pageSize, this.page * this.pageSize)
               .then(feedEntries => {
-                // TODO: only add entries if they are older than latest entry? any other way to check this?
-                this.feedEntries = this.feedEntries.concat(feedEntries.entries);
-                console.log('entries:', this.feedEntries);
+                $state.loaded();
+                if (feedEntries.entries && feedEntries.entries.length > 1) {
+                  this.feedEntries = this.feedEntries.concat(feedEntries.entries);
+                } else {
+                  $state.complete();
+                }
               })
               .catch(err => console.log(err.message));
     }
@@ -141,7 +193,7 @@ export default {
 #header
   position: fixed
   width: 100%
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
 
@@ -153,7 +205,7 @@ export default {
   left: 0
   position: absolute
   width: 100vw
-  height: 100vh
+  height: auto
   align-items: center
   justify-content: flex-start
   text-align: center
@@ -177,6 +229,38 @@ export default {
   background-color: #3F51B5
   color: white
   width: 100%
-  
+  display: inline-flex
+  flex-flow: wrap;
+
+.plant_header h1
+  width: 100%
+
+.plant_header_data
+  display: flex
+  flex-direction: column
+  width: 50%
+  font-weight: 400
+
+.plant_header_data div
+  margin-left: 0
+  margin-right: auto
+  display: flex
+  flex-direction: column
+  text-align: left
+
+.plant_header_data label
+  text-decoration: none
+  text-transform: none
+  font-weight: unset
+  margin-bottom: 0
+  text-align: left
+  margin-left: 0
+
+.plant_header img
+  max-height: 400px
+  padding: 10px
+
+.spinner_container div
+  width: 250px
 
 </style>
