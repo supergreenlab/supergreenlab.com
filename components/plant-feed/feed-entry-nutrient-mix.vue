@@ -1,6 +1,6 @@
 <template>
     <div class="feed-entry-nutrient-wrapper">
-        <div  class="feed-entry-water-header">
+        <div  class="feed-entry-water-header" v-if="feedEntry.params.phase">
             <span>Phase: {{getPhase(feedEntry.params.phase)}}</span>
         </div>
 
