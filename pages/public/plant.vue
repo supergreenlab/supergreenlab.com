@@ -51,27 +51,27 @@
             <h3>Life event dates</h3>
             <div>
               <label>Germination</label>
-              {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}
+              {{plant.settings.germinationDate ? getFormattedDate(plant.settings.germinationDate) : 'Not set'}}
             </div>
             <div>
               <label>Vegging</label>
-              {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}
+              {{plant.settings.veggingStart ? getFormattedDate(plant.settings.veggingStart) : 'Not set'}}
             </div>
             <div>
               <label>Blooming</label>
-              {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}
+              {{plant.settings.bloomingStart ? getFormattedDate(plant.settings.bloomingStart) :'Not set'}}
             </div>
             <div>
               <label>
                 Drying
               </label>
-              {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}
+              {{plant.settings.dryingStart ? getFormattedDate(plant.settings.dryingStart) : 'Not set'}}
             </div>
             <div>
               <label>
                 Curing
               </label>
-              {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}
+              {{plant.settings.curingStart ? getFormattedDate(plant.settings.curingStart) : 'Not set'}}
             </div>
             <h3>Toolbox</h3>
             <div>
@@ -92,19 +92,26 @@
         <infinite-loading
                 spinner="spiral"
                 @infinite="loadNextFeedEntriesById">
-          <div slot="no-more">TODO: Download App CTA</div>
+          <div slot="no-more">
+            <div :class="$style.app_cta">
+              <div>
+                <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
+              </div>
+              <div>
+                Don't have the app installed yet?<br />
+                <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
+              </div>
+            </div>
+          </div>
         </infinite-loading>
       </div>
-      <!--
-      <div>
-        <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
-      </div>
-      <div>
-        Don't have the app installed yet?<br />
-        <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
-      </div>
-      -->
     </div>
+
+    <!-- This div is hidden, unless the page is interacted with -->
+    <div v-show="showDialog" :class="$style.ctaDialog">
+      <p>Content goes here.</p>
+    </div>
+
   </section>
 </template>
 
@@ -137,7 +144,7 @@ export default {
       feedEntries: [],
       page: 0,
       pageSize: 5,
-      hasMorePages: true
+      showDialog: true
     }
   },
   mounted() {
@@ -181,6 +188,10 @@ export default {
           }
         })
         .catch(err => console.log(err.message));
+    },
+    getFormattedDate(date) {
+      date = new Date(date);
+      return date.toLocaleDateString();
     }
   }
 }
@@ -232,6 +243,7 @@ export default {
   background-color: #3F51B5
   color: white
   width: 100%
+  margin-bottom: 10px
 
 .plant_header h1
   width: 100%
@@ -273,10 +285,18 @@ export default {
   max-height: 480px
   padding: 10px
   align-self: center
-  margin: 0 auto;
-  margin-right: 0;
+  margin: 0 auto
+  margin-right: 0
 
 .spinner_container div
   width: 250px
+
+.app_cta
+  margin-top: 25px
+
+.ctaDialog
+  background-color: pink
+  position: fixed
+
 
 </style>

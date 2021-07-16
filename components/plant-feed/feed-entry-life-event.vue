@@ -23,6 +23,10 @@
                         return 'Vegging Started!';
                     case 'GERMINATING':
                         return 'Germination!';
+                    case 'CURING':
+                            return 'Curing Started!';
+                    case 'DRYING':
+                        return 'Drying Started!';
                     default:
                         return phase;
                 }

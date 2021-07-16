@@ -10,7 +10,8 @@
             <feed-entry-media v-else-if="feedEntry.type === 'FE_MEDIA'" :feedEntry="feedEntry"></feed-entry-media>
             <feed-entry-life-event v-else-if="feedEntry.type === 'FE_LIFE_EVENT'" :feedEntry="feedEntry"></feed-entry-life-event>
             <feed-entry-ventilation v-else-if="feedEntry.type === 'FE_VENTILATION'" :feedEntry="feedEntry"></feed-entry-ventilation>
-            <div v-else>UNKNOWN: {{feedEntry.type}}</div>
+            <feed-entry-schedule v-else-if="feedEntry.type === 'FE_SCHEDULE'" :feedEntry="feedEntry"></feed-entry-schedule>
+            <feed-entry-nutrient-mix v-else-if="feedEntry.type === 'FE_NUTRIENT_MIX'" :feedEntry="feedEntry"></feed-entry-nutrient-mix>
         </div>
         <div class="feed-entry-footer">
             <div class="feed-entry-footer-icon-container">
@@ -31,10 +32,14 @@
     import FeedEntryMedia from "./feed-entry-media";
     import FeedEntryLifeEvent from "./feed-entry-life-event";
     import FeedEntryVentilation from "./feed-entry-ventilation";
+    import FeedEntrySchedule from "./feed-entry-schedule";
+    import FeedEntryNutrientMix from "./feed-entry-nutrient-mix";
 
     export default {
         name: "feed-entry",
         components: {
+            FeedEntryNutrientMix,
+            FeedEntrySchedule,
             FeedEntryVentilation, FeedEntryLifeEvent, FeedEntryMedia, FeedEntryWater, FeedEntryLight
         },
         props: {
@@ -62,6 +67,10 @@
                         return 'Life event';
                     case 'FE_VENTILATION':
                         return 'Ventilation change';
+                    case 'FE_SCHEDULE':
+                        return 'Schedule change';
+                    case 'FE_NUTRIENT_MIX':
+                       return 'Nutrient Mix';
                 }
             },
             getHeaderIcon(type) {
@@ -76,11 +85,15 @@
                         return require('~/assets/img/feed_card/icon_life_events.svg');
                     case 'FE_VENTILATION':
                         return require('~/assets/img/feed_card/icon_blower.svg');
+                    case 'FE_SCHEDULE':
+                        return require('~/assets/img/feed_card/icon_schedule.svg');
+                    case 'FE_NUTRIENT_MIX':
+                        return require('~/assets/img/feed_card/icon_nutrient_mix.svg');
                 }
             },
             getFormattedDate(date) {
                 date = new Date(date);
-                return date.toDateString();
+                return date.toLocaleDateString();
             }
         }
     }
@@ -94,13 +107,14 @@
         box-sizing: border-box;
         border-radius: 5px;
         margin: 5px;
-        width: 450px;
+        width: 100%;
+        max-width: 450px;
     }
 
     .feed-entry-header {
         display: flex;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .feed-entry-header-image {
@@ -114,7 +128,7 @@
     .feed-entry-footer {
         display: flex;
         flex-direction: column;
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .feed-entry-footer-icon-container {
@@ -132,8 +146,9 @@
     }
 
     .flex-start {
-        margin-left: 0;
+        margin-left: 5px;
         margin-right: auto;
+        margin-top: 10px;
     }
 
     .clickable {
