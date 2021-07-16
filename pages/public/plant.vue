@@ -26,64 +26,65 @@
     <!-- TODO: this header could maybe be moved to a separate component, to keep this file a little bit more clean -->
     <div :id='$style.body' v-if="plant">
       <div :class="$style.plant_header">
-        <h1>{{plant.name}}</h1>
-        <div :class="$style.plant_header_data">
-          <div>
-            <label>Strain name</label>
-            {{plant.settings.strain}}
-            <span>from
-              <span :class="$style.green">{{plant.settings.seedBank}}</span>
-            </span>
+        <div :class="$style.plant_header_content">
+          <h1>{{plant.name}}</h1>
+          <div :class="$style.plant_header_data">
+            <div>
+              <label>Strain name</label>
+              {{plant.settings.strain}}
+              <span>from
+                <span :class="$style.green">{{plant.settings.seedBank}}</span>
+              </span>
+            </div>
+            <div>
+              <label>Plant Type</label>
+              {{plant.settings.plantType}}
+            </div>
+            <div>
+              <label>Medium</label>
+              {{plant.settings.medium}}
+            </div>
+            <div>
+              <label>Lab dimensions</label>
+              {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}
+            </div>
+            <h3>Life event dates</h3>
+            <div>
+              <label>Germination</label>
+              {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}
+            </div>
+            <div>
+              <label>Vegging</label>
+              {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}
+            </div>
+            <div>
+              <label>Blooming</label>
+              {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}
+            </div>
+            <div>
+              <label>
+                Drying
+              </label>
+              {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}
+            </div>
+            <div>
+              <label>
+                Curing
+              </label>
+              {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}
+            </div>
+            <h3>Toolbox</h3>
+            <div>
+              <label>Seeds</label>
+              {{plant.settings.strain}} from {{plant.settings.seedbank}}
+            </div>
+            <div>
+              <label>Furniture</label>
+              {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}
+            </div>
           </div>
-          <div>
-            <label>Plant Type</label>
-            {{plant.settings.plantType}}
-          </div>
-          <div>
-            <label>Medium</label>
-            {{plant.settings.medium}}
-          </div>
-          <div>
-            <label>Lab dimensions</label>
-            {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}
-          </div>
-          <h2>Life event dates</h2>
-          <div>
-            <label>Germination</label>
-            {{plant.settings.germinationDate ? plant.settings.germinationDate : 'Not set'}}
-          </div>
-          <div>
-            <label>Vegging</label>
-            {{plant.settings.veggingStart ? plant.settings.veggingStart : 'Not set'}}
-          </div>
-          <div>
-            <label>Blooming</label>
-            {{plant.settings.bloomingStart ? plant.settings.bloomingStart :'Not set'}}
-          </div>
-          <div>
-            <label>
-              Drying
-            </label>
-            {{plant.settings.dryingStart ? plant.settings.dryingStart : 'Not set'}}
-          </div>
-          <div>
-            <label>
-              Curing
-            </label>
-            {{plant.settings.curingStart ? plant.settings.curingStart : 'Not set'}}
-          </div>
-
-          <h2>Toolbox</h2>
-          <div>
-            <label>Seeds</label>
-            {{plant.settings.strain}} from {{plant.settings.seedbank}}
-          </div>
-          <div>
-            <label>Furniture</label>
-            {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}
-          </div>
+          <img :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`" />
         </div>
-        <img :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`" />
 
       </div>
       <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry"></feed-entry>
@@ -141,18 +142,20 @@ export default {
   },
   mounted() {
     this.$data.url = this.plantURL;
-    getPlantById('316ae47b-4a84-45eb-be31-dfa31dd04e66')
+    getPlantById(this.$route.query.id)
       .then(plant => {
         this.plant = plant;
         this.plant.settings = JSON.parse(this.plant.settings);
         this.plant.boxSettings = JSON.parse(this.plant.boxSettings);
-        console.log(this.plant);
       })
-      .catch(err => console.log(err.message));
-    getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', this.pageSize, this.page)
+      .catch(err => {
+        console.log(err.message);
+        // if no plant is available for the input id -> navigate to 404 page
+        this.$router.push('/404')
+      });
+    getFeedEntriesById(this.$route.query.id, this.pageSize, this.page)
       .then(feedEntries => {
         this.feedEntries = this.feedEntries.concat(feedEntries.entries);
-        console.log('entries:', this.feedEntries);
       })
       .catch(err => console.log(err.message));
   },
@@ -168,16 +171,16 @@ export default {
   methods: {
     loadNextFeedEntriesById($state) {
       this.page++;
-      getFeedEntriesById('316ae47b-4a84-45eb-be31-dfa31dd04e66', this.pageSize, this.page * this.pageSize)
-              .then(feedEntries => {
-                $state.loaded();
-                if (feedEntries.entries && feedEntries.entries.length > 1) {
-                  this.feedEntries = this.feedEntries.concat(feedEntries.entries);
-                } else {
-                  $state.complete();
-                }
-              })
-              .catch(err => console.log(err.message));
+      getFeedEntriesById(this.$route.query.id, this.pageSize, this.page * this.pageSize)
+        .then(feedEntries => {
+          $state.loaded();
+          if (feedEntries.entries && feedEntries.entries.length > 1) {
+            this.feedEntries = this.feedEntries.concat(feedEntries.entries);
+          } else {
+            $state.complete();
+          }
+        })
+        .catch(err => console.log(err.message));
     }
   }
 }
@@ -229,15 +232,17 @@ export default {
   background-color: #3F51B5
   color: white
   width: 100%
-  display: inline-flex
-  flex-flow: wrap;
 
 .plant_header h1
   width: 100%
 
+.plant_header_content
+  max-width: 970px
+  display: inline-flex
+  flex-flow: wrap
+  padding-bottom: 15px
+
 .plant_header_data
-  display: flex
-  flex-direction: column
   width: 50%
   font-weight: 400
 
@@ -252,13 +257,24 @@ export default {
   text-decoration: none
   text-transform: none
   font-weight: unset
+  margin-top: 5px
   margin-bottom: 0
   text-align: left
   margin-left: 0
+  font-size: 12px
+  padding-bottom: 0
+
+.plant_header_data h3
+  text-align: left
+  margin-top: 15px
+  margin-bottom: -5px
 
 .plant_header img
-  max-height: 400px
+  max-height: 480px
   padding: 10px
+  align-self: center
+  margin: 0 auto;
+  margin-right: 0;
 
 .spinner_container div
   width: 250px
