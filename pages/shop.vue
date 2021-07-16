@@ -30,7 +30,6 @@
         <div :id='$style.content'>
           <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
             <component v-if='widgetExpiration(w) == false' v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
-            <!-- <div v-for='w in widgetsForContainer(c)' :key='w.id'> {{ widgetExpiration(w) }}</div> -->
           </component>
         </div>
         <div :id='$style.rightcolumn'>
@@ -118,22 +117,24 @@ export default{
     min-width: 0
 
 #leftcolumn
+  padding: 3pt
   margin-top: 5pt
   margin-left: 5pt
   display:flex
   flex-direction: column
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
-  width: 165pt
+  width: 170pt
   @media only screen and (max-width: 900px)
     display: none
 
 #rightcolumn
+  padding: 3pt
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
   margin-top: 5pt
   margin-right: 5pt
   display:flex
   flex-direction: column
-  width: 165pt
+  width: 170pt
   @media only screen and (max-width: 900px)
     display: none
 

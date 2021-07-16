@@ -27,21 +27,28 @@
         <div :id='$style.description'>
           <div :id='$style.descriptionbody' v-for="product in products" :key="product.id">
             <h3>{{ plant.name }}</h3>
-            <div :class='$style.description' v-html='$md.render(config.description)'></div>
-            <h3>Grow with {{ product.name }}</h3>
-            <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :class='$style.relatedProduct'>
-              <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${product.pics[0].fileLarge}`)})`}'></div>
-              <div>
-                <div :class='$style.relatedProductTagline'  v-html='$md.render(product.tagline)'></div>
-                <div :class='$style.description'  v-html='$md.render(product.description)'></div>
+            <div :id='$style.descriptioncontainer'>
+              <div :class='$style.description' v-html='$md.render(config.description)'></div>
+              <div :id='$style.button'>
+                <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
+                <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
               </div>
-              <div :id="$style.price"> {{product.SellingPoints[0].price}}</div>
-            </nuxt-link>
-            <div :id='$style.button'>
-              <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
-              <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
             </div>
-        <!-- <ProductList :products='products' maxItems='1' /> -->
+
+            <h3>Grow with {{ product.name }}</h3>
+            <div :class='$style.relatedProduct'>
+              <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${product.pics[0].fileLarge}`)})`}'></div>
+              <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :id='$style.relatedProduct'>
+                <div>
+                  <div :class='$style.relatedProductTagline'  v-html='$md.render(product.tagline)'></div>
+                  <div :class='$style.description'  v-html='$md.render(product.description)'></div>
+                </div>
+              </nuxt-link>
+              <div :id="$style.pricecontainer">
+                <div :id="$style.price">${{product.SellingPoints[0].price}}</div>
+                <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -58,12 +65,13 @@
 import axios from 'axios'
 import Loading from '~/components/widgets/loading.vue'
 import ProductList from '~/components/products/productlist.vue'
+import AddToCart from '~/components/products/smalladdtocart.vue'
 
 import { products } from '~/config/products.json'
 
 export default {
   props: ['config',],
-  components: {Loading, ProductList},
+  components: {Loading, ProductList, AddToCart},
   data() {
     return {
       plant: null,
@@ -82,6 +90,11 @@ export default {
       return (config.products || []).map(p => products.find(p1 => p1.id == p))
     }
   },
+  methods: {
+    handleAddToCart() {
+      setTimeout(() => this.$data.addedToCart = true, 1000)
+    }
+  }
 }
 </script>
 
@@ -126,6 +139,10 @@ export default {
 #descriptionbody
   flex: 1
 
+#descriptioncontainer
+  display: flex
+  align-items: center
+
 #descriptionbody strong
   color: #3BB30B
   font-weight: 600
@@ -143,12 +160,12 @@ export default {
   display: block
   background-color: #3bb30b
   text-align: center
-  padding: 8pt 25pt
-  border-radius: 5pt
+  padding: 4pt 12pt
+  border-radius: 3pt
   color: #ffffff
   text-decoration: none
   font-size: 1.2em
-  margin: 4pt 0
+  margin: 4pt 10pt
   white-space: nowrap
   text-transform: uppercase
   font-weight: bold
@@ -156,12 +173,11 @@ export default {
 #plantbutton:hover
   background-color: #2F880B
 
-
-
 #appbutton
   color: #3bb30b
   font-weight: bold
   font-size: 1.2em
+  margin-right: 10pt
 
 #loading
   display: flex
@@ -177,9 +193,11 @@ export default {
   display: flex
   justify-content: space-around
   cursor: pointer
+
+#relatedProduct
   text-decoration: none
 
-.relatedProduct:hover
+#relatedProduct:hover
   text-decoration: underline
 
 .relatedProductPic
@@ -196,6 +214,17 @@ export default {
  margin-bottom: 10pt
  color: black
 
+#pricecontainer
+  display: flex
+  align-items: flex-end
+  justify-content: center
+  flex-direction: column
+  font-size: 1.2em
 
-
+#price
+  color: #3bb30b
+  font-weight: bold
+  margin-right: 10pt
+  text-decoration: underline
+  font-style: italic
 </style>
