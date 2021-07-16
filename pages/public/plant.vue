@@ -87,7 +87,7 @@
         </div>
 
       </div>
-      <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry"></feed-entry>
+      <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry" v-on:dialogTriggered="toggleDialog"></feed-entry>
       <div :class="$style.spinner_container">
         <infinite-loading
                 spinner="spiral"
@@ -108,8 +108,23 @@
     </div>
 
     <!-- This div is hidden, unless the page is interacted with -->
-    <div v-show="showDialog" :class="$style.ctaDialog">
-      <p>Content goes here.</p>
+    <div v-show="showDialog" :class="$style.ctaDialog" ref="ctaDialog" v-on:click="toggleDialog($event)" id="backdrop">
+      <div :class="$style.dialog_content_wrapper">
+        <div :class="$style.closeButton">
+          <span aria-hidden="true" id="closeButton">×</span>
+        </div>
+        <div :class="$style.dialog_content">
+          <div :class="$style.app_cta">
+            <div>
+              <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
+            </div>
+            <div>
+              Don't have the app installed yet?<br />
+              <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </section>
@@ -144,7 +159,7 @@ export default {
       feedEntries: [],
       page: 0,
       pageSize: 5,
-      showDialog: true
+      showDialog: false
     }
   },
   mounted() {
@@ -192,6 +207,18 @@ export default {
     getFormattedDate(date) {
       date = new Date(date);
       return date.toLocaleDateString();
+    },
+    toggleDialog(event) {
+      if (this.showDialog) {
+        if (event && (event.target.id === 'backdrop' || event.target.id === 'closeButton')) {
+          this.showDialog = !this.showDialog;
+        }
+      } else {
+        this.showDialog = !this.showDialog;
+      }
+      if (event) {
+        console.log(event.target.id);
+      }
     }
   }
 }
@@ -233,6 +260,8 @@ export default {
   background-color: #3bb30b
   padding: 10pt 15pt
   border-radius: 2pt
+  display: flex
+  justify-content: center
 
 .button > a
   color: white
@@ -295,8 +324,36 @@ export default {
   margin-top: 25px
 
 .ctaDialog
-  background-color: pink
+  background-color: rgba(0,0,0,0.6)
   position: fixed
+  z-index: 1000
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
+.dialog_content_wrapper
+  background-color: white
+  max-height: 420px
+  max-width: 600px
+
+
+.dialog_content
+  padding: 50px 100px
+
+.closeButton
+  position: realtive
+  top: 0
+  right: 0
+  text-align: right;
+  padding: 10px 20px 0 15px;
+  font-size: 30px;
+
+.closeButton span:hover
+  cursor: pointer
 
 
 </style>

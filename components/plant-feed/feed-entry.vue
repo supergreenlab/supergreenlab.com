@@ -15,10 +15,10 @@
         </div>
         <div class="feed-entry-footer">
             <div class="feed-entry-footer-icon-container">
-                <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_like.png')" />
-                <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_comment.png')" />
-                <img class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_share.png')" />
-                <img class="feed-entry-footer-icon flex-end clickable" :src="require('~/assets/img/feed_card/button_bookmark.png')" />
+                <img v-on:click="dialogTriggered" class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_like.png')" />
+                <img v-on:click="dialogTriggered" class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_comment.png')" />
+                <img v-on:click="dialogTriggered" class="feed-entry-footer-icon clickable" :src="require('~/assets/img/feed_card/button_share.png')" />
+                <img v-on:click="dialogTriggered" class="feed-entry-footer-icon flex-end clickable" :src="require('~/assets/img/feed_card/button_bookmark.png')" />
             </div>
             <div class="flex-start">{{getFormattedDate(feedEntry.date)}}</div>
         </div>
@@ -94,6 +94,9 @@
             getFormattedDate(date) {
                 date = new Date(date);
                 return date.toLocaleDateString();
+            },
+            dialogTriggered() {
+                this.$emit('dialogTriggered');
             }
         }
     }
