@@ -85,25 +85,29 @@
           </div>
           <img :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`" />
         </div>
-
       </div>
       <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry" v-on:dialogTriggered="toggleDialog"></feed-entry>
       <div :class="$style.spinner_container">
         <infinite-loading
                 spinner="spiral"
                 @infinite="loadNextFeedEntriesById">
-          <div slot="no-more">
-            <div :class="$style.app_cta">
-              <div>
-                <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
-              </div>
-              <div>
-                Don't have the app installed yet?<br />
-                <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
-              </div>
-            </div>
-          </div>
         </infinite-loading>
+      </div>
+
+      <div :class="$style.app_cta_wrapper">
+        <div :class="$style.app_cta">
+          <!--
+          <div>
+            <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
+          </div>
+          -->
+          <div>
+            <!--
+            Don't have the app installed yet?<br />
+            -->
+            <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -253,9 +257,6 @@ export default {
   margin-top: 56px
   background-color: #E5E5E5
 
-.button:nth-of-type(1)
-  margin-bottom: 30pt
-
 .button
   background-color: #3bb30b
   padding: 10pt 15pt
@@ -273,6 +274,7 @@ export default {
   color: white
   width: 100%
   margin-bottom: 10px
+  max-height: 400px
 
 .plant_header h1
   width: 100%
@@ -286,6 +288,9 @@ export default {
 .plant_header_data
   width: 50%
   font-weight: 400
+  max-height: 328px
+  overflow: scroll
+  padding-bottom: 10px;
 
 .plant_header_data div
   margin-left: 0
@@ -311,17 +316,29 @@ export default {
   margin-bottom: -5px
 
 .plant_header img
-  max-height: 480px
-  padding: 10px
+  max-height: 325px
+  padding: 5px
   align-self: center
   margin: 0 auto
   margin-right: 0
+  max-width: 50%
+  display: flex
+  align-self: flex-start
 
 .spinner_container div
   width: 250px
 
+.app_cta_wrapper
+  // background-color: #fff
+  position: fixed
+  bottom: 0
+  max-height: 235px
+  width: 225px
+
 .app_cta
-  margin-top: 25px
+  margin: 10px
+  max-height: 420px
+  max-width: 600px
 
 .ctaDialog
   background-color: rgba(0,0,0,0.6)
