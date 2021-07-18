@@ -256,6 +256,7 @@ export default {
   text-align: center
   margin-top: 56px
   background-color: #E5E5E5
+  padding-bottom: 80px
 
 .button
   background-color: #3bb30b
