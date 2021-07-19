@@ -150,9 +150,6 @@ export default {
       } else {
         this.showDialog = !this.showDialog;
       }
-      if (event) {
-        console.log(event.target.id);
-      }
     }
   }
 }
