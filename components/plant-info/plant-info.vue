@@ -5,7 +5,7 @@
             <div class="plant_header_data">
                 <div>
                     <span class="data_entry_name">Strain name</span>
-                    <div class="data_entry_value_big">{{plant.settings.strain}}</div><br/>
+                    <div class="data_entry_value_big">{{plant.settings.strain}}</div>
                     from <span class="green">{{plant.settings.seedBank}}</span>
                 </div>
                 <div class="data_entry">
