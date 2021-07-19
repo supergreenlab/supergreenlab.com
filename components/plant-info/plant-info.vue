@@ -135,7 +135,8 @@
         width: 50%;
         font-weight: 400;
         max-height: 328px;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         padding-bottom: 10px;
         text-align: left;
     }

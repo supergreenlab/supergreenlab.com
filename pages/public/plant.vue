@@ -36,10 +36,18 @@
 
       <div :class="$style.app_cta_wrapper">
         <div :class="$style.app_cta">
-          <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
+          <div :class="$style.open_in_app">
+            Open this plant in <span :class="$style.green">the app.</span>
+          </div>
           <div>
-            <div :class="$style.app_cta_text">Don't have the app installed yet?<br /></div>
-            <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
+            <nuxt-link to='/app' :class="$style.install_app">
+              <span :class="$style.install_app_text">
+                <span :class="$style.green">Install the app </span>
+                here:
+              </span>
+              <img src='~/assets/img/appstore.png' />
+              <img src='~/assets/img/playstore.png' />
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -204,7 +212,7 @@ export default {
   background-color: #fff
   position: fixed
   bottom: 0
-  height: 175px
+  height: fit-content
   width: 100%
   display: flex
   justify-content: center
@@ -213,6 +221,26 @@ export default {
 .app_cta
   max-height: 420px
   max-width: 265px
+
+.open_in_app
+  font-size: 20px
+  font-weight: bold
+  margin-top: 5px
+
+.install_app
+  display: flex
+  align-items: center
+  justify-content: center
+  text-decoration: none
+  margin-bottom: 5px
+  color: black
+
+.install_app_text
+  margin-right: 10px
+  font-weight: bold
+
+.install_app img
+  width: 25px
 
 .app_cta_text
   margin-top: 5px;
@@ -249,6 +277,11 @@ export default {
 
 .closeButton span:hover
   cursor: pointer
+
+.green
+  color: #3bb30b
+  margin: 0
+
 
 
 </style>
