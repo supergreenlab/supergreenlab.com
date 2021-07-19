@@ -4,61 +4,89 @@
             <h1>{{plant.name}}</h1>
             <div class="plant_header_data">
                 <div>
-                    <label>Strain name</label>
-                    {{plant.settings.strain}}
-                    <span>from
-                <span class="green">{{plant.settings.seedBank}}</span>
-              </span>
+                    <span class="data_entry_name">Strain name</span>
+                    <div class="data_entry_value_big">{{plant.settings.strain}}</div><br/>
+                    from <span class="green">{{plant.settings.seedBank}}</span>
                 </div>
-                <div>
-                    <label>Plant Type</label>
-                    {{plant.settings.plantType}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_plant_type.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Plant Type</span>
+                        {{plant.settings.plantType}}
+                    </div>
                 </div>
-                <div>
-                    <label>Medium</label>
-                    {{plant.settings.medium}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_medium.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Medium</span>
+                        {{plant.settings.medium}}
+                    </div>
                 </div>
-                <div>
-                    <label>Lab dimensions</label>
-                    {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}}
-                    {{plant.boxSettings.unit}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_dimension.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Lab dimensions</span>
+                        {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}}
+                        {{plant.boxSettings.unit}}
+                    </div>
                 </div>
                 <h3>Life event dates</h3>
-                <div>
-                    <label>Germination</label>
-                    {{plant.settings.germinationDate ? getFormattedDate(plant.settings.germinationDate) : 'Not set'}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_germination_date.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Germination</span>
+                        {{plant.settings.germinationDate ? getFormattedDate(plant.settings.germinationDate) : 'Not set'}}
+                    </div>
                 </div>
-                <div>
-                    <label>Vegging</label>
-                    {{plant.settings.veggingStart ? getFormattedDate(plant.settings.veggingStart) : 'Not set'}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_vegging_since.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Vegging</span>
+                        {{plant.settings.veggingStart ? getFormattedDate(plant.settings.veggingStart) : 'Not set'}}
+                    </div>
                 </div>
-                <div>
-                    <label>Blooming</label>
-                    {{plant.settings.bloomingStart ? getFormattedDate(plant.settings.bloomingStart) :'Not set'}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_blooming_since.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Blooming</span>
+                        {{plant.settings.bloomingStart ? getFormattedDate(plant.settings.bloomingStart) :'Not set'}}
+                    </div>
                 </div>
-                <div>
-                    <label>
-                        Drying
-                    </label>
-                    {{plant.settings.dryingStart ? getFormattedDate(plant.settings.dryingStart) : 'Not set'}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_drying_since.svg')"/>
+                    <div>
+                        <span class="data_entry_name">
+                            Drying
+                        </span>
+                        {{plant.settings.dryingStart ? getFormattedDate(plant.settings.dryingStart) : 'Not set'}}
+                    </div>
                 </div>
-                <div>
-                    <label>
-                        Curing
-                    </label>
-                    {{plant.settings.curingStart ? getFormattedDate(plant.settings.curingStart) : 'Not set'}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_curing_since.svg')"/>
+                    <div>
+                        <span class="data_entry_name">
+                            Curing
+                        </span>
+                        {{plant.settings.curingStart ? getFormattedDate(plant.settings.curingStart) : 'Not set'}}
+                    </div>
                 </div>
                 <h3>Toolbox</h3>
-                <div>
-                    <label>Seeds</label>
-                    {{plant.settings.strain}} from {{plant.settings.seedbank}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_seed.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Seeds</span>
+                        {{plant.settings.strain}} from {{plant.settings.seedbank}}
+                    </div>
                 </div>
-                <div>
-                    <label>Furniture</label>
-                    {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}
+                <div class="data_entry">
+                    <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_furniture.svg')"/>
+                    <div>
+                        <span class="data_entry_name">Furniture</span>
+                        {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}
+                    </div>
                 </div>
             </div>
-            <img :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`"/>
+            <img class="plant_image" :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`"/>
         </div>
     </div>
 </template>
@@ -109,26 +137,7 @@
         max-height: 328px;
         overflow: scroll;
         padding-bottom: 10px;
-    }
-
-    .plant_header_data div {
-        margin-left: 0;
-        margin-right: auto;
-        display: flex;
-        flex-direction: column;
         text-align: left;
-    }
-
-    .plant_header_data label {
-        text-decoration: none;
-        text-transform: none;
-        font-weight: unset;
-        margin-top: 5px;
-        margin-bottom: 0;
-        text-align: left;
-        margin-left: 0;
-        font-size: 12px;
-        padding-bottom: 0;
     }
 
     .plant_header_data h3 {
@@ -137,7 +146,7 @@
         margin-bottom: -5px;
     }
 
-    .plant_header img {
+    .plant_image {
         max-height: 325px;
         padding: 5px;
         margin: 0 auto;
@@ -145,6 +154,32 @@
         max-width: 50%;
         display: flex;
         align-self: flex-start;
+    }
+
+    .data_entry {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .data_entry_name {
+        display: block;
+        text-decoration: none;
+        text-transform: none;
+        font-weight: unset;
+        font-size: 12px;
+    }
+
+    .data_entry_value_big {
+        font-weight: bold;
+        padding: 3px 0;
+        font-size: 18px;
+    }
+
+    .data_icon {
+        width: 34px;
+        margin-right: 5px;
     }
 
     .green {
