@@ -23,70 +23,9 @@
         <Header responsiveHide='true' />
       </div>
     </div>
-    <!-- TODO: this header could maybe be moved to a separate component, to keep this file a little bit more clean -->
     <div :id='$style.body' v-if="plant">
-      <div :class="$style.plant_header">
-        <div :class="$style.plant_header_content">
-          <h1>{{plant.name}}</h1>
-          <div :class="$style.plant_header_data">
-            <div>
-              <label>Strain name</label>
-              {{plant.settings.strain}}
-              <span>from
-                <span :class="$style.green">{{plant.settings.seedBank}}</span>
-              </span>
-            </div>
-            <div>
-              <label>Plant Type</label>
-              {{plant.settings.plantType}}
-            </div>
-            <div>
-              <label>Medium</label>
-              {{plant.settings.medium}}
-            </div>
-            <div>
-              <label>Lab dimensions</label>
-              {{plant.boxSettings.width}}x{{plant.boxSettings.height}}x{{plant.boxSettings.depth}} {{plant.boxSettings.unit}}
-            </div>
-            <h3>Life event dates</h3>
-            <div>
-              <label>Germination</label>
-              {{plant.settings.germinationDate ? getFormattedDate(plant.settings.germinationDate) : 'Not set'}}
-            </div>
-            <div>
-              <label>Vegging</label>
-              {{plant.settings.veggingStart ? getFormattedDate(plant.settings.veggingStart) : 'Not set'}}
-            </div>
-            <div>
-              <label>Blooming</label>
-              {{plant.settings.bloomingStart ? getFormattedDate(plant.settings.bloomingStart) :'Not set'}}
-            </div>
-            <div>
-              <label>
-                Drying
-              </label>
-              {{plant.settings.dryingStart ? getFormattedDate(plant.settings.dryingStart) : 'Not set'}}
-            </div>
-            <div>
-              <label>
-                Curing
-              </label>
-              {{plant.settings.curingStart ? getFormattedDate(plant.settings.curingStart) : 'Not set'}}
-            </div>
-            <h3>Toolbox</h3>
-            <div>
-              <label>Seeds</label>
-              {{plant.settings.strain}} from {{plant.settings.seedbank}}
-            </div>
-            <div>
-              <label>Furniture</label>
-              {{plant.boxSettings.products[0].name}} by {{plant.boxSettings.products[0].specs.brand}}
-            </div>
-          </div>
-          <img :src="`https://storage.supergreenlab.com${plant.thumbnailPath}`" />
-        </div>
-      </div>
-      <feed-entry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry" v-on:dialogTriggered="toggleDialog"></feed-entry>
+      <PlantInfo :plant="plant"></PlantInfo>
+      <FeedEntry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry" v-on:dialogTriggered="toggleDialog"></FeedEntry>
       <div :class="$style.spinner_container">
         <infinite-loading
                 spinner="spiral"
@@ -131,6 +70,7 @@
 import Header from '~/components/layout/header.vue'
 import FeedEntry from "~/components/plant-feed/feed-entry";
 import {getPlantById, getFeedEntriesById} from "~/lib/plant";
+import PlantInfo from "../../components/plant-info/plant-info";
 
 export default {
   head() {
@@ -146,6 +86,7 @@ export default {
     }
   },
   components: {
+    PlantInfo,
     FeedEntry,
     Header
   },
@@ -200,10 +141,6 @@ export default {
           }
         })
         .catch(err => console.log(err.message));
-    },
-    getFormattedDate(date) {
-      date = new Date(date);
-      return date.toLocaleDateString();
     },
     toggleDialog(event) {
       if (this.showDialog) {
@@ -263,66 +200,6 @@ export default {
   text-decoration: none
   font-size: 1.1em
 
-.plant_header
-  background-color: #3F51B5
-  color: white
-  width: 100%
-  margin-bottom: 10px
-  max-height: 400px
-
-.plant_header h1
-  width: 100%
-
-.plant_header_content
-  max-width: 970px
-  display: inline-flex
-  flex-flow: wrap
-  padding-bottom: 20px
-
-.plant_header_data
-  width: 50%
-  font-weight: 400
-  max-height: 328px
-  overflow: scroll
-  padding-bottom: 10px;
-
-.plant_header_data div
-  margin-left: 0
-  margin-right: auto
-  display: flex
-  flex-direction: column
-  text-align: left
-
-.plant_header_data label
-  text-decoration: none
-  text-transform: none
-  font-weight: unset
-  margin-top: 5px
-  margin-bottom: 0
-  text-align: left
-  margin-left: 0
-  font-size: 12px
-  padding-bottom: 0
-
-.plant_header_data h3
-  text-align: left
-  margin-top: 15px
-  margin-bottom: -5px
-
-.plant_header_data ::-webkit-scrollbar
-  width: 0  /* Remove scrollbar space */
-  background: transparent  /* Optional: just make scrollbar invisible */
-
-.plant_header img
-  max-height: 325px
-  padding: 5px
-  align-self: center
-  margin: 0 auto
-  margin-right: 0
-  max-width: 50%
-  display: flex
-  align-self: flex-start
-
 .spinner_container div
   width: 250px
 
@@ -375,10 +252,6 @@ export default {
 
 .closeButton span:hover
   cursor: pointer
-
-.green
-  color: #3bb30b
-  font-weight: bold
 
 
 </style>

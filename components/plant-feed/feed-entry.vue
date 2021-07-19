@@ -5,13 +5,7 @@
             {{getFeedEntryHeading(feedEntry.type)}}
         </div>
         <div class="feed-entry-content">
-            <feed-entry-light v-if="feedEntry.type === 'FE_LIGHT'" :feedEntry="feedEntry"></feed-entry-light>
-            <feed-entry-water v-else-if="feedEntry.type === 'FE_WATER'" :feedEntry="feedEntry"></feed-entry-water>
-            <feed-entry-media v-else-if="feedEntry.type === 'FE_MEDIA'" :feedEntry="feedEntry"></feed-entry-media>
-            <feed-entry-life-event v-else-if="feedEntry.type === 'FE_LIFE_EVENT'" :feedEntry="feedEntry"></feed-entry-life-event>
-            <feed-entry-ventilation v-else-if="feedEntry.type === 'FE_VENTILATION'" :feedEntry="feedEntry"></feed-entry-ventilation>
-            <feed-entry-schedule v-else-if="feedEntry.type === 'FE_SCHEDULE'" :feedEntry="feedEntry"></feed-entry-schedule>
-            <feed-entry-nutrient-mix v-else-if="feedEntry.type === 'FE_NUTRIENT_MIX'" :feedEntry="feedEntry"></feed-entry-nutrient-mix>
+            <component :is="getFeedComponent(feedEntry.type)" :feedEntry="feedEntry"></component>
         </div>
         <div class="feed-entry-footer">
             <div class="feed-entry-footer-icon-container">
@@ -55,6 +49,24 @@
             }
         },
         methods: {
+            getFeedComponent(type) {
+                switch(type){
+                    case 'FE_LIGHT':
+                        return FeedEntryLight;
+                    case 'FE_WATER':
+                        return FeedEntryWater;
+                    case 'FE_MEDIA':
+                        return FeedEntryMedia;
+                    case 'FE_LIFE_EVENT':
+                        return FeedEntryLifeEvent;
+                    case 'FE_VENTILATION':
+                        return FeedEntryVentilation;
+                    case 'FE_SCHEDULE':
+                        return FeedEntrySchedule;
+                    case 'FE_NUTRIENT_MIX':
+                        return FeedEntryNutrientMix;
+                }
+            },
             getFeedEntryHeading(type) {
                 switch(type){
                     case 'FE_LIGHT':
