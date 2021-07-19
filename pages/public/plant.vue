@@ -91,20 +91,15 @@
         <infinite-loading
                 spinner="spiral"
                 @infinite="loadNextFeedEntriesById">
+          <div slot="no-more"></div>
         </infinite-loading>
       </div>
 
       <div :class="$style.app_cta_wrapper">
         <div :class="$style.app_cta">
-          <!--
+          <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
           <div>
-            <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
-          </div>
-          -->
-          <div>
-            <!--
-            Don't have the app installed yet?<br />
-            -->
+            <div :class="$style.app_cta_text">Don't have the app installed yet?<br /></div>
             <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
           </div>
         </div>
@@ -119,11 +114,9 @@
         </div>
         <div :class="$style.dialog_content">
           <div :class="$style.app_cta">
+            <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
             <div>
-              <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
-            </div>
-            <div>
-              Don't have the app installed yet?<br />
+              <div :class="$style.app_cta_text">Don't have the app installed yet?<br /></div>
               <div :class='$style.button'><nuxt-link to='/app'><img src='~/assets/img/playstore.png' /><img src='~/assets/img/appstore.png' /><br />Install the app</nuxt-link></div>
             </div>
           </div>
@@ -256,7 +249,7 @@ export default {
   text-align: center
   margin-top: 56px
   background-color: #E5E5E5
-  padding-bottom: 80px
+  padding-bottom: 175px
 
 .button
   background-color: #3bb30b
@@ -330,16 +323,21 @@ export default {
   width: 250px
 
 .app_cta_wrapper
-  // background-color: #fff
+  background-color: #fff
   position: fixed
   bottom: 0
-  max-height: 235px
-  width: 225px
+  height: 175px
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
 
 .app_cta
-  margin: 10px
   max-height: 420px
-  max-width: 600px
+  max-width: 265px
+
+.app_cta_text
+  margin-top: 5px;
 
 .ctaDialog
   background-color: rgba(0,0,0,0.6)
@@ -361,6 +359,7 @@ export default {
 
 .dialog_content
   padding: 50px 100px
+  text-align: center
 
 .closeButton
   position: realtive
