@@ -309,6 +309,10 @@ export default {
   margin-top: 15px
   margin-bottom: -5px
 
+.plant_header_data ::-webkit-scrollbar
+  width: 0  /* Remove scrollbar space */
+  background: transparent  /* Optional: just make scrollbar invisible */
+
 .plant_header img
   max-height: 325px
   padding: 5px
@@ -371,6 +375,10 @@ export default {
 
 .closeButton span:hover
   cursor: pointer
+
+.green
+  color: #3bb30b
+  font-weight: bold
 
 
 </style>
