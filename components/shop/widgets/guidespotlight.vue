@@ -20,7 +20,7 @@
   <section>
     <div :id="$style.container">
       <div :id="$style.guidespotlightcontainer">
-        <div :id="$style.title" v-html='$md.render(config.title)'></div>
+        <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
         <div :id="$style.spotlightContent">
           <CardGuide :guide='guide' userStep='0' :class='$style.cardContainer' />
@@ -78,19 +78,27 @@ export default {
   font-size: 2.5em
   margin-bottom: 10pt
   color: #5E5E5E
+  @media only screen and (max-width: 600px)
+    margin-bottom: 0
 
 #description
-  margin: 10pt 0
+  text-align: justify
+  margin: 0 10pt
+  @media only screen and (max-width: 600px)
+    margin: 5pt
 
 #spotlightContent
   display:flex
   justify-content: center
   align-items: center
+  margin: 5pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 .cardContainer
   display: flex
   flex-direction: column
-  width : 300px
+  max-width: 300pt
 
 #tagline
   color: #5E5E5E

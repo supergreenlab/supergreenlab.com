@@ -66,18 +66,24 @@ export default {
   cursor: pointer
 
 #pictureBanner
-  height: 250pt
   width: 100%
+  height: 250pt
   background-position: center
   background-size: cover
   background-repeat: no-repeat
   display: flex
   flex-direction: column
+  @media only screen and (max-width: 600px)
+    height: 150pt
 
 #video
   width: 100%
-  max-height: 250pt
+  height: 250pt
   object-fit: cover
+  object-position: center
+  @media only screen and (max-width: 600px)
+    height: 150pt
+
 
 </style>
 

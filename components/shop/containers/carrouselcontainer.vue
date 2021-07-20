@@ -39,6 +39,8 @@ export default {
         autoplay: true,
         speed: 3500,
         autoplaySpeed: 3500,
+        touchMove: false,
+        cssEase: 'ease',
       }
     };
   }

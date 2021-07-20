@@ -108,13 +108,12 @@ export default{
 #content
   display: flex
   flex-direction: column
-  justify-content: space-around
-  min-width: 420pt
+  justify-content: center
+  min-width: 0
   margin: 5pt
   height: 100%
-  @media only screen and (max-width: 1200px)
-    justify-content: center
-    min-width: 0
+  /* @media only screen and (max-width: 1200px) */
+
 
 #leftcolumn
   padding: 3pt

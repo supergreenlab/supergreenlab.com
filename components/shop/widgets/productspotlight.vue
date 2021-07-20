@@ -24,7 +24,6 @@
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
         <div v-for='product in products' :key='product.id' :class='$style.productspotlight'>
           <div :id='$style.pics'>
-            <!-- <div>{{ product }}</div> -->
             <Pics :pics='product.pics' :hideArrow=true />
           </div>
           <div :id='$style.content'>
@@ -80,8 +79,9 @@ export default {
 
 #container
   display: flex
-
   align-items: center
+  margin: 5pt
+
 
 #spotlightcontainer
   display:flex
@@ -92,14 +92,24 @@ export default {
   font-weight: bold
   font-size: 2.5em
   color: #5E5E5E
+  margin-bottom: 10pt
+  @media only screen and (max-width: 600px)
+    margin: 0
+
 
 #description
-  margin: 10pt 0
+  text-align: justify
+  margin: 0 10pt 15pt
+  @media only screen and (max-width: 600px)
+    margin: 0 5pt
 
 #content
   display:flex
   flex-direction: column
-  margin: 0 10pt
+  margin-left: 10pt
+  @media only screen and (max-width: 600px)
+    margin-top: 10pt
+
 
 #contentlink
   text-decoration: none
@@ -117,13 +127,18 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #pics
-  width: 40%
+  width: 300pt
   height: 300pt
   background-position: center
-  background-size: contain
+  background-size: cover
   background-repeat: no-repeat
+  @media only screen and (max-width: 600px)
+    width: 250pt
+    height: 250pt
 
 #pricing
   display: flex

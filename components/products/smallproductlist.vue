@@ -31,8 +31,9 @@
       </div>
       <div :id='$style.propose'>
         <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+        <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
       </div>
-      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
+
     </div>
   </section>
 </template>
@@ -101,5 +102,6 @@ export default {
 
 #propose a
   color: #454545
+  margin: 3pt
 
 </style>

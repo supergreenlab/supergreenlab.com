@@ -120,9 +120,12 @@ export default {
   display: flex
   justify-content:center
   align-self : center
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #pic
   height: 160pt
+  align-self : center
 
 #pic > div
   width: 160pt
@@ -142,6 +145,8 @@ export default {
 #descriptioncontainer
   display: flex
   align-items: center
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #descriptionbody strong
   color: #3BB30B
@@ -193,6 +198,9 @@ export default {
   display: flex
   justify-content: space-around
   cursor: pointer
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+    justify-content: center
 
 #relatedProduct
   text-decoration: none

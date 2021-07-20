@@ -18,33 +18,41 @@
 
  <template>
   <section :id="$style.container">
-    <div :id="$style.countdowncontainer">
+    <div :id="$style.countdowncontainer" @click='open(config.link)'>
       <div :id="$style.title" v-html='$md.render(config.title)'></div>
-      <div :id="$style.description" v-html='$md.render(config.description)'></div>
-      <div :id="$style.countdown">
-        <div :class="$style.countdown">
-          <div :class="$style.block">
-            <div :class="$style.digit">{{ days | zero }}</div>
-            <div :class="$style.unit">Days</div>
-          </div>
-          <div :class="$style.block">
-            <div :class="$style.digit">{{ hours | zero }}</div>
-            <div :class="$style.unit">Hours</div>
-          </div>
-          <div :class="$style.block">
-            <div :class="$style.digit">{{ minutes | zero }}</div>
-            <div :class="$style.unit">Minutes</div>
-          </div>
-          <div :class="$style.block">
-            <div :class="$style.digit">{{ seconds | zero }}</div>
-            <div :class="$style.unit">Seconds</div>
+        <div :id="$style.description" v-html='$md.render(config.description)'></div>
+        <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+        <div :id="$style.countdown">
+          <div :class="$style.countdown">
+            <div :class="$style.block">
+              <div :class="$style.digit">{{ days | zero }}</div>
+              <div :class="$style.unit">Days</div>
+            </div>
+            <div :class="$style.block">
+              <div :class="$style.digit">{{ hours | zero }}</div>
+              <div :class="$style.unit">Hours</div>
+            </div>
+            <div :class="$style.block">
+              <div :class="$style.digit">{{ minutes | zero }}</div>
+              <div :class="$style.unit">Minutes</div>
+            </div>
+            <div :class="$style.block">
+              <div :class="$style.digit">{{ seconds | zero }}</div>
+              <div :class="$style.unit">Seconds</div>
+            </div>
           </div>
         </div>
+        <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
       </div>
-      <div v-if="now < dateInMilliseconds" :id="$style.enddate">Before {{ endDate | formatDate }}</div>
-      <div v-else :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
-      <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
-      <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'></div>
+      <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'>
+        <div :class="$style.digit">Times's up</div>
+        <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
+      </div>
+
+
+
+
+      <!-- <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div> -->
 
     </div>
   </section>
@@ -85,6 +93,17 @@ export default {
     days() {
       return Math.trunc((this.dateInMilliseconds - this.now) / 60 / 60 / 24)
     },
+    link() {
+      const { config } = this.$props
+      const link = config.link
+      // console.log(config)
+      return link
+    }
+  },
+  methods: {
+    open(link) {
+      open(link, '_blank')
+    }
   },
   filters: {
     formatDate: (dateStr) =>
@@ -118,6 +137,7 @@ export default {
 #countdowncontainer
   display:flex
   flex-direction: column
+  cursor: pointer
 
 #title
   text-transform: uppercase
@@ -125,9 +145,16 @@ export default {
   font-size: 2.5em
   margin-bottom: 10pt
   color: #5E5E5E
+  @media only screen and (max-width: 900px)
+    margin-left: 5pt
+
 
 #description
-  margin: 10pt 0
+  margin: 0 10pt
+  text-align: justify
+  @media only screen and (max-width: 900px)
+    margin: 0 5pt
+
 
 #countdown
   display: flex
@@ -137,10 +164,14 @@ export default {
 .countdown
   display: flex
 
+
 .block
   margin: 10pt
+  @media only screen and (max-width: 600px)
+    margin: 3pt
 
 .digit
+  text-align: center
   margin: 10px
   font-size: 70pt
   font-weight: bold
@@ -150,15 +181,23 @@ export default {
   -webkit-text-fill-color: white
   -webkit-text-stroke-width: 1px
   -webkit-text-stroke-color: black
+  @media only screen and (max-width: 600px)
+    font-size: 23pt
 
 .unit
-  color: #3BB30B
+  font-family: 'PlumeAd'
+  -webkit-text-fill-color: #3BB30B
+  -webkit-text-stroke-width: 1px
+  -webkit-text-stroke-color: black
   text-align: center
   font-weight: bold
+  font-size: 20pt
+  @media only screen and (max-width: 600px)
+    font-size: 14pt
 
 #enddate
   text-align: center
-  margin: 10px
+  margin-bottom: 5pt
   font-size: 20pt
   font-weight: bold
   font-family: 'PlumeAd'
@@ -169,11 +208,11 @@ export default {
   -webkit-text-stroke-color: black
 
 .countdownpic
-  width: 100%
-  height: 200pt
+  max-height: 200pt
   background-position: center
-  background-size: contain
+  background-size: cover
   background-repeat: no-repeat
+  margin: 10pt
 
 
 </style>

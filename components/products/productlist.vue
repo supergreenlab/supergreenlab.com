@@ -85,6 +85,8 @@ export default {
 
 .start
   justify-content: flex-start
+  @media only screen and (max-width: 600px)
+    justify-content: center
 
 .product
   flex-basis: 33%

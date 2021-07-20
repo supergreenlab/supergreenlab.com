@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id="$style.titleList">{{config.title}}</div>
+    <h2 :id="$style.titleList">{{config.title}}</h2>
     <div :id="$style.headerProductList">
       <div :id="$style.picContainer">
         <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
@@ -72,11 +72,11 @@ export default {
   margin-bottom: 10pt
   font-size: 2.5em
   color: #5E5E5E
-  @media only screen and (max-width: 600px)
-    margin-left: 5pt
+  /* @media only screen and (max-width: 900px)
+    margin-left: 5pt */
 
 #description
-  margin-left: 5pt
+  margin: 0 5pt
   text-align: justify
 
 #pic
@@ -85,10 +85,14 @@ export default {
   background-position: center
   background-size: cover
   background-repeat: no-repeat
+  margin: 0 5pt
 
 #headerProductList
   display: flex
   width: 100%
   align-self: center
+  margin-left: 20pt
+  @media only screen and (max-width: 900px)
+    margin-left: 0
 
 </style>
