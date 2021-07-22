@@ -37,6 +37,7 @@
       <div :class="$style.app_cta_wrapper">
         <div :class="$style.app_cta">
           <div :class="$style.open_in_app">
+            <img :class='$style.open_app_icon' src='~/assets/img/icon_open_app.svg' />
             Open this plant in <span :class="$style.green">the app.</span>
           </div>
           <div>
@@ -220,7 +221,7 @@ export default {
 
 .app_cta
   max-height: 420px
-  max-width: 265px
+  max-width: 300px
 
 .open_in_app
   font-size: 20px
@@ -281,6 +282,9 @@ export default {
 .green
   color: #3bb30b
   margin: 0
+
+.open_app_icon
+  width: 25px
 
 
 
