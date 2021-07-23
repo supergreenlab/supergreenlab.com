@@ -37,8 +37,10 @@
       <div :class="$style.app_cta_wrapper">
         <div :class="$style.app_cta">
           <div :class="$style.open_in_app">
-            <img :class='$style.open_app_icon' src='~/assets/img/icon_open_app.svg' />
-            Open this plant in <span :class="$style.green">the app.</span>
+            <a :href='url'>
+              <img :class='$style.open_app_icon' src='~/assets/img/icon_open_app.svg' />
+              Open this plant in <span :class="$style.green">the app.</span>
+            </a>
           </div>
           <div>
             <nuxt-link to='/app' :class="$style.install_app">
@@ -227,6 +229,10 @@ export default {
   font-size: 20px
   font-weight: bold
   margin-top: 5px
+
+.open_in_app a
+  color: black
+  text-decoration: none
 
 .install_app
   display: flex
