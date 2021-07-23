@@ -78,7 +78,7 @@
                         {{plant.settings.strain}} from {{plant.settings.seedbank}}
                     </div>
                 </div>
-                <div class="data_entry">
+                <div class="data_entry" v-if="plant.boxSettings.products[0]">
                     <img class="data_icon" :src="require('~/assets/img/plant_infos/icon_furniture.svg')"/>
                     <div>
                         <span class="data_entry_name">Furniture</span>

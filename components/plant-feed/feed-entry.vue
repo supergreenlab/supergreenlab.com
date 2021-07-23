@@ -28,13 +28,19 @@
     import FeedEntryVentilation from "./feed-entry-ventilation";
     import FeedEntrySchedule from "./feed-entry-schedule";
     import FeedEntryNutrientMix from "./feed-entry-nutrient-mix";
+    import FeedEntryTraining from "./feed-entry-training";
 
     export default {
         name: "feed-entry",
         components: {
             FeedEntryNutrientMix,
             FeedEntrySchedule,
-            FeedEntryVentilation, FeedEntryLifeEvent, FeedEntryMedia, FeedEntryWater, FeedEntryLight
+            FeedEntryVentilation,
+            FeedEntryLifeEvent,
+            FeedEntryMedia,
+            FeedEntryWater,
+            FeedEntryLight,
+            FeedEntryTraining
         },
         props: {
             feedEntry: {
@@ -56,6 +62,8 @@
                     case 'FE_WATER':
                         return FeedEntryWater;
                     case 'FE_MEDIA':
+                    case 'FE_TIMELAPSE':
+                    case 'FE_MEASURE':
                         return FeedEntryMedia;
                     case 'FE_LIFE_EVENT':
                         return FeedEntryLifeEvent;
@@ -65,6 +73,11 @@
                         return FeedEntrySchedule;
                     case 'FE_NUTRIENT_MIX':
                         return FeedEntryNutrientMix;
+                    case 'FE_BENDING':
+                    case 'FE_DEFOLIATION':
+                    case 'FE_TOPPING':
+                        return FeedEntryTraining;
+
                 }
             },
             getFeedEntryHeading(type) {
@@ -83,6 +96,18 @@
                         return 'Schedule change';
                     case 'FE_NUTRIENT_MIX':
                        return 'Nutrient Mix';
+                    case 'FE_BENDING':
+                       return 'Bending';
+                    case 'FE_DEFOLIATION':
+                        return 'Defoliation';
+                    case 'FE_TIMELAPSE':
+                        return 'Timelapse';
+                    case 'FE_MEASURE':
+                        return 'Measure';
+                    case 'FE_TOPPING':
+                        return 'Topping';
+                   default:
+                       return type;
                 }
             },
             getHeaderIcon(type) {
@@ -101,6 +126,14 @@
                         return require('~/assets/img/feed_card/icon_schedule.svg');
                     case 'FE_NUTRIENT_MIX':
                         return require('~/assets/img/feed_card/icon_nutrient_mix.svg');
+                    case 'FE_BENDING':
+                        return require('~/assets/img/feed_card/icon_bending.svg');
+                    case 'FE_DEFOLIATION':
+                        return require('~/assets/img/feed_card/icon_defoliation.svg');
+                    case 'FE_MEASURE':
+                        return require('~/assets/img/feed_card/icon_measure.svg');
+                    case 'FE_TOPPING':
+                        return require('~/assets/img/feed_card/icon_topping.svg');
                 }
             },
             getFormattedDate(date) {
