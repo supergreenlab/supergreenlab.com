@@ -17,6 +17,10 @@
                 <span>EC</span>
                 <span class="feed-entry-nutrient-volume">{{feedEntry.params.ec}}</span>
             </div>
+            <div class="feed-entry-nutrient-content" v-if="feedEntry.params.tds">
+                <span>TDS</span>
+                <span class="feed-entry-nutrient-volume">{{feedEntry.params.tds}}</span>
+            </div>
             <div class="feed-entry-nutrient-content" v-for="nutrient in feedEntry.params.nutrientProducts">
                 <span>{{nutrient.product.name}}</span>
             <span class="feed-entry-nutrient-volume">{{nutrient.quantity}} {{nutrient.unit}}</span>
