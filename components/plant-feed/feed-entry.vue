@@ -76,6 +76,8 @@
                     case 'FE_BENDING':
                     case 'FE_DEFOLIATION':
                     case 'FE_TOPPING':
+                    case 'FE_FIMMING':
+                    case 'FE_TRANSPLANT':
                         return FeedEntryTraining;
 
                 }
@@ -106,6 +108,10 @@
                         return 'Measure';
                     case 'FE_TOPPING':
                         return 'Topping';
+                    case 'FE_FIMMING':
+                        return 'Fimming';
+                    case 'FE_TRANSPLANT':
+                        return 'Transplant';
                    default:
                        return type;
                 }
@@ -134,6 +140,10 @@
                         return require('~/assets/img/feed_card/icon_measure.svg');
                     case 'FE_TOPPING':
                         return require('~/assets/img/feed_card/icon_topping.svg');
+                    case 'FE_FIMMING':
+                        return require('~/assets/img/feed_card/icon_fimming.svg');
+                    case 'FE_TRANSPLANT':
+                        return require('~/assets/img/feed_card/icon_transplant.svg');
                 }
             },
             getFormattedDate(date) {
