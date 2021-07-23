@@ -39,6 +39,14 @@
         methods: {
             getPhase(phase) {
                 switch(phase) {
+                    case "EARLY_VEG":
+                        return "Early veg";
+                    case "MID_VEG":
+                        return "Mid veg";
+                    case "LATE_VEG":
+                        return "Late veg";
+                    case "EARLY_BLOOM":
+                        return "Early bloom";
                     case "LATE_BLOOM":
                         return "Late bloom";
                     case "MID_BLOOM":
