@@ -19,6 +19,10 @@
                     <span>EC</span>
                     <span class="feed-entry-water-volume">{{feedEntry.params.ec}}</span>
                 </div>
+                <div class="feed-entry-water-content" v-if="feedEntry.params.tds">
+                    <span>TDS</span>
+                    <span class="feed-entry-water-volume">{{feedEntry.params.tds}}</span>
+                </div>
             </div>
             <p v-if="feedEntry.params.message">{{feedEntry.params.message}}</p>
         </div>
