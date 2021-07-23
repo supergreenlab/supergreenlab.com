@@ -37,8 +37,8 @@ export default {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 3500,
-        autoplaySpeed: 3500,
+        speed: 2000,
+        autoplaySpeed: 1800,
         touchMove: false,
         cssEase: 'ease',
       }

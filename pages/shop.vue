@@ -110,10 +110,11 @@ export default{
   flex-direction: column
   justify-content: center
   min-width: 0
-  margin: 5pt
+  margin: 10pt 200pt;
   height: 100%
-  /* @media only screen and (max-width: 1200px) */
-
+  overflow: visible
+  @media only screen and (max-width: 900px)
+    margin: 10pt
 
 #leftcolumn
   padding: 3pt
@@ -123,10 +124,15 @@ export default{
   flex-direction: column
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
   width: 170pt
+  position: fixed
+  left: 0
+  overflow: hidden
   @media only screen and (max-width: 900px)
     display: none
 
 #rightcolumn
+  position: fixed
+  right: 0
   padding: 3pt
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
   margin-top: 5pt
@@ -134,6 +140,7 @@ export default{
   display:flex
   flex-direction: column
   width: 170pt
+  overflow: hidden
   @media only screen and (max-width: 900px)
     display: none
 

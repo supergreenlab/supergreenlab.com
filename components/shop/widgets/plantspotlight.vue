@@ -37,7 +37,9 @@
 
             <h3>Grow with {{ product.name }}</h3>
             <div :class='$style.relatedProduct'>
-              <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${product.pics[0].fileLarge}`)})`}'></div>
+              <div :id='$style.ProducPic'>
+                <div :style='{"background-image": `url(${require(`~/assets/img/${product.pics[0].fileLarge}`)})`}'></div>
+              </div>
               <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :id='$style.relatedProduct'>
                 <div>
                   <div :class='$style.relatedProductTagline'  v-html='$md.render(product.tagline)'></div>
@@ -157,6 +159,7 @@ export default {
   margin-bottom: 5pt
 
 #button
+  width: 100%
   display: flex
   align-items: flex-end
   flex-direction: column
@@ -208,10 +211,15 @@ export default {
 #relatedProduct:hover
   text-decoration: underline
 
-.relatedProductPic
-  width: 200pt
-  margin: 0 5pt 0 0
-  background-position: center
+#ProducPic
+  height: 60pt
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+#ProducPic > div
+  width: 60pt
+  height: 100%
   background-size: contain
   background-repeat: no-repeat
 

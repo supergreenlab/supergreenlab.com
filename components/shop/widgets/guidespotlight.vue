@@ -92,7 +92,7 @@ export default {
   justify-content: center
   align-items: center
   margin: 5pt
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 900px)
     flex-direction: column
 
 .cardContainer

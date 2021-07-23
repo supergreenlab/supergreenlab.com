@@ -25,16 +25,18 @@
       </div>
       <div :id='$style.description'>{{config.description}}</div>
     </div>
-    <ProductList :products='products' :center=false ></ProductList>
+    <ProductList :id='$style.productlist' :products='products' :center=false ></ProductList>
+    <SmallProductList :id='$style.smallproductlist' :products='products' />
   </section>
 </template>
 
 <script>
 import ProductList from '~/components/products/productlist.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 
 export default {
   props: ['config',],
-  components: {ProductList,},
+  components: { ProductList ,SmallProductList},
   computed: {
     products() {
       const { config } = this.$props
@@ -43,7 +45,9 @@ export default {
         return a.indexOf(p) == i
       })
     },
-
+    // responsive() {
+    //   return window.innerWidth > 900
+    // }
   },
   methods: {
 
@@ -72,8 +76,6 @@ export default {
   margin-bottom: 10pt
   font-size: 2.5em
   color: #5E5E5E
-  /* @media only screen and (max-width: 900px)
-    margin-left: 5pt */
 
 #description
   margin: 0 5pt
@@ -94,5 +96,14 @@ export default {
   margin-left: 20pt
   @media only screen and (max-width: 900px)
     margin-left: 0
+
+#productlist
+  @media only screen and (max-width: 900px)
+    display: none
+
+#smallproductlist
+  display: none
+  @media only screen and (max-width: 900px)
+    display: block
 
 </style>
