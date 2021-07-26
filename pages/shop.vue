@@ -117,6 +117,7 @@ export default{
     margin: 10pt
 
 #leftcolumn
+  height: 100%
   padding: 3pt
   margin-top: 5pt
   margin-left: 5pt
@@ -131,6 +132,7 @@ export default{
     display: none
 
 #rightcolumn
+  height: 100%
   position: fixed
   right: 0
   padding: 3pt

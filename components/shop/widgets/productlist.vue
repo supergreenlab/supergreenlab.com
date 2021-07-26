@@ -25,18 +25,20 @@
       </div>
       <div :id='$style.description'>{{config.description}}</div>
     </div>
-    <ProductList :id='$style.productlist' :products='products' :center=false ></ProductList>
-    <SmallProductList :id='$style.smallproductlist' :products='products' />
+    <ProductListComponent :products='products' :center=true />
+    <!-- <ProductList :id='$style.productlist' :products='products' :center=false ></ProductList>
+    <SmallProductList :id='$style.smallproductlist' :products='products' /> -->
   </section>
 </template>
 
 <script>
-import ProductList from '~/components/products/productlist.vue'
-import SmallProductList from '~/components/products/smallproductlist.vue'
+// import ProductList from '~/components/products/productlist.vue'
+// import SmallProductList from '~/components/products/smallproductlist.vue'
+import ProductListComponent from '~/components/products/productlistcomponent.vue'
 
 export default {
   props: ['config',],
-  components: { ProductList ,SmallProductList},
+  components: { ProductListComponent},
   computed: {
     products() {
       const { config } = this.$props

@@ -34,7 +34,7 @@
         <AddToCart name='one-for-all-pack' :lineItems='oneForAllPackLineItems' :discreet=false @click='removeCollection("organic-pack")' />
       </div>
     </div>
-    <ProductList ref='one-for-all' :id='$style.cropPack' v-if="isActive" :products='oneForAllPack' :center=true :maxItems=4  />
+    <ProductListComponent ref='one-for-all' :id='$style.cropPack' v-if="isActive" :products='oneForAllPack' :center=true :maxItems=4  />
     <a :class='$style.packSeparator'  @click='toggleClass()'>View
       <div :class='$style.number'>{{ oneForAllPack.length }}</div> products in this pack
       <span  :class="$style.arrow">
@@ -57,7 +57,7 @@
         <AddToCart name='organic-pack' :lineItems='organicPackLineItems' :discreet=false @click='removeCollection("one-for-all-pack")' />
       </div>
     </div>
-    <ProductList ref='organic-pack' :id='$style.organicPack' v-if="isActiveOrganic" :products='organicPack' :center=true :maxItems=4 />
+    <ProductListComponent ref='organic-pack' :id='$style.organicPack' v-if="isActiveOrganic" :products='organicPack' :center=true :maxItems=4 />
     <a :class='$style.packSeparator'  @click='toggleClassOrganic()'>View
       <div :class='$style.number'>{{ organicPack.length }}</div> products in this pack
       <span  :class="$style.arrow">
@@ -81,7 +81,7 @@
         <AddToCart name='option-pack' :lineItems='optionPackLineItems' :discreet=false />
       </div>
     </div>
-    <ProductList ref='option-pack' :products='optionPack' :id='$style.optionPack' v-if="isActiveOptions" :center=true :maxItems=4 />
+    <ProductListComponent ref='option-pack' :products='optionPack' :id='$style.optionPack' v-if="isActiveOptions" :center=true :maxItems=4 />
     <a :class='$style.packSeparator'  @click='toggleClassOption()'>View
       <div :class='$style.number'>{{ optionPack.length }}</div> products in this pack
       <span  :class="$style.arrow">
@@ -96,10 +96,11 @@
 import AddToCart from '~/components/products/addtocart.vue'
 import Price from '~/components/products/price.vue'
 import TitleStep from '~/components/widgets/titlestep.vue'
-import ProductList from '~/components/products/productlist.vue'
+import ProductListComponent from '~/components/products/productlistcomponent.vue'
+// import ProductList from '~/components/products/productlist.vue'
 
 export default {
-  components: { Price, AddToCart, TitleStep, ProductList},
+  components: { Price, AddToCart, TitleStep, ProductListComponent},
   data() {
     return{
       isActive: false,

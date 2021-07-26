@@ -15,36 +15,31 @@
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
-
-<template>
-  <section :id="$style.container">
-    <div :class="$style.singleproduct">
-      <ProductListComponent ref='homepage-furniture' :products='furnitures' :center=true :maxItems=1 />
-    </div>
+ <template>
+  <section>
+    <ProductList :id='$style.productlist' :products='products' :center=false />
+    <SmallProductList :id='$style.smallproductlist' :products='products' />
   </section>
 </template>
 
 <script>
-import ProductListComponent from '~/components/products/productlistcomponent.vue'
+import ProductList from '~/components/products/productlist.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 
 export default {
-  components: { ProductListComponent },
-
-  computed: {
-    furnitures() {
-      return this.$store.getters['eshop/collection']('homepage-furniture')
-    },
-  }
+  props: ['products', 'center', 'maxItems',],
+  components: { ProductList ,SmallProductList},
 }
-
 </script>
 
 <style module lang=stylus>
 
-#container
-  width: 220px
-  display: flex
-  flex-direction: column
+#productlist
+  @media only screen and (max-width: 900px)
+    display: none
 
-
+#smallproductlist
+  display: none
+  @media only screen and (max-width: 900px)
+    display: block
 </style>

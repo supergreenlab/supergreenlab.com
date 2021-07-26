@@ -54,7 +54,7 @@
                         **pro tip**: flat white is great for reflecting light 💡"/>
       </div>
       <div :class='$style.shop'>
-        <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
+        <ProductListComponent ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
       </div>
       <div :class='$style.title'>
         <TitleStep title='STEP 2'
@@ -90,7 +90,7 @@
         <TitleStep green="It's dangerous to go alone! Take this." introduction="Here's a non exhaustive list of **tools and materials** we used in some shape or form to **build and grow**."/>
       </div>
       <div :class='$style.shop'>
-        <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
+        <ProductListComponent ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
       </div>
       <div :class='$style.space'></div>
       <Social ref='social' />
@@ -124,7 +124,8 @@ import Instagram from '~/components/home/instagram.vue'
 import Youtube from '~/components/home/youtube.vue'
 import Pack from '~/components/home/pack.vue'
 import LatestGuide from '~/components/home/latestguide.vue'
-import ProductList from '~/components/products/productlist.vue'
+// import ProductList from '~/components/products/productlist.vue'
+import ProductListComponent from '~/components/products/productlistcomponent.vue'
 import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import TitleStep from '~/components/widgets/titlestep.vue'
@@ -137,7 +138,7 @@ import Newsletter from '~/components/layout/newsletter.vue'
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter,},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductListComponent, Social, Footer,  Promocode, Examples, Ready, Newsletter,},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
