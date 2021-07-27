@@ -26,14 +26,10 @@
       <div :id='$style.description'>{{config.description}}</div>
     </div>
     <ProductListComponent :products='products' :center=true />
-    <!-- <ProductList :id='$style.productlist' :products='products' :center=false ></ProductList>
-    <SmallProductList :id='$style.smallproductlist' :products='products' /> -->
   </section>
 </template>
 
 <script>
-// import ProductList from '~/components/products/productlist.vue'
-// import SmallProductList from '~/components/products/smallproductlist.vue'
 import ProductListComponent from '~/components/products/productlistcomponent.vue'
 
 export default {
@@ -47,9 +43,6 @@ export default {
         return a.indexOf(p) == i
       })
     },
-    // responsive() {
-    //   return window.innerWidth > 900
-    // }
   },
   methods: {
 

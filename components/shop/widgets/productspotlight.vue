@@ -22,7 +22,8 @@
       <div :id="$style.spotlightcontainer">
         <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
-        <div v-for='product in products' :key='product.id' :class='$style.productspotlight'>
+        <SmallProductList :id='$style.smallproductlist' :products='products' />
+        <!-- <div v-for='product in products' :key='product.id' :class='$style.productspotlight'>
           <div :id='$style.pics'>
             <Pics :pics='product.pics' :hideArrow=true />
           </div>
@@ -37,7 +38,7 @@
               <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -45,15 +46,16 @@
 
 <script>
 
-import Pics from '~/components/products/pics.vue'
-import Price from '~/components/products/price.vue'
-import AddToCart from '~/components/products/addtocart.vue'
+// import Pics from '~/components/products/pics.vue'
+// import Price from '~/components/products/price.vue'
+// import AddToCart from '~/components/products/addtocart.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 
 import { products } from '~/config/products.json'
 
 export default {
   props: ['config',],
-  components: { Pics, Price, AddToCart},
+  components: { SmallProductList },
   data() {
     return {
       addedToCart: false,
@@ -87,6 +89,9 @@ export default {
   display:flex
   flex-direction: column
 
+#smallproductlist
+  width: 100%
+
 #title
   text-transform: uppercase
   font-weight: bold
@@ -102,7 +107,7 @@ export default {
   margin: 0 10pt 15pt
   @media only screen and (max-width: 600px)
     margin: 0 5pt
-
+/*
 #content
   display:flex
   flex-direction: column
@@ -166,6 +171,6 @@ export default {
 
 #tagline
   color: #3bb30b
-  font-weight: bold
+  font-weight: bold */
 
 </style>

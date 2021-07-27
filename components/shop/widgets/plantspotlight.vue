@@ -47,7 +47,7 @@
                 </div>
               </nuxt-link>
               <div :id="$style.pricecontainer">
-                <div :id="$style.price">${{product.SellingPoints[0].price}}</div>
+                <Price :id="$style.price" :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
                 <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
               </div>
             </div>
@@ -67,13 +67,14 @@
 import axios from 'axios'
 import Loading from '~/components/widgets/loading.vue'
 import ProductList from '~/components/products/productlist.vue'
+import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/smalladdtocart.vue'
 
 import { products } from '~/config/products.json'
 
 export default {
   props: ['config',],
-  components: {Loading, ProductList, AddToCart},
+  components: {Loading, ProductList, AddToCart, Price},
   data() {
     return {
       plant: null,
@@ -238,9 +239,6 @@ export default {
   font-size: 1.2em
 
 #price
-  color: #3bb30b
-  font-weight: bold
+  font-size: 0.6em
   margin-right: 10pt
-  text-decoration: underline
-  font-style: italic
 </style>

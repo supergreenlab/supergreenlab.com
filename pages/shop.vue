@@ -102,7 +102,7 @@ export default{
   justify-content: space-between
   width: 100%
   margin-top: 62.25pt
-  @media only screen and (max-width: 900px)
+  @media only screen and (max-width: 1024px)
     justify-content: center
 
 #content
@@ -113,7 +113,7 @@ export default{
   margin: 10pt 200pt;
   height: 100%
   overflow: visible
-  @media only screen and (max-width: 900px)
+  @media only screen and (max-width: 1024px)
     margin: 10pt
 
 #leftcolumn
@@ -128,7 +128,7 @@ export default{
   position: fixed
   left: 0
   overflow: hidden
-  @media only screen and (max-width: 900px)
+  @media only screen and (max-width: 1024px)
     display: none
 
 #rightcolumn
@@ -143,7 +143,7 @@ export default{
   flex-direction: column
   width: 170pt
   overflow: hidden
-  @media only screen and (max-width: 900px)
+  @media only screen and (max-width: 1024px)
     display: none
 
 

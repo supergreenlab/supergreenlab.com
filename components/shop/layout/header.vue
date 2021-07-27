@@ -17,13 +17,24 @@
  -->
 
 <template>
-  <section :id="$style.body" :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
-    <div :id="$style.container">
-      <Header/>
+  <section>
+    <div :id="$style.header">
+      <div :id="$style.container">
+        <Header/>
+      </div>
+      <div :id="$style.navbar">
+        <NavBar />
+      </div>
     </div>
-    <div :id="$style.navbar">
-      <NavBar />
+    <div :id="$style.bodyResponsive" :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
+      <div :id="$style.container">
+        <Header/>
+      </div>
+      <div :id="$style.navbar">
+        <NavBar />
+      </div>
     </div>
+
   </section>
 </template>
 
@@ -81,14 +92,21 @@ export default {
 }
 </script>
 
-<style module lang="stylus">
+<style module lang=stylus>
 
-#body
-  height: 83px
-  background-color: rgba(255, 255, 255, 0.8)
-  transition: transform 420ms linear
+#bodyResponsive
+  display: none
   @media only screen and (max-width: 600px)
+    /* background-color: rgba(255, 255, 255, 0.8) */
     width: 100%
+    display: block
+    transition: transform 420ms linear
+    height: 52pt
+
+#header
+  height: 70pt
+  @media only screen and (max-width: 600px)
+    display: none
 
 #container
   position: fixed
@@ -134,10 +152,12 @@ export default {
   border-bottom: 3pt solid #3bb30b
 
 #navbar
+  background-color: rgba(255, 255, 255, 0.8)
   position: fixed
   width: 100%
-  top: 48pt
+  top: 45pt
   @media only screen and (max-width: 600px)
-    top: 35pt
+    top: 37.8pt
+
 
 </style>
