@@ -36,6 +36,7 @@
          <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
             <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
+          <Search/>
         </div>
       </div>
   </section>
@@ -53,17 +54,17 @@ import VerticalContainer from '~/components/shop/containers/verticalcontainer.vu
 import HorizontalContainer from '~/components/shop/containers/horizontalcontainer.vue'
 
 import Banner from '~/components/shop/widgets/banner.vue'
-
 import Newsletter from '~/components/shop/widgets/newsletter.vue'
 import PlantSpotlight from '~/components/shop/widgets/plantspotlight.vue'
 import ProductList from '~/components/shop/widgets/productlist.vue'
 import ProductSpotlight from '~/components/shop/widgets/productspotlight.vue'
 import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
 import CountDown from '~/components/shop/widgets/countdown.vue'
+import Search from '~/components/shop/widgets/popupsearch.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight,VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown ,Footer}
+const components = {Header, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight,VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown ,Footer, Search}
 
 export default{
   components,

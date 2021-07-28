@@ -228,8 +228,13 @@ export default {
   color: #3bb30b
 
 .description
- margin-bottom: 10pt
- color: black
+  height: 50px
+  overflow: hidden
+  margin: 7px
+  @media only screen and (max-width: 1000pt)
+    margin-bottom: 0px
+    height: 25px
+    font-size: 0.8rem
 
 #pricecontainer
   display: flex
