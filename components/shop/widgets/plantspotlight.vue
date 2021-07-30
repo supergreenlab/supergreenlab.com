@@ -164,6 +164,8 @@ export default {
   display: flex
   align-items: flex-end
   flex-direction: column
+  @media only screen and (max-width: 600px)
+    margin-top: 10pt
 
 #plantbutton
   display: block
@@ -206,6 +208,7 @@ export default {
     flex-direction: column
     justify-content: center
 
+
 #relatedProduct
   text-decoration: none
 
@@ -242,6 +245,8 @@ export default {
   justify-content: center
   flex-direction: column
   font-size: 1.2em
+  @media only screen and (max-width: 600px)
+    margin-top: 10pt
 
 #price
   font-size: 0.6em

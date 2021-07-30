@@ -25,25 +25,35 @@
       <div :id="$style.navbar">
         <NavBar />
       </div>
+      <div :id="$style.searchbar">
+        <Search />
+      </div>
     </div>
-    <div :id="$style.bodyResponsive" :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
-      <div :id="$style.container">
-        <Header/>
+    <div :id="$style.bodyResponsive" >
+      <div :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
+        <div :id="$style.container">
+          <Header/>
+        </div>
+        <div :id="$style.navbar">
+          <NavBar />
+        </div>
+        <div :id="$style.searchbar">
+          <Search />
+        </div>
       </div>
-      <div :id="$style.navbar">
-        <NavBar />
-      </div>
+
     </div>
 
   </section>
 </template>
 
 <script>
-import Header from "~/components/layout/header.vue";
-import NavBar from "~/components/shop/widgets/navbar.vue";
+import Header from "~/components/layout/header.vue"
+import NavBar from "~/components/shop/widgets/navbar.vue"
+import Search from '~/components/shop/widgets/popupsearch.vue'
 
 export default {
-  components: { Header, NavBar },
+  components: { Header, NavBar, Search },
   data() {
     return {
       showHeader: true,
@@ -96,16 +106,20 @@ export default {
 
 #bodyResponsive
   display: none
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 900px)
     /* background-color: rgba(255, 255, 255, 0.8) */
     width: 100%
     display: block
-    transition: transform 420ms linear
-    height: 52pt
+
+    /* height: 52pt */
+
+#bodyResponsive > div
+  transition: transform 420ms linear
+  height: 52pt
 
 #header
   height: 70pt
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 900px)
     display: none
 
 #container
@@ -156,8 +170,16 @@ export default {
   position: fixed
   width: 100%
   top: 45pt
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 900px)
     top: 37.8pt
 
+#searchbar
+  top: 65pt
+  position: fixed
+  width: 100%
+  display: flex
+  justify-content: center
+  @media only screen and (max-width: 900px)
+    top: 52.5pt
 
 </style>
