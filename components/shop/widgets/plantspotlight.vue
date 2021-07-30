@@ -28,13 +28,21 @@
           <div :id='$style.descriptionbody' v-for="product in products" :key="product.id">
             <h3>{{ plant.name }}</h3>
             <div :id='$style.descriptioncontainer'>
-              <div :class='$style.description' v-html='$md.render(config.description)'></div>
+              <div :id='$style.settings'>
+                <div :class='$style.setting'>
+                  <img src='~/assets/img/icon_seeds.svg' />
+                  <div><b :class='$style.green'>Plant Strain</b>: {{ plant.settings.strain || 'Not set' }}<br/><span :class='$style.green'>From</span>: {{ plant.settings.seedBank || 'Not set' }}</div>
+                </div>
+                <div :class='$style.setting'>
+                  <img src='~/assets/img/icon-veg.svg' />
+                  <div><b :class='$style.green'>Germinated</b>: {{ germinated }}<br/><b :class='$style.green'>{{ phase[0] }}</b>: {{ phase[1] }}</div>
+                </div>
+              </div>
               <div :id='$style.button'>
                 <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
                 <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
               </div>
             </div>
-
             <h3>Grow with {{ product.name }}</h3>
             <div :class='$style.relatedProduct'>
               <div :id='$style.ProducPic'>
@@ -64,6 +72,7 @@
 </template>
 
 <script>
+import { DateTime, Interval } from 'luxon'
 import axios from 'axios'
 import Loading from '~/components/widgets/loading.vue'
 import ProductList from '~/components/products/productlist.vue'
@@ -85,12 +94,52 @@ export default {
     const { plantid } = this.$props.config
     const { data: plant } = await axios.get(`https://api2.supergreenlab.com/public/plant/${plantid}`)
     this.$data.plant = plant
+    plant.settings = JSON.parse(plant.settings)
     this.$data.loading = false
+
   },
   computed: {
     products() {
       const { config } = this.$props
       return (config.products || []).map(p => products.find(p1 => p1.id == p))
+    },
+    germinated() {
+      const { germinationDate } = this.$data.plant.settings
+      if (!germinationDate) {
+        return 'Not set'
+      }
+      const d = DateTime.fromISO(germinationDate)
+      const i = Interval.fromDateTimes(d, DateTime.now())
+      return `${Math.round(i.toDuration('days').toObject().days)} days ago`
+    },
+    phase() {
+      const { germinationDate, veggingStart, bloomingStart } = this.$data.plant.settings
+      if (bloomingStart) {
+        const d = DateTime.fromISO(bloomingStart)
+        const i = Interval.fromDateTimes(d, DateTime.now())
+        return [
+          'Blooming since',
+          `${Math.round(i.toDuration('days').toObject().days)} days ago`
+        ]
+      } else if (veggingStart) {
+        const d = DateTime.fromISO(veggingStart)
+        const i = Interval.fromDateTimes(d, DateTime.now())
+        return [
+          'Vegging since',
+          `${Math.round(i.toDuration('days').toObject().days)} days ago`
+        ]
+      } else if (germinationDate) {
+        const d = DateTime.fromISO(germinationDate)
+        const i = Interval.fromDateTimes(d, DateTime.now())
+        return [
+          'Started',
+          `${Math.round(i.toDuration('days').toObject().days)} days ago`
+        ]
+      }
+      return [
+        'Phase',
+        'Not set'
+      ]
     }
   },
   methods: {
@@ -148,6 +197,7 @@ export default {
 #descriptioncontainer
   display: flex
   align-items: center
+  margin-bottom: 5pt
   @media only screen and (max-width: 600px)
     flex-direction: column
 
@@ -157,10 +207,9 @@ export default {
 
 #descriptionbody > h3
   color: #5E5E5E
-  margin-bottom: 5pt
+  margin: 5pt 0
 
 #button
-  width: 100%
   display: flex
   align-items: flex-end
   flex-direction: column
@@ -251,4 +300,21 @@ export default {
 #price
   font-size: 0.6em
   margin-right: 10pt
+
+#settings
+  display: flex
+  width: 100%
+  margin: 15pt 0 10pt 0
+
+.setting
+  display: flex
+  flex: 1
+  color: #454545
+.setting > img
+  padding-right: 5pt
+
+.green
+  color: #3bb30b
+  font-weight: bold
+
 </style>

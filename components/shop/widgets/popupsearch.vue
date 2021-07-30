@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <input type="text" v-model="search" placeholder="Looking for something">
+    <input type="text" placeholder="Looking for something">
     <!-- <div v-for="products in filteredList" :key="products.id"></div> -->
   </section>
 </template>
