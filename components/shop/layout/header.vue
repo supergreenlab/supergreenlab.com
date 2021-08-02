@@ -174,12 +174,12 @@ export default {
     top: 37.8pt
 
 #searchbar
-  top: 65pt
-  position: fixed
-  width: 100%
-  display: flex
-  justify-content: center
+  display:none
   @media only screen and (max-width: 900px)
     top: 52.5pt
+    position: fixed
+    width: 100%
+    display: flex
+    justify-content: center
 
 </style>

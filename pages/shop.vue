@@ -28,6 +28,9 @@
           </component>
         </div>
         <div :id='$style.content'>
+          <div :id="$style.searchbar">
+            <Search />
+          </div>
           <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
             <component v-if='widgetExpiration(w) == false' v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
@@ -59,10 +62,11 @@ import ProductList from '~/components/shop/widgets/productlist.vue'
 import ProductSpotlight from '~/components/shop/widgets/productspotlight.vue'
 import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
 import CountDown from '~/components/shop/widgets/countdown.vue'
+import Search from '~/components/shop/widgets/popupsearch.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight,VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown ,Footer}
+const components = {Header, Product, Search ,BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight,VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown ,Footer}
 
 export default{
   components,
@@ -110,7 +114,7 @@ export default{
   flex-direction: column
   justify-content: center
   min-width: 0
-  margin: 20pt 200pt;
+  margin: 2pt 200pt;
   height: 100%
   overflow: visible
   @media only screen and (max-width: 1024px)
@@ -145,6 +149,16 @@ export default{
   overflow: hidden
   @media only screen and (max-width: 1024px)
     display: none
+
+#searchbar
+  position: relative
+  display: flex
+  justify-content: center
+  margin-bottom: 5pt
+  @media only screen and (max-width: 900px)
+    display:none
+
+
 
 
 </style>
