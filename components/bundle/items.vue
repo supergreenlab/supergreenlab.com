@@ -26,15 +26,15 @@
       <div :class='$style.number'>{{ smallleds }}</div>
       <span>Medium LED</span>
     </a>
-    <a href='https://shop.supergreenlab.com/collections/grow-lights/products/sgb-36-301b' v-if='tinyleds > 0' :class='$style.icon' :id='$style.tinylight'>
+    <a href='https://www.supergreenlab.com/product/sgl-36-supergreenlab-sgl-36-lm301b-supergreenlab-world/' v-if='tinyleds > 0' :class='$style.icon' :id='$style.tinylight'>
       <div :class='$style.number'>{{ tinyleds }}</div>
       <span>Tiny LED</span>
     </a>
-    <a href='https://shop.supergreenlab.com/collections/accessories/products/blower' :class='$style.icon' :id='$style.ventilation'>
+    <a href='https://www.supergreenlab.com/product/sgl-blower-supergreenlab-sgl-blower-supergreenlab-world' :class='$style.icon' :id='$style.ventilation'>
       <div :class='$style.number'>{{ ventilation }}</div>
       <span>Ventilation</span>
     </a>
-    <a href='https://shop.supergreenlab.com/collections/accessories/products/sht21-temperature-humidity-probe' :class='$style.icon' :id='$style.sensor'>
+    <a href='https://www.supergreenlab.com/product/sgl-temperature-humidity-sensor-supergreenlab-temperature-&-humidity-sensor-supergreenlab-world' :class='$style.icon' :id='$style.sensor'>
       <div :class='$style.number'>{{ sensor }}</div>
       <span>Sensor</span>
     </a>

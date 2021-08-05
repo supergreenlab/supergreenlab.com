@@ -64,6 +64,7 @@
         </div>
         <div :class="$style.dialog_content">
           <div :class="$style.app_cta">
+            Open the diary in the app to participate!<br />
             <div :class='$style.button'><a :href='url'>Open public plant in the app</a></div>
             <div>
               <div :class="$style.app_cta_text">Don't have the app installed yet?<br /></div>
@@ -202,6 +203,7 @@ export default {
   border-radius: 2pt
   display: flex
   justify-content: center
+  margin: 5pt 0
 
 .button > a
   color: white
