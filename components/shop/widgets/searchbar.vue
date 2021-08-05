@@ -17,48 +17,36 @@
  -->
 
 <template>
-    <section :id="$style.container">
-      <VueFuse
-          :list="products"
-          :defaultAll="false"
-          :fuse-opts="options"
-          :search="search"
-          :map-results="false"
-          placeholder="Looking for something..."
-          @fuse-results="handleResults"
-      />
-      <div :id="$style.searchlist" v-if="results.length > 0">
-        <SmallProductList :id='$style.smallproductlist' :products='results' />
-      </div>
+  <section :id='$style.container'>
+    <input type="text" placeholder="Looking for something" v-model="listsearch">
+    <div :id="$style.searchlist" v-if='listsearch.length > 0'>
+      <SmallProductList :id='$style.smallproductlist' :products='filteredList' />
+    </div>
 
-    </section>
+  </section>
 </template>
 
 <script>
 import SmallProductList from '~/components/products/smallproductlist.vue'
-import VueFuse from '~/components/shop/widgets/vuefuse.vue'
+
 import { products } from '~/config/products.json'
+
 export default {
-  components: {SmallProductList, VueFuse},
-  data () {
-    return {
-      search: '',
-      results: [],
+  components: {SmallProductList},
+  data() {
+    return{
+      listsearch: '',
     }
   },
   computed: {
     products() {
       return products
     },
-    options () {
-      return {
-        keys: ['products.name'],
-      }
-    },
-  },
-  methods: {
-    handleResults (r) {
-      this.results = r
+    filteredList() {
+      return products.filter(search => {
+        console.log(search)
+        return (search.name).toLowerCase().includes(this.listsearch.toLowerCase())
+      })
     },
   },
 }
@@ -66,7 +54,24 @@ export default {
 
 <style module lang=stylus>
 #container
+  display: flex
+  justify-content: center
+  align-items: center
   width: 100%
+
+#container > input
+  background-color: rgba(255,255,255,0.8)
+  font-size: 1.2em
+  border: 0.2pt solid black
+  width: 100%
+  border-radius: 3pt
+  padding: 2pt 5pt
+  margin: 5pt 10pt
+  @media only screen and (max-width: 600px)
+    width: 90%
+
+#container > input:hover
+  background-color: #e8e8e8
 
 #searchlist
   width: 100%
@@ -74,6 +79,7 @@ export default {
   position: absolute
   top: 25pt
   background-color: rgba(255,255,255,0.8)
+  margin: 5pt
   z-index : 9000
   padding: 5pt
 

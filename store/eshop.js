@@ -19,6 +19,7 @@
 import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, relatedProducts } from '~/config/products.json'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
+// import Fuse from 'fuse.js'
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
@@ -70,6 +71,27 @@ export const actions = {
   },
 }
 
+// const options=  {
+//   isCaseSensitive: false,
+//   includeScore: false,
+//   shouldSort: true,
+//   includeMatches: false,
+//   findAllMatches: false,
+//   minMatchCharLength: 1,
+//   location: 0,
+//   threshold: 0.6,
+//   distance: 100,
+//   useExtendedSearch: false,
+//   ignoreLocation: false,
+//   ignoreFieldNorm: false,
+//   keys: [
+//     "product.name",
+//     "product.description"
+//   ]
+// }
+// const fuse = new Fuse(products, options)
+
+
 export const mutations = {
   setState(state, newState) {
     Object.assign(state, newState)
@@ -96,6 +118,7 @@ export const getters = {
   sellingPointWithSlug: state => slug => state.sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
   productWithSlug: state => slug => state.products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
   productsWithTypes: state => types => productsWithTypes(state, types),
+  // productWithName: state => name => state.products.find(p => p.name.toLowerCase() == name.toLowerCase()),
 
   product: state => id => state.products.find(p => p.id == id),
   sellingPointWithID: state => id => state.sellingPoints.find(sp => sp.id == id),
@@ -114,7 +137,9 @@ export const getters = {
   regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {
       acc.push(region)
+      // console.log(region)
       if (region.in) {
+        // console.log(region.in)
         return regionTree(state.regions.find(r => r.id == region.in[0]), acc)
       }
       return acc
@@ -137,4 +162,6 @@ export const getters = {
   availableRegions: (state, getters) => state.regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
 
   relatedProducts: (state, getters) => id => state.relatedProducts.filter(rp => rp.to[0] == id).sort((rp1, rp2) => rp1.order - rp2.order),
+
+
 }
