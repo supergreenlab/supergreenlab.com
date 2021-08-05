@@ -88,6 +88,7 @@ export default {
   // [optional] markdownit options
   // See https://github.com/markdown-it/markdown-it
   markdownit: {
+    runtime: true,
     injected: true,
     preset: 'default',
     linkify: true,
