@@ -18,10 +18,10 @@
 
  <template>
   <section :id="$style.container">
-    <div :id="$style.countdowncontainer" @click='open(config.link)'>
+    <div :id="$style.countdowncontainer">
       <div :id="$style.title" v-html='$md.render(config.title)'></div>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
-        <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+        <div @click='open(config.link)' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
         <div :id="$style.countdown">
           <div :class="$style.countdown">
             <div :class="$style.block">
@@ -137,7 +137,6 @@ export default {
 #countdowncontainer
   display:flex
   flex-direction: column
-  cursor: pointer
 
 #title
   text-transform: uppercase
@@ -164,6 +163,8 @@ export default {
 .countdown
   display: flex
 
+.countdownpic
+  cursor: pointer
 
 .block
   margin: 10pt

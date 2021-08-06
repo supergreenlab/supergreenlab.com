@@ -28,7 +28,7 @@
           @fuse-results="handleResults"
       />
       <div :id="$style.searchlist" v-if="results.length > 0">
-        <SmallProductList :id='$style.smallproductlist' :products='results' />
+        <SmallProductList :id='$style.smallproductlist' :products='results.map(i => i.item)' />
       </div>
 
     </section>
@@ -48,16 +48,18 @@ export default {
   },
   computed: {
     products() {
+      console.log(products)
       return products
     },
     options () {
       return {
-        keys: ['products.name'],
+        keys: ['name','sellingPoints.brandProducts'],
       }
     },
   },
   methods: {
     handleResults (r) {
+      console.log(r)
       this.results = r
     },
   },
