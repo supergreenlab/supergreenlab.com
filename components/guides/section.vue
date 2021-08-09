@@ -19,11 +19,11 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.videosection'>
-      <Media :index='index' :media='guideSection.media' />
+      <Media :index='index' :media='guideSection.media' :guideSection='guideSection'/>
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
           <h1>{{ guideSection.title }}</h1>
-          <CheckBox v-if='guideSection.showdone' label='done' @click='checkDone' :checked='checked' />
+          <CheckBox v-if='guideSection.showdone' label='Got it!' @click='checkDone' :checked='checked' />
         </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
@@ -110,7 +110,7 @@ export default {
 
 #title h1
   padding-right: 10pt
-  color: #6D6D6D 
+  color: #6D6D6D
 
 #title
   display: flex

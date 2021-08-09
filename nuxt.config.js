@@ -24,7 +24,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
-      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' }
+      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,600' }
     ],
     script: [
       {
@@ -56,6 +57,7 @@ export default {
     { src: '~plugins/vue-agile.js', ssr: false },
     { src: '~plugins/vue-touch.js', ssr: false },
     //{ src: '~plugins/pixel.js', ssr: false },
+    { src: '~plugins/infinite-loading.js', ssr: false },
   ],
 
   /*
@@ -87,6 +89,7 @@ export default {
   // [optional] markdownit options
   // See https://github.com/markdown-it/markdown-it
   markdownit: {
+    runtime: true,
     injected: true,
     preset: 'default',
     linkify: true,
@@ -102,6 +105,12 @@ export default {
   */
   build: {
     transpile: ['vue-agile'],
+    babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }],
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+      ]
+    },
   },
   generate: {
     routes: [

@@ -104,6 +104,7 @@
       <div :class='$style.space'></div>
       <Testimonials ref='testimonials' />
       <div :class='$style.space'></div>
+      <Newsletter />
     </div>
     <Footer />
     <transition name="popup">
@@ -138,11 +139,12 @@ import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 import Examples from '~/components/home/examples.vue'
 import Ready from '~/components/home/ready.vue'
+import Newsletter from '~/components/layout/newsletter.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready,},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter,},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
