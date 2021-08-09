@@ -24,9 +24,9 @@
                     title2='(install the app before clicking)' />
     </div>
     <div :id='$style.plants'>
-      <a :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :key='plant.id' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>
+      <nuxt-link :to='`/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :key='plant.id' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>
         {{ plant.name }}
-      </a>
+      </nuxt-link>
     </div>
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' to='/app'>
       <b class="hvr-grow">Install app</b>

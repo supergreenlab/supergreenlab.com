@@ -176,6 +176,7 @@ import Region from '~/components/products/region.vue'
 import Footer from '~/components/layout/footer.vue'
 
 import { open, screenX, availWidth } from '~/lib/client-side.js'
+import { products, sellingPoints, regions, } from '~/config/products.json'
 
 import { guides } from '~/config/guides.json'
 
@@ -225,7 +226,7 @@ export default {
     },
     askCloserProduct() {
       const { region } = this.$store.state.eshop
-      if (this.sellingPoint.regions[0].id == this.$store.state.eshop.regions[0].id) return false
+      if (this.sellingPoint.regions[0].id == regions[0].id) return false
       return this.sellingPoint.regions[0].id != region.id
     },
     sellingPoint() {

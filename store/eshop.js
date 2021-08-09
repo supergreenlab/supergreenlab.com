@@ -36,14 +36,6 @@ export const state = () => {
   let defaults = {
     offsetRegion: regions[0],
     region: regions[0],
-    regions,
-    products,
-    sellingPoints,
-    sellers,
-    brandProducts,
-    brands,
-    collections,
-    relatedProducts,
   }
   return defaults
 }
@@ -54,7 +46,7 @@ const storeState = (state) => {
 
 //const arrayContained = (a1, a2) => a1.every(a => a2.indexOf(a) !== -1)
 const arrayContained = (a1, a2) => a1.findIndex(a => a2.indexOf(a) !== -1) !== -1
-const productsWithTypes = (state, types) => state.products.filter(p => arrayContained(Array.isArray(types) ? types : [types], p.type))
+const productsWithTypes = (state, types) => products.filter(p => arrayContained(Array.isArray(types) ? types : [types], p.type))
 
 export const actions = {
   nuxtClientInit(context) {
@@ -93,29 +85,29 @@ export const getters = {
   accessories: state => {
     return productsWithTypes(state, 'SGL_ACCESSORIES')
   },
-  sellingPointWithSlug: state => slug => state.sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
-  productWithSlug: state => slug => state.products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
+  sellingPointWithSlug: state => slug => sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
+  productWithSlug: state => slug => products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
   productsWithTypes: state => types => productsWithTypes(state, types),
 
-  product: state => id => state.products.find(p => p.id == id),
-  sellingPointWithID: state => id => state.sellingPoints.find(sp => sp.id == id),
-  brandProduct: state => id => state.brandProducts.find(bp => bp.id == id),
-  brand: state => id => state.brands.find(b => b.id == id),
-  seller: state => id => state.sellers.find(s => s.id == id),
+  product: state => id => products.find(p => p.id == id),
+  sellingPointWithID: state => id => sellingPoints.find(sp => sp.id == id),
+  brandProduct: state => id => brandProducts.find(bp => bp.id == id),
+  brand: state => id => brands.find(b => b.id == id),
+  seller: state => id => sellers.find(s => s.id == id),
   variants: state => id => {
-    let brandProduct = state.brandProducts.find(bp => bp.id == id)
+    let brandProduct = brandProducts.find(bp => bp.id == id)
     if (brandProduct.variantOf) {
-      brandProduct = state.brandProducts.find(bp => bp.id == brandProduct.variantOf[0])
+      brandProduct = brandProducts.find(bp => bp.id == brandProduct.variantOf[0])
     }
-    return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
+    return [brandProduct].concat(brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
   },
-  collection: (state, getters) => slug => state.collections.filter(c => c.slug == slug).sort((c1, c2) => c1.order - c2.order).map(c => getters.product(c.Product[0])),
+  collection: (state, getters) => slug => collections.filter(c => c.slug == slug).sort((c1, c2) => c1.order - c2.order).map(c => getters.product(c.Product[0])),
 
   regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {
       acc.push(region)
       if (region.in) {
-        return regionTree(state.regions.find(r => r.id == region.in[0]), acc)
+        return regionTree(regions.find(r => r.id == region.in[0]), acc)
       }
       return acc
     }
@@ -131,10 +123,10 @@ export const getters = {
       if (sp) return sp
     }
   },
-  sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
-  sellingPointForProduct: (state, getters) => id => getters.sellingPoint(state.sellingPoints.filter(sp => sp.Product[0] == id)),
+  sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
+  sellingPointForProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.Product[0] == id)),
 
-  availableRegions: (state, getters) => state.regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
+  availableRegions: (state, getters) => regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
 
-  relatedProducts: (state, getters) => id => state.relatedProducts.filter(rp => rp.to[0] == id).sort((rp1, rp2) => rp1.order - rp2.order),
+  relatedProducts: (state, getters) => id => relatedProducts.filter(rp => rp.to[0] == id).sort((rp1, rp2) => rp1.order - rp2.order),
 }

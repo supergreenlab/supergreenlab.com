@@ -21,6 +21,8 @@ import axios from 'axios'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 
+import { products, sellingPoints, regions, } from '~/config/products.json'
+
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
 const STORAGE_ITEM='checkout5'
@@ -108,7 +110,7 @@ export const mutations = {
 const regionTree = (rootState, region, acc=[]) => {
   acc.push(region)
   if (region.in) {
-    return regionTree(rootState, rootState.eshop.regions.find(r => r.id == region.in[0]), acc)
+    return regionTree(rootState, regions.find(r => r.id == region.in[0]), acc)
   }
   return acc
 }
@@ -153,8 +155,8 @@ export const getters = {
 
   cart: (state, getters, rootState, rootGetters) => state.cart.map(li => {
     return Object.assign({}, li, {
-      product: rootState.eshop.products.find(p => p.id == li.product),
-      sellingPoint: rootState.eshop.sellingPoints.find(sp => sp.id == li.sellingPoint),
+      product: products.find(p => p.id == li.product),
+      sellingPoint: sellingPoints.find(sp => sp.id == li.sellingPoint),
     })
-  })
+  }).filter(li => li.product != null && li.sellingPoint != null)
 }

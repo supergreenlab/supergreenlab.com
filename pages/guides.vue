@@ -37,6 +37,7 @@
         <div :class='$style.separator'></div>
       </div>
     </div>
+    <Newsletter />
     <Footer />
   </section>
 </template>
@@ -47,11 +48,12 @@ import Footer from '~/components/layout/footer.vue'
 import TitleGuide from '~/components/widgets/sectiontitleguide.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import CardGuide from '~/components/guides/cardguide.vue'
+import Newsletter from '~/components/layout/newsletter.vue'
 
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, Footer, TitleGuide, SectionTitle, CardGuide },
+  components: { Header, Footer, TitleGuide, SectionTitle, CardGuide, Newsletter },
   computed: {
     guides: function () {
       return guides.filter(function (guide) {
