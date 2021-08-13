@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -15,32 +15,22 @@
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
-
-
 <template>
-    <div class="feed-entry-life-event">
-        Flipped to {{(feedEntry.params.schedule)}}
-    </div>
+  <section :id="container" >
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    <label for="password">Password</label>
+    <input type="password" name="password">
+
+  </section>
 </template>
 
 <script>
-    export default {
-        props: {
-            feedEntry: {
-                type: Object,
-                required: true,
-                default: {}
-            }
-        },
-        name: "feed-entry-schedule"
-    }
+export default {
+
+}
 </script>
 
-<style scoped>
-    .feed-entry-life-event {
-        color: #15A01A;
-        font-size: 35px;
-        width: 206px;
-        margin: auto;
-    }
+<style module lang=stylus>
+
 </style>
