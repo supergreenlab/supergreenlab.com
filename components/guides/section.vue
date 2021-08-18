@@ -46,6 +46,10 @@
             </div>
           </a>
         </div>
+        <div :id='$style.guides' v-if='gotoGuides.length'>
+          <h2>Checkout these guides</h2>
+          <Guide v-for='g in gotoGuides' :key='g.id' :guide='g' />
+        </div>
         <a v-if='!guideSection.sections' href='javascript:void(0)' @click='feedback' :id='$style.feedback'>Got a feedback/suggestion? click here</a>
       </div>
     </div>
@@ -58,12 +62,15 @@
 import Media from '~/components/guides/media.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
+import Guide from '~/components/guides/small.vue'
 
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
+import { guides } from '~/config/guides.json'
+
 export default {
   props: [ 'index', 'guideSection', ],
-  components: { Media, SmallProductList, CheckBox, },
+  components: { Media, SmallProductList, CheckBox, Guide, },
   computed: {
     requires() {
       return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r)).filter(r => r)
@@ -73,6 +80,9 @@ export default {
     },
     checked() {
       return this.$store.state.guides[this.$props.guideSection.slug].checked
+    },
+    gotoGuides() {
+      return (this.$props.guideSection.gotoguides || []).map(gg => guides.find(g => g.id == gg))
     },
   },
   methods: {

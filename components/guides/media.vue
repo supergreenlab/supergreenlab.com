@@ -73,6 +73,8 @@ export default {
   display: flex
   flex-direction: column
   position: relative
+  align-items: center
+  justify-content: center
 
 #socialLink
 
