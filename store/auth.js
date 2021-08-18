@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,26 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-// return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
-
+import axios from 'axios'
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 
-const STORAGE_ITEM='shipping2'
+const STORAGE_ITEM='auth8'
+const API_URL= "https://api2.supergreenlab.com"
 
 export const state = () => {
   let defaults = {
-    firstname: {value: '', valid: false,},
-    lastname: {value: '', valid: false,},
-    phone: {value: '', valid: false,},
-    email: {value: '', valid: false,},
-    country: {value: '', valid: false,},
-    city: {value: '', valid: false,},
-    company: {value: '', valid: false, optional: true,},
-    address1: {value: '', valid: false,},
-    address2: {value: '', valid: false, optional: true,},
-    province: {value: '', valid: false,},
-    zip: {value: '', valid: false,},
+    error: false,
+    loading: false,
+    loggedIn: false,
   };
   return defaults
 };
@@ -44,22 +35,44 @@ const storeState = (state) => {
 }
 
 export const actions = {
-  nuxtClientInit(context) {
-    const saved = loadFromStorage(STORAGE_ITEM)
-    if (saved) {
-      context.commit('setState', JSON.parse(saved))
+  async nuxtClientInit({ commit }) {
+    const { data: loggedIn } = await axios.get(`${API_URL}/loggedIn`)
+    commit('setLoggedIn', loggedIn)
+  },
+  async login({ commit, dispatch }, { login, password }) {
+    commit('setLoading', true)
+    try {
+      const resp = await axios.post(`${API_URL}/login`, {
+        handle: login,
+        password,
+      })
+      const token = resp.headers['x-sgl-token']
+      commit('setToken', token)
+      commit('setLoggedIn', true)
+      commit('setError', false)
+    } catch(e) {
+      commit('setError', true)
     }
+    commit('setLoading', false)
   },
 }
 
 export const mutations = {
   setState(state, newState) {
-    // console.log('shipping', newState)
     Object.assign(state, newState)
   },
-  updateShipping(state, params) {
-    state[params.key] = Object.assign({}, state[params.key], {value: params.value})
+  setToken(state, token) {
+    state.token = token
     storeState(state)
+  },
+  setLoggedIn(state, loggedIn) {
+    state.loggedIn = loggedIn
+  },
+  setLoading(state, loading) {
+    state.loading = loading
+  },
+  setError(state, error) {
+    state.error = error
   },
 }
 

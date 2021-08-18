@@ -15,22 +15,42 @@
       You should have received a copy of the GNU General Public License
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
+
 <template>
-  <section :id="container" >
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="password">Password</label>
-    <input type="password" name="password">
+  <section :id="$style.container" >
+    <h1>Login Test Page</h1>
+    <div v-if="$auth.loggedIn">
+      {{ $auth.user.email }}
+      <button>Logout</button>
+      <!-- username -->
+      <!-- logout button -->
+    </div>
+    <div v-else>
+      <nuxt-link to="/login/login"><button>Login</button></nuxt-link>
+      <nuxt-link to="/login/register"><button>Register</button></nuxt-link>
+      <!-- login -->
+      <!-- logout -->
+    </div>
+    <UserList />
 
   </section>
 </template>
 
 <script>
-export default {
+import UserList from '~/components/login/admin-user-list.vue'
 
+
+export default {
+  components: { UserList },
 }
+
 </script>
 
 <style module lang=stylus>
+
+#container
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 </style>

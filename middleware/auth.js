@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2021  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { onNuxtReady } from '~/lib/client-side.js'
-
-export const actions = {
-  nuxtClientInit(context) {
-    onNuxtReady(() => {
-      context.dispatch('eshop/nuxtClientInit')
-      context.dispatch('shipping/nuxtClientInit')
-      context.dispatch('checkout/nuxtClientInit')
-      context.dispatch('guides/nuxtClientInit')
-      context.dispatch('login/nuxtClientInit')
-    })
+export default function({ store, redirect, route }) {
+  if (route.path.includes('/login')) {
+    if (store.state.auth.loggedIn) {
+      return redirect('/')
+    }
+    return
+  }
+  if (!store.state.auth.loggedIn) {
+    return redirect('/login')
   }
 }
