@@ -28,8 +28,8 @@
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
         <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>
-          <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank'>
-            <img src='~/assets/img/pdf_icon.png' />
+          <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank' :download='a.fileName'>
+            <img :src='require(`~/assets/img/${a.fileLarge}`)' />
             {{ a.fileName }}
           </a>
         </div>
