@@ -134,8 +134,11 @@ export default {
   @media only screen and (min-width: 600pt)
     margin: 10pt 100pt 10pt 0
 
-.ps p
-  margin-bottom: 10pt
+.ps > p
+  margin-bottom: 5pt
+
+.ps > pre
+  margin-bottom: 5pt
 
 .ps strong
   color: #3BB30B
