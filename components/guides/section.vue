@@ -47,7 +47,8 @@
           </a>
         </div>
         <div :id='$style.guides' v-if='gotoGuides.length'>
-          <h2>Checkout these guides</h2>
+          <h2 v-if='gotoGuides.length > 1'>Checkout these guides</h2>
+          <h2 v-else>Checkout this guide</h2>
           <Guide v-for='g in gotoGuides' :key='g.id' :guide='g' />
         </div>
         <a v-if='!guideSection.sections' href='javascript:void(0)' @click='feedback' :id='$style.feedback'>Got a feedback/suggestion? click here</a>
@@ -129,7 +130,7 @@ export default {
   margin: 0 0 20pt 0
 
 .ps
-  margin: 10pt 0
+  margin: 10pt 5pt
   color: #454545
   @media only screen and (min-width: 600pt)
     margin: 10pt 100pt 10pt 0
@@ -139,6 +140,9 @@ export default {
 
 .ps > pre
   margin-bottom: 5pt
+
+.ps code
+  white-space: pre-wrap
 
 .ps strong
   color: #3BB30B
