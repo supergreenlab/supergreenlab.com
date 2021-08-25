@@ -19,11 +19,15 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.videosection'>
+      <div :id='$style.smalltitle' v-if='!guideSection.sections && guideSection.title'>
+        <h1>{{ guideSection.title }}</h1>
+        <CheckBox v-if='guideSection.showdone' label='Done' @click='checkDone' :checked='checked' />
+      </div>
       <Media :index='index' :media='guideSection.media' :guideSection='guideSection'/>
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
           <h1>{{ guideSection.title }}</h1>
-          <CheckBox v-if='guideSection.showdone' label='Got it!' @click='checkDone' :checked='checked' />
+          <CheckBox v-if='guideSection.showdone' label='Done' @click='checkDone' :checked='checked' />
         </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
@@ -119,15 +123,23 @@ export default {
   flex-basis: 60% !important
   color #454545
 
-#title h1
+#title h1, #smalltitle h1
   padding-right: 10pt
   color: #6D6D6D
 
-#title
+#title, #smalltitle
   display: flex
   align-items: center
   justify-content: space-between
   margin: 0 0 20pt 0
+  @media only screen and (max-width: 600pt)
+    display: none
+
+#smalltitle
+  @media only screen and (max-width: 600pt)
+    display: flex
+  @media only screen and (min-width: 600pt)
+    display: none
 
 .ps
   margin: 10pt 5pt
