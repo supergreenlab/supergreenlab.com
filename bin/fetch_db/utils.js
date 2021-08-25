@@ -100,6 +100,15 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
       await fetchFile(attachement.thumbnails.large.url, fileLarge)
     })
     return { p, attachement, data: { fileName: attachement.filename, fileLarge, fileSmall, filePath, type: attachement.type } }
+  } else if (attachement.type == 'model/stl') {
+    const filePath = `${dir}/${attachement.id}.stl`,
+      fileLarge = `icon_stl_file.svg`,
+      fileSmall = `icon_stl_file.svg`
+    p = p.then(async () => {
+      await fetchFile(attachement.url, filePath, staticPath)
+    })
+    return { p, attachement, data: { fileName: attachement.filename, fileLarge, fileSmall, filePath, type: attachement.type } }
+
   }
 }
 

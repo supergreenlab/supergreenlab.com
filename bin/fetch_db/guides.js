@@ -10,7 +10,7 @@ module.exports.fetchGuides = async () => {
   await mkStaticDir('guides')
 
   let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements','order', 'duration', 'difficulty','author','credit', 'createdat'])
-  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements', 'showdone', 'author', 'credit',])
+  const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'requires', 'order', 'links', 'attachements', 'showdone', 'author', 'credit', 'gotoguides',])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
   let picPromise = Promise.resolve()
