@@ -32,8 +32,8 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-agile": "^1.1.3",
-    "vue-infinite-loading": "^2.4.5",
     "vue-fuse": "^3.0.2",
+    "vue-infinite-loading": "^2.4.5",
     "vue-slick-carousel": "^1.0.6",
     "vue2-touch-events": "^3.0.1"
   },
