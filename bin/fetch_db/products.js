@@ -13,13 +13,14 @@ module.exports.fetchProducts = async () => {
 
   //await emptyAssetsDir('tmp')
 
-  let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type', 'ready', 'links'])).filter(p => p.ready)
+  let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'Collections', 'type', 'ready', 'links'])).filter(p => p.ready)
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer', 'offertext'])).filter(sp => sp.ready)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in'])
-  let collections = await fetchTable('CollectionProducts', ['slug', 'Product', 'order'])
+  let collectionProducts = await fetchTable('CollectionProducts', ['slug', 'Product', 'order',])
+  let collections = await fetchTable('Collections', ['slug', 'name','picture', 'CollectionProducts',])
   let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
@@ -125,6 +126,7 @@ module.exports.fetchProducts = async () => {
     })
     p.specs = jsonOrYaml(p.specs || '{}')
     p.SellingPoints = sellingPoints.filter(v => p.SellingPoints.indexOf(v.id) != -1)
+    p.Collections = collections.filter(u => p.Collections.indexOf(u.id) != -1)
     const bps = Object.keys(p.SellingPoints.reduce((acc, sp) => {
       const bp = brandProducts.find(bp => bp.id == sp.BrandProduct[0])
       if (bp.variantOf) {
@@ -145,6 +147,21 @@ module.exports.fetchProducts = async () => {
     }
     return p
   })
+
+  collections = collections.map(c => {
+    c.CollectionProducts = collectionProducts.filter(u => c.CollectionProducts.indexOf(u.id) != -1)
+    c.picture = (c.picture || []).map(a => {
+      try {
+        const { p, data } = fetchAttachement(picPromise, a, 'products')
+        picPromise = p
+        return data
+      } catch(e) {
+        return noPic
+      }
+    })
+    return c
+  })
+
   await picPromise
 
   const productsJSON = JSON.stringify({

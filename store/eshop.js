@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, relatedProducts } from '~/config/products.json'
+import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, collectionProducts , relatedProducts } from '~/config/products.json'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 // import Fuse from 'fuse.js'
@@ -63,27 +63,6 @@ export const actions = {
   },
 }
 
-// const options=  {
-//   isCaseSensitive: false,
-//   includeScore: false,
-//   shouldSort: true,
-//   includeMatches: false,
-//   findAllMatches: false,
-//   minMatchCharLength: 1,
-//   location: 0,
-//   threshold: 0.6,
-//   distance: 100,
-//   useExtendedSearch: false,
-//   ignoreLocation: false,
-//   ignoreFieldNorm: false,
-//   keys: [
-//     "product.name",
-//     "product.description"
-//   ]
-// }
-// const fuse = new Fuse(products, options)
-
-
 export const mutations = {
   setState(state, newState) {
     Object.assign(state, newState)
@@ -110,6 +89,8 @@ export const getters = {
   sellingPointWithSlug: state => slug => sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
   productWithSlug: state => slug => products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
   productsWithTypes: state => types => productsWithTypes(state, types),
+  // productsWithCollections: state => collections => productsWithCollections(state, collections),
+  productsWithCollections: (state, getters) => id => state.collections.filter(cp => cp.id == id).sort((cp1, cp2) => cp1.order - cp2.order),
   // productWithName: state => name => state.products.find(p => p.name.toLowerCase() == name.toLowerCase()),
 
   product: state => id => products.find(p => p.id == id),

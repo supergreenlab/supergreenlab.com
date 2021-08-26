@@ -63,10 +63,11 @@ import ProductSpotlight from '~/components/shop/widgets/productspotlight.vue'
 import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
 import CountDown from '~/components/shop/widgets/countdown.vue'
 import Search from '~/components/shop/widgets/popupsearch.vue'
+import CategoryList from '~/components/shop/widgets/collection.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, Product, Search ,BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight,VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown ,Footer}
+const components = {Header, Product, Search ,BannerContainer, CategoryList ,CarrouselContainer, GuideSpotlight, ProductSpotlight,VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown ,Footer}
 
 export default{
   components,
