@@ -73,7 +73,7 @@ export default {
   color: #5E5E5E
 
 #description
-  margin: 0 5pt
+  margin: 0 10pt
   text-align: justify
 
 #pic

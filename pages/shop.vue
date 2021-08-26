@@ -29,9 +29,9 @@
         </div>
         <div :id='$style.content'>
           <div :id="$style.searchbar">
-            <Search />
+            <Search :onShowResults='onShowResults' />
           </div>
-          <component v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+          <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
             <component v-if='widgetExpiration(w) == false' v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
         </div>
@@ -77,11 +77,17 @@ export default{
       return Date.parse(widget.expiration) < (new Date()).getTime()
     }
   },
-
+  data() {
+    return {
+      showSearchResults: false,
+    }
+  },
   methods: {
     componentForName: name => components[name],
+    onShowResults(v) {
+      this.$data.showSearchResults = v
+    },
   },
-
 }
 </script>
 
@@ -105,7 +111,7 @@ export default{
   justify-content: space-between
   width: 100%
   margin-top: 62.25pt
-  @media only screen and (max-width: 1024px)
+  @media only screen and (max-width: 1100px)
     justify-content: center
     margin-top: 75pt
 
@@ -117,7 +123,7 @@ export default{
   margin: 2pt 200pt;
   height: 100%
   overflow: visible
-  @media only screen and (max-width: 1024px)
+  @media only screen and (max-width: 1100px)
     margin: 10pt
 
 #leftcolumn
@@ -132,7 +138,7 @@ export default{
   position: fixed
   left: 0
   overflow: hidden
-  @media only screen and (max-width: 1024px)
+  @media only screen and (max-width: 1100px)
     display: none
 
 #rightcolumn
@@ -147,7 +153,7 @@ export default{
   flex-direction: column
   width: 170pt
   overflow: hidden
-  @media only screen and (max-width: 1024px)
+  @media only screen and (max-width: 1100px)
     display: none
 
 #searchbar

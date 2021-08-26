@@ -44,7 +44,6 @@ export default {
     },
     filteredList() {
       return products.filter(search => {
-        console.log(search)
         return (search.name).toLowerCase().includes(this.listsearch.toLowerCase())
       })
     },
@@ -60,7 +59,7 @@ export default {
   width: 100%
 
 #container > input
-  background-color: rgba(255,255,255,0.8)
+  background-color: white
   font-size: 1.2em
   border: 0.2pt solid black
   width: 100%
@@ -75,10 +74,10 @@ export default {
 
 #searchlist
   width: 100%
-  min-height: 3000pt
+  height: 100%
   position: absolute
   top: 25pt
-  background-color: rgba(255,255,255,0.8)
+  background-color: white
   margin: 5pt
   z-index : 9000
   padding: 5pt

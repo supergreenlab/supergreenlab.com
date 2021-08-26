@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <a :id='$style.button' href='javascript:void(0);' @click='addToCartClicked'><b>ADD TO CART</b></a><br />
+    <a :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
   </section>
 </template>
 
@@ -26,11 +26,30 @@
 export default {
   components: {},
   props: ['product', 'sellingPoint',],
+  data() {
+    return {
+      activated: false,
+      added: false,
+      done: false,
+    }
+  },
+  beforeDestroy() {
+    if (this.timeout) clearTimeout(this.timeout)
+  },
   methods: {
     addToCartClicked() {
       const { product, sellingPoint, } = this.$props
       this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.id)
-      this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
+      this.$data.activated = true
+      this.timeout = setTimeout(() => {
+        this.$data.activated = false
+        this.$data.added = true
+        this.$emit('click')
+        this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
+        this.timeout = setTimeout(() => {
+          this.$data.done = true
+        }, 2000)
+      }, 800)
     },
   },
 }

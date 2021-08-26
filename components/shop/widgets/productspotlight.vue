@@ -23,22 +23,6 @@
         <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
         <SmallProductList :id='$style.smallproductlist' :products='products' />
-        <!-- <div v-for='product in products' :key='product.id' :class='$style.productspotlight'>
-          <div :id='$style.pics'>
-            <Pics :pics='product.pics' :hideArrow=true />
-          </div>
-          <div :id='$style.content'>
-            <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :id='$style.contentlink'>
-              <h3 v-html='$md.render(product.name)'></h3>
-              <div v-html='$md.render(product.tagline)' :id='$style.tagline'></div>
-              <div v-html='$md.render(product.bulletpoints)' :id='$style.bullets'></div>
-            </nuxt-link>
-            <div :id='$style.pricing'>
-              <Price :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
-              <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </section>
@@ -46,9 +30,6 @@
 
 <script>
 
-// import Pics from '~/components/products/pics.vue'
-// import Price from '~/components/products/price.vue'
-// import AddToCart from '~/components/products/addtocart.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
 import { products } from '~/config/products.json'
@@ -58,20 +39,15 @@ export default {
   components: { SmallProductList },
   data() {
     return {
-      addedToCart: false,
     }
   },
   computed: {
     products() {
       const { config } = this.$props
-      // console.log(config)
       return (config.products || []).map(p => products.find(p1 => p1.id == p))
     },
   },
   methods: {
-    handleAddToCart() {
-      setTimeout(() => this.$data.addedToCart = true, 1000)
-    }
   }
 }
 

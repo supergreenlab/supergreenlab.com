@@ -16,46 +16,41 @@
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
- <template>
-  <section :id="$style.container">
-    <div :id="$style.countdowncontainer">
-      <div :id="$style.title" v-html='$md.render(config.title)'></div>
-        <div :id="$style.description" v-html='$md.render(config.description)'></div>
-        <div @click='open(config.link)' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
-        <div :id="$style.countdown">
-          <div :class="$style.countdown">
-            <div :class="$style.block">
-              <div :class="$style.digit">{{ days | zero }}</div>
-              <div :class="$style.unit">Days</div>
-            </div>
-            <div :class="$style.block">
-              <div :class="$style.digit">{{ hours | zero }}</div>
-              <div :class="$style.unit">Hours</div>
-            </div>
-            <div :class="$style.block">
-              <div :class="$style.digit">{{ minutes | zero }}</div>
-              <div :class="$style.unit">Minutes</div>
-            </div>
-            <div :class="$style.block">
-              <div :class="$style.digit">{{ seconds | zero }}</div>
-              <div :class="$style.unit">Seconds</div>
-            </div>
-          </div>
-        </div>
-        <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
-      </div>
-      <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'>
-        <div :class="$style.digit">Times's up</div>
-        <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
-      </div>
-
-
-
-
-      <!-- <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div> -->
-
-    </div>
-  </section>
+<template>
+ <section :id="$style.container">
+   <div :id="$style.countdowncontainer">
+     <div :id="$style.title" v-html='$md.render(config.title)'></div>
+     <div :id="$style.description" v-html='$md.render(config.description)'></div>
+     <div @click='open(config.link)' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+       <div :id="$style.countdown">
+         <div :class="$style.countdown">
+           <div :class="$style.block">
+             <div :class="$style.digit">{{ days | zero }}</div>
+             <div :class="$style.unit">Days</div>
+           </div>
+           <div :class="$style.block">
+             <div :class="$style.digit">{{ hours | zero }}</div>
+             <div :class="$style.unit">Hours</div>
+           </div>
+           <div :class="$style.block">
+             <div :class="$style.digit">{{ minutes | zero }}</div>
+             <div :class="$style.unit">Minutes</div>
+           </div>
+           <div :class="$style.block">
+             <div :class="$style.digit">{{ seconds | zero }}</div>
+             <div :class="$style.unit">Seconds</div>
+           </div>
+         </div>
+       </div>
+       <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
+     </div>
+     <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'>
+       <div :class="$style.digit">Times's up</div>
+       <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
+     </div>
+     <!-- <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div> -->
+   </div>
+ </section>
 </template>
 
 <script>
@@ -182,6 +177,8 @@ export default {
   -webkit-text-fill-color: white
   -webkit-text-stroke-width: 1px
   -webkit-text-stroke-color: black
+  @media only screen and (min-width: 600px) and (max-width: 900px)
+    font-size: 50pt
   @media only screen and (max-width: 600px)
     font-size: 23pt
 

@@ -17,29 +17,32 @@
  -->
 
 <template>
-    <section :id="$style.container">
-      <VueFuse
-          :list="products"
-          :defaultAll="false"
-          :fuse-opts="options"
-          :search="search"
-          :map-results="false"
-          placeholder="Looking for something..."
-          @fuse-results="handleResults"
-      />
-      <div :id="$style.searchlist" v-if="results.length > 0">
-        <SmallProductList :id='$style.smallproductlist' :products='results.map(i => i.item)' />
-      </div>
-
-    </section>
+ <section :id="$style.container">
+   <VueFuse
+     :list="products"
+     :defaultAll="false"
+     :fuse-opts="options"
+     :search="search"
+     :map-results="false"
+     placeholder="Looking for something..."
+     @fuse-results="handleResults"
+     @fuse-input="onInputChange"
+     />
+   <div :id="$style.searchlist" v-if='results.length'>
+     <SmallProductList :id='$style.smallproductlist' :products='results.map(i => i.item)' />
+   </div>
+ </section>
 </template>
 
 <script>
 import SmallProductList from '~/components/products/smallproductlist.vue'
 import VueFuse from '~/components/shop/widgets/vuefuse.vue'
+
 import { products } from '~/config/products.json'
+
 export default {
   components: {SmallProductList, VueFuse},
+  props: ['onShowResults',],
   data () {
     return {
       search: '',
@@ -48,36 +51,34 @@ export default {
   },
   computed: {
     products() {
-      console.log(products)
       return products
     },
     options () {
       return {
-        keys: ['name','sellingPoints.brandProducts'],
+        keys: ['name','SellingPoints.BrandProduct.name', 'description', 'SellingPoints.BrandProduct.description'],
       }
     },
   },
   methods: {
     handleResults (r) {
-      console.log(r)
       this.results = r
+    },
+    onInputChange(i) {
+      this.$props.onShowResults(i != '')
     },
   },
 }
 </script>
 
 <style module lang=stylus>
+
 #container
   width: 100%
 
 #searchlist
   width: 100%
-  min-height: 3000pt
-  position: absolute
   top: 25pt
-  background-color: rgba(255,255,255,0.8)
-  z-index : 9000
+  background-color: white
   padding: 5pt
-
 
 </style>

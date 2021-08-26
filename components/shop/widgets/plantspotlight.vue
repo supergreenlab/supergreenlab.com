@@ -40,7 +40,7 @@
               </div>
               <div :id='$style.button'>
                 <i><nuxt-link :id='$style.appbutton' to='/app' target='_blank'>Install app first</nuxt-link></i>
-                <a :id='$style.plantbutton' :href='`sglapp://supergreenlab.com/public/plant?id=${plant.id}`' target='_blank'>Open plant</a><br />
+                <nuxt-link :id='$style.plantbutton' :to='`/public/plant?id=${plant.id}`' target='_blank'>Open plant</nuxt-link><br />
               </div>
             </div>
             <h3>Grow with {{ product.name }}</h3>
