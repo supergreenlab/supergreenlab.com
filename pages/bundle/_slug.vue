@@ -24,7 +24,7 @@
     <div :id='$style.body'>
       <Bundle :nobottom=true :bundle='bundle' :addtocart=true :noframe=true :showdescription=true :showRelatedProducts=true />
       <Title icon='icon-see-shop.svg' title='SPARE PARTS' />
-      <ProductList :products='sglSpareParts' :center=true :maxItems=4 />
+      <ProductListComponent :products='sglSpareParts' :center=true :maxItems=4 />
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
@@ -72,7 +72,7 @@
       </div>
       <Title icon='icon-see-shop.svg' title='SEE ALSO' />
       <div v-if='relatedProducts.length' :id='$style.products'>
-        <ProductList :products='relatedProducts' :maxItems=4 />
+        <ProductListComponent :products='relatedProducts' :maxItems=4 />
       </div>
     </div>
     <Footer />
@@ -83,7 +83,7 @@
 import Header from '~/components/layout/header.vue'
 import Guide from '~/components/bundle/guide.vue'
 import ProductGuide from '~/components/guides/small.vue'
-import ProductList from '~/components/products/productlist.vue'
+import ProductListComponent from '~/components/products/productlistcomponent.vue'
 import Bundle from '~/components/bundle/bundle.vue'
 import Item from '~/components/bundle/item.vue'
 import Title from '~/components/bundle/title.vue'
@@ -99,7 +99,7 @@ import AddToCart from '~/components/products/addtocart.vue'
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: {Header, Guide, ProductGuide, ProductList, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, BundleIntro, LatestDiaries, AddToCart,},
+  components: {Header, Guide, ProductGuide, ProductListComponent, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, BundleIntro, LatestDiaries, AddToCart,},
   head() {
     return {
       title: `SuperGreenLab - ${this.brandProduct.name} - ${this.bundle.tagline}`,
@@ -174,7 +174,7 @@ export default {
 #header
   position: fixed
   width: 100%
-  top: 0 
+  top: 0
   left: 0
   z-index: 1000
 
@@ -197,9 +197,9 @@ export default {
 
 .guide
   margin: 20pt 0
-  flex-basis: 50% 
+  flex-basis: 50%
   @media only screen and (max-width: 600px)
-    flex-basis: 100% 
+    flex-basis: 100%
     margin: 20pt 5pt
 
 .space

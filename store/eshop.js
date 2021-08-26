@@ -19,6 +19,7 @@
 import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, relatedProducts } from '~/config/products.json'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
+// import Fuse from 'fuse.js'
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
@@ -62,6 +63,27 @@ export const actions = {
   },
 }
 
+// const options=  {
+//   isCaseSensitive: false,
+//   includeScore: false,
+//   shouldSort: true,
+//   includeMatches: false,
+//   findAllMatches: false,
+//   minMatchCharLength: 1,
+//   location: 0,
+//   threshold: 0.6,
+//   distance: 100,
+//   useExtendedSearch: false,
+//   ignoreLocation: false,
+//   ignoreFieldNorm: false,
+//   keys: [
+//     "product.name",
+//     "product.description"
+//   ]
+// }
+// const fuse = new Fuse(products, options)
+
+
 export const mutations = {
   setState(state, newState) {
     Object.assign(state, newState)
@@ -88,6 +110,7 @@ export const getters = {
   sellingPointWithSlug: state => slug => sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
   productWithSlug: state => slug => products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
   productsWithTypes: state => types => productsWithTypes(state, types),
+  // productWithName: state => name => state.products.find(p => p.name.toLowerCase() == name.toLowerCase()),
 
   product: state => id => products.find(p => p.id == id),
   sellingPointWithID: state => id => sellingPoints.find(sp => sp.id == id),
@@ -106,6 +129,7 @@ export const getters = {
   regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {
       acc.push(region)
+      // console.log(region)
       if (region.in) {
         return regionTree(regions.find(r => r.id == region.in[0]), acc)
       }

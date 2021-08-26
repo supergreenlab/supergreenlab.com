@@ -74,7 +74,7 @@ export default {
   align-items: center
   width: 100%
   max-width: 900pt
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 900px)
     flex-direction: column
 
 .yt

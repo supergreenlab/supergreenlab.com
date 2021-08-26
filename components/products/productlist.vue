@@ -21,7 +21,7 @@
     <div :id='$style.region'>
       <Region />
     </div>
-    <div :id='$style.body' :class='center ? $style.center : ""'>
+    <div :id='$style.body' :class='center ? $style.center : $style.start'>
       <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
         <Item :product='product' />
       </div>
@@ -79,11 +79,14 @@ export default {
   display: flex
   align-items: center
   flex-wrap: wrap
-  @media only screen and (max-width: 600px)
-    justify-content: center
 
 .center
   justify-content: center
+
+.start
+  justify-content: flex-start
+  @media only screen and (max-width: 600px)
+    justify-content: center
 
 .product
   flex-basis: 33%

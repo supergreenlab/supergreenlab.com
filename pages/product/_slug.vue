@@ -156,7 +156,7 @@
       </div>
       <h2 v-if='sameTypeProduct.length'>Products in the same category</h2>
       <div v-if='sameTypeProduct.length' :id='$style.products'>
-        <ProductList :products='sameTypeProduct' :maxItems=4 />
+        <ProductListComponent :products='sameTypeProduct' :maxItems=4 />
       </div>
     </div>
     <Footer />
@@ -171,7 +171,9 @@ import Pics from '~/components/products/pics.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Guide from '~/components/guides/small.vue'
-import ProductList from '~/components/products/productlist.vue'
+// import ProductList from '~/components/products/productlist.vue'
+import ProductListComponent from '~/components/products/productlistcomponent.vue'
+
 import Region from '~/components/products/region.vue'
 import Footer from '~/components/layout/footer.vue'
 
@@ -181,7 +183,7 @@ import { products, sellingPoints, regions, } from '~/config/products.json'
 import { guides } from '~/config/guides.json'
 
 export default {
-  components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductList, Region, Footer, },
+  components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductListComponent, Region, Footer, },
   head() {
     return {
       title: `SuperGreenLab - ${this.brandProduct.name} - ${this.product.tagline}`,

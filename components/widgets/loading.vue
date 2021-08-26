@@ -55,7 +55,7 @@ export default {
   left: 0
   width: 100%
   height: 100%
-  z-index: 100
+  /* z-index: 100 */
 
 #spinner
   text-align: center
@@ -67,7 +67,7 @@ export default {
   height: 100%
   width: 10%
   display: inline-block
-  
+
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out
   animation: sk-stretchdelay 1.2s infinite ease-in-out
 
@@ -88,15 +88,15 @@ export default {
   animation-delay: -0.8s
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
   20% { -webkit-transform: scaleY(1.0) }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%, 40%, 100% {
     transform: scaleY(0.4)
     -webkit-transform: scaleY(0.4)
-  }  20% { 
+  }  20% {
     transform: scaleY(1.0)
     -webkit-transform: scaleY(1.0)
   }
