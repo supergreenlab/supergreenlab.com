@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, relatedProducts } from '~/config/products.json'
+import { products, sellingPoints, sellers, brandProducts, brands, regions, collections, collectionProducts , relatedProducts } from '~/config/products.json'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 // import Fuse from 'fuse.js'
@@ -44,6 +44,7 @@ export const state = () => {
     brandProducts,
     brands,
     collections,
+    collectionProducts,
     relatedProducts,
   }
   return defaults
@@ -118,6 +119,8 @@ export const getters = {
   sellingPointWithSlug: state => slug => state.sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
   productWithSlug: state => slug => state.products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
   productsWithTypes: state => types => productsWithTypes(state, types),
+  // productsWithCollections: state => collections => productsWithCollections(state, collections),
+  productsWithCollections: (state, getters) => id => state.collections.filter(cp => cp.id == id).sort((cp1, cp2) => cp1.order - cp2.order),
   // productWithName: state => name => state.products.find(p => p.name.toLowerCase() == name.toLowerCase()),
 
   product: state => id => state.products.find(p => p.id == id),
@@ -132,7 +135,7 @@ export const getters = {
     }
     return [brandProduct].concat(state.brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
   },
-  collection: (state, getters) => slug => state.collections.filter(c => c.slug == slug).sort((c1, c2) => c1.order - c2.order).map(c => getters.product(c.Product[0])),
+  collection: (state, getters) => id => state.collections.filter(c => c.id == id).sort((c1, c2) => c1.order - c2.order).map(c => getters.product(c.Product[0])),
 
   regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {

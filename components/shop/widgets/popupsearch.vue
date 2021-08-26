@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     products() {
-      console.log(products)
+      // console.log(products)
       return products
     },
     options () {
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     handleResults (r) {
-      console.log(r)
+      // console.log(r)
       this.results = r
     },
   },
