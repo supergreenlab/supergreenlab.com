@@ -90,7 +90,7 @@ export const getters = {
   productWithSlug: state => slug => products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
   productsWithTypes: state => types => productsWithTypes(state, types),
   // productsWithCollections: state => collections => productsWithCollections(state, collections),
-  productsWithCollections: (state, getters) => id => state.collections.filter(cp => cp.id == id).sort((cp1, cp2) => cp1.order - cp2.order),
+  productsWithCollections: (state, getters) => id => collections.filter(cp => cp.id == id).sort((cp1, cp2) => cp1.order - cp2.order),
   // productWithName: state => name => state.products.find(p => p.name.toLowerCase() == name.toLowerCase()),
 
   product: state => id => products.find(p => p.id == id),
