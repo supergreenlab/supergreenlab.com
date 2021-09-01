@@ -13,7 +13,7 @@ module.exports.fetchProducts = async () => {
 
   //await emptyAssetsDir('tmp')
 
-  let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'Collections', 'type', 'ready', 'links'])).filter(p => p.ready)
+  let products = (await fetchTable('Products', ['slug', 'name', 'tagline', 'pics', 'description', 'bulletpoints', 'SellingPoints', 'type', 'ready', 'links'])).filter(p => p.ready)
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'regions', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer', 'offertext'])).filter(sp => sp.ready)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
@@ -126,7 +126,6 @@ module.exports.fetchProducts = async () => {
     })
     p.specs = jsonOrYaml(p.specs || '{}')
     p.SellingPoints = sellingPoints.filter(v => p.SellingPoints.indexOf(v.id) != -1)
-    p.Collections = collections.filter(u => p.Collections.indexOf(u.id) != -1)
     const bps = Object.keys(p.SellingPoints.reduce((acc, sp) => {
       const bp = brandProducts.find(bp => bp.id == sp.BrandProduct[0])
       if (bp.variantOf) {
