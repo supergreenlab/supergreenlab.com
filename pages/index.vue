@@ -24,87 +24,66 @@
       </div>
     </div>
     <div :id='$style.body'>
-      <div id='top'></div>
+
       <Top ref='top' :focus='currentRef == "top"' />
-      <div id='use-steps'></div>
-      <div :class='$style.space'></div>
-      <UseSteps ref='use-steps' />
-      <div :class='$style.space'></div>
+
       <div :class='$style.title'>
-        <SectionTitle title='Join the community'
-                        green='of growbox builders'
-                        title2='What will you build?'
-                        separator='true'/>
+        <SectionTitle title='Turn **any furniture** into a **connected growbox**'
+                        subtitle='that will blend in with the rest of your home'
+                        center='true'/>
+      </div>
+      <UseSteps ref='use-steps' />
+      <div :class='$style.title'>
+        <SectionTitle title='Perfect bundles for home growing'
+                        subtitle='For those that want to keep it discreet and stealthy, or just fancy...'
+                        center='true'/>
       </div>
       <Examples ref='examples' />
-      <div :class='$style.space'></div>
-      <Ready ref='ready' />
-      <div :class='$style.space'></div>
+      <div :class='$style.title'>
+        <SectionTitle title='Our bundles are all-included:'
+                        subtitle='Light, environment control and automation'
+                       />
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='The grow assistant app that has your back'
+                        center='true'/>
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='App features (non exhaustive)'
+                        subtitle='Community driven development, don’t forget to cast your vote!'
+                       />
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='You won’t be alone in your quest to infinite weed'
+                        center='true'/>
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='Discussion forums (non exhaustive)'
+                        subtitle='Here are some discussion topics you’ll find in the private section.'
+                       />
+      </div>
+      <div :class='$style.title'>
+        <SectionTitle title='Not sure where to get started?'
+                        subtitle='No worries, we have something for you!'
+                        center='true'/>
+      </div>
+      <LatestGuide />
       <div :class='$style.title'>
         <SectionTitle title='Ready to grow?'
-                        green='Follow the steps below'
-                        separator='true'/>
-        <div :class='$style.space'></div>
-      </div>
-      <div :class='$style.title'>
-        <TitleStep title='STEP 1'
-                      green='Choose your furniture'
-                      introduction= "Welcome to **micro growing**, the best hobby ever 💚
-                        Start by picking a piece of furniture that fits your space.
-                        **pro tip**: flat white is great for reflecting light 💡"/>
-      </div>
-      <div :class='$style.shop'>
-        <ProductList ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
-      </div>
-      <div :class='$style.title'>
-        <TitleStep title='STEP 2'
-                      green='Get a bundle'
-                      introduction="We designed and put together a bundle to **transform your furniture** into a connected stealth growbox.
-                      It has everything you need to get started 🙂" />
+                        subtitle='Order your kit and start your journey!'
+                        center='true'/>
       </div>
       <div :id='$style.bundles'>
         <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
           <div :id='b.slug'></div>
           <Bundle :bundle='b' :showdescription='false' />
         </div>
-        <div :class='$style.title'>
-          <TitleStep green='Install your bundle'
-                      introduction= "Learn **how to install your bundle** with Stant, don't forget to **like & subscribe** over on YouTube to not miss our next build 👍
-                      **Need extra help?** Send us a message :)" />
-        </div>
-        <LatestGuide />
-        <Youtube ref='youtube' />
-        <div :class='$style.space'></div>
-        <!--<div :class='$style.title'>
-          <TitleStep green='Spare parts'
-                      introduction='Stay tuned for **new modules** and **add-ons** coming soon™' />
-        </div>
-        <div :class='$style.shop'>
-          <ProductList ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
-        </div>-->
       </div>
-      <div :class='$style.title'>
-        <TitleStep title='STEP 3'
-                      green='Start growing'
-                      introduction="There are a lot of ways to achieve a **successful harvest** but every grow needs a growing medium (soil/soilless) and nutrients (organic/mineral).
-                      To help you get started we curated **grow packs** from **recommendations by** the **SGL community**.
-                      **pro tip**: keep it simple, experiment, and don't hesitate to ask for advice over on [Discord](https://www.supergreenlab.com/discord) :)" />
-      </div>
-      <div :class='$style.pack'>
-        <Pack />
-      </div>
-      <div :class='$style.title'>
-        <TitleStep green="It's dangerous to go alone! Take this." introduction="Here's a non exhaustive list of **tools and materials** we used in some shape or form to **build and grow**."/>
-      </div>
-      <div :class='$style.shop'>
-        <ProductList ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
-      </div>
-      <div :class='$style.space'></div>
-      <Social ref='social' />
-      <div :class='$style.space'></div>
-      <Testimonials ref='testimonials' />
-      <div :class='$style.space'></div>
+
+      <!-- <div :class='$style.space'></div> -->
+
       <Newsletter />
+
     </div>
     <Footer />
     <transition name="popup">

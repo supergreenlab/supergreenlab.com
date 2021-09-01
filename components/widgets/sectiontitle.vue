@@ -17,41 +17,73 @@
  -->
 
 <template>
-  <section :id='$style.container' :class='separator ? $style.separator : ""'>
+  <section :class='center ? $style.center : $style.notcenter'>
     <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title }}</h2>
     <h1 :id='$style.green' :style='white ? {color: "#7CCC5C"} : {}'>{{ green }}</h1>
+    <h2 :id='$style.subtitle' :style='white ? {color: "white"} : {}'>{{ subtitle }}</h2>
     <h2 :id='$style.title2' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
     <small :id='$style.smalltitle' :style='white ? {color: "white"} : {}'>{{ smalltitle }}</small>
+
   </section>
 </template>
 
 <script>
 
 export default {
-  props: ['title', 'title2', 'green', 'smalltitle', 'separator', 'white',],
+  props: ['title', 'title2', 'green', 'smalltitle', 'center', 'white','subtitle'],
 }
 </script>
 
 <style module lang=stylus>
-
+/*
 #container
   display: flex
   flex-direction: column
+  align-items: flex-start
+  justify-content:  center
+  @media only screen and (max-width: 600px)
+    font-size: 0.8em */
+
+.center
+  display: flex
+  flex-direction: column
   align-items: center
-  justify-content: center
+  justify-content:  center
+  /* border-top: solid 3pt #3bb30b
+  border-bottom: solid 3pt #3bb30b
+  padding-top: 20pt
+  padding-bottom: 20pt */
   @media only screen and (max-width: 600px)
     font-size: 0.8em
 
-.separator
-  width: 100%
-  padding: 15pt 0 15pt 0
-  background-color: #eaeaea
+.center:before
+  margin: 20pt
+  width: 80pt
+  height: 2pt
+  background: #3bb30b
+  content: ""
+
+.center:after
+  margin: 20pt
+  width: 80pt
+  height: 2pt
+  background: #3bb30b
+  content: ""
+
+.notcenter
+  margin-left: 50pt
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  justify-content:  center
+  border: none
+  @media only screen and (max-width: 600px)
+    font-size: 0.8em
 
 #title
   font-size: 2.7em
   color: #5E5E5E
   text-align: center
-  text-transform: uppercase
 
 #title2
   font-size: 1.6em
@@ -59,11 +91,14 @@ export default {
   text-align: center
   text-transform: uppercase
 
+#subtitle
+  font-size 2em
+  color: #5E5E5E
+
 #green
   color: #3BB30B
   font-size: 2.1em
   text-align: center
-  text-transform: uppercase
   margin: 0pt
 
 #smalltitle
@@ -71,7 +106,9 @@ export default {
   color: #5E5E5E
   font-size: 1.1em
   text-align: center
+  text-transform: lowercase
   @media only screen and (max-width: 600px)
     font-size: 1.3em
+
 
 </style>

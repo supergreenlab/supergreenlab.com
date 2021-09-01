@@ -27,70 +27,81 @@
                         :white='true'
                         green='TV Stand'
                         title2='can grow plants'
-                        smalltitle="you just didn't know it (yet)"/>
+                        smalltitle="you just didn't know it (yet)"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 1 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='wardrobe'
                         title2='can grow plants'
-                        smalltitle="it's actually quite easy you know?"/>
+                        smalltitle="it's actually quite easy you know?"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 2 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='closet'
                         title2='can grow plants'
-                        smalltitle="we sell LED lights with climate control kits"/>
+                        smalltitle="we sell LED lights with climate control kits"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 3 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='office storage'
                         title2='can grow plants'
-                        smalltitle="and it's all controlled by an app!"/>
+                        smalltitle="and it's all controlled by an app!"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 4 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cabinet'
                         title2='can grow plants'
-                        smalltitle="so you can turn any furniture"/>
+                        smalltitle="so you can turn any furniture"
+                        center='true'/>
+
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 5 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='old fridge'
                         title2='can grow plants'
-                        smalltitle="into a connected grow box"/>
+                        smalltitle="into a connected grow box"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 6 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='cupboard'
                         title2='can grow plants'
-                        smalltitle="and that's amazing"/>
+                        smalltitle="and that's amazing"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 7 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='coffee table'
                         title2='can grow plants'
-                        smalltitle="just press the START GROWING button"/>
+                        smalltitle="just press the START GROWING button"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 8 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='Carboard box'
                         title2='can grow plants'
-                        smalltitle="get yours now:)"/>
+                        smalltitle="get yours now:)"
+                        center='true'/>
         </div>
         <div :class='$style.product + " " + (parseInt(n / 3)  % 10 == 9 ? $style.shown : "")'>
           <SectionTitle title='Your'
                         :white='true'
                         green='plumbus'
                         title2='can grow plants'
-                        smalltitle="and it's open-source btw"/>
+                        smalltitle="and it's open-source btw"
+                        center='true'/>
         </div>
     </div>
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
@@ -142,6 +153,8 @@ export default {
   align-items: center
   min-height: 100vh
   background-color: black
+  text-transform: uppercase
+  text-align: center
 
 #background
   position: absolute
@@ -240,7 +253,7 @@ export default {
   font-weight: 600
   z-index: 1000
 
-.waves 
+.waves
   position:absolute
   bottom: 0
   left: 0
@@ -249,28 +262,28 @@ export default {
   min-height:100px
   max-height:200px
 
-.content 
+.content
   position:relative
   height:20vh
   text-align:center
   background-color: #3bb30b
 
-.parallax > use 
+.parallax > use
   animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite
 
-.parallax > use:nth-child(1) 
+.parallax > use:nth-child(1)
   animation-delay: -2s
   animation-duration: 7s
 
-.parallax > use:nth-child(2) 
+.parallax > use:nth-child(2)
   animation-delay: -3s
   animation-duration: 10s
 
-.parallax > use:nth-child(3) 
+.parallax > use:nth-child(3)
   animation-delay: -4s
   animation-duration: 13s
 
-.parallax > use:nth-child(4) 
+.parallax > use:nth-child(4)
   animation-delay: -5s
   animation-duration: 20s
 
