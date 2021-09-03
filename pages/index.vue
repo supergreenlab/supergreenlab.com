@@ -40,11 +40,12 @@
                         center='true'
                         border='true'/>
       </div>
-      <Examples ref='examples' />
+      <BlockHome />
       <div :class='$style.title'>
         <SectionTitle title='Our bundles are **all-included:**'
                         subtitle='**Light**, environment **control** and **automation**' />
       </div>
+      <BlockBundle />
       <div :class='$style.title'>
         <SectionTitle title='The **grow assistant app** that has your back'
                         center='true'
@@ -124,11 +125,13 @@ import Examples from '~/components/home/examples.vue'
 import Ready from '~/components/home/ready.vue'
 import Newsletter from '~/components/layout/newsletter.vue'
 import Intro from '~/components/home/intro.vue'
+import BlockHome from '~/components/home/blockhome.vue'
+import BlockBundle from '~/components/home/blockbundle.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, Intro},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, Intro, BlockHome, BlockBundle},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',

@@ -133,7 +133,7 @@ export default {
   position: relative
   top: 30pt
   width: 100%
-  max-width: 900pt
+  /* max-width: 900pt */
   height: 200pt
   @media only screen and (max-width: 900px)
     height: 300pt

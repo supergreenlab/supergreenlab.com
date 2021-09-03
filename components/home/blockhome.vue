@@ -20,44 +20,44 @@
   <section :id="$style.container">
     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
-        <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-          <source src="/continuous_supply.mp4" type="video/mp4">
-          <source src="/continuous_supply.webm" type="video/webm">
-          Your browser does not support the video tag.
-        </video>
+        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}'>
+          <div :id="$style.logo" >
+            <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
+          </div>
+        </div>
       </div>
       <div :id='$style.description'>
-        <div :id='$style.title'>Welcome to the <strong>best hobby</strong> in the world!</div>
+        <div :id='$style.title'>Like a tiny <strong>ecosystem</strong>, in a cupboard </div>
         <div :id='$style.bullets'>
-          <div>Super<strong>Green</strong>Lab is a <strong>community</strong> dedicated to <strong>personal home growing in small and discreet spaces</strong>.</div>
-          <div>If there’s one plant that should be <strong>home grown</strong>, it’s <strong>cannabis</strong>. Even a single plant can give you the <strong>quantity and quality to become self sufficient</strong>.</div>
-          <div>And <strong>no need for a big and ugly setup anymore</strong>!</div>
-          <div>Pick any furniture that fits your taste and <strong>grow weed out of it</strong>!</div>
-          <div>Super<strong>Green</strong>Lab brings you all the technology and knowledge to <strong>start growing your own</strong>.</div>
+          <div>Growing plants indoor means that apart from the usual soil, nutrient and water <strong>you will also need to provide sunlight and fresh air</strong>.</div>
+          <div>While there are already a lot of solutions when it comes to soil and nutrient, <strong>there were no lighting solution that could fit tight spaces</strong>.</div>
+          <div>Super<strong>Green</strong>Lab designed the <strong>first grow bundle</strong>dedicated to creating the perfect growing environment in virtually <strong>any kind of furniture</strong>.</div>
         </div>
       </div>
     </div>
-    <UseSteps ref='use-steps' />
+    <Examples ref='examples' />
+    <!-- <portal v-if='showZoom' to='root'>
+      <div :id='$style.fullscreen' @click='toggleZoom'>
+          <div :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}' @click='toggleZoom'></div>
+      </div>
+    </portal> -->
   </section>
 </template>
 
 
 <script>
-import UseSteps from '~/components/home/use-steps.vue'
+import Examples from '~/components/home/examples.vue'
 
 
 export default {
-  components: { UseSteps, },
-  props: [ 'bulletpoints', 'title'],
+  components: { Examples },
+  props: [],
   data() {
     return {
 
     }
   },
   methods: {
-
-  },
-  computed: {
 
   },
 }
@@ -68,9 +68,11 @@ export default {
 #container
   display: flex
   width: 100%
+  max-width: 900pt
   flex-direction: column
   align-items: center
   color: black
+  margin-bottom: 20pt
 
 #title
   font-size: 2.3em
@@ -88,7 +90,6 @@ export default {
 #body
   display: flex
   margin: 0pt 0pt 50pt 0pt
-  max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column !important
     margin: 0pt 0pt 20pt 0pt
@@ -97,11 +98,8 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-  width: 40%
-  cursor: pointer
-  margin: 0 20pt
+  margin: 5pt 20pt 5pt 5pt
   @media only screen and (max-width: 600px)
-    width: 100%
     margin: 0 5pt
 
 
@@ -118,20 +116,46 @@ export default {
   display: flex
   flex-direction: column
   justify-content: space-around
-  @media only screen and (max-width: 600px)
-    margin: 5pt
-
 
 #bullets strong
   color: #3BB30B
   font-weight: bold
 
-#video
-  width: 100%
-  /* height: 300pt */
-  object-fit: contain
-  object-position: center
-  @media only screen and (max-width: 600px)
-    height: 100%
+
+#picture
+  display: block
+  width: 250pt
+  height: 250pt
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  display: flex
+  justify-content: flex-start
+  align-items: flex-end
+  /* @media only screen and (max-width: 600pt)
+    background-size: 100% */
+
+#logo
+  margin: 5pt
+
+#fullscreen
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: white
+
+
+#mediafullscreen
+  height: 90%
+  width: 90%
+  margin: 0 15pt 0 0
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
 </style>

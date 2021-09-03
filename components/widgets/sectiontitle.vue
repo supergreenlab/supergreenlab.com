@@ -42,7 +42,7 @@ export default {
   flex-direction: column
   justify-content:  center
   @media only screen and (max-width: 600px)
-    font-size: 0.8em
+    margin: 0 5pt
 
 .center
   align-items: center
@@ -64,7 +64,7 @@ export default {
 
 #title
   font-size: 2.7em
-  color: #5E5E5E
+  color: black
   text-align: center
 
 #title strong
@@ -73,14 +73,15 @@ export default {
 
 #title2
   font-size: 1.6em
-  color: #5E5E5E
+  color: black
   text-align: center
   text-transform: uppercase
 
 #subtitle
   font-size 2em
-  color: #5E5E5E
+  color: black
   text-align: center
+  font-weight: normal
   @media only screen and (max-width: 600px)
     font-size: 1.3em
 
@@ -96,7 +97,7 @@ export default {
 
 #smalltitle
   margin-top: 5pt
-  color: #5E5E5E
+  color: black
   font-size: 1.1em
   text-align: center
   text-transform: lowercase
