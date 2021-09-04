@@ -186,6 +186,7 @@ export default {
   margin-bottom: 5px
 
 #title
+  font-family: Roboto
   display: flex
   align-items: center
   font-weight: bold
