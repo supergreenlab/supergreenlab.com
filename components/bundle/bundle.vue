@@ -73,7 +73,6 @@
       </div>
     </div>
     <div v-if='showdescription' :id='$style.text'>
-      <h1>Description</h1>
       <div v-html='$md.render(bundle.description)'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <div :class='$style.price'>
@@ -151,6 +150,7 @@ export default {
     font-size: 1.8em
 
 #title
+  font-family: Roboto
   color: #5D5D5D
   @media only screen and (max-width: 600px)
     font-size: 0.85em
@@ -238,7 +238,8 @@ export default {
   font-weight: bold
 
 #relatedProducts h4
-  margin: 5pt 5pt
+  font-family: Roboto
+  margin: 10pt 5pt
 
 .relatedProduct
   display: flex
@@ -349,6 +350,9 @@ export default {
   @media only screen and (max-width: 600px)
     padding: 10pt 10pt 40pt 10pt
 
+#text h1
+  font-family: Roboto
+
 #text p
   margin: 10pt 0
 
@@ -366,19 +370,25 @@ export default {
   flex-direction: column
 
 #links h4
-  margin: 5pt 5pt
+  font-family: Roboto
+  margin: 10pt 5pt
 
 .link
   display: flex
   color: #454545
   text-decoration: none
   padding: 2pt 5pt
+  font-size: 0.9em
+  margin: 5pt 0
 
 .link:hover
   text-decoration: underline
 
 .linktext
   flex: 1
+
+.linktext > b
+  font-family: Roboto
 
 .linktext small
   color: #787878

@@ -55,13 +55,7 @@ import { guides } from '~/config/guides.json'
 export default {
   components: { Header, Footer, TitleGuide, SectionTitle, CardGuide, Newsletter },
   computed: {
-    guides: function () {
-      return guides.filter(function (guide) {
-        return guide.first == null
-      }).sort(function (g1, g2){
-        return g1.order - g2.order
-      })
-    }
+    guides: () => guides.filter(guide => guide.first == null).sort((g1, g2) => g1.order - g2.order),
   }
 }
 </script>

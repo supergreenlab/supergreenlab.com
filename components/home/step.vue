@@ -73,6 +73,7 @@ export default {
   flex: 0.7
 
 #title
+  font-family: Roboto
   margin-bottom: 5pt
   font-size: 1.7em
   font-weight: 600
@@ -81,6 +82,7 @@ export default {
     font-size: 1.5em
 
 #body > h1
+  font-family: Roboto
   margin: 0 0 5pt 0
   font-size: 3em
   color: #888888

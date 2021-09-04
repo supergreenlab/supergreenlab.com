@@ -310,6 +310,7 @@ export default {
   align-items: center
 
 #container h2, #container h1
+  font-family: Roboto
   margin: 5pt 10pt
   color: #454545
 
@@ -478,6 +479,7 @@ export default {
     margin: 0 10pt 10pt 10pt
 
 #relatedProducts h4
+  font-family: Roboto
   margin: 5pt 5pt
 
 .relatedProduct
@@ -524,6 +526,7 @@ export default {
   flex-direction: column
 
 #links h4
+  font-family: Roboto
   margin: 5pt 5pt
 
 .link

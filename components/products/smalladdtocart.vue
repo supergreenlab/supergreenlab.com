@@ -47,6 +47,7 @@ export default {
   font-weight: 600;
 
 #button
+  font-family: Roboto
   display: block
   background-color: #3BB30B
   text-align: center
