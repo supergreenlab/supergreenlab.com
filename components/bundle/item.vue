@@ -124,6 +124,7 @@ export default {
   padding: 10pt
 
 #header
+  font-family: Roboto
   display: flex
   align-items: center
   justify-content: space-between

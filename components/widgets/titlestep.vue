@@ -58,6 +58,7 @@ export default {
     font-size: 2em
 
 #title
+  font-family: Roboto
   margin-left: 50px
   font-size: 1.5em
   color: #5E5E5E
@@ -66,6 +67,7 @@ export default {
     font-size: 2.3em
 
 #green
+  font-family: Roboto
   color: #3BB30B
   font-size: 1em
   text-transform: uppercase

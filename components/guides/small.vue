@@ -20,8 +20,8 @@
   <section :id='$style.container'>
     <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${guide.thumbnail.fileLarge}`)})`}'></div>
     <div :id='$style.infos'>
-      <h3>{{ guide.name }}</h3>
-      <div v-html='$md.render(guide.text || "")'></div>
+      <b>{{ guide.name }}</b>
+      <div :id='$style.text' v-html='$md.render(guide.text || "")'></div>
       <div>
         <nuxt-link :id='$style.button' :to='`/guide/${guide.slug}`'>{{ button || 'VIEW GUIDE' }}</nuxt-link>
       </div>
@@ -66,17 +66,29 @@ export default {
   flex: 1
   flex-direction: column
   color: #454545
+  font-size: 0.9em
 
-#infos > p
+#infos > b
+  font-family: Roboto
+  text-transform: uppercase
+  font-weight: 600
+  margin-bottom: 5pt
+
+#text
+  overflow-y: hidden
+  max-height: 10ch
+
+#text > p
   flex: 1
 
-#infos > p strong
+#text > p strong
   color #3bb30b
 
-#infos > h3
+#text > h3
   margin: 0 0 10pt 0
 
 #button
+  font-family: Roboto
   display: inline-block
   background-color: #3BB30B
   text-align: center

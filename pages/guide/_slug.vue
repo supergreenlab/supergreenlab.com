@@ -200,6 +200,7 @@ export default {
     padding-top: 30pt
 
 #container h2
+  font-family: Roboto
   margin-left: 5pt
   color: #454545
 
@@ -256,6 +257,7 @@ export default {
     margin: 5pt 10pt
 
 #guides > h2
+  font-family: Roboto
   margin: 0 0 20pt 0
   color: #454545
 
@@ -269,6 +271,7 @@ export default {
   margin: 0 0 50pt 0
 
 #congrats > h1
+  font-family: Roboto
   color: #3bb30b
 
 #first
@@ -297,6 +300,7 @@ export default {
   flex-direction: column
 
 #tocs h2
+  font-family: Roboto
   margin-bottom: 5pt
 
 .toc

@@ -165,6 +165,7 @@ export default {
   margin: 0 10pt
 
 .text h2
+  font-family: Roboto
   margin-bottom: 10pt
   text-transform: uppercase
 
