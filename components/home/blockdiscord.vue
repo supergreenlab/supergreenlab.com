@@ -18,39 +18,47 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.body'>
+    <div :class='$style.title'>
+      <SectionTitle title='You won’t be alone in your quest to **infinite weed**'
+                    center='true'
+                    border='true'/>
+    </div>
+     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}'>
+        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/discord.jpg`)})`}'>
           <div :id="$style.logo" >
-            <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
+            <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
           </div>
         </div>
       </div>
       <div :id='$style.description'>
-        <div :id='$style.title'>Like a tiny <strong>ecosystem</strong>, in a cupboard </div>
         <div :id='$style.bullets'>
-          <div>Growing plants indoor means that apart from the usual soil, nutrient and water <strong>you will also need to provide sunlight and fresh air</strong>.</div>
-          <div>While there are already a lot of solutions when it comes to soil and nutrient, <strong>there were no lighting solution that could fit tight spaces</strong>.</div>
-          <div>Super<strong>Green</strong>Lab designed the <strong>first grow bundle</strong>dedicated to creating the perfect growing environment in virtually <strong>any kind of furniture</strong>.</div>
+          <div><strong>Buying a bundle gets you free access</strong> to the private <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> community support chat.you will also need to provide sunlight and fresh air.</div>
+          <div><strong>24/7 technical and plant support</strong> from us and the community.</div>
+          <div>Hundreds of people willing to share their <strong>passion for growing and building grow boxes</strong>.</div>
+          <div>Wether you’re an experienced grower or total noob, <strong>there’s always something to learn and share</strong>.</div>
+          <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> private discord server is home to throusands of continuous discussions about <strong>people’s experiences</strong>.</div>
+          <div>Using the search feature will allow you to dig old discussions about <strong>subjects that matter to your case</strong>.</div>
         </div>
       </div>
     </div>
-    <Examples ref='examples' />
-    <!-- <portal v-if='showZoom' to='root'>
-      <div :id='$style.fullscreen' @click='toggleZoom'>
-          <div :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}' @click='toggleZoom'></div>
-      </div>
-    </portal> -->
+    <div :class='$style.title'>
+      <SectionTitle title='Discussion **forums** (non exhaustive)'
+                    subtitle='Here are some discussion topics you’ll find in the private section.'/>
+    </div>
+
+    <div style="margin: 50pt; text-align: center;">Component JSON Discord </div>
+
   </section>
 </template>
 
 
 <script>
-import Examples from '~/components/home/examples.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 
 export default {
-  components: { Examples },
+  components: { SectionTitle },
   props: [],
   data() {
     return {
@@ -74,18 +82,11 @@ export default {
   color: black
   margin-bottom: 20pt
 
-#title
-  font-size: 2.3em
-  color: black
-  font-weight: bold
-  margin-bottom: 15pt
+.title
+  width: 100%
+  margin: 60pt 0 60pt 0
   @media only screen and (max-width: 600px)
-    font-size: 1.7em
-    margin: 5pt
-
-#title strong
-  color: #3BB30B
-  font-weight: bold
+    margin: 0
 
 #body
   display: flex
@@ -112,6 +113,7 @@ export default {
     margin: 0pt 10pt
 
 #bullets
+  font-size: 1.2em
   height: 100%
   display: flex
   flex-direction: column
@@ -138,24 +140,9 @@ export default {
 #logo
   margin: 5pt
 
-#fullscreen
-  position: fixed
-  width: 100vw
-  height: 100vh
-  top: 0
-  left: 0
-  display: flex
-  align-items: center
-  justify-content: center
-  background-color: white
 
-
-#mediafullscreen
-  height: 90%
-  width: 90%
-  margin: 0 15pt 0 0
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+.bolder
+  font-weight: bold
+  color: #323232
 
 </style>

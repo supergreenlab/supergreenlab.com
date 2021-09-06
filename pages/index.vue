@@ -24,71 +24,17 @@
       </div>
     </div>
     <div :id='$style.body'>
-
       <Top ref='top' :focus='currentRef == "top"' />
-
-      <div :class='$style.title'>
-        <SectionTitle title='Turn **any furniture** into a **connected growbox**'
-                        subtitle='That will **blend in** with the rest of your home'
-                        center='true'
-                        border='true'/>
-      </div>
-      <Intro />
-      <div :class='$style.title'>
-        <SectionTitle title='Perfect bundles for **home growing**'
-                        subtitle='For those that want to keep it **discreet and stealthy**, or **just fancy...**'
-                        center='true'
-                        border='true'/>
-      </div>
-      <BlockHome />
-      <div :class='$style.title'>
-        <SectionTitle title='Our bundles are **all-included:**'
-                        subtitle='**Light**, environment **control** and **automation**' />
-      </div>
+      <BlockStep />
+      <BlockExamples />
       <BlockBundle />
-      <div :class='$style.title'>
-        <SectionTitle title='The **grow assistant app** that has your back'
-                        center='true'
-                        border='true'/>
-      </div>
-      <div :class='$style.title'>
-        <SectionTitle title='App **features** (non exhaustive)'
-                        subtitle='Community driven development, don’t forget to cast your vote!'
-                       />
-      </div>
-      <div :class='$style.title'>
-        <SectionTitle title='You won’t be alone in your quest to **infinite weed**'
-                        center='true'
-                        border='true'/>
-      </div>
-      <div :class='$style.title'>
-        <SectionTitle title='Discussion **forums** (non exhaustive)'
-                        subtitle='Here are some discussion topics you’ll find in the private section.'/>
-      </div>
-      <div :class='$style.title'>
-        <SectionTitle title='Not sure **where to get started**?'
-                        subtitle='No worries, we have something for you!'
-                        center='true'
-                        border='true'/>
-      </div>
-      <LatestGuide />
-      <div :class='$style.title'>
-        <SectionTitle title='Ready to **grow**?'
-                        subtitle='Order your kit and start your journey!'
-                        center='true'
-                        border='true'/>
-      </div>
-      <div :id='$style.bundles'>
-        <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
-          <div :id='b.slug'></div>
-          <Bundle :bundle='b' :showdescription='false' />
-        </div>
-      </div>
-
+      <BlockApp />
+      <BlockDiscord />
+      <BlockGuide />
+      <BlockShop />
+      <!-- <BlockInfo /> -->
       <!-- <div :class='$style.space'></div> -->
-
       <Newsletter />
-
     </div>
     <Footer />
     <transition name="popup">
@@ -124,14 +70,19 @@ import Promocode from '~/components/layout/overlay-promocode.vue'
 import Examples from '~/components/home/examples.vue'
 import Ready from '~/components/home/ready.vue'
 import Newsletter from '~/components/layout/newsletter.vue'
-import Intro from '~/components/home/intro.vue'
-import BlockHome from '~/components/home/blockhome.vue'
+import BlockStep from '~/components/home/blockstep.vue'
+import BlockExamples from '~/components/home/blockexamples.vue'
 import BlockBundle from '~/components/home/blockbundle.vue'
+import BlockApp from '~/components/home/blockapp.vue'
+import BlockGuide from '~/components/home/blockguide.vue'
+import BlockDiscord from '~/components/home/blockdiscord.vue'
+import BlockShop from '~/components/home/blockshop.vue'
+import BlockInfo from '~/components/home/blockinfo.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, Intro, BlockHome, BlockBundle},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop, BlockInfo},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',

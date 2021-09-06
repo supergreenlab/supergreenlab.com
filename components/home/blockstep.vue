@@ -1,0 +1,152 @@
+<!--
+      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Author: Constantin Clauzel <constantin.clauzel@gmail.com>
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public License
+      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<template>
+  <section :id="$style.container">
+    <div :class='$style.title'>
+      <SectionTitle title='Turn **any furniture** into a **connected growbox**'
+                      subtitle='That will **blend in** with the rest of your home'
+                      center='true'
+                      border='true'/>
+    </div>
+    <div :id='$style.body'>
+      <div :id='$style.iconcontainer'>
+        <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
+          <source src="/continuous_supply.mp4" type="video/mp4">
+          <source src="/continuous_supply.webm" type="video/webm">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div :id='$style.description'>
+        <div :id='$style.title'>Welcome to the <strong>best hobby</strong> in the world!</div>
+        <div :id='$style.bullets'>
+          <div>Super<strong>Green</strong>Lab is a <strong>community</strong> dedicated to <strong>personal home growing in small and discreet spaces</strong>.</div>
+          <div>If there’s one plant that should be <strong>home grown</strong>, it’s <strong>cannabis</strong>. Even a single plant can give you the <strong>quantity and quality to become self sufficient</strong>.</div>
+          <div>And <strong>no need for a big and ugly setup anymore</strong>!</div>
+          <div>Pick any furniture that fits your taste and <strong>grow weed out of it</strong>!</div>
+          <div>Super<strong>Green</strong>Lab brings you all the technology and knowledge to <strong>start growing your own</strong>.</div>
+        </div>
+      </div>
+    </div>
+    <UseSteps ref='use-steps' />
+  </section>
+</template>
+
+
+<script>
+import UseSteps from '~/components/home/use-steps.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
+
+
+export default {
+  components: { UseSteps, SectionTitle},
+  props: [ 'bulletpoints', 'title'],
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+  },
+  computed: {
+
+  },
+}
+</script>
+
+<style module lang=stylus>
+
+#container
+  display: flex
+  width: 100%
+  flex-direction: column
+  align-items: center
+  color: black
+
+.title
+  width: 100%
+  margin: 60pt 0 60pt 0
+  @media only screen and (max-width: 600px)
+    margin: 0
+
+
+#title
+  font-size: 2.3em
+  color: black
+  font-weight: bold
+  margin-bottom: 15pt
+  @media only screen and (max-width: 600px)
+    font-size: 1.7em
+    margin: 5pt
+
+#title strong
+  color: #3BB30B
+  font-weight: bold
+
+#body
+  display: flex
+  margin: 0pt 0pt 50pt 0pt
+  max-width: 900pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column !important
+    margin: 0pt 0pt 20pt 0pt
+
+#iconcontainer
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 40%
+  cursor: pointer
+  margin: 0 20pt
+  @media only screen and (max-width: 600px)
+    width: 100%
+    margin: 0 5pt
+
+
+#description
+  display: flex
+  flex: 1
+  flex-direction: column
+  justify-content: flex-start
+  @media only screen and (max-width: 600px)
+    margin: 0pt 10pt
+
+#bullets
+  font-size: 1.2em
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  @media only screen and (max-width: 600px)
+    margin: 5pt
+
+
+#bullets strong
+  color: #3BB30B
+  font-weight: bold
+
+#video
+  width: 100%
+  /* height: 300pt */
+  object-fit: contain
+  object-position: center
+  @media only screen and (max-width: 600px)
+    height: 100%
+
+</style>

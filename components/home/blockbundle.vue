@@ -18,99 +18,109 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.body'>
-      <div :id='$style.iconcontainer'>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/ledpanel.png`)})`}'>
-          <div :id="$style.logo" >
+    <div :class='$style.title'>
+      <SectionTitle title='Our bundles are **all-included:**'
+                    subtitle='**Light**, environment **control** and **automation**' />
+    </div>
+    <div :class="$style.body">
+
+      <div :class="$style.iconcontainer">
+        <div :class="$style.picture" :style='{"background-image": `url(${require(`~/assets/img/ledpanel.png`)})`}'>
+          <div :class="$style.logo" >
             <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
           </div>
-          <div>
-            <div>Keep everything under control with</div>
-            <div>Super<strong>Green</strong>controller</div>
+          <div :class="$style.todo">
+            <div :class="$style.smalltitle">Simulate the sun with</div>
+            <div :class="$style.subtitle">Up to <strong>6 LED panels*</strong></div>
           </div>
         </div>
 
       </div>
-      <div :id='$style.description'>
-        <div :id='$style.title'>LED PANELS</div>
-        <div :id='$style.bullets'>
+      <div :class="$style.description">
+        <div :class="$style.titleCard">LED PANELS</div>
+        <div :class="$style.bullets">
           <div><strong>Up to 6 LED panels*</strong>for a perfect coverage of your plant, even in the tightest space</div>
           <div><strong>LED technologies</strong> have revolutionized the way we can grow <strong>cannabis</strong>; more light and less heat means we’re able to <strong>grow in the tightest space</strong></div>
-          <div>* Coming soon: more than 6 panels on a controller, bigger SGL panels, and compatibility with other products on the market!</div>
+          <div :class="$style.asterisk"><strong>* Coming soon</strong>: more than 6 panels on a controller, bigger SGL panels, and compatibility with other products on the market!</div>
         </div>
       </div>
     </div>
 
-    <div :id='$style.body'>
-      <div :id='$style.iconcontainer'>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/blower_sensor.png`)})`}'>
-          <div :id="$style.logo" >
+    <div :class="$style.body">
+      <div :class="$style.iconcontainer">
+        <div :class="$style.picture" :style='{"background-image": `url(${require(`~/assets/img/blower_sensor.png`)})`}'>
+          <div :class="$style.logo" >
             <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
+          </div>
+          <div :class="$style.todo">
+            <div :class="$style.smalltitle">Control your grow environment with</div>
+            <div :class="$style.subtitle"><strong>Temperature </strong> and <strong>humidity </strong>sensor & <strong>Automatic</strong> ventilation</div>
           </div>
         </div>
       </div>
-      <div :id='$style.description'>
-        <div :id='$style.title'>ENVIRONMENT CONTROL</div>
-        <div :id='$style.bullets'>
-          <div>Growing plants indoor means that apart from the usual soil, nutrient and water <strong>you will also need to provide sunlight and fresh air</strong>.</div>
-          <div>While there are already a lot of solutions when it comes to soil and nutrient, <strong>there were no lighting solution that could fit tight spaces</strong>.</div>
-          <div>Super<strong>Green</strong>Lab designed the <strong>first grow bundle</strong>dedicated to creating the perfect growing environment in virtually <strong>any kind of furniture</strong>.</div>
+      <div :class="$style.description">
+        <div :class="$style.titleCard">ENVIRONMENT CONTROL</div>
+        <div :class="$style.bullets">
+          <div><strong>Temperature and humidity sensor </strong>to make sure the plant is comfortable</div>
+          <div><strong>Automatically controlled ventilation </strong>based on temperature or humidity</div>
+          <div><strong>Configure alerts and receive a notification </strong>when the temperature or humidity gets out of range.</div>
         </div>
       </div>
     </div>
 
-    <div :id='$style.body'>
-      <div :id='$style.iconcontainer'>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/app_controller.png`)})`}'>
-          <div :id="$style.logo" >
+    <div :class="$style.body">
+      <div :class="$style.iconcontainer">
+        <div :class="$style.picture" :style='{"background-image": `url(${require(`~/assets/img/app_controller.png`)})`}'>
+          <div :class="$style.logo" >
             <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
+          </div>
+          <div :class="$style.todo">
+            <div :class="$style.smalltitle">Keep everything under control with</div>
+            <div :class="$style.subtitle">Super<strong>Green</strong>Controller</div>
           </div>
         </div>
       </div>
-      <div :id='$style.description'>
-        <div :id='$style.title'>Like a tiny <strong>ecosystem</strong>, in a cupboard </div>
-        <div :id='$style.bullets'>
-          <div>Growing plants indoor means that apart from the usual soil, nutrient and water <strong>you will also need to provide sunlight and fresh air</strong>.</div>
-          <div>While there are already a lot of solutions when it comes to soil and nutrient, <strong>there were no lighting solution that could fit tight spaces</strong>.</div>
-          <div>Super<strong>Green</strong>Lab designed the <strong>first grow bundle</strong>dedicated to creating the perfect growing environment in virtually <strong>any kind of furniture</strong>.</div>
+      <div :class="$style.description">
+        <div :class="$style.titleCard">SMART CONTROLLER & MONITORING APP</div>
+        <div :class="$style.bullets">
+          <div><strong>Controlled</strong>from a mobile app, <strong>from anywhere </strong> with internet access.</div>
+          <div><strong>Can control up to three independant spaces</strong> at the same time.</div>
+          <div><strong>And much more</strong>: auto-watering, VPD, CO2 control, UVa schedules, emerson effect etc...</div>
         </div>
       </div>
     </div>
 
-    <div :id='$style.body'>
-      <div :id='$style.iconcontainer'>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/towelieG.png`)})`}'>
-          <div :id="$style.logo" >
+    <div :class="$style.body">
+      <div :class="$style.iconcontainer">
+        <div :class="$style.picture" :style='{"background-image": `url(${require(`~/assets/img/towelieG.png`)})`}'>
+          <div :class="$style.logo" >
             <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
+          </div>
+          <div :class="$style.todo">
+            <div :class="$style.smalltitle">Ask us anything</div>
+            <div :class="$style.subtitle">We're here to<strong> help</strong>!</div>
           </div>
         </div>
       </div>
-      <div :id='$style.description'>
-        <div :id='$style.title'>Like a tiny <strong>ecosystem</strong>, in a cupboard </div>
-        <div :id='$style.bullets'>
-          <div>Growing plants indoor means that apart from the usual soil, nutrient and water <strong>you will also need to provide sunlight and fresh air</strong>.</div>
-          <div>While there are already a lot of solutions when it comes to soil and nutrient, <strong>there were no lighting solution that could fit tight spaces</strong>.</div>
-          <div>Super<strong>Green</strong>Lab designed the <strong>first grow bundle</strong>dedicated to creating the perfect growing environment in virtually <strong>any kind of furniture</strong>.</div>
+      <div :class="$style.description">
+        <div :class="$style.titleCard">24/7 TECHNICAL AND PLANT GROWING SUPPORT</div>
+        <div :class="$style.bullets">
+          <div>When you’re buying a bundle <strong>you’re not only buying an electronic gadget.</strong></div>
+          <div>You also get access to our <strong>private 24/7 support</strong>.</div>
+          <div>Whether you need <strong>technical or plant growing</strong> help, <strong>there will be someone to answer you questions</strong>.</div>
         </div>
       </div>
     </div>
-
-
-    <!-- <portal v-if='showZoom' to='root'>
-      <div :id='$style.fullscreen' @click='toggleZoom'>
-          <div :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}' @click='toggleZoom'></div>
-      </div>
-    </portal> -->
   </section>
 </template>
 
 
 <script>
 import Examples from '~/components/home/examples.vue'
-
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
-  components: { Examples },
+  components: { Examples, SectionTitle },
   props: [],
   data() {
     return {
@@ -128,14 +138,21 @@ export default {
 #container
   display: flex
   width: 100%
-  max-width: 800pt
   flex-direction: column
   align-items: center
   color: black
   margin-bottom: 20pt
 
-#title
-  font-size: 2.3em
+.title
+  width: 100%
+  margin: 60pt 0 60pt 0
+  @media only screen and (max-width: 600px)
+    margin: 0
+
+
+.titleCard
+  font-family: Roboto
+  font-size: 1.7em
   color: black
   font-weight: bold
   margin-bottom: 15pt
@@ -147,22 +164,23 @@ export default {
   color: #3BB30B
   font-weight: bold
 
-#body
+.body
+  max-width: 700pt
   display: flex
   margin: 0pt 0pt 50pt 0pt
   @media only screen and (max-width: 600px)
     flex-direction: column !important
     margin: 0pt 0pt 20pt 0pt
 
-#iconcontainer
+.iconcontainer
   display: flex
   flex-direction: column
-  margin: 5pt 20pt 5pt 5pt
+  margin: 5pt 30pt 5pt 5pt
   @media only screen and (max-width: 600px)
     margin: 0 5pt
 
 
-#description
+.description
   display: flex
   flex: 1
   flex-direction: column
@@ -170,21 +188,22 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 0pt 10pt
 
-#bullets
+.bullets
   height: 100%
   display: flex
   flex-direction: column
   justify-content: space-around
+  font-size: 1.2em
 
-#bullets strong
+.bullets strong
   color: #3BB30B
   font-weight: bold
 
 
-#picture
+.picture
   display: block
   width: 200pt
-  height: 150pt
+  height: 180pt
   background-repeat: no-repeat
   background-size: contain
   display: flex
@@ -193,27 +212,29 @@ export default {
   /* @media only screen and (max-width: 600pt)
     background-size: 100% */
 
-#logo
+.logo
   margin: 5pt
 
-#fullscreen
-  position: fixed
-  width: 100vw
-  height: 100vh
-  top: 0
-  left: 0
-  display: flex
-  align-items: center
-  justify-content: center
-  background-color: white
+.logo img
+  float: right
+  width: 35pt
 
+.asterisk
+  font-size: 0.9em
 
-#mediafullscreen
-  height: 90%
-  width: 90%
-  margin: 0 15pt 0 0
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+.asterisk strong
+  color: black
+
+.todo
+  font-weight: bold
+
+.todo strong
+  color: #3BB30B
+
+.smalltitle
+  font-size: 0.75em
+
+.subtitle
+  font-size: 1.1em
 
 </style>

@@ -18,46 +18,43 @@
 
 <template>
   <section :id="$style.container">
+    <div :class='$style.title'>
+      <SectionTitle title='Ready to **grow**?'
+                      subtitle='Order your kit and start your journey!'
+                      center='true'
+                      border='true'/>
+    </div>
     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
-        <video :id='$style.video' autoplay loop playsinline muted defaultMuted>
-          <source src="/continuous_supply.mp4" type="video/mp4">
-          <source src="/continuous_supply.webm" type="video/webm">
-          Your browser does not support the video tag.
-        </video>
+        <div :class="$style.subtitle">All good, <strong>I got this</strong></div>
+        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/shopicon.png`)})`}'>
+        </div>
+        <div :class="$style.subtitle">Go to <strong>the shop ></strong></div>
       </div>
       <div :id='$style.description'>
-        <div :id='$style.title'>Welcome to the <strong>best hobby</strong> in the world!</div>
         <div :id='$style.bullets'>
-          <div>Super<strong>Green</strong>Lab is a <strong>community</strong> dedicated to <strong>personal home growing in small and discreet spaces</strong>.</div>
-          <div>If there’s one plant that should be <strong>home grown</strong>, it’s <strong>cannabis</strong>. Even a single plant can give you the <strong>quantity and quality to become self sufficient</strong>.</div>
-          <div>And <strong>no need for a big and ugly setup anymore</strong>!</div>
-          <div>Pick any furniture that fits your taste and <strong>grow weed out of it</strong>!</div>
-          <div>Super<strong>Green</strong>Lab brings you all the technology and knowledge to <strong>start growing your own</strong>.</div>
+          <div><strong>Head to our shop page</strong> to discover all our offers and upcoming products.you will also need to provide sunlight and fresh air.</div>
+          <div>Make sure to <strong>subscribe to our newsletter</strong> to get special deals and promotions!.</div>
         </div>
       </div>
     </div>
-    <UseSteps ref='use-steps' />
   </section>
 </template>
 
 
 <script>
-import UseSteps from '~/components/home/use-steps.vue'
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 
 export default {
-  components: { UseSteps, },
-  props: [ 'bulletpoints', 'title'],
+  components: { SectionTitle },
+  props: [],
   data() {
     return {
 
     }
   },
   methods: {
-
-  },
-  computed: {
 
   },
 }
@@ -68,9 +65,17 @@ export default {
 #container
   display: flex
   width: 100%
+  max-width: 900pt
   flex-direction: column
   align-items: center
   color: black
+  margin-bottom: 20pt
+
+.title
+  width: 100%
+  margin: 60pt 0 60pt 0
+  @media only screen and (max-width: 600px)
+    margin: 0
 
 #title
   font-size: 2.3em
@@ -88,20 +93,17 @@ export default {
 #body
   display: flex
   margin: 0pt 0pt 50pt 0pt
-  max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column !important
     margin: 0pt 0pt 20pt 0pt
 
 #iconcontainer
   display: flex
+  flex-direction: column
   justify-content: center
   align-items: center
-  width: 40%
-  cursor: pointer
-  margin: 0 20pt
+  margin: 5pt 20pt 5pt 5pt
   @media only screen and (max-width: 600px)
-    width: 100%
     margin: 0 5pt
 
 
@@ -114,24 +116,37 @@ export default {
     margin: 0pt 10pt
 
 #bullets
+  font-size: 1.2em
   height: 100%
   display: flex
   flex-direction: column
   justify-content: space-around
-  @media only screen and (max-width: 600px)
-    margin: 5pt
-
 
 #bullets strong
   color: #3BB30B
   font-weight: bold
 
-#video
-  width: 100%
-  /* height: 300pt */
-  object-fit: contain
-  object-position: center
-  @media only screen and (max-width: 600px)
-    height: 100%
+
+#picture
+  display: block
+  width: 250pt
+  height: 150pt
+  background-position: center
+  background-repeat: no-repeat
+  background-size: contain
+  display: flex
+  justify-content: flex-start
+  align-items: flex-end
+  /* @media only screen and (max-width: 600pt)
+    background-size: 100% */
+
+
+.subtitle
+  font-weight: bold
+  font-size: 1.1em
+  margin: 3pt
+
+.subtitle strong
+  color: #3BB30B
 
 </style>
