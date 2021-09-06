@@ -33,22 +33,28 @@
       <div><nuxt-link :class='$route.path.includes("/guides") ? $style.selected : ""' to='/guides'>Guides</nuxt-link></div>
       <div><nuxt-link :class='$route.path.includes("/discord") ? $style.selected : ""' to='/discord'>Discord</nuxt-link></div>
       <div><a href='https://growmies.supergreenlab.com' target='_blank'>Affiliate</a></div>
+      <div @click="modal()" :id="$style.login">Login</div>
       <div><nuxt-link :class='$route.path.includes("/cart") ? $style.selected : ""' to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
+    <transition name="popup">
+      <Login v-show="open" @click="modal()" />
+    </transition>
   </section>
 </template>
 
 <script>
 import Logo from '~/components/widgets/logo.vue'
+import Login from '~/components/login/login.vue'
 
 export default {
+  components: { Login, Logo },
+  props: ['responsiveHide',],
   data() {
     return{
-      isActive: false
+      isActive: false,
+      open: false
     }
   },
-  components: { Logo, },
-  props: ['responsiveHide',],
   computed: {
     page() {
       return this.$route.name
@@ -64,12 +70,27 @@ export default {
     onClick(e) {
       this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
     },
+    modal: function() {
+      // console.log(this.open)
+      this.open = !this.open
+    }
   },
 }
 
 </script>
 
 <style module lang=stylus>
+
+#modal
+  position: absolute;
+  width: 150pt
+  height: 150pt
+  margin: 50%
+  background-color: black
+  opacity: 0.6
+  text-align: center
+  color: white
+  z-index: 9000
 
 #container
   position: fixed
@@ -111,6 +132,16 @@ export default {
    transition: all 0.420s
 
 #menu > div > a
+  display: block
+  color: #4c4c4c
+  font-weight: 600
+  cursor: pointer
+  padding: 15pt 10pt
+  text-decoration: none
+  text-transform: uppercase
+  font-size: 14px
+
+#login
   display: block
   color: #4c4c4c
   font-weight: 600

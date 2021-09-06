@@ -28,6 +28,9 @@
         {{ plant.name }}
       </nuxt-link>
     </div>
+
+
+
     <nuxt-link  :id='$style.cta' @click.native='ctaClicked' to='/app'>
       <b class="hvr-grow">Install app</b>
     </nuxt-link>
