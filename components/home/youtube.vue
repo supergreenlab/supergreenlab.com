@@ -94,6 +94,7 @@ export default {
   padding: 0 10pt
 
 .text h2
+  font-family: Roboto
   @media only screen and (max-width: 600px)
     font-size: 1.1em
 

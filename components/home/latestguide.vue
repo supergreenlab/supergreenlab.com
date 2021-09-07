@@ -79,6 +79,7 @@ export default {
   align-items: flex-end
 
 #text h2
+  font-family: Roboto
   margin: 0 0 15pt 0
 
 #text strong
