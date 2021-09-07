@@ -15,7 +15,7 @@ html {
 }
 
 body {
-	font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   background-color: white;
 }
@@ -30,6 +30,10 @@ body {
   body {
     font-size: 0.95em;
   }
+}
+
+strong, b {
+  font-weight: 600
 }
 
 *, *:before, *:after {

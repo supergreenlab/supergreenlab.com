@@ -35,6 +35,7 @@ export default {
 <style module lang=stylus>
 
 #container
+  font-family: Roboto
   display: flex
   flex-direction: column
   align-items: center

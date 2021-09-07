@@ -88,6 +88,7 @@ export default {
     padding: 5pt
 
 #burgerMenu
+  font-family: Roboto
   display: none
   @media only screen and (max-width: 900px)
    display: block
@@ -95,6 +96,7 @@ export default {
    margin-bottom: 5px
 
 #menu
+  font-family: Roboto
   display: flex
   font-size: 0.8em
   margin-right: 10pt

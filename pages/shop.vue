@@ -32,7 +32,7 @@
             <Search :onShowResults='onShowResults' />
           </div>
           <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-            <component v-if='widgetExpiration(w) == false' v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
         </div>
         <div :id='$style.rightcolumn'>
@@ -72,11 +72,8 @@ const components = {Header, Product, Search ,BannerContainer, CategoryList ,Carr
 export default{
   components,
   computed: {
-    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.location == location).sort((o1, o2) => o1.order - o2.order),
-    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)),
-    widgetExpiration: () => (widget) => {
-      return Date.parse(widget.expiration) < (new Date()).getTime()
-    }
+    containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
+    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) < (new Date()).getTime()),
   },
   data() {
     return {
@@ -121,7 +118,8 @@ export default{
   flex-direction: column
   justify-content: center
   min-width: 0
-  margin: 2pt 200pt;
+  margin: 2pt 200pt
+  width: 100%
   height: 100%
   overflow: visible
   @media only screen and (max-width: 1100px)
@@ -160,6 +158,7 @@ export default{
 #searchbar
   position: relative
   display: flex
+  width: 100%
   justify-content: center
   margin-bottom: 5pt
   @media only screen and (max-width: 900px)

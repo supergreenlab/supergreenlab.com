@@ -51,8 +51,8 @@
           </a>
         </div>
         <div :id='$style.guides' v-if='gotoGuides.length'>
-          <h2 v-if='gotoGuides.length > 1'>Checkout these guides</h2>
-          <h2 v-else>Checkout this guide</h2>
+          <b v-if='gotoGuides.length > 1'>Checkout these guides</b>
+          <b v-else>Checkout this guide</b>
           <Guide v-for='g in gotoGuides' :key='g.id' :guide='g' />
         </div>
         <a v-if='!guideSection.sections' href='javascript:void(0)' @click='feedback' :id='$style.feedback'>Got a feedback/suggestion? click here</a>
@@ -81,7 +81,7 @@ export default {
       return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r)).filter(r => r)
     },
     youtubeLink() {
-      return (l) => l.indexOf('youtube.com') != -1
+      return (l) => l.indexOf('youtube.com') != -1 || l.indexOf('youtu.be') != -1
     },
     checked() {
       return this.$store.state.guides[this.$props.guideSection.slug].checked
@@ -113,6 +113,7 @@ export default {
     padding 0 5pt
 
 #container h2
+  font-family: Roboto
   margin: 20pt 0 0 5pt
   font-size: 1em
   color: #454545
@@ -123,7 +124,11 @@ export default {
   flex-basis: 60% !important
   color #454545
 
+.text > b
+  font-family: Roboto
+
 #title h1, #smalltitle h1
+  font-family: Roboto
   padding-right: 10pt
   color: #6D6D6D
 
@@ -131,7 +136,7 @@ export default {
   display: flex
   align-items: center
   justify-content: space-between
-  margin: 0 0 20pt 0
+  margin: 0 0 10pt 0
   @media only screen and (max-width: 600pt)
     display: none
 
@@ -145,13 +150,10 @@ export default {
   margin: 10pt 5pt
   color: #454545
   @media only screen and (min-width: 600pt)
-    margin: 10pt 100pt 10pt 0
+    margin: 10pt 50pt 10pt 0
 
-.ps > p
-  margin-bottom: 5pt
-
-.ps > pre
-  margin-bottom: 5pt
+.ps > p, .ps > ul, .ps > pre
+  margin-bottom: 10pt
 
 .ps code
   white-space: pre-wrap
@@ -198,12 +200,16 @@ export default {
   color: #454545
   text-decoration: none
   margin: 5pt 0
+  font-size: 0.9em
 
 .link:hover
   text-decoration: underline
 
 .linktext
   flex: 1
+
+.linktext b
+  font-weight: 600
 
 .linktext small
   color: #787878
@@ -213,12 +219,15 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  width: 100pt
-  height: 60pt
+  width: 150px
+  height: 86px
   background-position: center
   background-size: contain
   background-repeat: no-repeat
   margin-right: 10pt
+
+#guides
+  margin-top: 5pt
 
 .playbutton
   width: 30pt

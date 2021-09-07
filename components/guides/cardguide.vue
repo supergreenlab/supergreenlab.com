@@ -186,12 +186,15 @@ export default {
   margin-bottom: 5px
 
 #title
+  font-family: Roboto
+  display: flex
+  align-items: center
   font-weight: bold
-  text-transform: capitalize
+  text-transform: uppercase
   font-size: 0.9em
   height: 50px
   @media only screen and (max-width: 1000pt)
-    height: 25px
+    height: 35px
     margin-bottom: 3px
 
 .green
@@ -201,12 +204,12 @@ export default {
   font-size: 1.5em
 
 #introduction
-  height: 50px
+  height: 70px
   overflow: hidden
-  margin: 7px
+  margin: 5pt 5pt
   @media only screen and (max-width: 1000pt)
     margin-bottom: 0px
-    height: 25px
+    height: 35px
     font-size: 0.8rem
 
 #stepdone

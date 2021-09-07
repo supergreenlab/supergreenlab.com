@@ -44,6 +44,7 @@ export default {
 <style module lang=stylus>
 
 #container
+  font-family: Roboto
   display: flex
 
 #icon
@@ -70,6 +71,7 @@ export default {
     font-size: 1.5em
 
 #content > p
+  color: #5d5d5d
   font-size: 1.4em
   padding: 5pt 0 0 0
 

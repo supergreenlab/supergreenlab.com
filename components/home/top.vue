@@ -135,6 +135,7 @@ export default {
 <style module lang=stylus>
 
 #container
+  font-family: Roboto
   display: flex
   width: 100%
   flex-direction: column

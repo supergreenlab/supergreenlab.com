@@ -39,8 +39,8 @@ export default {
   @media only screen and (max-width: 600px)
     font-size: 1em
 
-
 #title
+  font-family: Roboto
   margin-top: 10px
   margin-bottom: 10px
   font-size: 2.7em
@@ -48,6 +48,7 @@ export default {
   text-transform: capitalize
 
 #green
+  font-family: Roboto
   color: #3BB30B
   font-size: 2.1em
   text-align: center
@@ -57,7 +58,6 @@ export default {
 #content
   margin: 10px
   font-size: 1em
-  font-weight: bold
   @media only screen and (max-width: 600pt)
     margin-top: 30px
 

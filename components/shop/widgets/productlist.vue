@@ -32,20 +32,25 @@
 <script>
 import ProductListComponent from '~/components/products/productlistcomponent.vue'
 
+import { products } from '~/config/products.json'
+
 export default {
   props: ['config',],
-  components: { ProductListComponent},
+  components: { ProductListComponent, },
   computed: {
     products() {
       const { config } = this.$props
       // console.log(config)
-      return [].concat(...(config.producttypes || []).map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
-        return a.indexOf(p) == i
-      })
+      if (config.producttypes) {
+        return [].concat(...config.producttypes.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
+          return a.indexOf(p) == i
+        })
+      } else {
+        return (config.products || []).map(p => products.find(p1 => p1.id == p))
+      }
     },
   },
   methods: {
-
   }
 }
 </script>
