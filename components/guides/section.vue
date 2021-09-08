@@ -78,7 +78,7 @@ export default {
   components: { Media, SmallProductList, CheckBox, Guide, },
   computed: {
     requires() {
-      return (this.$props.guideSection.requires || []).map(r => this.$store.getters['eshop/product'](r)).filter(r => r)
+      return (this.$props.guideSection.requires || []).map(r => product(r)).filter(r => r)
     },
     youtubeLink() {
       return (l) => l.indexOf('youtube.com') != -1 || l.indexOf('youtu.be') != -1

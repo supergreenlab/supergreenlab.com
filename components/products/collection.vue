@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2021  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -16,71 +16,63 @@
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
- <template>
+<template>
   <section :id='$style.container'>
-
-
-    <h2 :id="$style.titleList">{{config.title}}</h2>
-    <div :id="$style.headerProductList">
-      <div :id="$style.picContainer">
-        <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
-      </div>
-      <div :id='$style.description'>{{config.description}}</div>
-    </div>
-    <div v-for="collection in collections" :key="collection.id">
-      <ProductListComponent :products='products(collection)' :center=true />
-    </div>
-
-<!--
-   <TitleStep :checked='collectionInCart("one-for-all-pack")'
-                   @click='oneForAll'
-                   :checkbox=true
-                   green='Mega Crop Pack' />
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img src="~assets/img/mega-crop-logo2.jpg" alt="logo-mega-crop" width="150px">
+        <img :src="require(`~/assets/img/${collection.picture[0].fileLarge}`)" alt="logo-SGL"  width="150px">
       </div>
       <div>
-        <div :class='$style.descriptionPack'>MEGA CROP PACK is an all in one, complete plant nutrient designed from the ground up. You get everything you need from start to finish, to grow the best quality plants. Regulate pH from your water is recommanded</div>
+        <div :class='$style.descriptionPack'>{{ collection.description }}</div>
       </div>
       <div  :id='$style.priceButton'>
-        <Price :lineItems='oneForAllPackLineItems' />
-        <AddToCart name='one-for-all-pack' :lineItems='oneForAllPackLineItems' :discreet=false @click='removeCollection("organic-pack")' />
+        <Price :lineItems='lineItems' />
+        <AddToCart name='option-pack' :lineItems='lineItems' :discreet=false />
       </div>
     </div>
-    <ProductListComponent ref='one-for-all' :id='$style.cropPack' v-if="isActive" :products='oneForAllPack' :center=true :maxItems=4  />
+    <ProductListComponent ref='option-pack' :products='products' :id='$style.optionPack' v-if="isActive" :center=true :maxItems=4 />
     <a :class='$style.packSeparator'  @click='toggleClass()'>View
-      <div :class='$style.number'>{{ oneForAllPack.length }}</div> products in this pack
+      <div :class='$style.number'>{{ products.length }}</div> products in this pack
       <span  :class="$style.arrow">
         <span :class="$style.leftBar" :style='{"transform": (isActive? "rotate(-45deg)" : "rotate(45deg)")}'></span>
         <span :class="$style.rightBar" :style='{"transform": (isActive? "rotate(45deg)" : "rotate(-45deg)")}'></span>
       </span>
-    </a> -->
-
-
+    </a>
   </section>
 </template>
 
 <script>
+import AddToCart from '~/components/products/addtocart.vue'
+import Price from '~/components/products/price.vue'
 import ProductListComponent from '~/components/products/productlistcomponent.vue'
-import { products } from '~/config/products.json'
 
-import { collection, } from '~/lib/json_db.js'
+import { productsForCollection, } from '~/lib/json_db.js'
 
 export default {
-   props: ['config'],
-  components: { ProductListComponent},
+  components: { Price, AddToCart, ProductListComponent},
+  props: ['collection',],
+  data() {
+    return {
+      isActive: false,
+    }
+  },
   computed: {
-    collections() {
-      const { config } = this.$props
-      return (config.collections || []).map(t => collection(t))
+    products() {
+      return productsForCollection(this.$props.collection)
     },
-    products: () => (collection) => {
-      return collection.CollectionProducts.map(cp => products.find(p1 => cp.Product[0] == p1.id))
+    lineItems() {
+      return this.products.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
+    },
+    collectionInCart() {
+      return this.products.findIndex(p => cart.findIndex(li => li.sellingPoint.id == this.$store.getters['eshop/sellingPointForProduct'](p.id).id) == -1) == -1
+    },
+  },
+  methods: {
+    toggleClass() {
+      this.isActive = !this.isActive
     },
   },
 }
-
 </script>
 
 <style module lang=stylus>
@@ -90,59 +82,10 @@ export default {
   width: 100%
   flex-direction: column
   justify-content: center
-
-#body
-  display: flex
-  align-items: center
-  flex-wrap: wrap
-  @media only screen and (max-width: 600px)
-    justify-content: center
-
-#titleList
-  text-transform: uppercase
-  font-weight: bold
-  margin-bottom: 10pt
-  font-size: 2.5em
-  color: #5E5E5E
-
-#description
-  margin: 0 5pt
-  text-align: justify
-
-#pic
-  width: 100pt
-  height: 100pt
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
-  margin: 0 5pt
-
-#headerProductList
-  display: flex
-  width: 100%
-  align-self: center
-  margin-left: 20pt
-  @media only screen and (max-width: 900px)
-    margin-left: 0
-
-#productlist
-  @media only screen and (max-width: 900px)
-    display: none
-
-#smallproductlist
-  display: none
-  @media only screen and (max-width: 900px)
-    display: block
-
-
-/*  display: flex
-  width: 100%
-  flex-direction: column
-  justify-content: center
   align-items: center
   color: #454545
 
- #priceButton
+#priceButton
   display: flex
   flex-direction: column
   @media only screen and (max-width: 600px)
@@ -173,17 +116,6 @@ export default {
   color: #3bb30b
   font-weight: bold
 
-.price
-  @media only screen and (max-width: 600px)
-    margin-top: 15px
-    margin-bottom: 15px
-
-#region
-  width : 100%
-  display: flex
-  flex-direction: column
-  align-items: flex-end
-
 .body
   width: 100%
   display: flex
@@ -208,11 +140,6 @@ export default {
   @media only screen and (max-width: 600px)
     justify-content: center
     text-align: center
-
-#cropPack
-  margin-bottom:10px
-  width: 100%
-  max-width: 900pt
 
 .number
   color: #3bb30b
@@ -244,6 +171,6 @@ export default {
   background-color #616A6B
   display inline-block
   transition all .2s ease
-  right 0 */
+  right 0
 
 </style>

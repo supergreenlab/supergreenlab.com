@@ -53,6 +53,7 @@ import SGLCart from '~/components/cart/sglcart.vue'
 import TierCart from '~/components/cart/tiercart.vue'
 
 import { baseUrl } from '~/lib/client-side.js'
+import { seller, } from '~/lib/json_db.js'
 
 export default {
   head() {
@@ -75,14 +76,7 @@ export default {
   },
   computed: {
     tierSellers() {
-      const deduplicate = {}
-      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])).filter(seller => {
-        if (deduplicate[seller.id]) {
-          return false
-        }
-        deduplicate[seller.id] = true
-        return true
-      })
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => seller(lineItem.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i)
     }
   },
   methods: {

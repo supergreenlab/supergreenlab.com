@@ -6,6 +6,7 @@ const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir, mkAssetsDir, n
 module.exports.fetchProducts = async () => {
   await mkAssetsDir('tmp')
   await mkAssetsDir('products')
+  await mkAssetsDir('collections')
   await mkAssetsDir('sellers')
   await mkAssetsDir('brandproducts')
   await mkAssetsDir('brands')
@@ -19,8 +20,8 @@ module.exports.fetchProducts = async () => {
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in'])
-  let collectionProducts = await fetchTable('CollectionProducts', ['slug', 'Product', 'order',])
-  let collections = await fetchTable('Collections', ['slug', 'name','picture', 'CollectionProducts',])
+  let collectionProducts = await fetchTable('CollectionProducts', ['slug', 'Product', 'order'])
+  let collections = await fetchTable('Collections', ['slug', 'name','picture', 'CollectionProducts', 'description'])
   let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
@@ -151,7 +152,7 @@ module.exports.fetchProducts = async () => {
     c.CollectionProducts = collectionProducts.filter(u => c.CollectionProducts.indexOf(u.id) != -1)
     c.picture = (c.picture || []).map(a => {
       try {
-        const { p, data } = fetchAttachement(picPromise, a, 'products')
+        const { p, data } = fetchAttachement(picPromise, a, 'collections')
         picPromise = p
         return data
       } catch(e) {

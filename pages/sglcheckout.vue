@@ -81,7 +81,7 @@ export default {
       if (!this.valid) return
       this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart, true, true))
       this.$data.loading = true
-      const { shopify } = this.$store.getters['eshop/seller'](SGL_SELLER).params
+      const { shopify } = seller(SGL_SELLER).params
       const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
       const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
       await setShippingAddress(shopify, checkout, this.$store.state.shipping)
@@ -97,7 +97,7 @@ export default {
   },
   computed: {
     brandProduct() {
-      return (lineItem) => this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
+      return (lineItem) => brandProduct(lineItem.sellingPoint.BrandProduct[0])
     },
     valid() {
       // TODO move to store

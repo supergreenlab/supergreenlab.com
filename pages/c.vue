@@ -42,6 +42,8 @@ import LineItem from '~/components/cart/lineitem.vue'
 
 import Vue from 'vue'
 
+import { product, sellingPointWithID, } from '~/lib/json_db.js'
+
 export default {
   head() {
     return {
@@ -70,8 +72,8 @@ export default {
     try {
       const items = atob(data).split('|').map(i => i.split(';')).map(i => ({
         n: parseInt(i[0]),
-        product: this.$store.getters['eshop/product'](i[1]),
-        sellingPoint: this.$store.getters['eshop/sellingPointWithID'](i[2]),
+        product: product(i[1]),
+        sellingPoint: sellingPointWithID(i[2]),
         checked: true,
       }))
       this.$data.cart = items

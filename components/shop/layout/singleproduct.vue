@@ -32,7 +32,7 @@ export default {
 
   computed: {
     furnitures() {
-      return this.$store.getters['eshop/collection']('homepage-furniture')
+      return collection('homepage-furniture')
     },
   }
 }

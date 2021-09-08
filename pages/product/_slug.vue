@@ -84,8 +84,8 @@
           <div :id='$style.price'>
             <Price :lineItems='[{sellingPoint, n: 1}]' :small=true :notify=true />
           </div>
-          <OutOfStock v-if='product.outofstock' />
-          <AddToCart :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
+          <OutOfStock v-if='sellingPoint.outofstock' />
+          <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>Checkout those too:</h4>
             <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
@@ -178,9 +178,11 @@ import Region from '~/components/products/region.vue'
 import Footer from '~/components/layout/footer.vue'
 
 import { open, screenX, availWidth } from '~/lib/client-side.js'
-import { products, sellingPoints, regions, } from '~/config/products.json'
 
 import { guides } from '~/config/guides.json'
+import { regions } from '~/config/products.json'
+
+import { brandProduct, seller, sellingPointWithSlug, productsWithTypes, relatedProducts, brand, product, variants } from '~/lib/json_db.js'
 
 export default {
   components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductListComponent, Region, Footer, },
@@ -208,8 +210,8 @@ export default {
       if (this.sellingPoint.regions[0].id != region.id) {
         const sp = this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
         if (sp.id == this.sellingPoint.id) return null
-        /*const bp = this.$store.getters['eshop/brandProduct'](sp.BrandProduct[0])
-        if (bp.variantOf && this.sellingPoint.BrandProduct[0].id == bp.variantOf[0]) return null
+        /*const bp = brandProduct(sp.BrandProduct[0])
+        if (bp.variantOf && this.brandProduct[0].id == bp.variantOf[0]) return null
         if (this.brandProduct.variantOf && this.brandProduct.variantOf[0] == bp.id) return null*/
         return sp
       }
@@ -217,13 +219,13 @@ export default {
     closerBrandProduct() {
       const sp = this.closerProduct
       if (sp) {
-        return this.$store.getters['eshop/brandProduct'](sp.BrandProduct[0])
+        return brandProduct(sp.BrandProduct[0])
       }
     },
     closerSeller() {
       const sp = this.closerProduct
       if (sp) {
-        return this.$store.getters['eshop/seller'](sp.Seller[0])
+        return seller(sp.Seller[0])
       }
     },
     askCloserProduct() {
@@ -233,22 +235,22 @@ export default {
     },
     sellingPoint() {
       const { slug } = this.$route.params
-      return this.$store.getters['eshop/sellingPointWithSlug'](slug)
+      return sellingPointWithSlug(slug)
     },
     brandProduct() {
-      return this.$store.getters['eshop/brandProduct'](this.sellingPoint.BrandProduct[0])
+      return brandProduct(this.sellingPoint.BrandProduct[0])
     },
     brand() {
-      return this.$store.getters['eshop/brand'](this.brandProduct.Brand[0])
+      return brand(this.brandProduct.Brand[0])
     },
     product() {
-      return this.$store.getters['eshop/product'](this.sellingPoint.Product[0])
+      return product(this.sellingPoint.Product[0])
     },
     seller() {
-      return this.$store.getters['eshop/seller'](this.sellingPoint.Seller[0])
+      return seller(this.sellingPoint.Seller[0])
     },
     variants() {
-      return this.$store.getters['eshop/variants'](this.brandProduct.id).map(bp => {
+      return variants(this.brandProduct.id).map(bp => {
         return Object.assign({}, bp, { sellingPoint: this.$store.getters['eshop/sellingPointForBrandProduct'](bp.id)})
       })
     },
@@ -256,11 +258,11 @@ export default {
       return ({ sellingPoint }) => this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint}])
     },
     relatedProducts() {
-      return this.$store.getters['eshop/relatedProducts'](this.product.id).map(rp => {
+      return relatedProducts(this.product.id).map(rp => {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
-        rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
-        rp.product = this.$store.getters['eshop/product'](rp.sellingPoint.Product[0])
+        rp.brandProduct = brandProduct(rp.sellingPoint.BrandProduct[0])
+        rp.product = product(rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
@@ -278,9 +280,7 @@ export default {
       })
     },
     sameTypeProduct() {
-      return [].concat(...this.product.type.map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
-        return a.indexOf(p) == i
-      })//.sort((p1, p2) => (Math.random() * 2) - 1)
+      return productsWithTypes(this.product.type)
     },
     productURL() {
       if (this.seller.type == 'amazon') return `${this.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`

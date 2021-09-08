@@ -16,10 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { products, sellingPoints, sellers, brandProducts, brands, regions, collections , relatedProducts } from '~/config/products.json'
+import { sellingPoints, regions, } from '~/config/products.json'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
-// import Fuse from 'fuse.js'
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
@@ -77,34 +76,6 @@ export const mutations = {
 }
 
 export const getters = {
-  bundles: state => {
-    return productsWithTypes(state, 'SGL_BUNDLE')
-  },
-  leds: state => {
-    return productsWithTypes(state, 'SGL_LED')
-  },
-  accessories: state => {
-    return productsWithTypes(state, 'SGL_ACCESSORIES')
-  },
-  sellingPointWithSlug: state => slug => sellingPoints.find(sp => sp.slug.toLowerCase() == slug.toLowerCase()),
-  productWithSlug: state => slug => products.find(p => p.slug.toLowerCase() == slug.toLowerCase()),
-  productsWithTypes: state => types => productsWithTypes(state, types),
-  // productWithName: state => name => state.products.find(p => p.name.toLowerCase() == name.toLowerCase()),
-
-  product: state => id => products.find(p => p.id == id),
-  sellingPointWithID: state => id => sellingPoints.find(sp => sp.id == id),
-  brandProduct: state => id => brandProducts.find(bp => bp.id == id),
-  brand: state => id => brands.find(b => b.id == id),
-  seller: state => id => sellers.find(s => s.id == id),
-  variants: state => id => {
-    let brandProduct = brandProducts.find(bp => bp.id == id)
-    if (brandProduct.variantOf) {
-      brandProduct = brandProducts.find(bp => bp.id == brandProduct.variantOf[0])
-    }
-    return [brandProduct].concat(brandProducts.filter(bp => bp.variantOf && bp.variantOf[0] == brandProduct.id))
-  },
-  // collection: (state, getters) => id => collections.filter(c => c.id == id).sort((c1, c2) => c1.order - c2.order).map(c => getters.product(c.Product[0])),
-  collection: (state, getters) => id => collections.find(c => c.id == id),
   regionTree: (state) => (region) => {
     const regionTree = (region, acc=[]) => {
       acc.push(region)
@@ -128,8 +99,5 @@ export const getters = {
   },
   sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
   sellingPointForProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.Product[0] == id)),
-
   availableRegions: (state, getters) => regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
-
-  relatedProducts: (state, getters) => id => relatedProducts.filter(rp => rp.to[0] == id).sort((rp1, rp2) => rp1.order - rp2.order),
 }

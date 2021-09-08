@@ -137,6 +137,8 @@ import Newsletter from '~/components/layout/newsletter.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
+import { leds, accessories, bundles, collectionWithSlug, productsWithTypes, productsForCollection, } from '~/lib/json_db.js'
+
 export default {
   components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductListComponent, Social, Footer,  Promocode, Examples, Ready, Newsletter,},
   head() {
@@ -175,7 +177,7 @@ export default {
   },
 	computed: {
 		bundles() {
-			return this.$store.getters['eshop/bundles']
+			return bundles()
 		},
     promo() {
       const discount = this.$store.state.checkout.discount.value,
@@ -184,19 +186,19 @@ export default {
       return {promocode, discount}
     },
     furnitures() {
-      return this.$store.getters['eshop/collection']('homepage-furniture')
+      return productsForCollection(collectionWithSlug('homepage-furniture'))
     },
     sglSpareParts() {
-      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
+      return leds().concat(accessories())
     },
     soil() {
-      return this.$store.getters['eshop/productsWithTypes'](['SOIL', 'POT'])
+      return productsWithTypes(['SOIL', 'POT'])
     },
     nutrients() {
-      return this.$store.getters['eshop/productsWithTypes'](['NUTRIENT'])
+      return productsWithTypes(['NUTRIENT'])
     },
     tools() {
-      return this.$store.getters['eshop/productsWithTypes'](['TOOLS'])
+      return productsWithTypes(['TOOLS'])
     },
 	},
 

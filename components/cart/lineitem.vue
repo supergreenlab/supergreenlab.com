@@ -43,6 +43,8 @@
             <Number :value='lineItem.n' v-on:input='changeLineItem' />
           </div>
           <Price :lineItems='[lineItem]' />
+          pouet {{ lineItem.sellingPoint.outofstock }}
+          <OutOfStock v-if='lineItem.sellingPoint.outofstock' />
         </div>
       </div>
       <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.desktopcheckbox'>
@@ -62,21 +64,24 @@
 import Number from '~/components/widgets/number.vue'
 import Price from '~/components/products/price.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
+import OutOfStock from '~/components/products/outofstock.vue'
+
+import { brandProduct, brand, seller, } from '~/lib/json_db.js'
 
 export default {
-  components: {Number, Price, CheckBox,},
+  components: {Number, Price, CheckBox, OutOfStock, },
   props: ['lineItem', 'showCheckbox', 'showProductLink', 'onDeleteLineItem', 'onChangeLineItem', 'onToggleChecked', 'checkboxLabel',],
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
-      return this.$store.getters['eshop/brandProduct'](lineItem.sellingPoint.BrandProduct[0])
+      return brandProduct(lineItem.sellingPoint.BrandProduct[0])
     },
     brand() {
-      return this.$store.getters['eshop/brand'](this.brandProduct.Brand[0])
+      return brand(this.brandProduct.Brand[0])
     },
     seller() {
       const { lineItem } = this.$props
-      return this.$store.getters['eshop/seller'](lineItem.sellingPoint.Seller[0])
+      return seller(lineItem.sellingPoint.Seller[0])
     },
     productURL() {
       const { lineItem } = this.$props

@@ -22,7 +22,7 @@
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
-      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :valid=true />
+      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='valid ? startCheckout : undefined' :valid='valid' />
     </div>
   </section>
   <section v-else :id='$style.emptycontainer'>
@@ -66,6 +66,9 @@ export default {
         if (this.timeout) clearTimeout(this.timeout)
         this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { code: value }), 400)
       },
+    },
+    valid() {
+      return this.cart.findIndex(lineItem => lineItem.sellingPoint.outofstock) == -1
     },
     promoDiscount() {
       return this.$store.getters['checkout/promoDiscount']

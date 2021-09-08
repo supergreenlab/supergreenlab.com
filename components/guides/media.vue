@@ -60,7 +60,6 @@ export default {
   },
   methods: {
     toggleZoom() {
-      console.log('pouet')
       this.$data.showZoom = !this.$data.showZoom
     },
   },

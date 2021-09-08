@@ -22,141 +22,46 @@
                    @click='oneForAll'
                    :checkbox=true
                    green='Mega Crop Pack' />
-    <div :class='$style.body'>
-      <div :class='$style.logo'>
-        <img src="~assets/img/mega-crop-logo2.jpg" alt="logo-mega-crop" width="150px">
-      </div>
-      <div>
-        <div :class='$style.descriptionPack'>MEGA CROP PACK is an all in one, complete plant nutrient designed from the ground up. You get everything you need from start to finish, to grow the best quality plants. Regulate pH from your water is recommanded</div>
-      </div>
-      <div  :id='$style.priceButton'>
-        <Price :lineItems='oneForAllPackLineItems' />
-        <AddToCart name='one-for-all-pack' :lineItems='oneForAllPackLineItems' :discreet=false @click='removeCollection("organic-pack")' />
-      </div>
-    </div>
-    <ProductListComponent ref='one-for-all' :id='$style.cropPack' v-if="isActive" :products='oneForAllPack' :center=true :maxItems=4  />
-    <a :class='$style.packSeparator'  @click='toggleClass()'>View
-      <div :class='$style.number'>{{ oneForAllPack.length }}</div> products in this pack
-      <span  :class="$style.arrow">
-        <span :class="$style.leftBar" :style='{"transform": (isActive? "rotate(-45deg)" : "rotate(45deg)")}'></span>
-        <span :class="$style.rightBar" :style='{"transform": (isActive? "rotate(45deg)" : "rotate(-45deg)")}'></span>
-      </span>
-    </a>
+    <Collection :collection='oneForAllPack' />
     <TitleStep :checked='collectionInCart("organic-pack")'
                    @click='organic'
                    :checkbox=true
                    green='Bio Tabs Pack' />
-    <div :class='$style.body'>
-      <div :class='$style.logo'>
-        <img src="~assets/img/bio-tabs-logo.png" alt="logo-bio-tabs" width="150px">
-      </div>
-      <div>
-        <div :class='$style.descriptionPack'>This Pack is for 100% organic growth, it is best to prepare your soil with a rich mix of beneficial bacteria and microorganisms. The method consists of preparing the substrate with the BioTabs products in the quantities indicated and repeating the same procedure each time the plant is transplanted into a new pot. The formula is so simple, you only need to add water not even with ph control. Certified 100% Organic. </div></div>
-      <div  :id='$style.priceButton'>
-        <Price :lineItems='organicPackLineItems' />
-        <AddToCart name='organic-pack' :lineItems='organicPackLineItems' :discreet=false @click='removeCollection("one-for-all-pack")' />
-      </div>
-    </div>
-    <ProductListComponent ref='organic-pack' :id='$style.organicPack' v-if="isActiveOrganic" :products='organicPack' :center=true :maxItems=4 />
-    <a :class='$style.packSeparator'  @click='toggleClassOrganic()'>View
-      <div :class='$style.number'>{{ organicPack.length }}</div> products in this pack
-      <span  :class="$style.arrow">
-        <span :class="$style.leftBar" :style='{"transform": (isActiveOrganic? "rotate(-45deg)" : "rotate(45deg)")}'></span>
-        <span :class="$style.rightBar" :style='{"transform": (isActiveOrganic? "rotate(45deg)" : "rotate(-45deg)")}'></span>
-      </span>
-    </a>
+    <Collection :collection='organicPack' />
     <TitleStep :checked='collectionInCart("option-pack")'
                      @click='options'
                      :checkbox=true
                      green='Recommendations' />
-    <div :class='$style.body'>
-      <div :class='$style.logo'>
-        <img src="~assets/img/icon_sgl_basics.png" alt="logo-SGL"  width="150px">
-      </div>
-      <div>
-        <div :class='$style.descriptionPack'>Sometimes growing is difficult and mistakes are easily made, this pack will help you to reduce all those mistakes with tools who are not mandatory but really recommanded for massive success</div>
-      </div>
-      <div  :id='$style.priceButton'>
-        <Price :lineItems='optionPackLineItems' />
-        <AddToCart name='option-pack' :lineItems='optionPackLineItems' :discreet=false />
-      </div>
-    </div>
-    <ProductListComponent ref='option-pack' :products='optionPack' :id='$style.optionPack' v-if="isActiveOptions" :center=true :maxItems=4 />
-    <a :class='$style.packSeparator'  @click='toggleClassOption()'>View
-      <div :class='$style.number'>{{ optionPack.length }}</div> products in this pack
-      <span  :class="$style.arrow">
-        <span :class="$style.leftBar" :style='{"transform": (isActiveOptions? "rotate(-45deg)" : "rotate(45deg)")}'></span>
-        <span :class="$style.rightBar" :style='{"transform": (isActiveOptions? "rotate(45deg)" : "rotate(-45deg)")}'></span>
-      </span>
-    </a>
+    <Collection :collection='optionPack' />
   </section>
 </template>
 
 <script>
-import AddToCart from '~/components/products/addtocart.vue'
-import Price from '~/components/products/price.vue'
+import Collection from '~/components/products/collection.vue'
 import TitleStep from '~/components/widgets/titlestep.vue'
-import ProductListComponent from '~/components/products/productlistcomponent.vue'
-// import ProductList from '~/components/products/productlist.vue'
+
+import { collectionWithSlug, productsForCollection, } from '~/lib/json_db.js'
 
 export default {
-  components: { Price, AddToCart, TitleStep, ProductListComponent},
-  data() {
-    return{
-      isActive: false,
-      isActiveOrganic: false,
-      isActiveOptions: false,
-    }
-  },
+  components: { Collection, TitleStep,},
   computed: {
-    oneForAllPack() {
-      return this.$store.getters['eshop/collection']('one-for-all-pack')
-    },
-    oneForAllPackLineItems() {
-      return this.oneForAllPack.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
-    },
-    organicPack() {
-      return this.$store.getters['eshop/collection']('organic-pack')
-    },
-    organicPackLineItems() {
-      return this.organicPack.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
-    },
-    optionPack()  {
-      return this.$store.getters['eshop/collection']('option-pack')
-    },
-    optionPackLineItems() {
-      return this.optionPack.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
-    },
+    oneForAllPack: () => collectionWithSlug('one-for-all-pack'),
+    organicPack: () => collectionWithSlug('organic-pack'),
+    optionPack: () => collectionWithSlug('option-pack'),
     collectionInCart() {
-      return (name) => {
-        const cart = this.$store.getters['checkout/cart']
-        const pack = this.$store.getters['eshop/collection'](name)
-        const isInCart = pack.findIndex(p => cart.findIndex(li => li.sellingPoint.id == this.$store.getters['eshop/sellingPointForProduct'](p.id).id) == -1) == -1
-        return isInCart
-      }
+      const cart = this.$store.getters['checkout/cart']
+      return name => productsForCollection(collectionWithSlug(name)).findIndex(p => cart.findIndex(li => li.sellingPoint.id == this.$store.getters['eshop/sellingPointForProduct'](p.id).id) == -1) == -1
     },
-
   },
   methods: {
-    toggleClass: function(){
-      this.isActive = !this.isActive
-    },
-    toggleClassOrganic: function(){
-      this.isActiveOrganic = !this.isActiveOrganic
-    },
-    toggleClassOption: function(){
-      this.isActiveOptions = !this.isActiveOptions
-    },
     addCollection(name) {
-      const products = this.$store.getters['eshop/collection'](name)
-      products.forEach(product => {
+      productsForCollection(collectionWithSlug(name)).forEach(product => {
         const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
         this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
       })
     },
     removeCollection(name) {
-      const products = this.$store.getters['eshop/collection'](name)
-      products.forEach(product => {
+      productsForCollection(collectionWithSlug(name)).forEach(product => {
         const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](product.id)
         this.$store.commit('checkout/addToCart', { n: 0, product, sellingPoint })
       })
@@ -202,37 +107,6 @@ export default {
   align-items: center
   color: #454545
 
-#priceButton
-  display: flex
-  flex-direction: column
-  @media only screen and (max-width: 600px)
-    align-items: center
-    justify-content: center
-    text-align: center
-
-.logo
-  display: flex
-  align-items: center
-  height: 150px
-  @media only screen and (max-width: 600px)
-    margin-top: 10px
-    margin-bot: 10px
-
-.descriptionPack
-  color: #5E5E5E
-  margin-right: 20px
-  margin-left: 20px
-  @media only screen and (max-width: 600px)
-    font-size: 0.9em
-    text-align: center
-    margin-top: 10px
-    margin-bottom: 10px
-    font-weight: 300
-
-.descriptionPack strong
-  color: #3bb30b
-  font-weight: bold
-
 .price
   @media only screen and (max-width: 600px)
     margin-top: 15px
@@ -243,31 +117,6 @@ export default {
   display: flex
   flex-direction: column
   align-items: flex-end
-
-.body
-  width: 100%
-  display: flex
-  align-items: center
-  justify-content: space-between
-  @media only screen and (max-width: 600px)
-    margin: 5px 10px 5px 10px
-    flex-direction: column
-
-.packSeparator
-  display: flex
-  justify-content: flex-end
-  text-transform: uppercase
-  text-align: right
-  width: 90%
-  border: 1px solid
-  border-style: none none dashed none
-  padding-bottom: 5pt
-  margin-top: 20px
-  margin-bottom: 30px
-  cursor: pointer
-  @media only screen and (max-width: 600px)
-    justify-content: center
-    text-align: center
 
 #cropPack
   margin-bottom:10px
@@ -283,37 +132,5 @@ export default {
   margin-bottom:10px
   width: 100%
   max-width: 900pt
-
-.number
-  color: #3bb30b
-  font-weight: bold
-  padding: 0em 0.2em 0em 0.2em
-
-.arrow
-  width 1.25rem
-  height 1.25rem
-  display inline-block
-  position relative
-  margin 0 1rem
-
-.leftBar
-  top .5rem
-  position absolute
-  width .75rem
-  height .1rem
-  background-color #616A6B
-  display inline-block
-  transition all .2s ease
-  left 0
-
-.rightBar
-  top .5rem
-  position absolute
-  width .75rem
-  height .1rem
-  background-color #616A6B
-  display inline-block
-  transition all .2s ease
-  right 0
 
 </style>

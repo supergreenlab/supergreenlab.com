@@ -117,12 +117,10 @@ export default {
     previous() {
       const nScreens = this.$el.querySelectorAll(`.${this.$style.screen}`).length
       this.$data.screen = this.$data.screen-1 < 0 ? nScreens-1 : this.$data.screen-1
-      console.log(this.$data.screen)
     },
     next() {
       const nScreens = this.$el.querySelectorAll(`.${this.$style.screen}`).length
       this.$data.screen = this.$data.screen+1 >= nScreens ? 0 : this.$data.screen+1
-      console.log(this.$data.screen)
     },
   },
 }

@@ -98,6 +98,8 @@ import AddToCart from '~/components/products/addtocart.vue'
 
 import { guides } from '~/config/guides.json'
 
+import { productWithSlug, productsWithTypes, brandProduct, leds, accessories, } from '~/lib/json_db.js'
+
 export default {
   components: {Header, Guide, ProductGuide, ProductListComponent, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, BundleIntro, LatestDiaries, AddToCart,},
   head() {
@@ -124,16 +126,16 @@ export default {
   computed: {
     bundle() {
       const { slug } = this.$route.params
-      return this.$store.getters['eshop/productWithSlug'](slug)
+      return productWithSlug(slug)
     },
     brandProduct() {
-      return this.$store.getters['eshop/brandProduct'](this.bundle.SellingPoints[0].BrandProduct[0])
+      return brandProduct(this.bundle.SellingPoints[0].BrandProduct[0])
     },
     led() {
-      return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
+      return (slug) => productWithSlug(slug)
     },
     accessory() {
-      return (slug) => this.$store.getters['eshop/productWithSlug'](slug)
+      return (slug) => productWithSlug(slug)
     },
     guides() {
       return guides.filter(g => {
@@ -148,15 +150,10 @@ export default {
       })
     },
     sglSpareParts() {
-      return this.$store.getters['eshop/leds'].concat(this.$store.getters['eshop/accessories'])
+      return leds().concat(accessories())
     },
     relatedProducts() {
-      /*return this.$store.getters['eshop/productsWithTypes'](['FURNITURE', 'CARBON FILTER', 'SOIL']).filter((p, i, a) => {
-        return a.indexOf(p) == i
-      }).filter(p => p.id !== this.bundle.id)*/
-      return [].concat(...['FURNITURE', 'TENT', 'CARBON FILTER', 'SOIL', 'NUTRIENT'].map(t => this.$store.getters['eshop/productsWithTypes'](t))).filter((p, i, a) => {
-        return a.indexOf(p) == i
-      }).filter(p => p.id !== this.bundle.id)
+      return productsWithTypes(['FURNITURE', 'TENT', 'CARBON FILTER', 'SOIL', 'NUTRIENT']).filter(p => p.id !== this.bundle.id)
     }
   },
 }

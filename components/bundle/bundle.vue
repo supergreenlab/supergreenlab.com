@@ -75,7 +75,8 @@
         <div :class='$style.price'>
           <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
         </div>
-        <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' @click='handleAddToCart' />
+        <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
+        <AddToCart v-else :product='bundle' :sellingPoint='bundle.SellingPoints[0]' @click='handleAddToCart' />
       </div>
     </div>
   </section>
@@ -87,6 +88,8 @@ import Items from '~/components/bundle/items.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Pics from '~/components/products/pics.vue'
+
+import { relatedProducts, brandProduct, product, } from '~/lib/json_db.js'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart, Pics,},
@@ -106,11 +109,11 @@ export default {
   },
   computed: {
     relatedProducts() {
-      return this.$store.getters['eshop/relatedProducts'](this.bundle.id).map(rp => {
+      return relatedProducts(this.bundle.id).map(rp => {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
-        rp.brandProduct = this.$store.getters['eshop/brandProduct'](rp.sellingPoint.BrandProduct[0])
-        rp.product = this.$store.getters['eshop/product'](rp.sellingPoint.Product[0])
+        rp.brandProduct = brandProduct(rp.sellingPoint.BrandProduct[0])
+        rp.product = product(rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })

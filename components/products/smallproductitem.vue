@@ -35,8 +35,8 @@
       <div :id='$style.price'>
         <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
       </div>
-      <OutOfStock v-if='product.outofstock' />
-      <SmallAddToCart :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
+      <OutOfStock v-if='sellingPoint.outofstock' />
+      <SmallAddToCart v-else :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
     </div>
   </section>
 </template>
@@ -47,6 +47,8 @@ import Price from '~/components/products/price.vue'
 import SmallAddToCart from '~/components/products/smalladdtocart.vue'
 import Pics from '~/components/products/pics.vue'
 
+import { brandProduct, brand, seller, } from '~/lib/json_db.js'
+
 export default {
   components: {Price, OutOfStock, SmallAddToCart, Pics,},
   props: ['product'],
@@ -56,16 +58,16 @@ export default {
       return this.$store.getters['eshop/sellingPointForProduct'](product.id)
     },
     brandProduct() {
-      return this.$store.getters['eshop/brandProduct'](this.sellingPoint.BrandProduct[0])
+      return brandProduct(this.sellingPoint.BrandProduct[0])
     },
     brand() {
-      return this.$store.getters['eshop/brand'](this.brandProduct.Brand[0])
+      return brand(this.brandProduct.Brand[0])
     },
     url() {
       return this.sellingPoint.url
     },
     seller() {
-      return this.$store.getters['eshop/seller'](this.sellingPoint.Seller[0])
+      return seller(this.sellingPoint.Seller[0])
     },
   },
   methods: {
