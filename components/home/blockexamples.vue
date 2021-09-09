@@ -78,23 +78,23 @@ export default {
   max-width: 900pt
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
   margin-bottom: 20pt
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
 #title
   font-size: 2.3em
-  color: black
+  color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
     font-size: 1.7em
-    margin: 5pt
+    margin: 10pt 5pt
 
 #title strong
   color: #3BB30B
@@ -105,7 +105,7 @@ export default {
   margin: 0pt 0pt 50pt 0pt
   @media only screen and (max-width: 600px)
     flex-direction: column !important
-    margin: 0pt 0pt 20pt 0pt
+    margin: 0
 
 #iconcontainer
   display: flex
@@ -120,6 +120,7 @@ export default {
   display: flex
   flex: 1
   flex-direction: column
+  text-align: justify
   justify-content: flex-start
   @media only screen and (max-width: 600px)
     margin: 0pt 10pt
@@ -130,11 +131,16 @@ export default {
   display: flex
   flex-direction: column
   justify-content: space-around
+  @media only screen and (max-width: 600px)
+    margin: 5pt
 
 #bullets strong
   color: #3BB30B
   font-weight: bold
 
+#bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 #picture
   display: block

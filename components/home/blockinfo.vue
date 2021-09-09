@@ -72,7 +72,7 @@ export default {
   max-width: 900pt
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
   margin-bottom: 20pt
 
 .title
@@ -83,7 +83,7 @@ export default {
 
 #title
   font-size: 2.3em
-  color: black
+  color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)

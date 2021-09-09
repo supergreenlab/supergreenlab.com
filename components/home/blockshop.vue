@@ -26,15 +26,15 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
-        <div :class="$style.subtitle">All good, <strong>I got this</strong></div>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/shopicon.png`)})`}'>
-        </div>
-        <div :class="$style.subtitle">Go to <strong>the shop ></strong></div>
+        <div :class="$style.subtitle">All good, <strong> I got this</strong></div>
+        <nuxt-link to="/shop" :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/shopicon.png`)})`}'></nuxt-link>
+        <div :class="$style.subtitle">Go to <strong><nuxt-link to="/shop">the shop ></nuxt-link></strong></div>
       </div>
       <div :id='$style.description'>
         <div :id='$style.bullets'>
-          <div><strong>Head to our shop page</strong> to discover all our offers and upcoming products.you will also need to provide sunlight and fresh air.</div>
-          <div>Make sure to <strong>subscribe to our newsletter</strong> to get special deals and promotions!.</div>
+          <div><strong>Head to our shop page</strong> to discover all our offers and upcoming products.</div>
+          <div>Make sure to <strong>subscribe to our newsletter</strong> to get special deals and promotions!</div>
+          <nuxt-link to="/shop" :id="$style.btnshop">Want more ?<br/>Visit our shop</nuxt-link>
         </div>
       </div>
     </div>
@@ -62,24 +62,25 @@ export default {
 
 <style module lang=stylus>
 
+
 #container
   display: flex
   width: 100%
   max-width: 900pt
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
   margin-bottom: 20pt
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
 #title
   font-size: 2.3em
-  color: black
+  color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
@@ -113,7 +114,7 @@ export default {
   flex-direction: column
   justify-content: flex-start
   @media only screen and (max-width: 600px)
-    margin: 0pt 10pt
+    margin: 10pt 20pt 0
 
 #bullets
   font-size: 1.2em
@@ -126,6 +127,9 @@ export default {
   color: #3BB30B
   font-weight: bold
 
+#bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 #picture
   display: block
@@ -148,5 +152,32 @@ export default {
 
 .subtitle strong
   color: #3BB30B
+
+#btnshop
+  width: 250pt
+  background-color: #3BB30B
+  text-align: center
+  font-family: "PlumeAd"
+  font-size: 1.7em
+  display: flex
+  justify-content:center
+  align-items:center
+  padding: 10pt
+  color: white
+  border-radius: 5pt
+  align-self: center
+  text-transform: uppercase
+  cursor: pointer
+  text-decoration: none
+  @media only screen and (max-width: 600px)
+    margin-top: 25pt
+
+#btnshop:hover
+  background-color: #2F880B
+
+.subtitle strong a
+  text-decoration: none
+  color: #3BB30B
+
 
 </style>

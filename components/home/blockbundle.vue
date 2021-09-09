@@ -140,25 +140,24 @@ export default {
   width: 100%
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
   margin-bottom: 20pt
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
-    margin: 0
+    margin: 5pt
 
 
 .titleCard
   font-family: Roboto
   font-size: 1.7em
-  color: black
+  color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
     font-size: 1.7em
-    margin: 5pt
 
 #title strong
   color: #3BB30B
@@ -169,8 +168,9 @@ export default {
   display: flex
   margin: 0pt 0pt 50pt 0pt
   @media only screen and (max-width: 600px)
-    flex-direction: column !important
+    flex-direction: column-reverse !important
     margin: 0pt 0pt 20pt 0pt
+    align-items: center
 
 .iconcontainer
   display: flex
@@ -185,8 +185,9 @@ export default {
   flex: 1
   flex-direction: column
   justify-content: flex-start
+  text-align: justify
   @media only screen and (max-width: 600px)
-    margin: 0pt 10pt
+    margin: 20pt 10pt 10pt 10pt
 
 .bullets
   height: 100%
@@ -194,6 +195,10 @@ export default {
   flex-direction: column
   justify-content: space-around
   font-size: 1.2em
+
+.bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 .bullets strong
   color: #3BB30B
@@ -223,7 +228,7 @@ export default {
   font-size: 0.9em
 
 .asterisk strong
-  color: black
+  color: #323232
 
 .todo
   font-weight: bold

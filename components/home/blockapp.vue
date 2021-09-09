@@ -28,8 +28,8 @@
         <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/app.jpg`)})`}'>
           <div :id="$style.logo" >
             <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
-            <img src="~assets/img/appstore2.png" alt="logo-appstore">
-            <img src="~assets/img/playstore2.png" alt="logo-playstore">
+            <img :class="$style.scale" src="~assets/img/appstore2.png" alt="logo-appstore">
+            <img :class="$style.scale" src="~assets/img/playstore2.png" alt="logo-playstore">
           </div>
         </div>
       </div>
@@ -46,20 +46,19 @@
     </div>
 
     <div :class='$style.title'>
-        <SectionTitle title='App **features** (non exhaustive)'
+        <SectionTitle title='App **features**'
+                        brackets='(non exhaustive)'
                         subtitle='Community driven development, don’t forget to cast your vote!'
                        />
     </div>
-
-    <div style="margin: 50pt; text-align: center;">Component JSON App</div>
-
+    <AppFeature />
     <div :class="$style.body">
       <div :class='$style.iconcontainer'>
         <div :id='$style.picture2' :style='{"background-image": `url(${require(`~/assets/img/app2.png`)})`}'>
           <div :id="$style.logo2" >
             <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
-            <img src="~assets/img/appstore2.png" alt="logo-appstore">
-            <img src="~assets/img/playstore2.png" alt="logo-playstore">
+            <img :class="$style.scale" src="~assets/img/appstore2.png" alt="logo-appstore">
+            <img :class="$style.scale" src="~assets/img/playstore2.png" alt="logo-playstore">
           </div>
         </div>
       </div>
@@ -83,10 +82,11 @@
 
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import AppFeature from '~/components/home/appfeature.vue'
 
 
 export default {
-  components: { SectionTitle },
+  components: { SectionTitle, AppFeature },
   props: [],
   data() {
     return {
@@ -107,18 +107,18 @@ export default {
   max-width: 900pt
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
   margin-bottom: 20pt
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
 #title
   font-size: 2.3em
-  color: black
+  color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
@@ -152,7 +152,7 @@ export default {
   flex-direction: column
   justify-content: flex-start
   @media only screen and (max-width: 600px)
-    margin: 0pt 10pt
+    margin: 20pt 15pt 0
 
 .bullets
   font-size: 1.2em
@@ -160,6 +160,11 @@ export default {
   display: flex
   flex-direction: column
   justify-content: space-around
+  text-align: justify
+
+.bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 .bullets strong
   color: #3BB30B
@@ -198,6 +203,9 @@ export default {
   display: flex;
   height: 35pt;
 
+.scale
+  cursor: pointer
 
-
+.scale:hover
+  transform: scale(1.05)
 </style>

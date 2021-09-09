@@ -77,18 +77,18 @@ export default {
   width: 100%
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
 
 #title
   font-size: 2.3em
-  color: black
+  color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
@@ -115,15 +115,15 @@ export default {
   cursor: pointer
   margin: 0 20pt
   @media only screen and (max-width: 600px)
-    width: 100%
-    margin: 0 5pt
-
+    width: 90%
+    align-self: center
 
 #description
   display: flex
   flex: 1
   flex-direction: column
   justify-content: flex-start
+  text-align: justify
   @media only screen and (max-width: 600px)
     margin: 0pt 10pt
 
@@ -136,6 +136,9 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 5pt
 
+#bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 #bullets strong
   color: #3BB30B

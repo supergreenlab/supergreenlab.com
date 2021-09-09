@@ -26,11 +26,11 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
-        <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}'>
-          <div :id="$style.logo" >
+        <nuxt-link to="/guide/everything-you-need-to-grow-your-own-weed" :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/guides/attUb0goXqrpPZ7Ev.jpg`)})`}'>
+          <!-- <div :id="$style.logo" >
             <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
-          </div>
-        </div>
+          </div> -->
+        </nuxt-link>
       </div>
       <div :id='$style.description'>
         <div :id='$style.pretitle'>The SGL 12 step guide to:</div>
@@ -38,14 +38,10 @@
         <div :id='$style.bullets'>
           <div>By the end of this quick & simple guide you will have all the basics to start growing your own discreetly from the comfort of your home </div>
           <div>+ a checklist of everything you’ll need along the way</div>
+          <nuxt-link to="/guide/everything-you-need-to-grow-your-own-weed" :id="$style.btnguide">Click here to <br/>read the guide</nuxt-link>
         </div>
       </div>
     </div>
-    <!-- <portal v-if='showZoom' to='root'>
-      <div :id='$style.fullscreen' @click='toggleZoom'>
-          <div :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}' @click='toggleZoom'></div>
-      </div>
-    </portal> -->
   </section>
 </template>
 
@@ -76,11 +72,11 @@ export default {
   max-width: 900pt
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
@@ -89,7 +85,7 @@ export default {
 
 #title
   font-size: 2.3em
-  color: black
+  color: #323232
   font-weight: bold
   font-family: 'PlumeAd'
   text-transform: uppercase
@@ -125,7 +121,7 @@ export default {
   flex-direction: column
   justify-content: flex-start
   @media only screen and (max-width: 600px)
-    margin: 0pt 10pt
+    margin: 10pt 20pt 0
 
 #bullets
   font-size: 1.2em
@@ -133,6 +129,11 @@ export default {
   display: flex
   flex-direction: column
   justify-content: space-around
+
+#bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
+
 
 #bullets strong
   color: #3BB30B
@@ -155,24 +156,26 @@ export default {
 #logo
   margin: 5pt
 
-#fullscreen
-  position: fixed
-  width: 100vw
-  height: 100vh
-  top: 0
-  left: 0
+#btnguide
+  width: 250pt
+  background-color: #3BB30B
+  text-align: center
+  font-family: "PlumeAd"
+  font-size: 1.7em
   display: flex
-  align-items: center
-  justify-content: center
-  background-color: white
+  justify-content:center
+  align-items:center
+  padding: 10pt
+  color: white
+  border-radius: 5pt
+  align-self: center
+  text-transform: uppercase
+  cursor: pointer
+  text-decoration: none
+  @media only screen and (max-width: 600px)
+    margin-top: 25pt
 
-
-#mediafullscreen
-  height: 90%
-  width: 90%
-  margin: 0 15pt 0 0
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+#btnguide:hover
+  background-color: #2F880B
 
 </style>

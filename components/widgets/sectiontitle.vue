@@ -19,7 +19,11 @@
 <template>
   <section :id="$style.container" :class='center ? $style.center : $style.notcenter'>
     <div :class="border ? $style.border : '' "></div>
-    <h2 :id='$style.title' v-html='$md.render(title || "")' :style="white ? {color : 'white'} : '' "></h2>
+    <div :class="$style.titlecontainer">
+      <h2 :id='$style.title' v-html='$md.render(title || "")' :style="white ? {color : 'white'} : '' "></h2>
+      <div :id='$style.brackets' v-html='$md.render(brackets || "")'></div>
+    </div>
+
     <h1 :id='$style.green'  v-html='$md.render(green || "")' :style="white ? {color: '#7ccc5c'} : '' "></h1>
     <h2 :id='$style.subtitle' v-html='$md.render(subtitle || "")'></h2>
     <h2 :id='$style.title2'  v-html='$md.render(title2 || "")' :style="white ? {color : 'white'} : '' "></h2>
@@ -31,7 +35,7 @@
 <script>
 
 export default {
-  props: ['title', 'title2', 'green', 'smalltitle', 'center','subtitle', 'border', 'white'],
+  props: ['title', 'title2', 'green', 'smalltitle', 'center','subtitle', 'border', 'white', 'brackets'],
 }
 </script>
 
@@ -47,15 +51,16 @@ export default {
 
 .center
   align-items: center
+  text-align: center
   @media only screen and (max-width: 600px)
     margin:  5pt 0
-    text-align: left
 
 .notcenter
   margin-left: 30pt
   align-items: flex-start
+  text-align:left
   @media only screen and (max-width: 600px)
-    margin-left: 5pt
+    margin-left: 5pt 0
 
 .border
   width: 80pt
@@ -63,10 +68,23 @@ export default {
   margin: 20pt
   background-color: #3BB30B
 
+.titlecontainer
+  display: flex
+  align-items: flex-end
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+
 #title
   font-size: 2.7em
-  color: black
-  text-align: center
+  color: #323232
+  @media only screen and (max-width: 600px)
+    margin: 5pt
+#brackets
+  margin-bottom: 7pt
+  font-size: 2em
+  color: #323232
+  @media only screen and (max-width: 600px)
+    font-size: 1.7em
 
 #title strong
   color: #3bb30b
@@ -74,17 +92,16 @@ export default {
 
 #title2
   font-size: 1.6em
-  color: black
-  text-align: center
+  color: #323232
   text-transform: uppercase
 
 #subtitle
   font-size 2em
-  color: black
-  text-align: center
+  color: #323232
   font-weight: normal
   @media only screen and (max-width: 600px)
-    font-size: 1.3em
+    font-size: 1.7em
+    margin: 5pt
 
 #subtitle strong
   color: #3bb30b
@@ -93,14 +110,12 @@ export default {
 #green
   color: #3BB30B
   font-size: 2.1em
-  text-align: center
   margin: 0pt
 
 #smalltitle
   margin-top: 5pt
-  color: black
+  color: #323232
   font-size: 1.1em
-  text-align: center
   text-transform: lowercase
   @media only screen and (max-width: 600px)
     font-size: 1.3em

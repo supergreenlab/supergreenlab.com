@@ -43,11 +43,11 @@
       </div>
     </div>
     <div :class='$style.title'>
-      <SectionTitle title='Discussion **forums** (non exhaustive)'
+      <SectionTitle title='Discussion **forums**'
+                    brackets='(non exhaustive)'
                     subtitle='Here are some discussion topics you’ll find in the private section.'/>
     </div>
-
-    <div style="margin: 50pt; text-align: center;">Component JSON Discord </div>
+    <Discord />
 
   </section>
 </template>
@@ -55,10 +55,11 @@
 
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Discord from '~/components/home/discord.vue'
 
 
 export default {
-  components: { SectionTitle },
+  components: { SectionTitle, Discord },
   props: [],
   data() {
     return {
@@ -79,12 +80,12 @@ export default {
   max-width: 900pt
   flex-direction: column
   align-items: center
-  color: black
+  color: #323232
   margin-bottom: 20pt
 
 .title
   width: 100%
-  margin: 60pt 0 60pt 0
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
@@ -110,7 +111,7 @@ export default {
   flex-direction: column
   justify-content: flex-start
   @media only screen and (max-width: 600px)
-    margin: 0pt 10pt
+    margin: 20pt 15pt 0
 
 #bullets
   font-size: 1.2em
@@ -118,11 +119,15 @@ export default {
   display: flex
   flex-direction: column
   justify-content: space-around
+  text-align: justify
 
 #bullets strong
   color: #3BB30B
   font-weight: bold
 
+#bullets div
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 #picture
   display: block
