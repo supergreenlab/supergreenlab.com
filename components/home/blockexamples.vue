@@ -42,11 +42,6 @@
       </div>
     </div>
     <Examples ref='examples' />
-    <!-- <portal v-if='showZoom' to='root'>
-      <div :id='$style.fullscreen' @click='toggleZoom'>
-          <div :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/bg-plant.jpg`)})`}' @click='toggleZoom'></div>
-      </div>
-    </portal> -->
   </section>
 </template>
 

@@ -18,9 +18,21 @@
 
 <template>
   <section :id="$style.container">
-    <div v-for="channel in channels" :key="channel.id">
-        <DiscordCard :channel='channel' />
+    <div :class="$style.colC" v-for="channel in channels" :key="channel.id">
+      <DiscordCard :channel='channel' />
     </div>
+
+    <!-- <section :id="$style.container">
+    <div :class="$style.colC" v-for="channel in channels" :key="channel.id">
+      <DiscordCard :channel='channel' />
+    </div>
+     <div :class="$style.colC" v-for="channel in channels2" :key="channel.id">
+      <DiscordCard :channel='channel' />
+    </div>
+     <div :class="$style.colC" v-for="channel in channels3" :key="channel.id">
+      <DiscordCard :channel='channel' />
+    </div>
+  </section> -->
   </section>
 </template>
 
@@ -33,10 +45,19 @@ import { channels } from '~/config/channels.json'
 export default {
   components: { DiscordCard },
   computed: {
-   channels() {
+    channels() {
      return channels
    }
-  },
+  //  channels() {
+  //    return channels.slice(0, 5)
+  //  },
+  //  channels2() {
+  //    return channels.slice(6, 11)
+  //  },
+  //  channels3() {
+  //    return channels.slice(12, 17)
+  //  }
+  }
 }
 </script>
 
@@ -44,9 +65,12 @@ export default {
 
 #container
   display: flex
-  flex-wrap: wrap
   width: 100%
   max-width: 700pt
   justify-content: center
+/*
+.colC
+  display: flex
+  flex-direction: column */
 
 </style>
