@@ -18,12 +18,6 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.title'>
-      <SectionTitle title='How it works'
-                    green='In just 3 steps'
-                    smalltitle='(like.. around 3 steps)'
-                    separator='true'/>
-    </div>
     <div :id='$style.steps'>
       <div :class='$style.step'>
         <Step n=1

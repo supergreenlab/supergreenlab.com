@@ -1,0 +1,112 @@
+{
+  "channels": [
+    {
+      "id": "000",
+      "title": "— feature-polling",
+      "text": "Where the community votes for future features in the app.\n\nDon’t forget to cast your vote once you get your bundle!\n\nPropose new features in the\n #💡—feature-requests channel :) ",
+      "emoji": "emojis/feature-polling.png"
+    },
+    {
+      "id": "001",
+      "title": "— tech-support",
+      "text": "To make fixing issues a simple and pleasant experience for all;\n\nWe do all tech support over on Discord 🌞\n\nWe fix or replace, that’s the SGL guarantee.",
+      "emoji": "emojis/tech-support.png"
+    },
+    {
+      "id": "002",
+      "title": "— edibles",
+      "text": "Want to get baked?\n\nShare your favorite recipes and experience with your homebaked edibles.\n\nBon appétit!",
+      "emoji": "emojis/edibles.png"
+    },
+    {
+      "id": "003",
+      "title": "— 3d-printing",
+      "text": "Got a 3D printer or access to one?\n\nPrint parts parts and accesories designed by the community.\n\nDownload the STL files in the\n#🗃—stl-files channel",
+      "emoji": "emojis/3d-printing.png"
+    },
+    {
+      "id": "004",
+      "title": "— seeds-germination",
+      "text": "The nursery is where you’ll learn all about taking care of your baby plants.\n\nGerminate your seeds and post updates for happy healthy seedlings.",
+      "emoji": "emojis/seeds-germination.png"
+    },
+    {
+      "id": "005",
+      "title": "— autoflowers",
+      "text": "Autoflowers are a special breed, which justifies a dedicated channel.\n\nCheckout here how people are dealing with autos in tight spaces.",
+      "emoji": "emojis/autoflowers.png"
+    },
+    {
+      "id": "006",
+      "title": "— plant-training",
+      "text": "LST / HST - doesn’t ring a bell?\n\nTraining is the key to increasing yield potential.\n\nLearn and share training methods - take your grow to the next level.",
+      "emoji": "emojis/plant-training.png"
+    },
+    {
+      "id": "007",
+      "title": "— deals",
+      "text": "1. Find a good deal\n\n2. Share it with the community\n\n3. Profit",
+      "emoji": "emojis/deals.png"
+    },
+    {
+      "id": "008",
+      "title": "— puff-puff-pass",
+      "text": "A place to chill and share dank memes while we pass the virtual pipe around 🎷\n\nThe same rule applies, puff-puff-pass ;)",
+      "emoji": "emojis/puff-puff-pass.png"
+    },
+    {
+      "id": "009",
+      "title": "— carbon-filter-builds",
+      "text": "Nosy neighbors?\n\nEveryhting about carbon filters to get rid of that smelly smell.\n\nNo one will ever know ;)",
+      "emoji": "emojis/carbon-filter-builds.png"
+    },
+    {
+      "id": "010",
+      "title": "— grow-box-builds",
+      "text": "The tinkerer’s hub, come share your latest modifications and improvements to your box.\n\nIf you wondered how to turn a washing machine into connected growbox, that’s the right place^^",
+      "emoji": "emojis/grow-box-builds.png"
+    },
+    {
+      "id": "011",
+      "title": "— timelapses",
+      "text": "The best way to get feedback from your plant.\n\nBuild your own simple timelsape setup and get daily/weekly timlapses posted in your diary.",
+      "emoji": "emojis/timelapse.png"
+    },
+    {
+      "id": "012",
+      "title": "— harvesting-curing",
+      "text": "Post trichome pictures to get insights on when to harvest and share how your curing is going.\n\nLearn more about the importance of curing & how to porperly do the process.",
+      "emoji": "emojis/harvesting-curing.png"
+    },
+    {
+      "id": "013",
+      "title": "— is-my-plant-ok",
+      "text": "Need help diagnosing plant issues?\n\nOur on-call docs will help you fix plant issues.",
+      "emoji": "emojis/is-my-plant-ok.png"
+    },
+    {
+      "id": "014",
+      "title": "— gaming",
+      "text": "Are you a gamer?\n\nJoin us for fun and games :)",
+      "emoji": "emojis/gaming.png"
+    },
+    {
+      "id": "015",
+      "title": "— nutrients",
+      "text": "Get feedback and insights from what other growers in the community are using.\n\nYou can learn more about organic growing in:\n#🐳—organic",
+      "emoji": "emojis/nutrients.png"
+    },
+    {
+      "id": "016",
+      "title": "— grower’s-discussion",
+      "text": "All things growing related.\n\nDiscuss new methods ans help each other grow better weed.\n\nDiscover the wide variety of possible technics when it comes to growing.",
+      "emoji": "emojis/growers-discussion.png"
+    },
+    {
+      "id": "017",
+      "title": "— breeding",
+      "text": "Because some members like to go further than just growing.\n\nThis channel is great if you want to learn how to create your own strain and how feminized seeds are made.",
+      "emoji": "emojis/breeding.png"
+    }
+  ]
+}

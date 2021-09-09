@@ -1,0 +1,76 @@
+{
+  "appfeatures": [
+    {
+      "id": "000",
+      "title": "Independent\n**Light control**",
+      "text": "Tight space means you can’t really **move the plant or the light source**.\n\nIndependent light dimming control allows to get the **perfect light exposition** no matter the shape of the plant and **its distance to the light**.",
+      "icon": "appicons/light.png"
+    },
+    {
+      "id": "001",
+      "title": "Remote live view\n**Daily Timelapses!**",
+      "text": "If only there was a way to **spot potential issues before they arise** you might think.\n\nWell guess what, **a simple camera can give you great insights**. Take a pic every 10 minutes and watch how the day went for your plant.\n\nBy adding a little camera to your box, the app will give you access to the **latest pic live**, and generate a timelapse every day and end of week.\n\nOne of the best way to see when your plant is **filling sick or thirsty**.",
+      "icon": "appicons/timelapse.png"
+    },
+    {
+      "id": "002",
+      "title": "Ventilation\n**Control**",
+      "text": "Ventilation control is used to **renew the air inside the box**, or move the air **inside the box**. The first is mandatory while the latter is optional.\n\nThe app allows to control the ventilation based on **temperature or humidity** or **time of day**. But you can also set a fixed value.",
+      "icon": "appicons/ventilation.png"
+    },
+    {
+      "id": "003",
+      "title": "**Measure tool**\nSee it growing!",
+      "text": "This simple tool will help you **compare two pictures by superposing them**.\n\nThat will show you the **progression** of your plant over time.",
+      "icon": "appicons/measure.png"
+    },
+    {
+      "id": "004",
+      "title": "Record your \n**Nutrient mix**",
+      "text": "When using nutrients it might get **cumbersome to alway check the nutrient manual** to get the right quantity again.\n\nUse this feature **to note the different nutrients** you add to your mix, for future reference.",
+      "icon": "appicons/nutrients.png"
+    },
+    {
+      "id": "005",
+      "title": "Record your plant,\n**Life cycle events**",
+      "text": "Note the dates of your plant’s **important life events**.\n\nCannabis growing is all about timings, **never lose track of where you’re at in your plant’s life cycle**.\n\nFor example, most seedbank will indicate the time **from start of blooming to harvest**. Note down the apparition of the first pistils to make sure **you don’t harvest at the wrong time**!",
+      "icon": "appicons/life.png"
+    },
+    {
+      "id": "006",
+      "title": "Veg/Bloom/Auto \n**Schedule control**",
+      "text": "Easily switch from one schedule to another **at the press of a button**.\n\nUse the **predefined schedules**, or customize to your needs.\n\n**The app automatically logs the time you flipped to bloom**. No need to write it down anymore.",
+      "icon": "appicons/schedule.png"
+    },
+    {
+      "id": "007",
+      "title": "Remote control \n**& monitoring**",
+      "text": "While the controller can work totally offline, **you can also enable remote control by pairing your phone**.\n\nThat will allow you to **change the parameters of your box from anywhere** as long as you have internet access.",
+      "icon": "appicons/remote.png"
+    },
+    {
+      "id": "008",
+      "title": "Temperature & humidity \n**alerts**",
+      "text": "**Good news cannabis is quite permissive** when it comes to its environment. But it’s still **important to keep the temperature and humidity under control**.\n\nSetup your min and max for humidity and temperature (different schedule for day and night). **The app will send you a notification if it goes out of range.**",
+      "icon": "appicons/alerts.png"
+    },
+    {
+      "id": "009",
+      "title": "**Watering log**\n& reminders",
+      "text": "**Keep track of your waterings** to make sure your don’t over or under-water.\n\nMark down you **PH and EC** for future reference and get graphs of your watering.",
+      "icon": "appicons/watering.png"
+    },
+    {
+      "id": "010",
+      "title": "**Log pictures**\n& observations",
+      "text": "The best way to **becoming a better grower** is by taking care of your plant regularly.\n\nTake pics and note observations, **your future self will thank you**!\n\nAnd if you like sharing, **you can even make the diary public** for others to see!",
+      "icon": "appicons/log.png"
+    },
+    {
+      "id": "011",
+      "title": "**Plant training**\nbefore/after pics",
+      "text": "**Take before and after pictures** of your training sessions.\n\nConsult your previous grow **to reproduce the best technics you did**.\n\n**Checkout the public diaries** to see how others are doing it!",
+      "icon": "appicons/training.png"
+    }
+  ]
+}
