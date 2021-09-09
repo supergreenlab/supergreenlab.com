@@ -32,7 +32,7 @@
 
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
-import { products } from '~/config/products.json'
+import { products } from '~/lib/json_db.js'
 
 export default {
   props: ['config',],
@@ -44,7 +44,7 @@ export default {
   computed: {
     products() {
       const { config } = this.$props
-      return (config.products || []).map(p => products.find(p1 => p1.id == p))
+      return products(config.products || [])
     },
   },
   methods: {

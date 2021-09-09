@@ -43,7 +43,6 @@
             <Number :value='lineItem.n' v-on:input='changeLineItem' />
           </div>
           <Price :lineItems='[lineItem]' />
-          pouet {{ lineItem.sellingPoint.outofstock }}
           <OutOfStock v-if='lineItem.sellingPoint.outofstock' />
         </div>
       </div>

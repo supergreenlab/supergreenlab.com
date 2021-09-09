@@ -56,7 +56,6 @@ import Header from '~/components/layout/header.vue'
 import Shipping from '~/components/shipping/form.vue'
 import Loading from '~/components/widgets/loading.vue'
 import Footer from '~/components/layout/footer.vue'
-import OutOfStock from '~/components/products/outofstock.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 import Price from '~/components/products/price.vue'
 
@@ -66,7 +65,7 @@ import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '
 const SGL_SELLER = 'recT9nIg4ahFv9J29'
 
 export default {
-  components: {Header, Shipping, Loading, Footer, OutOfStock, CheckoutButton, Price},
+  components: {Header, Shipping, Loading, Footer, CheckoutButton, Price},
   data() {
     return {
       loading: false,

@@ -38,7 +38,7 @@
 import CardGuide from '~/components/guides/cardguide.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
-import { products } from '~/config/products.json'
+import { products } from '~/lib/json_db.js'
 
 export default {
   props: ['config'],
@@ -48,14 +48,13 @@ export default {
       const { config } = this.$props
       const slug = config.guideslug
       const guide = require(`~/config/guide-${slug}.json`)
-      // console.log(guide)
       return guide
     },
     products() {
       const { config } = this.$props
       const slug = config.guideslug
       const guide = require(`~/config/guide-${slug}.json`)
-      return (guide.requires || []).map(p => products.find(p1 => p1.id == p))
+      return products(guide.requires || [])
     }
   }
 }

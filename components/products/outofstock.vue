@@ -18,7 +18,7 @@
 
 <template>
   <div :id='$style.outofstock'>
-    Pre-order: 5 to 9 weeks delay<br />
+    Out of stock!<br />
     <small>Sorry about that:/</small>
   </div>
 </template>
@@ -30,9 +30,9 @@ export default {}
 <style module lang=stylus>
 
 #outofstock
-  font-size: 1.2em
+  text-align: center
   font-weight: 600
-  color: red
+  color: #c91e1e
   margin: 5pt 0
 
 </style>

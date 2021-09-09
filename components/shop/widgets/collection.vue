@@ -16,10 +16,8 @@
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
- <template>
+<template>
   <section :id='$style.container'>
-
-
     <h2 :id="$style.titleList">{{config.title}}</h2>
     <div :id="$style.headerProductList">
       <div :id="$style.picContainer">
@@ -28,55 +26,23 @@
       <div :id='$style.description'>{{config.description}}</div>
     </div>
     <div v-for="collection in collections" :key="collection.id">
-      <ProductListComponent :products='products(collection)' :center=true />
+      <Collection :collection='collection' />
     </div>
-
-<!--
-   <TitleStep :checked='collectionInCart("one-for-all-pack")'
-                   @click='oneForAll'
-                   :checkbox=true
-                   green='Mega Crop Pack' />
-    <div :class='$style.body'>
-      <div :class='$style.logo'>
-        <img src="~assets/img/mega-crop-logo2.jpg" alt="logo-mega-crop" width="150px">
-      </div>
-      <div>
-        <div :class='$style.descriptionPack'>MEGA CROP PACK is an all in one, complete plant nutrient designed from the ground up. You get everything you need from start to finish, to grow the best quality plants. Regulate pH from your water is recommanded</div>
-      </div>
-      <div  :id='$style.priceButton'>
-        <Price :lineItems='oneForAllPackLineItems' />
-        <AddToCart name='one-for-all-pack' :lineItems='oneForAllPackLineItems' :discreet=false @click='removeCollection("organic-pack")' />
-      </div>
-    </div>
-    <ProductListComponent ref='one-for-all' :id='$style.cropPack' v-if="isActive" :products='oneForAllPack' :center=true :maxItems=4  />
-    <a :class='$style.packSeparator'  @click='toggleClass()'>View
-      <div :class='$style.number'>{{ oneForAllPack.length }}</div> products in this pack
-      <span  :class="$style.arrow">
-        <span :class="$style.leftBar" :style='{"transform": (isActive? "rotate(-45deg)" : "rotate(45deg)")}'></span>
-        <span :class="$style.rightBar" :style='{"transform": (isActive? "rotate(45deg)" : "rotate(-45deg)")}'></span>
-      </span>
-    </a> -->
-
-
   </section>
 </template>
 
 <script>
-import ProductListComponent from '~/components/products/productlistcomponent.vue'
-import { products } from '~/config/products.json'
+import Collection from '~/components/products/collection.vue'
 
-import { collection, } from '~/lib/json_db.js'
+import { collection, product, } from '~/lib/json_db.js'
 
 export default {
-   props: ['config'],
-  components: { ProductListComponent},
+  props: ['config'],
+  components: { Collection, },
   computed: {
     collections() {
       const { config } = this.$props
       return (config.collections || []).map(t => collection(t))
-    },
-    products: () => (collection) => {
-      return collection.CollectionProducts.map(cp => products.find(p1 => cp.Product[0] == p1.id))
     },
   },
 }

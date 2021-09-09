@@ -79,7 +79,7 @@ import ProductList from '~/components/products/productlist.vue'
 import Price from '~/components/products/price.vue'
 import AddToCart from '~/components/products/smalladdtocart.vue'
 
-import { products } from '~/config/products.json'
+import { products } from '~/lib/json_db.js'
 
 export default {
   props: ['config',],
@@ -101,7 +101,7 @@ export default {
   computed: {
     products() {
       const { config } = this.$props
-      return (config.products || []).map(p => products.find(p1 => p1.id == p))
+      return products(config.products || [])
     },
     germinated() {
       const { germinationDate } = this.$data.plant.settings
