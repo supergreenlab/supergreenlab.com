@@ -18,22 +18,23 @@
 
 <template>
   <section :id="$style.container">
-    <div :class="$style.colC" v-for="channel in channels" :key="channel.id">
-      <DiscordCard :channel='channel' />
+    <div :class="$style.colC">
+      <div  v-for="channel in channels" :key="channel.id">
+        <DiscordCard :channel='channel' />
+      </div>
     </div>
-
-    <!-- <section :id="$style.container">
-    <div :class="$style.colC" v-for="channel in channels" :key="channel.id">
-      <DiscordCard :channel='channel' />
+    <div :class="$style.colC">
+      <div  v-for="channel in channels2" :key="channel.id">
+        <DiscordCard :channel='channel' />
+      </div>
     </div>
-     <div :class="$style.colC" v-for="channel in channels2" :key="channel.id">
-      <DiscordCard :channel='channel' />
+    <div :class="$style.colC">
+      <div  v-for="channel in channels3" :key="channel.id">
+        <DiscordCard :channel='channel' />
+      </div>
     </div>
-     <div :class="$style.colC" v-for="channel in channels3" :key="channel.id">
-      <DiscordCard :channel='channel' />
-    </div>
-  </section> -->
   </section>
+
 </template>
 
 
@@ -45,18 +46,15 @@ import { channels } from '~/config/channels.json'
 export default {
   components: { DiscordCard },
   computed: {
-    channels() {
-     return channels
+   channels() {
+     return channels.slice(0, 6)
+   },
+   channels2() {
+     return channels.slice(6, 12)
+   },
+   channels3() {
+     return channels.slice(12, 18)
    }
-  //  channels() {
-  //    return channels.slice(0, 5)
-  //  },
-  //  channels2() {
-  //    return channels.slice(6, 11)
-  //  },
-  //  channels3() {
-  //    return channels.slice(12, 17)
-  //  }
   }
 }
 </script>
@@ -68,9 +66,12 @@ export default {
   width: 100%
   max-width: 700pt
   justify-content: center
-/*
+  @media only screen and (max-width: 600px)
+    flex-direction:column
+    align-items: center
+
 .colC
   display: flex
-  flex-direction: column */
+  flex-direction: column
 
 </style>
