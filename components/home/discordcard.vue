@@ -67,6 +67,7 @@ export default {
   cursor pointer
 
 #headerCard
+  font-family: Roboto
   display: flex
   margin: 3pt
   justify-content: space-between
