@@ -18,9 +18,22 @@
 
 <template>
   <section :id="$style.container">
-    <div v-for="appfeature in appfeatures" :key="appfeature.id">
-      <AppFeatureCard :appfeature='appfeature' />
+    <div :class="$style.colC">
+      <div v-for="appfeature in appfeatures" :key="appfeature.id">
+        <AppFeatureCard :appfeature='appfeature' />
+      </div>
     </div>
+    <div :class="$style.colC">
+      <div v-for="appfeature in appfeatures2" :key="appfeature.id">
+        <AppFeatureCard :appfeature='appfeature' />
+      </div>
+    </div>
+    <div :class="$style.colC">
+      <div v-for="appfeature in appfeatures3" :key="appfeature.id">
+        <AppFeatureCard :appfeature='appfeature' />
+      </div>
+    </div>
+
     <div :id="$style.manymore">And many <strong>more...</strong></div>
   </section>
 </template>
@@ -31,10 +44,16 @@ import { appfeatures } from '~/config/appfeatures.json'
 
 
 export default {
-  components: { AppFeatureCard },
+components: { AppFeatureCard },
  computed: {
    appfeatures() {
-     return appfeatures
+     return appfeatures.slice(0, 4)
+   },
+   appfeatures2() {
+     return appfeatures.slice(4, 8)
+   },
+   appfeatures3() {
+     return appfeatures.slice(8, 12)
    }
   }
 }
@@ -50,6 +69,11 @@ export default {
   justify-content: center
   margin-bottom: 20pt
 
+
+.colC
+  display: flex
+  flex-direction: column
+
 #manymore
   text-align: right
   font-weight: bold
@@ -60,9 +84,5 @@ export default {
 
 #manymore strong
   color: #3BB30B
-
-
-
-
 
 </style>

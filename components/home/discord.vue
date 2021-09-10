@@ -18,10 +18,23 @@
 
 <template>
   <section :id="$style.container">
-    <div v-for="channel in channels" :key="channel.id">
+    <div :class="$style.colC">
+      <div  v-for="channel in channels" :key="channel.id">
         <DiscordCard :channel='channel' />
+      </div>
+    </div>
+    <div :class="$style.colC">
+      <div  v-for="channel in channels2" :key="channel.id">
+        <DiscordCard :channel='channel' />
+      </div>
+    </div>
+    <div :class="$style.colC">
+      <div  v-for="channel in channels3" :key="channel.id">
+        <DiscordCard :channel='channel' />
+      </div>
     </div>
   </section>
+
 </template>
 
 
@@ -34,9 +47,15 @@ export default {
   components: { DiscordCard },
   computed: {
    channels() {
-     return channels
+     return channels.slice(0, 6)
+   },
+   channels2() {
+     return channels.slice(6, 12)
+   },
+   channels3() {
+     return channels.slice(12, 18)
    }
-  },
+  }
 }
 </script>
 
@@ -44,9 +63,15 @@ export default {
 
 #container
   display: flex
-  flex-wrap: wrap
   width: 100%
   max-width: 700pt
   justify-content: center
+  @media only screen and (max-width: 600px)
+    flex-direction:column
+    align-items: center
+
+.colC
+  display: flex
+  flex-direction: column
 
 </style>

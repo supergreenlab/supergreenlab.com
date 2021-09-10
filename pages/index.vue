@@ -32,8 +32,6 @@
       <BlockDiscord />
       <BlockGuide />
       <BlockShop />
-      <!-- <BlockInfo /> -->
-      <!-- <div :class='$style.space'></div> -->
       <Newsletter />
     </div>
     <Footer />
@@ -77,12 +75,11 @@ import BlockApp from '~/components/home/blockapp.vue'
 import BlockGuide from '~/components/home/blockguide.vue'
 import BlockDiscord from '~/components/home/blockdiscord.vue'
 import BlockShop from '~/components/home/blockshop.vue'
-import BlockInfo from '~/components/home/blockinfo.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop, BlockInfo},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
