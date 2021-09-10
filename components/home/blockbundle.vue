@@ -138,6 +138,7 @@ export default {
 #container
   display: flex
   width: 100%
+  max-width: 900pt
   flex-direction: column
   align-items: center
   color: #323232
