@@ -43,7 +43,9 @@
         </div>
       </div>
     </div>
-    <UseSteps ref='use-steps' />
+    <div :id='$style.steps'>
+      <UseSteps ref='use-steps' />
+    </div>
   </section>
 </template>
 
@@ -75,24 +77,26 @@ export default {
 #container
   display: flex
   width: 100%
+  max-width: 800pt
   flex-direction: column
   align-items: center
   color: #323232
 
 .title
+  font-size: Roboto
   width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
-
 #title
-  font-size: 2.3em
+  font-family: Roboto
+  font-size: 2em
   color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
-    font-size: 1.7em
+    font-size: 1.4em
     margin: 5pt
 
 #title strong
@@ -101,8 +105,8 @@ export default {
 
 #body
   display: flex
+  width: 100%
   margin: 0pt 0pt 50pt 0pt
-  max-width: 900pt
   @media only screen and (max-width: 600px)
     flex-direction: column !important
     margin: 0pt 0pt 20pt 0pt
@@ -128,17 +132,15 @@ export default {
     margin: 0pt 10pt
 
 #bullets
-  font-size: 1.2em
+  font-size: 1.1em
   height: 100%
   display: flex
   flex-direction: column
-  justify-content: space-around
   @media only screen and (max-width: 600px)
     margin: 5pt
 
-#bullets div
-  @media only screen and (max-width: 600px)
-    margin: 5pt 0
+#bullets > div
+  margin: 5pt 0
 
 #bullets strong
   color: #3BB30B
@@ -151,5 +153,8 @@ export default {
   object-position: center
   @media only screen and (max-width: 600px)
     height: 100%
+
+#steps
+  margin: 10pt 0
 
 </style>

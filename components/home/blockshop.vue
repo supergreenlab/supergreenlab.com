@@ -62,29 +62,29 @@ export default {
 
 <style module lang=stylus>
 
-
 #container
   display: flex
   width: 100%
-  max-width: 900pt
+  max-width: 800pt
   flex-direction: column
   align-items: center
   color: #323232
   margin-bottom: 20pt
 
 .title
+  font-family: Roboto
   width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
 #title
-  font-size: 2.3em
+  font-size: 2em
   color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
-    font-size: 1.7em
+    font-size: 1.4em
     margin: 5pt
 
 #title strong
@@ -107,7 +107,6 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 0 5pt
 
-
 #description
   display: flex
   flex: 1
@@ -117,7 +116,7 @@ export default {
     margin: 10pt 20pt 0
 
 #bullets
-  font-size: 1.2em
+  font-size: 1.1em
   height: 100%
   display: flex
   flex-direction: column
@@ -127,9 +126,8 @@ export default {
   color: #3BB30B
   font-weight: bold
 
-#bullets div
-  @media only screen and (max-width: 600px)
-    margin: 5pt 0
+#bullets > div
+  margin: 5pt 0
 
 #picture
   display: block
@@ -144,7 +142,6 @@ export default {
   /* @media only screen and (max-width: 600pt)
     background-size: 100% */
 
-
 .subtitle
   font-weight: bold
   font-size: 1.1em
@@ -158,7 +155,7 @@ export default {
   background-color: #3BB30B
   text-align: center
   font-family: "PlumeAd"
-  font-size: 1.7em
+  font-size: 1.3em
   display: flex
   justify-content:center
   align-items:center
@@ -178,6 +175,5 @@ export default {
 .subtitle strong a
   text-decoration: none
   color: #3BB30B
-
 
 </style>

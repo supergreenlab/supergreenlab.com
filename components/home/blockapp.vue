@@ -104,13 +104,14 @@ export default {
 #container
   display: flex
   width: 100%
-  max-width: 900pt
+  max-width: 800pt
   flex-direction: column
   align-items: center
   color: #323232
   margin-bottom: 20pt
 
 .title
+  font-family: Roboto
   width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
@@ -155,7 +156,7 @@ export default {
     margin: 20pt 15pt 0
 
 .bullets
-  font-size: 1.2em
+  font-size: 1.1em
   height: 100%
   display: flex
   flex-direction: column

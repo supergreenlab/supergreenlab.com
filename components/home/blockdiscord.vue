@@ -33,7 +33,7 @@
       </div>
       <div :id='$style.description'>
         <div :id='$style.bullets'>
-          <div><strong>Buying a bundle gets you free access</strong> to the private <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> community support chat.you will also need to provide sunlight and fresh air.</div>
+          <div><strong>Buying a bundle gets you free access</strong> to the private <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> community support chat.</div>
           <div><strong>24/7 technical and plant support</strong> from us and the community.</div>
           <div>Hundreds of people willing to share their <strong>passion for growing and building grow boxes</strong>.</div>
           <div>Wether you’re an experienced grower or total noob, <strong>there’s always something to learn and share</strong>.</div>
@@ -77,13 +77,14 @@ export default {
 #container
   display: flex
   width: 100%
-  max-width: 900pt
+  max-width: 800pt
   flex-direction: column
   align-items: center
   color: #323232
   margin-bottom: 20pt
 
 .title
+  font-family: Roboto
   width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
@@ -114,7 +115,7 @@ export default {
     margin: 20pt 15pt 0
 
 #bullets
-  font-size: 1.2em
+  font-size: 1.1em
   height: 100%
   display: flex
   flex-direction: column

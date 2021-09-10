@@ -70,25 +70,27 @@ export default {
 #container
   display: flex
   width: 100%
-  max-width: 900pt
+  max-width: 800pt
   flex-direction: column
   align-items: center
   color: #323232
   margin-bottom: 20pt
 
 .title
+  font-size: Roboto
   width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
 
 #title
-  font-size: 2.3em
+  font-family: Roboto
+  font-size: 2em
   color: #323232
   font-weight: bold
   margin-bottom: 15pt
   @media only screen and (max-width: 600px)
-    font-size: 1.7em
+    font-size: 1.4em
     margin: 10pt 5pt
 
 #title strong
@@ -121,11 +123,10 @@ export default {
     margin: 0pt 10pt
 
 #bullets
-  font-size: 1.2em
   height: 100%
   display: flex
   flex-direction: column
-  justify-content: space-around
+  font-size: 1.1em
   @media only screen and (max-width: 600px)
     margin: 5pt
 
@@ -133,9 +134,8 @@ export default {
   color: #3BB30B
   font-weight: bold
 
-#bullets div
-  @media only screen and (max-width: 600px)
-    margin: 5pt 0
+#bullets > div
+  margin: 5pt 0
 
 #picture
   display: block

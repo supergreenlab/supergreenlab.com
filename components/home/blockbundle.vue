@@ -138,7 +138,7 @@ export default {
 #container
   display: flex
   width: 100%
-  max-width: 900pt
+  max-width: 800pt
   flex-direction: column
   align-items: center
   color: #323232
@@ -149,7 +149,6 @@ export default {
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 5pt
-
 
 .titleCard
   font-family: Roboto
@@ -194,17 +193,13 @@ export default {
   height: 100%
   display: flex
   flex-direction: column
-  justify-content: space-around
-  font-size: 1.2em
 
-.bullets div
-  @media only screen and (max-width: 600px)
-    margin: 5pt 0
+.bullets > div
+  margin: 5pt 0
 
 .bullets strong
   color: #3BB30B
   font-weight: bold
-
 
 .picture
   display: block
@@ -238,9 +233,11 @@ export default {
   color: #3BB30B
 
 .smalltitle
+  font-family: Roboto
   font-size: 0.75em
 
 .subtitle
+  font-family: Roboto
   font-size: 1.1em
 
 </style>
