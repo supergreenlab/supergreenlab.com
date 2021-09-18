@@ -113,6 +113,7 @@ export default {
   height: 40pt
   margin-right: 5pt
   border-top-left-radius: 5pt
+  transition: all .2s ease
 
 #icon
   width: 20pt
