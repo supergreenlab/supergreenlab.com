@@ -17,18 +17,25 @@
  -->
 
 <template>
-  <section :id='$style.container' :class='separator ? $style.separator : ""'>
-    <h2 :id='$style.title' :style='white ? {color: "white"} : {}'>{{ title }}</h2>
-    <h1 :id='$style.green' :style='white ? {color: "#7CCC5C"} : {}'>{{ green }}</h1>
-    <h2 :id='$style.title2' :style='white ? {color: "white"} : {}'>{{ title2 }}</h2>
-    <small :id='$style.smalltitle' :style='white ? {color: "white"} : {}'>{{ smalltitle }}</small>
+  <section :id="$style.container" :class='center ? $style.center : $style.notcenter'>
+    <div :class="border ? $style.border : '' "></div>
+    <div :class="$style.titlecontainer">
+      <h2 :id='$style.title' v-html='$md.render(title || "")' :style="white ? {color : 'white'} : '' "></h2>
+      <div :id='$style.brackets' v-html='$md.render(brackets || "")'></div>
+    </div>
+
+    <h1 :id='$style.green'  v-html='$md.render(green || "")' :style="white ? {color: '#7ccc5c'} : '' "></h1>
+    <h2 :id='$style.subtitle' v-html='$md.render(subtitle || "")'></h2>
+    <h2 :id='$style.title2'  v-html='$md.render(title2 || "")' :style="white ? {color : 'white'} : '' "></h2>
+    <small :id='$style.smalltitle'  v-html='$md.render(smalltitle || "")' :style="white ? {color : 'white'} : '' "></small>
+    <div :class="border ? $style.border : '' "></div>
   </section>
 </template>
 
 <script>
 
 export default {
-  props: ['title', 'title2', 'green', 'smalltitle', 'separator', 'white',],
+  props: ['title', 'title2', 'green', 'smalltitle', 'center','subtitle', 'border', 'white', 'brackets'],
 }
 </script>
 
@@ -38,41 +45,80 @@ export default {
   font-family: Roboto
   display: flex
   flex-direction: column
-  align-items: center
-  justify-content: center
+  justify-content:  center
   @media only screen and (max-width: 600px)
-    font-size: 0.8em
+    margin: 0 5pt
 
-.separator
-  width: 100%
-  padding: 15pt 0 15pt 0
-  background-color: #eaeaea
+.center
+  align-items: center
+  text-align: center
+  @media only screen and (max-width: 600px)
+    margin:  5pt 0
+
+.notcenter
+  margin-left: 30pt
+  align-items: flex-start
+  text-align:left
+  @media only screen and (max-width: 600px)
+    margin-left: 5pt 0
+
+.border
+  width: 80pt
+  height: 2pt
+  margin: 20pt
+  background-color: #3BB30B
+
+.titlecontainer
+  display: flex
+  align-items: flex-end
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #title
   font-size: 2.7em
-  color: #5E5E5E
-  text-align: center
-  text-transform: uppercase
+  color: #323232
+  @media only screen and (max-width: 600px)
+    margin: 5pt
+#brackets
+  margin-bottom: 7pt
+  font-size: 2em
+  color: #323232
+  @media only screen and (max-width: 600px)
+    font-size: 1.7em
+
+#title strong
+  color: #3bb30b
+  font-weight: bold
 
 #title2
   font-size: 1.6em
-  color: #5E5E5E
-  text-align: center
+  color: #323232
   text-transform: uppercase
+
+#subtitle
+  font-size 2em
+  color: #323232
+  font-weight: normal
+  @media only screen and (max-width: 600px)
+    font-size: 1.7em
+    margin: 5pt
+
+#subtitle strong
+  color: #3bb30b
+  font-weight: bold
 
 #green
   color: #3BB30B
   font-size: 2.1em
-  text-align: center
-  text-transform: uppercase
   margin: 0pt
 
 #smalltitle
   margin-top: 5pt
-  color: #5E5E5E
+  color: #323232
   font-size: 1.1em
-  text-align: center
+  text-transform: lowercase
   @media only screen and (max-width: 600px)
     font-size: 1.3em
+
 
 </style>

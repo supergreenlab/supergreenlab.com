@@ -175,6 +175,7 @@ export default {
   position: absolute
 
 #footerImg
+  font-family: "Roboto"
   font-weight: bold
   text-transform: uppercase
   align-self: center

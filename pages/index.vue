@@ -24,79 +24,14 @@
       </div>
     </div>
     <div :id='$style.body'>
-      <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
-      <div id='use-steps'></div>
-      <div :class='$style.space'></div>
-      <UseSteps ref='use-steps' />
-      <div :class='$style.space'></div>
-      <div :class='$style.title'>
-        <SectionTitle title='Join the community'
-                        green='of growbox builders'
-                        title2='What will you build?'
-                        separator='true'/>
-      </div>
-      <Examples ref='examples' />
-      <div :class='$style.space'></div>
-      <Ready ref='ready' />
-      <div :class='$style.space'></div>
-      <div :class='$style.title'>
-        <SectionTitle title='Ready to grow?'
-                        green='Follow the steps below'
-                        separator='true'/>
-        <div :class='$style.space'></div>
-      </div>
-      <div :class='$style.title'>
-        <TitleStep title='STEP 1'
-                      green='Choose your furniture'
-                      introduction= "Welcome to **micro growing**, the best hobby ever 💚
-                        Start by picking a piece of furniture that fits your space.
-                        **pro tip**: flat white is great for reflecting light 💡"/>
-      </div>
-      <div :class='$style.shop'>
-        <ProductListComponent ref='homepage-furniture' :products='furnitures' :center=true :maxItems=4 />
-      </div>
-      <div :class='$style.title'>
-        <TitleStep title='STEP 2'
-                      green='Get a bundle'
-                      introduction="We designed and put together a bundle to **transform your furniture** into a connected stealth growbox.
-                      It has everything you need to get started 🙂" />
-      </div>
-      <div :id='$style.bundles'>
-        <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
-          <div :id='b.slug'></div>
-          <Bundle :bundle='b' :showdescription='false'/>
-        </div>
-        <div :class='$style.title'>
-          <TitleStep green='Install your bundle'
-                      introduction= "Learn **how to install your bundle** with Stant, don't forget to **like & subscribe** over on YouTube to not miss our next build 👍
-                      **Need extra help?** Send us a message :)" />
-        </div>
-        <LatestGuide />
-        <Youtube ref='youtube' />
-        <div :class='$style.space'></div>
-      </div>
-      <div :class='$style.title'>
-        <TitleStep title='STEP 3'
-                      green='Start growing'
-                      introduction="There are a lot of ways to achieve a **successful harvest** but every grow needs a growing medium (soil/soilless) and nutrients (organic/mineral).
-                      To help you get started we curated **grow packs** from **recommendations by** the **SGL community**.
-                      **pro tip**: keep it simple, experiment, and don't hesitate to ask for advice over on [Discord](https://www.supergreenlab.com/discord) :)" />
-      </div>
-      <div :class='$style.pack'>
-        <Pack />
-      </div>
-      <div :class='$style.title'>
-        <TitleStep green="It's dangerous to go alone! Take this." introduction="Here's a non exhaustive list of **tools and materials** we used in some shape or form to **build and grow**."/>
-      </div>
-      <div :class='$style.shop'>
-        <ProductListComponent ref='homepage-tools' :products='tools' :center=true :maxItems=4 />
-      </div>
-      <div :class='$style.space'></div>
-      <Social ref='social' />
-      <div :class='$style.space'></div>
-      <Testimonials ref='testimonials' />
-      <div :class='$style.space'></div>
+      <BlockStep />
+      <BlockExamples />
+      <BlockBundle />
+      <BlockApp />
+      <BlockDiscord />
+      <BlockGuide />
+      <BlockShop />
       <Newsletter />
     </div>
     <Footer />
@@ -134,13 +69,20 @@ import Promocode from '~/components/layout/overlay-promocode.vue'
 import Examples from '~/components/home/examples.vue'
 import Ready from '~/components/home/ready.vue'
 import Newsletter from '~/components/layout/newsletter.vue'
+import BlockStep from '~/components/home/blockstep.vue'
+import BlockExamples from '~/components/home/blockexamples.vue'
+import BlockBundle from '~/components/home/blockbundle.vue'
+import BlockApp from '~/components/home/blockapp.vue'
+import BlockGuide from '~/components/home/blockguide.vue'
+import BlockDiscord from '~/components/home/blockdiscord.vue'
+import BlockShop from '~/components/home/blockshop.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
 import { leds, accessories, bundles, collectionWithSlug, productsWithTypes, productsForCollection, } from '~/lib/json_db.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductListComponent, Social, Footer,  Promocode, Examples, Ready, Newsletter,},
+  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -261,6 +203,8 @@ export default {
 .title
   width: 100%
   margin: 20pt 0 20pt 0
+  @media only screen and (max-width: 600px)
+    margin: 0
 
 .pack
   width: 80%
