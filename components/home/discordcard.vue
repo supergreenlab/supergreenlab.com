@@ -25,11 +25,15 @@
           <div v-html='$md.render(channel.title)'></div>
         </div>
         <span  :class="$style.arrow">
-          <span :class="$style.leftBar" :style='{"transform": (OpenIt? "rotate(-45deg)" : "rotate(45deg)")}'></span>
-          <span :class="$style.rightBar" :style='{"transform": (OpenIt? "rotate(45deg)" : "rotate(-45deg)")}'></span>
+          <span :class="$style.leftBar" :style='{"transform": (open? "rotate(-45deg)" : "rotate(45deg)")}'></span>
+          <span :class="$style.rightBar" :style='{"transform": (open? "rotate(45deg)" : "rotate(-45deg)")}'></span>
         </span>
       </div>
-      <div :id="$style.text" v-html='$md.render(channel.text)' v-show="OpenIt"></div>
+      <transition @before-enter='beforeEnter' @before-leave='beforeLeave' @enter='enter' @leave='leave'>
+        <div :id='$style.textdiv' v-if='open'>
+          <div ref='text' :id="$style.text" v-html='$md.render(channel.text)'></div>
+        </div>
+      </transition>
     </div>
 
   </section>
@@ -41,19 +45,31 @@ export default {
   props: ['channel'],
   data() {
     return {
-      OpenIt: false
+      open: false
     }
   },
   methods: {
     toggleIt: function(){
-      this.OpenIt = !this.OpenIt
+      this.open = !this.open
     },
+    beforeEnter: function(el) {
+      el.style.height = '0';
+    },
+    enter: function(el) {
+      el.style.height = this.$refs.text.scrollHeight + 'px';
+    },
+    beforeLeave: function(el) {
+      el.style.height = this.$refs.text.scrollHeight + 'px';
+    },
+    leave: function(el) {
+      el.style.height = '0';
+    }
+
   }
 }
 </script>
 
 <style module lang=stylus>
-
 
 #card
   background-color: #2F3136
@@ -82,6 +98,10 @@ export default {
   background-size: contain
   background-position: center
   margin-right: 2pt
+
+#textdiv
+  transition: all .2s ease
+  overflow: hidden
 
 #text
   background-color: #36393F
@@ -119,6 +139,10 @@ export default {
   right 0
 
 #text ol li
-  margin: 15pt 0pt
+  margin: 5pt 0pt
+
+#text ol li::marker
+  content: '- '
+  font-weight: bold
 
 </style>
