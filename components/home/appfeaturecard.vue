@@ -21,7 +21,7 @@
     <div :id="$style.card"  @click="toggle">
       <div :id="$style.headerCard">
         <div :id="$style.headerText">
-          <div :id="$style.iconContainer" :style='{"border-bottom-left-radius": (open? "5pt" : "0")}'>
+          <div :id="$style.iconContainer" :style='{"border-bottom-left-radius": (!open? "5pt" : "0")}'>
             <div :id="$style.CircleIconContainer">
               <div :id="$style.icon" :style='{"background-image": `url(${require(`~/assets/img/${appfeature.icon}`)})`}'></div>
             </div>
