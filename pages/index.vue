@@ -44,30 +44,10 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Top from '~/components/home/top.vue'
-import PreOrder from '~/components/home/preorder.vue'
-import UseSteps from '~/components/home/use-steps.vue'
-import Stealth from '~/components/home/stealth-build.vue'
-import Testimonials from '~/components/home/testimonials.vue'
-import BundleIntro from '~/components/home/bundle.vue'
-import ContinuousSupply from '~/components/home/continuous-supply.vue'
-import ProgressiveSunriseSunset from '~/components/home/progressive-sunrise-sunset.vue'
-import App from '~/components/home/app.vue'
-import LatestDiaries from '~/components/home/latest-diaries.vue'
-import Bundle from '~/components/bundle/bundle.vue'
-import Price from '~/components/products/price.vue'
-import Instagram from '~/components/home/instagram.vue'
-import Youtube from '~/components/home/youtube.vue'
-import Pack from '~/components/home/pack.vue'
-import LatestGuide from '~/components/home/latestguide.vue'
-// import ProductList from '~/components/products/productlist.vue'
-import ProductListComponent from '~/components/products/productlistcomponent.vue'
-import Social from '~/components/home/social.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import TitleStep from '~/components/widgets/titlestep.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
-import Examples from '~/components/home/examples.vue'
-import Ready from '~/components/home/ready.vue'
 import Newsletter from '~/components/layout/newsletter.vue'
 import BlockStep from '~/components/home/blockstep.vue'
 import BlockExamples from '~/components/home/blockexamples.vue'
@@ -82,7 +62,7 @@ import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, 
 import { leds, accessories, bundles, collectionWithSlug, productsWithTypes, productsForCollection, } from '~/lib/json_db.js'
 
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, PreOrder, UseSteps, Stealth, Testimonials, BundleIntro, ContinuousSupply, ProgressiveSunriseSunset, App, LatestDiaries, Bundle, Price, Instagram, Youtube, Pack, LatestGuide, ProductList, Social, Footer,  Promocode, Examples, Ready, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
+  components: { Header, SectionTitle, TitleStep, Top, Footer,  Promocode, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
