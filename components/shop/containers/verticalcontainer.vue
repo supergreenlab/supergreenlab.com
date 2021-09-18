@@ -35,9 +35,8 @@ export default {
 <style module lang=stylus>
 
 #verticalContainer
-  margin-top: 5pt
-  width: 165pt
   display: flex
   flex-direction: column
+  margin-top: 5pt
 
 </style>

@@ -17,12 +17,22 @@
  -->
 
 <template>
-  <section>
-    <div :id="$style.container">
-      <div :id="$style.spotlightcontainer">
-        <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
-        <div :id="$style.description" v-html='$md.render(config.description)'></div>
-        <SmallProductList :id='$style.smallproductlist' :products='products' />
+  <section :id="$style.container">
+    <div :id='$style.pic'>
+      <Pics :pics='product.pics' />
+    </div>
+    <div :id='$style.text'>
+      <h2 :id="$style.title" v-html='$md.render(title)'></h2>
+      <div :id="$style.description" v-html='$md.render(description)'></div>
+      <div>
+        <nuxt-link :class='$style.productpage' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>View product page</nuxt-link>
+      </div>
+      <div :id='$style.addtocartcontainer'>
+        <div :class='$style.price'>
+          <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
+        </div>
+        <OutOfStock v-if='sellingPoint.outofstock' />
+        <AddToCart v-else :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' />
       </div>
     </div>
   </section>
@@ -30,24 +40,42 @@
 
 <script>
 
+import Pics from '~/components/products/pics.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
+import OutOfStock from '~/components/products/outofstock.vue'
+import AddToCart from '~/components/products/addtocart.vue'
 
 import { products } from '~/lib/json_db.js'
 
 export default {
   props: ['config',],
-  components: { SmallProductList },
+  components: { SmallProductList, Pics, OutOfStock, AddToCart, },
   data() {
     return {
+      addedToCart: false,
     }
   },
   computed: {
-    products() {
+    product() {
       const { config } = this.$props
-      return products(config.products || [])
+      return products(config.products)[0]
+    },
+    sellingPoint() {
+      return this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
+    },
+    title() {
+      const { config: { title } } = this.$props
+      return title || this.product.name
+    },
+    description() {
+      const { config: { description } } = this.$props
+      return description || `${this.product.bullets}\n${this.product.description}`
     },
   },
   methods: {
+    handleAddToCart() {
+      setTimeout(() => this.$data.addedToCart = true, 1000)
+    },
   }
 }
 
@@ -57,16 +85,23 @@ export default {
 
 #container
   display: flex
-  align-items: center
   margin: 5pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
+#pic
+  width: 300pt
+  height: 300pt
+  @media only screen and (max-width: 600px)
+    width: 100%
 
-#spotlightcontainer
-  display:flex
+#text
+  display: flex
   flex-direction: column
-
-#smallproductlist
-  width: 100%
+  flex: 1
+  margin: 0 20pt
+  @media only screen and (max-width: 600px)
+    margin: 0
 
 #title
   text-transform: uppercase
@@ -77,76 +112,67 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 0
 
-
 #description
   text-align: justify
-  margin: 0 10pt 15pt
+  margin: 0 10pt
+  color: #454545
+  margin: 10pt 5pt
   @media only screen and (max-width: 600px)
     margin: 0 5pt
-/*
-#content
-  display:flex
-  flex-direction: column
-  margin-left: 10pt
-  @media only screen and (max-width: 600px)
-    margin-top: 10pt
 
-
-#contentlink
-  text-decoration: none
-
-#contentlink:hover
-  text-decoration: underline
-
-#contentlink > h3
-  color: #5E5E5E
-
-#contentlink > div
-  margin-bottom: 5pt
-
-.productspotlight
-  display: flex
-  align-items: center
-  justify-content: center
-  @media only screen and (max-width: 600px)
-    flex-direction: column
-
-#pics
-  width: 300pt
-  height: 300pt
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
-  @media only screen and (max-width: 600px)
-    width: 250pt
-    height: 250pt
-
-#pricing
-  display: flex
-  flex-direction: column
-  align-self: flex-end
-
-#bullets
-  color: #454545
-
-#bullets strong
+#description strong
   color: #3BB30B
   font-weight: 600
 
-#bullets ul
+#description ul
   padding: 0
   list-style-type: none
 
-#bullets ul li
+#description ul li
   margin-bottom:7pt
 
-#bullets ul li::before
+#description ul li::before
   content: '- '
   color: #3bb30b
   font-weight: bold
 
-#tagline
+.productpage
   color: #3bb30b
-  font-weight: bold */
+
+#addtocartcontainer
+  display: flex
+  flex-direction: column
+  margin-top: 20pt
+  align-items: flex-end
+
+.price
+  margin-bottom: 10pt
+
+#addtocart
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  text-align: right
+  color: #3bb30b;
+  font-weight: 600;
+  @media only screen and (max-width: 600px)
+    align-self: flex-end
+
+#addtocart > a
+  display: block
+  align-self: flex-end
+  background-color: #3BB30B
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+  font-size: 22px
+  margin: 4pt 0
+
+#addtocart > a:hover
+  background-color: #2F880B
+
+#addtocart > a > b
+  font-weight: 600
 
 </style>

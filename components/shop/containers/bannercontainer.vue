@@ -31,12 +31,9 @@ export default {
 </script>
 
 <style module lang=stylus>
+
 #container
   position: relative
   height: 165pt
-
-/* #bannercontainer
-  width: 100%
-  height: 100% */
 
 </style>

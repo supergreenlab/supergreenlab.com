@@ -76,6 +76,7 @@ export default {
   align-items: flex-end
   text-align: right
   font-weight: 600;
+  color: #454545
 
 #button
   display: block
