@@ -18,25 +18,23 @@
 
 <template>
   <section :id='$style.container'>
-    <h2 :id="$style.titleList">{{config.title}}</h2>
-    <div :id="$style.headerProductList">
-      <div :id="$style.picContainer">
-        <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
-      </div>
-      <div :id='$style.description'>{{config.description}}</div>
+    <div v-if='config.picture' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+    <div>
+      <h2 v-if='config.title' :id="$style.titleList">{{config.title}}</h2>
+      <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
+      <SmallProductList :products='products' :center=true />
     </div>
-    <ProductListComponent :products='products' :center=true />
   </section>
 </template>
 
 <script>
-import ProductListComponent from '~/components/products/productlistcomponent.vue'
+import SmallProductList from '~/components/products/smallproductlist.vue'
 
 import { productsWithTypes, products, } from '~/lib/json_db.js'
 
 export default {
   props: ['config',],
-  components: { ProductListComponent, },
+  components: { SmallProductList, },
   computed: {
     products() {
       const { config } = this.$props
@@ -58,15 +56,13 @@ export default {
 #container
   display: flex
   width: 100%
-  flex-direction: column
-  justify-content: center
+  margin: 5pt
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #body
   display: flex
-  align-items: center
   flex-wrap: wrap
-  @media only screen and (max-width: 600px)
-    justify-content: center
 
 #titleList
   text-transform: uppercase
@@ -75,25 +71,12 @@ export default {
   font-size: 2.5em
   color: #5E5E5E
 
-#description
-  margin: 0 10pt
-  text-align: justify
-
 #pic
-  width: 100pt
-  height: 100pt
+  width: 300pt
+  height: 300pt
   background-position: center
   background-size: cover
   background-repeat: no-repeat
-  margin: 0 5pt
-
-#headerProductList
-  display: flex
-  width: 100%
-  align-self: center
-  margin-left: 20pt
-  @media only screen and (max-width: 900px)
-    margin-left: 0
 
 #productlist
   @media only screen and (max-width: 900px)
@@ -103,5 +86,29 @@ export default {
   display: none
   @media only screen and (max-width: 900px)
     display: block
+
+#description
+  text-align: justify
+  margin: 0 10pt
+  color: #454545
+  margin: 10pt 5pt
+  @media only screen and (max-width: 600px)
+    margin: 0 5pt
+
+#description strong
+  color: #3BB30B
+  font-weight: 600
+
+#description ul
+  padding: 0
+  list-style-type: none
+
+#description ul li
+  margin-bottom:7pt
+
+#description ul li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
 
 </style>
