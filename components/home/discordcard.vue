@@ -29,7 +29,9 @@
           <span :class="$style.rightBar" :style='{"transform": (OpenIt? "rotate(45deg)" : "rotate(-45deg)")}'></span>
         </span>
       </div>
-      <div :id="$style.text" v-html='$md.render(channel.text)' v-show="OpenIt"></div>
+      <transition appear="slidefade">
+        <div :id="$style.text" v-html='$md.render(channel.text)' v-if="OpenIt"></div>
+      </transition>
     </div>
 
   </section>
@@ -53,7 +55,6 @@ export default {
 </script>
 
 <style module lang=stylus>
-
 
 #card
   background-color: #2F3136
@@ -119,6 +120,9 @@ export default {
   right 0
 
 #text ol li
-  margin: 15pt 0pt
+  margin: 5pt 0pt
+
+#text p
+  margin: 5pt 0pt
 
 </style>
