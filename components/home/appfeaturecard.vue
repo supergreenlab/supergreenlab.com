@@ -21,7 +21,7 @@
     <div :id="$style.card"  @click="toggle">
       <div :id="$style.headerCard">
         <div :id="$style.headerText">
-          <div :id="$style.iconContainer" :style='{"border-bottom-left-radius": (Open? "5pt" : "0")}'>
+          <div :id="$style.iconContainer" :style='{"border-bottom-left-radius": (open? "5pt" : "0")}'>
             <div :id="$style.CircleIconContainer">
               <div :id="$style.icon" :style='{"background-image": `url(${require(`~/assets/img/${appfeature.icon}`)})`}'></div>
             </div>
@@ -29,11 +29,15 @@
           <div v-html='$md.render(appfeature.title)'></div>
         </div>
         <span  :class="$style.arrow">
-          <span :class="$style.leftBar" :style='{"transform": (Open? "rotate(45deg)" : "rotate(-45deg)")}'></span>
-          <span :class="$style.rightBar" :style='{"transform": (Open? "rotate(-45deg)" : "rotate(45deg)")}'></span>
+          <span :class="$style.leftBar" :style='{"transform": (open? "rotate(-45deg)" : "rotate(45deg)")}'></span>
+          <span :class="$style.rightBar" :style='{"transform": (open? "rotate(45deg)" : "rotate(-45deg)")}'></span>
         </span>
       </div>
-      <div :id="$style.text" v-html='$md.render(appfeature.text)' :style='{"display": (Open? "none" : "flex")}'></div>
+      <transition @before-enter='beforeEnter' @before-leave='beforeLeave' @enter='enter' @leave='leave'>
+        <div :id='$style.textdiv' v-if='open'>
+          <div ref='text' :id="$style.text" v-html='$md.render(appfeature.text)'></div>
+        </div>
+      </transition>
     </div>
   </section>
 </template>
@@ -44,13 +48,25 @@ export default {
   props: ['appfeature'],
   data() {
     return {
-      Open: true
+      open: false
     }
   },
   methods: {
     toggle: function(){
-      this.Open = !this.Open
+      this.open = !this.open
     },
+    beforeEnter: function(el) {
+      el.style.height = '0';
+    },
+    enter: function(el) {
+      el.style.height = this.$refs.text.scrollHeight + 'px';
+    },
+    beforeLeave: function(el) {
+      el.style.height = this.$refs.text.scrollHeight + 'px';
+    },
+    leave: function(el) {
+      el.style.height = '0';
+    }
   }
 }
 </script>
@@ -98,7 +114,6 @@ export default {
   margin-right: 5pt
   border-top-left-radius: 5pt
 
-
 #icon
   width: 20pt
   height: 20pt
@@ -106,12 +121,14 @@ export default {
   background-size: contain
   background-position: center
 
+#textdiv
+  transition: all .2s ease
+  overflow: hidden
+
 #text
-  /* border: solid 0.2px #CACACA */
   padding: 5pt
   border-radius: 3pt
-  height: 100%
-  /* display: flex */
+  display: flex
   flex-direction: column
   justify-content: center
 
@@ -148,5 +165,9 @@ export default {
 
 #text ol li
   margin: 15pt 0pt
+
+#text ol li::marker
+  content: '- '
+  font-weight: bold
 
 </style>
