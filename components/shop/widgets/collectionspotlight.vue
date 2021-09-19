@@ -106,8 +106,7 @@ export default {
   font-size: 2.5em
   color: #5E5E5E
   margin-bottom: 10pt
-  @media only screen and (max-width: 600px)
-    margin: 0
+  margin: 10pt 0 10pt 0
 
 #description
   text-align: justify
@@ -138,6 +137,8 @@ export default {
 
 #products
   display: flex
+  @media only screen and (max-width: 600px)
+    flex-direction: column
 
 #list
   flex: 1

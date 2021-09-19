@@ -84,7 +84,7 @@ export default {
   height: 200pt
 
 #container.small
-  height: 130pt
+  height: 110pt
 
 #infos
   display: flex

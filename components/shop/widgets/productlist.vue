@@ -70,6 +70,7 @@ export default {
   margin-bottom: 10pt
   font-size: 2.5em
   color: #5E5E5E
+  margin: 10pt 0 10pt 0
 
 #pic
   width: 300pt
@@ -92,6 +93,8 @@ export default {
 #text
   flex: 1
   margin: 0 20pt
+  @media only screen and (max-width: 600px)
+    margin: 0 5pt
 
 #description
   text-align: justify

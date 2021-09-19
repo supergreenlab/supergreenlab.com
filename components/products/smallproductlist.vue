@@ -104,7 +104,7 @@ export default {
 
 .product
   @media only screen and (max-width: 600px)
-    padding: 20pt 5pt
+    padding: 10pt 5pt
 
 #region
   display: flex
