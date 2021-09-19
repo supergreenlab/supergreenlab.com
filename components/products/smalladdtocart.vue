@@ -18,19 +18,26 @@
 
 <template>
   <section :id='$style.container'>
-    <a :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
+    <div>
+      <nuxt-link v-if='done' :id='$style.button' to='/cart'><b>GO TO CART</b></nuxt-link>
+      <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
+    </div>
+    <p v-if='discreet !== false'>Our bundles are shipped discreet</p>
   </section>
 </template>
 
 <script>
+import Number from '~/components/widgets/number.vue'
+
 export default {
-  components: {},
-  props: ['product', 'sellingPoint',],
+  components: {Number,},
+  props: ['product', 'sellingPoint', 'name', 'lineItems', 'small', 'discreet',],
   data() {
     return {
+      n: 1,
       activated: false,
       added: false,
-      done: false,
+      done: false
     }
   },
   beforeDestroy() {
@@ -38,14 +45,17 @@ export default {
   },
   methods: {
     addToCartClicked() {
-      const { product, sellingPoint, } = this.$props
-      this.$matomo && this.$matomo.trackEvent('bundle', 'addtocartclicked', sellingPoint.id)
+      if (this.$data.activated) return
+      const { product, sellingPoint, lineItems, name,} = this.$props
+      const { n } = this.$data
+      const cart = lineItems ? lineItems : [{ n, product, sellingPoint }]
+      this.$matomo && this.$matomo.trackEvent('product', 'addtocart', name || sellingPoint.slug)
       this.$data.activated = true
       this.timeout = setTimeout(() => {
         this.$data.activated = false
         this.$data.added = true
         this.$emit('click')
-        this.$store.commit('checkout/addToCart', { n: 1, product, sellingPoint })
+        cart.forEach(li => this.$store.commit('checkout/addToCart', li))
         this.timeout = setTimeout(() => {
           this.$data.done = true
         }, 2000)
@@ -58,30 +68,35 @@ export default {
 <style module lang=stylus>
 
 #container
+  font-family: Roboto
   display: flex
   flex-direction: column
   justify-content: flex-end
   align-items: flex-end
   text-align: right
   font-weight: 600;
+  color: #454545
 
 #button
-  font-family: Roboto
   display: block
   background-color: #3BB30B
   text-align: center
-  padding: 4pt 12pt
-  border-radius: 3pt
+  padding: 4pt 15pt
+  border-radius: 2.5pt
   color: white
   text-decoration: none
-  font-size: 0.9em
-  margin: 4pt 10pt
+  font-size: 0.8em
+  margin: 4pt 0
   white-space: nowrap
+  transition: opacity 0.2s
 
 #button:hover
   background-color: #2F880B
 
 #button > b
   font-weight: 600
+
+#number
+  align-self: flex-end
 
 </style>

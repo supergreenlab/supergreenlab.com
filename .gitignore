@@ -100,3 +100,5 @@ config/widgets.json
 config/guide-*.json
 config/widgets.json
 assets/img/tmp/
+
+*Zone.Identifier

@@ -107,8 +107,17 @@ export default {
   ** Build configuration
   */
   build: {
+    parallel: true,
+    hardSource: true,
+    cache: true,
     transpile: ['vue-agile'],
+    loaders:  {
+      vue: {
+        prettify: false
+      }
+    },
     babel:{
+      compact: true,
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: true }],
         ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]

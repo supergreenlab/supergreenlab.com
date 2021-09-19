@@ -24,26 +24,25 @@
       </div>
       <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
       <b :id='seller.id == "recT9nIg4ahFv9J29" ? $style.green : $style.normal'>{{ seller.name }}</b>
-      <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
     </nuxt-link>
     <div :class='$style.price'>
       <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
     </div>
     <OutOfStock v-if='sellingPoint.outofstock' />
-    <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
+    <SmallAddToCart v-else :hideNumber='true' :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
   </section>
 </template>
 
 <script>
 import OutOfStock from '~/components/products/outofstock.vue'
 import Price from '~/components/products/price.vue'
-import AddToCart from '~/components/products/addtocart.vue'
+import SmallAddToCart from '~/components/products/smalladdtocart.vue'
 import Pics from '~/components/products/pics.vue'
 
 import { seller, brand, brandProduct, } from '~/lib/json_db.js'
 
 export default {
-  components: {Price, OutOfStock, AddToCart, Pics,},
+  components: {Price, OutOfStock, SmallAddToCart, Pics,},
   props: ['product',],
   computed: {
     sellingPoint() {
@@ -78,8 +77,9 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: space-between
-  height: 340pt
   color: #454545
+  font-size: 0.9em
+  height: 200pt
 
 #infos
   display: flex
@@ -99,16 +99,16 @@ export default {
   text-align: center
 
 #pic
-  margin: 10pt
-  width: 100pt
-  height: 100pt
+  margin: 5pt
+  width: 80pt
+  height: 80pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
 
 .price
   display: flex
-  margin: 10pt 0
+  margin: 3pt 0
 
 #green
   color: #3bb30b
@@ -116,16 +116,5 @@ export default {
 
 #normal
   font-weight: 300
-
-#tagline
-  text-align: center
-  font-size: 0.9em
-  margin: 5pt 40pt
-  @media only screen and (max-width: 600pt)
-    margin: 5pt 20pt
-
-#tagline strong
-  color: #3bb30b
-  font-weight: bold
 
 </style>

@@ -1,5 +1,5 @@
 <!--
-      Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+      Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
       Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 
       This program is free software: you can redistribute it and/or modify
@@ -17,67 +17,56 @@
  -->
 
 <template>
-  <section :id="$style.container">
-    <div :id='$style.pic'>
-      <Pics :pics='product.pics' />
-    </div>
+  <section :id='$style.container'>
+    <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${picture}`)})`}'></div>
     <div :id='$style.text'>
       <h2 :id="$style.title" v-html='$md.render(title)'></h2>
       <div :id="$style.description" v-html='$md.render(description)'></div>
-      <div>
-        <nuxt-link :class='$style.productpage' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>View product page</nuxt-link>
-      </div>
+      <TinyProductList :products='products' />
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
-          <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
+          <Price :lineItems='lineItems' :freeshipping='false' />
         </div>
-        <OutOfStock v-if='sellingPoint.outofstock' />
-        <AddToCart v-else :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' />
+        <AddToCart :name='collection.slug' :lineItems='lineItems' :discreet=false />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-
-import Pics from '~/components/products/pics.vue'
-import SmallProductList from '~/components/products/smallproductlist.vue'
-import OutOfStock from '~/components/products/outofstock.vue'
+import TinyProductList from '~/components/products/tinyproductlist.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Price from '~/components/products/price.vue'
 
-import { products } from '~/lib/json_db.js'
+import { collection, product, productsForCollection, } from '~/lib/json_db.js'
 
 export default {
-  props: ['config',],
-  components: { SmallProductList, Pics, OutOfStock, AddToCart, Price, },
-  data() {
-    return {
-      addedToCart: false,
-    }
-  },
+  props: ['config'],
+  components: { TinyProductList, AddToCart, Price, },
   computed: {
-    product() {
+    collection() {
       const { config } = this.$props
-      return products(config.products)[0]
-    },
-    sellingPoint() {
-      return this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
+      return collection(config.collections[0])
     },
     title() {
       const { config: { title } } = this.$props
-      return title || this.product.name
+      return title || this.collection.name
     },
     description() {
       const { config: { description } } = this.$props
-      return description.trim() || `${this.product.bullets}\n${this.product.description}`
+      return description.trim() || this.collection.description
+    },
+    picture() {
+      const { config: { picture } } = this.$props
+      return (picture && picture.fileFull) || `${this.collection.picture[0].fileFull}`
+    },
+    products() {
+      return productsForCollection(this.collection)
+    },
+    lineItems() {
+      return this.products.map(p => ({n: 1, product: p, sellingPoint: this.$store.getters['eshop/sellingPointForProduct'](p.id)}))
     },
   },
-  methods: {
-    handleAddToCart() {
-      setTimeout(() => this.$data.addedToCart = true, 1000)
-    },
-  }
 }
 
 </script>
