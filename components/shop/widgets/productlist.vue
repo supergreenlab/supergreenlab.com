@@ -91,6 +91,7 @@ export default {
 
 #text
   flex: 1
+  margin: 0 20pt
 
 #description
   text-align: justify

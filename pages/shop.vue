@@ -32,8 +32,8 @@
             <Search :onShowResults='onShowResults' />
           </div>
           <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-            <div :class='$style.container'>
-              <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+            <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
+              <component :is='componentForName(w.component)' :config='w'></component>
             </div>
           </component>
         </div>
@@ -127,8 +127,8 @@ export default{
   @media only screen and (max-width: 1100px)
     margin: 10pt
 
-.container
-  margin: 10pt 0
+.widgetcontainer
+  margin: 20pt 0
 
 #leftcolumn
   height: 100%

@@ -74,7 +74,7 @@ export default {
   justify-content: center
 
 #container h3
-  color: #323232
+  color: #5e5e5e
 
 #title
   margin: 20pt 0 20pt 0
