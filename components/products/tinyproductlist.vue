@@ -17,18 +17,19 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='picOnly ? $style.small : ""'>
     <div :id='$style.region'>
       <Region />
     </div>
+    <h3 v-if='title'>{{ title }}</h3>
     <div :id='$style.body' :class='center ? $style.center : $style.start'>
       <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
-        <Item :product='product' />
+        <Item :picOnly='picOnly' :product='product' />
       </div>
     </div>
     <div :id='$style.propose'>
       <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
-      <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+      <a v-if='!picOnly' href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
     </div>
   </section>
 </template>
@@ -41,7 +42,7 @@ import Region from '~/components/products/region.vue'
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
-  props: ['products', 'center', 'maxItems',],
+  props: ['products', 'center', 'maxItems', 'picOnly', 'title',],
   components: {SectionTitle, Item, Region,},
   data() {
     return {
@@ -72,12 +73,14 @@ export default {
   flex-direction: column
   justify-content: center
 
+#container h3
+  color: #323232
+
 #title
   margin: 20pt 0 20pt 0
 
 #body
   display: flex
-  align-items: center
   flex-wrap: wrap
 
 .center
@@ -85,11 +88,14 @@ export default {
 
 .start
   justify-content: flex-start
-  @media only screen and (max-width: 600px)
-    justify-content: center
 
 .product
+  max-width: 200pt
   padding: 5pt 15pt
+
+#container.small .product
+  max-width: 100pt
+  padding: 5pt 5pt
 
 #region
   display: flex

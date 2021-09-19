@@ -19,10 +19,10 @@
 <template>
   <section :id='$style.container'>
     <div v-if='config.picture' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
-    <div>
+    <div :id='$style.text'>
       <h2 v-if='config.title' :id="$style.titleList">{{config.title}}</h2>
       <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
-      <SmallProductList :products='products' :center=true />
+      <SmallProductList :products='products' :center=true :maxItems='2'/>
     </div>
   </section>
 </template>
@@ -77,6 +77,8 @@ export default {
   background-position: center
   background-size: cover
   background-repeat: no-repeat
+  @media only screen and (max-width: 600px)
+    width: 100%
 
 #productlist
   @media only screen and (max-width: 900px)
@@ -86,6 +88,9 @@ export default {
   display: none
   @media only screen and (max-width: 900px)
     display: block
+
+#text
+  flex: 1
 
 #description
   text-align: justify

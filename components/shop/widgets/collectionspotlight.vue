@@ -22,7 +22,7 @@
     <div :id='$style.text'>
       <h2 :id="$style.title" v-html='$md.render(title)'></h2>
       <div :id="$style.description" v-html='$md.render(description)'></div>
-      <TinyProductList :products='products' />
+      <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
           <Price :lineItems='lineItems' :freeshipping='false' />
@@ -82,6 +82,9 @@ export default {
 #pic
   width: 300pt
   height: 300pt
+  background-size: contain
+  background-repeat: no-repeat
+  background-position: center
   @media only screen and (max-width: 600px)
     width: 100%
 

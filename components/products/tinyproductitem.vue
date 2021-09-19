@@ -17,19 +17,21 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='picOnly ? $style.small : ""'>
     <nuxt-link @click.native='click' :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
       <div :id='$style.pic'>
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
-      <h3>{{ brandProduct.name }}<br />BY {{ brand.name }}</h3>
+      <h3>{{ brandProduct.name }}<span v-if='!picOnly'><br />BY {{ brand.name }}</span></h3>
       <b :id='seller.id == "recT9nIg4ahFv9J29" ? $style.green : $style.normal'>{{ seller.name }}</b>
     </nuxt-link>
-    <div :class='$style.price'>
-      <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+    <div v-if='!picOnly'>
+      <div :class='$style.price'>
+        <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+      </div>
+      <OutOfStock v-if='!picOnly && sellingPoint.outofstock' />
+      <SmallAddToCart v-else-if='!picOnly' :hideNumber='true' :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
     </div>
-    <OutOfStock v-if='sellingPoint.outofstock' />
-    <SmallAddToCart v-else :hideNumber='true' :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
   </section>
 </template>
 
@@ -43,7 +45,7 @@ import { seller, brand, brandProduct, } from '~/lib/json_db.js'
 
 export default {
   components: {Price, OutOfStock, SmallAddToCart, Pics,},
-  props: ['product',],
+  props: ['product', 'picOnly',],
   computed: {
     sellingPoint() {
       const { product } = this.$props
@@ -81,6 +83,9 @@ export default {
   font-size: 0.9em
   height: 200pt
 
+#container.small
+  height: 130pt
+
 #infos
   display: flex
   flex-direction: column
@@ -105,6 +110,10 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
+
+#container.small #pic
+  width: 50pt
+  height: 50pt
 
 .price
   display: flex
