@@ -22,12 +22,16 @@
     <div :id='$style.text'>
       <h2 :id="$style.title" v-html='$md.render(title)'></h2>
       <div :id="$style.description" v-html='$md.render(description)'></div>
-      <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
-      <div :id='$style.addtocartcontainer'>
-        <div :class='$style.price'>
-          <Price :lineItems='lineItems' :freeshipping='false' />
+      <div :id='$style.products'>
+        <div :id='$style.list'>
+          <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
         </div>
-        <AddToCart :name='collection.slug' :lineItems='lineItems' :discreet=false />
+        <div :id='$style.addtocartcontainer'>
+          <div :class='$style.price'>
+            <Price :lineItems='lineItems' :freeshipping='false' />
+          </div>
+          <AddToCart :name='collection.slug' :lineItems='lineItems' :discreet=false />
+        </div>
       </div>
     </div>
   </section>
@@ -132,11 +136,18 @@ export default {
 .productpage
   color: #3bb30b
 
+#products
+  display: flex
+
+#list
+  flex: 1
+
 #addtocartcontainer
   display: flex
   flex-direction: column
   margin-top: 10pt
   align-items: flex-end
+  justify-content: center
 
 .price
   margin-bottom: 10pt
