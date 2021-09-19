@@ -72,6 +72,7 @@ import Guide from '~/components/guides/small.vue'
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 import { guides } from '~/config/guides.json'
+import { product } from '~/lib/json_db.js'
 
 export default {
   props: [ 'index', 'guideSection', ],
