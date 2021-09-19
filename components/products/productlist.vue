@@ -22,13 +22,17 @@
       <Region />
     </div>
     <div :id='$style.body' :class='center ? $style.center : $style.start'>
-      <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
-        <Item :product='product' />
+      <div ref='products' :id='$style.products' :style='{"height": height}'>
+        <div v-for='(product, i) in products' :key='product.id' :class='$style.product'>
+          <Item :product='product' />
+        </div>
+          <div :class='$style.propose'>
+            <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+          </div>
       </div>
     </div>
-    <div :id='$style.propose'>
-      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
-      <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+    <div :class='$style.propose'>
+      <a v-if='maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
     </div>
   </section>
 </template>
@@ -88,6 +92,10 @@ export default {
   @media only screen and (max-width: 600px)
     justify-content: center
 
+#products
+  overflow: hidden
+  transition: height 0.5s
+
 .product
   flex-basis: 33%
   @media only screen and (min-width: 1200px)
@@ -101,12 +109,13 @@ export default {
   flex-direction: column
   align-items: flex-end
 
-#propose
+.propose
   display: flex
   flex-direction: column
   align-items: flex-end
 
-#propose a
+.propose a
   color: #454545
+  margin: 3pt
 
 </style>

@@ -26,14 +26,17 @@
       <Region />
     </div>
     <div :id='$style.body'>
-      <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
-        <Item :product='product' />
+      <div ref='products' :id='$style.products' :style='{"height": height}'>
+        <div v-for='(product, i) in products' :key='product.id' :class='$style.product'>
+          <Item :product='product' />
+        </div>
+        <div :class='$style.propose'>
+          <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+        </div>
       </div>
-      <div :id='$style.propose'>
-        <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
-        <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
+      <div :class='$style.propose'>
+        <a v-if='maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
       </div>
-
     </div>
   </section>
 </template>
@@ -66,6 +69,15 @@ export default {
       }
     }
   },
+  computed: {
+    height() {
+      if (!this.$props.maxItems) {
+        return 'auto'
+      }
+      const height = this.$data.showAllProducts ? this.$refs.products.scrollHeight : 200
+      return `${height}px`
+    },
+  },
 }
 </script>
 
@@ -86,6 +98,10 @@ export default {
 #body > a
   color: #454545
 
+#products
+  overflow: hidden
+  transition: height 0.5s
+
 .product
   @media only screen and (max-width: 600px)
     padding: 20pt 5pt
@@ -94,13 +110,13 @@ export default {
   display: flex
   justify-content: flex-end
 
-#propose
+.propose
   display: flex
   flex-direction: column
   align-items: flex-end
   font-size: 0.9em
 
-#propose a
+.propose a
   color: #454545
   margin: 3pt
 

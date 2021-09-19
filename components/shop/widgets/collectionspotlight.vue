@@ -135,7 +135,7 @@ export default {
 #addtocartcontainer
   display: flex
   flex-direction: column
-  margin-top: 20pt
+  margin-top: 10pt
   align-items: flex-end
 
 .price
