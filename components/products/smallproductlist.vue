@@ -99,7 +99,7 @@ export default {
   color: #454545
 
 #products
-  overflow: hidden
+  overflow-y: hidden
   transition: height 0.5s
 
 .product

@@ -26,9 +26,9 @@
         <div v-for='(product, i) in products' :key='product.id' :class='$style.product'>
           <Item :product='product' />
         </div>
-          <div :class='$style.propose'>
-            <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
-          </div>
+      </div>
+      <div :class='$style.propose'>
+        <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
       </div>
     </div>
     <div :class='$style.propose'>
@@ -65,6 +65,15 @@ export default {
       }
     }
   },
+  computed: {
+    height() {
+      if (!this.$props.maxItems) {
+        return 'auto'
+      }
+      const height = this.$data.showAllProducts ? this.$refs.products.scrollHeight : 200
+      return `${height}px`
+    },
+  },
 }
 </script>
 
@@ -81,8 +90,7 @@ export default {
 
 #body
   display: flex
-  align-items: center
-  flex-wrap: wrap
+  flex-direction: column
 
 .center
   justify-content: center
@@ -93,6 +101,9 @@ export default {
     justify-content: center
 
 #products
+  display: flex
+  flex-wrap: wrap
+  width: 100%
   overflow: hidden
   transition: height 0.5s
 
