@@ -29,8 +29,8 @@
           <div v-html='$md.render(appfeature.title)'></div>
         </div>
         <span  :class="$style.arrow">
-          <span :class="$style.leftBar" :style='{"transform": (open? "rotate(45deg)" : "rotate(-45deg)")}'></span>
-          <span :class="$style.rightBar" :style='{"transform": (open? "rotate(-45deg)" : "rotate(45deg)")}'></span>
+          <span :class="$style.leftBar" :style='{"transform": (open? "rotate(-45deg)" : "rotate(45deg)")}'></span>
+          <span :class="$style.rightBar" :style='{"transform": (open? "rotate(45deg)" : "rotate(-45deg)")}'></span>
         </span>
       </div>
       <transition @before-enter='beforeEnter' @before-leave='beforeLeave' @enter='enter' @leave='leave'>

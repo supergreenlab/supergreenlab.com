@@ -44,11 +44,6 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Top from '~/components/home/top.vue'
-import SectionTitle from '~/components/widgets/sectiontitle.vue'
-import TitleStep from '~/components/widgets/titlestep.vue'
-import Footer from '~/components/layout/footer.vue'
-import Promocode from '~/components/layout/overlay-promocode.vue'
-import Newsletter from '~/components/layout/newsletter.vue'
 import BlockStep from '~/components/home/blockstep.vue'
 import BlockExamples from '~/components/home/blockexamples.vue'
 import BlockBundle from '~/components/home/blockbundle.vue'
@@ -56,13 +51,14 @@ import BlockApp from '~/components/home/blockapp.vue'
 import BlockGuide from '~/components/home/blockguide.vue'
 import BlockDiscord from '~/components/home/blockdiscord.vue'
 import BlockShop from '~/components/home/blockshop.vue'
+import Newsletter from '~/components/layout/newsletter.vue'
+import Footer from '~/components/layout/footer.vue'
+import Promocode from '~/components/layout/overlay-promocode.vue'
 
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
-import { leds, accessories, bundles, collectionWithSlug, productsWithTypes, productsForCollection, } from '~/lib/json_db.js'
-
 export default {
-  components: { Header, SectionTitle, TitleStep, Top, Footer,  Promocode, Newsletter, BlockStep , BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
+  components: { Header, Top, Footer, Promocode, Newsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -98,29 +94,11 @@ export default {
     }
   },
 	computed: {
-		bundles() {
-			return bundles()
-		},
     promo() {
       const discount = this.$store.state.checkout.discount.value,
             promocode = this.$store.state.checkout.promocode.value
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
-    },
-    furnitures() {
-      return productsForCollection(collectionWithSlug('homepage-furniture'))
-    },
-    sglSpareParts() {
-      return leds().concat(accessories())
-    },
-    soil() {
-      return productsWithTypes(['SOIL', 'POT'])
-    },
-    nutrients() {
-      return productsWithTypes(['NUTRIENT'])
-    },
-    tools() {
-      return productsWithTypes(['TOOLS'])
     },
 	},
 
