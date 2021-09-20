@@ -56,7 +56,7 @@ export default {
 #container
   display: flex
   width: 100%
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 800px)
     flex-direction: column
 
 #body
@@ -78,9 +78,9 @@ export default {
   width: 300pt
   height: 300pt
   background-position: center
-  background-size: cover
+  background-size: contain
   background-repeat: no-repeat
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 800px)
     width: 100%
 
 #productlist

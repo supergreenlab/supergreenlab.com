@@ -88,8 +88,11 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   background-position: center
+  @media only screen and (max-width: 1100px) and (min-width: 600px)
+    width: 200pt
+    height: 200pt
   @media only screen and (max-width: 600px)
-    width: 100%
+    width: 100%    
 
 #text
   display: flex
@@ -139,7 +142,7 @@ export default {
 
 #products
   display: flex
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 1000px)
     flex-direction: column
 
 #list

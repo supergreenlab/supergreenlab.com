@@ -112,7 +112,7 @@ export default{
   justify-content: space-between
   width: 100%
   margin-top: 62.25pt
-  @media only screen and (max-width: 1100px)
+  @media only screen and (max-width: 1500px)
     justify-content: center
     margin-top: 75pt
 
@@ -125,8 +125,8 @@ export default{
   width: 100%
   height: 100%
   overflow: visible
-  @media only screen and (max-width: 1100px)
-    margin: 10pt
+  @media only screen and (max-width: 1500px)
+    margin: 10pt 0
 
 .widgetcontainer
   margin: 20pt 0
@@ -139,12 +139,12 @@ export default{
   display:flex
   flex-direction: column
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
-  width: 170pt
+  width: 200pt
   position: fixed
   left: 0
   overflow: hidden
   background-color: #f4f4f4
-  @media only screen and (max-width: 1100px)
+  @media only screen and (max-width: 1500px)
     display: none
 
 #rightcolumn
@@ -157,10 +157,10 @@ export default{
   margin-right: 5pt
   display:flex
   flex-direction: column
-  width: 170pt
+  width: 200pt
   overflow: hidden
   background-color: #f4f4f4
-  @media only screen and (max-width: 1100px)
+  @media only screen and (max-width: 1500px)
     display: none
 
 #searchbar
@@ -171,8 +171,5 @@ export default{
   margin-bottom: 5pt
   @media only screen and (max-width: 900px)
     display:none
-
-
-
 
 </style>

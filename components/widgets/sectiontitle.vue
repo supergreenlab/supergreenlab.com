@@ -78,7 +78,7 @@ export default {
   font-size: 2.7em
   color: #323232
   @media only screen and (max-width: 600px)
-    font-size: 2.2em
+    font-size: 2.1em
     margin: 5pt
 
 #brackets

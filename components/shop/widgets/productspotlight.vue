@@ -94,6 +94,9 @@ export default {
 #pic
   width: 300pt
   height: 300pt
+  @media only screen and (max-width: 1100px) and (min-width: 600px)
+    width: 200pt
+    height: 200pt
   @media only screen and (max-width: 600px)
     width: 100%
 

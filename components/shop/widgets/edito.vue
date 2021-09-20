@@ -62,6 +62,9 @@ export default {
   font-size: 2em
   color: #5E5E5E
   margin: 10pt 0 10pt 0
+  @media only screen and (max-width: 1100px) and (min-width: 600px)
+    width: 200pt
+    height: 200pt
   @media only screen and (max-width: 600px)
     font-size: 1.5em
 
