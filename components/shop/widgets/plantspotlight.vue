@@ -162,9 +162,10 @@ export default {
   flex-direction: column
 
 #title
+  font-family: Roboto
   text-transform: uppercase
   font-weight: bold
-  font-size: 2.5em
+  font-size: 2em
   margin-bottom: 10pt
   color: #5E5E5E
   @media only screen and (max-width: 600px)

@@ -50,10 +50,11 @@ export default {
   margin: 5pt
 
 #title
+  font-family: Roboto
   text-transform: uppercase
   font-weight: bold
   margin-bottom: 10pt
-  font-size: 2.5em
+  font-size: 2em
   color: #5E5E5E
   margin: 10pt 0 10pt 0
   @media only screen and (max-width: 600px)

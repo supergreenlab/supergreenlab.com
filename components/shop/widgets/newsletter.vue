@@ -61,6 +61,7 @@ export default {
   align-items: center
 
 #title
+  font-family: Roboto
   font-weight: bold
   font-size: 1.5em
   margin-bottom: 10pt

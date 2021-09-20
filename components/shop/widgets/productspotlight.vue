@@ -106,9 +106,10 @@ export default {
     margin: 0
 
 #title
+  font-family: Roboto
   text-transform: uppercase
   font-weight: bold
-  font-size: 2.5em
+  font-size: 2em
   color: #5E5E5E
   margin-bottom: 10pt
   margin: 10pt 0 10pt 0
