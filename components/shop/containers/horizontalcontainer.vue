@@ -18,7 +18,9 @@
 
 <template>
   <section :id='$style.container'>
-    <h2 v-if='config.title' :id="$style.title">{{config.title}}</h2>
+    <SectionTitle :title='config.title'
+                  center='true'
+                  border='true'/>
     <div :id='$style.header'>
       <div v-if='config.picture.length' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
       <div v-if='config.description' :id='$style.text'>
@@ -32,8 +34,10 @@
 </template>
 
 <script>
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
+  components: { SectionTitle, },
   props: ['config',],
 }
 
