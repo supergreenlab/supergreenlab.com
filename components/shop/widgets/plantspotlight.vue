@@ -167,6 +167,8 @@ export default {
   font-size: 2.5em
   margin-bottom: 10pt
   color: #5E5E5E
+  @media only screen and (max-width: 600px)
+    font-size: 1.5em
 
 #plantcontainer
   display: flex

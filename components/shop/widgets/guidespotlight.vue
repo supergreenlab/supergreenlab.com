@@ -79,6 +79,7 @@ export default {
   color: #5E5E5E
   @media only screen and (max-width: 600px)
     margin-bottom: 0
+    font-size: 1.5em
 
 #description
   text-align: justify

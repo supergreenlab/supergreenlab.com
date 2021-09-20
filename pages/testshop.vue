@@ -33,7 +33,7 @@
           </div>
           <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
             <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
-              <component v-if='widgetExpiration(w) == false' :is='componentForName(w.component)' :config='w'></component>
+              <component :is='componentForName(w.component)' :config='w'></component>
             </div>
           </component>
         </div>
@@ -75,11 +75,8 @@ const components = {Header, Product, Search ,BannerContainer, CarrouselContainer
 export default{
   components,
   computed: {
-    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.test == true && st.location == location).sort((o1, o2) => o1.order - o2.order),
-    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)),
-    widgetExpiration: () => (widget) => {
-      return Date.parse(widget.expiration) < (new Date()).getTime()
-    }
+    containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
+    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) < (new Date()).getTime()),
   },
   data() {
     return {

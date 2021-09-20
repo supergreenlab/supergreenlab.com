@@ -20,7 +20,7 @@
   <section :id="$style.container">
     <div v-if='config.picture' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
     <div :id='$style.text'>
-      <h2 v-if='config.title' :id="$style.titleList">{{config.title}}</h2>
+      <h2 v-if='config.title' :id="$style.title">{{config.title}}</h2>
       <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
     </div>
   </section>
@@ -46,21 +46,23 @@ export default {
 
 <style module lang=stylus>
 
-
 #container
   display: flex
   width: 100%
   margin: 5pt
   @media only screen and (max-width: 600px)
     flex-direction: column
+    margin: 0pt
 
-#titleList
+#title
   text-transform: uppercase
   font-weight: bold
   margin-bottom: 10pt
   font-size: 2.5em
   color: #5E5E5E
   margin: 10pt 0 10pt 0
+  @media only screen and (max-width: 600px)
+    font-size: 1.5em
 
 #pic
   width: 300pt

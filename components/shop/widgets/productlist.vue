@@ -56,7 +56,6 @@ export default {
 #container
   display: flex
   width: 100%
-  margin: 5pt
   @media only screen and (max-width: 600px)
     flex-direction: column
 
@@ -71,6 +70,8 @@ export default {
   font-size: 2.5em
   color: #5E5E5E
   margin: 10pt 0 10pt 0
+  @media only screen and (max-width: 600px)
+    font-size: 1.5em
 
 #pic
   width: 300pt
