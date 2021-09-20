@@ -18,26 +18,22 @@
 
  <template>
   <section :id='$style.container'>
-    <nuxt-link :to="{ path: '/shop',hash:'#bundles'}" :class="$style.section">Bundles</nuxt-link>
-    <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#spotlight'}" :class="$style.section">Spotlight</nuxt-link>
-    <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#addons'}" :class="$style.section">SGL Addons</nuxt-link>
-    <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#growing'}" :class="$style.section">Spare Parts</nuxt-link>
-    <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#products'}" :class="$style.section">Growspace</nuxt-link>
-    <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#furnitures'}" :class="$style.section">Growing</nuxt-link>
-    <span :class="$style.separation"></span>
-    <nuxt-link :to="{ path: '/shop',hash:'#tools'}" :class="$style.section">Tools</nuxt-link>
+    <div v-for='(c, i) in items' :key='c.id' :class='$style.navitem'>
+      <nuxt-link :to="{ hash: `#${c.slug}`}" :class="$style.section">Bundles</nuxt-link>
+      <span v-if='i != items.length-1' :class="$style.separation"></span>
+    </div>
   </section>
 </template>
 
 <script>
 
 export default {
-
+  props: ['containers',],
+  computed: {
+    items() {
+      return this.$props.containers.filter(c => c.menu)
+    },
+  },
 }
 
 </script>
@@ -45,7 +41,6 @@ export default {
 <style module lang=stylus>
 #container
   display: flex
-  justify-content: space-around
   margin-top: 3px
   margin-bottom: 3px
   @media only screen and (max-width: 600px)
@@ -66,9 +61,11 @@ export default {
   cursor: pointer
 
 .separation
-  border-left: 1px solid
-  @media only screen and (max-width: 600px)
-    margin-left: 10px
-    margin-right: 10px
+  margin-left: 10px
+  margin-right: 10px
+
+.navitem
+  display: flex
+  padding: 0 20pt
 
 </style>

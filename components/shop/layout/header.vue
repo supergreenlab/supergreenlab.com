@@ -23,7 +23,7 @@
         <Header/>
       </div>
       <div :id="$style.navbar">
-        <NavBar />
+        <NavBar :containers='containers' />
       </div>
       <div :id="$style.searchbar">
         <Search />
@@ -35,7 +35,7 @@
           <Header/>
         </div>
         <div :id="$style.navbar">
-          <NavBar />
+          <NavBar :containers='containers' />
         </div>
         <div :id="$style.searchbar">
           <Search />
@@ -54,6 +54,7 @@ import Search from '~/components/shop/widgets/popupsearch.vue'
 
 export default {
   components: { Header, NavBar, Search },
+  props: ['containers',],
   data() {
     return {
       showHeader: true,

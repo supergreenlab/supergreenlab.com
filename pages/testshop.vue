@@ -19,7 +19,7 @@
 <template>
   <section :id="$style.container">
       <div :id='$style.header'>
-        <Header/>
+        <Header :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
       </div>
       <div :id='$style.fullcontent'>
         <div :id='$style.leftcolumn'>
@@ -31,7 +31,7 @@
           <div :id="$style.searchbar">
             <Search :onShowResults='onShowResults' />
           </div>
-          <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+          <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
             <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
               <component :is='componentForName(w.component)' :config='w'></component>
             </div>
@@ -143,6 +143,7 @@ export default{
   position: fixed
   left: 0
   overflow: hidden
+  background-color: #f4f4f4
   @media only screen and (max-width: 1100px)
     display: none
 
@@ -158,6 +159,7 @@ export default{
   flex-direction: column
   width: 170pt
   overflow: hidden
+  background-color: #f4f4f4
   @media only screen and (max-width: 1100px)
     display: none
 

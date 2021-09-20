@@ -34,6 +34,5 @@ export default {
 
 #container
   position: relative
-  height: 165pt
 
 </style>

@@ -18,15 +18,12 @@
 
 <template>
 <section :id="$style.container" >
-  <!-- <nuxt-link :to="config.link">Coucou</nuxt-link> -->
-  <div @click='open(config.link)'>
+  <div @click='open()'>
     <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted>
       <source :src="require(`~/assets/img/${config.picture[0].filePath}`)" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div v-else :id='$style.pictureBanner' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
-    <!-- <div :id='$style.linkBanner'>{{ config }}</div> -->
-    </div>
+    <img v-else :id='$style.pictureBanner' :src='require(`~/assets/img/${config.picture[0].fileFull}`)' />
   </div>
 
 </section>
@@ -45,16 +42,13 @@ export default {
       const media = config.picture[0]
       return media
     },
-    link() {
-      const { config } = this.$props
-      const link = config.link
-      // console.log(config)
-      return link
-    }
   },
   methods: {
-    open(link) {
-      open(link, '_blank')
+    open() {
+      const { config: { link } } = this.$props
+      if (link) {
+        open(link, '_blank')
+      }
     }
   },
 }
@@ -67,14 +61,6 @@ export default {
 
 #pictureBanner
   width: 100%
-  height: 250pt
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
-  display: flex
-  flex-direction: column
-  @media only screen and (max-width: 600px)
-    height: 150pt
 
 #video
   width: 100%
