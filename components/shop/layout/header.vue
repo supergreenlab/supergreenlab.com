@@ -169,7 +169,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.8)
   position: fixed
   width: 100%
-  top: 45pt
+  top: 42pt
   @media only screen and (max-width: 900px)
     top: 37.8pt
 

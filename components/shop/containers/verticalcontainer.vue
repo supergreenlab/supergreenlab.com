@@ -18,6 +18,7 @@
 
 <template>
   <section :id='$style.container'>
+    <div>{{config}}</div>
     <div :id="$style.verticalContainer">
       <slot></slot>
     </div>
