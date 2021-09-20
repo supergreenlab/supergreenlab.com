@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <h2 v-if='config.title' :id="$style.title">{{config.title}}</h2>
     <div :id='$style.header'>
-      <div v-if='config.picture' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+      <div v-if='config.picture.length' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
       <div v-if='config.description' :id='$style.text'>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
       </div>
