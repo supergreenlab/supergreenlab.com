@@ -67,7 +67,6 @@ export default {
 #body
   display: flex
   flex-direction: column
-  width: 100%
 
 #text
   display: flex
@@ -89,19 +88,21 @@ export default {
   background-position: center
   background-size: contain
   background-repeat: no-repeat
-  @media only screen and (max-width: 800px)
+  @media only screen and (max-width: 1100px) and (min-width: 600px)
     width: 200pt
-    height: 100%
+    height: 200pt
+  @media only screen and (max-width: 600px)
+    width: 100%    
 
 .bigpic
-  @media only screen and (min-width: 800px)
+  @media only screen and (max-width: 1000px)
     display: none
 
 .smallpic
   width: 150pt
   height: 150pt
   margin-right: 10pt
-  @media only screen and (max-width: 800px)
+  @media only screen and (min-width: 1000px)
     display: none
 
 #productlist
