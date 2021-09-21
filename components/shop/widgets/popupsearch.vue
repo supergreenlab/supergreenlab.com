@@ -73,7 +73,7 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 100%
+  width: 80%
 
 #searchlist
   width: 100%
