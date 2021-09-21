@@ -20,8 +20,8 @@
   <section>
     <div :id="$style.container">
       <div :id="$style.guidespotlightcontainer">
-        <h2 :id="$style.title" v-html='$md.render(config.title)'></h2>
-        <div :id="$style.description" v-html='$md.render(config.description)'></div>
+        <h2 v-if='config.title' :id="$style.title" v-html='$md.render(config.title)'></h2>
+        <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
         <div :id="$style.spotlightContent">
           <CardGuide :guide='guide' userStep='0' :class='$style.cardContainer' />
           <div :id="$style.require">
@@ -38,6 +38,7 @@
 import CardGuide from '~/components/guides/cardguide.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
+import { guides } from '~/config/guides.json'
 import { products } from '~/lib/json_db.js'
 
 export default {
@@ -46,15 +47,12 @@ export default {
   computed: {
     guide() {
       const { config } = this.$props
-      const slug = config.guideslug
+      const slug = guides.find(g => g.id == config.guide).slug
       const guide = require(`~/config/guide-${slug}.json`)
       return guide
     },
     products() {
-      const { config } = this.$props
-      const slug = config.guideslug
-      const guide = require(`~/config/guide-${slug}.json`)
-      return products(guide.requires || [])
+      return products(this.guide.requires || [])
     }
   }
 }
@@ -84,15 +82,31 @@ export default {
     font-size: 1.5em
 
 #description
+  color: #5e5e5e
   text-align: justify
   margin: 0 10pt
   @media only screen and (max-width: 600px)
     margin: 5pt
 
+#description strong
+  color: #3BB30B
+  font-weight: 600
+
+#description ul
+  padding: 0
+  list-style-type: none
+
+#description ul li
+  margin-bottom:7pt
+
+#description ul li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
+
 #spotlightContent
   display:flex
   justify-content: center
-  align-items: center
   margin: 5pt
   @media only screen and (max-width: 1200px)
     flex-direction: column

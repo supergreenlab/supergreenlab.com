@@ -6,7 +6,7 @@ const { FETCH_DEV_GUIDES } = process.env
 
 module.exports.fetchWidgets = async () => {
   await mkAssetsDir('widgets')
-  let widgets = await fetchTable('Widgets', ['slug', 'component', 'title', 'description', 'collections', 'picture', 'link', 'products', 'producttypes', 'plantid', 'guideslug','date', 'expiration'])
+  let widgets = await fetchTable('Widgets', ['slug', 'component', 'title', 'description', 'collections', 'picture', 'link', 'products', 'producttypes', 'plantid', 'guide','date', 'expiration'])
   let shop = await fetchTable('Shop', ['slug', 'menu', 'title', 'description', 'picture', 'location', 'component', 'widgets', 'order', 'test',])
 
   let picPromise = Promise.resolve()
