@@ -38,7 +38,7 @@
 
       </div>
     </div>
-    
+
     <div :class='`${$style.products} ${$style.smallproducts}`'>
       <div :id='$style.list'>
         <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
