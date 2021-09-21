@@ -18,7 +18,9 @@
 
 <template>
   <section :id='$style.container'>
+    <div :id="$style.logosearch" :style='{"background-image": `url(${require(`~/assets/img/searchlogo.png`)})`}'></div>
     <input v-model="value" :placeholder="placeholder">
+    <div :id="$style.btnerase" @click="value = '' ">Erase</div>
   </section>
 </template>
 <script>
@@ -125,21 +127,35 @@ export default {
   justify-content: center
   align-items: center
   width: 100%
+  border: 3px solid rgb(241, 243, 242)
+  transition: all 0.6s ease 0s
+  border-radius: 0
 
 #container > input
-  background-color: rgba(255,255,255,0.8)
-  font-size: 1.2em
-  border: 0.2pt solid black
+  font-size: 1em
   width: 100%
-  border-radius: 3pt
-  padding: 2pt 5pt
-  margin: 5pt 10pt
+  padding: 5pt
   @media only screen and (max-width: 600px)
     width: 90%
 
-#container > input:hover
-  background-color: #e8e8e8
+#container:hover
+  border: 3px solid darkgrey
 
+#logosearch
+  padding: 0 15pt
+  width: 25pt
+  height: 15pt
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
 
+#btnerase
+  padding: 5pt 15pt
+  background-color: #f1f2f3
+  border: 3px solid rgb(241, 243, 242)
+  cursor: pointer
+  color: #5e5e5e
+  font-family: Roboto
+  font-weight: bold
 
 </style>
