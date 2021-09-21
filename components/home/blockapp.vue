@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.title'>
+    <div :class='$style.title'>
       <SectionTitle title='The **grow assistant app** that has your back'
                       center='true'
                       border='true'/>
@@ -36,7 +36,7 @@
       <div :class="$style.description">
         <div :class="$style.bullets">
           <div>There’s no secret to growing nice plants, <strong>you have to become a better grower yourself</strong>.</div>
-          <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> app does not only control the box parameters, it’s also your <strong>private grow diary & assistant</strong>.</div>
+          <div>The <span :class="$style.bolder"><b>Super</b></span><strong>Green</strong><b>Lab</b> app does not only control the box parameters, it’s also your <strong>private grow diary & assistant</strong>.</div>
           <div><strong>This app will help you grow green thumbs</strong>, by allowing you to keep track of all actions you perform on your plant and its environment.</div>
           <div>Setup reminders and alerts, take notes and pics of your plant trainings and <strong>boost your growing skills</strong>.</div>
           <div>And because we’re a community before all, you can also <strong>check other people’s public diaries for help and inspiration</strong>!</div>
@@ -63,13 +63,13 @@
       </div>
       <div :class="$style.description">
         <div :class="$style.bullets">
-          <div>Keep an eye on your plant environement <strong>from anywhere</strong>.</div>
-          <div><strong>Configure your alerts</strong>, the app will tell you when the temperature or humidity is out of range</div>
-          <div>Keep track of your waterings to make sure your don’t over or under water,<strong> setup reminders</strong>!</div>
-          <div><strong>Measure the progression</strong> of your plant over time</div>
-          <div><strong>Add a remote camera</strong> to your grow box and get <strong>daily/weekly timelapses</strong></div>
-          <div><strong>Take notes and pics of your plant training</strong> and boost your growing skills</div>
-          <div>Consult other people’s public diaries for <strong>help and inspiration</strong></div>
+          <div>📡  Keep an eye on your plant environement <strong>from anywhere</strong>.</div>
+          <div>🌡  <strong>Configure your alerts</strong>, the app will tell you when the temperature or humidity is out of range</div>
+          <div>🍼 Keep track of your waterings to make sure your don’t over or under water,<strong> setup reminders</strong>!</div>
+          <div>📊 <strong>Measure the progression</strong> of your plant over time</div>
+          <div>📷 <strong>Add a remote camera</strong> to your grow box and get <strong>daily/weekly timelapses</strong></div>
+          <div>📝 <strong>Take notes and pics of your plant training</strong> and boost your growing skills</div>
+          <div>👀 Consult other people’s public diaries for <strong>help and inspiration</strong></div>
           <div>And<strong> many more</strong>..</div>
         </div>
       </div>
@@ -109,7 +109,7 @@ export default {
   color: #323232
   margin-bottom: 20pt
 
-#title
+.title
   font-family: Roboto
   width: 100%
   margin: 30pt 0 30pt 0

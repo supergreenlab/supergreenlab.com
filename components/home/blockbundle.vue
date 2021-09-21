@@ -39,7 +39,7 @@
       <div :class="$style.description">
         <div :class="$style.titleCard">LED PANELS</div>
         <div :class="$style.bullets">
-          <div><strong>Up to 6 LED panels*</strong>for a perfect coverage of your plant, even in the tightest space</div>
+          <div><strong>Up to 6 LED panels*</strong> for a perfect coverage of your plant, even in the tightest space</div>
           <div><strong>LED technologies</strong> have revolutionized the way we can grow <strong>cannabis</strong>; more light and less heat means we’re able to <strong>grow in the tightest space</strong></div>
           <div :class="$style.asterisk"><strong>* Coming soon</strong>: more than 6 panels on a controller, bigger SGL panels, and compatibility with other products on the market!</div>
         </div>
@@ -61,9 +61,9 @@
       <div :class="$style.description">
         <div :class="$style.titleCard">ENVIRONMENT CONTROL</div>
         <div :class="$style.bullets">
-          <div><strong>Temperature and humidity sensor </strong>to make sure the plant is comfortable</div>
-          <div><strong>Automatically controlled ventilation </strong>based on temperature or humidity</div>
-          <div><strong>Configure alerts and receive a notification </strong>when the temperature or humidity gets out of range.</div>
+          <div><strong>Temperature and humidity sensor</strong> to make sure the plant is comfortable</div>
+          <div><strong>Automatically controlled ventilation</strong> based on temperature or humidity</div>
+          <div><strong>Configure alerts and receive a notification</strong> when the temperature or humidity gets out of range.</div>
         </div>
       </div>
     </div>
@@ -76,14 +76,14 @@
           </div>
           <div :class="$style.todo">
             <div :class="$style.smalltitle">Keep everything under control with</div>
-            <div :class="$style.subtitle">Super<strong>Green</strong>Controller</div>
+            <div :class="$style.subtitle"><b>Super</b><strong>Green</strong><b>Controller</b></div>
           </div>
         </div>
       </div>
       <div :class="$style.description">
         <div :class="$style.titleCard">SMART CONTROLLER & MONITORING APP</div>
         <div :class="$style.bullets">
-          <div><strong>Controlled</strong>from a mobile app, <strong>from anywhere </strong> with internet access.</div>
+          <div><strong>Controlled</strong> from a mobile app, <strong>from anywhere</strong> with internet access.</div>
           <div><strong>Can control up to three independant spaces</strong> at the same time.</div>
           <div><strong>And much more</strong>: auto-watering, VPD, CO2 control, UVa schedules, emerson effect etc...</div>
         </div>

@@ -35,11 +35,11 @@
       <div :id='$style.description'>
         <div :id='$style.title'>Welcome to the <strong>best hobby</strong> in the world!</div>
         <div :id='$style.bullets'>
-          <div>Super<strong>Green</strong>Lab is a <strong>community</strong> dedicated to <strong>personal home growing in small and discreet spaces</strong>.</div>
+          <div><b>Super</b><strong>Green</strong><b>Lab</b> is a <strong>community</strong> dedicated to <strong>personal home growing in small and discreet spaces</strong>.</div>
           <div>If there’s one plant that should be <strong>home grown</strong>, it’s <strong>cannabis</strong>. Even a single plant can give you the <strong>quantity and quality to become self sufficient</strong>.</div>
           <div>And <strong>no need for a big and ugly setup anymore</strong>!</div>
           <div>Pick any furniture that fits your taste and <strong>grow weed out of it</strong>!</div>
-          <div>Super<strong>Green</strong>Lab brings you all the technology and knowledge to <strong>start growing your own</strong>.</div>
+          <div><b>Super</b><strong>Green</strong><b>Lab</b> brings you all the technology and knowledge to <strong>start growing your own</strong>.</div>
         </div>
       </div>
     </div>
