@@ -18,22 +18,39 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${picture}`)})`}'></div>
-    <div :id='$style.text'>
-      <h2 :id="$style.title" v-html='$md.render(title)'></h2>
-      <div :id="$style.description" v-html='$md.render(description)'></div>
-      <div :id='$style.products'>
-        <div :id='$style.list'>
-          <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
-        </div>
-        <div :id='$style.addtocartcontainer'>
-          <div :class='$style.price'>
-            <Price :lineItems='lineItems' :freeshipping='false' />
+    <div :id='$style.body'>
+      <div :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${picture}`)})`}'></div>
+      <div :id='$style.text'>
+        <h2 :id="$style.title" v-html='$md.render(title)'></h2>
+        <div :id="$style.description" v-html='$md.render(description)'></div>
+
+        <div :class='`${$style.products} ${$style.bigproducts}`'>
+          <div :id='$style.list'>
+            <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
           </div>
-          <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='collection.slug' :lineItems='lineItems' :discreet=false />
+          <div :id='$style.addtocartcontainer'>
+            <div :class='$style.price'>
+              <Price :lineItems='lineItems' :freeshipping='false' />
+            </div>
+            <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='collection.slug' :lineItems='lineItems' :discreet=false />
+          </div>
         </div>
+
       </div>
     </div>
+    
+    <div :class='`${$style.products} ${$style.smallproducts}`'>
+      <div :id='$style.list'>
+        <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
+      </div>
+      <div :id='$style.addtocartcontainer'>
+        <div :class='$style.price'>
+          <Price :lineItems='lineItems' :freeshipping='false' />
+        </div>
+        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='collection.slug' :lineItems='lineItems' :discreet=false />
+      </div>
+    </div>
+
   </section>
 </template>
 
@@ -78,6 +95,11 @@ export default {
 <style module lang=stylus>
 
 #container
+  display: flex
+  flex-direction: column
+  margin: 0 10pt
+
+#body
   display: flex
   @media only screen and (max-width: 600px)
     flex-direction: column
@@ -140,10 +162,18 @@ export default {
 .productpage
   color: #3bb30b
 
-#products
+.products
   display: flex
-  @media only screen and (max-width: 1000px)
+  @media only screen and (max-width: 600px)
     flex-direction: column
+
+.bigproducts
+  @media only screen and (max-width: 1000px)
+    display: none
+  
+.smallproducts
+  @media only screen and (min-width: 1000px)
+    display: none
 
 #list
   flex: 1

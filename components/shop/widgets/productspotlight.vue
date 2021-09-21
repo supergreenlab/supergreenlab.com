@@ -86,7 +86,7 @@ export default {
 
 #container
   display: flex
-  margin: 5pt
+  margin: 0 10pt
   /* flex-direction: column */
   @media only screen and (max-width: 600px)
     flex-direction: column

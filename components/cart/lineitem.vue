@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.title'>
-      <h2>{{ lineItem.product.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
+      <h2>{{ brandProduct.name }} BY&nbsp;<a :id='$style.brand' :href='brand.url' target='_blank'>{{ brand.name }}</a></h2>
       <a :id='$style.linkto' v-if='showProductLink' :href='productURL' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>

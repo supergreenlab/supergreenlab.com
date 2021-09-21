@@ -18,10 +18,15 @@
 
 <template>
   <section :id='$style.container'>
-    <div v-if='config.picture' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
-    <div :id='$style.text'>
-      <h2 v-if='config.title' :id="$style.titleList">{{config.title}}</h2>
-      <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
+    <div v-if='config.picture' :class='`${$style.pic} ${$style.bigpic}`' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+    <div :id='$style.body'>
+      <div :id='$style.text'>
+        <div v-if='config.picture' :class='`${$style.pic} ${$style.smallpic}`' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+        <div>
+          <h2 v-if='config.title' :id="$style.titleList">{{config.title}}</h2>
+          <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
+        </div>
+      </div>
       <SmallProductList :products='products' :center=true :maxItems='2'/>
     </div>
   </section>
@@ -55,13 +60,17 @@ export default {
 
 #container
   display: flex
-  width: 100%
+  margin: 0 10pt
   @media only screen and (max-width: 800px)
     flex-direction: column
 
 #body
   display: flex
-  flex-wrap: wrap
+  flex-direction: column
+  width: 100%
+
+#text
+  display: flex
 
 #titleList
   font-family: Roboto
@@ -74,14 +83,26 @@ export default {
   @media only screen and (max-width: 600px)
     font-size: 1.5em
 
-#pic
+.pic
   width: 300pt
   height: 300pt
   background-position: center
   background-size: contain
   background-repeat: no-repeat
   @media only screen and (max-width: 800px)
-    width: 100%
+    width: 200pt
+    height: 100%
+
+.bigpic
+  @media only screen and (min-width: 800px)
+    display: none
+
+.smallpic
+  width: 150pt
+  height: 150pt
+  margin-right: 10pt
+  @media only screen and (max-width: 800px)
+    display: none
 
 #productlist
   @media only screen and (max-width: 900px)

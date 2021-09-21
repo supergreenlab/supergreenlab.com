@@ -90,6 +90,9 @@ export default {
   margin: 4pt 0
   white-space: nowrap
   transition: opacity 0.2s
+  @media only screen and (max-width: 1000px)
+    padding: 7pt 22pt
+    font-size: 1.1em
 
 #container.small > #button
   padding: 6pt 18pt
