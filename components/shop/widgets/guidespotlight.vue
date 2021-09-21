@@ -110,6 +110,7 @@ export default {
   margin: 5pt
   @media only screen and (max-width: 1200px)
     flex-direction: column
+    align-items: center
 
 .cardContainer
   display: flex

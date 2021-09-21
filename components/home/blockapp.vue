@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container">
-    <div :class='$style.title'>
+    <div :id='$style.title'>
       <SectionTitle title='The **grow assistant app** that has your back'
                       center='true'
                       border='true'/>
@@ -34,7 +34,6 @@
         </div>
       </div>
       <div :class="$style.description">
-        <!-- <div :id='$style.title'>Like a tiny <strong>ecosystem</strong>, in a cupboard </div> -->
         <div :class="$style.bullets">
           <div>There’s no secret to growing nice plants, <strong>you have to become a better grower yourself</strong>.</div>
           <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> app does not only control the box parameters, it’s also your <strong>private grow diary & assistant</strong>.</div>
@@ -110,25 +109,12 @@ export default {
   color: #323232
   margin-bottom: 20pt
 
-.title
+#title
   font-family: Roboto
   width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
-
-#title
-  font-size: 2.3em
-  color: #323232
-  font-weight: bold
-  margin-bottom: 15pt
-  @media only screen and (max-width: 600px)
-    font-size: 1.7em
-    margin: 5pt
-
-#title strong
-  color: #3BB30B
-  font-weight: bold
 
 .body
   display: flex

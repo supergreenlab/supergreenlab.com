@@ -18,9 +18,11 @@
 
 <template>
   <section :id='$style.container'>
-    <SectionTitle :title='config.title'
-                  center='true'
-                  border='true'/>
+    <div :class='$style.title'>
+      <SectionTitle :title='config.title'
+                    center='true'
+                    border='true'/>
+    </div>
     <div :id='$style.header'>
       <div v-if='config.picture.length' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
       <div v-if='config.description' :id='$style.text'>
@@ -53,18 +55,14 @@ export default {
 #header
   display: flex
   width: 100%
-  margin: 5pt
+  margin: 5pt 10pt
 
-#title
+.title
   font-family: Roboto
-  text-transform: uppercase
-  font-weight: bold
-  margin-bottom: 10pt
-  font-size: 2em
-  color: #5E5E5E
-  margin: 10pt 0 10pt 0
+  width: 100%
+  margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
-    font-size: 1.5em
+    margin: 0
 
 #pic
   width: 100pt
