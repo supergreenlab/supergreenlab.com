@@ -27,13 +27,16 @@
             <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
           </component>
         </div>
-        <div :id='$style.content'>
-          <component v-if='!showSearchResults' v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
+        <div v-if='!showSearchResults' :id='$style.content'>
+          <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
+            <div :id='$style.spacer'></div>
             <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
               <component :is='componentForName(w.component)' :config='w'></component>
             </div>
           </component>
-          <div v-else :id="$style.searchlist" v-if='searchResults.length'>
+        </div>
+        <div v-else :id='$style.content'>
+          <div :id="$style.searchlist">
             <SmallProductList :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
           </div>
         </div>
@@ -52,6 +55,8 @@ import Header from '~/components/shop/layout/header.vue'
 import Product from '~/components/shop/layout/singleproduct.vue'
 import Footer from '~/components/layout/footer.vue'
 
+import SmallProductList from '~/components/products/smallproductlist.vue'
+
 import BannerContainer from '~/components/shop/containers/bannercontainer.vue'
 import CarrouselContainer from '~/components/shop/containers/carrouselcontainer.vue'
 import VerticalContainer from '~/components/shop/containers/verticalcontainer.vue'
@@ -69,7 +74,7 @@ import Edito from '~/components/shop/widgets/edito.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, Footer}
+const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, Footer}
 
 export default{
   components,
@@ -170,5 +175,10 @@ export default{
   top: 25pt
   background-color: white
   padding: 5pt
+  @media only screen and (min-width: 1500px)
+    padding: 35pt 5pt 5pt 5pt
+
+#spacer
+  height: 10pt
 
 </style>

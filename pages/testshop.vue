@@ -175,6 +175,8 @@ export default{
   top: 25pt
   background-color: white
   padding: 5pt
+  @media only screen and (min-width: 1500px)
+    padding: 35pt 5pt 5pt 5pt
 
 #spacer
   height: 10pt
