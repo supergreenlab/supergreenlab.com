@@ -36,7 +36,7 @@
       <div :class='$style.step'>
         <Step n=3
               title='Start growing'
-              text='24/7 support, join the evergrowing community!</b>'
+              text='<b>24/7 support</b>, join the evergrowing community!</b>'
               icon='plant.svg'
               :vertical=true />
       </div>

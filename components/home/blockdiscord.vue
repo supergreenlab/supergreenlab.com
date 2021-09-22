@@ -40,6 +40,7 @@
           <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> private discord server is home to throusands of continuous discussions about <strong>people’s experiences</strong>.</div>
           <div>Using the search feature will allow you to dig old discussions about <strong>subjects that matter to your case</strong>.</div>
         </div>
+        <nuxt-link to="/discord" :id="$style.btn"><img src='~/assets/img/discord-logo.jpg' />ACCESS DISCORD<br/>SERVER HERE</nuxt-link>
       </div>
     </div>
     <div :class='$style.title'>
@@ -48,7 +49,6 @@
                     subtitle='Here are some discussion topics you’ll find in the private section.'/>
     </div>
     <Discord />
-
   </section>
 </template>
 
@@ -146,9 +146,36 @@ export default {
 #logo
   margin: 5pt
 
-
 .bolder
   font-weight: bold
   color: #323232
+
+#btn
+  font-family: 'Roboto'
+  font-weight: 800
+  width: 250pt
+  background-color: #ffffff
+  border: 4px solid #3bb30b
+  text-align: center
+  font-size: 1.3em
+  display: flex
+  justify-content:center
+  align-items:center
+  padding: 10pt
+  margin: 10pt
+  color: #515151
+  border-radius: 5pt
+  align-self: center
+  text-transform: uppercase
+  cursor: pointer
+  text-decoration: none
+  @media only screen and (max-width: 600px)
+    margin-top: 25pt
+
+#btn > img
+  float: left
+  max-width: 50pt
+  max-height: 50pt
+  margin-right: 10pt
 
 </style>

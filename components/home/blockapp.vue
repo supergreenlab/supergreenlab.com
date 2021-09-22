@@ -72,6 +72,7 @@
           <div>👀 Consult other people’s public diaries for <strong>help and inspiration</strong></div>
           <div>And<strong> many more</strong>..</div>
         </div>
+        <nuxt-link to="/app" :id="$style.btn"><img src='~/assets/img/logo-appstores.png' />INSTALL APP</nuxt-link>
       </div>
     </div>
 
@@ -195,4 +196,33 @@ export default {
 
 .scale:hover
   transform: scale(1.05)
+
+#btn
+  font-family: 'Roboto'
+  font-weight: 800
+  width: 200pt
+  background-color: #ffffff
+  border: 4px solid #3bb30b
+  text-align: center
+  font-size: 1.3em
+  display: flex
+  justify-content:center
+  align-items:center
+  padding: 7pt
+  margin: 10pt
+  color: #515151
+  border-radius: 5pt
+  align-self: center
+  text-transform: uppercase
+  cursor: pointer
+  text-decoration: none
+  @media only screen and (max-width: 600px)
+    margin-top: 25pt
+
+#btn > img
+  float: left
+  max-width: 40pt
+  max-height: 40pt
+  margin-right: 10pt
+
 </style>

@@ -19,7 +19,8 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.title'>
-      <SectionTitle :title='config.title'
+      <SectionTitle v-if='config.title'
+                    :title='config.title'
                     center='true'
                     border='true'/>
     </div>

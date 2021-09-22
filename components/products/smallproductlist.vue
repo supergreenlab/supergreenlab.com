@@ -74,8 +74,8 @@ export default {
       if (!this.$props.maxItems) {
         return 'auto'
       }
-      const height = this.$data.showAllProducts ? this.$refs.products.scrollHeight : 200
-      return `${height}px`
+      const height = this.$data.showAllProducts ? `${this.$refs.products.scrollHeight}px` : `${this.$props.maxItems * 90}pt`
+      return height
     },
   },
 }

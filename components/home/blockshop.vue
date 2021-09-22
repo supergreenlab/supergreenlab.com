@@ -32,8 +32,14 @@
       </div>
       <div :id='$style.description'>
         <div :id='$style.bullets'>
-          <div><strong>Head to our shop page</strong> to discover all our offers and upcoming products.</div>
-          <div>Make sure to <strong>subscribe to our newsletter</strong> to get special deals and promotions!</div>
+          <div><strong>Growing you own is simple</strong> but it’s easy to get overwhelmed by all the info and different products available online.</div>
+
+          <div>Our goal is to make growing as simple as possible for you to enjoy!</div>
+
+          <div>So, we made <strong>complete shopping lists</strong> to get you <strong>from seed to weed</strong> 🌱</div>
+
+          <div>Order everything you need to grow your own weed in our new <b>Super</b><strong>Green</strong><b>Lab</b> Growshop 💚</div>
+
           <nuxt-link to="/shop" :id="$style.btnshop">Want more ?<br/>Visit our shop</nuxt-link>
         </div>
       </div>
@@ -154,7 +160,8 @@ export default {
   width: 250pt
   background-color: #3BB30B
   text-align: center
-  font-family: "PlumeAd"
+  font-family: "Roboto"
+  font-weight: 800
   font-size: 1.3em
   display: flex
   justify-content:center

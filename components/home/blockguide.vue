@@ -161,7 +161,8 @@ export default {
   width: 250pt
   background-color: #3BB30B
   text-align: center
-  font-family: "PlumeAd"
+  font-family: "Roboto"
+  font-weight: 800
   font-size: 1.3em
   display: flex
   justify-content:center
