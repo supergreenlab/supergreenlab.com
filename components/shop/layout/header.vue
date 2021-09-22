@@ -26,7 +26,7 @@
         <NavBar :containers='containers' />
       </div>
       <div :id="$style.searchbar">
-        <Search />
+        <Search :onShowResults='onShowResults' />
       </div>
     </div>
     <div :id="$style.bodyResponsive" >
@@ -38,12 +38,10 @@
           <NavBar :containers='containers' />
         </div>
         <div :id="$style.searchbar">
-          <Search />
+          <Search :onShowResults='onShowResults' />
         </div>
       </div>
-
     </div>
-
   </section>
 </template>
 
@@ -54,7 +52,7 @@ import Search from '~/components/shop/widgets/popupsearch.vue'
 
 export default {
   components: { Header, NavBar, Search },
-  props: ['containers',],
+  props: ['containers', 'onShowResults',],
   data() {
     return {
       showHeader: true,
@@ -70,12 +68,6 @@ export default {
     window.removeEventListener("scroll", this.onScroll);
   },
   computed: {
-    page() {
-      return this.$route.name;
-    },
-    nCartItems() {
-      return this.$store.state.checkout.cart.reduce((acc, i) => acc + i.n, 0);
-    }
   },
   methods: {
     onClick(e) {
@@ -108,11 +100,8 @@ export default {
 #bodyResponsive
   display: none
   @media only screen and (max-width: 900px)
-    /* background-color: rgba(255, 255, 255, 0.8) */
     width: 100%
     display: block
-
-    /* height: 52pt */
 
 #bodyResponsive > div
   transition: transform 420ms linear
@@ -175,12 +164,14 @@ export default {
     top: 37.8pt
 
 #searchbar
-  display:none
-  @media only screen and (max-width: 900px)
+  top: 57pt
+  position: fixed
+  width: 100%
+  display: flex
+  justify-content: center
+  padding: 2pt 200pt
+  @media only screen and (max-width: 1500px)
     top: 52.5pt
-    position: fixed
-    width: 100%
-    display: flex
-    justify-content: center
+    padding: 0
 
 </style>

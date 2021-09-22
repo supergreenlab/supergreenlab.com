@@ -28,24 +28,21 @@
      @fuse-results="handleResults"
      @fuse-input="onInputChange"
      />
-   <div :id="$style.searchlist" v-if='results.length'>
-     <SmallProductList :id='$style.smallproductlist' :products='results.map(i => i.item)' />
-   </div>
  </section>
 </template>
 
 <script>
-import SmallProductList from '~/components/products/smallproductlist.vue'
 import VueFuse from '~/components/shop/widgets/vuefuse.vue'
 
 import { products } from '~/config/products.json'
 
 export default {
-  components: {SmallProductList, VueFuse},
+  components: {VueFuse,},
   props: ['onShowResults',],
   data () {
     return {
       search: '',
+      input: '',
       results: [],
     }
   },
@@ -62,9 +59,11 @@ export default {
   methods: {
     handleResults (r) {
       this.results = r
+      this.$props.onShowResults(this.input, this.results)
     },
     onInputChange(i) {
-      this.$props.onShowResults(i != '')
+      this.input = i
+      this.$props.onShowResults(this.input, this.results)
     },
   },
 }
@@ -73,12 +72,6 @@ export default {
 <style module lang=stylus>
 
 #container
-  width: 80%
-
-#searchlist
   width: 100%
-  top: 25pt
-  background-color: white
-  padding: 5pt
 
 </style>

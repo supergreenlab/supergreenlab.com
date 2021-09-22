@@ -18,13 +18,15 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id="$style.logosearch" :style='{"background-image": `url(${require(`~/assets/img/searchlogo.png`)})`}'></div>
+    <img width='20pt' height='20pt' src='~/assets/img/icon_search.svg' />
     <input v-model="value" :placeholder="placeholder">
-    <div :id="$style.btnerase" @click="value = '' ">Erase</div>
+    <img :id='$style.clear' @click="clear()" width='20pt' height='20pt' src='~/assets/img/icon_clear.svg' />
   </section>
 </template>
+
 <script>
 import Fuse from 'fuse.js'
+
 export default {
   name: 'VueFuse',
   props: {
@@ -87,6 +89,9 @@ export default {
     this.initFuse()
   },
   methods: {
+    clear() {
+      this.value = ''
+    },
     defaultAllList (list) {
       if (this.mapResults) {
         return list
@@ -127,35 +132,24 @@ export default {
   justify-content: center
   align-items: center
   width: 100%
-  border: 3px solid rgb(241, 243, 242)
   transition: all 0.6s ease 0s
-  border-radius: 0
+  background-color: rgba(255, 255, 255, 0.8)
 
 #container > input
   font-size: 1em
   width: 100%
   padding: 5pt
-  @media only screen and (max-width: 600px)
-    width: 90%
+  margin: 5pt 0
+  border: 1px solid #D8D8D8
+  border-radius: 3pt
 
-#container:hover
-  border: 3px solid darkgrey
+#container > input:hover
+  border: 1px solid #B4B4B4
 
-#logosearch
-  padding: 0 15pt
-  width: 25pt
-  height: 15pt
-  background-position: center
-  background-size: contain
-  background-repeat: no-repeat
+#container > img
+  margin: 5pt
 
-#btnerase
-  padding: 5pt 15pt
-  background-color: #f1f2f3
-  border: 3px solid rgb(241, 243, 242)
+#clear
   cursor: pointer
-  color: #5e5e5e
-  font-family: Roboto
-  font-weight: bold
 
 </style>
