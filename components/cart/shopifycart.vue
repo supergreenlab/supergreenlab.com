@@ -40,13 +40,15 @@ import { addEventListener, availHeight, availWidth, screenX } from '~/lib/client
 
 export default {
   components: {Header, Footer, LineItem, CheckoutButton,},
+  props: ['seller',],
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
   },
   methods: {
     startCheckout() {
       const width = 800
-      open('/sglcheckout', '_blank', `width=${width},height=${availHeight()-100},top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      const { seller } = this.$props
+      open(`/checkout/${seller.id}`, '_blank', `width=${width},height=${availHeight()-100},top=100,left=${screenX() + availWidth()/2 - width/2}`)
       addEventListener('message', (event) => {
         if (event.data == 'sglcheckoutdone') {
           this.cart.forEach(lineItem => {
@@ -59,12 +61,14 @@ export default {
   computed: {
     promocode: {
       get() {
-        return this.$store.state.checkout.promocode.value
+        const { seller } = this.$props
+        return this.$store.state.checkout.promocodes[seller.id]
       },
       set(value) {
-        this.$store.commit('checkout/setPromocode', value)
+        const { seller } = this.$props
+        this.$store.commit('checkout/setPromocode', { sellerid: seller.id, promocode: value })
         if (this.timeout) clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { code: value }), 400)
+        this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { sellerid: seller.id, promocode: value }), 400)
       },
     },
     valid() {
@@ -74,7 +78,8 @@ export default {
       return this.$store.getters['checkout/promoDiscount']
     },
     cart() {
-      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === 'recT9nIg4ahFv9J29')
+      const { seller } = this.$props
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller.id)
     },
     totalPrice() {
       const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)

@@ -79,7 +79,7 @@ module.exports.fetchAttachement = (p, attachement, dir) => {
       console.log(`resizing:\n${dir}/${fileSmall} ${dir}/${fileLarge} ${dir}/${fileFull}`)
       await sharp(`${assetsPath}/tmp/${fileSmall}`).resize(200, 200, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileSmall}`)
       await sharp(`${assetsPath}/tmp/${fileLarge}`).resize(600, 600, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileLarge}`)
-      await sharp(`${assetsPath}/tmp/${fileFull}`).resize(1200, 1200, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileFull}`)
+      await sharp(`${assetsPath}/tmp/${fileFull}`).resize(1400, 1400, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileFull}`)
     })
 
     return { p, attachement, data: { fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, type: attachement.type } }

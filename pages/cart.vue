@@ -26,7 +26,7 @@
       </div>
       <Title title='SuperGreenLab Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
-      <SGLCart />
+      <ShopifyCart v-for='seller in shopifySellers' :seller='seller' :key='seller.id' />
       <div :id='$style.space'></div>
       <Title title='Checklist Cart' />
       <div :class='$style.carttype'>Those are the items you selected that are available in other shops.</div>
@@ -49,11 +49,20 @@ import md5 from 'blueimp-md5'
 import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
 import Title from '~/components/cart/title.vue'
-import SGLCart from '~/components/cart/sglcart.vue'
+import ShopifyCart from '~/components/cart/shopifycart.vue'
 import TierCart from '~/components/cart/tiercart.vue'
 
 import { baseUrl } from '~/lib/client-side.js'
 import { seller, } from '~/lib/json_db.js'
+
+const isShopify = (s) => {
+  try {
+    s = seller(s)
+    return s.type == 'shopify' && s.params.shopify.token
+  } catch(e) {
+    return false
+  }
+}
 
 export default {
   head() {
@@ -68,15 +77,18 @@ export default {
       ],
     }
   },
-  components: {Header, Footer, Title, SGLCart, TierCart},
+  components: {Header, Footer, Title, ShopifyCart, TierCart},
   data() {
     return {
       shared: false
     }
   },
   computed: {
+    shopifySellers() {
+      return this.$store.getters['checkout/cart'].filter(li => isShopify(li.sellingPoint.Seller[0])).map(li => seller(li.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i)
+    },
     tierSellers() {
-      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] !== 'recT9nIg4ahFv9J29').map(lineItem => seller(lineItem.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i)
+      return this.$store.getters['checkout/cart'].filter(li => !isShopify(li.sellingPoint.Seller[0])).map(li => seller(li.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i)
     }
   },
   methods: {

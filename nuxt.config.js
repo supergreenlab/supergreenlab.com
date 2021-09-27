@@ -82,6 +82,11 @@ export default {
       '/designer/*',
     ]
   },
+
+  env: {
+    sglSellerID: process.env.SGL_SELLERID,
+  },
+
   /*
   ** Axios module configuration
   */

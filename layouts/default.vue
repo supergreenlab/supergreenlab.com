@@ -55,9 +55,10 @@ export default {
   },
   computed: {
     promo() {
-      const discount = this.$store.state.checkout.discount.value,
-            promocode = this.$store.state.checkout.promocode.value
-      if (!promocode || !discount) return ''
+      const sglSellerID = process.env.sglSellerID
+      const discount = this.$store.state.checkout.discounts[sglSellerID],
+            promocode = this.$store.state.checkout.promocodes[sglSellerID]
+      if (!promocode || !discount) return null
       return {promocode, discount}
     },
   },

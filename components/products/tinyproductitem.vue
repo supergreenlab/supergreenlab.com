@@ -23,7 +23,7 @@
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
       <h3>{{ brandProduct.name }}<span v-if='!picOnly'><br />BY {{ brand.name }}</span></h3>
-      <b :id='seller.id == "recT9nIg4ahFv9J29" ? $style.green : $style.normal'>{{ seller.name }}</b>
+      <b :id='seller.id == sglSellerId ? $style.green : $style.normal'>{{ seller.name }}</b>
     </nuxt-link>
     <div v-if='!picOnly'>
       <div :class='$style.price'>
@@ -63,6 +63,9 @@ export default {
     seller() {
       return seller(this.sellingPoint.Seller[0])
     },
+    sglSellerId() {
+      return process.env.sglSellerId
+    }
   },
   methods: {
     click() {

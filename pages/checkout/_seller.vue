@@ -22,11 +22,6 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <!--<div :id='$style.shipdisclaimer'>
-        <b>NORMAL SHIPPING IS BACK!</b><br /><br />
-        The loooooong wait is over! We're now shipping worlwide, 24h after you order.<br /><br />
-        <h4>Thanks for your support:)</h4>
-      </div>-->
       <div>
         <div :id='$style.cart'>
           <b>Items in your cart</b>
@@ -62,8 +57,6 @@ import Price from '~/components/products/price.vue'
 import { setHref, postMessage } from '~/lib/client-side.js'
 import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '~/lib/storefront.js'
 
-const SGL_SELLER = 'recT9nIg4ahFv9J29'
-
 export default {
   components: {Header, Shipping, Loading, Footer, CheckoutButton, Price},
   data() {
@@ -78,14 +71,16 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
+      const { seller } = this.$route.params
       this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart, true, true))
       this.$data.loading = true
-      const { shopify } = seller(SGL_SELLER).params
+      const { shopify } = seller(seller).params
       const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
       const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
       await setShippingAddress(shopify, checkout, this.$store.state.shipping)
-      if (this.$store.state.checkout.promocode) {
-        await applyCoupon(shopify, checkout, this.$store.state.checkout.promocode.value)
+      const promocode = this.$store.state.checkout.promocodes[seller]
+      if (promocode) {
+        await applyCoupon(shopify, checkout, promocode)
       }
       await applyShipping(shopify, checkout)
       setTimeout(() => {
@@ -114,9 +109,10 @@ export default {
       },
     },
     cart() {
-      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === SGL_SELLER)
+      const { seller } = this.$route.params
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller)
     },
- },
+  },
 }
 </script>
 

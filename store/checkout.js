@@ -25,13 +25,13 @@ import { products, sellingPoints, regions, } from '~/config/products.json'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
-const STORAGE_ITEM='checkout5'
+const STORAGE_ITEM='checkout6'
 
 export const state = () => {
   let defaults = {
     cart: [],
-    promocode: {value: '', valid: true, optional: true,},
-    discount: {value: 0, valid: true, optional: true},
+    promocodes: {},
+    discounts: {},
   };
   return defaults
 };
@@ -49,32 +49,29 @@ export const actions = {
       context.commit('setState', JSON.parse(saved))
     }
   },
-  async fetchPromocode(context, {code}) {
+  async fetchPromocode(context, {sellerid, promocode}) {
     try {
       if (cancel) {
         cancel()
         cancel = null
       }
-      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${code}`, {
+      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${promocode}`, {
         cancelToken: new CancelToken((c) => {
           cancel = c
         })
       })
       cancel = null
-      context.commit('setPromocode', code)
-      context.commit('setDiscount', discount.discount)
+      context.commit('setPromocode', { sellerid, promocode })
+      context.commit('setDiscount', { sellerid, discount: discount.discount })
     } catch(e) {
-      context.commit('setDiscount', 0)
+      context.commit('setDiscount', { sellerid, discount: 0 })
     }
   },
 }
 
 export const mutations = {
-  setState(state, newState/*{ cart, promocode, discount }*/) {
+  setState(state, newState) {
     Object.assign(state, newState)
-      /*state.cart.push(...cart)
-    state.promocode = promocode
-    state.discount = discount*/
   },
   addToCart(state, { n, product, sellingPoint }) {
     const i = state.cart.findIndex(i => i.sellingPoint == sellingPoint.id)
@@ -96,13 +93,13 @@ export const mutations = {
     Vue.set(state.cart, i, Object.assign({}, state.cart[i], { checked } ))
     storeState(state)
   },
-  setPromocode(state, promocode) {
-    state.promocode.value = promocode
-    state.discount.value = 0
+  setPromocode(state, { sellerid, promocode }) {
+    state.promocodes[sellerid] = promocode
+    delete state.discounts[sellerid]
     storeState(state)
   },
-  setDiscount(state, discount) {
-    state.discount.value = discount
+  setDiscount(state, { sellerid, discount }) {
+    state.discounts = { ...state.discounts, [sellerid]: discount }
     storeState(state)
   },
 }
@@ -117,9 +114,9 @@ const regionTree = (rootState, region, acc=[]) => {
 
 export const getters = {
   promoDiscount: state => sellingPoint => {
-    if (sellingPoint.Seller[0] != 'recT9nIg4ahFv9J29') return {promocode: '', discount: 0}
-    const discount = state.discount.value,
-      promocode = state.promocode.value
+    const sellerid = sellingPoint.Seller[0]
+    const discount = state.discounts[sellerid],
+      promocode = state.promocodes[sellerid]
     if (!promocode || !discount) return {promocode: '', discount: 0}
     return {promocode, discount}
   },

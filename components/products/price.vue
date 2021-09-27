@@ -78,9 +78,10 @@ export default {
       return (promo) => this.$store.getters['checkout/lineItemsPrice'](lineItems, promo)
     },
     isSGL() {
+      const sglSellerID = process.env.sglSellerID
       const { lineItems } = this.$props
       if (lineItems.length == 0) return false
-      return lineItems[0].sellingPoint.Seller[0] == 'recT9nIg4ahFv9J29'
+      return lineItems[0].sellingPoint.Seller[0] == sglSellerID
     },
     includesTaxes() {
       const { lineItems } = this.$props

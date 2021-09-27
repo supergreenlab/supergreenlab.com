@@ -85,7 +85,8 @@ export default {
     removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    if (!process.server && !(this.$store.state.checkout.promocode.value || loadFromStorage('popupShown2'))) {
+    const sglSellerID = process.env.sglSellerID
+    if (!process.server && !(this.$store.state.checkout.promocodes[sglSellerID] || loadFromStorage('popupShown2'))) {
       const nVisits = parseInt(loadFromStorage('nVisits2') || '1')
       saveToStorage('nVisits2', nVisits+1)
       if (nVisits > 3) {
@@ -95,8 +96,9 @@ export default {
   },
 	computed: {
     promo() {
-      const discount = this.$store.state.checkout.discount.value,
-            promocode = this.$store.state.checkout.promocode.value
+      const sglSellerID = process.env.sglSellerID
+      const discount = this.$store.state.checkout.discounts[sglSellerID],
+            promocode = this.$store.state.checkout.promocodes[sglSellerID]
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
     },
