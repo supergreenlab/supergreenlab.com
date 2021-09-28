@@ -74,6 +74,7 @@ export default {
   flex-direction: column
   color: #343434
   background-color: white
+  z-index: 2000
 
 #container a
   color: #343434
