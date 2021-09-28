@@ -131,7 +131,6 @@ export default{
   min-width: 0
   margin: 2pt 200pt
   width: 100%
-  height: 100%
   overflow: visible
   @media only screen and (max-width: 1500px)
     margin: 10pt 0

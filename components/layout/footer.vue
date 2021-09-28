@@ -73,6 +73,7 @@ export default {
   border-top: 2pt solid #efefef
   flex-direction: column
   color: #343434
+  background-color: white
 
 #container a
   color: #343434

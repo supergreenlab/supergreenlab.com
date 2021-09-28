@@ -36,11 +36,6 @@ import { open } from '~/lib/client-side.js'
 export default {
   props: ['config',],
   computed: {
-    media() {
-      const { config } = this.$props
-      const media = config.picture[0]
-      return media
-    },
   },
   methods: {
     open() {
