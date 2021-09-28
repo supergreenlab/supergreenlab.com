@@ -143,6 +143,7 @@ export default {
   margin-right: 5pt
 
 .carttype
+  color: #454545
   margin: 10pt 30pt
 
 .tiercart
@@ -156,6 +157,7 @@ export default {
   align-items: center
   padding: 20pt 0
   font-size: 1.1em
+  color: #454545
 
 #space
   height: 40pt

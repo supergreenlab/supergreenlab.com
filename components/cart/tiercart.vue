@@ -49,8 +49,8 @@ import CheckoutButton from '~/components/cart/checkoutbutton.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
 
 export default {
-  props: ['seller'],
   components: {Header, Footer, LineItem, CheckoutButton, CheckBox,},
+  props: ['seller'],
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
   },

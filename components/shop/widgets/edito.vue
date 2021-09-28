@@ -29,7 +29,6 @@
 
 <script>
 
-
 export default {
   components: { },
   props: ['config'],
@@ -42,6 +41,7 @@ export default {
 
   },
 }
+
 </script>
 
 <style module lang=stylus>

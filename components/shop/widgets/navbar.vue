@@ -19,7 +19,7 @@
  <template>
   <section :id='$style.container'>
     <div v-for='(c, i) in items' :key='c.id' :class='$style.navitem'>
-      <nuxt-link :to="{ hash: `#${c.slug}`}" :class="$style.section">Bundles</nuxt-link>
+      <nuxt-link :to="{ hash: `#${c.slug}`}" :class="$style.section">{{ c.menu }}</nuxt-link>
       <span v-if='i != items.length-1' :class="$style.separation"></span>
     </div>
   </section>

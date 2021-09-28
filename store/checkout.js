@@ -29,6 +29,7 @@ const STORAGE_ITEM='checkout6'
 
 export const state = () => {
   let defaults = {
+    conversions: {},
     cart: [],
     promocodes: {},
     discounts: {},
@@ -48,6 +49,7 @@ export const actions = {
     if (saved) {
       context.commit('setState', JSON.parse(saved))
     }
+    context.dispatch('loadExchangeRates')
   },
   async fetchPromocode(context, {sellerid, promocode}) {
     try {
@@ -66,6 +68,11 @@ export const actions = {
     } catch(e) {
       context.commit('setDiscount', { sellerid, discount: 0 })
     }
+  },
+  async loadExchangeRates() {
+    const rateAPI = process.env.rateAPI
+    const { data } = await axios.get('https://shopapi.supergreenlab.com/rates')
+    console.log(data)
   },
 }
 

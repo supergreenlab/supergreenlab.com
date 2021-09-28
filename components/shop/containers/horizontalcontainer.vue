@@ -55,12 +55,10 @@ export default {
 
 #header
   display: flex
-  width: 100%
   margin: 5pt 10pt
 
 .title
   font-family: Roboto
-  width: 100%
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
@@ -72,8 +70,8 @@ export default {
   background-size: cover
   background-repeat: no-repeat
   @media only screen and (max-width: 600px)
-    width: 50pt
-    height: 50pt
+    width: 75pt
+    height: 75pt
 
 #text
   flex: 1

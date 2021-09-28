@@ -17,21 +17,20 @@
  -->
 
 <template>
-<section :id="$style.container" >
-  <div @click='open()'>
-    <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted>
-      <source :src="require(`~/assets/img/${config.picture[0].filePath}`)" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <img v-else :id='$style.pictureBanner' :src='require(`~/assets/img/${config.picture[0].fileFull}`)' />
-  </div>
-
-</section>
-
+  <section :id="$style.container" >
+    <div @click='open()'>
+      <div v-for='(p, i) in config.picture'>
+        <video v-if='p.type == "video/mp4"' :class='`${$style.video} ${$style[`media${i}-${config.picture.length}`]}`' autoplay loop playsinline muted defaultMuted>
+          <source :src="require(`~/assets/img/${p.filePath}`)" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <img v-else :class='`${$style.pictureBanner} ${$style[`media${i}-${config.picture.length}`]}`' :src='require(`~/assets/img/${p.fileFull}`)' />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-
 import { open } from '~/lib/client-side.js'
 
 export default {
@@ -59,10 +58,10 @@ export default {
 #container > div
   cursor: pointer
 
-#pictureBanner
+.pictureBanner
   width: 100%
 
-#video
+.video
   width: 100%
   height: 250pt
   object-fit: cover
@@ -70,6 +69,24 @@ export default {
   @media only screen and (max-width: 600px)
     height: 150pt
 
+.media0-2
+  @media only screen and (max-width: 1000px)
+    display: none
+  
+.media1-2
+  @media only screen and (min-width: 1000px)
+    display: none
+
+.media0-3
+  @media only screen and (max-width: 1000px)
+    display: none
+  
+.media1-3
+  @media only screen and (max-width: 600px) and (min-width: 1000px)
+    display: none
+
+.media2-3
+  @media only screen and (min-width: 600px)
+    display: none
 
 </style>
-

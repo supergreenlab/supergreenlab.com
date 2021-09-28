@@ -18,34 +18,35 @@
 
 <template>
   <section :id="$style.container">
-      <div :id='$style.header'>
-        <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
+    <div :id='$style.header'>
+      <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
+    </div>
+    <div :id='$style.fullcontent'>
+      <div :id='$style.leftcolumn'>
+        <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+        <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+        </component>
       </div>
-      <div :id='$style.fullcontent'>
-        <div :id='$style.leftcolumn'>
-          <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
-          </component>
+      <div v-if='!showSearchResults' :id='$style.content'>
+        <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
+        <div :id='$style.spacer'></div>
+        <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
+          <component :is='componentForName(w.component)' :config='w'></component>
         </div>
-        <div v-if='!showSearchResults' :id='$style.content'>
-          <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
-            <div :id='$style.spacer'></div>
-            <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
-              <component :is='componentForName(w.component)' :config='w'></component>
-            </div>
-          </component>
-        </div>
-        <div v-else :id='$style.content'>
-          <div :id="$style.searchlist">
-            <SmallProductList :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
-          </div>
-        </div>
-        <div :id='$style.rightcolumn'>
-         <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-            <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
-          </component>
+        </component>
+      </div>
+      <div v-else :id='$style.content'>
+        <div :id="$style.searchlist">
+          <SmallProductList :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
         </div>
       </div>
+      <div :id='$style.rightcolumn'>
+        <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+        <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+        </component>
+      </div>
+    </div>
+    <Footer />
   </section>
 </template>
 
