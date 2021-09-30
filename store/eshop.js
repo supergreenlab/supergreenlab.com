@@ -19,6 +19,7 @@
 import { sellingPoints, regions, } from '~/config/products.json'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
+import { regionTree } from '~/lib/json_db.js'
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
@@ -76,28 +77,16 @@ export const mutations = {
 }
 
 export const getters = {
-  regionTree: (state) => (region) => {
-    const regionTree = (region, acc=[]) => {
-      acc.push(region)
-      // console.log(region)
-      if (region.in) {
-        return regionTree(regions.find(r => r.id == region.in[0]), acc)
-      }
-      return acc
-    }
-    return regionTree(region)
-  },
-
   sellingPoint: (state, getters) => sellingPoints => {
     const { region } = state
-    const regions = getters.regionTree(region).map(r => r.id)
+    const regions = regionTree(region).map(r => r.id)
     for (let i in regions) {
       const region = regions[i]
-      const sp = sellingPoints.find(sp => sp.regions.find(r => r.id == region))
+      const sp = sellingPoints.find(sp => sp.region.find(r => r.id == region))
       if (sp) return sp
     }
   },
   sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
   sellingPointForProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.Product[0] == id)),
-  availableRegions: (state, getters) => regions.filter(r => r.id == state.offsetRegion.id || (r.in && getters.regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
+  availableRegions: (state, getters) => regions.filter(r => r.id == state.offsetRegion.id || (r.in && regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
 }

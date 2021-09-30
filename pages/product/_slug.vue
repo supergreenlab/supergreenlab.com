@@ -207,7 +207,7 @@ export default {
   computed: {
     closerProduct() {
       const { region } = this.$store.state.eshop
-      if (this.sellingPoint.regions[0].id != region.id) {
+      if (this.sellingPoint.region[0].id != region.id) {
         const sp = this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
         if (sp.id == this.sellingPoint.id) return null
         /*const bp = brandProduct(sp.BrandProduct[0])
@@ -230,8 +230,8 @@ export default {
     },
     askCloserProduct() {
       const { region } = this.$store.state.eshop
-      if (this.sellingPoint.regions[0].id == regions[0].id) return false
-      return this.sellingPoint.regions[0].id != region.id
+      if (this.sellingPoint.region[0].id == regions[0].id) return false
+      return this.sellingPoint.region[0].id != region.id
     },
     sellingPoint() {
       const { slug } = this.$route.params
