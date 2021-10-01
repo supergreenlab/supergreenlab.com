@@ -24,7 +24,7 @@
     <div :id='$style.fullcontent'>
       <div :id='$style.leftcolumn'>
         <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-        <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+          <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
         </component>
       </div>
       <div v-if='!showSearchResults' :id='$style.content'>
@@ -42,7 +42,7 @@
       </div>
       <div :id='$style.rightcolumn'>
         <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-        <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+          <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
         </component>
       </div>
     </div>

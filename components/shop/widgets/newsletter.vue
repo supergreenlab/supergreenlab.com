@@ -19,7 +19,7 @@
       <h2 :id='$style.title'>{{ config.title }}</h2>
       <div :id='$style.description'>{{ config.description }}</div>
       <div :class='$style.title' :id="$style.emailcontainer">
-          <label for="email" :id="$style.label"> Email :</label>
+          <label for="email" :id="$style.label">Email :</label>
           <input type="email" name="email" id="email" v-model='email' :class="$style.email">
       </div>
       <div :id='$style.btnSubscribe'  @click='newsletterForm'>{{ config.link }}</div>
@@ -49,12 +49,13 @@ export default {
 </script>
 
 <style module lang=stylus>
+
 #container
   background-color: #d6d6d6
   width: 100%
+  padding: 20pt 0
 
 #content
-  height: 160pt
   justify-content: center
   display: flex
   flex-direction: column

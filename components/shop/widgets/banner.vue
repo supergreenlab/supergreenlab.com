@@ -55,6 +55,7 @@ export default {
 
 .pictureBanner
   width: 100%
+  image-rendering: -webkit-optimize-contrast;
 
 .video
   width: 100%

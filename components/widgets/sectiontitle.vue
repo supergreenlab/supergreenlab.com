@@ -21,13 +21,13 @@
     <div :class="border ? $style.border : '' "></div>
     <div :class="$style.titlecontainer">
       <h2 :id='$style.title' v-html='$md.render(title || "")' :style="white ? {color : 'white'} : '' "></h2>
-      <div :id='$style.brackets' v-html='$md.render(brackets || "")'></div>
+      <div v-if='brackets' :id='$style.brackets' v-html='$md.render(brackets || "")'></div>
     </div>
 
-    <h1 :id='$style.green'  v-html='$md.render(green || "")' :style="white ? {color: '#7ccc5c'} : '' "></h1>
-    <h2 :id='$style.subtitle' v-html='$md.render(subtitle || "")'></h2>
-    <h2 :id='$style.title2'  v-html='$md.render(title2 || "")' :style="white ? {color : 'white'} : '' "></h2>
-    <small :id='$style.smalltitle'  v-html='$md.render(smalltitle || "")' :style="white ? {color : 'white'} : '' "></small>
+    <h1 v-if='green' :id='$style.green'  v-html='$md.render(green || "")' :style="white ? {color: '#7ccc5c'} : '' "></h1>
+    <h2 v-if='subtitle' :id='$style.subtitle' v-html='$md.render(subtitle || "")'></h2>
+    <h2 v-if='title2' :id='$style.title2'  v-html='$md.render(title2 || "")' :style="white ? {color : 'white'} : '' "></h2>
+    <small v-if='smalltitle' :id='$style.smalltitle'  v-html='$md.render(smalltitle || "")' :style="white ? {color : 'white'} : '' "></small>
     <div :class="border ? $style.border : '' "></div>
   </section>
 </template>
@@ -64,7 +64,7 @@ export default {
 
 .border
   width: 80pt
-  height: 2pt
+  height: 3pt
   margin: 20pt
   background-color: #3BB30B
 
