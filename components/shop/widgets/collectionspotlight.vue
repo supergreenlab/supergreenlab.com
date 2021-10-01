@@ -75,7 +75,7 @@ export default {
     },
     description() {
       const { config: { description } } = this.$props
-      return description.trim() || this.collection.description
+      return description || this.collection.description
     },
     picture() {
       const { config: { picture } } = this.$props

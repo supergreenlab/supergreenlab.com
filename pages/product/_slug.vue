@@ -46,7 +46,7 @@
           <div v-if='variants.length > 1' :id='$style.variants'>
             <nuxt-link :class='$style.variant' :id='v.id == brandProduct.id ? $style.selected : ""' v-for='v in variants' :key='v.id' :to='`/product/${v.sellingPoint.slug}`'>
               {{ v.name }}
-              <div :class='$style.green'>{{ variantPrice(v) }}</div>
+              <div :class='$style.green'>{{ variantPrice(v).strTotal }}</div>
             </nuxt-link>
           </div>
           <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
@@ -61,7 +61,7 @@
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
-                <b>{{ rp.price }}</b>
+                <b>{{ rp.price.strTotal }}</b>
               </div>
             </nuxt-link>
           </div>
@@ -92,7 +92,7 @@
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
-                <b>{{ rp.price }}</b>
+                <b>{{ rp.price.strTotal }}</b>
               </div>
             </nuxt-link>
           </div>

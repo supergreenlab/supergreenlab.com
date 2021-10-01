@@ -11,6 +11,8 @@ module.exports.fetchWidgets = async () => {
 
   let picPromise = Promise.resolve()
   widgets = widgets.map(w => {
+    w.title = (w.title || "").trim()
+    w.description = (w.description || "").trim()
     w.picture = (w.picture || []).map(a => {
       try {
         const { p, data } = fetchAttachement(picPromise, a, 'widgets')
@@ -24,6 +26,8 @@ module.exports.fetchWidgets = async () => {
   })
 
   shop = shop.map(s => {
+    s.title = (s.title || "").trim()
+    s.description = (s.description || "").trim()
     s.picture = (s.picture || []).map(a => {
       try {
         const { p, data } = fetchAttachement(picPromise, a, 'widgets')

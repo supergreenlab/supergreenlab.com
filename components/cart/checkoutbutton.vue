@@ -22,7 +22,7 @@
       <div :id='$style.promocode' v-if='promocodePrompt'>
         <TextInput label='SGL Promo code' v-model='code' name='promocode' optional='true' />
       </div>
-      <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='$emit("click")'>PAY NOW <b>{{ price }}</b></a>
+      <a :id='$style.buybutton' :class='!valid ? $style.invalid : $style.valid' href='javascript:void(0)' @click='$emit("click")'>PAY NOW <b>{{ price.strTotal }}</b></a>
       <div :class='$style.block'>
         <img src='~assets/img/powered-by-stripe.png' /><br />
       </div>

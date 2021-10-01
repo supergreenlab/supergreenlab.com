@@ -18,37 +18,27 @@
 
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
-    <div v-if='offer' :id='$style.pricecontainer'>
+    <div v-if='price.discountPercent' :id='$style.pricecontainer'>
       <div :class='$style.price + " " + $style.smallprice'>
-        <h1>{{ offer.currency }}{{ ((offer.price * 100) / (100 - offer.value)).toFixed(2) }}
+        <h1>{{ price.strTotalWithoutDiscount }}
           <div :id='$style.redbar'></div>
         </h1>
+        <small v-if='!price.sglOnly'>*price may vary</small>
+        <small v-if='price.converted'>*converted to local currency</small>
       </div>
       <div :class='$style.price'>
         <h1 :id='$style.green'>{{ price.strTotal }}</h1><br />
-        <small><span v-if='price.hasVAT'>incl.tax</span><span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
-        <small v-if='!isSGL'>*price may vary</small>
-        <span>Special offer: <b>-{{ offer.value }}%</b></span>
-      </div>
-    </div>
-    <div v-else-if='discount' :id='$style.pricecontainer'>
-      <div :class='$style.price + " " + $style.smallprice'>
-        <h1>{{ price.strTotal }}
-          <div :id='$style.redbar'></div>
-        </h1>
-        <small v-if='!isSGL'>*price may vary</small>
-      </div>
-      <div :class='$style.price'>
-        <h1 :id='$style.green'>{{ price.strTotal }}</h1><br />
-        <small><span v-if='price.hasVAT'>incl.tax</span><span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
-        <small v-if='!isSGL'>*price may vary</small>
-        <span>promocode: <b>-{{ discount }}%</b></span>
+        <small><span v-if='price.incTax'>incl.tax</span><span v-if='price.freeShipping'> + <b>FREE SHIPPING*</b></span></small>
+        <small v-if='!price.sglOnly'>*price may vary</small>
+        <small v-if='price.converted'>*converted to local currency</small>
+        <span>promocode: <b>-{{ price.discountPercent.toFixed(2) }}%</b></span>
       </div>
     </div>
     <div v-else :class='$style.price'>
       <h1 :id='$style.green'>{{ price.strTotal }}</h1>
-      <small v-if='!isSGL'>*price may vary</small>
-      <small><span v-if='price.hasVAT'>incl. tax</span><span v-if='freeshipping'> + <b>FREE SHIPPING*</b></span></small>
+      <small v-if='!price.sglOnly'>*price may vary</small>
+      <small v-if='price.converted'>*converted to local currency</small>
+      <small><span v-if='price.incTax'>incl. tax</span><span v-if='price.freeShipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
     <a v-if='notify' :id='$style.notify' href='javascript:void(0)' @click='notifyForm'>Notify me of price changes</a>
   </section>
@@ -60,28 +50,10 @@ import { open, screenX, availWidth } from '~/lib/client-side.js'
 export default {
   props: ['lineItems', 'freeshipping', 'small', 'notify'],
   computed: {
-    offer() {
-      const { lineItems } = this.$props
-      if (lineItems.length == 0) return 0
-      if (lineItems.length != 1 || !lineItems[0].sellingPoint.offer) return 0 
-      return { currency: lineItems[0].sellingPoint.currency, price: this.$store.getters['checkout/lineItemsPrice'](lineItems, true, true), value: lineItems[0].sellingPoint.offer }
-    },
-    discount() {
-      const { lineItems } = this.$props
-      if (lineItems.length == 0) return 0
-      const { discount } = this.$store.getters['checkout/promoDiscount'](lineItems[0].sellingPoint)
-      return discount
-    },
     price() {
       const { lineItems } = this.$props
       if (lineItems.length == 0) return () => 0
       return this.$store.getters['checkout/lineItemsPrice'](lineItems)
-    },
-    isSGL() {
-      const sglSellerID = process.env.sglSellerID
-      const { lineItems } = this.$props
-      if (lineItems.length == 0) return false
-      return lineItems[0].sellingPoint.Seller[0] == sglSellerID
     },
   },
   methods: {

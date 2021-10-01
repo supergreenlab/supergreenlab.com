@@ -122,15 +122,15 @@ const convertCurrency = (price, currencyFrom, currencyTo, rates) => {
 }
 
 export const getters = {
-  promoDiscount: state => sellingPoint => {
-    const sellerid = sellingPoint.Seller[0]
-    const discount = state.discounts[sellerid],
-      promocode = state.promocodes[sellerid]
+  promoDiscount: state => sellerId => {
+    const discount = state.discounts[sellerId],
+      promocode = state.promocodes[sellerId]
     if (!promocode || !discount) return {promocode: '', discount: 0}
     return {promocode, discount}
   },
 
   lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems) => {
+    const sglSellerID = process.env.sglSellerID
     const sm = {
       'US$': 'USD',
       '€': 'EUR',
@@ -140,47 +140,66 @@ export const getters = {
     const region = rootState.eshop.region
     const result = {
       total: 0,
-      strTotal: `${region.currency}0`,
+      totalWithoutDiscount: 0,
+      discountPercent: 0,
+      nItems: 0,
+
       currency: region.currency,
+      strTotal: `${region.currency}0`,
+      strTotalWithoutDiscount: `${region.currency}0`,
+      
       totals: Object.values(sm).reduce((acc, s) => Object.assign(acc, {[s]: 0}), {}),
-      discounts: Object.values(sm).reduce((acc, s) => Object.assign(acc, {[s]: 0}), {}),
-      VATs: Object.values(sm).reduce((acc, s) => Object.assign(acc, {[s]: 0}), {}),
-      freeShipping: false,
+      totalsWithoutDiscounts: Object.values(sm).reduce((acc, s) => Object.assign(acc, {[s]: 0}), {}),
+
+      freeShipping: true,
       converted: false,
       canorder: false,
-      inclTax: false,
+      incTax: false,
+      sglOnly: true,
     }
     lineItems.forEach(li => {
       const addVAT = !li.sellingPoint.inctax && region.vat
       var price = li.sellingPoint.price * li.n
-      result.totals[sm[li.sellingPoint.currency]] += price
-      if (addVAT) {
-        result.VATs[sm[li.sellingPoint.currency]] += price * (region.vat/100)
-      }
-      const discount = getters.promoDiscount(li.sellingPoint).discount
+      var priceWithoutDiscount = price
+      const discount = getters.promoDiscount(li.sellingPoint.Seller).discount
+      let discountAmount = 0
       if (li.sellingPoint.offer) {
-        result.discounts[sm[li.sellingPoint.currency]] += price * li.sellingPoint.offer/100
-      } else if (discount) {
-        result.discounts[sm[li.sellingPoint.currency]] += price * discount/100
+        discountAmount = price * li.sellingPoint.offer/100
+      } else if (discount && !li.sellingPoint.nopromo) {
+        discountAmount = price * discount/100
       }
+
+      result.nItems += li.n
+      price -= discountAmount
+      if (addVAT) {
+        price += price * (region.vat/100)
+        priceWithoutDiscount += priceWithoutDiscount * (region.vat/100)
+      }
+
+      result.totals[sm[li.sellingPoint.currency]] += price
+      result.totalsWithoutDiscounts[sm[li.sellingPoint.currency]] += priceWithoutDiscount
+
       result.canorder = result.canorder || (li.sellingPoint.canorder && !li.sellingPoint.outofstock)
-      result.inclTax = result.inclTax || addVAT
+      result.incTax = result.incTax || addVAT
+      result.sglOnly = result.sglOnly && li.sellingPoint.Seller[0] == sglSellerID
+      result.freeShipping = result.freeShipping && li.sellingPoint.freeshipping
     })
     Object.keys(result.totals).forEach(k => {
       result.converted = result.converted || (k != sm[region.currency] && result.totals[k])
       result.total += convertCurrency(result.totals[k], k, sm[region.currency], state.rates)
     })
-    Object.keys(result.VATs).forEach(k => {
-      result.total += convertCurrency(result.VATs[k], k, sm[region.currency], state.rates)
+    Object.keys(result.totalsWithoutDiscounts).forEach(k => {
+      result.totalWithoutDiscount += convertCurrency(result.totalsWithoutDiscounts[k], k, sm[region.currency], state.rates)
     })
-    Object.keys(result.discounts).forEach(k => {
-      result.total -= convertCurrency(result.discounts[k], k, sm[region.currency], state.rates)
-    })
+
+    result.discountPercent = (result.totalWithoutDiscount - result.total) / result.totalWithoutDiscount * 100
 
     if (result.currency == '€') {
       result.strTotal = `${result.total.toFixed(2)}${result.currency}`
+      result.strTotalWithoutDiscount = `${result.totalWithoutDiscount.toFixed(2)}${result.currency}`
     } else {
       result.strTotal = `${result.currency}${result.total.toFixed(2)}`
+      result.strTotalWithoutDiscount = `${result.currency}${result.totalWithoutDiscount.toFixed(2)}`
     }
     return result
   },

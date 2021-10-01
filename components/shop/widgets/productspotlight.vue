@@ -70,7 +70,7 @@ export default {
     },
     description() {
       const { config: { description } } = this.$props
-      return description.trim() || this.product.bulletpoints
+      return description || this.product.bulletpoints
     },
   },
   methods: {

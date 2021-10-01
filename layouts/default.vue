@@ -83,7 +83,7 @@ export default {
   background-color: white
 
 #promo
-  z-index: 100
+  z-index: 2000
   position: fixed
   display: flex
   flex-direction: column

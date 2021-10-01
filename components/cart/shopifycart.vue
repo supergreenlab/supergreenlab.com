@@ -75,17 +75,19 @@ export default {
       return this.cart.findIndex(lineItem => lineItem.sellingPoint.outofstock) == -1
     },
     promoDiscount() {
-      return this.$store.getters['checkout/promoDiscount']
+      const { seller } = this.$props
+      return this.$store.getters['checkout/promoDiscount'](seller.id)
     },
     cart() {
       const { seller } = this.$props
       return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller.id)
     },
-    totalPrice() {
-      const price = this.cart.reduce((t, lineItem) => t + lineItem.n * lineItem.sellingPoint.price, 0)
-      return price - price * this.promoDiscount.discount / 100
-    }
- },
+    price() {
+      const { lineItems } = this.$props
+      if (lineItems.length == 0) return () => 0
+      return this.$store.getters['checkout/lineItemsPrice'](lineItems)
+    },
+  },
 }
 </script>
 

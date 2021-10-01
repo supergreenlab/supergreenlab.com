@@ -30,6 +30,10 @@
         <Pics :pics='bundle.pics' :offertext='bundle.SellingPoints[0].offertext' />
       </div>
       <div :id='$style.description'>
+        <div :id='$style.region'>
+          <Region />
+        </div>
+
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
@@ -37,7 +41,7 @@
             <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
             <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
             <div>
-              <b>{{ rp.price }}</b>
+              <b>{{ rp.price.strTotal }}</b>
             </div>
           </nuxt-link>
         </div>
@@ -88,11 +92,12 @@ import Items from '~/components/bundle/items.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Pics from '~/components/products/pics.vue'
+import Region from '~/components/products/region.vue'
 
 import { relatedProducts, brandProduct, product, } from '~/lib/json_db.js'
 
 export default {
-  components: {Items, Price, OutOfStock, AddToCart, Pics,},
+  components: {Items, Price, OutOfStock, AddToCart, Pics, Region,},
   props: ['bundle', 'nobottom', 'addtocart', 'noframe', 'showdescription', 'right', 'showRelatedProducts',],
   data() {
     return {
@@ -180,6 +185,10 @@ export default {
     width: 100%
     height: 300pt
     margin: 20pt 0pt 20pt 0pt
+
+#region
+  display: flex
+  margin-bottom: 10pt
 
 #description
   display: flex

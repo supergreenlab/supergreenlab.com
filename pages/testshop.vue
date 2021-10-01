@@ -92,7 +92,6 @@ export default{
   methods: {
     componentForName: name => components[name],
     onShowResults(input, results) {
-      console.log(input, results)
       this.$data.showSearchResults = input.length
       this.$data.searchResults = results
     },
