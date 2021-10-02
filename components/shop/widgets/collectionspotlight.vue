@@ -26,7 +26,7 @@
 
         <div :class='`${$style.products} ${$style.bigproducts}`'>
           <div :id='$style.list'>
-            <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
+            <TinyProductList title='Products in collection' :picOnly='true' :products='products' :expandable='true' />
           </div>
           <div :id='$style.addtocartcontainer'>
             <div :class='$style.price'>
@@ -41,7 +41,7 @@
 
     <div :class='`${$style.products} ${$style.smallproducts}`'>
       <div :id='$style.list'>
-        <TinyProductList title='Products in collection' :picOnly='true' :products='products' />
+        <TinyProductList title='Products in collection' :picOnly='true' :products='products' :expandable='true' />
       </div>
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>

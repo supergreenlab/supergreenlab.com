@@ -23,13 +23,17 @@
     </div>
     <h3 v-if='title'>{{ title }}</h3>
     <div :id='$style.body' :class='center ? $style.center : $style.start'>
-      <div v-for='(product, i) in products' v-if='showAllProducts || i <= maxItems-1' :key='product.id' :class='$style.product'>
-        <Item :picOnly='picOnly' :product='product' />
+      <div ref='products' :id='$style.products' :style='{"height": height}'>
+        <div v-for='(product, i) in products' :key='product.id' :class='$style.product'>
+          <Item :picOnly='picOnly' :product='product' />
+        </div>
+      </div>
+      <div :class='$style.propose'>
+        <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
       </div>
     </div>
-    <div :id='$style.propose'>
-      <a v-if='maxItems && products.length > maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
-      <a v-if='!picOnly' href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
+    <div :class='$style.propose'>
+      <a v-if='expandable' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
     </div>
   </section>
 </template>
@@ -42,11 +46,11 @@ import Region from '~/components/products/region.vue'
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
-  props: ['products', 'center', 'maxItems', 'picOnly', 'title',],
+  props: ['products', 'center', 'expandable', 'picOnly', 'title',],
   components: {SectionTitle, Item, Region,},
   data() {
     return {
-      showAllProducts: this.$props.maxItems ? false : true,
+      showAllProducts: this.$props.expandable ? false : true,
     }
   },
   methods: {
@@ -61,6 +65,15 @@ export default {
         this.$matomo && this.$matomo.trackEvent('productlist', 'showAll')
       }
     }
+  },
+  computed: {
+    height() {
+      if (!this.$props.expandable) {
+        return 'auto'
+      }
+      const height = this.$data.showAllProducts ? `${this.$refs.products.scrollHeight}px` : `110pt`
+      return height
+    },
   },
 }
 </script>
@@ -81,7 +94,16 @@ export default {
 
 #body
   display: flex
+  flex-direction: column
+
+#body > a
+  color: #454545
+
+#products
+  display: flex
   flex-wrap: wrap
+  overflow-y: hidden
+  transition: height 0.5s
 
 .center
   justify-content: center
@@ -102,12 +124,14 @@ export default {
   flex-direction: column
   align-items: flex-end
 
-#propose
+.propose
   display: flex
   flex-direction: column
   align-items: flex-end
+  font-size: 0.9em
 
-#propose a
+.propose a
   color: #454545
+  margin: 3pt
 
 </style>

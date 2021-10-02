@@ -17,10 +17,9 @@
   <section :id='$style.container'>
     <div :id='$style.content'>
       <h2 :id='$style.title'>{{ config.title }}</h2>
-      <div :id='$style.description'>{{ config.description }}</div>
+      <div :id='$style.description' v-html='$md.render(config.description)'></div>
       <div :class='$style.title' :id="$style.emailcontainer">
-          <label for="email" :id="$style.label">Email :</label>
-          <input type="email" name="email" id="email" v-model='email' :class="$style.email">
+          <input placeholder='ex: tommy@high.af' type="email" name="email" id="email" v-model='email' :class="$style.email">
       </div>
       <div :id='$style.btnSubscribe'  @click='newsletterForm'>{{ config.link }}</div>
     </div>
@@ -51,9 +50,9 @@ export default {
 <style module lang=stylus>
 
 #container
-  background-color: #d6d6d6
+  background-color: white
   width: 100%
-  padding: 20pt 0
+  padding: 20pt 10pt
 
 #content
   justify-content: center
@@ -76,15 +75,14 @@ export default {
   display: block
   background-color: #3bb30b
   text-align: center
-  padding: 3pt 15pt
+  padding: 5pt 15pt
   border-radius: 3pt
   color: #ffffff
   text-decoration: none
-  font-size: 1em
+  font-size: 0.9em
   margin: 5pt 0
   white-space: nowrap
   text-transform: uppercase
-  font-weight: bold
   cursor: pointer
 
 #btnSubscribe:hover
@@ -97,8 +95,9 @@ export default {
   margin-bottom: 5pt
 
 .email
+  border: 1pt solid #dedede
   border-radius: 0pt 3pt 3pt 0pt
-
+  padding: 5pt 10pt
 
 #label
   text-align: center
