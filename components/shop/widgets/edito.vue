@@ -22,23 +22,34 @@
     <div :id='$style.text'>
       <h2 v-if='config.title' :id="$style.title">{{config.title}}</h2>
       <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
+      <div v-if='config.link && config.linktext' :id='$style.link'>
+        <a v-if='config.link.indexOf("https://supergreenlab.typeform") == 0' :id='$style.cta' href='javascript:void(0)' @click='openLink' >{{ config.linktext }}</a>
+        <nuxt-link v-else-if='config.link.indexOf("/") == 0' :id='$style.cta' :to='config.link'>{{ config.linktext }}</nuxt-link>
+        <a v-else :id='$style.cta' :href='config.link' target='_blank'>{{ config.linktext }}</a>
+      </div>
     </div>
   </section>
 </template>
 
-
 <script>
+
+import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
   components: { },
   props: ['config'],
   data() {
     return {
-
     }
   },
   computed: {
-
+  },
+  methods: {
+    openLink() {
+      const width = 800
+      const { link } = this.$props.config
+      open(link, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
+    }
   },
 }
 
@@ -104,5 +115,26 @@ export default {
   content: '- '
   color: #3bb30b
   font-weight: bold
+
+#cta
+  display: block
+  background-color: #3bb30b
+  text-align: center
+  padding: 5pt 15pt
+  border-radius: 3pt
+  color: #ffffff
+  text-decoration: none
+  font-size: 0.9em
+  margin: 5pt 0
+  white-space: nowrap
+  text-transform: uppercase
+  cursor: pointer
+
+#cta:hover
+  background-color: #2F880B
+
+#link
+  display: flex
+  justify-content: flex-end
 
 </style>
