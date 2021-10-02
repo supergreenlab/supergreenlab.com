@@ -19,6 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.content'>
+      <h1>Newsletter</h1>
       <h2 :id='$style.title'>{{ config.title }}</h2>
       <div :id='$style.description' v-html='$md.render(config.description)'></div>
       <div :class='$style.title' :id="$style.emailcontainer">
@@ -63,6 +64,9 @@ export default {
   display: flex
   flex-direction: column
   align-items: center
+
+#content > h1
+  color: #3bb30b
 
 #title
   font-family: Roboto
