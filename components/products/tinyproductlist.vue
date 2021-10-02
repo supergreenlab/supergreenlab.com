@@ -28,7 +28,7 @@
           <Item :picOnly='picOnly' :product='product' />
         </div>
       </div>
-      <div :class='$style.propose'>
+      <div v-if='showAllProducts' :class='$style.propose'>
         <a href='javascript:void(0)' @click='proposeSellingPoint'>Propose a better product or shop</a>
       </div>
     </div>
