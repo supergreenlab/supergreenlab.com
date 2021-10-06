@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div v-if='config.title' :class='$style.title'>
+    <div v-if='config.title' :id='$style.title'>
       <SectionTitle v-if='config.title'
                     :title='config.title'
                     center='true'
@@ -56,11 +56,11 @@ export default {
   display: flex
   margin: 5pt 10pt
 
-.title
+#title
   font-family: Roboto
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
-    margin: 0
+    margin: 0 0 10pt 0
 
 #pic
   width: 100pt
