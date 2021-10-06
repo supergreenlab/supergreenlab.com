@@ -40,8 +40,10 @@ export default {
   methods: {
     open() {
       const { config: { link } } = this.$props
-      if (link) {
+      if (link.indexOf('https://') == 0) {
         open(link, '_blank')
+      } else {
+        this.$router.push(link)
       }
     }
   },
