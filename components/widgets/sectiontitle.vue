@@ -18,7 +18,7 @@
 
 <template>
   <section :id="$style.container" :class='center ? $style.center : $style.notcenter'>
-    <div :class="border ? $style.border : '' "></div>
+    <div :class="border ? $style.bordertop : '' "></div>
     <div :class="$style.titlecontainer">
       <h2 :id='$style.title' v-html='$md.render(title || "")' :style="white ? {color : 'white'} : '' "></h2>
       <div v-if='brackets' :id='$style.brackets' v-html='$md.render(brackets || "")'></div>
@@ -28,7 +28,7 @@
     <h2 v-if='subtitle' :id='$style.subtitle' v-html='$md.render(subtitle || "")'></h2>
     <h2 v-if='title2' :id='$style.title2'  v-html='$md.render(title2 || "")' :style="white ? {color : 'white'} : '' "></h2>
     <small v-if='smalltitle' :id='$style.smalltitle'  v-html='$md.render(smalltitle || "")' :style="white ? {color : 'white'} : '' "></small>
-    <div :class="border ? $style.border : '' "></div>
+    <div :class="border ? $style.borderbottom : '' "></div>
   </section>
 </template>
 
@@ -62,10 +62,16 @@ export default {
   @media only screen and (max-width: 600px)
     margin-left: 5pt 0
 
-.border
+.bordertop
   width: 80pt
   height: 3pt
-  margin: 20pt
+  margin-bottom: 20pt
+  background-color: #3BB30B
+
+.borderbottom
+  width: 80pt
+  height: 3pt
+  margin-top: 20pt
   background-color: #3BB30B
 
 .titlecontainer

@@ -29,10 +29,11 @@
       </div>
       <div v-if='!showSearchResults' :id='$style.content'>
         <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
-        <div :id='$style.spacer'></div>
-        <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
-          <component :is='componentForName(w.component)' :config='w'></component>
-        </div>
+          <div :id='$style.spacer'></div>
+          <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
+            <component :is='componentForName(w.component)' :config='w'></component>
+            <div :id='$style.spacer'></div>
+          </div>
         </component>
       </div>
       <div v-else :id='$style.content'>

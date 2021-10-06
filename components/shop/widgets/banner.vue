@@ -19,12 +19,12 @@
 <template>
   <section :id="$style.container" >
     <div @click='open()'>
-      <div v-for='(p, i) in config.picture'>
-        <video v-if='p.type == "video/mp4"' :class='`${$style.video} ${$style[`media${i}-${config.picture.length}`]}`' autoplay loop playsinline muted defaultMuted>
+      <div v-for='(p, i) in config.picture' :class='$style[`media${i}-${config.picture.length}`]'>
+        <video v-if='p.type == "video/mp4"' :class='$style.video' autoplay loop playsinline muted defaultMuted>
           <source :src="require(`~/assets/img/${p.filePath}`)" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <img v-else :class='`${$style.pictureBanner} ${$style[`media${i}-${config.picture.length}`]}`' :src='require(`~/assets/img/${p.fileFull}`)' />
+        <img v-else :class='$style.pictureBanner' :src='require(`~/assets/img/${p.fileFull}`)' />
       </div>
     </div>
   </section>
@@ -78,11 +78,13 @@ export default {
     display: none
   
 .media1-3
-  @media only screen and (max-width: 600px) and (min-width: 1000px)
-    display: none
+  display: none
+  @media only screen and (min-width: 600px) and (max-width: 1000px)
+    display: block
 
 .media2-3
-  @media only screen and (min-width: 600px)
-    display: none
+  display: none
+  @media only screen and (max-width: 600px)
+    display: block
 
 </style>

@@ -35,7 +35,7 @@
         </div>
       </div>
       <div :class='$style.propose'>
-        <a v-if='maxItems' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
+        <a v-if='maxItems && maxItems < products.length' href='javascript:void(0)' @click='toggleShowAll'>{{ showAllProducts ? 'Hide' : 'Show' }} all items - ({{ products.length }} items)</a>
       </div>
     </div>
   </section>
@@ -71,7 +71,7 @@ export default {
   },
   computed: {
     height() {
-      if (!this.$props.maxItems) {
+      if (!this.$props.maxItems || this.$props.maxItems > this.$props.products.length) {
         return 'auto'
       }
       const height = this.$data.showAllProducts ? `${this.$refs.products.scrollHeight}px` : `${this.$props.maxItems * 90}pt`
