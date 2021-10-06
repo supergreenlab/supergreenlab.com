@@ -130,6 +130,7 @@ export default {
     },
   },
   generate: {
+    exclude: ['/testshop',],
     routes: [
     ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
     .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
