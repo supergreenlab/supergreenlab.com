@@ -18,17 +18,6 @@
 
 <template>
   <section>
-    <div :id="$style.header">
-      <div :id="$style.container">
-        <Header/>
-      </div>
-      <div :id="$style.navbar">
-        <NavBar :containers='containers' />
-      </div>
-      <div :id="$style.searchbar">
-        <Search :onShowResults='onShowResults' />
-      </div>
-    </div>
     <div :id="$style.bodyResponsive" >
       <div :style="{transform: !showHeader ? 'translateY(-100%)' : 'translateY(0)'}">
         <div :id="$style.container">
@@ -82,10 +71,7 @@ export default {
       if (window.pageYOffset < 0) {
         return;
       }
-      if (
-        Math.abs(window.pageYOffset - this.lastScrollPosition) <
-        this.scrollOffset
-      ) {
+      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < this.scrollOffset ) {
         return;
       }
       this.showHeader = window.pageYOffset < this.lastScrollPosition;
@@ -98,14 +84,14 @@ export default {
 <style module lang=stylus>
 
 #bodyResponsive
-  display: none
-  @media only screen and (max-width: 900px)
-    width: 100%
-    display: block
+  width: 100%
+  display: block
 
 #bodyResponsive > div
   transition: transform 420ms linear
-  height: 52pt
+  height: 60pt
+  @media only screen and (max-width: 900px)
+    height: 52pt
 
 #header
   height: 70pt
