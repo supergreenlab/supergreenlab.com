@@ -22,7 +22,7 @@
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
-      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='valid ? startCheckout : undefined' :valid='valid' />
+      <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :valid='valid' />
     </div>
   </section>
   <section v-else :id='$style.emptycontainer'>
@@ -46,6 +46,10 @@ export default {
   },
   methods: {
     startCheckout() {
+      if (!this.valid) {
+        return
+      }
+      console.log('pouet')
       const width = 800
       const { seller } = this.$props
       open(`/checkout/${seller.id}`, '_blank', `width=${width},height=${availHeight()-100},top=100,left=${screenX() + availWidth()/2 - width/2}`)

@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <img width='20pt' height='20pt' src='~/assets/img/icon_search.svg' />
-    <input v-model="value" @keypress.native='listenEscape' :placeholder="placeholder">
+    <input v-model="value" @keydown.esc='listenEscape' :placeholder="placeholder">
     <img :id='$style.clear' @click="clear()" width='20pt' height='20pt' src='~/assets/img/icon_clear.svg' />
   </section>
 </template>

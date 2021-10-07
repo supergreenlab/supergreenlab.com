@@ -18,9 +18,9 @@
 
 <template>
   <section :id='$style.container'>
-    <!--<div :id='$style.header'>
-      <Header />
-    </div>-->
+    <div :id='$style.header'>
+      <Header :nomenu=true />
+    </div>
     <div :id='$style.body'>
       <div>
         <div :id='$style.cart'>
@@ -37,7 +37,6 @@
         <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
     </div>
-    <Footer />
     <div :id='$style.loading' v-if='loading'>
       <div :id='$style.loadingcontainer'>
         <Loading label='Preparing your order, please wait' />
@@ -56,6 +55,7 @@ import Price from '~/components/products/price.vue'
 
 import { setHref, postMessage } from '~/lib/client-side.js'
 import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '~/lib/storefront.js'
+import { brandProduct, seller, } from '~/lib/json_db.js'
 
 export default {
   components: {Header, Shipping, Loading, Footer, CheckoutButton, Price},
@@ -71,14 +71,14 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
-      const { seller } = this.$route.params
-      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart, true, true))
+      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart))
       this.$data.loading = true
-      const { shopify } = seller(seller).params
+      const { shopify } = seller(this.$route.params.seller).params
       const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
       const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
       await setShippingAddress(shopify, checkout, this.$store.state.shipping)
-      const promocode = this.$store.state.checkout.promocodes[seller]
+      const promocode = this.$store.state.checkout.promocodes[this.$route.params.seller]
+      console.log(promocode)
       if (promocode) {
         await applyCoupon(shopify, checkout, promocode)
       }
@@ -136,7 +136,7 @@ export default {
 #body
   width: 100%
   max-width: 900pt
-  padding: 50pt 0 0 0
+  padding: 50pt 0 50pt 0
 
 #buy
   display: flex
