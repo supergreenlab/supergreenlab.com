@@ -34,6 +34,13 @@
         <form name='sglcheckout'>
           <Shipping />
         </form>
+        <div v-if='price.converted' :id='$style.converted'>
+          The price displayed has been automatically converted to your local currency.<br />
+          Price in checkout will probably not be in the same currency.
+        </div>
+        <div>
+          Shipping cost will be added on the next step.
+        </div>
         <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
     </div>
@@ -112,6 +119,10 @@ export default {
       const { seller } = this.$route.params
       return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller)
     },
+    price() {
+      if (this.cart.length == 0) return 0
+      return this.$store.getters['checkout/lineItemsPrice'](this.cart)
+    },
   },
 }
 </script>
@@ -134,6 +145,8 @@ export default {
   z-index: 1000
 
 #body
+  display: flex
+  flex-direction: column
   width: 100%
   max-width: 900pt
   padding: 50pt 0 50pt 0
@@ -213,5 +226,9 @@ export default {
   flex: 1
   @media only screen and (max-width: 600px)
     display: none
+
+#converted
+  color: #323232
+  text-align: right
 
 </style>
