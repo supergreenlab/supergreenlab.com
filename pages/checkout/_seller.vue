@@ -34,12 +34,12 @@
         <form name='sglcheckout'>
           <Shipping />
         </form>
-        <div v-if='price.converted' :id='$style.converted'>
-          The price displayed has been automatically converted to your local currency.<br />
+        <div v-if='price.converted' :id='$style.notice'>
+          The price displayed has been <b>automatically converted to your local currency</b>.<br />
           Price in checkout will probably not be in the same currency.
         </div>
-        <div>
-          Shipping cost will be added on the next step.
+        <div :id='$style.notice'>
+          <b>Shipping cost</b> will be added on the next step.
         </div>
         <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
@@ -227,7 +227,7 @@ export default {
   @media only screen and (max-width: 600px)
     display: none
 
-#converted
+#notice
   color: #323232
   text-align: right
 

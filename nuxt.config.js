@@ -139,15 +139,16 @@ export default {
 
   router: {
     async scrollBehavior(to, from, savedPosition) {
+      console.log(to, from)
       if (savedPosition) {
         await new Promise((r) => setTimeout(r, 400))
         return savedPosition
       }
 
-      const findEl = async (hash, x) => {
+      const findEl = async (hash, x=0) => {
         return document.querySelector(hash) ||
           new Promise((resolve, reject) => {
-            if (x > 50) {
+            if (x > 2) {
               return resolve()
             }
             setTimeout(() => { resolve(findEl(hash, ++x || 1)) }, 100)
@@ -159,7 +160,7 @@ export default {
         if (wrapper) {
           y -= wrapper.children[0].clientHeight
         }
-        if ('scrollBehavior' in document.documentElement.style) {
+        if (to.path == from.path && 'scrollBehavior' in document.documentElement.style) {
           return window.scrollTo({ top: y, behavior: 'smooth' })
         }
         return window.scrollTo(0, y)

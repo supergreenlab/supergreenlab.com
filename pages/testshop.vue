@@ -18,8 +18,10 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.header'>
-      <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
+    <div id='header_wrapper'>
+      <div :id='$style.header'>
+        <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
+      </div>
     </div>
     <div :id='$style.fullcontent'>
       <div :id='$style.leftcolumn'>

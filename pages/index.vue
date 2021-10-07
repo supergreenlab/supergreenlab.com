@@ -24,6 +24,7 @@
       </div>
     </div>
     <div :id='$style.body'>
+      <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
       <BlockStep />
       <BlockExamples />
