@@ -95,6 +95,7 @@ export default{
     onShowResults(input, results) {
       this.$data.showSearchResults = input.length
       this.$data.searchResults = results
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
   },
 }

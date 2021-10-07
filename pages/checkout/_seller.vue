@@ -18,9 +18,9 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.header'>
+    <!--<div :id='$style.header'>
       <Header />
-    </div>
+    </div>-->
     <div :id='$style.body'>
       <div>
         <div :id='$style.cart'>

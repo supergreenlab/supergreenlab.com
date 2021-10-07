@@ -136,7 +136,7 @@ export default {
   align-items: center
   width: 100%
   transition: all 0.6s ease 0s
-  background-color: rgba(255, 255, 255, 0.8)
+  background-color: white
 
 #container > input
   font-size: 1em

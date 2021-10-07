@@ -79,7 +79,7 @@ export default {
   z-index: 1000
   display: flex
   width: 100vw
-  background-color: rgba(255, 255, 255, 0.8)
+  background-color: white
   align-items: center
   justify-content: space-between
   padding: 0 0 0 10pt
@@ -107,7 +107,7 @@ export default {
    min-height: 100vh
    min-width: 25vh
    right: 0pt
-   background: rgba(255, 255, 255, 0.8)
+   background: white
    margin-right: 0pt
    transition: all 0.420s
 

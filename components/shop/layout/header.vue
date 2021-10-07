@@ -142,7 +142,7 @@ export default {
   border-bottom: 3pt solid #3bb30b
 
 #navbar
-  background-color: rgba(255, 255, 255, 0.8)
+  background-color: white
   position: fixed
   width: 100%
   top: 42pt
