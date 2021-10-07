@@ -31,7 +31,8 @@ const fetchFile = async (url, dst, path=assetsPath) => {
 module.exports.noPic = {
   fileLarge: 'nopic.svg',
   fileSmall: 'nopic.svg',
-  fileFull: 'nopic.svg'
+  fileFull: 'nopic.svg',
+  fileRaw: 'nopic.svg',
 }
 
 const emptyAssetsDir = async (dir) => {
@@ -56,33 +57,42 @@ module.exports.mkStaticDir = async (dir) => {
     await fs.mkdir(dir)
   } catch(e) {}
 }
-module.exports.fetchAttachement = (p, attachement, dir) => {
+module.exports.fetchAttachement = (p, attachement, dir, keepRaw=false) => {
   if (attachement.type.indexOf('image/') == 0) {
     let ext = attachement.type.split('/')[1].toLowerCase()
     if (ext == 'svg+xml') ext = 'png'
     const thumbnails = attachement.thumbnails || {
       small: {url: attachement.url},
       large: {url: attachement.url},
-      full: {url: attachement.url}
+      full: {url: attachement.url},
+      raw: {url: attachement.url},
     }
     const fileLarge = `${attachement.id}.${ext}`,
       fileSmall = `${attachement.id}_small.${ext}`,
       fileFull = `${attachement.id}_full.${ext}`,
+      fileRaw = `${attachement.id}_raw.${ext}`,
       finalFileLarge = `${attachement.id}.jpg`,
       finalFileSmall = `${attachement.id}_small.jpg`,
-      finalFileFull = `${attachement.id}_full.jpg`
+      finalFileFull = `${attachement.id}_full.jpg`,
+      finalFileRaw = `${attachement.id}_raw.jpg`
     p = p.then(async () => {
       await fetchFile(thumbnails.small.url, `tmp/${fileSmall}`)
       await fetchFile(thumbnails.large.url, `tmp/${fileLarge}`)
       await fetchFile(thumbnails.full.url, `tmp/${fileFull}`)
+      if (keepRaw) {
+        await fetchFile(thumbnails.full.url, `tmp/${fileRaw}`)
+      }
 
       console.log(`resizing:\n${dir}/${fileSmall} ${dir}/${fileLarge} ${dir}/${fileFull}`)
       await sharp(`${assetsPath}/tmp/${fileSmall}`).resize(200, 200, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileSmall}`)
       await sharp(`${assetsPath}/tmp/${fileLarge}`).resize(600, 600, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileLarge}`)
       await sharp(`${assetsPath}/tmp/${fileFull}`).resize(1400, 1400, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileFull}`)
+      if (keepRaw) {
+        await sharp(`${assetsPath}/tmp/${fileRaw}`).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileRaw}`)
+      }
     })
 
-    return { p, attachement, data: { fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, type: attachement.type } }
+    return { p, attachement, data: { fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, fileRaw: `${dir}/${finalFileRaw}`, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {
     const ext = attachement.type.split('/')[1].toLowerCase()
     const filePath = `${dir}/${attachement.id}.${ext}`

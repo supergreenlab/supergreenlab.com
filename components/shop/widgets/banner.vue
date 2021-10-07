@@ -24,7 +24,7 @@
           <source :src="require(`~/assets/img/${p.filePath}`)" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <img v-else :class='$style.pictureBanner' :src='require(`~/assets/img/${p.fileFull}`)' />
+        <img v-else :class='$style.pictureBanner' :src='require(`~/assets/img/${p.fileRaw}`)' />
       </div>
     </div>
   </section>

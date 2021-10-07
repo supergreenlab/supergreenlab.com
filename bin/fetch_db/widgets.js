@@ -16,7 +16,7 @@ module.exports.fetchWidgets = async () => {
     w.linktext = (w.linktext || "").trim()
     w.picture = (w.picture || []).map(a => {
       try {
-        const { p, data } = fetchAttachement(picPromise, a, 'widgets')
+        const { p, data } = fetchAttachement(picPromise, a, 'widgets', w.component == 'Banner')
         picPromise = p
         return data
       } catch(e) {

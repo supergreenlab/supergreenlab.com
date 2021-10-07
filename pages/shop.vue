@@ -22,7 +22,7 @@
      <div :id='$style.header'>
        <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
      </div>
-    </div>
+   </div>
    <div :id='$style.fullcontent'>
      <div :id='$style.leftcolumn'>
        <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
