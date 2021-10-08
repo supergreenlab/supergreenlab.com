@@ -32,7 +32,7 @@
     <div :id='$style.checkout' v-if='isAmazonCart'>
       <CheckBox @click='toggleAll' :checked='checked' label='Mark all as bought' />
       This will open {{ seller.url.replace('https://www.', '') }} with a pre-filled shopping cart
-      <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ price }}</b></a><br />
+      <a :id='$style.button' :href='amazonCartUrl' target='_blank'><b>AMAZON CART - {{ price.strTotal }}</b></a><br />
       <small>*price may vary</small>
     </div>
     <div v-else :id='$style.checkout'>

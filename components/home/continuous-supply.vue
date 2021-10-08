@@ -30,7 +30,7 @@
       Your browser does not support the video tag.
     </video>
     <div :id='$style.text'>
-      <b>You don't have to wait until harvest</b> to start the next plant! <b>Harvest twice as fast</b> with continuous supply.<br />
+      <b>You don't have to wait until harvest</b> to start the next plant! <b>Harvest twice as fast</b> with continuous supply.
       The Controller can control <b>up to 3 spaces</b> with different schedules to do <b>vegging and blooming at the same time</b>.
     </div>
   </section>
@@ -76,6 +76,11 @@ export default {
 #text
   color: #515151
   text-align: center
+  margin: 0 70pt
+  @media only screen and (min-width: 600px) and (max-width: 900px)
+    margin: 0 40pt
+  @media only screen and (max-width: 600px)
+    margin: 0 5pt
 
 #text > b
   color: #3bb30b

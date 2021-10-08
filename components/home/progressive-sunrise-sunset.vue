@@ -30,9 +30,9 @@
       Your browser does not support the video tag.
     </video>
     <div :id='$style.text'>
-      The <b>SuperGreenController</b> gives you total control of your lights,<br />
-      it allows to switch from veg to bloom at a press of a button,<br />
-      it <b>simulates sunrise and sunsets</b>, and allows to choose <b>independent dimming</b> for each led channels,<br />
+      The <b>SuperGreenController</b> gives you total control of your lights,
+      it allows to switch from veg to bloom at a press of a button,
+      it <b>simulates sunrise and sunsets</b>, and allows to choose <b>independent dimming</b> for each led channels,
       smart schedules for <b>UV</b> and <b>IR</b> panels are coming soon.
     </div>
   </section>
@@ -78,6 +78,11 @@ export default {
 #text
   color: #515151
   text-align: center
+  margin: 0 70pt
+  @media only screen and (min-width: 600px) and (max-width: 900px)
+    margin: 0 40pt
+  @media only screen and (max-width: 600px)
+    margin: 0 5pt
 
 #text > b
   color: #3bb30b

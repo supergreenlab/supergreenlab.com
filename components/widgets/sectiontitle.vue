@@ -84,7 +84,7 @@ export default {
   font-size: 2.7em
   color: #323232
   @media only screen and (max-width: 600px)
-    font-size: 2.1em
+    font-size: 2.3em
     margin: 5pt
 
 #brackets
@@ -102,6 +102,9 @@ export default {
   font-size: 1.6em
   color: #323232
   text-transform: uppercase
+  @media only screen and (max-width: 600px)
+    font-size: 1.4em
+    margin: 5pt
 
 #subtitle
   font-size 2em
@@ -119,6 +122,9 @@ export default {
   color: #3BB30B
   font-size: 2.1em
   margin: 0pt
+  @media only screen and (max-width: 600px)
+    font-size: 1.9em
+    margin: 5pt
 
 #smalltitle
   margin-top: 5pt
@@ -126,7 +132,7 @@ export default {
   font-size: 1.1em
   text-transform: lowercase
   @media only screen and (max-width: 600px)
-    font-size: 1.3em
-
+    font-size: 1em
+    margin: 5pt
 
 </style>

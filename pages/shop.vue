@@ -32,7 +32,7 @@
      <div v-if='!showSearchResults' :id='$style.content'>
        <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
          <div v-if='!c.nomargin' :id='$style.spacer'></div>
-         <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id'>
+         <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id' :ref='w.slug'>
            <component :is='componentForName(w.component)' :config='w'></component>
            <div v-if='!c.nomargin' :id='$style.spacer'></div>
          </div>
@@ -79,6 +79,8 @@ import RegionSelector from '~/components/shop/widgets/regionselector.vue'
 
 import widgets from '~/config/widgets.json'
 
+import { addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
+
 const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector, Footer}
 
 export default {
@@ -93,12 +95,42 @@ export default {
       showSearchResults: false,
     }
   },
+  created () {
+    addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    if (this.timeout) clearTimeout(this.timeout)
+    removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     componentForName: name => components[name],
     onShowResults(input, results) {
       this.$data.showSearchResults = input.length
       this.$data.searchResults = results
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    },
+    handleScroll(e) {
+      if (this.timeout) clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        Object.keys(this.$refs).forEach((name) => {
+          if (this.lastEvent == name) {
+            return;
+          }
+          let ref = this.$refs[name]
+          if (!ref.length) ref = [ref]
+          ref.forEach((ref) => {
+            const $el = ref.$el ? ref.$el : ref
+            const { y, height } = $el.getBoundingClientRect(),
+              centery = y + height / 2,
+              winh = innerHeight()
+
+            if (centery > winh / 4 && centery < winh * 3/4) {
+              this.$matomo.trackEvent('shop-page', 'scrollto', name)
+              this.lastEvent = name
+            }
+          })
+        })
+      }, 250)
     },
   },
 }

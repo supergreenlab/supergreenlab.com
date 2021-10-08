@@ -109,6 +109,7 @@ export default {
 #region
   display: flex
   justify-content: flex-end
+  margin 5pt 0
 
 .propose
   display: flex
@@ -118,6 +119,6 @@ export default {
 
 .propose a
   color: #454545
-  margin: 3pt
+  padding: 6pt 0
 
 </style>

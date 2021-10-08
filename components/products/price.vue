@@ -24,20 +24,20 @@
           <div :id='$style.redbar'></div>
         </h1>
         <small v-if='!price.sglOnly'>*price may vary</small>
-        <small v-if='price.converted'>*converted to local currency</small>
+        <small v-if='price.converted'>*<b>converted</b> to local currency</small>
       </div>
       <div :class='$style.price'>
         <h1 :id='$style.green'>{{ price.strTotal }}</h1><br />
         <small><span v-if='price.incTax'>incl.tax</span><span v-if='price.freeShipping'> + <b>FREE SHIPPING*</b></span></small>
-        <small v-if='!price.sglOnly'>*price may vary</small>
-        <small v-if='price.converted'>*converted to local currency</small>
+        <small v-if='!price.sglOnly'>*external seller, price may vary</small>
+        <small v-if='price.converted'>*<b>converted</b> to local currency</small>
         <span>promocode: <b>-{{ price.discountPercent.toFixed(2) }}%</b></span>
       </div>
     </div>
     <div v-else :class='$style.price'>
       <h1 :id='$style.green'>{{ price.strTotal }}</h1>
       <small v-if='!price.sglOnly'>*price may vary</small>
-      <small v-if='price.converted'>*converted to local currency</small>
+      <small v-if='price.converted'>*<b>converted</b> to local currency</small>
       <small><span v-if='price.incTax'>incl. tax</span><span v-if='price.freeShipping'> + <b>FREE SHIPPING*</b></span></small>
     </div>
     <a v-if='notify' :id='$style.notify' href='javascript:void(0)' @click='notifyForm'>Notify me of price changes</a>
@@ -60,7 +60,7 @@ export default {
     notifyForm() {
       const width = 800
       open(`https://airtable.com/shrB2zJ3H5jF9f6fl?prefill_SellingPoint=${this.$props.lineItems[0].sellingPoint.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo && this.$matomo.trackEvent('guide', 'feedback')
+      this.$matomo.trackEvent('notify-price', 'click')
     }
   },
 }

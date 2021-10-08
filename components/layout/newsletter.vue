@@ -55,7 +55,6 @@ export default {
 
 <style module lang=stylus>
 #container
-  background-color: #dedede
   width: 100%
   height: auto
   display: flex
@@ -109,7 +108,7 @@ export default {
 .email
   padding: 5pt
   border-radius: 0pt 3pt 3pt 0pt
-
+  border: 1pt solid #dedede
 
 #label
   text-align: center

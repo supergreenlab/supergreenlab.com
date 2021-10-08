@@ -26,7 +26,7 @@
     "markdown-it-div": "^1.1.0",
     "nuxt": "^2.15.7",
     "nuxt-client-init-module": "^0.1.9",
-    "nuxt-matomo": "^1.2.3",
+    "nuxt-matomo": "^1.2.4",
     "portal-vue": "^2.1.7",
     "sharp": "^0.27.1",
     "stylus": "^0.54.7",

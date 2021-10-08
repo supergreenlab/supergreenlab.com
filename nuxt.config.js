@@ -71,7 +71,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     '@nuxtjs/markdownit',
-    ['nuxt-matomo', { matomoUrl: '//analytics.supergreenlab.com/', trackerUrl: '//analytics.supergreenlab.com/matomo.php', scriptUrl: '//analytics.supergreenlab.com/matomo.js', siteId: 1 }],
+    ['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: 4, debug: process.env.NODE_ENV !== 'production' }],
     'portal-vue/nuxt',
     'nuxt-client-init-module',
   ],
@@ -139,7 +139,6 @@ export default {
 
   router: {
     async scrollBehavior(to, from, savedPosition) {
-      console.log(to, from)
       if (savedPosition) {
         await new Promise((r) => setTimeout(r, 400))
         return savedPosition

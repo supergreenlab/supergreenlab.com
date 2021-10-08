@@ -26,14 +26,15 @@
     <div :id='$style.body'>
       <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
-      <BlockStep />
-      <BlockExamples />
-      <BlockBundle />
-      <BlockApp />
-      <BlockDiscord />
-      <BlockGuide />
-      <BlockShop />
-      <Newsletter />
+      <div id='use-steps'></div>
+      <BlockStep ref='welcome' />
+      <BlockExamples ref='bundle-intro' />
+      <BlockBundle ref='bundles' />
+      <BlockApp ref='app' />
+      <BlockDiscord ref='discord' />
+      <BlockGuide ref='everything-you-need' />
+      <BlockShop ref='shop' />
+      <Newsletter ref='newsletter' />
     </div>
     <Footer />
     <transition name="popup">

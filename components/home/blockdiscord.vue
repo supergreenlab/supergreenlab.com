@@ -105,7 +105,6 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 0 5pt
 
-
 #description
   display: flex
   flex: 1
@@ -153,7 +152,7 @@ export default {
 #btn
   font-family: 'Roboto'
   font-weight: 800
-  width: 250pt
+  width: 230pt
   background-color: #ffffff
   border: 4px solid #3bb30b
   text-align: center

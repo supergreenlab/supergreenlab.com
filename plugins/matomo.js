@@ -26,6 +26,6 @@ export default ({ app }) => {
       exdate.setDate(exdate.getDate() + 3650)
       document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/; expires=${exdate.toUTCString()}`;
     }
-    app.$matomo && app.$matomo.setUserId(sglid)
+    app.$matomo.setUserId(sglid)
   }
 }

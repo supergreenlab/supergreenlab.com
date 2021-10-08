@@ -158,7 +158,6 @@ export default {
   color: #3BB30B
   font-weight: bold
 
-
 #picture
   width: 250pt
   height: 250pt

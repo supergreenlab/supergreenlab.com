@@ -35,6 +35,11 @@
         </div>
 
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
+        <div :class='$style.price'>
+          <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+          <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
+        </div>
+
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
           <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>

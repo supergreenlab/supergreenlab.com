@@ -45,7 +45,7 @@ export default {
     newsletterForm() {
       const width = 800
       open(`https://airtable.com/shrge8dNrpLul19IR?prefill_email=${this.$data.email}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo && this.$matomo.trackEvent('guide', 'newsletter')
+      this.$matomo.trackEvent('widgets', 'newsletter')
     }
   }
 }
