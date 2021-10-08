@@ -31,10 +31,10 @@
      </div>
      <div v-if='!showSearchResults' :id='$style.content'>
        <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
-         <div :id='$style.spacer'></div>
-         <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
+         <div v-if='!c.nomargin' :id='$style.spacer'></div>
+         <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id'>
            <component :is='componentForName(w.component)' :config='w'></component>
-           <div :id='$style.spacer'></div>
+           <div v-if='!c.nomargin' :id='$style.spacer'></div>
          </div>
        </component>
      </div>
@@ -75,12 +75,13 @@ import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
 import CountDown from '~/components/shop/widgets/countdown.vue'
 import CollectionSpotlight from '~/components/shop/widgets/collectionspotlight.vue'
 import Edito from '~/components/shop/widgets/edito.vue'
+import RegionSelector from '~/components/shop/widgets/regionselector.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, Footer}
+const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector, Footer}
 
-export default{
+export default {
   components,
   computed: {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
