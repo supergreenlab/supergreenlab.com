@@ -71,7 +71,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     '@nuxtjs/markdownit',
-    ['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: 4, }],
+    ['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: process.env.NODE_ENV !== 'production' ? 7 : 4, debug: process.env.NODE_ENV !== 'production'}],
     'portal-vue/nuxt',
     'nuxt-client-init-module',
   ],
