@@ -62,7 +62,7 @@ import Price from '~/components/products/price.vue'
 
 import { setHref, postMessage } from '~/lib/client-side.js'
 import { createCheckout, setShippingAddress, applyCoupon, applyShipping,} from '~/lib/storefront.js'
-import { brandProduct, seller, } from '~/lib/json_db.js'
+import { brandProduct, sellerWithSlug, } from '~/lib/json_db.js'
 
 export default {
   components: {Header, Shipping, Loading, Footer, CheckoutButton, Price},
@@ -78,14 +78,14 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
-      this.$matomo && this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart))
+      this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart))
       this.$data.loading = true
-      const { shopify } = seller(this.$route.params.seller).params
+      const seller = sellerWithSlug(this.$route.params.seller)
+      const { shopify } = seller.params
       const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
       const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
       await setShippingAddress(shopify, checkout, this.$store.state.shipping)
-      const promocode = this.$store.state.checkout.promocodes[this.$route.params.seller]
-      console.log(promocode)
+      const promocode = this.$store.state.checkout.promocodes[seller.id]
       if (promocode) {
         await applyCoupon(shopify, checkout, promocode)
       }
@@ -116,8 +116,8 @@ export default {
       },
     },
     cart() {
-      const { seller } = this.$route.params
-      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller)
+      const seller = sellerWithSlug(this.$route.params.seller)
+      return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller.id)
     },
     price() {
       if (this.cart.length == 0) return 0

@@ -99,7 +99,7 @@ export default {
       await navigator.clipboard.writeText(url)
       this.$data.shared = true
       setTimeout(() => this.$data.shared = false, 1000)
-      this.$matomo && this.$matomo.trackEvent('cart', 'share', md5(cartData))
+      this.$matomo.trackEvent('cart', 'share', md5(cartData))
     },
   },
 }

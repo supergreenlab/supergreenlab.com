@@ -49,10 +49,9 @@ export default {
       if (!this.valid) {
         return
       }
-      console.log('pouet')
       const width = 800
       const { seller } = this.$props
-      open(`/checkout/${seller.id}`, '_blank', `width=${width},height=${availHeight()-100},top=100,left=${screenX() + availWidth()/2 - width/2}`)
+      open(`/checkout/${seller.slug}`, '_blank', `width=${width},height=${availHeight()-100},top=100,left=${screenX() + availWidth()/2 - width/2}`)
       addEventListener('message', (event) => {
         if (event.data == 'sglcheckoutdone') {
           this.cart.forEach(lineItem => {

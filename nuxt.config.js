@@ -135,7 +135,7 @@ export default {
     ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
     .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
     .concat(guides.map(g => `/guide/${g.slug}`))
-    .concat(sellers.filter(s => s.type == 'shopify' && s.params.shopify && s.params.shopify.token).map(s => `/checkout/${s.id}`)),
+    .concat(sellers.filter(s => s.type == 'shopify' && s.params.shopify && s.params.shopify.token).map(s => `/checkout/${s.slug}`)),
   },
 
   router: {
