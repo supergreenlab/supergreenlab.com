@@ -35,7 +35,7 @@
       <div :id='$style.description'>
         <div :id='$style.title'>Like a tiny <strong>ecosystem</strong>, in a cupboard </div>
         <div :id='$style.bullets'>
-          <div>Growing plants indoor means that apart from the usual soil, nutrient and water <strong>you will also need to provide sunlight and fresh air</strong>.</div>
+          <div>Growing plants indoor means that apart from the usual soil, nutrient and water you will also need to provide <strong>sunlight and fresh air</strong>.</div>
           <div>While there are already a lot of solutions when it comes to soil and nutrient, <strong>there were no lighting solution that could fit tight spaces</strong>.</div>
           <div><b>Super</b><strong>Green</strong><b>Lab</b> designed the <strong>first grow bundle</strong> dedicated to creating the perfect growing environment in virtually <strong>any kind of furniture</strong>.</div>
         </div>

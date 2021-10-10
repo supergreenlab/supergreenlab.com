@@ -1,6 +1,6 @@
 import fs from 'fs';
 import pkg from './package'
-import { products, sellingPoints, } from './config/products.json'
+import { products, sellingPoints, sellers, } from './config/products.json'
 import { guides } from './config/guides.json'
 
   /*console.log([
@@ -71,7 +71,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     '@nuxtjs/markdownit',
-    ['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: 4, debug: process.env.NODE_ENV !== 'production' }],
+    ['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: 4, }],
     'portal-vue/nuxt',
     'nuxt-client-init-module',
   ],
@@ -134,7 +134,8 @@ export default {
     routes: [
     ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
     .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
-    .concat(guides.map(g => `/guide/${g.slug}`)),
+    .concat(guides.map(g => `/guide/${g.slug}`))
+    .concat(sellers.filter(s => s.type == 'shopify' && s.params.shopify && s.params.shopify.token).map(s => `/checkout/${s.id}`)),
   },
 
   router: {

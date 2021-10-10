@@ -63,7 +63,7 @@
       </div>
       <div :class="$style.description">
         <div :class="$style.bullets">
-          <div>📡  Keep an eye on your plant environement <strong>from anywhere</strong>.</div>
+          <div>📡  Keep an eye on your plant environment <strong>from anywhere</strong>.</div>
           <div>🌡  <strong>Configure your alerts</strong>, the app will tell you when the temperature or humidity is out of range</div>
           <div>🍼 Keep track of your waterings to make sure your don’t over or under water,<strong> setup reminders</strong>!</div>
           <div>📊 <strong>Measure the progression</strong> of your plant over time</div>
