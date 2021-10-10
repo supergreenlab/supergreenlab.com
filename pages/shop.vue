@@ -89,6 +89,18 @@ export default {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
     widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) < (new Date()).getTime()),
   },
+  head() {
+    return {
+      title: `SuperGreenLab Shop`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Welcome to SuperGreenLab\'s shop! We\'ve been crawling the web, so you don\'t have to. Find everything you need to grow your own weed here!'
+        },
+      ],
+    }
+  },
   data() {
     return {
       searchResults: [],
