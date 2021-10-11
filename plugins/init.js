@@ -3,7 +3,7 @@ export default async ({ store }) => {
     try {
       const urlParams = new URLSearchParams(window.location.search)
       if (urlParams.get('promo')) {
-        await store.dispatch('checkout/fetchPromocode', {code: urlParams.get('promo')})
+        await store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
       }
     } catch(e) {
       console.log(e)

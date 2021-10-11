@@ -58,7 +58,7 @@ import { seller, } from '~/lib/json_db.js'
 const isShopify = (s) => {
   try {
     s = seller(s)
-    return s.type == 'shopify' && s.params.shopify.token
+    return s.type == 'shopify' && s.params.shopify && s.params.shopify.token
   } catch(e) {
     return false
   }
