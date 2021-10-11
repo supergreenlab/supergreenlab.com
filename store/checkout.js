@@ -71,7 +71,6 @@ export const actions = {
     }
   },
   async loadExchangeRates(context) {
-    const rateAPI = process.env.rateAPI
     const { data } = await axios.get('https://shopapi.supergreenlab.com/rates')
     context.commit('setRates', data)
   },

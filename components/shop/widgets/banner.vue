@@ -46,7 +46,12 @@ export default {
       if (link.indexOf('https://') == 0) {
         open(link, '_blank')
       } else {
-        this.$router.push(link)
+        if (link.indexOf('?promo=') !== -1) {
+          const urlParams = new URLSearchParams(link.split('?')[1])
+          await this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
+        } else {
+          this.$router.push(link)
+        }
       }
     }
   },

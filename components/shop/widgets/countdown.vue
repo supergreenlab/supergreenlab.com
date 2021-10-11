@@ -20,7 +20,7 @@
   <section :id="$style.container">
     <div :id="$style.title" v-html='$md.render(config.title)'></div>
     <div :id="$style.description" v-html='$md.render(config.description)'></div>
-    <div @click='open(config.link)' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+    <div @click='open()' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
       <div :id="$style.countdown">
         <div :class="$style.countdown">
           <div :class="$style.block">
@@ -94,11 +94,21 @@ export default {
     }
   },
   methods: {
-    open(link) {
+    async open() {
+      const { config: { link } } = this.$props
       if (!link) {
         return
       }
-      open(link, '_blank')
+      if (link.indexOf('https://') == 0) {
+        open(link, '_blank')
+      } else {
+        if (link.indexOf('?promo=') !== -1) {
+          const urlParams = new URLSearchParams(link.split('?')[1])
+          await this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
+        } else {
+          this.$router.push(link)
+        }
+      }
     }
   },
   filters: {
