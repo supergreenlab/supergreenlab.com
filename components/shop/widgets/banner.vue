@@ -38,7 +38,7 @@ export default {
   computed: {
   },
   methods: {
-    open() {
+    async open() {
       const { config: { link } } = this.$props
       if (!link) {
         return
