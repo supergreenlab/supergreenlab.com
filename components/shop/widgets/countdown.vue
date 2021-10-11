@@ -17,40 +17,38 @@
  -->
 
 <template>
- <section :id="$style.container">
-   <div :id="$style.countdowncontainer">
-     <div :id="$style.title" v-html='$md.render(config.title)'></div>
-     <div :id="$style.description" v-html='$md.render(config.description)'></div>
-     <div @click='open(config.link)' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
-       <div :id="$style.countdown">
-         <div :class="$style.countdown">
-           <div :class="$style.block">
-             <div :class="$style.digit">{{ days | zero }}</div>
-             <div :class="$style.unit">Days</div>
-           </div>
-           <div :class="$style.block">
-             <div :class="$style.digit">{{ hours | zero }}</div>
-             <div :class="$style.unit">Hours</div>
-           </div>
-           <div :class="$style.block">
-             <div :class="$style.digit">{{ minutes | zero }}</div>
-             <div :class="$style.unit">Minutes</div>
-           </div>
-           <div :class="$style.block">
-             <div :class="$style.digit">{{ seconds | zero }}</div>
-             <div :class="$style.unit">Seconds</div>
-           </div>
-         </div>
-       </div>
-       <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
-     </div>
-     <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'>
-       <div :class="$style.digit">Times's up</div>
-       <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
-     </div>
+  <section :id="$style.container">
+    <div :id="$style.title" v-html='$md.render(config.title)'></div>
+    <div :id="$style.description" v-html='$md.render(config.description)'></div>
+    <div @click='open(config.link)' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
+      <div :id="$style.countdown">
+        <div :class="$style.countdown">
+          <div :class="$style.block">
+            <div :class="$style.digit">{{ days | zero }}</div>
+            <div :class="$style.unit">Days</div>
+          </div>
+          <div :class="$style.block">
+            <div :class="$style.digit">{{ hours | zero }}</div>
+            <div :class="$style.unit">Hours</div>
+          </div>
+          <div :class="$style.block">
+            <div :class="$style.digit">{{ minutes | zero }}</div>
+            <div :class="$style.unit">Minutes</div>
+          </div>
+          <div :class="$style.block">
+            <div :class="$style.digit">{{ seconds | zero }}</div>
+            <div :class="$style.unit">Seconds</div>
+          </div>
+        </div>
+      </div>
+      <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
+    </div>
+    <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'>
+      <div :class="$style.digit">Times's up</div>
+      <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
+    </div>
      <!-- <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div> -->
-   </div>
- </section>
+  </section>
 </template>
 
 <script>
@@ -97,6 +95,9 @@ export default {
   },
   methods: {
     open(link) {
+      if (!link) {
+        return
+      }
       open(link, '_blank')
     }
   },
@@ -128,9 +129,7 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-
-#countdowncontainer
-  display:flex
+  width: 100%
   flex-direction: column
 
 #title
@@ -138,17 +137,14 @@ export default {
   font-weight: bold
   font-size: 2.5em
   margin-bottom: 10pt
-  color: #5E5E5E
+  color: #5e5e5e
   @media only screen and (max-width: 900px)
     margin-left: 5pt
 
-
 #description
-  margin: 0 10pt
-  text-align: justify
-  @media only screen and (max-width: 900px)
-    margin: 0 5pt
-
+  margin: 5pt
+  text-align: center
+  color: #5e5e5e
 
 #countdown
   display: flex
@@ -162,9 +158,13 @@ export default {
   cursor: pointer
 
 .block
+  width: 100pt
   margin: 10pt
+  @media only screen and (min-width: 600px) and (max-width: 900px)
+    width: 80pt
   @media only screen and (max-width: 600px)
     margin: 3pt
+    width: 60pt
 
 .digit
   text-align: center
@@ -175,11 +175,13 @@ export default {
   text-transform: uppercase
   white-space: nowrap
   -webkit-text-fill-color: white
-  -webkit-text-stroke-width: 1px
+  -webkit-text-stroke-width: 3px
   -webkit-text-stroke-color: black
   @media only screen and (min-width: 600px) and (max-width: 900px)
+    -webkit-text-stroke-width: 1px
     font-size: 50pt
   @media only screen and (max-width: 600px)
+    -webkit-text-stroke-width: 1px
     font-size: 23pt
 
 .unit
@@ -206,11 +208,10 @@ export default {
   -webkit-text-stroke-color: black
 
 .countdownpic
+  width: 100%
   max-height: 200pt
   background-position: center
   background-size: cover
   background-repeat: no-repeat
-  margin: 10pt
-
 
 </style>

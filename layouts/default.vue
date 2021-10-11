@@ -89,12 +89,15 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: center
+  text-align: center
   width: 100vw
   bottom: 0
   background-color: #3BB30B
   color: white
   font-size: 0.7em
   padding: 5pt 0
+  @media only screen and (max-width: 600px)
+    font-size: 0.6em
 
 #promo > h1
   margin: 0
