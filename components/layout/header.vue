@@ -22,9 +22,9 @@
       <Logo subtitle='Growshop.' />
     </div>
     <a v-if='!nomenu' :id='$style.burgerMenu' @click='toggleClass()'>
-      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (!isActive? "" : "rotate(135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0px")}' ></span>
+      <span :class="$style.burgerBar" :id='$style.topBar' :style='{"transform": (!isActive? "" : "rotate(135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0.4em")}' ></span>
       <span :class="$style.burgerBar" :id='$style.middleBar' :style='{"opacity": (!isActive? "1" : "0")}'></span>
-      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (!isActive? "" : "rotate(-135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0px")}'></span>
+      <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (!isActive? "" : "rotate(-135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0.4em")}'></span>
     </a>
     <div v-if='!nomenu' :id='$style.menu' :style='{"right": (!isActive? "-200pt" : "0pt")}'>
       <div><nuxt-link :class='$route.path.includes("/shop") ? $style.selected : ""' to='/shop'>Shop</nuxt-link></div>
@@ -90,10 +90,11 @@ export default {
 #burgerMenu
   font-family: Roboto
   display: none
+  width: 20pt
+  height: 20pt
+  margin-top: 5pt
   @media only screen and (max-width: 900px)
    display: block
-   margin-right: 35px
-   margin-bottom: 5px
 
 #menu
   font-family: Roboto
@@ -141,12 +142,10 @@ export default {
 
 #middleBar
   display: block
-
-#topBar
-  margin-top: -0.4em
+  margin-top: 0.4em
 
 #bottomBar
-  margin-top: 0.4em
+  margin-top: 0.8em
 
 .new
   color: red !important

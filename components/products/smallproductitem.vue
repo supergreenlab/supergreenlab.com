@@ -23,10 +23,10 @@
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
     </nuxt-link>
-    <div :id='$style.infocontainer'>
+    <div :id='$style.infocontainerbig'>
       <div :id='$style.description'>
         <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
-          <h3>{{ brandProduct.name }} BY {{ brand.name }}</h3>
+          <h3>{{ brandProduct.name }} BY <span :class='isSGL ? $style.green : ""'>{{ brand.name }}</span></h3>
           From <b>{{ seller.name }}</b>
         </nuxt-link>
         <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
@@ -37,6 +37,22 @@
       </div>
       <OutOfStock v-if='sellingPoint.outofstock' />
       <SmallAddToCart v-else :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
+    </div>
+    <div :id='$style.infocontainersmall'>
+      <div :id='$style.description'>
+        <div :id='$style.smalldescription'>
+          <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+            <h3>{{ brandProduct.name }} BY <span :class='isSGL ? $style.green : ""'>{{ brand.name }}</span></h3>
+            From <b>{{ seller.name }}</b>
+          </nuxt-link>
+
+          <OutOfStock v-if='sellingPoint.outofstock' />
+          <SmallAddToCart v-else :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' :center=true />
+        </div>
+        <div :id='$style.price'>
+          <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -69,6 +85,9 @@ export default {
     seller() {
       return seller(this.sellingPoint.Seller[0])
     },
+    isSGL() {
+      return this.sellingPoint.Seller[0] == process.env.sglSellerID
+    }
   },
   methods: {
     click() {
@@ -86,13 +105,19 @@ export default {
   justify-content: space-between
   color: #454545
 
-#infocontainer
+#infocontainerbig
   display: flex
   align-items: center
   flex: 1
   @media only screen and (max-width: 600px)
-    flex-direction: column
-    align-items: flex-start
+    display: none
+
+#infocontainersmall
+  display: flex
+  flex-direction: column
+  flex: 1
+  @media only screen and (min-width: 600px)
+    display: none
 
 #infos
   display: flex
@@ -121,9 +146,12 @@ export default {
 
 #description
   flex: 1
-  margin: 0 20pt 0 5pt
+  margin: 0 10pt 0 5pt
   font-size: 0.8em
   color #454545
+  @media only screen and (max-width: 600px)
+    display: flex
+    justify-content: space-between
 
 #description a
   color: #454545
@@ -131,10 +159,6 @@ export default {
 
 #container:hover #description a
   text-decoration: underline
-
-#description > div
-  @media only screen and (max-width: 600px)
-    display: none
 
 #description ul, #description ol
   padding: 0
@@ -154,9 +178,18 @@ export default {
 #description p
   margin: 5pt 0
 
+#smalldescription
+  flex: 1
+  display: flex
+  flex-direction: column
+
 #price
   display: flex
-  margin: 10pt 10pt
+  margin: 10pt
+  align-items: center
+  justify-content: center
+  @media only screen and (max-width: 600px)
+    margin: 5pt 0
 
 #tagline
   font-size: 0.9em
@@ -164,5 +197,8 @@ export default {
 
 #tagline p
   margin: 0
+
+.green
+  color: #3bb30b
 
 </style>

@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='center ? $style.center : ""'>
     <div>
       <nuxt-link v-if='done' :id='$style.button' to='/cart'><b>GO TO CART</b></nuxt-link>
       <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? "ITEM ADDED!" : "ADD TO CART") }}</b></a>
@@ -31,7 +31,7 @@ import Number from '~/components/widgets/number.vue'
 
 export default {
   components: {Number,},
-  props: ['product', 'sellingPoint', 'name', 'lineItems', 'small', 'discreet',],
+  props: ['product', 'sellingPoint', 'name', 'lineItems', 'small', 'discreet', 'center'],
   data() {
     return {
       n: 1,
@@ -83,10 +83,10 @@ export default {
   text-align: center
   padding: 4pt 15pt
   border-radius: 2.5pt
-  color: white
+  color: white !important
   text-decoration: none
   font-size: 0.8em
-  margin: 4pt 0
+  margin: 6pt 0
   white-space: nowrap
   transition: opacity 0.2s
 
@@ -98,5 +98,8 @@ export default {
 
 #number
   align-self: flex-end
+
+.center
+  align-items: center !important
 
 </style>

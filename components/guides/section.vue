@@ -195,6 +195,7 @@ export default {
 #links
   display: flex
   flex-direction: column
+  margin: 5pt
 
 .link
   display: flex
@@ -228,7 +229,7 @@ export default {
   margin-right: 10pt
 
 #guides
-  margin-top: 5pt
+  margin: 5pt
 
 .playbutton
   width: 30pt

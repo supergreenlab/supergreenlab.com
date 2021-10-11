@@ -207,7 +207,7 @@ export default {
     background-position: center
 
 #description
-  flex: 2
+  flex: 1
   padding: 10pt 5pt
   justify-self: stretch
 
@@ -238,7 +238,7 @@ export default {
   text-decoration: underline
 
 #delete
-  flex: 0.2
+  flex: 0.1
   display: flex
   align-items: center
   justify-content: center

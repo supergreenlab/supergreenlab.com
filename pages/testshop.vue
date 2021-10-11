@@ -17,40 +17,40 @@
  -->
 
 <template>
-  <section :id="$style.container">
-    <div id='header_wrapper'>
-      <div :id='$style.header'>
-        <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
-      </div>
-    </div>
-    <div :id='$style.fullcontent'>
-      <div :id='$style.leftcolumn'>
-        <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-          <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
-        </component>
-      </div>
-      <div v-if='!showSearchResults' :id='$style.content'>
-        <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
-          <div :id='$style.spacer'></div>
-          <div :class='$style.widgetcontainer' v-for='w in widgetsForContainer(c)' :key='w.id'>
-            <component :is='componentForName(w.component)' :config='w'></component>
-            <div :id='$style.spacer'></div>
-          </div>
-        </component>
-      </div>
-      <div v-else :id='$style.content'>
-        <div :id="$style.searchlist">
-          <SmallProductList :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
-        </div>
-      </div>
-      <div :id='$style.rightcolumn'>
-        <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-          <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
-        </component>
-      </div>
-    </div>
-    <Footer />
-  </section>
+ <section :id="$style.container">
+   <div id='header_wrapper'>
+     <div :id='$style.header'>
+       <Header :onShowResults='onShowResults' :containers="containersForLocation('SHOP_CENTER_COLUMN')"/>
+     </div>
+   </div>
+   <div :id='$style.fullcontent'>
+     <div :id='$style.leftcolumn'>
+       <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+         <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+       </component>
+     </div>
+     <div v-if='!showSearchResults' :id='$style.content'>
+       <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
+         <div v-if='!c.nomargin' :id='$style.spacer'></div>
+         <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id' :ref='w.slug'>
+           <component :is='componentForName(w.component)' :config='w'></component>
+           <div v-if='!c.nomargin' :id='$style.spacer'></div>
+         </div>
+       </component>
+     </div>
+     <div v-else :id='$style.content'>
+       <div :id="$style.searchlist">
+         <SmallProductList :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
+       </div>
+     </div>
+     <div :id='$style.rightcolumn'>
+       <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
+         <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+       </component>
+     </div>
+   </div>
+   <Footer />
+ </section>
 </template>
 
 <script>
@@ -75,16 +75,31 @@ import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
 import CountDown from '~/components/shop/widgets/countdown.vue'
 import CollectionSpotlight from '~/components/shop/widgets/collectionspotlight.vue'
 import Edito from '~/components/shop/widgets/edito.vue'
+import RegionSelector from '~/components/shop/widgets/regionselector.vue'
 
 import widgets from '~/config/widgets.json'
 
-const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, Footer}
+import { addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
-export default{
+const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector, Footer}
+
+export default {
   components,
   computed: {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
-    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) < (new Date()).getTime()),
+    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) > (new Date()).getTime()),
+  },
+  head() {
+    return {
+      title: `SuperGreenLab Shop`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Welcome to SuperGreenLab\'s shop! We\'ve been crawling the web, so you don\'t have to. Find everything you need to grow your own weed here!'
+        },
+      ],
+    }
   },
   data() {
     return {
@@ -92,11 +107,42 @@ export default{
       showSearchResults: false,
     }
   },
+  created () {
+    addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    if (this.timeout) clearTimeout(this.timeout)
+    removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
     componentForName: name => components[name],
     onShowResults(input, results) {
       this.$data.showSearchResults = input.length
       this.$data.searchResults = results
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    },
+    handleScroll(e) {
+      if (this.timeout) clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        Object.keys(this.$refs).forEach((name) => {
+          if (this.lastEvent == name) {
+            return;
+          }
+          let ref = this.$refs[name]
+          if (!ref.length) ref = [ref]
+          ref.forEach((ref) => {
+            const $el = ref.$el ? ref.$el : ref
+            const { y, height } = $el.getBoundingClientRect(),
+              centery = y + height / 2,
+              winh = innerHeight()
+
+            if (centery > winh / 4 && centery < winh * 3/4) {
+              this.$matomo.trackEvent('shop-page', 'scrollto', name)
+              this.lastEvent = name
+            }
+          })
+        })
+      }, 250)
     },
   },
 }

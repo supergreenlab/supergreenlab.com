@@ -32,7 +32,7 @@
       </div>
       <div :id='$style.description'>
         <div :id='$style.bullets'>
-          <div><strong>Growing you own is simple</strong> but it’s easy to get overwhelmed by all the info and different products available online.</div>
+          <div><strong>Growing your own is simple</strong> but it’s easy to get overwhelmed by all the info and different products available online.</div>
 
           <div>Our goal is to make growing as simple as possible for you to enjoy!</div>
 
