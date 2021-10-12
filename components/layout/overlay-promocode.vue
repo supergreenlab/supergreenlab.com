@@ -22,6 +22,7 @@
       <SectionTitle v-if='!showTypeForm'
                     title='Welcome back:)'
                     green='Sorry for the interruption!' />
+      <div :id='$style.close' @click='close'>X</div>
       <div v-if='showTypeForm' :id='$style.typeform'>
         <div class="typeform-widget" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/n2oKQ2?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div>
       </div>
@@ -166,13 +167,14 @@ export default {
   color: green;
 
 #typeformintro
-  flex: 1
   display: flex
   flex-direction: column
   align-items: center
   justify-content: center
   text-align: center
   margin: 30pt 0
+  @media only screen and (min-width: 600px)
+    flex: 1
 
 #typeformintro > h2
   color: #5E5E5E
@@ -189,5 +191,14 @@ export default {
   min-width: 400pt
   @media only screen and (max-width: 600px)
     min-width: 100%
+
+#close
+  color: #3bb30b
+  font-size: 1.5em
+  position: absolute
+  top: 10pt
+  right: 10pt
+  font-weight: 600
+  cursor: pointer
 
 </style>
