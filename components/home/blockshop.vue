@@ -111,7 +111,7 @@ export default {
   align-items: center
   margin: 5pt 20pt 5pt 5pt
   @media only screen and (max-width: 600px)
-    margin: 0 5pt
+    margin-bottom: 20pt
 
 #description
   display: flex

@@ -119,6 +119,7 @@ export default {
   cursor: pointer
   margin: 0 10pt
   @media only screen and (max-width: 600px)
+    margin-bottom: 20pt
     width: 90%
     align-self: center
 

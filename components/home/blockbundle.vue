@@ -176,6 +176,8 @@ export default {
   display: flex
   flex-direction: column
   margin: 0 10pt
+  @media only screen and (max-width: 600px)
+    margin-bottom: 20pt
 
 .description
   display: flex
@@ -184,6 +186,8 @@ export default {
   justify-content: flex-start
   text-align: justify
   margin: 0pt 20pt 0 10pt
+  @media only screen and (max-width: 600px)
+    margin-bottom: 10pt
 
 .bullets
   height: 100%

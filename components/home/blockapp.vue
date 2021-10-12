@@ -130,6 +130,8 @@ export default {
   justify-content: center
   align-items: center
   margin: 0 10pt
+  @media only screen and (max-width: 600px)
+    margin-bottom: 20pt
 
 .description
   display: flex
