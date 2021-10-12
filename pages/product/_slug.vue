@@ -361,6 +361,8 @@ export default {
 #center
   flex: 1
   padding: 20pt 15pt
+  @media only screen and (max-width: 600pt)
+    padding: 20pt 0pt
 
 #description
   color #454545
