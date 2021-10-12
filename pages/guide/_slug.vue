@@ -91,11 +91,8 @@ export default {
     return {
       title: `SuperGreenLab Guides - ${this.guide.name}`,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.guide.text
-        },
+        { hid: 'description', name: 'description', content: this.guide.text },
+        { hid: 'og:image', property: 'og:image', content: require(`~/assets/img/${ this.guide.thumbnail.fileLarge }`) },
       ],
     }
   },

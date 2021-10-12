@@ -190,11 +190,8 @@ export default {
     return {
       title: `SuperGreenLab - ${this.brandProduct.name} - ${this.product.tagline}`,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.brandProduct.description
-        },
+        { hid: 'description', name: 'description', content: this.brandProduct.description },
+        { hid: 'og:image', property: 'og:image', content: require(`~/assets/img/${this.brandProduct.pics[0].fileLarge}`) },
       ],
     }
   },
