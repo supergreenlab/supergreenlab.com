@@ -117,7 +117,7 @@ export default {
   align-items: center
   width: 40%
   cursor: pointer
-  margin: 0 20pt
+  margin: 0 10pt
   @media only screen and (max-width: 600px)
     width: 90%
     align-self: center
@@ -128,8 +128,7 @@ export default {
   flex-direction: column
   justify-content: flex-start
   text-align: justify
-  @media only screen and (max-width: 600px)
-    margin: 0pt 10pt
+  margin: 0pt 20pt 0 10pt
 
 #bullets
   font-size: 1.1em

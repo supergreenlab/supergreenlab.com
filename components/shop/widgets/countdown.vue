@@ -152,7 +152,7 @@ export default {
     margin-left: 5pt
 
 #description
-  margin: 5pt
+  margin: 5pt 0 10pt 0
   text-align: center
   color: #5e5e5e
 

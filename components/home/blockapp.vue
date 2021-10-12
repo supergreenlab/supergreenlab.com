@@ -129,18 +129,14 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-  margin: 5pt 20pt 5pt 5pt
-  @media only screen and (max-width: 600px)
-    margin: 0 5pt
-
+  margin: 0 10pt
 
 .description
   display: flex
   flex: 1
   flex-direction: column
   justify-content: flex-start
-  @media only screen and (max-width: 600px)
-    margin: 20pt 15pt 0
+  margin: 0pt 20pt 0 10pt
 
 .bullets
   font-size: 1.1em
@@ -150,9 +146,8 @@ export default {
   justify-content: space-around
   text-align: justify
 
-.bullets div
-  @media only screen and (max-width: 600px)
-    margin: 5pt 0
+.bullets > div
+  margin: 0 0 10pt 0
 
 .bullets strong
   color: #3BB30B

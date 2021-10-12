@@ -316,7 +316,7 @@ export default {
 #body
   width: 100%
   max-width: 900pt
-  padding: 100pt 0 0 0
+  padding: 100pt 10pt 0 10pt
 
 .title
   font-weight: 400

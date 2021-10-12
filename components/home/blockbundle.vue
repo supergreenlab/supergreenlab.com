@@ -166,7 +166,7 @@ export default {
 .body
   max-width: 700pt
   display: flex
-  margin: 0pt 0pt 50pt 0pt
+  margin: 0pt 10pt 50pt 10pt
   @media only screen and (max-width: 600px)
     flex-direction: column-reverse !important
     margin: 0pt 0pt 20pt 0pt
@@ -175,10 +175,7 @@ export default {
 .iconcontainer
   display: flex
   flex-direction: column
-  margin: 5pt 30pt 5pt 5pt
-  @media only screen and (max-width: 600px)
-    margin: 0 5pt
-
+  margin: 0 10pt
 
 .description
   display: flex
@@ -186,8 +183,7 @@ export default {
   flex-direction: column
   justify-content: flex-start
   text-align: justify
-  @media only screen and (max-width: 600px)
-    margin: 20pt 10pt 10pt 10pt
+  margin: 0pt 20pt 0 10pt
 
 .bullets
   height: 100%

@@ -56,7 +56,6 @@
 <script>
 
 import Header from '~/components/shop/layout/header.vue'
-import Product from '~/components/shop/layout/singleproduct.vue'
 import Footer from '~/components/layout/footer.vue'
 
 import SmallProductList from '~/components/products/smallproductlist.vue'
@@ -81,7 +80,7 @@ import widgets from '~/config/widgets.json'
 
 import { addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
-const components = {Header, SmallProductList, Product, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector, Footer}
+const components = {Header, SmallProductList, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector, Footer}
 
 export default {
   components,

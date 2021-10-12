@@ -118,8 +118,7 @@ export default {
   flex: 1
   flex-direction: column
   justify-content: flex-start
-  @media only screen and (max-width: 600px)
-    margin: 10pt 20pt 0
+  margin: 0pt 20pt 0 10pt
 
 #bullets
   font-size: 1.1em
@@ -133,7 +132,7 @@ export default {
   font-weight: bold
 
 #bullets > div
-  margin: 5pt 0
+  margin: 0 0 10pt 0
 
 #picture
   display: block
