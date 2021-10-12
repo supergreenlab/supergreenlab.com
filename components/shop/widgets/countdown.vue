@@ -156,6 +156,22 @@ export default {
   text-align: center
   color: #5e5e5e
 
+#description strong
+  color: #3BB30B
+  font-weight: 600
+
+#description ul
+  padding: 0
+  list-style-type: none
+
+#description ul li
+  margin-bottom:7pt
+
+#description ul li::before
+  content: '- '
+  color: #3bb30b
+  font-weight: bold
+
 #countdown
   display: flex
   justify-content: center

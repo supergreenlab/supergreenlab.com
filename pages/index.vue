@@ -26,6 +26,15 @@
     <div :id='$style.body'>
       <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
+      <div :class='$style.containerslot'>
+        <component  v-for="c in containersForLocation('HOME_TOP')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
+          <div v-if='!c.nomargin' :id='$style.spacer'></div>
+          <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id' :ref='w.slug'>
+            <component :is='componentForName(w.component)' :config='w'></component>
+            <div v-if='!c.nomargin' :id='$style.spacer'></div>
+          </div>
+        </component>
+      </div>
       <div id='use-steps'></div>
       <BlockStep ref='welcome' />
       <BlockExamples ref='bundle-intro' />
@@ -34,7 +43,7 @@
       <BlockDiscord ref='discord' />
       <BlockGuide ref='everything-you-need' />
       <BlockShop ref='shop' />
-      <Newsletter ref='newsletter' />
+      <HomeNewsletter ref='newsletter' />
     </div>
     <Footer />
     <transition name="popup">
@@ -53,14 +62,35 @@ import BlockApp from '~/components/home/blockapp.vue'
 import BlockGuide from '~/components/home/blockguide.vue'
 import BlockDiscord from '~/components/home/blockdiscord.vue'
 import BlockShop from '~/components/home/blockshop.vue'
-import Newsletter from '~/components/layout/newsletter.vue'
+import HomeNewsletter from '~/components/layout/newsletter.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
 
+// TODO DRY with shop page
+import BannerContainer from '~/components/shop/containers/bannercontainer.vue'
+import CarrouselContainer from '~/components/shop/containers/carrouselcontainer.vue'
+import VerticalContainer from '~/components/shop/containers/verticalcontainer.vue'
+import HorizontalContainer from '~/components/shop/containers/horizontalcontainer.vue'
+
+import Banner from '~/components/shop/widgets/banner.vue'
+import Newsletter from '~/components/shop/widgets/newsletter.vue'
+import PlantSpotlight from '~/components/shop/widgets/plantspotlight.vue'
+import ProductList from '~/components/shop/widgets/productlist.vue'
+import ProductSpotlight from '~/components/shop/widgets/productspotlight.vue'
+import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
+import CountDown from '~/components/shop/widgets/countdown.vue'
+import CollectionSpotlight from '~/components/shop/widgets/collectionspotlight.vue'
+import Edito from '~/components/shop/widgets/edito.vue'
+import RegionSelector from '~/components/shop/widgets/regionselector.vue'
+
+import widgets from '~/config/widgets.json'
+
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
 
+const components = { Header, Top, Footer, Promocode, HomeNewsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector,}
+
 export default {
-  components: { Header, Top, Footer, Promocode, Newsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop},
+  components,
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -97,6 +127,8 @@ export default {
     }
   },
 	computed: {
+    containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
+    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) > (new Date()).getTime()),
     promo() {
       const sglSellerID = process.env.sglSellerID
       const discount = this.$store.state.checkout.discounts[sglSellerID],
@@ -107,6 +139,7 @@ export default {
 	},
 
   methods: {
+    componentForName: name => components[name],
     closePopup() {
       saveToStorage('popupShown2', 1)
       this.$data.showPopup = false
@@ -162,41 +195,18 @@ export default {
   justify-content: center
   align-items: center
 
-.title
-  width: 100%
-  margin: 20pt 0 20pt 0
-  @media only screen and (max-width: 600px)
-    margin: 0
-
-.pack
-  width: 80%
-  display: flex
-  flex-direction: column
-  justify-content: center
-
-.separator
-  height: 2pt
-  margin: 30pt 0
-  background-color: #eaeaea
-
-.shop
-  display: flex
-  width: 100%
-  max-width: 900pt
-  padding: 0 15pt
-
-#bundles
-  display: flex
-  flex-direction: column
-  align-items: center
-  width: 100%
-
-.bundle
-  margin: 0 0 30pt 0
-  width: 100%
-  max-width: 920pt
-
 .space
   height: 40pt
+
+.containerslot
+  width: 100%
+  max-width: 900pt
+  margin: 30pt 0 20pt 0
+
+.widgetcontainer
+  margin: 20pt 0
+
+#spacer
+  height: 10pt
 
 </style>
