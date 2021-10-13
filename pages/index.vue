@@ -30,7 +30,7 @@
         <component  v-for="c in containersForLocation('HOME_TOP')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
           <div v-if='!c.nomargin' :id='$style.spacer'></div>
           <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id' :ref='w.slug'>
-            <component :is='componentForName(w.component)' :config='w'></component>
+            <component :is='componentForName(w.component)' :config='w' :container='c'></component>
             <div v-if='!c.nomargin' :id='$style.spacer'></div>
           </div>
         </component>

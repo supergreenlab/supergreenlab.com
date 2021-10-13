@@ -35,7 +35,7 @@ import { open, } from '~/lib/client-side.js'
 
 export default {
   components: { },
-  props: ['config'],
+  props: ['config', 'container',],
   data() {
     return {
     }
@@ -45,6 +45,7 @@ export default {
   methods: {
     async open() {
       const { config: { link, slug } } = this.$props
+      const { container: { slug: containerSlug } } = this.$props
       if (!link) {
         return
       }
@@ -58,7 +59,7 @@ export default {
           this.$router.push(link)
         }
       }
-      this.$matomo.trackEvent('edito', 'click', slug)
+      this.$matomo.trackEvent('edito', 'click', `${containerSlug}_${slug}`)
     }
   },
 }

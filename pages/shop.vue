@@ -26,14 +26,14 @@
    <div :id='$style.fullcontent'>
      <div :id='$style.leftcolumn'>
        <component v-for="c in containersForLocation('SHOP_LEFT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-         <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+         <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w' :container='c'></component>
        </component>
      </div>
      <div v-if='!showSearchResults' :id='$style.content'>
        <component  v-for="c in containersForLocation('SHOP_CENTER_COLUMN')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
          <div v-if='!c.nomargin' :id='$style.spacer'></div>
          <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id' :ref='w.slug'>
-           <component :is='componentForName(w.component)' :config='w'></component>
+           <component :is='componentForName(w.component)' :config='w' :container='c'></component>
            <div v-if='!c.nomargin' :id='$style.spacer'></div>
          </div>
        </component>
@@ -45,7 +45,7 @@
      </div>
      <div :id='$style.rightcolumn'>
        <component v-for="c in containersForLocation('SHOP_RIGHT_COLUMN')" :key="c.id" :is='componentForName(c.component)' :config='c'>
-         <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w'></component>
+         <component v-for='w in widgetsForContainer(c)' :key='w.id' :is='componentForName(w.component)' :config='w' :container='c'></component>
        </component>
      </div>
    </div>

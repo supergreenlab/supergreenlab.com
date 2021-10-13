@@ -54,7 +54,7 @@
 <script>
 
 export default {
-  props : ['config'],
+  props : ['config', 'container',],
   mounted() {
     window.setInterval(() => {
         this.now = Math.trunc((new Date()).getTime() / 1000)
@@ -96,20 +96,21 @@ export default {
   methods: {
     async open() {
       const { config: { link, slug } } = this.$props
+      const { container: { slug: containerSlug } } = this.$props
       if (!link) {
         return
       }
       if (link.indexOf('https://') == 0) {
         open(link, '_blank')
       } else {
-        if (link.indexOf('?promo=') !== -1) {
+        if (link.indexOf('?') !== -1) {
           const urlParams = new URLSearchParams(link.split('?')[1])
           await this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
         } else {
           this.$router.push(link)
         }
       }
-      this.$matomo.trackEvent('countdown', 'click', slug)
+      this.$matomo.trackEvent('countdown', 'click', `${containerSlug}_${slug}`)
     }
   },
   filters: {

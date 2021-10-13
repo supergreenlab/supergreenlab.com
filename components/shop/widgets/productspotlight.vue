@@ -32,7 +32,7 @@
           <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
         </div>
         <OutOfStock v-if='sellingPoint.outofstock' />
-        <AddToCart v-else :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' />
+        <AddToCart v-else :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' :name='`${container.slug}_${config.slug}`' />
       </div>
     </div>
   </section>
@@ -49,7 +49,7 @@ import Price from '~/components/products/price.vue'
 import { products } from '~/lib/json_db.js'
 
 export default {
-  props: ['config',],
+  props: ['config', 'container',],
   components: { SmallProductList, Pics, OutOfStock, AddToCart, Price, },
   data() {
     return {

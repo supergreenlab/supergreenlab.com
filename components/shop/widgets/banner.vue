@@ -34,26 +34,27 @@
 import { open } from '~/lib/client-side.js'
 
 export default {
-  props: ['config',],
+  props: ['config', 'container',],
   computed: {
   },
   methods: {
     async open() {
       const { config: { slug, link } } = this.$props
+      const { container: { slug: containerSlug } } = this.$props
       if (!link) {
         return
       }
       if (link.indexOf('https://') == 0) {
         open(link, '_blank')
       } else {
-        if (link.indexOf('?promo=') !== -1) {
+        if (link.indexOf('?') !== -1) {
           const urlParams = new URLSearchParams(link.split('?')[1])
           await this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
         } else {
           this.$router.push(link)
         }
       }
-      this.$matomo.trackEvent('banner', 'click', slug)
+      this.$matomo.trackEvent('banner', 'click', `${containerSlug}_${slug}`)
     }
   },
 }

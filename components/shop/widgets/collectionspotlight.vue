@@ -32,10 +32,9 @@
             <div :class='$style.price'>
               <Price :lineItems='lineItems' :freeshipping='false' />
             </div>
-            <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='collection.slug' :lineItems='lineItems' :discreet=false />
+            <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false />
           </div>
         </div>
-
       </div>
     </div>
 
@@ -47,7 +46,7 @@
         <div :class='$style.price'>
           <Price :lineItems='lineItems' :freeshipping='false' />
         </div>
-        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='collection.slug' :lineItems='lineItems' :discreet=false />
+        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false />
       </div>
     </div>
 
@@ -62,7 +61,7 @@ import Price from '~/components/products/price.vue'
 import { collection, product, productsForCollection, } from '~/lib/json_db.js'
 
 export default {
-  props: ['config'],
+  props: ['config', 'container'],
   components: { TinyProductList, AddToCart, Price, },
   computed: {
     collection() {
