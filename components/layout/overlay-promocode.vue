@@ -60,17 +60,17 @@ export default {
   },
   components: { SectionTitle ,},
   created() {
-    this.$matomo && this.$matomo.trackEvent('popup', 'shown')
+    this.$matomo.trackEvent('popup', 'shown')
   },
   methods: {
     close() {
       this.$props.onClose()
-      this.$matomo && this.$matomo.trackEvent('popup', 'close')
+      this.$matomo.trackEvent('popup', 'close')
     },
     ok() {
       this.close()
       this.$store.dispatch('storefront/setPromocode', {code: 'SGL_LOVE'})
-      this.$matomo && this.$matomo.trackEvent('popup', 'activate')
+      this.$matomo.trackEvent('popup', 'activate')
     },
     takeSurvey() {
       this.$data.showTypeForm = true
@@ -78,7 +78,7 @@ export default {
     },
     no() {
       this.close()
-      this.$matomo && this.$matomo.trackEvent('popup', 'nothanks')
+      this.$matomo.trackEvent('popup', 'nothanks')
     },
     cancelClick(e) {
       e.stopPropagation()

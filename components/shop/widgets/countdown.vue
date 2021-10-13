@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     async open() {
-      const { config: { link } } = this.$props
+      const { config: { link, slug } } = this.$props
       if (!link) {
         return
       }
@@ -109,6 +109,7 @@ export default {
           this.$router.push(link)
         }
       }
+      this.$matomo.trackEvent('countdown', 'click', slug)
     }
   },
   filters: {
@@ -152,7 +153,7 @@ export default {
     margin-left: 5pt
 
 #description
-  margin: 5pt 0 10pt 0
+  margin: 5pt 5pt 10pt 5pt
   text-align: center
   color: #5e5e5e
 

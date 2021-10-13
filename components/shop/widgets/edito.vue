@@ -23,9 +23,7 @@
       <h2 v-if='config.title' :id="$style.title">{{config.title}}</h2>
       <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
       <div v-if='config.link && config.linktext' :id='$style.link'>
-        <a v-if='config.link.indexOf("https://supergreenlab.typeform") == 0' :id='$style.cta' href='javascript:void(0)' @click='openLink' >{{ config.linktext }}</a>
-        <nuxt-link v-else-if='config.link.indexOf("/") == 0' :id='$style.cta' :to='config.link'>{{ config.linktext }}</nuxt-link>
-        <a v-else :id='$style.cta' :href='config.link' target='_blank'>{{ config.linktext }}</a>
+        <a :id='$style.cta' href='javascript:void(0)' @click='open' >{{ config.linktext }}</a>
       </div>
     </div>
   </section>
@@ -33,7 +31,7 @@
 
 <script>
 
-import { open, screenX, availWidth } from '~/lib/client-side.js'
+import { open, } from '~/lib/client-side.js'
 
 export default {
   components: { },
@@ -45,10 +43,22 @@ export default {
   computed: {
   },
   methods: {
-    openLink() {
-      const width = 800
-      const { link } = this.$props.config
-      open(link, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
+    async open() {
+      const { config: { link, slug } } = this.$props
+      if (!link) {
+        return
+      }
+      if (link.indexOf('https://') == 0) {
+        open(link, '_blank')
+      } else {
+        if (link.indexOf('?promo=') !== -1) {
+          const urlParams = new URLSearchParams(link.split('?')[1])
+          await this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
+        } else {
+          this.$router.push(link)
+        }
+      }
+      this.$matomo.trackEvent('edito', 'click', slug)
     }
   },
 }

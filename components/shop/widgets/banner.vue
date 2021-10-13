@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async open() {
-      const { config: { link } } = this.$props
+      const { config: { slug, link } } = this.$props
       if (!link) {
         return
       }
@@ -53,6 +53,7 @@ export default {
           this.$router.push(link)
         }
       }
+      this.$matomo.trackEvent('banner', 'click', slug)
     }
   },
 }

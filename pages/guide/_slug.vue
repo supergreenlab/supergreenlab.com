@@ -169,7 +169,7 @@ export default {
               winh = innerHeight()
 
             if (centery > winh / 4 && centery < winh * 3/4) {
-              this.$matomo && this.$matomo.trackEvent('guide', 'scrollto', name)
+              this.$matomo.trackEvent('guide', 'scrollto', name)
               this.lastEvent = name
               this.$data.currentRef = name
             }

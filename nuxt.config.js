@@ -81,6 +81,7 @@ export default {
     exclude: [
       '/designer',
       '/designer/*',
+      '/testshop',
     ]
   },
 

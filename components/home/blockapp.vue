@@ -28,8 +28,8 @@
         <div :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/app.jpg`)})`}'>
           <div :id="$style.logo" >
             <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
-            <img :class="$style.scale" src="~assets/img/appstore2.png" alt="logo-appstore">
-            <img :class="$style.scale" src="~assets/img/playstore2.png" alt="logo-playstore">
+            <a href='https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318' target='_blank'><img :class="$style.scale" src="~assets/img/appstore2.png" alt="logo-appstore"></a>
+            <a href='https://play.google.com/store/apps/details?id=com.supergreenlab.app2' target='_blank'><img :class="$style.scale" src="~assets/img/playstore2.png" alt="logo-playstore"></a>
           </div>
         </div>
       </div>
@@ -56,8 +56,8 @@
         <div :id='$style.picture2' :style='{"background-image": `url(${require(`~/assets/img/app2.png`)})`}'>
           <div :id="$style.logo2" >
             <img src="~assets/img/logo.svg" alt="logo-supergreenlab">
-            <img :class="$style.scale" src="~assets/img/appstore2.png" alt="logo-appstore">
-            <img :class="$style.scale" src="~assets/img/playstore2.png" alt="logo-playstore">
+            <a href='https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318' target='_blank'><img :class="$style.scale" src="~assets/img/appstore2.png" alt="logo-appstore"></a>
+            <a href='https://play.google.com/store/apps/details?id=com.supergreenlab.app2' target='_blank'><img :class="$style.scale" src="~assets/img/playstore2.png" alt="logo-playstore"></a>
           </div>
         </div>
       </div>
@@ -182,9 +182,15 @@ export default {
   flex-direction: column
   width: 35pt
 
+#logo2 img
+  width: 35pt
+
 #logo
   margin: 5pt
   display: flex;
+  height: 35pt;
+
+#logo img
   height: 35pt;
 
 .scale

@@ -63,7 +63,7 @@ export default {
       this.isActive = !this.isActive
     },
     onClick(e) {
-      this.$matomo && this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
+      this.$matomo.trackEvent('front-page-menu', 'click', e.target.href.split('#')[1])
     },
   },
 }
