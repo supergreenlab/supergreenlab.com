@@ -35,7 +35,7 @@
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
-  props: ['config',],
+  props: ['config', 'container',],
   data() {
     return {
       email: ''
@@ -43,9 +43,11 @@ export default {
   },
   methods: {
     newsletterForm() {
+      const { config: { slug } } = this.$props
+      const { container: { slug: containerSlug } } = this.$props
       const width = 800
       open(`https://airtable.com/shrge8dNrpLul19IR?prefill_email=${this.$data.email}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo.trackEvent('widgets', 'newsletter')
+      this.$matomo.trackEvent('widgets', 'newsletter', `${containerSlug}_${slug}`)
     }
   }
 }
