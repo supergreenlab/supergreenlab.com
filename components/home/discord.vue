@@ -42,7 +42,6 @@
 import DiscordCard from '~/components/home/discordcard.vue'
 import { channels } from '~/config/channels.json'
 
-
 export default {
   components: { DiscordCard },
   computed: {

@@ -53,6 +53,9 @@ export default {
   },
   methods: {
     toggle: function(){
+      if (!this.open) {
+        this.$matomo.trackEvent('font-page', 'appfeatures', this.$props.appfeature.slug)
+      }
       this.open = !this.open
     },
     beforeEnter: function(el) {

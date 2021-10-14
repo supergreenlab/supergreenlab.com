@@ -33,7 +33,6 @@
         <AppFeatureCard :appfeature='appfeature' />
       </div>
     </div>
-
     <div :id="$style.manymore">And many <strong>more...</strong></div>
   </section>
 </template>
@@ -41,7 +40,6 @@
 <script>
 import AppFeatureCard from '~/components/home/appfeaturecard.vue'
 import { appfeatures } from '~/config/appfeatures.json'
-
 
 export default {
 components: { AppFeatureCard },

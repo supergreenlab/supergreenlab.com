@@ -26,7 +26,7 @@ import { setHref } from '~/lib/client-side.js'
 
 export default {
   created() {
-    setHref('https://discord.gg/n4MvwMh')
+    setHref('https://discord.gg/YPwAWNh')
   },
 }
 </script>

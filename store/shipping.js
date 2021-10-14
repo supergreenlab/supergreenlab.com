@@ -54,7 +54,6 @@ export const actions = {
 
 export const mutations = {
   setState(state, newState) {
-    // console.log('shipping', newState)
     Object.assign(state, newState)
   },
   updateShipping(state, params) {

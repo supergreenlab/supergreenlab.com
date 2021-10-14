@@ -40,7 +40,7 @@
           <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> private discord server is home to throusands of continuous discussions about <strong>people’s experiences</strong>.</div>
           <div>Using the search feature will allow you to dig old discussions about <strong>subjects that matter to your case</strong>.</div>
         </div>
-        <a href="https://discord.gg/YPwAWNh" target='_blank' :id="$style.btn"><img src='~/assets/img/discord-logo.jpg' />ACCESS DISCORD<br/>SERVER HERE</a>
+        <a @click='clickJoinDiscord' href="https://discord.gg/YPwAWNh" target='_blank' :id="$style.btn"><img src='~/assets/img/discord-logo.jpg' />ACCESS DISCORD<br/>SERVER HERE</a>
       </div>
     </div>
     <div :class='$style.title'>
@@ -67,7 +67,9 @@ export default {
     }
   },
   methods: {
-
+    clickJoinDiscord() {
+      this.$matomo.trackEvent('font-page', 'joindiscord')
+    },
   },
 }
 </script>

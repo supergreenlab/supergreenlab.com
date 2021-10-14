@@ -72,7 +72,7 @@
           <div>👀 Consult other people’s public diaries for <strong>help and inspiration</strong></div>
           <div>And<strong> many more</strong>..</div>
         </div>
-        <nuxt-link to="/app" :id="$style.btn"><img src='~/assets/img/logo-appstores.png' />INSTALL APP</nuxt-link>
+        <nuxt-link @click.native='clickInstallApp' to="/app" :id="$style.btn"><img src='~/assets/img/logo-appstores.png' />INSTALL APP</nuxt-link>
       </div>
     </div>
 
@@ -90,11 +90,12 @@ export default {
   props: [],
   data() {
     return {
-
     }
   },
   methods: {
-
+    clickInstallApp() {
+      this.$matomo.trackEvent('font-page', 'appinstall')
+    },
   },
 }
 </script>
