@@ -54,6 +54,7 @@ export default {
 </script>
 
 <style module lang=stylus>
+
 #container
   width: 100%
   height: auto
@@ -61,6 +62,7 @@ export default {
   align-items: center
   flex-direction: column
   padding: 20pt 0
+  color: #323232
 
 #subscribe
   width: 100%
@@ -121,4 +123,5 @@ export default {
 
 input
   border: none
+
 </style>
