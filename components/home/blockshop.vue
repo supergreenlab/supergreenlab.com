@@ -27,7 +27,7 @@
     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
         <div :class="$style.subtitle">All good, <strong> I got this</strong></div>
-        <nuxt-link to="/shop" :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/shopicon.png`)})`}'></nuxt-link>
+        <nuxt-link @click.native='onClick' to='/shop' :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/shopicon.png`)})`}'></nuxt-link>
         <div :class="$style.subtitle">Go to <strong><nuxt-link to="/shop">the shop ></nuxt-link></strong></div>
       </div>
       <div :id='$style.description'>
@@ -40,7 +40,7 @@
 
           <div>Order everything you need to grow your own weed in our new <b>Super</b><strong>Green</strong><b>Lab</b> Growshop 💚</div>
 
-          <nuxt-link to="/shop" :id="$style.btnshop">Want more ?<br/>Visit our shop</nuxt-link>
+          <nuxt-link @click.native='onClick' to='/shop' :id='$style.btnshop'>Want more ?<br/>Visit our shop</nuxt-link>
         </div>
       </div>
     </div>
@@ -61,7 +61,9 @@ export default {
     }
   },
   methods: {
-
+    onClick() {
+      this.$matomo.trackEvent('font-page', 'click', 'gotoshop')
+    },
   },
 }
 </script>

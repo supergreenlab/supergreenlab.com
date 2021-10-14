@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     clickJoinDiscord() {
-      this.$matomo.trackEvent('font-page', 'joindiscord')
+      this.$matomo.trackEvent('font-page', 'click', 'joindiscord')
     },
   },
 }

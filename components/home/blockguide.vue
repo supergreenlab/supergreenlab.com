@@ -38,7 +38,7 @@
         <div :id='$style.bullets'>
           <div>By the end of this quick & simple guide you will have all the basics to start growing your own discreetly from the comfort of your home </div>
           <div>+ a checklist of everything you’ll need along the way</div>
-          <nuxt-link to="/guide/everything-you-need-to-grow-your-own-weed" :id="$style.btnguide">Click here to <br/>read the guide</nuxt-link>
+          <nuxt-link @click.native='onClick' to="/guide/everything-you-need-to-grow-your-own-weed" :id="$style.btnguide">Click here to <br/>read the guide</nuxt-link>
         </div>
       </div>
     </div>
@@ -59,7 +59,9 @@ export default {
     }
   },
   methods: {
-
+    onClick() {
+      this.$matomo.trackEvent('font-page', 'click', 'guide-101')
+    }
   },
 }
 </script>
