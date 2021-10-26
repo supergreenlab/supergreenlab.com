@@ -20,9 +20,10 @@
   <section :id="$style.container">
     <div :id="$style.title" v-html='$md.render(config.title)'></div>
     <div :id="$style.description" v-html='$md.render(config.description)'></div>
-    <div @click='open()' v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'>
-      <div :id="$style.countdown">
-        <div :class="$style.countdown">
+    <div @click='open()' v-if="now < dateInMilliseconds" :id="$style.countdowncontainer">
+      <img v-for='(p, i) in config.picture' :class='`${$style.countdownpic} ${$style[`media${i}-${config.picture.length}`]}`' :src='require(`~/assets/img/${p.fileRaw}`)' />
+      <div :id='$style.display'>
+        <div :id="$style.countdown">
           <div :class="$style.block">
             <div :class="$style.digit">{{ days | zero }}</div>
             <div :class="$style.unit">Days</div>
@@ -40,14 +41,16 @@
             <div :class="$style.unit">Seconds</div>
           </div>
         </div>
+        <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
       </div>
-      <div :id="$style.enddate">Before {{ endDate | formatDate }}</div>
     </div>
-    <div v-else :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[1].fileFull}`)})`}'>
-      <div :class="$style.digit">Times's up</div>
-      <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
+    <div v-else :id="$style.countdowncontainer">
+      <img v-for='(p, i) in config.picture' :class="`${$style.countdownpic} ${$style[`media${i}-${config.picture.length}`]}`" :src='require(`~/assets/img/${p.fileRaw}`)' />
+      <div :id='$style.display'>
+        <div :class="$style.digit">Times's up</div>
+        <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>
+      </div>
     </div>
-     <!-- <div v-if="now < dateInMilliseconds" :class="$style.countdownpic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div> -->
   </section>
 </template>
 
@@ -145,15 +148,20 @@ export default {
   flex-direction: column
 
 #title
+  position: relative
+  z-index: 10
   text-transform: uppercase
   font-weight: bold
   font-size: 2.5em
   margin-bottom: 10pt
   color: #5e5e5e
+  text-align: center
   @media only screen and (max-width: 900px)
     margin-left: 5pt
 
 #description
+  position: relative
+  z-index: 10
   margin: 5pt 5pt 10pt 5pt
   text-align: center
   color: #5e5e5e
@@ -174,16 +182,30 @@ export default {
   color: #3bb30b
   font-weight: bold
 
+#countdowncontainer
+  position: relative
+  cursor: pointer
+  width: 100%
+
+#display
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
 #countdown
   display: flex
   justify-content: center
   align-items: center
 
-.countdown
-  display: flex
-
 .countdownpic
-  cursor: pointer
+  display: flex
+  max-width: 100%
 
 .block
   width: 100pt
@@ -210,7 +232,7 @@ export default {
     font-size: 50pt
   @media only screen and (max-width: 600px)
     -webkit-text-stroke-width: 1px
-    font-size: 23pt
+    font-size: 35pt
 
 .unit
   font-family: 'PlumeAd'
@@ -224,6 +246,7 @@ export default {
     font-size: 14pt
 
 #enddate
+  position: relative
   text-align: center
   margin-bottom: 5pt
   font-size: 20pt
@@ -235,11 +258,26 @@ export default {
   -webkit-text-stroke-width: 1px
   -webkit-text-stroke-color: black
 
-.countdownpic
-  width: 100%
-  max-height: 200pt
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
+.media0-2
+  @media only screen and (max-width: 1000px)
+    display: none
+  
+.media1-2
+  @media only screen and (min-width: 1000px)
+    display: none
+
+.media0-3
+  @media only screen and (max-width: 1000px)
+    display: none
+  
+.media1-3
+  display: none
+  @media only screen and (min-width: 600px) and (max-width: 1000px)
+    display: block
+
+.media2-3
+  display: none
+  @media only screen and (max-width: 600px)
+    display: block
 
 </style>
