@@ -18,10 +18,8 @@
 
 <template>
   <section :id="$style.container">
-    <div :id='$style.header'>
-      <Header responsiveHide='true' />
-    </div>
-    <div class="typeform-widget" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/mCr3Drhg?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div>
+    <Header responsiveHide='true' />
+    <div class="typeform-widget" :id="$style.typeform" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/mCr3Drhg?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 100%;"></div>
   </section>
 </template>
 
@@ -41,7 +39,11 @@ export default {
         q.parentNode.insertBefore(js,q)
       }
     }, 100)
-  }
+  },
+  methods: {
+    onSubmit() {
+    },
+  },
 }
 </script>
 
@@ -55,7 +57,8 @@ export default {
   justify-content: center
   align-items: center
 
-#wrapper
-  flex: 1
+#typeform
+  width: 100%
+  height: 100%
 
 </style>
