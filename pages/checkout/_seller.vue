@@ -78,7 +78,7 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
-      this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart))
+      this.$matomo.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart).total)
       this.$data.loading = true
       const seller = sellerWithSlug(this.$route.params.seller)
       const { shopify } = seller.params

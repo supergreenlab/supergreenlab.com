@@ -18,6 +18,13 @@ export default ({ app }) => {
       return v.toString(16);
     });
   }
+
+  const trackEvent = app.$matomo.trackEvent
+  app.$matomo.trackEvent = (category, action, name, value) => {
+    trackEvent(category, action, name, value)
+    trackEvent(category, action, `${category};${action};${name}`, value)
+  }
+
   window.onload = () => {
     let { sglid } = getCookies()
     if (!sglid) {

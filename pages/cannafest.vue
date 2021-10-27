@@ -19,7 +19,7 @@
 <template>
   <section :id="$style.container">
     <Header responsiveHide='true' />
-    <div class="typeform-widget" :id="$style.typeform" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/mCr3Drhg?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 100%;"></div>
+    <iframe class="airtable-embed" src="https://airtable.com/embed/shr6sLd8wRKIf9nO7?backgroundColor=green" frameborder="0" onmousewheel="" width="100%" height="100%" style="background: transparent; margin: 10pt"></iframe>
   </section>
 </template>
 
@@ -28,21 +28,17 @@ import Header from '~/components/layout/header.vue'
 
 export default {
   components: { Header, },
-  mounted() {
-    setTimeout(() => {
-      var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/";
-      if(!gi.call(d,id)) {
-        js=ce.call(d,"script");
-        js.id=id;
-        js.src=b+"embed.js";
-        q=gt.call(d,"script")[0];
-        q.parentNode.insertBefore(js,q)
-      }
-    }, 100)
-  },
-  methods: {
-    onSubmit() {
-    },
+  head() {
+    return {
+      title: 'SuperGreenLab X Cannafest',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Cannafest giveaway special:)'
+        },
+      ],
+    }
   },
 }
 </script>

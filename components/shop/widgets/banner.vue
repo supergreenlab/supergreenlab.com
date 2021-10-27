@@ -50,6 +50,7 @@ export default {
         if (link.indexOf('?') !== -1) {
           const urlParams = new URLSearchParams(link.split('?')[1])
           await this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
+          this.$router.push(link.split('?')[0])
         } else {
           this.$router.push(link)
         }
