@@ -20,7 +20,9 @@
   <section :id='$style.container' @click='close'>
     <div :id='$style.popup' @click='cancelClick'>
       <div :id='$style.close' @click='close'>X</div>
-      <BlockGuide location='popup' />
+      <div :id='$style.body'>
+        <BlockGuide location='popup' />
+      </div>
     </div>
   </section>
 </template>
@@ -80,69 +82,9 @@ export default {
   border-radius: 5pt
   border: 4pt solid #3BB30B
   @media only screen and (max-width: 600px)
-    padding: 40pt 10pt 10pt 10pt
+    padding: 30pt 10pt 10pt 10pt
     width: 100vw
     height: 100vh
-    overflow-y: auto
-
-#ctas
-  display: flex
-  @media only screen and (max-width: 600px)
-    flex-direction: column
-
-#ctano, #ctayes
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
-  text-transform: uppercase
-  color: white
-  background-color: #3BB30B
-  padding: 8pt 35pt
-  border-radius: 3pt
-  text-decoration: none
-  z-index: 100
-  margin-bottom: 20pt
-  font-size: 1.5em
-  @media only screen and (max-width: 600px)
-    font-size: 1.1em
-
-#ctano
-  font-size: 1.2em
-  background-color: #F78181
-  margin-right: 5pt
-
-#discord
-  text-align: center
-  white-space: nowrap
-  text-decoration: none;
-  color: green;
-
-#typeformintro
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  text-align: center
-  margin: 30pt 0
-  @media only screen and (min-width: 600px)
-    flex: 1
-
-#typeformintro > h2
-  color: #5E5E5E
-  font-size: 2.3em
-  margin-top: 20pt
-
-#typeformintro > h3
-  color: #3BB30B
-  font-size: 2em
-  margin-top: 0
-
-#typeform
-  flex: 1
-  min-width: 400pt
-  @media only screen and (max-width: 600px)
-    min-width: 100%
 
 #close
   color: #3bb30b
@@ -152,5 +94,9 @@ export default {
   right: 10pt
   font-weight: 600
   cursor: pointer
+
+#body
+  flex: 1
+  overflow-y: auto
 
 </style>
