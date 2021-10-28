@@ -48,6 +48,7 @@
     <Footer />
     <transition name="popup">
       <Promocode v-if='showPopup' :onClose='closePopup' />
+      <OverlayGuide v-if='showGuidePopup' :onClose='closeGuidePopup' />
     </transition>
   </section>
 </template>
@@ -65,6 +66,8 @@ import BlockShop from '~/components/home/blockshop.vue'
 import HomeNewsletter from '~/components/layout/newsletter.vue'
 import Footer from '~/components/layout/footer.vue'
 import Promocode from '~/components/layout/overlay-promocode.vue'
+
+import OverlayGuide from '~/components/home/overlay-guide.vue'
 
 // TODO DRY with shop page
 import BannerContainer from '~/components/shop/containers/bannercontainer.vue'
@@ -85,9 +88,9 @@ import RegionSelector from '~/components/shop/widgets/regionselector.vue'
 
 import widgets from '~/config/widgets.json'
 
-import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight, } from '~/lib/client-side.js'
+import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight,} from '~/lib/client-side.js'
 
-const components = { Header, Top, Footer, Promocode, HomeNewsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector,}
+const components = { Header, Top, Footer, Promocode, OverlayGuide, HomeNewsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector,}
 
 export default {
   components,
@@ -105,8 +108,10 @@ export default {
   },
   data() {
     return {
+      showGuidePopup: false,
       showPopup: false,
       currentRef: 'top',
+      scrolledToBottom: false,
     }
   },
   created () {
@@ -125,6 +130,12 @@ export default {
         setTimeout(() => this.$data.showPopup = true, 3000)
       }
     }
+    setTimeout(() => {
+      this.$matomo.monitorEvents(['front-page;navigation;backtotop'], this.onBackToTop)
+    }, 50)
+  },
+  unmounted() {
+    this.$matomo.removeEventMonitor(this.onBackToTop)
   },
 	computed: {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
@@ -144,6 +155,9 @@ export default {
       saveToStorage('popupShown2', 1)
       this.$data.showPopup = false
     },
+    closeGuidePopup() {
+      this.$data.showGuidePopup = false
+    },
     handleScroll(e) {
       if (this.timeout) clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
@@ -159,7 +173,9 @@ export default {
               centery = y + height / 2,
               winh = innerHeight()
 
-            if (centery > winh / 4 && centery < winh * 3/4) {
+            let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
+
+            if (isCoveringScreen) {
               this.$matomo.trackEvent('front-page', 'scrollto', name)
               this.lastEvent = name
               this.$data.currentRef = name
@@ -167,7 +183,11 @@ export default {
           })
         })
       }, 250)
-    }
+    },
+    onBackToTop() {
+      this.$data.showGuidePopup = true
+      this.$matomo.removeEventMonitor(this.onBackToTop)
+    },
   },
 }
 </script>

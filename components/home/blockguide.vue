@@ -52,7 +52,7 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
 export default {
   components: { SectionTitle },
-  props: [],
+  props: ['location',],
   data() {
     return {
 
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     onClick() {
-      this.$matomo.trackEvent('font-page', 'click', 'guide-101')
+      this.$matomo.trackEvent(this.$props.location || 'font-page', 'click', 'guide-101')
     }
   },
 }

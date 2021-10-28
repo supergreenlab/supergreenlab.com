@@ -95,6 +95,7 @@ assets/img/widgets
 assets/img/collections
 static/guides/
 config/products.json
+config/analytics.json
 config/guides.json
 config/widgets.json
 config/guide-*.json
