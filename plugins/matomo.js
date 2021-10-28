@@ -21,8 +21,7 @@ export default ({ app }) => {
 
   const trackEvent = app.$matomo.trackEvent
   app.$matomo.trackEvent = (category, action, name, value) => {
-    trackEvent(category, action, name, value)
-    trackEvent(category, action, `${category};${action};${name}`, value)
+    trackEvent(category, action, `${category};${action};${name || ''}`, value)
   }
 
   window.onload = () => {
@@ -34,5 +33,9 @@ export default ({ app }) => {
       document.cookie=`sglid=${sglid}; domain=.supergreenlab.com; path=/; expires=${exdate.toUTCString()}`;
     }
     app.$matomo.setUserId(sglid)
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('ref')) {
+      app.$matomo.trackEvent('affiliate', 'visit', urlParams.get('ref'))
+    }
   }
 }
