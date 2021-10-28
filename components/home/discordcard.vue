@@ -50,7 +50,7 @@ export default {
   methods: {
     toggleIt: function(){
       if (!this.open) {
-        this.$matomo.trackEvent('font-page', 'discordchannels', this.$props.channel.slug)
+        this.$matomo.trackEvent('front-page', 'discordchannels', this.$props.channel.slug)
       }
       this.open = !this.open
     },

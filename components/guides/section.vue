@@ -75,7 +75,7 @@ import { guides } from '~/config/guides.json'
 import { product } from '~/lib/json_db.js'
 
 export default {
-  props: [ 'index', 'guideSection', ],
+  props: [ 'index', 'guide', 'guideSection', ],
   components: { Media, SmallProductList, CheckBox, Guide, },
   computed: {
     requires() {
@@ -93,7 +93,8 @@ export default {
   },
   methods: {
     checkDone() {
-      this.$store.commit('guides/checkSection', { slug: this.$props.guideSection.slug, checked: !this.checked, })
+      this.$matomo.trackEvent('guide', this.checked ? 'uncheck' : 'check', `${this.$props.guide.slug}-${this.$props.guideSection.slug}`)
+      this.$store.commit('guides/checkSection', { slug: this.$props.guideSection.slug, checked: !this.checked })
     },
     feedback() {
       const width = 800

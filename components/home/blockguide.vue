@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     onClick() {
-      this.$matomo.trackEvent(this.$props.location || 'font-page', 'click', 'guide-101')
+      this.$matomo.trackEvent(this.$props.location || 'front-page', 'click', 'guide-101')
     }
   },
 }
@@ -124,6 +124,8 @@ export default {
   flex-direction: column
   justify-content: flex-start
   margin: 0pt 20pt 0 10pt
+  @media only screen and (max-width: 600px)
+    margin: 0pt 10pt 0 10pt
 
 #bullets
   font-size: 1.1em

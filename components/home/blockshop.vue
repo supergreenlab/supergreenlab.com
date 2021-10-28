@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     onClick() {
-      this.$matomo.trackEvent('font-page', 'click', 'gotoshop')
+      this.$matomo.trackEvent('front-page', 'click', 'gotoshop')
     },
   },
 }

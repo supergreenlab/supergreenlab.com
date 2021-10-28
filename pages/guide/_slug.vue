@@ -39,7 +39,7 @@
         </div>
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
-      <Section :guideSection='guide' :ref='guide.slug' />
+      <Section :guide='guide' :guideSection='guide' :ref='guide.slug' />
       <div v-if='!first && next' :id='$style.tocs'>
         <h2>Table of contents</h2>
         <nuxt-link v-for='(g, i) in allGuides' :key='g.slug' :class='$style.toc' :to='`/guide/${g.slug}`'>
@@ -48,7 +48,7 @@
         </nuxt-link>
       </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>
-        <Section :guideSection='section' :index='i' :ref='section.slug' />
+        <Section :guide='guide' :guideSection='section' :index='i' :ref='section.slug' />
         <div :class='$style.separator'></div>
       </div>
       <div v-if='first && !next' :id='$style.congrats'>
@@ -165,10 +165,11 @@ export default {
           ref.forEach((ref) => {
             const $el = ref.$el ? ref.$el : ref
             const { y, height } = $el.getBoundingClientRect(),
-              centery = y + height / 2,
               winh = innerHeight()
 
-            if (centery > winh / 4 && centery < winh * 3/4) {
+            let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
+
+            if (isCoveringScreen) {
               this.$matomo.trackEvent('guide', 'scrollto', name)
               this.lastEvent = name
               this.$data.currentRef = name
