@@ -225,7 +225,7 @@ export default {
   width: 150px
   height: 86px
   background-position: center
-  background-size: contain
+  background-size: 100%
   background-repeat: no-repeat
   margin-right: 10pt
 
