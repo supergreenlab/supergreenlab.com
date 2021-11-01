@@ -44,7 +44,7 @@
       <Item ref='power' n='1' :item='accessory("power-supply-24v-6-25a")' last='true' />
       <div :class='$style.price'>
         <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
-        <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
+        <AddToCart type='bundle' :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
       </div>
       <Title icon='guides.svg' title='GUIDES' />
       <div ref='guides' :id='$style.guides'>

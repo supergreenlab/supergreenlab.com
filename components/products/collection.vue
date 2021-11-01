@@ -27,7 +27,7 @@
       </div>
       <div  :id='$style.priceButton'>
         <Price :lineItems='lineItems' />
-        <AddToCart name='option-pack' :lineItems='lineItems' :discreet=false />
+        <AddToCart type='collection' name='option-pack' :lineItems='lineItems' :discreet=false />
       </div>
     </div>
     <ProductListComponent ref='option-pack' :products='products' :id='$style.optionPack' v-if="isActive" :center=true :maxItems=4 />

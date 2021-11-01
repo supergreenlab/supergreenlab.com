@@ -32,7 +32,7 @@
             <div :class='$style.price'>
               <Price :lineItems='lineItems' :freeshipping='false' />
             </div>
-            <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false />
+            <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false type='collection' />
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
         <div :class='$style.price'>
           <Price :lineItems='lineItems' :freeshipping='false' />
         </div>
-        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false />
+        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false type='collection' />
       </div>
     </div>
 

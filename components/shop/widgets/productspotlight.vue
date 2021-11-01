@@ -32,7 +32,7 @@
           <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
         </div>
         <OutOfStock v-if='sellingPoint.outofstock' />
-        <AddToCart v-else :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' :name='`${container.slug}_${config.slug}`' />
+        <AddToCart v-else :type='product.type.indexOf("SGL_BUNDLE") != -1 ? "bundle" : "product"' :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' :name='`${container.slug}_${config.slug}`' />
       </div>
     </div>
   </section>
