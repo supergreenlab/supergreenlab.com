@@ -55,7 +55,7 @@ export default {
           this.$router.push(link)
         }
       }
-      this.$matomo.trackEvent('banner', 'click', `${containerSlug}_${slug}`)
+      this.$analytics.trackEvent('banner', 'click', `${containerSlug}_${slug}`)
     }
   },
 }

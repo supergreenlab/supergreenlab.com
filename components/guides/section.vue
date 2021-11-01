@@ -93,13 +93,13 @@ export default {
   },
   methods: {
     checkDone() {
-      this.$matomo.trackEvent('guide', this.checked ? 'uncheck' : 'check', `${this.$props.guide.slug}-${this.$props.guideSection.slug}`)
+      this.$analytics.trackEvent('guide', this.checked ? 'uncheck' : 'check', `${this.$props.guide.slug}-${this.$props.guideSection.slug}`)
       this.$store.commit('guides/checkSection', { slug: this.$props.guideSection.slug, checked: !this.checked })
     },
     feedback() {
       const width = 800
       open(`https://airtable.com/shrXcK5fyNpfMH5n9?prefill_GuideSection=${this.guideSection.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo.trackEvent('guide', 'feedback')
+      this.$analytics.trackEvent('guide', 'feedback')
     },
   },
 }

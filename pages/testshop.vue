@@ -137,7 +137,7 @@ export default {
               winh = innerHeight()
 
             if (centery > winh / 4 && centery < winh * 3/4) {
-              this.$matomo.trackEvent('shop-page', 'scrollto', name)
+              this.$analytics.trackEvent('shop-page', 'scrollto', name)
               this.lastEvent = name
             }
           })

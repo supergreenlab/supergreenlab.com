@@ -130,12 +130,10 @@ export default {
         setTimeout(() => this.$data.showPopup = true, 3000)
       }
     }
-    setTimeout(() => {
-      this.$matomo.monitorEvents(['front-page;navigation;backtotop'], this.onBackToTop)
-    }, 50)
+    this.$analytics.monitorEvents(['front-page;navigation;backtotop'], this.onBackToTop)
   },
   unmounted() {
-    this.$matomo.removeEventMonitor(this.onBackToTop)
+    this.$analytics.removeEventMonitor(this.onBackToTop)
   },
 	computed: {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
@@ -175,7 +173,7 @@ export default {
             let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
 
             if (isCoveringScreen) {
-              this.$matomo.trackEvent('front-page', 'scrollto', name)
+              this.$analytics.trackEvent('front-page', 'scrollto', name)
               this.lastEvent = name
               this.$data.currentRef = name
             }
@@ -185,7 +183,7 @@ export default {
     },
     onBackToTop() {
       this.$data.showGuidePopup = true
-      this.$matomo.removeEventMonitor(this.onBackToTop)
+      this.$analytics.removeEventMonitor(this.onBackToTop)
     },
   },
 }

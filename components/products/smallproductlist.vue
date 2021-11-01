@@ -60,12 +60,12 @@ export default {
     proposeSellingPoint() {
       const width = 800
       open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo.trackEvent('smallproductlist', 'propose')
+      this.$analytics.trackEvent('smallproductlist', 'propose')
     },
     toggleShowAll() {
       this.$data.showAllProducts = !this.$data.showAllProducts
       if (this.$data.showAllProducts) {
-        this.$matomo.trackEvent('smallproductlist', 'showAll')
+        this.$analytics.trackEvent('smallproductlist', 'showAll')
       }
     }
   },

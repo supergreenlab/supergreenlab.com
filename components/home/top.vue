@@ -137,7 +137,7 @@ export default {
   },
   methods: {
     ctaClicked() {
-      this.$matomo.trackEvent('front-page', 'cta', 'top')
+      this.$analytics.trackEvent('front-page', 'cta', 'top')
     }
   },
 }

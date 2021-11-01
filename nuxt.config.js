@@ -56,6 +56,7 @@ export default {
     //{ src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/init.js', ssr: false },
     { src: '~plugins/matomo.js', ssr: false },
+    { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
     { src: '~plugins/vue-agile.js', ssr: false },
     { src: '~plugins/vue-touch.js', ssr: false },

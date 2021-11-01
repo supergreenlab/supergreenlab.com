@@ -66,7 +66,7 @@ export default {
       const url = new URL(e.target.href)
       try {
         const pathNameParts = url.pathname.split('/')
-        this.$matomo.trackEvent('front-page-menu', 'click', pathNameParts[pathNameParts.length-1])
+        this.$analytics.trackEvent('front-page-menu', 'click', pathNameParts[pathNameParts.length-1])
       } catch(e) {}
     },
   },

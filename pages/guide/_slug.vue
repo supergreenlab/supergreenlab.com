@@ -170,7 +170,7 @@ export default {
             let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
 
             if (isCoveringScreen) {
-              this.$matomo.trackEvent('guide', 'scrollto', name)
+              this.$analytics.trackEvent('guide', 'scrollto', name)
               this.lastEvent = name
               this.$data.currentRef = name
             }

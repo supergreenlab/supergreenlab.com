@@ -40,12 +40,12 @@ export default {
   },
   components: { SectionTitle, BlockGuide, },
   created() {
-    this.$matomo.trackEvent('guidepopup', 'shown')
+    this.$analytics.trackEvent('guidepopup', 'shown')
   },
   methods: {
     close() {
       this.$props.onClose()
-      this.$matomo.trackEvent('guidepopup', 'close')
+      this.$analytics.trackEvent('guidepopup', 'close')
     },
     cancelClick(e) {
       e.stopPropagation()

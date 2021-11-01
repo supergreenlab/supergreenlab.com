@@ -114,7 +114,7 @@ export default {
           this.$router.push(link)
         }
       }
-      this.$matomo.trackEvent('countdown', 'click', `${containerSlug}_${slug}`)
+      this.$analytics.trackEvent('countdown', 'click', `${containerSlug}_${slug}`)
     }
   },
   filters: {

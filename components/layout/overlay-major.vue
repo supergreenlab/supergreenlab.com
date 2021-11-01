@@ -53,20 +53,20 @@ export default {
   props: ['onClose',],
   components: { SectionTitle ,},
   created() {
-    this.$matomo.trackEvent('disclaimer', 'shown')
+    this.$analytics.trackEvent('disclaimer', 'shown')
   },
   methods: {
     close(ok) {
       this.$props.onClose(ok)
-      this.$matomo.trackEvent('disclaimer', 'close')
+      this.$analytics.trackEvent('disclaimer', 'close')
     },
     ok() {
       this.close(true)
-      this.$matomo.trackEvent('disclaimer', 'ok')
+      this.$analytics.trackEvent('disclaimer', 'ok')
     },
     no() {
       this.close(false)
-      this.$matomo.trackEvent('disclaimer', 'nok')
+      this.$analytics.trackEvent('disclaimer', 'nok')
     },
     showChat(e) {
       $crisp.push(["set", "session:event", ["show_chat"]])

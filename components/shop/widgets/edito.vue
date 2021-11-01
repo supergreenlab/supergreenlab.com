@@ -59,7 +59,7 @@ export default {
           this.$router.push(link)
         }
       }
-      this.$matomo.trackEvent('edito', 'click', `${containerSlug}_${slug}`)
+      this.$analytics.trackEvent('edito', 'click', `${containerSlug}_${slug}`)
     }
   },
 }

@@ -54,7 +54,7 @@ export default {
   methods: {
     toggle: function(){
       if (!this.open) {
-        this.$matomo.trackEvent('front-page', 'appfeatures', this.$props.appfeature.slug)
+        this.$analytics.trackEvent('front-page', 'appfeatures', this.$props.appfeature.slug)
       }
       this.open = !this.open
     },

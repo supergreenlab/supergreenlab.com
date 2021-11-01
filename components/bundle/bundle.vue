@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     bundleClicked() {
-      this.$matomo.trackEvent('front-page', 'bundleclicked', this.$props.slug)
+      this.$analytics.trackEvent('front-page', 'bundleclicked', this.$props.slug)
     },
     handleAddToCart() {
       setTimeout(() => this.$data.addedToCart = true, 1000)

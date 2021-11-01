@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     clickInstallApp() {
-      this.$matomo.trackEvent('front-page', 'click', 'appinstall')
+      this.$analytics.trackEvent('front-page', 'click', 'appinstall')
     },
   },
 }

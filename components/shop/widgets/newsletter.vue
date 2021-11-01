@@ -47,7 +47,7 @@ export default {
       const { container: { slug: containerSlug } } = this.$props
       const width = 800
       open(`https://airtable.com/shrge8dNrpLul19IR?prefill_email=${this.$data.email}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$matomo.trackEvent('widgets', 'newsletter', `${containerSlug}_${slug}`)
+      this.$analytics.trackEvent('widgets', 'newsletter', `${containerSlug}_${slug}`)
     }
   }
 }
