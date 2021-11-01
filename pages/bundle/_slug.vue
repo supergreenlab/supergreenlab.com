@@ -22,9 +22,9 @@
       <Header />
     </div>
     <div :id='$style.body'>
-      <Bundle :nobottom=true :bundle='bundle' :addtocart=true :noframe=true :showdescription=true :showRelatedProducts=true />
+      <Bundle ref='bundle' :nobottom=true :bundle='bundle' :addtocart=true :noframe=true :showdescription=true :showRelatedProducts=true />
       <Title icon='icon-see-shop.svg' title='SPARE PARTS' />
-      <ProductListComponent :products='sglSpareParts' :center=true :maxItems=4 />
+      <ProductListComponent ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
@@ -36,22 +36,21 @@
       <div :class='$style.space'></div>
       <LatestDiaries ref='latest_diaries' />
       <Title icon='package.svg' title='BUNDLE CONTENT' />
-      <Item v-if='bundle.specs.bigleds' :showHarvest='true' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
-      <Item v-if='bundle.specs.smallleds' :showHarvest='!bundle.specs.bigleds' :n='bundle.specs.smallleds' :item='led("sgl-144")' />
-      <Item v-if='bundle.specs.tinyleds' :showHarvest='!bundle.specs.bigleds && !bundle.specs.smallleds' :n='bundle.specs.tinyleds' :item='led("sgl-36")' />
-      <Item v-if='bundle.specs.ventilation' :n='bundle.specs.ventilation' :item='accessory("sgl-blower")' />
-      <Item v-if='bundle.specs.sensor' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
-      <Item n='1' :item='accessory("sgl-controller")' last='true' />
-      <Item n='1' :item='accessory("power-supply-24v-6-25a")' last='true' />
+      <Item ref='bigleds' v-if='bundle.specs.bigleds' :showHarvest='true' :n='bundle.specs.bigleds' :item='led("sgl-192")' />
+      <Item ref='small-leds' v-if='bundle.specs.tinyleds' :showHarvest='!bundle.specs.bigleds && !bundle.specs.smallleds' :n='bundle.specs.tinyleds' :item='led("sgl-36")' />
+      <Item ref='ventilation' v-if='bundle.specs.ventilation' :n='bundle.specs.ventilation' :item='accessory("sgl-blower")' />
+      <Item ref='sensor' v-if='bundle.specs.sensor' :n='bundle.specs.sensor' :item='accessory("sgl-temperature-humidity-sensor")' />
+      <Item ref='controller' n='1' :item='accessory("sgl-controller")' last='true' />
+      <Item ref='power' n='1' :item='accessory("power-supply-24v-6-25a")' last='true' />
       <div :class='$style.price'>
         <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
         <AddToCart :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
       </div>
       <Title icon='guides.svg' title='GUIDES' />
-      <div :id='$style.guides'>
+      <div ref='guides' :id='$style.guides'>
         <ProductGuide v-for='guide in guides' :key='guide.id' :guide='guide' />
       </div>
-      <div :id='$style.guides'>
+      <div ref='questions' :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
         <div :class='$style.guide'>
           <Guide icon='enveloppe.svg'
@@ -71,7 +70,7 @@
         </div>
       </div>
       <Title icon='icon-see-shop.svg' title='SEE ALSO' />
-      <div v-if='relatedProducts.length' :id='$style.products'>
+      <div ref='related-products' v-if='relatedProducts.length' :id='$style.products'>
         <ProductListComponent :products='relatedProducts' :maxItems=4 />
       </div>
     </div>
@@ -99,6 +98,7 @@ import AddToCart from '~/components/products/addtocart.vue'
 import { guides } from '~/config/guides.json'
 
 import { productWithSlug, productsWithTypes, brandProduct, leds, accessories, } from '~/lib/json_db.js'
+import { addEventListener, innerHeight, } from '~/lib/client-side.js'
 
 export default {
   components: {Header, Guide, ProductGuide, ProductListComponent, Bundle, Title, Price, Item, Footer, ContinuousSupply, ProgressiveSunriseSunset, App, BundleIntro, LatestDiaries, AddToCart,},
@@ -117,8 +117,12 @@ export default {
       showPreOrderForm: false,
     }
   },
+  created () {
+    addEventListener('scroll', this.handleScroll);
+  },
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
+    removeEventListener('scroll', this.handleScroll);
   },
   computed: {
     bundle() {
@@ -152,6 +156,33 @@ export default {
     relatedProducts() {
       return productsWithTypes(['FURNITURE', 'TENT', 'CARBON FILTER', 'SOIL', 'NUTRIENT']).filter(p => p.id !== this.bundle.id)
     }
+  },
+  methods: {
+    handleScroll(e) {
+      if (this.timeout) clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        Object.keys(this.$refs).forEach((name) => {
+          if (this.lastEvent == name) {
+            return;
+          }
+          let ref = this.$refs[name]
+          if (!ref.length) ref = [ref]
+          ref.forEach((ref) => {
+            const $el = ref.$el ? ref.$el : ref
+            const { y, height } = $el.getBoundingClientRect(),
+              winh = innerHeight()
+
+            let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
+
+            if (isCoveringScreen) {
+              this.$analytics.trackEvent('bundle-page', 'scrollto', name)
+              this.lastEvent = name
+              this.$data.currentRef = name
+            }
+          })
+        })
+      }, 250)
+    },
   },
 }
 </script>
