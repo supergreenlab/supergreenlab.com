@@ -32,7 +32,7 @@
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
         <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>
-          <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank' :download='a.fileName'>
+          <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank' :download='a.fileName' @click='attachementClicked(a)'>
             <img :src='require(`~/assets/img/${a.fileLarge}`)' />
             {{ a.fileName }}
           </a>
@@ -104,6 +104,10 @@ export default {
     linkClicked(link) {
       const { guide } = this.$props
       this.$analytics.trackEvent(`guide-${guide.slug}`, 'linkclicked', link.slug)
+    },
+    attachementClicked(attachement) {
+      const { guide } = this.$props
+      this.$analytics.trackEvent(`guide-${guide.slug}`, 'attachementclicked', attachement.fileName)
     },
   },
 }

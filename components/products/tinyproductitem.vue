@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     click() {
-      this.$analytics.trackEvent('productitem', 'viewproduct', this.sellingPoint.slug)
+      this.$analytics.trackEvent(this.$props.location || 'productitem', 'viewproduct', this.sellingPoint.slug)
     }
   }
 }

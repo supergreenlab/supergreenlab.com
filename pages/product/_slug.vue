@@ -88,7 +88,7 @@
           <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>Checkout those too:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`' @click.native='relatedProductClicked(rp)'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
@@ -296,12 +296,12 @@ export default {
       setTimeout(() => this.$data.addedToCart = true, 1000)
     },
     linkClicked(link) {
-      const slug = this.$props.bundle.slug
-      this.$analytics.trackEvent(`bundle-${slug}`, 'link', link.slug)
+      const slug = this.product.slug
+      this.$analytics.trackEvent(`product-${slug}`, 'link', link.slug)
     },
     relatedProductClicked(product) {
-      const slug = this.$props.bundle.slug
-      this.$analytics.trackEvent(`bundle-${slug}`, 'related-product', product.slug)
+      const slug = this.product.slug
+      this.$analytics.trackEvent(`product-${slug}`, 'related-product', product.slug)
     },
   },
 }

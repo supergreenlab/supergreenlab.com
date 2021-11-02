@@ -30,7 +30,7 @@
       <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
     </div>
     <OutOfStock v-if='sellingPoint.outofstock' />
-    <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
+    <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' :location='location' />
   </section>
 </template>
 

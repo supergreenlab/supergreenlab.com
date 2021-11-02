@@ -37,7 +37,7 @@
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
         <div :class='$style.price'>
           <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
-          <AddToCart type='bundle' :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
+          <AddToCart :location='`bundle-intro-top-${bundle.slug}`' type='bundle' :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
         </div>
 
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
@@ -85,7 +85,7 @@
           <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
         </div>
         <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
-        <AddToCart type='bundle' v-else :product='bundle' :sellingPoint='bundle.SellingPoints[0]' @click='handleAddToCart' />
+        <AddToCart :location='`bundle-intro-bottom-${bundle.slug}`' type='bundle' v-else :product='bundle' :sellingPoint='bundle.SellingPoints[0]' @click='handleAddToCart' />
       </div>
     </div>
   </section>
