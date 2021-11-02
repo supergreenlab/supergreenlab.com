@@ -32,7 +32,7 @@ import Number from '~/components/widgets/number.vue'
 
 export default {
   components: {Number,},
-  props: ['title', 'titleadded', 'product', 'sellingPoint', 'name', 'lineItems', 'small', 'discreet', 'type',],
+  props: ['title', 'titleadded', 'product', 'sellingPoint', 'name', 'lineItems', 'small', 'discreet', 'location',],
   data() {
     return {
       n: 1,
@@ -47,10 +47,10 @@ export default {
   methods: {
     addToCartClicked() {
       if (this.$data.activated) return
-      const { product, sellingPoint, lineItems, name, type} = this.$props
+      const { product, sellingPoint, lineItems, name, location} = this.$props
       const { n } = this.$data
       const cart = lineItems ? lineItems : [{ n, product, sellingPoint }]
-      this.$analytics.trackEvent(type || 'product', 'addtocart', name || sellingPoint.slug)
+      this.$analytics.trackEvent(location || 'product', 'addtocart', name || sellingPoint.slug)
       this.$data.activated = true
       this.timeout = setTimeout(() => {
         this.$data.activated = false

@@ -36,7 +36,7 @@
         <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
       </div>
       <OutOfStock v-if='sellingPoint.outofstock' />
-      <SmallAddToCart v-else :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
+      <SmallAddToCart v-else :location='location' :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
     </div>
     <div :id='$style.infocontainersmall'>
       <div :id='$style.description'>
@@ -47,7 +47,7 @@
           </nuxt-link>
 
           <OutOfStock v-if='sellingPoint.outofstock' />
-          <SmallAddToCart v-else :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' :center=true />
+          <SmallAddToCart v-else :location='location' :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' :center=true />
         </div>
         <div :id='$style.price'>
           <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
@@ -67,7 +67,7 @@ import { brandProduct, brand, seller, } from '~/lib/json_db.js'
 
 export default {
   components: {Price, OutOfStock, SmallAddToCart, Pics,},
-  props: ['product'],
+  props: ['product', 'location',],
   computed: {
     sellingPoint() {
       const { product } = this.$props
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     click() {
-      this.$analytics.trackEvent('smallproductitem', 'viewproduct', this.sellingPoint.slug)
+      this.$analytics.trackEvent(this.$props.location || 'productitem', 'viewproduct', this.sellingPoint.slug)
     }
   }
 }

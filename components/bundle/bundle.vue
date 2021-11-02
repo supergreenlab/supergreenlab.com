@@ -42,7 +42,7 @@
 
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
-          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
+          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`' @click.native='relatedProductClicked(rp)'>
             <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
             <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
             <div>
@@ -53,7 +53,7 @@
 
         <div v-if='showRelatedProducts && bundle.links && bundle.links.length' :id='$style.links'>
           <h4>Useful links</h4>
-          <a v-for='l in bundle.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+          <a v-for='l in bundle.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank' @click='linkClicked(l)'>
             <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
               <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
             </div>
@@ -111,11 +111,19 @@ export default {
   },
   methods: {
     bundleClicked() {
-      this.$analytics.trackEvent('front-page', 'bundleclicked', this.$props.slug)
+      this.$analytics.trackEvent('bundle', 'bundleclicked', this.$props.bundle.slug)
     },
     handleAddToCart() {
       setTimeout(() => this.$data.addedToCart = true, 1000)
-    }
+    },
+    linkClicked(link) {
+      const slug = this.$props.bundle.slug
+      this.$analytics.trackEvent(`bundle-${slug}`, 'link', link.slug)
+    },
+    relatedProductClicked(product) {
+      const slug = this.$props.bundle.slug
+      this.$analytics.trackEvent(`bundle-${slug}`, 'related-product', product.slug)
+    },
   },
   computed: {
     relatedProducts() {

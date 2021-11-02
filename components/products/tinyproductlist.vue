@@ -25,7 +25,7 @@
     <div :id='$style.body' :class='center ? $style.center : $style.start'>
       <div ref='products' :id='$style.products' :style='{"height": height}'>
         <div v-for='(product, i) in products' :key='product.id' :class='$style.product'>
-          <Item :picOnly='picOnly' :product='product' />
+          <Item :location='location' :picOnly='picOnly' :product='product' />
         </div>
       </div>
       <div v-if='showAllProducts' :class='$style.propose'>
@@ -46,7 +46,7 @@ import Region from '~/components/products/region.vue'
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
 export default {
-  props: ['products', 'center', 'expandable', 'picOnly', 'title',],
+  props: ['products', 'center', 'expandable', 'picOnly', 'title', 'location',],
   components: {SectionTitle, Item, Region,},
   data() {
     return {
@@ -57,12 +57,12 @@ export default {
     proposeSellingPoint() {
       const width = 800
       open('https://airtable.com/shrVYGaBGhAUFSJvm', '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
-      this.$analytics.trackEvent('productlist', 'propose')
+      this.$analytics.trackEvent(this.$props.location || 'productlist', 'propose')
     },
     toggleShowAll() {
       this.$data.showAllProducts = !this.$data.showAllProducts
       if (this.$data.showAllProducts) {
-        this.$analytics.trackEvent('productlist', 'showAll')
+        this.$analytics.trackEvent(this.$props.location || 'productlist', 'showAll')
       }
     }
   },

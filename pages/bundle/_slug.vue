@@ -24,7 +24,7 @@
     <div :id='$style.body'>
       <Bundle ref='bundle' :nobottom=true :bundle='bundle' :addtocart=true :noframe=true :showdescription=true :showRelatedProducts=true />
       <Title icon='icon-see-shop.svg' title='SPARE PARTS' />
-      <ProductListComponent ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
+        <ProductListComponent :location='`bundle-spare-${bundle.slug}`' ref='spare-parts' :products='sglSpareParts' :center=true :maxItems=4 />
       <div :class='$style.space'></div>
       <BundleIntro ref='bundle-intro' />
       <div :class='$style.space'></div>
@@ -48,7 +48,7 @@
       </div>
       <Title icon='guides.svg' title='GUIDES' />
       <div ref='guides' :id='$style.guides'>
-        <ProductGuide v-for='guide in guides' :key='guide.id' :guide='guide' />
+        <ProductGuide v-for='guide in guides' :from='bundle' :key='guide.id' :guide='guide' />
       </div>
       <div ref='questions' :id='$style.guides'>
         <Title icon='guides.svg' title='QUESTIONS?' />
@@ -71,7 +71,7 @@
       </div>
       <Title icon='icon-see-shop.svg' title='SEE ALSO' />
       <div ref='related-products' v-if='relatedProducts.length' :id='$style.products'>
-        <ProductListComponent :products='relatedProducts' :maxItems=4 />
+        <ProductListComponent :location='`related-product-${bundle.slug}`' :products='relatedProducts' :maxItems=4 />
       </div>
     </div>
     <Footer />

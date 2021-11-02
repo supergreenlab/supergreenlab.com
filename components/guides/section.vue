@@ -39,7 +39,7 @@
         </div>
         <b v-if='guideSection.links && guideSection.links.length'>Useful links</b>
         <div v-if='guideSection.links && guideSection.links.length' :id='$style.links'>
-          <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+          <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank' @click='linkClicked(l)'>
             <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
               <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
             </div>
@@ -53,13 +53,13 @@
         <div :id='$style.guides' v-if='gotoGuides.length'>
           <b v-if='gotoGuides.length > 1'>Checkout these guides</b>
           <b v-else>Checkout this guide</b>
-          <Guide v-for='g in gotoGuides' :key='g.id' :guide='g' />
+          <Guide v-for='g in gotoGuides' :key='g.id' :from='guide' :guide='g' />
         </div>
         <a v-if='!guideSection.sections' href='javascript:void(0)' @click='feedback' :id='$style.feedback'>Got a feedback/suggestion? click here</a>
       </div>
     </div>
     <h2 v-if='requires.length'>What you'll need</h2>
-    <SmallProductList v-if='requires.length' :products='requires' maxItems='2' />
+    <SmallProductList :location='`guide-${guide.slug}`' v-if='requires.length' :products='requires' maxItems='2' />
   </section>
 </template>
 
@@ -100,6 +100,10 @@ export default {
       const width = 800
       open(`https://airtable.com/shrXcK5fyNpfMH5n9?prefill_GuideSection=${this.guideSection.id}`, '_blank', `width=${width},height=600,top=100,left=${screenX() + availWidth()/2 - width/2}`)
       this.$analytics.trackEvent('guide', 'feedback')
+    },
+    linkClicked(link) {
+      const { guide } = this.$props
+      this.$analytics.trackEvent(`guide-${guide.slug}`, 'linkclicked', link.slug)
     },
   },
 }

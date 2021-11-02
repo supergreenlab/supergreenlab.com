@@ -23,7 +23,7 @@
       <b>{{ guide.name }}</b>
       <div :id='$style.text' v-html='$md.render(guide.text || "")'></div>
       <div>
-        <nuxt-link :id='$style.button' :to='`/guide/${guide.slug}`'>{{ button || 'VIEW GUIDE' }}</nuxt-link>
+        <nuxt-link :id='$style.button' @click.native='onClick' :to='`/guide/${guide.slug}`'>{{ button || 'VIEW GUIDE' }}</nuxt-link>
       </div>
     </div>
   </section>
@@ -32,7 +32,13 @@
 <script>
 
 export default {
-  props: ['guide', 'button'],
+  props: ['from', 'guide', 'button', 'location'],
+  methods: {
+    onClick() {
+      const { from, guide, location } = this.$props
+      this.$analytics.trackEvent(`guide-${from.slug}`, location || 'related-guide', guide.slug)
+    },
+  },
 }
 
 </script>

@@ -26,7 +26,7 @@
           <CardGuide :guide='guide' userStep='0' :class='$style.cardContainer' />
           <div :id="$style.require">
             <h3 :id="$style.tagline">What you'll need</h3>
-            <SmallProductList :products='products' maxItems='3' />
+            <SmallProductList :location='config.slug' :products='products' maxItems='3' />
           </div>
         </div>
       </div>

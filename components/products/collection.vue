@@ -30,7 +30,7 @@
         <AddToCart type='collection' name='option-pack' :lineItems='lineItems' :discreet=false />
       </div>
     </div>
-    <ProductListComponent ref='option-pack' :products='products' :id='$style.optionPack' v-if="isActive" :center=true :maxItems=4 />
+    <ProductListComponent :location='`collection-${collection.slug}`' ref='option-pack' :products='products' :id='$style.optionPack' v-if="isActive" :center=true :maxItems=4 />
     <a :class='$style.packSeparator'  @click='toggleClass()'>View
       <div :class='$style.number'>{{ products.length }}</div> products in this pack
       <span  :class="$style.arrow">

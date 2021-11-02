@@ -117,10 +117,12 @@ export default {
     previous() {
       const nScreens = this.$el.querySelectorAll(`.${this.$style.screen}`).length
       this.$data.screen = this.$data.screen-1 < 0 ? nScreens-1 : this.$data.screen-1
+      this.$analytics.trackEvent('bundle', 'app-intro', 'clicked-previous')
     },
     next() {
       const nScreens = this.$el.querySelectorAll(`.${this.$style.screen}`).length
       this.$data.screen = this.$data.screen+1 >= nScreens ? 0 : this.$data.screen+1
+      this.$analytics.trackEvent('bundle', 'app-intro', 'clicked-next')
     },
   },
 }

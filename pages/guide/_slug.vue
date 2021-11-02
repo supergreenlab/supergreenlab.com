@@ -29,13 +29,13 @@
       <div :id='$style.first' v-if='first'>
         <h2>This guide is part of:</h2>
         <div :class='$style.guide'>
-          <Guide :guide='first' button='BACK TO FIRST' />
+          <Guide location='first-guide' :from='guide' :guide='first' button='BACK TO FIRST' />
         </div>
         <h2 v-if='showTableOfContent'>Table of content</h2>
         <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
         <div v-if='g.first && showTableOfContent' v-for='(g, i) in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
           <h1>#{{ i+1 }}</h1>
-          <Guide :guide='g' />
+          <Guide location='table-of-content' :from='guide' :guide='g' />
         </div>
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
@@ -51,22 +51,22 @@
         <Section :guide='guide' :guideSection='section' :index='i' :ref='section.slug' />
         <div :class='$style.separator'></div>
       </div>
-      <div v-if='first && !next' :id='$style.congrats'>
+      <div ref='end-guide' v-if='first && !next' :id='$style.congrats'>
         <h1>CONGRATULATIONS!</h1>
         <h2>You made it through this guide:)</h2>
       </div>
-      <div :id='$style.guides' v-if='next'>
+      <div ref='next-guide' :id='$style.guides' v-if='next'>
         <h2>Next</h2>
-        <Guide :guide='next' button='CONTINUE >' />
+        <Guide :guide='next' :from='guide' location='next-guide' button='CONTINUE >' />
       </div>
-      <div :id='$style.guides' v-if='relatedGuides.length'>
+      <div ref='related-guides' :id='$style.guides' v-if='relatedGuides.length'>
         <h2>Guides to see next</h2>
-        <Guide v-for='g in relatedGuides' :key='g.id' :guide='g' />
+        <Guide v-for='g in relatedGuides' location='related-guide' :from='guide' :key='g.id' :guide='g' />
       </div>
     </div>
     <div :id='$style.prefooter'>
-      <CallToAction :guide='guide' />
-      <Newsletter/>
+      <CallToAction ref='start-growing' :guide='guide' />
+      <Newsletter ref='newsletter' />
     </div>
     <Footer />
   </section>

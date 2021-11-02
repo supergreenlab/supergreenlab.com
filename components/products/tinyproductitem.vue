@@ -30,7 +30,7 @@
         <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
       </div>
       <OutOfStock v-if='!picOnly && sellingPoint.outofstock' />
-      <SmallAddToCart v-else-if='!picOnly' :hideNumber='true' :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
+      <SmallAddToCart v-else-if='!picOnly' :location='location' :hideNumber='true' :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' />
     </div>
   </section>
 </template>
@@ -45,7 +45,7 @@ import { seller, brand, brandProduct, } from '~/lib/json_db.js'
 
 export default {
   components: {Price, OutOfStock, SmallAddToCart, Pics,},
-  props: ['product', 'picOnly',],
+  props: ['product', 'picOnly', 'location',],
   computed: {
     sellingPoint() {
       const { product } = this.$props

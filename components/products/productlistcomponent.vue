@@ -17,8 +17,8 @@
  -->
  <template>
   <section>
-    <ProductList :id='$style.productlist' :products='products' :center=false />
-    <SmallProductList :id='$style.smallproductlist' :products='products' />
+    <ProductList :location='location' :id='$style.productlist' :products='products' :center=false />
+    <SmallProductList :location='location' :id='$style.smallproductlist' :products='products' />
   </section>
 </template>
 
@@ -27,7 +27,7 @@ import ProductList from '~/components/products/productlist.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 
 export default {
-  props: ['products', 'center', 'maxItems',],
+  props: ['products', 'center', 'maxItems', 'location',],
   components: { ProductList ,SmallProductList},
 }
 </script>

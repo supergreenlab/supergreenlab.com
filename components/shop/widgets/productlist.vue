@@ -27,7 +27,7 @@
           <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>
         </div>
       </div>
-      <SmallProductList :products='products' :center=true :maxItems='2'/>
+      <SmallProductList :location='config.slug' :products='products' :center=true :maxItems='2'/>
     </div>
   </section>
 </template>

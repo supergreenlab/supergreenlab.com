@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     showMetrics() {
-      this.$analytics.trackEvent('bundle', 'show-keymetrics', this.$props.name)
+      this.$analytics.trackEvent('bundle', this.$data.shownMetrics ? 'hide-keymetrics' : 'show-keymetrics', this.$props.item.name)
       this.$data.keymetricsHeight = this.$refs.keymetrics.clientHeight
       this.$data.shownMetrics = !this.$data.shownMetrics
     },

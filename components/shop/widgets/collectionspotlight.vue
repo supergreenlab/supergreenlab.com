@@ -26,7 +26,7 @@
 
         <div :class='`${$style.products} ${$style.bigproducts}`'>
           <div :id='$style.list'>
-            <TinyProductList title='Products in collection' :picOnly='true' :products='products' :expandable='true' />
+            <TinyProductList :location='config.slug' title='Products in collection' :picOnly='true' :products='products' :expandable='true' />
           </div>
           <div :id='$style.addtocartcontainer'>
             <div :class='$style.price'>
@@ -40,13 +40,13 @@
 
     <div :class='`${$style.products} ${$style.smallproducts}`'>
       <div :id='$style.list'>
-        <TinyProductList title='Products in collection' :picOnly='true' :products='products' :expandable='true' />
+        <TinyProductList :location='config.slug' title='Products in collection' :picOnly='true' :products='products' :expandable='true' />
       </div>
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
           <Price :lineItems='lineItems' :freeshipping='false' />
         </div>
-        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false type='collection' />
+        <AddToCart :title='`ADD ${products.length} TO CART`' :titleadded='`${products.length} ITEMS ADDED!`' :name='`${container.slug}_${config.slug}`' :lineItems='lineItems' :discreet=false :location='config.slug' />
       </div>
     </div>
 

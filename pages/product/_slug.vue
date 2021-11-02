@@ -57,7 +57,7 @@
           <div :id='$style.description' v-if='brandProduct.bulletpoints && brandProduct.bulletpoints != product.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>This product can be used with:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`'>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`' @click.native='relatedProductClicked(rp)'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(${require(`~/assets/img/${rp.brandProduct.pics[0].fileLarge}`)})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
@@ -67,7 +67,7 @@
           </div>
           <div v-if='product.links && product.links.length' :id='$style.links'>
             <h4>Useful links</h4>
-            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank'>
+            <a v-for='l in product.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank' @click='linkClicked(l)'>
               <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
                 <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
               </div>
@@ -152,11 +152,11 @@
       </div>
       <h2 v-if='guides.length'>Guides</h2>
       <div v-if='guides.length' :id='$style.guides'>
-        <Guide v-for='guide in guides' :key='guide.id' :guide='guide' />
+        <Guide v-for='guide in guides' :from='product' :key='guide.id' :guide='guide' />
       </div>
       <h2 v-if='sameTypeProduct.length'>Products in the same category</h2>
       <div v-if='sameTypeProduct.length' :id='$style.products'>
-        <ProductListComponent :products='sameTypeProduct' :maxItems=4 />
+        <ProductListComponent :location='`related-product-${product.slug}`' :products='sameTypeProduct' :maxItems=4 />
       </div>
     </div>
     <Footer />
@@ -294,7 +294,15 @@ export default {
     },
     handleAddToCart() {
       setTimeout(() => this.$data.addedToCart = true, 1000)
-    }
+    },
+    linkClicked(link) {
+      const slug = this.$props.bundle.slug
+      this.$analytics.trackEvent(`bundle-${slug}`, 'link', link.slug)
+    },
+    relatedProductClicked(product) {
+      const slug = this.$props.bundle.slug
+      this.$analytics.trackEvent(`bundle-${slug}`, 'related-product', product.slug)
+    },
   },
 }
 </script>

@@ -19,7 +19,7 @@
 <template>
   <section :id="$style.container">
     <div :class="$style.singleproduct">
-      <ProductListComponent ref='homepage-furniture' :products='furnitures' :center=true :maxItems=1 />
+      <ProductListComponent location='homepage-furniture' ref='homepage-furniture' :products='furnitures' :center=true :maxItems=1 />
     </div>
   </section>
 </template>

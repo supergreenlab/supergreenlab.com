@@ -44,7 +44,7 @@ import { seller, brand, brandProduct, } from '~/lib/json_db.js'
 
 export default {
   components: {Price, OutOfStock, AddToCart, Pics,},
-  props: ['product',],
+  props: ['product', 'location',],
   computed: {
     sellingPoint() {
       const { product } = this.$props
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     click() {
-      this.$analytics.trackEvent('productitem', 'viewproduct', this.sellingPoint.slug)
+      this.$analytics.trackEvent(this.$props.location || 'productitem', 'viewproduct', this.sellingPoint.slug)
     }
   }
 }

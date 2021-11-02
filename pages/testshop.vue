@@ -40,7 +40,7 @@
      </div>
      <div v-else :id='$style.content'>
        <div :id="$style.searchlist">
-         <SmallProductList :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
+         <SmallProductList location='search' :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
        </div>
      </div>
      <div :id='$style.rightcolumn'>
