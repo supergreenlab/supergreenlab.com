@@ -41,6 +41,10 @@
         <div :id='$style.notice'>
           <b>Shipping cost</b> will be added on the next step.
         </div>
+        <div v-if='error' :id='$style.error'>
+          <b>Ooops</b> looks like there was an error while processing your order,<br />please double check each shipping fields, contact us if the error persists!
+        </div>
+
         <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
     </div>
@@ -70,6 +74,7 @@ export default {
     return {
       loading: false,
       showPreOrderForm: false,
+      error: false,
     }
   },
   destroyed() {
@@ -78,22 +83,34 @@ export default {
   methods: {
     async goToPaiement() {
       if (!this.valid) return
-      this.$analytics.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart).total)
-      this.$data.loading = true
-      const seller = sellerWithSlug(this.$route.params.seller)
-      const { shopify } = seller.params
-      const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
-      const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
-      await setShippingAddress(shopify, checkout, this.$store.state.shipping)
-      const promocode = this.$store.state.checkout.promocodes[seller.id]
-      if (promocode) {
-        await applyCoupon(shopify, checkout, promocode)
+      try {
+        this.$data.loading = true
+        const seller = sellerWithSlug(this.$route.params.seller)
+        const { shopify } = seller.params
+        const cart = this.cart.map(lineItem => ({id: `gid://shopify/ProductVariant/${lineItem.sellingPoint.params.shopify.shopifyid}`, n: lineItem.n}))
+        const checkout = await createCheckout(shopify, this.$store.state.shipping.email.value, cart)
+        if (!checkout.checkout) {
+          this.$data.error = true
+          this.$data.loading = false
+          return
+        }
+        await setShippingAddress(shopify, checkout.checkout, this.$store.state.shipping)
+        const promocode = this.$store.state.checkout.promocodes[seller.id]
+        if (promocode) {
+          await applyCoupon(shopify, checkout.checkout, promocode)
+        }
+        await applyShipping(shopify, checkout.checkout)
+        setTimeout(() => {
+          postMessage()('sglcheckoutdone', '*')
+          setHref(checkout.checkout.webUrl)
+        }, 1000)
+        this.$analytics.trackEvent('shipping-form', 'buypressed', this.$route.params.slug, this.$store.getters['checkout/lineItemsPrice'](this.cart).total)
+      } catch(e) {
+        this.$analytics.trackEvent('shipping-form', 'error')
+        this.$data.error = true
+        this.$data.loading = false
+        console.log(e)
       }
-      await applyShipping(shopify, checkout)
-      setTimeout(() => {
-        postMessage()('sglcheckoutdone', '*')
-        setHref(checkout.webUrl)
-      }, 1000)
     }
   },
   computed: {
@@ -136,6 +153,8 @@ export default {
   justify-content: center
   align-items: center
   padding: 0 40pt
+  @media only screen and (max-width: 600px)
+    padding: 0 20pt
 
 #header
   position: fixed
@@ -230,5 +249,10 @@ export default {
 #notice
   color: #323232
   text-align: right
+
+#error
+  color: red
+  text-align: right
+  padding: 5pt 0
 
 </style>
