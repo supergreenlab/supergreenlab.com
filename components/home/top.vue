@@ -105,10 +105,10 @@
         </div>
     </div>
     <div :id='$style.ctas'>
-      <nuxt-link  :class='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
+      <nuxt-link  :class='$style.cta' @click.native='learnCtaClicked' :to='{path: "/", hash: "#use-steps"}'>
         <b class="hvr-grow">Learn more</b>
       </nuxt-link>
-      <nuxt-link  :class='$style.cta' @click.native='ctaClicked' :to='{path: "/shop"}'>
+      <nuxt-link  :class='$style.cta' @click.native='shopCtaClicked' :to='{path: "/shop"}'>
         <b class="hvr-grow">Go to shop</b>
       </nuxt-link>
     </div>
@@ -141,8 +141,11 @@ export default {
     if (this.interval) clearInterval(this.interval)
   },
   methods: {
-    ctaClicked() {
+    learnCtaClicked() {
       this.$analytics.trackEvent('front-page', 'cta', 'top')
+    },
+    shopCtaClicked() {
+      this.$analytics.trackEvent('front-page', 'cta', 'shop')
     }
   },
 }
