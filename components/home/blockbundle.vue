@@ -18,12 +18,17 @@
 
 <template>
   <section :id="$style.container">
+    <div :id='$style.bundles'>
+      <div :class='$style.bundle' v-for='b in bundles' :key='b.id' :ref='b.slug'>
+        <div :id='b.slug'></div>
+        <Bundle :bundle='b' :showdescription='false' nobottom='true'/>
+      </div>
+    </div>
     <div :class='$style.title'>
       <SectionTitle title='Our bundles are **all-included:**'
                     subtitle='**Light**, environment **control** and **automation**' />
     </div>
     <div :class="$style.body">
-
       <div :class="$style.iconcontainer">
         <div :class="$style.picture" :style='{"background-image": `url(${require(`~/assets/img/ledpanel.png`)})`}'>
           <div :class="$style.logo" >
@@ -117,15 +122,23 @@
 
 <script>
 import Examples from '~/components/home/examples.vue'
+import Bundle from '~/components/bundle/bundle.vue'
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
+import { bundles, } from '~/lib/json_db.js'
+
 export default {
-  components: { Examples, SectionTitle },
+  components: { Examples, SectionTitle, Bundle, },
   props: [],
   data() {
     return {
 
     }
+  },
+  computed: {
+    bundles() {
+      return bundles()
+    },
   },
   methods: {
 
@@ -239,5 +252,16 @@ export default {
 .subtitle
   font-family: Roboto
   font-size: 1.1em
+
+#bundles
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+
+.bundle
+  margin: 0 0 30pt 0
+  width: 100%
+  max-width: 920pt
 
 </style>

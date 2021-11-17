@@ -104,9 +104,14 @@
                         center='true'/>
         </div>
     </div>
-    <nuxt-link  :id='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
-      <b class="hvr-grow">Start growing</b>
-    </nuxt-link>
+    <div :id='$style.ctas'>
+      <nuxt-link  :class='$style.cta' @click.native='ctaClicked' :to='{path: "/", hash: "#use-steps"}'>
+        <b class="hvr-grow">Learn more</b>
+      </nuxt-link>
+      <nuxt-link  :class='$style.cta' @click.native='ctaClicked' :to='{path: "/shop"}'>
+        <b class="hvr-grow">Go to shop</b>
+      </nuxt-link>
+    </div>
   </section>
 </template>
 
@@ -195,7 +200,6 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
-  margin: 0pt 0 40pt
   font-size: 3em
   @media only screen and (max-width: 600px)
     font-size: 1.5em
@@ -211,29 +215,41 @@ export default {
 .shown
   opacity: 1
 
-#cta
+#ctas
+  display: flex
+  align-items: center
+  justify-content: center
+  z-index: 100
+  padding: 10pt 0 40pt 0
+  @media only screen and (min-width: 600px)
+    flex: 0.3
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+
+.cta
   display: flex
   flex-direction: column
   text-transform: uppercase
   color: white
   background-color: #3BB30B
   padding: 10pt 35pt
+  margin: 0 20pt
   border-radius: 3pt
   text-decoration: none
   text-align: center
-  z-index: 100
-  margin-bottom: 50pt
   font-size: 1.5em
   @media only screen and (max-width: 600px)
+    margin: 0 0 30pt 0
     font-size: 1.1em
 
-#cta > small
+.cta > small
   padding-top: 5pt
   font-weight: 300
   font-size: 1.1em
 
-#cta > b
+.cta > b
   font-weight: 600
+
 
 #legal
   color: white
