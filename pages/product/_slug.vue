@@ -81,6 +81,18 @@
 
         </div>
         <div :id='$style.addtocart'>
+          <div v-if='brandProduct.stls && brandProduct.stls.length' :id='$style.stls'>
+            <h3>Download this product!</h3>
+            <a v-for='s in brandProduct.stls' :key='s.id' :class='$style.stl' :href='`/${s.file.filePath}`' target='_blank' :download='s.file.fileName' @click='stlClicked(s)'>
+              <img :src='require(`~/assets/img/${s.pic.fileLarge}`)' />
+              <div>
+                <b>{{ s.name }}</b><br />
+                {{ s.description }}<br />
+              </div>
+              <div :class='$style.button'><img width='15pt' height='15pt' src='~/assets/img/icon_download.svg' />&nbsp;Download</div>
+            </a>
+          </div>
+
           <div :id='$style.price'>
             <Price :lineItems='[{sellingPoint, n: 1}]' :small=true :notify=true />
           </div>
@@ -295,6 +307,10 @@ export default {
     handleAddToCart() {
       setTimeout(() => this.$data.addedToCart = true, 1000)
     },
+    stlClicked(stl) {
+      const slug = this.product.slug
+      this.$analytics.trackEvent(`product-${slug}`, 'stl', stl.slug)
+    },
     linkClicked(link) {
       const slug = this.product.slug
       this.$analytics.trackEvent(`product-${slug}`, 'link', link.slug)
@@ -473,6 +489,53 @@ export default {
 
 #propose a
   color: #454545
+
+#stls
+  display: flex
+  flex-direction: column
+  margin: 10pt 0
+
+#stls h3
+  color: #454545
+
+.stl
+  display: flex
+  flex-direction: column
+  align-items: center
+  color: #454545
+  margin: 5pt 0
+  text-decoration: none
+
+.stl b
+  margin: 5pt 0
+  color: #3bb30b
+  text-decoration: underline
+
+.stl > img
+  margin: 5pt 0
+  width: 100%
+
+.stl .button
+  display: block
+  background-color: #3BB30B
+  text-align: center
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+  font-size: 1.2em
+  margin: 10pt 0
+  white-space: nowrap
+  transition: opacity 0.2s
+  @media only screen and (max-width: 1000px)
+    padding: 7pt 22pt
+    font-size: 1.1em
+
+.stl .button:hover
+  background-color: #2F880B
+
+#stl .button > b
+  font-weight: 600
 
 #relatedProducts
   flex: 1

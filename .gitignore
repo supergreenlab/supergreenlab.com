@@ -93,7 +93,9 @@ assets/img/regions
 assets/img/links
 assets/img/widgets
 assets/img/collections
+assets/img/files
 static/guides/
+static/files
 config/products.json
 config/analytics.json
 config/guides.json

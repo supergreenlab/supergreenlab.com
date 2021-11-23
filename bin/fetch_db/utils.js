@@ -118,7 +118,14 @@ module.exports.fetchAttachement = (p, attachement, dir, keepRaw=false) => {
       await fetchFile(attachement.url, filePath, staticPath)
     })
     return { p, attachement, data: { fileName: attachement.filename, fileLarge, fileSmall, filePath, type: attachement.type } }
-
+  } else if (attachement.type == 'application/x-zip-compressed') {
+    const filePath = `${dir}/${attachement.id}.zip`,
+      fileLarge = `icon_zip_file.svg`,
+      fileSmall = `icon_zip_file.svg`
+    p = p.then(async () => {
+      await fetchFile(attachement.url, filePath, staticPath)
+    })
+    return { p, attachement, data: { fileName: attachement.filename, fileLarge, fileSmall, filePath, type: attachement.type } }
   }
 }
 

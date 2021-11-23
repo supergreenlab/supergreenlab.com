@@ -1,7 +1,7 @@
 const fs = require('fs/promises')
 const merge = require('deepmerge')
 
-const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir, mkAssetsDir, noPic } = require('./utils.js')
+const { fetchTable, fetchAttachement, jsonOrYaml, emptyAssetsDir, mkAssetsDir, mkStaticDir, noPic } = require('./utils.js')
 
 module.exports.fetchProducts = async () => {
   await mkAssetsDir('tmp')
@@ -11,6 +11,8 @@ module.exports.fetchProducts = async () => {
   await mkAssetsDir('brandproducts')
   await mkAssetsDir('brands')
   await mkAssetsDir('regions')
+  await mkAssetsDir('files')
+  await mkStaticDir('files')
 
   //await emptyAssetsDir('tmp')
 
@@ -18,13 +20,14 @@ module.exports.fetchProducts = async () => {
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'region', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer', 'offertext', 'inctax', 'nopromo', 'freeshipping'])).filter(sp => sp.ready)
   sellingPoints.sort((sp1, sp2) => sp1.price - sp2.price)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
-  let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready'])).filter(bp => bp.ready)
+  let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready', 'stls'])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in', 'currency', 'vat'])
   let collectionProducts = await fetchTable('CollectionProducts', ['slug', 'Product', 'order'])
   let collections = await fetchTable('Collections', ['slug', 'name','picture', 'CollectionProducts', 'description'])
   let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
+  let files = await fetchTable('Files', ['slug', 'file', 'pic', 'name', 'description', 'BrandProducts',])
 
   const regionTree = (region, acc=[]) => {
     acc.push(region)
@@ -35,6 +38,27 @@ module.exports.fetchProducts = async () => {
   }
 
   let picPromise = Promise.resolve()
+
+  files = files.map(f => {
+    try {
+      const { p, data } = fetchAttachement(picPromise, f.file[0], 'files')
+      picPromise = p
+      f.file = data
+    } catch(e) {
+      throw e
+    }
+
+    try {
+      const { p, data } = fetchAttachement(picPromise, f.pic[0], 'files')
+      picPromise = p
+      f.pic = data
+    } catch(e) {
+      f.pic = noPic
+    }
+
+    return f
+  })
+
   const regionLevels = ['world', 'continent', 'country', 'city']
   regions = regions.map(r => {
     try {
@@ -87,6 +111,7 @@ module.exports.fetchProducts = async () => {
     return b
   })
   brandProducts = brandProducts.map(bp => {
+    bp.stls = (bp.stls || []).map(s => files.find(f => f.id == s))
     bp.specs = jsonOrYaml(bp.specs || '{}')
     bp.pics = (bp.pics || []).map((pic, i) => {
       try {
