@@ -25,7 +25,7 @@
       <h2 :id="$style.title" v-html='$md.render(title)'></h2>
       <div :id="$style.description" v-html='$md.render(description)'></div>
       <div :id='$style.productlink'>
-        <nuxt-link :class='$style.productpage' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>View product page</nuxt-link>
+        <nuxt-link :id='$style.productpage' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>View product</nuxt-link>
       </div>
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
@@ -144,10 +144,26 @@ export default {
   font-weight: bold
 
 #productlink
+  display: flex
   margin: 10pt 5pt
 
-.productpage
-  color: #3bb30b
+#productpage
+  display: block
+  background-color: #3bb30b
+  text-align: center
+  padding: 5pt 15pt
+  border-radius: 3pt
+  color: #ffffff
+  text-decoration: none
+  font-size: 0.9em
+  margin: 5pt 0
+  white-space: nowrap
+  text-transform: uppercase
+  cursor: pointer
+
+#productpage:hover
+  background-color: #2F880B
+
 
 #addtocartcontainer
   display: flex
