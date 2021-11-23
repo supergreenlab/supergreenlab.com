@@ -28,10 +28,10 @@ export default {
   props: ['label', 'value', 'name', 'optional',],
   methods: {
     onInput(e) {
-      this.$emit('input', e.target.value);
+      this.$emit('input', e.target.value.trim());
     },
     onChange(e) {
-      this.$emit('input', e.target.value);
+      this.$emit('input', e.target.value.trim());
     },
   },
 }
