@@ -46,9 +46,12 @@ let cancel
 const CancelToken = axios.CancelToken
 export const actions = {
   nuxtClientInit(context) {
-    const saved = loadFromStorage(STORAGE_ITEM)
+    let saved = loadFromStorage(STORAGE_ITEM)
     if (saved) {
-      context.commit('setState', JSON.parse(saved))
+      saved = JSON.parse(saved)
+      const promocodes = Object.assign({}, saved.promocodes)
+      context.commit('setState', saved)
+      Object.keys(promocodes).forEach(sellerid => context.dispatch('fetchPromocode', {sellerid, promocode: promocodes[sellerid]}))
     }
     context.dispatch('loadExchangeRates')
   },
