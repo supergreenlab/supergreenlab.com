@@ -151,7 +151,7 @@ export default {
       })
     },
     sglSpareParts() {
-      return leds().concat(accessories())
+      return leds().concat(accessories()).filter((v, i, t) => t.indexOf(v) === i)
     },
     relatedProducts() {
       return productsWithTypes(['FURNITURE', 'TENT', 'CARBON FILTER', 'SOIL', 'NUTRIENT']).filter(p => p.id !== this.bundle.id)

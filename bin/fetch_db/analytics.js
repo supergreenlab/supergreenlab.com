@@ -1,5 +1,4 @@
 const fs = require('fs/promises')
-const merge = require('deepmerge')
 
 const { fetchTable, } = require('./utils.js')
 
