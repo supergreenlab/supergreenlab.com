@@ -33,14 +33,14 @@
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
         <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>
           <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank' :download='a.fileName' @click='attachementClicked(a)'>
-            <img :src='require(`~/assets/img/${a.fileLarge}`)' />
+            <img :src='`/img/${a.fileLarge}`' />
             {{ a.fileName }}
           </a>
         </div>
         <b v-if='guideSection.links && guideSection.links.length'>Useful links</b>
         <div v-if='guideSection.links && guideSection.links.length' :id='$style.links'>
           <a v-for='l in guideSection.links' :key='l.id' :class='$style.link' :href='l.url' target='_blank' @click='linkClicked(l)'>
-            <div :class='$style.linkpic' :style='{"background-image": `url(${require(`~/assets/img/${l.icon.fileLarge}`)})`}'>
+            <div :class='$style.linkpic' :style='{"background-image": `url(/img/${l.icon.fileLarge})`}'>
               <img v-if='youtubeLink(l.url)' :class='$style.playbutton' src='~assets/img/youtube-play.png' />
             </div>
             <div :class='$style.linktext'>

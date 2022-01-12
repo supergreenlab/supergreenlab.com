@@ -26,10 +26,10 @@
       <a href="https://twitter.com/SuperGreenLab" target="_blank"><i class="fa fa-twitter"></i></a>
     </div>
     <video v-if='media.type == "video/mp4"' :id='$style.video' autoplay loop playsinline muted defaultMuted @click='toggleZoom'>
-      <source :src="require(`~/assets/img/${media.filePath}`)" type="video/mp4">
+      <source :src="`/img/${media.filePath}`" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div v-else :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/${media.fileLarge}`)})`}' @click='toggleZoom'></div>
+    <div v-else :id='$style.picture' :style='{"background-image": `url(/img/${media.fileLarge})`}' @click='toggleZoom'></div>
     <!-- <div v-if='typeof index != "undefined"' :id='$style.index'>#{{ index+1 }}</div> -->
     <div :id="$style.guidelogo" >
       <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
@@ -41,10 +41,10 @@
     <!--<portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
         <video v-if='media.type == "video/mp4"' :id='$style.mediafullscreen' autoplay loop playsinline muted defaultMuted>
-          <source :src="require(`~/assets/img/${media.filePath}`)" type="video/mp4">
+          <source :src="`/img/${media.filePath}`" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <div v-else :id='$style.mediafullscreen' :style='{"background-image": `url(${require(`~/assets/img/${media.fileLarge}`)})`}'></div>
+        <div v-else :id='$style.mediafullscreen' :style='{"background-image": `url(/img/${media.fileLarge})`}'></div>
       </div>
     </portal>-->
   </section>

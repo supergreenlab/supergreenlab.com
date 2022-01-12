@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.product'>
       <div :id='$style.iconcontainer'>
-        <div :id='$style.icon' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0].fileLarge}`)})`}' @click='toggleZoom'></div>
+        <div :id='$style.icon' :style='{"background-image": `url(/img/${item.pics[0].fileLarge})`}' @click='toggleZoom'></div>
       </div>
       <div :id='$style.description'>
         <div :id='$style.header'>
@@ -45,7 +45,7 @@
     </div>
     <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
-        <div :id='$style.iconfullscreen' :style='{"background-image": `url(${require(`~/assets/img/${item.pics[0].fileFull}`)})`}'></div>
+        <div :id='$style.iconfullscreen' :style='{"background-image": `url(/img/${item.pics[0].fileFull})`}'></div>
       </div>
     </portal>
   </section>

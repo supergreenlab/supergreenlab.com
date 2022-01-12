@@ -18,10 +18,10 @@
 
 <template>
   <section :id='$style.container'>
-    <div v-if='config.picture' :class='`${$style.pic} ${$style.bigpic}`' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+    <div v-if='config.picture' :class='`${$style.pic} ${$style.bigpic}`' :style='{"background-image": `url(/img/${config.picture[0].fileFull})`}'></div>
     <div :id='$style.body'>
       <div :id='$style.text'>
-        <div v-if='config.picture' :class='`${$style.pic} ${$style.smallpic}`' :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+        <div v-if='config.picture' :class='`${$style.pic} ${$style.smallpic}`' :style='{"background-image": `url(/img/${config.picture[0].fileFull})`}'></div>
         <div>
           <h2 v-if='config.title' :id="$style.titleList">{{config.title}}</h2>
           <div v-if='config.description' :id="$style.description" v-html='$md.render(config.description)'></div>

@@ -46,7 +46,7 @@
             <h3>Grow with {{ product.name }}</h3>
             <div :class='$style.relatedProduct'>
               <div :id='$style.ProducPic'>
-                <div :style='{"background-image": `url(${require(`~/assets/img/${product.pics[0].fileLarge}`)})`}'></div>
+                <div :style='{"background-image": `url(/img/${product.pics[0].fileLarge})`}'></div>
               </div>
               <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :id='$style.relatedProduct'>
                 <div>

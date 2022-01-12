@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :class='$style.body'>
       <div :class='$style.logo'>
-        <img :src="require(`~/assets/img/${collection.picture[0].fileLarge}`)" alt="logo-SGL"  width="150px">
+        <img :src="`/img/${collection.picture[0].fileLarge}`" alt="logo-SGL"  width="150px">
       </div>
       <div>
         <div :class='$style.descriptionPack'>{{ collection.description }}</div>

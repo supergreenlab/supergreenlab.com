@@ -24,7 +24,7 @@
     </div>
     <div :id='$style.body'>
       <nuxt-link :id='$style.piccontainer' :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
-        <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${brandProduct.pics[0].fileLarge}`)})`}'></div>
+        <div :id='$style.pic' :style='{"background-image": `url(/img/${brandProduct.pics[0].fileLarge})`}'></div>
       </nuxt-link>
       <div :id='$style.infos'>
         <div :id='$style.description'>

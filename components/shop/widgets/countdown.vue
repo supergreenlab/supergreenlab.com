@@ -21,7 +21,7 @@
     <div :id="$style.title" v-html='$md.render(config.title)'></div>
     <div :id="$style.description" v-html='$md.render(config.description)'></div>
     <div @click='open()' v-if="now < dateInMilliseconds" :id="$style.countdowncontainer">
-      <img v-for='(p, i) in config.picture' :class='`${$style.countdownpic} ${$style[`media${i}-${config.picture.length}`]}`' :src='require(`~/assets/img/${p.fileRaw}`)' />
+      <img v-for='(p, i) in config.picture' :class='`${$style.countdownpic} ${$style[`media${i}-${config.picture.length}`]}`' :src='`/img/${p.fileRaw}`' />
       <div :id='$style.display'>
         <div :id="$style.countdown">
           <div :class="$style.block">
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div v-else :id="$style.countdowncontainer">
-      <img v-for='(p, i) in config.picture' :class="`${$style.countdownpic} ${$style[`media${i}-${config.picture.length}`]}`" :src='require(`~/assets/img/${p.fileRaw}`)' />
+      <img v-for='(p, i) in config.picture' :class="`${$style.countdownpic} ${$style[`media${i}-${config.picture.length}`]}`" :src='`/img/${p.fileRaw}`' />
       <div :id='$style.display'>
         <div :class="$style.digit">Times's up</div>
         <div :id="$style.enddate">Enjoy {{ endDate | formatDate }}</div>

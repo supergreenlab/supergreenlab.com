@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.pic' :style='{"background-image": `url(${require(`~/assets/img/${guide.thumbnail.fileLarge}`)})`}'></div>
+    <div :id='$style.pic' :style='{"background-image": `url(/img/${guide.thumbnail.fileLarge})`}'></div>
     <div :id='$style.infos'>
       <b>{{ guide.name }}</b>
       <div :id='$style.text' v-html='$md.render(guide.text || "")'></div>

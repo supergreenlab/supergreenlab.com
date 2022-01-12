@@ -8,7 +8,7 @@
       (at your option) any later version.
 
       This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
+`      but WITHOUT ANY WARRANTY; without even the implied warranty of
       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
       GNU General Public License for more details.
 
@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.seller'>
-      CHECK THOSE OUT AT <div :id='$style.logo' :style='{"background-image": `url(${sellerPic})`}'></div>
+      CHECK THOSE OUT AT <div :id='$style.logo' :style='{"background-image": `url(/img/${seller.logo[0].fileLarge})`}'></div>
     </div>
     <div :id='$style.lineItems'>
       <LineItem
@@ -72,10 +72,6 @@ export default {
     },
     price() {
       return this.$store.getters['checkout/lineItemsPrice'](this.cart)
-    },
-    sellerPic() {
-      const { seller } = this.$props
-      return require(`~/assets/img/${seller.logo[0].fileLarge}`)
     },
     checked() {
       return this.cart.every(li => li.checked)

@@ -83,17 +83,18 @@ dist
 # Service worker
 sw.*
 
-assets/img/guides/
-assets/img/widgets/
-assets/img/products/
-assets/img/brands
-assets/img/brandproducts
-assets/img/sellers
-assets/img/regions
-assets/img/links
-assets/img/widgets
-assets/img/collections
-assets/img/files
+static/img/guides/
+static/img/widgets/
+static/img/products/
+static/img/brands
+static/img/brandproducts
+static/img/sellers
+static/img/regions
+static/img/links
+static/img/widgets
+static/img/collections
+static/img/files
+static/img/tmp/
 static/guides/
 static/files
 config/products.json
@@ -102,6 +103,5 @@ config/guides.json
 config/widgets.json
 config/guide-*.json
 config/widgets.json
-assets/img/tmp/
 
 *Zone.Identifier

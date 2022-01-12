@@ -26,7 +26,7 @@
     </div>
     <div :id='$style.body'>
       <div :id='$style.iconcontainer'>
-        <nuxt-link to="/guide/everything-you-need-to-grow-your-own-weed" :id='$style.picture' :style='{"background-image": `url(${require(`~/assets/img/guides/attUb0goXqrpPZ7Ev.jpg`)})`}'>
+        <nuxt-link to="/guide/everything-you-need-to-grow-your-own-weed" :id='$style.picture' :style='{"background-image": "url(/img/guides/attUb0goXqrpPZ7Ev.jpg)"}'>
           <!-- <div :id="$style.logo" >
             <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
           </div> -->

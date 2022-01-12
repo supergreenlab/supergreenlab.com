@@ -9,7 +9,9 @@ import { guides } from './config/guides.json'
     .concat(guides.map(g => `/guide/${g.slug}`)));*/
 
 export default {
+  ssr: false,
   target: 'static',
+  components: false,
 
   /*
   ** Headers of the page
@@ -115,10 +117,11 @@ export default {
   ** Build configuration
   */
   build: {
+    devtool: 'cheap',
+    transpile: ['vue-agile'],
     parallel: true,
     hardSource: true,
     cache: true,
-    transpile: ['vue-agile'],
     loaders:  {
       vue: {
         prettify: false
@@ -128,10 +131,11 @@ export default {
       compact: true,
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: true }],
-        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+        ["@babel/plugin-proposal-private-property-in-object", { loose: true }]
       ]
     },
   },
+
   generate: {
     exclude: ['/testshop',],
     routes: [

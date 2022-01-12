@@ -25,7 +25,7 @@
                     border='true'/>
     </div>
     <div :id='$style.header'>
-      <div v-if='config.picture.length' :id="$style.pic" :style='{"background-image": `url(${require(`~/assets/img/${config.picture[0].fileFull}`)})`}'></div>
+      <div v-if='config.picture.length' :id="$style.pic" :style='{"background-image": `url(/img/${config.picture[0].fileFull})`}'></div>
       <div v-if='config.description' :id='$style.text'>
         <div :id="$style.description" v-html='$md.render(config.description)'></div>
       </div>

@@ -25,14 +25,14 @@
         v-for='(r, i) in regions'
         :key='r.id'
         @click='setRegion(r)'>
-        <div :class='$style.flag' :style='{"background-image": `url(${require(`~/assets/img/${r.flag.fileSmall}`)})`}'></div>
+        <div :class='$style.flag' :style='{"background-image": `url(/img/${r.flag.fileSmall})`}'></div>
         {{ r.code }}
       </div>
     </div>
     <div v-else>
       <div :id='$style.regions'>
         <div :class='$style.region' :id='$style.selected' @click='expanded = true'>
-          <div :class='$style.flag' :style='{"background-image": `url(${require(`~/assets/img/${region.flag.fileSmall}`)})`}'></div>
+          <div :class='$style.flag' :style='{"background-image": `url(/img/${region.flag.fileSmall})`}'></div>
           <p>
             <small>Selected region:</small><br />
             {{ region.name }}<br />

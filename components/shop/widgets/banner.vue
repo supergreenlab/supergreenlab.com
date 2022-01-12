@@ -21,10 +21,10 @@
     <div @click='open()'>
       <div v-for='(p, i) in config.picture' :class='$style[`media${i}-${config.picture.length}`]'>
         <video v-if='p.type == "video/mp4"' :class='$style.video' autoplay loop playsinline muted defaultMuted>
-          <source :src="require(`~/assets/img/${p.filePath}`)" type="video/mp4">
+          <source :src="`/img/${p.filePath}`" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <img v-else :class='$style.pictureBanner' :src='require(`~/assets/img/${p.fileRaw}`)' />
+        <img v-else :class='$style.pictureBanner' :src='`/img/${p.fileRaw}`' />
       </div>
     </div>
   </section>

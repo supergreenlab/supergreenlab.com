@@ -26,7 +26,7 @@
         <div :id='$style.cart'>
           <b>Items in your cart</b>
           <div :id='$style.items'>
-            <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='require(`~/assets/img/${brandProduct(lineItem).pics[0].fileSmall}`)'/>x{{ lineItem.n }}</div>
+            <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='`/img/${brandProduct(lineItem).pics[0].fileSmall}`'/>x{{ lineItem.n }}</div>
             <div :id='$style.separator'></div>
             <Price :lineItems='cart' :small=true />
           </div>

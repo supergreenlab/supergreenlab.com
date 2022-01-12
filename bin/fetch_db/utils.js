@@ -5,7 +5,7 @@ const axios = require('axios')
 
 const sharp = require('sharp')
 
-const assetsPath = 'assets/img'
+const assetsPath = 'static/img'
 const staticPath = 'static'
 
 const Airtable = require('airtable')
