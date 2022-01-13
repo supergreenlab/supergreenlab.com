@@ -117,23 +117,7 @@ export default {
   ** Build configuration
   */
   build: {
-    devtool: 'cheap',
     transpile: ['vue-agile'],
-    parallel: true,
-    hardSource: true,
-    cache: true,
-    loaders:  {
-      vue: {
-        prettify: false
-      }
-    },
-    babel:{
-      compact: true,
-      plugins: [
-        ['@babel/plugin-proposal-private-methods', { loose: true }],
-        ["@babel/plugin-proposal-private-property-in-object", { loose: true }]
-      ]
-    },
   },
 
   generate: {
