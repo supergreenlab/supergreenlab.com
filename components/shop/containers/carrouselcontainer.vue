@@ -27,7 +27,6 @@
 <script>
 export default {
   props: ['config',],
-  components: { Slick: () => (typeof window !== 'undefined') ? import('vue-slick-carousel') : 'undefined' },
   data() {
     return {
       settings: {

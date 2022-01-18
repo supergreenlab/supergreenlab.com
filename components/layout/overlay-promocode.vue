@@ -21,7 +21,8 @@
     <div :id='$style.popup' @click='cancelClick'>
       <SectionTitle v-if='!showTypeForm'
                     title='Welcome back:)'
-                    green='Sorry for the interruption!' />
+                    green='Sorry for the interruption!'
+                    :center=true />
       <div :id='$style.close' @click='close'>X</div>
       <div v-if='showTypeForm' :id='$style.typeform'>
         <div class="typeform-widget" :onSubmit="onSubmit" data-url="https://form.typeform.com/to/n2oKQ2?typeform-medium=embed-snippet" data-transparency="50" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div>
@@ -56,6 +57,11 @@ export default {
   data() {
     return {
       showTypeForm: false,
+    }
+  },
+  head: {
+    bodyAttrs: {
+      class: 'noscroll'
     }
   },
   components: { SectionTitle ,},
@@ -128,6 +134,8 @@ export default {
   padding: 30pt 60pt 10pt 60pt
   border-radius: 5pt
   border: 4pt solid #3BB30B
+  overflow-y: auto
+  overflow-x: hidden
   @media only screen and (max-width: 600px)
     padding: 40pt 10pt 10pt 10pt
     width: 100vw

@@ -95,3 +95,7 @@ input[type=text]::placeholder {
 .popup-enter, .popup-leave-to {
   opacity: 0;
 }
+
+.noscroll {
+  overflow: hidden
+}

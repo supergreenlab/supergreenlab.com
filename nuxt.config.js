@@ -55,16 +55,13 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    //{ src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/init.js', ssr: false },
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
-    { src: '~plugins/vue-agile.js', ssr: false },
-    { src: '~plugins/vue-touch.js', ssr: false },
     { src: '~plugins/vue-slick-carousel.js', ssr: false },
-    //{ src: '~plugins/pixel.js', ssr: false },
     { src: '~plugins/infinite-loading.js', ssr: false },
+    { src: '~plugins/vue-touch.js', ssr: false },
   ],
 
   /*

@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id="$style.container" :class='center ? $style.center : $style.notcenter'>
+  <section :id="$style.container" :class='{[$style.center]: !!center, [$style.notcenter]: !center, [$style.nomargin]: !!nomargin}'>
     <div :class="border ? $style.bordertop : '' "></div>
     <div :class="$style.titlecontainer">
       <h2 :id='$style.title' v-html='$md.render(title || "")' :style="white ? {color : 'white'} : '' "></h2>
@@ -35,7 +35,7 @@
 <script>
 
 export default {
-  props: ['title', 'title2', 'green', 'smalltitle', 'center','subtitle', 'border', 'white', 'brackets'],
+  props: ['title', 'title2', 'green', 'smalltitle', 'center','subtitle', 'border', 'white', 'brackets', 'nomargin',],
 }
 </script>
 
@@ -134,5 +134,8 @@ export default {
   @media only screen and (max-width: 600px)
     font-size: 1em
     margin: 5pt
+
+.nomargin
+  margin: 0 !important
 
 </style>

@@ -20,7 +20,9 @@
   <section :id='$style.container'>
     <div :id='$style.popup' @click='cancelClick'>
       <SectionTitle title='Welcome to SuperGreenLab !'
-                    green='' />
+                    green=''
+                    :center=true
+                    :nomargin=true />
       <div :id='$style.disclaimer'>
         By proceeding, you explicitly agree that you are acting in coordinance with<br />
         local, state, and federal laws. SuperGreenLab will not be liable for<br />
@@ -52,6 +54,11 @@ import SectionTitle from '~/components/widgets/sectiontitle.vue'
 export default {
   props: ['onClose',],
   components: { SectionTitle ,},
+  head: {
+    bodyAttrs: {
+      class: 'noscroll'
+    }
+  },
   created() {
     this.$analytics.trackEvent('disclaimer', 'shown')
   },
@@ -82,8 +89,6 @@ export default {
 
 #container
   display: flex
-  align-items: center
-  justify-content: center
   position: fixed
   width: 100vw
   height: 100vh
@@ -91,6 +96,9 @@ export default {
   left: 0
   background-color: rgba(255, 255, 255, 0.5)
   z-index: 10000
+  @media only screen and (min-width: 600px)
+    align-items: center
+    justify-content: center
 
 #popup
   display: flex
@@ -102,19 +110,26 @@ export default {
   padding: 30pt 60pt 10pt 60pt
   border-radius: 5pt
   border: 4pt solid #3BB30B
-  @media only screen and (max-width: 600px)
+  overflow-y: auto
+  overflow-x: hidden
+  @media only screen and (min-width: 400px) and (max-width: 600px)
     width: 100vw
     height: 100vh
+  @media only screen and (max-width: 400px)
+    padding: 40pt 15pt 10pt 15pt
+
 
 #popup > h1
   color: #5E5E5E
   font-size: 4em
   margin-top: 0
+  text-align: center
 
 #popup > h3
   color: #3BB30B
   font-size: 2em
   margin-top: 20pt
+  text-align: center
 
 #ctas
   display: flex

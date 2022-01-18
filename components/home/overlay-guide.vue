@@ -38,6 +38,11 @@ export default {
       showTypeForm: false,
     }
   },
+  head: {
+    bodyAttrs: {
+      class: 'noscroll'
+    }
+  },
   components: { SectionTitle, BlockGuide, },
   created() {
     this.$analytics.trackEvent('guidepopup', 'shown')
