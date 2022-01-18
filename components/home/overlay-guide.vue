@@ -66,8 +66,6 @@ export default {
 
 #container
   display: flex
-  align-items: center
-  justify-content: center
   position: fixed
   width: 100vw
   height: 100vh
@@ -75,6 +73,9 @@ export default {
   left: 0
   background-color: rgba(255, 255, 255, 0.5)
   z-index: 10000
+  @media only screen and (min-width: 1400px)
+    align-items: center
+    justify-content: center
 
 #popup
   display: flex
@@ -86,7 +87,7 @@ export default {
   padding: 30pt 60pt 10pt 60pt
   border-radius: 5pt
   border: 4pt solid #3BB30B
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 1400px)
     padding: 30pt 10pt 10pt 10pt
     width: 100vw
     height: 100vh
