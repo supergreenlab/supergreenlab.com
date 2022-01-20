@@ -26,7 +26,7 @@ import { products, sellingPoints, regions, } from '~/config/products.json'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
-const STORAGE_ITEM='checkout7'
+const STORAGE_ITEM='checkout8'
 
 export const state = () => {
   let defaults = {
@@ -42,7 +42,7 @@ const storeState = (state) => {
   saveToStorage(STORAGE_ITEM, JSON.stringify(state))
 }
 
-let cancel
+let cancel = {}
 const CancelToken = axios.CancelToken
 export const actions = {
   nuxtClientInit(context) {
@@ -57,16 +57,16 @@ export const actions = {
   },
   async fetchPromocode(context, {sellerid, promocode}) {
     try {
-      if (cancel) {
-        cancel()
-        cancel = null
+      if (cancel[sellerid]) {
+        cancel[sellerid]()
+        cancel[sellerid] = null
       }
-      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${promocode}`, {
+      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${promocode}&sellerid=${sellerid}`, {
         cancelToken: new CancelToken((c) => {
-          cancel = c
+          cancel[sellerid] = c
         })
       })
-      cancel = null
+      cancel[sellerid] = null
       context.commit('setPromocode', { sellerid, promocode })
       context.commit('setDiscount', { sellerid, discount: discount.discount })
     } catch(e) {
@@ -132,7 +132,7 @@ export const getters = {
   },
 
   lineItemsPrice: (state, getters, rootState, rootGetters) => (lineItems) => {
-    const sglSellerID = process.env.sglSellerID
+    const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
     const sm = {
       'US$': 'USD',
       '€': 'EUR',
@@ -183,7 +183,7 @@ export const getters = {
 
       result.canorder = result.canorder || (li.sellingPoint.canorder && !li.sellingPoint.outofstock)
       result.incTax = result.incTax || addVAT
-      result.sglOnly = result.sglOnly && li.sellingPoint.Seller[0] == sglSellerID
+      result.sglOnly = result.sglOnly && sglSellerIDs.includes(li.sellingPoint.Seller[0])
       result.freeShipping = result.freeShipping && li.sellingPoint.freeshipping
     })
     Object.keys(result.totals).forEach(k => {

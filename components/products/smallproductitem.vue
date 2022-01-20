@@ -86,7 +86,8 @@ export default {
       return seller(this.sellingPoint.Seller[0])
     },
     isSGL() {
-      return this.sellingPoint.Seller[0] == process.env.sglSellerID
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      return sglSellerIDs.includes(this.sellingPoint.Seller[0])
     }
   },
   methods: {

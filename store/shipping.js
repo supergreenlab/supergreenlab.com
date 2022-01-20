@@ -20,7 +20,7 @@
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 
-const STORAGE_ITEM='shipping2'
+const STORAGE_ITEM='shipping3'
 
 export const state = () => {
   let defaults = {

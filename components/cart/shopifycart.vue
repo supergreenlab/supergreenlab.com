@@ -68,10 +68,21 @@ export default {
         return this.$store.state.checkout.promocodes[seller.id]
       },
       set(value) {
+        const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
         const { seller } = this.$props
-        this.$store.commit('checkout/setPromocode', { sellerid: seller.id, promocode: value })
+        if (sglSellerIDs.includes(seller.id)) {
+          sglSellerIDs.forEach(sglSellerID => this.$store.commit('checkout/setPromocode', { sellerid: sglSellerID, promocode: value }))
+        } else {
+          this.$store.commit('checkout/setPromocode', { sellerid: seller.id, promocode: value })
+        }
         if (this.timeout) clearTimeout(this.timeout)
-        this.timeout = setTimeout(() => this.$store.dispatch('checkout/fetchPromocode', { sellerid: seller.id, promocode: value }), 400)
+        this.timeout = setTimeout(() => {
+          if (sglSellerIDs.includes(seller.id)) {
+            sglSellerIDs.forEach(sglSellerID => this.$store.dispatch('checkout/fetchPromocode', { sellerid: sglSellerID, promocode: value }))
+          } else {
+            this.$store.dispatch('checkout/fetchPromocode', { sellerid: seller.id, promocode: value })
+          }
+        }, 400)
       },
     },
     valid() {

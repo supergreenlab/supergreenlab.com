@@ -3,7 +3,8 @@ export default async ({ store }) => {
     try {
       const urlParams = new URLSearchParams(window.location.search)
       if (urlParams.get('promo')) {
-        await store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: process.env.sglSellerID})
+        const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+        await Promise.all(sglSellerIDs.map(sglSellerID => this.$store.dispatch('checkout/fetchPromocode', {promocode: urlParams.get('promo'), sellerid: sglSellerID})))
       }
     } catch(e) {
       console.log(e)

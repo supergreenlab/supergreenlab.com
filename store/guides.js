@@ -21,7 +21,7 @@
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
 import { guides } from '~/config/guides.json'
 
-const STORAGE_ITEM='guides3'
+const STORAGE_ITEM='guides4'
 
 export const state = () => {
   let defaults = {

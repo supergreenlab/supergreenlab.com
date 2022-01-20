@@ -55,7 +55,8 @@ export default {
   },
   computed: {
     promo() {
-      const sglSellerID = process.env.sglSellerID
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      const sglSellerID = sglSellerIDs.find(s => this.$store.state.checkout.promocodes[s] && this.$store.state.checkout.discounts[s])
       const discount = this.$store.state.checkout.discounts[sglSellerID],
             promocode = this.$store.state.checkout.promocodes[sglSellerID]
       if (!promocode || !discount) return null

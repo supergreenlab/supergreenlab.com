@@ -85,6 +85,8 @@ export default {
 
   env: {
     sglSellerID: process.env.SGL_SELLERID,
+    sgteuSellerID: process.env.SGTEU_SELLERID,
+    sgtusSellerID: process.env.SGTUS_SELLERID,
   },
 
   /*

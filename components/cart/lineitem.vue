@@ -154,6 +154,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+  margin-top: 20px
 
 #nitems
   display: flex

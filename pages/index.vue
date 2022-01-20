@@ -122,8 +122,10 @@ export default {
     removeEventListener('scroll', this.handleScroll);
   },
   mounted() {
-    const sglSellerID = process.env.sglSellerID
-    if (!process.server && !(this.$store.state.checkout.promocodes[sglSellerID] || loadFromStorage('popupShown2'))) {
+    const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+    const sglSellerID = sglSellerIDs.find(s => this.$store.state.checkout.promocodes[s] && this.$store.state.checkout.discounts[s])
+    const promocode = this.$store.state.checkout.promocodes[sglSellerID]
+    if (!process.server && !(promocode || loadFromStorage('popupShown2'))) {
       const nVisits = parseInt(loadFromStorage('nVisits2') || '1')
       saveToStorage('nVisits2', nVisits+1)
       if (nVisits > 3) {
@@ -139,9 +141,10 @@ export default {
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
     widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) > (new Date()).getTime()),
     promo() {
-      const sglSellerID = process.env.sglSellerID
-      const discount = this.$store.state.checkout.discounts[sglSellerID],
-            promocode = this.$store.state.checkout.promocodes[sglSellerID]
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      const sglSellerID = sglSellerIDs.find(s => this.$store.state.checkout.promocodes[s] && this.$store.state.checkout.discounts[s])
+      const promocode = this.$store.state.checkout.promocodes[sglSellerID],
+            discount = this.$store.state.checkout.discounts[sglSellerID]
       if (!promocode || !discount) return {promocode: '', discount: 0}
       return {promocode, discount}
     },
