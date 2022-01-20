@@ -9,9 +9,7 @@ import { guides } from './config/guides.json'
     .concat(guides.map(g => `/guide/${g.slug}`)));*/
 
 export default {
-  ssr: false,
   target: 'static',
-  components: false,
 
   /*
   ** Headers of the page
