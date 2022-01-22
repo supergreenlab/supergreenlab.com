@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container'>
+  <section :id='$style.container' :class='{[$style.expanded]: expanded}'>
     <div v-if='expanded' :id='$style.selector'>
       <span>search: </span><input placeholder='ex: spain' type='text' v-model='search' :id='$style.search' />
       <div :id='$style.regions'>
@@ -82,14 +82,18 @@ export default {
   display: flex
   color: #909090
 
+.expanded
+  width: 100%
+  max-width: 400px
+
 #selector
+  width: 100%
   border: 2pt solid #dedede
   border-radius: 4pt
   padding: 5px 5px 0 5px
 
 #regions
   display: flex
-  max-width: 300px
   overflow-x: auto
   margin-bottom: 3px
 
