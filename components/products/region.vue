@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div v-if='expanded' :id='$style.selector'>
-      <span>search: </span><input type='text' v-model='search' :id='$style.search' />
+      <span>search: </span><input placeholder='ex: spain' type='text' v-model='search' :id='$style.search' />
       <div :id='$style.regions'>
         <div
           :class='$style.region + " " + (i !== regions.length - 1 ? $style.rightborder : "")'
