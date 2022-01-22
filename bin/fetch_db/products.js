@@ -22,7 +22,7 @@ module.exports.fetchProducts = async () => {
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
   let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready', 'stls'])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
-  let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in', 'currency', 'vat'])
+  let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in', 'currency', 'vat', 'closest'])
   let collectionProducts = await fetchTable('CollectionProducts', ['slug', 'Product', 'order'])
   let collections = await fetchTable('Collections', ['slug', 'name','picture', 'CollectionProducts', 'description'])
   let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
@@ -69,11 +69,16 @@ module.exports.fetchProducts = async () => {
       r.flag = noPic
     }
     return r
-  }).sort((r1, r2) => {
+  }).map((r, i, arr) => {
+    r.closest = r.closest ? arr.find(r2 => r2.id == r.closest[0]) : r.closest
+    return r
+  })
+    .sort((r1, r2) => {
     const l1 = r1.level[0], l2 = r2.level[0]
     if (regionLevels.indexOf(l1) != regionLevels.indexOf(l2)) return regionLevels.indexOf(l1) - regionLevels.indexOf(l2)
     return r1.code.localeCompare(r2.code)
   })
+
   bookmarks = bookmarks.map(b => {
     try {
       const { p, data } = fetchAttachement(picPromise, b.icon[0], 'links')
@@ -98,6 +103,7 @@ module.exports.fetchProducts = async () => {
     })
     return s
   })
+
   brands = brands.map(b => {
     b.logo = (b.logo || []).map((pic, i) => {
       try {
@@ -110,6 +116,7 @@ module.exports.fetchProducts = async () => {
     })
     return b
   })
+
   brandProducts = brandProducts.map(bp => {
     bp.stls = (bp.stls || []).map(s => files.find(f => f.id == s))
     bp.specs = jsonOrYaml(bp.specs || '{}')
@@ -124,6 +131,7 @@ module.exports.fetchProducts = async () => {
     })
     return bp
   })
+
   brandProducts = brandProducts.map(bp => {
     if (!bp.variantOf) return bp
     const variantOf = brandProducts.find(bp2 => bp2.id == bp.variantOf[0])
@@ -135,11 +143,13 @@ module.exports.fetchProducts = async () => {
     bp.pics = variantOf.pics
     return bp
   })
+
   sellingPoints = sellingPoints.map(sp => {
     sp.params = jsonOrYaml(sp.params || '{}')
     sp.region =  regionTree(regions.find(r => r.id == sp.region))
     return sp
   })
+
   products = products.filter(p => p.SellingPoints).map(p => {
     p.links = (p.links || []).map(l => bookmarks.find(b => b.id == l))
     p.pics = (p.pics || []).map((pic, i) => {

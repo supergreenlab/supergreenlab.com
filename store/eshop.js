@@ -79,10 +79,18 @@ export const mutations = {
 export const getters = {
   sellingPoint: (state, getters) => sellingPoints => {
     const { region } = state
+    let sp = sellingPoints.find(sp => sp.region[0].id == region.id)
+    if (sp) return sp
+
+    if (region.closest) {
+      sp = sellingPoints.find(sp => sp.region[0].id == region.closest.id)
+      if (sp) return sp
+    }
+
     const regions = regionTree(region).map(r => r.id)
     for (let i in regions) {
       const region = regions[i]
-      const sp = sellingPoints.find(sp => sp.region.find(r => r.id == region))
+      sp = sellingPoints.find(sp => sp.region.find(r => r.id == region))
       if (sp) return sp
     }
   },

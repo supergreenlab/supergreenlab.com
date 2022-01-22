@@ -31,8 +31,11 @@
           <div v-if='closerProduct' :id='$style.closer'>
             This product might be closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
           </div>
-          <div v-else-if='askCloserProduct' :id='$style.closer'>
+          <div v-else-if='askCloserProduct && !isSglSeller' :id='$style.closer'>
             This product might not be available in your region.
+            <div v-if='!closerProduct' :id='$style.closer'>
+              <small>We tried to select the closest to your region.</small>
+            </div>
           </div>
           <div :id='$style.region'>
             <Region />
@@ -218,7 +221,7 @@ export default {
       const { region } = this.$store.state.eshop
       if (this.sellingPoint.region[0].id != region.id) {
         const sp = this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
-        if (sp.id == this.sellingPoint.id) return null
+        if (sp && sp.id == this.sellingPoint.id) return null
         /*const bp = brandProduct(sp.BrandProduct[0])
         if (bp.variantOf && this.brandProduct[0].id == bp.variantOf[0]) return null
         if (this.brandProduct.variantOf && this.brandProduct.variantOf[0] == bp.id) return null*/
@@ -297,6 +300,10 @@ export default {
     },
     youtubeLink() {
       return (l) => l.indexOf('youtube.com') != -1
+    },
+    isSglSeller() {
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      return sglSellerIDs.includes(this.seller.id)
     },
   },
   methods: {
