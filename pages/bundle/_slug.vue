@@ -133,7 +133,6 @@ export default {
       return this.$store.getters['eshop/sellingPointForProduct'](this.bundle.id)
     },
     brandProduct() {
-      console.log(this.bundle)
       return brandProduct(this.sellingPoint.BrandProduct[0])
     },
     led() {
