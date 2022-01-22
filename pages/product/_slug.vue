@@ -28,12 +28,12 @@
           <Pics :pics='brandProduct.pics'/>
         </div>
         <div :id='$style.center'>
-          <div v-if='closerProduct' :id='$style.closer'>
+          <div v-if='closerProduct && !isSglSeller' :id='$style.closer'>
             This product might be closer: <nuxt-link :to='`/product/${closerProduct.slug}`'>{{ closerBrandProduct.name }} from {{ closerSeller.name }}</nuxt-link>
           </div>
           <div v-else-if='askCloserProduct && !isSglSeller' :id='$style.closer'>
             This product might not be available in your region.
-            <div v-if='!closerProduct' :id='$style.closer'>
+            <div v-if='!closerProduct && !isSglSeller' :id='$style.closer'>
               <small>We tried to select the closest to your region.</small>
             </div>
           </div>
@@ -60,7 +60,7 @@
           <div :id='$style.description' v-if='brandProduct.bulletpoints && brandProduct.bulletpoints != product.bulletpoints' v-html='$md.render(brandProduct.bulletpoints)'></div>
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>This product can be used with:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`' @click.native='relatedProductClicked(rp)'>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
@@ -103,7 +103,7 @@
           <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
           <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
             <h4>Checkout those too:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`' @click.native='relatedProductClicked(rp)'>
+            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
               <div>
@@ -119,7 +119,7 @@
 
             <div :class='$style.spec' v-if='brandProduct.specs.weight'>Weight<b>{{ brandProduct.specs.weight.value }}{{ brandProduct.specs.weight.unit }}</b></div>
 
-            <div :class='$style.spec' v-if='brandProduct.specs.power'>Power<b>From <nuxt-link to='/product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-world'>Controller</nuxt-link></b></div>
+            <div :class='$style.spec' v-if='brandProduct.specs.power'>Power<b>From <nuxt-link to='/product/sgl-controller'>Controller</nuxt-link></b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.width'>Width<b>{{ brandProduct.specs.width }}cm</b></div>
             <div :class='$style.spec' v-if='brandProduct.specs.height'>Height<b>{{ brandProduct.specs.height }}cm</b></div>
 
@@ -281,10 +281,23 @@ export default {
         rp = Object.assign({}, rp)
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = brandProduct(rp.sellingPoint.BrandProduct[0])
+        rp.seller = seller(rp.sellingPoint.Seller[0])
         rp.product = product(rp.sellingPoint.Product[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
+    },
+    link() {
+      return ({ product, sellingPoint, seller }) => {
+        if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+          return `/bundle/${product.slug}`
+        }
+        const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+        if (sglSellerIDs.includes(seller.id)) {
+          return `/product/${product.slug}`
+        }
+        return `/product/${sellingPoint.slug}`
+      }
     },
     guides() {
       return guides.filter(g => {

@@ -10,3 +10,87 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=2592000"
     Feature-Policy = "geolocation 'none'; midi 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'none'; fullscreen 'none'; payment 'none'"
+
+[[redirects]]
+  from = "/product/sgl-36-supergreenlab-sgl-36-lm301b-supergreenlab-world"
+  to = "/product/sgl-36"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/sgl-blower-supergreenlab-sgl-blower-supergreenlab-WORLD"
+  to = "/product/sgl-blower"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/sgl-temperature-humidity-sensor-supergreenlab-temperature-product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-WORLD-humidity-sensor-supergreenlab-world"
+  to = "/product/sgl-temperature-humidity-sensor"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/sgl-controller-supergreenlab-supergreencontroller-supergreenlab-WORLD"
+  to = "/product/sgl-controller"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/power-supply-24v-6-25a-sgl-power-supply-24v-6-25a-supergreenlab-world"
+  to = "/product/power-supply-24v-6-25a"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/sgl-blower-sensor-combo-supergreenlab-blower-sensor-combo-supergreenlab-world"
+  to = "/product/sgl-blower-sensor-combo"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/sgl-meanwell-adapter-supergreenlab-meanwell-adapter-supergreenlab-world"
+  to = "/product/sgl-meanwell-adapter"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/sgl-light-extender-supergreenlab-light-extender-supergreenlab-world"
+  to = "/product/sgl-light-extender"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/finn-led-holder-sgl-community-finn-led-holder-supergreenlab-world"
+  to = "/product/finn-led-holder"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/timelapse-pi-zero-camera-holder-supergreenlab-timelapse-pi-zero-camera-holder-supergreenlab-world"
+  to = "/product/timelapse-pi-zero-camera-holder"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/stackable-carbon-filter-supergreenlab-3d-printed-stackable-carbon-filter-supergreenlab-world"
+  to = "/product/stackable-carbon-filter"
+  status = 301
+  force = false
+  query = {path = ":path"}
+
+[[redirects]]
+  from = "/product/low-profile-led-holder-supergreenlab-low-profile-led-holder-supergreenlab-world"
+  to = "/product/low-profile-led-holder"
+  status = 301
+  force = false
+  query = {path = ":path"}

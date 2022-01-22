@@ -42,7 +42,7 @@
 
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
           <h4>This product can be used with:</h4>
-          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='rp.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${rp.sellingPoint.slug}` : `/bundle/${rp.product.slug}`' @click.native='relatedProductClicked(rp)'>
+          <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
             <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
             <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
             <div>
@@ -99,7 +99,7 @@ import AddToCart from '~/components/products/addtocart.vue'
 import Pics from '~/components/products/pics.vue'
 import Region from '~/components/products/region.vue'
 
-import { relatedProducts, brandProduct, product, } from '~/lib/json_db.js'
+import { relatedProducts, brandProduct, product, seller, } from '~/lib/json_db.js'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart, Pics, Region,},
@@ -132,12 +132,25 @@ export default {
         rp.sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](rp.product[0])
         rp.brandProduct = brandProduct(rp.sellingPoint.BrandProduct[0])
         rp.product = product(rp.sellingPoint.Product[0])
+        rp.seller = seller(rp.sellingPoint.Seller[0])
         rp.price = this.$store.getters['checkout/lineItemsPrice']([{n: 1, sellingPoint: rp.sellingPoint}])
         return rp
       })
     },
     youtubeLink() {
       return (l) => l.indexOf('youtube.com') != -1
+    },
+    link() {
+      return ({ product, sellingPoint, seller }) => {
+        if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+          return `/bundle/${product.slug}`
+        }
+        const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+        if (sglSellerIDs.includes(seller.id)) {
+          return `/product/${product.slug}`
+        }
+        return `/product/${sellingPoint.slug}`
+      }
     },
   },
 }

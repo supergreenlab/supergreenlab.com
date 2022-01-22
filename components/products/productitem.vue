@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <nuxt-link @click.native='click' :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+    <nuxt-link @click.native='click' :id='$style.infos' :to='link'>
       <div :id='$style.pic'>
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
@@ -64,7 +64,18 @@ export default {
     },
     sglSellerId() {
       return process.env.sglSellerId
-    }
+    },
+    link() {
+      const { product } = this.$props
+      if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+        return `/bundle/${product.slug}`
+      }
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      if (sglSellerIDs.includes(this.seller.id)) {
+        return `/product/${product.slug}`
+      }
+      return `/product/${this.sellingPoint.slug}`
+    },
   },
   methods: {
     click() {

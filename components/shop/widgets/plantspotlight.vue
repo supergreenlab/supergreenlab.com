@@ -43,20 +43,20 @@
                 <nuxt-link :id='$style.plantbutton' :to='`/public/plant?id=${plant.id}`' target='_blank'>Open plant</nuxt-link><br />
               </div>
             </div>
-            <h3>Grow with {{ product.name }}</h3>
+            <h3>Grow with {{ sellingPoint(product).BrandProduct[0].name }}</h3>
             <div :class='$style.relatedProduct'>
               <div :id='$style.ProducPic'>
-                <div :style='{"background-image": `url(/img/${product.pics[0].fileLarge})`}'></div>
+                <div :style='{"background-image": `url(/img/${sellingPoint(product).BrandProduct[0].pics[0].fileLarge})`}'></div>
               </div>
-              <nuxt-link :to='`/product/${product.SellingPoints[0].slug}`' :id='$style.relatedProduct'>
+              <nuxt-link :to='link' :id='$style.relatedProduct'>
                 <div>
                   <div :class='$style.relatedProductTagline'  v-html='$md.render(product.tagline)'></div>
                   <div :class='$style.description'  v-html='$md.render(product.description)'></div>
                 </div>
               </nuxt-link>
               <div :id="$style.pricecontainer">
-                <Price :id="$style.price" :lineItems='[{sellingPoint: product.SellingPoints[0], n: 1}]' :freeshipping='false' />
-                <AddToCart :product='product' :sellingPoint='product.SellingPoints[0]' :discreet='false' @click='handleAddToCart' />
+                <Price :id="$style.price" :lineItems='[{sellingPoint: sellingPoint(product), n: 1}]' :freeshipping='false' />
+                <AddToCart :product='product' :sellingPoint='sellingPoint(product)' :discreet='false' @click='handleAddToCart' />
               </div>
             </div>
           </div>
@@ -103,6 +103,11 @@ export default {
       const { config } = this.$props
       return products(config.products || [])
     },
+    sellingPoint() {
+      return product => {
+        return this.$store.getters['eshop/sellingPointForProduct'](product.id)
+      }
+    },
     germinated() {
       const { germinationDate } = this.$data.plant.settings
       if (!germinationDate) {
@@ -140,7 +145,18 @@ export default {
         'Phase',
         'Not set'
       ]
-    }
+    },
+    link() {
+      const { product } = this.$props
+      if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+        return `/bundle/${product.slug}`
+      }
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      if (sglSellerIDs.includes(this.seller.id)) {
+        return `/product/${this.product.slug}`
+      }
+      return `/product/${this.sellingPoint.slug}`
+    },
   },
   methods: {
     handleAddToCart() {

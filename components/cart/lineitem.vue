@@ -23,13 +23,13 @@
       <a :id='$style.linkto' v-if='showProductLink' :href='productURL' target='_blank'>SEE PRODUCT <img src='~/assets/img/icon-open-link.svg' /></a>
     </div>
     <div :id='$style.body'>
-      <nuxt-link :id='$style.piccontainer' :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
+      <nuxt-link :id='$style.piccontainer' :to='link'>
         <div :id='$style.pic' :style='{"background-image": `url(/img/${brandProduct.pics[0].fileLarge})`}'></div>
       </nuxt-link>
       <div :id='$style.infos'>
         <div :id='$style.description'>
           <h3 :id='$style.soldby'>SOLD AT&nbsp;<a :id='$style.seller' :href='productURL' target='_blank'>{{ seller.name }}</a></h3>
-          <nuxt-link :to='lineItem.product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${lineItem.sellingPoint.slug}` : `/bundle/${lineItem.product.slug}`'>
+          <nuxt-link :to='link'>
             <b>{{ brandProduct.tagline }}</b>
             <div v-html='$md.render(brandProduct.description.substr(0, 200) + "...")'></div>
           </nuxt-link>
@@ -86,7 +86,18 @@ export default {
       const { lineItem } = this.$props
       if (this.seller.type == 'amazon') return `${lineItem.sellingPoint.url}?tag=${this.seller.params.amazon.tag}`
       return lineItem.sellingPoint.url
-    }
+    },
+    link() {
+      const { lineItem: { product, sellingPoint } } = this.$props
+      if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+        return `/bundle/${product.slug}`
+      }
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      if (sglSellerIDs.includes(this.seller.id)) {
+        return `/product/${product.slug}`
+      }
+      return `/product/${sellingPoint.slug}`
+    },
   },
   methods: {
     deleteLineItem() {

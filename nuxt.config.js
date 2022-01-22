@@ -8,6 +8,8 @@ import { guides } from './config/guides.json'
     .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
     .concat(guides.map(g => `/guide/${g.slug}`)));*/
 
+const sglSellerIDs = [process.env.SGL_SELLERID, process.env.SGTEU_SELLERID, process.env.SGTUS_SELLERID]
+
 export default {
   target: 'static',
 
@@ -121,6 +123,7 @@ export default {
     exclude: ['/testshop',],
     routes: [
     ].concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') !== -1).map(p => `/bundle/${p.slug}`))
+    .concat(products.filter(p => p.type.indexOf('SGL_BUNDLE') === -1 && sglSellerIDs.includes(p.SellingPoints[0].Seller[0])).map(p => `/product/${p.slug}`))
     .concat(sellingPoints.map(sp => `/product/${sp.slug}`))
     .concat(guides.map(g => `/guide/${g.slug}`))
     .concat(sellers.filter(s => s.type == 'shopify' && s.params.shopify && s.params.shopify.token).map(s => `/checkout/${s.slug}`)),

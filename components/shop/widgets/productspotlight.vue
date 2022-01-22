@@ -25,7 +25,7 @@
       <h2 :id="$style.title" v-html='$md.render(title)'></h2>
       <div :id="$style.description" v-html='$md.render(description)'></div>
       <div :id='$style.productlink'>
-        <nuxt-link :id='$style.productpage' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>View product</nuxt-link>
+        <nuxt-link :id='$style.productpage' :to='link'>View product</nuxt-link>
       </div>
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
@@ -46,7 +46,7 @@ import OutOfStock from '~/components/products/outofstock.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Price from '~/components/products/price.vue'
 
-import { products } from '~/lib/json_db.js'
+import { products, seller } from '~/lib/json_db.js'
 
 export default {
   props: ['config', 'container',],
@@ -64,6 +64,9 @@ export default {
     sellingPoint() {
       return this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
     },
+    seller() {
+      return seller(this.sellingPoint.Seller[0])
+    },
     title() {
       const { config: { title } } = this.$props
       return title || this.product.name
@@ -71,6 +74,17 @@ export default {
     description() {
       const { config: { description } } = this.$props
       return description || this.product.bulletpoints
+    },
+    link() {
+      const product = this.product
+      if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+        return `/bundle/${product.slug}`
+      }
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      if (sglSellerIDs.includes(this.seller.id)) {
+        return `/product/${this.product.slug}`
+      }
+      return `/product/${this.sellingPoint.slug}`
     },
   },
   methods: {

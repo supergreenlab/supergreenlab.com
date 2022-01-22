@@ -18,26 +18,26 @@
 
 <template>
   <section :id='$style.container'>
-    <a href='https://shop.supergreenlab.com/collections/grow-lights/products/192-301b' v-if='bigleds > 0' :class='$style.icon' :id='$style.light'>
+    <nuxt-link to='https://shop.supergreenlab.com/collections/grow-lights/products/192-301b' v-if='bigleds > 0' :class='$style.icon' :id='$style.light'>
       <div :class='$style.number'>{{ bigleds }}</div>
       <span>Big LED</span>
-    </a>
-    <a href='https://shop.supergreenlab.com/collections/grow-lights/products/sgb-144-301b' v-if='smallleds > 0' :class='$style.icon' :id='$style.smalllight'>
+    </nuxt-link>
+    <nuxt-link to='https://shop.supergreenlab.com/collections/grow-lights/products/sgb-144-301b' v-if='smallleds > 0' :class='$style.icon' :id='$style.smalllight'>
       <div :class='$style.number'>{{ smallleds }}</div>
       <span>Medium LED</span>
-    </a>
-    <a href='https://www.supergreenlab.com/product/sgl-36-supergreenlab-sgl-36-lm301b-supergreenlab-world/' v-if='tinyleds > 0' :class='$style.icon' :id='$style.tinylight'>
+    </nuxt-link>
+    <nuxt-link to='https://www.supergreenlab.com/product/sgl-36' v-if='tinyleds > 0' :class='$style.icon' :id='$style.tinylight'>
       <div :class='$style.number'>{{ tinyleds }}</div>
       <span>Tiny LED</span>
-    </a>
-    <a href='https://www.supergreenlab.com/product/sgl-blower-supergreenlab-sgl-blower-supergreenlab-world' :class='$style.icon' :id='$style.ventilation'>
+    </nuxt-link>
+    <nuxt-link to='https://www.supergreenlab.com/product/sgl-blower' :class='$style.icon' :id='$style.ventilation'>
       <div :class='$style.number'>{{ ventilation }}</div>
       <span>Ventilation</span>
-    </a>
-    <a href='https://www.supergreenlab.com/product/sgl-temperature-humidity-sensor-supergreenlab-temperature-&-humidity-sensor-supergreenlab-world' :class='$style.icon' :id='$style.sensor'>
+    </nuxt-link>
+    <nuxt-link to='https://www.supergreenlab.com/product/sgl-temperature-humidity-sensor' :class='$style.icon' :id='$style.sensor'>
       <div :class='$style.number'>{{ sensor }}</div>
       <span>Sensor</span>
-    </a>
+    </nuxt-link>
   </section>
 </template>
 

@@ -24,7 +24,7 @@
       </div>
       <div :id='$style.description'>
         <div :id='$style.header'>
-          <h3><nuxt-link :to='`/product/${item.SellingPoints[0].slug}`'>{{ item.name }}</nuxt-link></h3>
+          <h3><nuxt-link :to='`/product/${item.slug}`'>{{ item.name }}</nuxt-link></h3>
           <h2 :id='$style.n'>x{{ n }}</h2>
         </div>
         <div :id='$style.bullets' v-html='$md.render(item.bulletpoints)'>

@@ -18,14 +18,14 @@
 
 <template>
   <section :id='$style.container'>
-    <nuxt-link @click.native='click' :id='$style.infos' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+    <nuxt-link @click.native='click' :id='$style.infos' :to='link'>
       <div :id='$style.pic'>
         <Pics :pics='brandProduct.pics' :hideArrow=true />
       </div>
     </nuxt-link>
     <div :id='$style.infocontainerbig'>
       <div :id='$style.description'>
-        <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+        <nuxt-link @click.native='click' :to='link'>
           <h3>{{ brandProduct.name }} BY <span :class='isSGL ? $style.green : ""'>{{ brand.name }}</span></h3>
           From <b>{{ seller.name }}</b>
         </nuxt-link>
@@ -41,7 +41,7 @@
     <div :id='$style.infocontainersmall'>
       <div :id='$style.description'>
         <div :id='$style.smalldescription'>
-          <nuxt-link @click.native='click' :to='product.type.indexOf("SGL_BUNDLE") == -1 ? `/product/${sellingPoint.slug}` : `/bundle/${product.slug}`'>
+          <nuxt-link @click.native='click' :to='link'>
             <h3>{{ brandProduct.name }} BY <span :class='isSGL ? $style.green : ""'>{{ brand.name }}</span></h3>
             From <b>{{ seller.name }}</b>
           </nuxt-link>
@@ -88,7 +88,18 @@ export default {
     isSGL() {
       const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
       return sglSellerIDs.includes(this.sellingPoint.Seller[0])
-    }
+    },
+    link() {
+      const { product } = this.$props
+      if (product.type.indexOf("SGL_BUNDLE") !== -1) {
+        return `/bundle/${product.slug}`
+      }
+      const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+      if (sglSellerIDs.includes(this.seller.id)) {
+        return `/product/${this.product.slug}`
+      }
+      return `/product/${this.sellingPoint.slug}`
+    },
   },
   methods: {
     click() {
