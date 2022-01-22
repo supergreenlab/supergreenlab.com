@@ -197,7 +197,7 @@ import { open, screenX, availWidth } from '~/lib/client-side.js'
 import { guides } from '~/config/guides.json'
 import { regions } from '~/config/products.json'
 
-import { brandProduct, seller, sellingPointWithSlug, productsWithTypes, relatedProducts, brand, product, variants } from '~/lib/json_db.js'
+import { brandProduct, seller, sellingPointWithSlug, productWithSlug, productsWithTypes, relatedProducts, brand, product, variants } from '~/lib/json_db.js'
 
 export default {
   components: { Header, Title, OutOfStock, Pics, Price, AddToCart, Guide, ProductListComponent, Region, Footer, },
@@ -247,7 +247,14 @@ export default {
     },
     sellingPoint() {
       const { slug } = this.$route.params
-      return sellingPointWithSlug(slug)
+      let sp = sellingPointWithSlug(slug)
+      if (!sp) { // probably means that's actually a productID
+        const product = productWithSlug(slug)
+        if (product) {
+          sp = this.$store.getters['eshop/sellingPointForProduct'](product.id)
+        }
+      }
+      return sp
     },
     brandProduct() {
       return brandProduct(this.sellingPoint.BrandProduct[0])

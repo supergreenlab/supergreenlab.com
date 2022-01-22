@@ -43,8 +43,8 @@
       <Item ref='controller' n='1' :item='accessory("sgl-controller")' last='true' />
       <Item ref='power' n='1' :item='accessory("power-supply-24v-6-25a")' last='true' />
       <div :class='$style.price'>
-        <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
-        <AddToCart type='bundle' :location='`bundle-midpage-${bundle.slug}`' :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
+        <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
+        <AddToCart type='bundle' :location='`bundle-midpage-${bundle.slug}`' :product='bundle' :sellingPoint='sellingPoint' />
       </div>
       <Title icon='guides.svg' title='GUIDES' />
       <div ref='guides' :id='$style.guides'>
@@ -129,8 +129,12 @@ export default {
       const { slug } = this.$route.params
       return productWithSlug(slug)
     },
+    sellingPoint() {
+      return this.$store.getters['eshop/sellingPointForProduct'](this.bundle.id)
+    },
     brandProduct() {
-      return brandProduct(this.bundle.SellingPoints[0].BrandProduct[0])
+      console.log(this.bundle)
+      return brandProduct(this.sellingPoint.BrandProduct[0])
     },
     led() {
       return (slug) => productWithSlug(slug)
