@@ -88,10 +88,6 @@ export default {
     valid() {
       return this.cart.findIndex(lineItem => lineItem.sellingPoint.outofstock) == -1
     },
-    promoDiscount() {
-      const { seller } = this.$props
-      return this.$store.getters['checkout/promoDiscount'](seller.id)
-    },
     cart() {
       const { seller } = this.$props
       return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller.id)

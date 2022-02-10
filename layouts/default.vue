@@ -27,7 +27,8 @@
     <transition name="popup">
       <div v-if='promo' :id='$style.promo'>
         <h1>Promo code {{ promo.promocode }} activated!</h1>
-        <h2>Enjoy your {{ promo.discount }}% off:)</h2>
+        <h2 v-if='promo.discount.type == "line_item"'>Enjoy your {{ promo.discount.discount }}% off:)</h2>
+        <h2 v-else-if='promo.discount.type == "shipping_line"'>Enjoy your free shipping:)</h2>
       </div>
     </transition>
 

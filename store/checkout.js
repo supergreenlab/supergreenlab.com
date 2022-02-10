@@ -68,7 +68,7 @@ export const actions = {
       })
       cancel[sellerid] = null
       context.commit('setPromocode', { sellerid, promocode })
-      context.commit('setDiscount', { sellerid, discount: discount.discount })
+      context.commit('setDiscount', { sellerid, discount: discount, })
     } catch(e) {
       context.commit('setDiscount', { sellerid, discount: 0 })
     }
@@ -167,7 +167,7 @@ export const getters = {
       let discountAmount = 0
       if (li.sellingPoint.offer) {
         discountAmount = price * li.sellingPoint.offer/100
-      } else if (discount && !li.sellingPoint.nopromo) {
+      } else if (discount.type == 'line_item' && !li.sellingPoint.nopromo) {
         discountAmount = price * discount/100
       }
 
