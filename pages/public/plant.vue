@@ -25,14 +25,7 @@
     </div>
     <div :id='$style.body' v-if="plant">
       <PlantInfo :plant="plant"></PlantInfo>
-      <FeedEntry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :feedEntry="feedEntry" v-on:dialogTriggered="toggleDialog"></FeedEntry>
-      <div :class="$style.spinner_container">
-        <infinite-loading
-                spinner="spiral"
-                @infinite="loadNextFeedEntriesById">
-          <div slot="no-more"></div>
-        </infinite-loading>
-      </div>
+      <Feed :lib='lib' :plantID="plantID" v-on:dialogTriggered="dialogTriggered" />
 
       <div :class="$style.app_cta_wrapper">
         <div :class="$style.app_cta">
@@ -57,7 +50,7 @@
     </div>
 
     <!-- This div is hidden, unless the page is interacted with -->
-    <div v-show="showDialog" :class="$style.ctaDialog" ref="ctaDialog" v-on:click="toggleDialog($event)" id="backdrop">
+    <div v-show="showDialog" :class="$style.ctaDialog" ref="ctaDialog" v-on:click="dialogTriggered($event)" id="backdrop">
       <div :class="$style.dialog_content_wrapper">
         <div :class="$style.closeButton">
           <span aria-hidden="true" id="closeButton">×</span>
@@ -80,9 +73,9 @@
 
 <script>
 import Header from '~/components/layout/header.vue'
-import FeedEntry from "~/components/plant-feed/feed-entry";
-import {getPlantById, getFeedEntriesById} from "~/lib/plant";
-import PlantInfo from "../../components/plant-info/plant-info";
+import * as lib from "~/lib/plant";
+import PlantInfo from "~/components/plant/info/PlantInfo";
+import Feed from "~/components/plant/feed/Feed";
 
 export default {
   head() {
@@ -99,7 +92,7 @@ export default {
   },
   components: {
     PlantInfo,
-    FeedEntry,
+    Feed,
     Header
   },
   data() {
@@ -112,49 +105,26 @@ export default {
       showDialog: false
     }
   },
-  mounted() {
+  async mounted() {
     this.$data.url = this.plantURL;
-    getPlantById(this.$route.query.id)
-      .then(plant => {
-        this.plant = plant;
-        this.plant.settings = JSON.parse(this.plant.settings);
-        this.plant.boxSettings = JSON.parse(this.plant.boxSettings);
-      })
-      .catch(err => {
-        console.log(err.message);
-        // if no plant is available for the input id -> navigate to 404 page
-        this.$router.push('/404')
-      });
-    getFeedEntriesById(this.$route.query.id, this.pageSize, this.page)
-      .then(feedEntries => {
-        this.feedEntries = this.feedEntries.concat(feedEntries.entries);
-      })
-      .catch(err => console.log(err.message));
+    const plant = await lib.getPlantById(this.$route.query.id)
+    this.plant = plant;
   },
   computed: {
+    plantID() {
+      return this.$route.query.id
+    },
     plantURL() {
       if (this.$route.query.feid) {
         return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}&feid=${this.$route.query.feid}`
       } else {
         return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}`
       }
-    }
+    },
+    lib: () => lib,
   },
   methods: {
-    loadNextFeedEntriesById($state) {
-      this.page++;
-      getFeedEntriesById(this.$route.query.id, this.pageSize, this.page * this.pageSize)
-        .then(feedEntries => {
-          $state.loaded();
-          if (feedEntries.entries && feedEntries.entries.length > 1) {
-            this.feedEntries = this.feedEntries.concat(feedEntries.entries);
-          } else {
-            $state.complete();
-          }
-        })
-        .catch(err => console.log(err.message));
-    },
-    toggleDialog(event) {
+    dialogTriggered(event) {
       if (this.showDialog) {
         if (event && (event.target.id === 'backdrop' || event.target.id === 'closeButton')) {
           this.showDialog = !this.showDialog;

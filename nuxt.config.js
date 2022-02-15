@@ -64,6 +64,11 @@ export default {
     { src: '~plugins/vue-touch.js', ssr: false },
   ],
 
+  components: [{
+    path: '~/components/plant',
+    pathPrefix: false,
+  }],
+
   /*
   ** Nuxt.js modules
   */
@@ -89,6 +94,7 @@ export default {
     sglSellerID: process.env.SGL_SELLERID,
     sgteuSellerID: process.env.SGTEU_SELLERID,
     sgtusSellerID: process.env.SGTUS_SELLERID,
+    API_URL: process.env.API_URL || 'https://api2.supergreenlab.com',
   },
 
   /*
