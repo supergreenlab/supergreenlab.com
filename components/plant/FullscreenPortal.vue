@@ -38,14 +38,20 @@ export default {
 <style module lang=stylus>
 
 #container
-  position: fixed
-  top: 0
-  left: 0
-  width: 100vw
-  height: 100vh
-  background-color: rgba(0, 0, 0, 0.5)
+  z-index: 10000
   display: flex
   align-items: center
   justify-content: center
+  position: fixed
+  top: 100px
+  left: 50px
+  height: calc(100vh - 150px)
+  width: calc(100vw - 100px)
+  background-color: rgba(0, 0, 0, 0.5)
+  @media only screen and (max-width: 600px), screen and (max-height: 500px)
+    top: 0
+    left: 0
+    height: 100vh
+    width: 100vw
 
 </style>

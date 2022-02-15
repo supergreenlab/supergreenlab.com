@@ -34,7 +34,7 @@ export default {
   props: ['medias', 'onClose',],
   data() {
     return {
-      height: '500px',
+      height: '200px',
     }
   },
   mounted() {

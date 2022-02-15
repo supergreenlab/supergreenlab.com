@@ -70,6 +70,7 @@ export default {
   flex-direction: column
   align-items: center
   flex: 1
+  width: 100%
 
 #spinner_container div
   width: 250px
