@@ -22,6 +22,7 @@
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
     </div>
     <div :id='$style.checkoutbutton'>
+      <div v-if='psuDisclaimer' :id='$style.psuDisclaimer'><b>{{ nRequirePSU }} item{{ nRequirePSU > 1 ? 's' : ''}}</b> require a <nuxt-link to='/product/power-supply-24v-6-25a'>PSU</nuxt-link>, <b>you only have {{ nPSUs }} PSUs</b> in your cart, <b>make sure you have enough.</b><br /></div>
       <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :valid='valid' />
     </div>
   </section>
@@ -92,10 +93,18 @@ export default {
       const { seller } = this.$props
       return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller.id)
     },
-    price() {
-      const { lineItems } = this.$props
-      if (lineItems.length == 0) return () => 0
-      return this.$store.getters['checkout/lineItemsPrice'](lineItems)
+    nRequirePSU() {
+      const lineItems = this.cart
+      return lineItems.reduce((acc, li) => acc + (li.product.needspsu ? li.n : 0), 0)
+    },
+    nPSUs() {
+      const lineItems = this.cart
+      return lineItems.reduce((acc, li) => acc + (li.product.type.includes('SGL_PSU') ? li.n : 0), 0)
+    },
+    psuDisclaimer() {
+      let nRequirePSU = this.nRequirePSU
+      let nPSUs = this.nPSUs
+      return nRequirePSU > nPSUs
     },
   },
 }
@@ -128,7 +137,15 @@ export default {
 
 #checkoutbutton
   display: flex
+  flex-direction: column
   justify-content: flex-end
   align-self: flex-end
+
+#psuDisclaimer
+  max-width: 400px
+  margin-bottom: 10px
+  color: #454545
+  > b
+    color: #3bb30b
 
 </style>
