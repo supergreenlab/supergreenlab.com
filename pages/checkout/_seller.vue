@@ -22,31 +22,35 @@
       <Header :nomenu=true />
     </div>
     <div :id='$style.body'>
-      <div>
-        <div :id='$style.cart'>
-          <b>Items in your cart</b>
-          <div :id='$style.items'>
-            <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='`/img/${brandProduct(lineItem).pics[0].fileSmall}`'/>x{{ lineItem.n }}</div>
-            <div :id='$style.separator'></div>
-            <Price :lineItems='cart' :small=true />
-          </div>
+      <div :id='$style.cart'>
+        <b>Items in your cart</b>
+        <div :id='$style.items'>
+          <div :class='$style.item' v-for='lineItem in cart' :key='lineItem.sellingPoint.id'><img :src='`/img/${brandProduct(lineItem).pics[0].fileSmall}`'/>x{{ lineItem.n }}</div>
+          <div :id='$style.separator'></div>
+          <Price :lineItems='cart' :small=true />
         </div>
-        <form name='sglcheckout'>
-          <Shipping />
-        </form>
-        <div v-if='price.converted' :id='$style.notice'>
-          The price displayed has been <b>automatically converted to your local currency</b>.<br />
-          Price in checkout will probably not be in the same currency.
-        </div>
-        <div :id='$style.notice'>
-          <b>Shipping cost</b> will be added on the next step.
-        </div>
-        <div v-if='error' :id='$style.error'>
-          <b>Ooops</b> looks like there was an error while processing your order,<br />please double check each shipping fields, contact us if the error persists!
-        </div>
-
-        <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
       </div>
+      <form name='sglcheckout'>
+        <Shipping />
+      </form>
+      <div v-if='price.converted' :id='$style.notice'>
+        The price displayed has been <b>automatically converted to your local currency</b>.<br />
+        Price in checkout will probably not be in the same currency.
+      </div>
+      <div :class='$style.notice'>
+        <b>Shipping cost</b> will be added on the next step.
+      </div>
+      <div :class='$style.notice' v-if='taxdisclaimuk'>
+        <b>Brexit notice</b>: Due to brexit UK customers are not charged VAT upfront anymore. But UK customs will still charge them on arrival in most cases:/ So we can't really tell you how much in advance, but seems to be around £55 for a Ninja Bundle (the 6 panels one). 
+      </div>
+      <div :class='$style.notice' v-if='taxdisclaimau'>
+        <b>Australia notice</b>: Orders above 1000AUD will have to pay customs and import tax on arrival.
+      </div>
+      <div v-if='error' :id='$style.error'>
+        <b>Ooops</b> looks like there was an error while processing your order,<br />please double check each shipping fields, contact us if the error persists!
+      </div>
+
+      <CheckoutButton :valid='valid' :cart='cart' @click='goToPaiement' />
     </div>
     <div :id='$style.loading' v-if='loading'>
       <div :id='$style.loadingcontainer'>
@@ -114,6 +118,12 @@ export default {
     }
   },
   computed: {
+    taxdisclaimuk() {
+      return this.$store.state.shipping.country.value.toLowerCase() == 'england' || this.$store.state.shipping.country.value.toLowerCase() == 'united kingdom' || this.$store.state.shipping.country.value.toLowerCase() == 'great britain' || this.$store.state.shipping.country.value.toLowerCase() == 'britain'
+    },
+    taxdisclaimau() {
+      return this.$store.state.shipping.country.value.toLowerCase() == 'australia' && this.$store.getters['checkout/lineItemsPrice'](this.cart).total > 700
+    },
     brandProduct() {
       return (lineItem) => brandProduct(lineItem.sellingPoint.BrandProduct[0])
     },
@@ -246,9 +256,12 @@ export default {
   @media only screen and (max-width: 600px)
     display: none
 
-#notice
+.notice
   color: #323232
   text-align: right
+  max-width: 400px
+  align-self: flex-end
+  margin-bottom: 8px
 
 #error
   color: red
