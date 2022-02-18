@@ -20,7 +20,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 import { loadFromStorage, saveToStorage } from '~/lib/client-side.js'
-import { regionTree } from '~/lib/json_db.js'
+import { regionTree, seller, } from '~/lib/json_db.js'
 
 import { products, sellingPoints, regions, } from '~/config/products.json'
 
@@ -61,7 +61,8 @@ export const actions = {
         cancel[sellerid]()
         cancel[sellerid] = null
       }
-      const { data: discount } = await axios.get(`https://shopapi.supergreenlab.com/discount?code=${promocode}&sellerid=${sellerid}`, {
+      const s = seller(sellerid)
+      const { data: discount } = await axios.get(`${s.params.shopapi}/discount?code=${promocode}&sellerid=${sellerid}`, {
         cancelToken: new CancelToken((c) => {
           cancel[sellerid] = c
         })
@@ -70,6 +71,7 @@ export const actions = {
       context.commit('setPromocode', { sellerid, promocode })
       context.commit('setDiscount', { sellerid, discount: discount, })
     } catch(e) {
+      console.log(e)
       context.commit('setDiscount', { sellerid, discount: 0 })
     }
   },
