@@ -168,7 +168,7 @@ export const getters = {
       if (li.sellingPoint.offer) {
         discountAmount = price * li.sellingPoint.offer/100
       } else if (discount.type == 'line_item' && !li.sellingPoint.nopromo) {
-        discountAmount = price * discount/100
+        discountAmount = price * discount.discount/100
       }
 
       result.nItems += li.n
