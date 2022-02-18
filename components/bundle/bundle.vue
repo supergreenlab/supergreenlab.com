@@ -23,11 +23,11 @@
         <h1>{{ bundle.name }}</h1>
         <h2>{{ bundle.tagline }}</h2>
       </div>
-      <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' v-if='nobottom' />
+      <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' v-if='nobottom' />
     </div>
     <div :id='$style.body' :style='{"flex-direction": right ? "row-reverse" : ""}'>
       <div :id='$style.iconcontainer '>
-        <Pics :pics='bundle.pics' :offertext='bundle.SellingPoints[0].offertext' />
+        <Pics :pics='bundle.pics' :offertext='sellingPoint.offertext' />
       </div>
       <div :id='$style.description'>
         <div :id='$style.region'>
@@ -36,8 +36,8 @@
 
         <div v-html='$md.render(bundle.bulletpoints)' :id='$style.bullets'></div>
         <div :class='$style.price'>
-          <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
-          <AddToCart :location='`bundle-intro-top-${bundle.slug}`' type='bundle' :product='bundle' :sellingPoint='bundle.SellingPoints[0]' />
+          <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
+          <AddToCart :location='`bundle-intro-top-${bundle.slug}`' type='bundle' :product='bundle' :sellingPoint='sellingPoint' />
         </div>
 
         <div v-if='showRelatedProducts && relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
@@ -66,14 +66,14 @@
         </div>
         <div :id='$style.bottom' v-if='!nobottom'>
           <div :id='$style.buy'>
-            <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
-            <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
+            <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
+            <OutOfStock v-if='sellingPoint.outofstock' />
             <nuxt-link @click.native='bundleClicked' :to='`/bundle/${bundle.slug}`'>LEARN MORE</nuxt-link><br />
           </div>
         </div>
         <div :id='$style.addtocartcontainer' v-if='addtocart && !showdescription'>
           <div :class='$style.price'>
-            <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+            <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
           </div>
         </div>
       </div>
@@ -82,10 +82,10 @@
       <div v-html='$md.render(bundle.description)'></div>
       <div :id='$style.addtocartcontainer' v-if='addtocart'>
         <div :class='$style.price'>
-          <Price :lineItems='[{sellingPoint: bundle.SellingPoints[0], n: 1}]' :freeshipping='false' />
+          <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
         </div>
-        <OutOfStock v-if='bundle.SellingPoints[0].outofstock' />
-        <AddToCart :location='`bundle-intro-bottom-${bundle.slug}`' type='bundle' v-else :product='bundle' :sellingPoint='bundle.SellingPoints[0]' @click='handleAddToCart' />
+        <OutOfStock v-if='sellingPoint.outofstock' />
+        <AddToCart :location='`bundle-intro-bottom-${bundle.slug}`' type='bundle' v-else :product='bundle' :sellingPoint='sellingPoint' @click='handleAddToCart' />
       </div>
     </div>
   </section>
@@ -99,7 +99,7 @@ import AddToCart from '~/components/products/addtocart.vue'
 import Pics from '~/components/products/pics.vue'
 import Region from '~/components/products/region.vue'
 
-import { relatedProducts, brandProduct, product, seller, } from '~/lib/json_db.js'
+import { relatedProducts, brandProduct, sellingPointWithSlug, productWithSlug, product, seller, } from '~/lib/json_db.js'
 
 export default {
   components: {Items, Price, OutOfStock, AddToCart, Pics, Region,},
@@ -126,6 +126,17 @@ export default {
     },
   },
   computed: {
+    sellingPoint() {
+      const slug = this.$props.bundle.slug
+      let sp = sellingPointWithSlug(slug)
+      if (!sp) { // probably means that's actually a productID
+        const product = productWithSlug(slug)
+        if (product) {
+          sp = this.$store.getters['eshop/sellingPointForProduct'](product.id)
+        }
+      }
+      return sp
+    },
     relatedProducts() {
       return relatedProducts(this.bundle.id).map(rp => {
         rp = Object.assign({}, rp)
