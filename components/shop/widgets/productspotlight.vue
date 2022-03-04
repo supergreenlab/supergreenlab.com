@@ -21,11 +21,13 @@
     <div :id='$style.pic'>
       <Pics :pics='product.pics' />
     </div>
-    <div :id='$style.text'>
-      <h2 :id="$style.title" v-html='$md.render(title)'></h2>
-      <div :id="$style.description" v-html='$md.render(description)'></div>
-      <div :id='$style.productlink'>
-        <nuxt-link :id='$style.productpage' :to='link'>View product</nuxt-link>
+    <div :id='$style.right'>
+      <div :id='$style.text'>
+        <h2 :id="$style.title" v-html='$md.render(title)'></h2>
+        <div :id="$style.description" v-html='$md.render(description)'></div>
+        <div :id='$style.productlink'>
+          <nuxt-link :id='$style.productpage' :to='link'>View product</nuxt-link>
+        </div>
       </div>
       <div :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
@@ -106,19 +108,28 @@ export default {
     flex-direction: column
 
 #pic
-  width: 300pt
-  height: 300pt
+  width: 200pt
+  height: 200pt
+  @media only screen and (min-width: 600px)
+    margin-top: 40pt
   @media only screen and (max-width: 1100px) and (min-width: 600px)
-    width: 200pt
-    height: 200pt
+    width: 150pt
+    height: 150pt
   @media only screen and (max-width: 600px)
     width: 100%
+
+#right
+  display: flex
+  flex: 1
+  margin: 0 20pt
+  @media only screen and (max-width: 800px)
+    flex-direction: column
+    margin: 0
 
 #text
   display: flex
   flex-direction: column
   flex: 1
-  margin: 0 20pt
   @media only screen and (max-width: 600px)
     margin: 0
 
@@ -182,8 +193,11 @@ export default {
 #addtocartcontainer
   display: flex
   flex-direction: column
-  margin-top: 20pt
-  align-items: flex-end
+  align-items: center
+  justify-content: center
+  @media only screen and (max-width: 800px)
+    align-items: flex-end
+    justify-content: flex-end
 
 .price
   margin-bottom: 10pt
