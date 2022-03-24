@@ -27,11 +27,15 @@
 
 <script>
 
+import widgets from '~/config/widgets.json'
+
 export default {
-  props: ['containers',],
+  props: ['location',],
   computed: {
     items() {
-      return this.$props.containers.filter(c => c.menu)
+      const { location, } = this.$props
+      const containers = widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order)
+      return containers.filter(c => c.menu)
     },
   },
 }

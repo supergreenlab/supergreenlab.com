@@ -18,25 +18,12 @@
 
 <template>
  <section :id="$style.container">
-   <div id='header_wrapper'>
-     <div :id='$style.header'>
-       <Header :onShowResults='onShowResults' location='SHOP_CENTER_COLUMN'/>
-     </div>
+   <div :id='$style.header'>
+     <Header :nohidemenu=true :nosearch=true location='VIDEO_PAGE'/>
    </div>
    <div :id='$style.fullcontent'>
-     <div :id='$style.leftcolumn'>
-       <Shop location='SHOP_LEFT_COLUMN' />
-     </div>
-     <div v-if='!showSearchResults' :id='$style.content'>
-       <Shop name='shop-page' location='SHOP_CENTER_COLUMN' nomargin='true' />
-     </div>
-     <div v-else :id='$style.content'>
-       <div :id="$style.searchlist">
-         <SmallProductList location='search' :id='$style.smallproductlist' :products='searchResults.map(i => i.item)' />
-       </div>
-     </div>
-     <div :id='$style.rightcolumn'>
-       <Shop location='SHOP_RIGHT_COLUMN' />
+     <div :id='$style.content'>
+       <Shop name='video-page' location='VIDEO_PAGE' nomargin='true' />
      </div>
    </div>
    <Footer />
@@ -48,20 +35,19 @@
 import Header from '~/components/shop/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
 
-import SmallProductList from '~/components/products/smallproductlist.vue'
 import Shop from '~/components/shop/shop.vue'
 
 export default {
   props: ['location',],
-  components: {Header, SmallProductList, Shop, Footer},
+  components: {Header, Shop, Footer},
   head() {
     return {
-      title: `SuperGreenLab Shop`,
+      title: `SuperGreenLab Videos!`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Welcome to SuperGreenLab\'s shop! We\'ve been crawling the web, so you don\'t have to. Find everything you need to grow your own weed here!'
+          content: 'SuperGreenLab videos, checkout our building and growing guides!'
         },
       ],
     }
@@ -116,45 +102,5 @@ export default {
   overflow: visible
   @media only screen and (max-width: 1500px)
     margin: 10pt 0
-
-#leftcolumn
-  height: 100%
-  padding: 3pt
-  margin-top: 5pt
-  margin-left: 5pt
-  display:flex
-  flex-direction: column
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
-  width: 200pt
-  position: fixed
-  left: 0
-  overflow: hidden
-  background-color: #f4f4f4
-  @media only screen and (max-width: 1500px)
-    display: none
-
-#rightcolumn
-  height: 100%
-  position: fixed
-  right: 0
-  padding: 3pt
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px
-  margin-top: 5pt
-  margin-right: 5pt
-  display:flex
-  flex-direction: column
-  width: 200pt
-  overflow: hidden
-  background-color: #f4f4f4
-  @media only screen and (max-width: 1500px)
-    display: none
-
-#searchlist
-  width: 100%
-  top: 25pt
-  background-color: white
-  padding: 5pt
-  @media only screen and (min-width: 1500px)
-    padding: 35pt 5pt 5pt 5pt
 
 </style>

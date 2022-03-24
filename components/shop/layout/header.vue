@@ -24,9 +24,9 @@
           <Header/>
         </div>
         <div :id="$style.navbar">
-          <NavBar :containers='containers' />
+          <NavBar :location='location' />
         </div>
-        <div :id="$style.searchbar">
+        <div v-if='!nosearch' :id="$style.searchbar">
           <Search :onShowResults='onShowResults' />
         </div>
       </div>
@@ -41,7 +41,7 @@ import Search from '~/components/shop/widgets/popupsearch.vue'
 
 export default {
   components: { Header, NavBar, Search },
-  props: ['containers', 'onShowResults',],
+  props: ['containers', 'onShowResults', 'location', 'nosearch', 'nohidemenu'],
   data() {
     return {
       showHeader: true,
@@ -50,11 +50,15 @@ export default {
     };
   },
   mounted() {
-    this.lastScrollPosition = window.pageYOffset;
-    window.addEventListener("scroll", this.onScroll);
+    if (!this.$props.nohidemenu) {
+      this.lastScrollPosition = window.pageYOffset;
+      window.addEventListener("scroll", this.onScroll);
+    }
   },
   beforeDestroy() {
-    window.removeEventListener("scroll", this.onScroll);
+    if (!this.$props.nohidemenu) {
+      window.removeEventListener("scroll", this.onScroll);
+    }
   },
   computed: {
   },

@@ -27,13 +27,7 @@
       <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
       <div :class='$style.containerslot'>
-        <component  v-for="c in containersForLocation('HOME_TOP')" :id='c.slug' :key="c.id" :is='componentForName(c.component)' :config='c'>
-          <div v-if='!c.nomargin' :id='$style.spacer'></div>
-          <div :class='!c.nomargin ? $style.widgetcontainer : ""' v-for='w in widgetsForContainer(c)' :key='w.id' :ref='w.slug'>
-            <component :is='componentForName(w.component)' :config='w' :container='c'></component>
-            <div v-if='!c.nomargin' :id='$style.spacer'></div>
-          </div>
-        </component>
+        <Shop location='HOME_TOP' nomargin='true' />
       </div>
       <div id='use-steps'></div>
       <BlockStep ref='welcome' />
@@ -56,6 +50,7 @@
 <script>
 import Header from '~/components/layout/header.vue'
 import Top from '~/components/home/top.vue'
+import Shop from '~/components/shop/shop.vue'
 import BlockStep from '~/components/home/blockstep.vue'
 import BlockExamples from '~/components/home/blockexamples.vue'
 import BlockBundle from '~/components/home/blockbundle.vue'
@@ -69,31 +64,10 @@ import Promocode from '~/components/layout/overlay-promocode.vue'
 
 import OverlayGuide from '~/components/home/overlay-guide.vue'
 
-// TODO DRY with shop page
-import BannerContainer from '~/components/shop/containers/bannercontainer.vue'
-import CarrouselContainer from '~/components/shop/containers/carrouselcontainer.vue'
-import VerticalContainer from '~/components/shop/containers/verticalcontainer.vue'
-import HorizontalContainer from '~/components/shop/containers/horizontalcontainer.vue'
-
-import Banner from '~/components/shop/widgets/banner.vue'
-import Newsletter from '~/components/shop/widgets/newsletter.vue'
-import PlantSpotlight from '~/components/shop/widgets/plantspotlight.vue'
-import ProductList from '~/components/shop/widgets/productlist.vue'
-import ProductSpotlight from '~/components/shop/widgets/productspotlight.vue'
-import GuideSpotlight from '~/components/shop/widgets/guidespotlight.vue'
-import CountDown from '~/components/shop/widgets/countdown.vue'
-import CollectionSpotlight from '~/components/shop/widgets/collectionspotlight.vue'
-import Edito from '~/components/shop/widgets/edito.vue'
-import RegionSelector from '~/components/shop/widgets/regionselector.vue'
-
-import widgets from '~/config/widgets.json'
-
 import { loadFromStorage, saveToStorage, addEventListener, removeEventListener, innerHeight,} from '~/lib/client-side.js'
 
-const components = { Header, Top, Footer, Promocode, OverlayGuide, HomeNewsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop, BannerContainer, CarrouselContainer, GuideSpotlight, ProductSpotlight, VerticalContainer, HorizontalContainer, Banner, ProductList, Newsletter, PlantSpotlight, CountDown, CollectionSpotlight, Edito, RegionSelector,}
-
 export default {
-  components,
+  components: { Header, Top, Shop, Footer, Promocode, OverlayGuide, HomeNewsletter, BlockStep ,BlockExamples, BlockBundle, BlockApp, BlockGuide, BlockDiscord , BlockShop },
   head() {
     return {
       title: 'SuperGreenLab - Automated LED Grow Lights for ninja growers',
@@ -138,8 +112,6 @@ export default {
     this.$analytics.removeEventMonitor(this.onBackToTop)
   },
 	computed: {
-    containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
-    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) > (new Date()).getTime()),
     promo() {
       const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
       const sglSellerID = sglSellerIDs.find(s => this.$store.state.checkout.promocodes[s] && this.$store.state.checkout.discounts[s])
@@ -151,7 +123,6 @@ export default {
 	},
 
   methods: {
-    componentForName: name => components[name],
     closePopup() {
       saveToStorage('popupShown2', 1)
       this.$data.showPopup = false
