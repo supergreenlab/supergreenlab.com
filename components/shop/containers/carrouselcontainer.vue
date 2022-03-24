@@ -18,9 +18,11 @@
 
 <template>
   <section :id="$style.container">
-    <VueSlickCarousel v-bind="settings">
-      <slot></slot>
-    </VueSlickCarousel>
+    <client-only>
+      <VueSlickCarousel v-bind="settings">
+        <slot></slot>
+      </VueSlickCarousel>
+    </client-only>
   </section>
 </template>
 

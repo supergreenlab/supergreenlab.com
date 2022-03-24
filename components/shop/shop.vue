@@ -72,31 +72,33 @@ export default {
       removeEventListener('scroll', this.handleScroll);
     }
   },
-  handleScroll(e) {
-    if (this.timeout) clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-      Object.keys(this.$refs).forEach((name) => {
-        if (this.lastEvent == name) {
-          return;
-        }
-        let ref = this.$refs[name]
-        if (!ref.length) ref = [ref]
-        ref.forEach((ref) => {
-          const $el = ref.$el ? ref.$el : ref
-          const { y, height } = $el.getBoundingClientRect(),
-            winh = innerHeight()
-
-          let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
-
-          if (isCoveringScreen) {
-            this.$analytics.trackEvent(this.$props.name, 'scrollto', name)
-            this.lastEvent = name
-            this.$data.currentRef = name
+  methods: {
+    handleScroll(e) {
+      if (this.timeout) clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        Object.keys(this.$refs).forEach((name) => {
+          if (this.lastEvent == name) {
+            return;
           }
+          let ref = this.$refs[name]
+          if (!ref.length) ref = [ref]
+          ref.forEach((ref) => {
+            const $el = ref.$el ? ref.$el : ref
+            const { y, height } = $el.getBoundingClientRect(),
+              winh = innerHeight()
+
+            let isCoveringScreen = Math.min(y+height, winh) - Math.max(y, 0) > (height * 3/4 < winh * 3/4 ? height * 3/4 : winh * 3/4)
+
+            if (isCoveringScreen) {
+              this.$analytics.trackEvent(this.$props.name, 'scrollto', name)
+              this.lastEvent = name
+              this.$data.currentRef = name
+            }
+          })
         })
-      })
-    }, 250)
-  },
+      }, 250)
+    },
+  }
 }
 </script>
 

@@ -27,7 +27,7 @@
       <div id='top'></div>
       <Top ref='top' :focus='currentRef == "top"' />
       <div :class='$style.containerslot'>
-        <Shop location='HOME_TOP' nomargin='true' />
+        <Shop location='HOME_TOP' nomargin='true' name='home-shop' />
       </div>
       <div id='use-steps'></div>
       <BlockStep ref='welcome' />
