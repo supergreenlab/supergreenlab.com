@@ -62,6 +62,7 @@ export default {
     { src: '~plugins/vue-slick-carousel.js', ssr: false },
     { src: '~plugins/infinite-loading.js', ssr: false },
     { src: '~plugins/vue-touch.js', ssr: false },
+    { src: '~plugins/vue-select.js', ssr: false },
   ],
 
   components: [{

@@ -26,16 +26,17 @@
     "portal-vue": "^2.1.7",
     "vue-fuse": "^3.0.2",
     "vue-infinite-loading": "^2.4.5",
+    "vue-select": "^3.18.3",
     "vue-slick-carousel": "^1.0.6",
     "vue2-touch-events": "^3.0.1"
   },
   "devDependencies": {
+    "airtable": "^0.10.1",
     "deepmerge": "^4.2.2",
+    "nodemon": "^2.0.12",
     "sharp": "^0.27.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "airtable": "^0.10.1",
-    "nodemon": "^2.0.12",
     "yaml": "^1.10.0"
   }
 }

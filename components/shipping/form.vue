@@ -43,7 +43,7 @@
     </div>
     <div :class='$style.twoinrow'>
       <div :class='$style.input'>
-        <TextInput label='Country' name='country' v-model='country' />
+        <SelectInput label='Country' :options='countries' name='country' v-model='country' />
       </div>
       <div :class='$style.input'>
         <TextInput label='City' name='city' v-model='city' />
@@ -62,6 +62,7 @@
     <div :class='$style.twoinrow'>
       <div :class='$style.input'>
         <TextInput label='State/Province' name='province' v-model='province' />
+        <!--<SelectInput label='State/Province' :options='states(country)' name='province' v-model='province' />-->
       </div>
       <div :class='$style.input'>
         <TextInput label='Zip' name='zip' v-model='zip' />
@@ -71,7 +72,10 @@
 </template>
 
 <script>
+import SelectInput from '~/components/shipping/select.vue'
 import TextInput from '~/components/shipping/text.vue'
+
+import countries from '~/config/countries.json'
 
 const binding = (name) => ({
   get() {
@@ -83,7 +87,7 @@ const binding = (name) => ({
 })
 
 export default {
-  components: {TextInput, },
+  components: {TextInput, SelectInput, },
   computed: {
     firstname: binding('firstname'),
     lastname: binding('lastname'),
@@ -96,6 +100,9 @@ export default {
     address2: binding('address2'),
     province: binding('province'),
     zip: binding('zip'),
+
+    countries: () => countries.map(c => c.name),
+    states: () => (country) => country ? countries.find(c => c.name == country).stateProvinces.map(s => s.name) : '',
   },
 }
 </script>
