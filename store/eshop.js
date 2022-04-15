@@ -77,8 +77,11 @@ export const mutations = {
 }
 
 export const getters = {
-  sellingPoint: (state, getters) => sellingPoints => {
-    const { region } = state
+  sellingPoint: (state, getters) => (sellingPoints, region=null) => {
+    if (region == null) {
+      const { region: r } = state
+      region = r
+    }
     let sp = sellingPoints.find(sp => sp.region[0].id == region.id)
     if (sp) return sp
 
@@ -95,6 +98,6 @@ export const getters = {
     }
   },
   sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
-  sellingPointForProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.Product[0] == id)),
+  sellingPointForProduct: (state, getters) => (id, region=null) => getters.sellingPoint(sellingPoints.filter(sp => sp.Product[0] == id), region),
   availableRegions: (state, getters) => regions.filter(r => r.id == state.offsetRegion.id || (r.in && regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
 }

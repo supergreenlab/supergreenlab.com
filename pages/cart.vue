@@ -24,12 +24,17 @@
         <a v-if='!shared' href='javascript:void(0)' @click='exportCart'><img src='~/assets/img/icon_share.svg' />share this cart</a>
         <div v-else>Cart URL copied to clipboard!</div>
       </div>
-      <Title title='SuperGreenLab Cart' />
-      <div :class='$style.carttype'>Those are the items you selected that are directly available on our shop.</div>
-      <ShopifyCart v-for='seller in shopifySellers' :seller='seller' :key='seller.id' />
+      <div v-for='seller in shopifySellers' :key='seller.id'>
+        <Title :title='`SuperGreenLab ${mixesUSAndEUShops ? `(${region(seller.regions[0]).name})` : ""} Cart`' />
+        <div :class='$style.carttype'>
+          Those are the items you selected that are directly available on our {{ region(seller.regions[0]).name }} warehouse.
+          <h3 v-if='mixesUSAndEUShops' :id='$style.mixAlert'>Looks like some items were not available in the same region.</h3>
+        </div>
+        <ShopifyCart :seller='seller' :alternative='euUSMixAlternative(seller)' />
+      </div>
       <div :id='$style.space'></div>
       <Title title='Checklist Cart' />
-      <div :class='$style.carttype'>Those are the items you selected that are available in other shops.</div>
+      <div :class='$style.carttype'>Those are the items you selected that are available in other e-shops.</div>
       <div v-if='tierSellers.length != 0'>
         <div :class='$style.tiercart' v-for='seller in tierSellers' :key='seller.id'>
           <TierCart :seller='seller' />
@@ -54,6 +59,8 @@ import TierCart from '~/components/cart/tiercart.vue'
 
 import { baseUrl } from '~/lib/client-side.js'
 import { seller, } from '~/lib/json_db.js'
+
+import { region, regionTree, commonRegion, } from '~/lib/json_db.js'
 
 const isShopify = (s) => {
   try {
@@ -85,10 +92,39 @@ export default {
   },
   computed: {
     shopifySellers() {
-      return this.$store.getters['checkout/cart'].filter(li => isShopify(li.sellingPoint.Seller[0])).map(li => seller(li.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i)
+      const r = regionTree(this.$store.state.eshop.region)
+      return this.$store.getters['checkout/cart'].filter(li => isShopify(li.sellingPoint.Seller[0])).map(li => seller(li.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i).sort((s1, s2) => {
+        const r1 = regionTree(region(s1.regions[0]))
+        const r2 = regionTree(region(s2.regions[0]))
+        if (commonRegion(r1, r) && !commonRegion(r2, r)) {
+          return -1
+        } else if (commonRegion(r2, r) && !commonRegion(r1, r)) {
+          return 1
+        }
+        return 0
+      })
     },
     tierSellers() {
       return this.$store.getters['checkout/cart'].filter(li => !isShopify(li.sellingPoint.Seller[0])).map(li => seller(li.sellingPoint.Seller[0])).filter((o, i, a) => a.indexOf(o) == i)
+    },
+    mixesUSAndEUShops() {
+      const hasSGLEU = !!this.shopifySellers.find(s => s.id == process.env.sgteuSellerID)
+      const hasSGLUS = !!this.shopifySellers.find(s => s.id == process.env.sgtusSellerID)
+
+      return hasSGLEU && hasSGLUS
+    },
+    euUSMixAlternative() {
+      return (seller) => {
+        if (!this.mixesUSAndEUShops) {
+          return null
+        }
+        return this.shopifySellers.find(s => seller.regions[0] != s.regions[0])
+      }
+    },
+    region() {
+      return (id) => {
+        return region(id)
+      }
     }
   },
   methods: {
@@ -145,6 +181,8 @@ export default {
 .carttype
   color: #454545
   margin: 10pt 30pt
+  @media only screen and (max-width: 600pt)
+    margin: 10pt 10pt
 
 .tiercart
   margin: 0 5pt 30pt 0
@@ -161,5 +199,8 @@ export default {
 
 #space
   height: 40pt
+
+#mixAlert
+  color: #3bb30b
 
 </style>

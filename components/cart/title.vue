@@ -36,6 +36,7 @@ export default {
   width: 100%
   color: #454545
   border-bottom: 2px solid #9a9a9a
+  margin: 30pt 0
   @media only screen and (max-width: 600pt)
     font-size: 0.8em
 

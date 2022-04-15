@@ -44,6 +44,7 @@
           </div>
           <Price :lineItems='[lineItem]' />
           <OutOfStock v-if='lineItem.sellingPoint.outofstock' />
+          <div v-if='alternateSellingPoint' :id='$style.alternative'><a href='javascript:void(0)' @click='switchToAlternate'>Group with<br /><b>{{ alternative.name }}</b><br />Warehouse</a></div>
         </div>
       </div>
       <div :id='$style.checkbox' v-if='showCheckbox' :class='$style.desktopcheckbox'>
@@ -55,6 +56,9 @@
         </a>
       </div>
     </div>
+    <div v-if='switching' :id='$style.switching' :style='{"opacity": switchingOpacity}'>
+      Switching to {{ alternative.name }}
+    </div>
   </section>
 </template>
 
@@ -65,11 +69,17 @@ import Price from '~/components/products/price.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
 import OutOfStock from '~/components/products/outofstock.vue'
 
-import { brandProduct, brand, seller, } from '~/lib/json_db.js'
+import { brandProduct, brand, seller, region, } from '~/lib/json_db.js'
 
 export default {
   components: {Number, Price, CheckBox, OutOfStock, },
-  props: ['lineItem', 'showCheckbox', 'showProductLink', 'onDeleteLineItem', 'onChangeLineItem', 'onToggleChecked', 'checkboxLabel',],
+  props: ['lineItem', 'showCheckbox', 'showProductLink', 'onDeleteLineItem', 'onChangeLineItem', 'onToggleChecked', 'checkboxLabel', 'alternative',],
+  data() {
+    return {
+      switching: false,
+      switchingOpacity: 0,
+    }
+  },
   computed: {
     brandProduct() {
       const { lineItem } = this.$props
@@ -97,6 +107,16 @@ export default {
         return `/product/${product.slug}`
       }
       return `/product/${sellingPoint.slug}`
+    },
+    alternateSellingPoint() {
+      if (!this.$props.alternative) {
+        return null
+      }
+      const sellingPoint = this.$store.getters['eshop/sellingPointForProduct'](this.$props.lineItem.product.id, region(this.$props.alternative.regions[0]))
+      if (sellingPoint.id == this.$props.lineItem.sellingPoint.id) {
+        return null
+      }
+      return sellingPoint
     },
   },
   methods: {
@@ -127,6 +147,17 @@ export default {
         this.$analytics.trackEvent('lineitem', 'bought', lineItem.sellingPoint.slug, this.$store.getters['checkout/lineItemsPrice']([lineItem], true, true))
       }
     },
+    switchToAlternate() {
+      const alternateSellingPoint = this.alternateSellingPoint
+      this.$data.switching = true
+      setTimeout(() => {
+        this.$data.switchingOpacity = 1
+      }, 1)
+      setTimeout(() => {
+        this.$store.commit('checkout/addToCart', Object.assign({}, this.$props.lineItem, {sellingPoint: alternateSellingPoint}))
+        this.$store.commit('checkout/addToCart', Object.assign({}, this.$props.lineItem, {n: 0}))
+      }, 1000)
+    },
   }
 }
 
@@ -135,6 +166,7 @@ export default {
 <style module lang=stylus>
 
 #container
+  position: relative
   display: flex
   flex-direction: column
   margin-bottom: 15pt
@@ -146,7 +178,6 @@ export default {
   display: flex
   justify-content: space-between
   align-items: center
-  border-bottom: 2px solid #9a9a9a
   color: #454545
   @media only screen and (max-width: 600pt)
     font-size: 0.8em
@@ -165,7 +196,7 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  margin-top: 20px
+  margin-top: 5px
 
 #nitems
   display: flex
@@ -223,7 +254,8 @@ export default {
   padding: 10pt 5pt
   justify-self: stretch
 
-#description > p
+#description p
+  padding: 0
   @media only screen and (max-width: 600pt)
     display: none !important
 
@@ -269,5 +301,28 @@ export default {
   padding: 0 0 0 30pt
   @media only screen and (max-width: 600pt)
     display: none
+
+#alternative
+  text-align: center
+  margin-top: 5px
+  > a
+    color: #3bb30b
+
+#switching
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(255, 255, 255, 0.8)
+  display: flex
+  align-items: center
+  justify-content: center
+  font-weight: bold
+  font-size: 17pt
+  text-align: center
+  color: #454545
+  opacity: 0
+  transition: opacity 0.3s
 
 </style>

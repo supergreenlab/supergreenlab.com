@@ -19,7 +19,7 @@
 <template>
   <section v-if='cart.length != 0' :id='$style.container'>
     <div :class='$style.lineItems'>
-      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' />
+      <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' :alternative='alternative' />
     </div>
     <div :id='$style.checkoutbutton'>
       <div v-if='psuDisclaimer' :id='$style.psuDisclaimer'><b>{{ nRequirePSU }} item{{ nRequirePSU > 1 ? 's' : ''}}</b> require a <nuxt-link to='/product/power-supply-24v-6-25a'>PSU</nuxt-link>, <b>you only have {{ nPSUs }} PSUs</b> in your cart, <b>make sure you have enough.</b><br /></div>
@@ -41,7 +41,7 @@ import { addEventListener, availHeight, availWidth, screenX } from '~/lib/client
 
 export default {
   components: {Header, Footer, LineItem, CheckoutButton,},
-  props: ['seller',],
+  props: ['seller', 'alternative',],
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
   },
