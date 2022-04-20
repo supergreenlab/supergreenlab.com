@@ -35,7 +35,7 @@
 									 <p :class="$style.c0"><span>SuperGreenLab</span><span :class="$style.c2">&nbsp;collects some Personal Data from its Users.</span></p>
 									 <p :class="$style.c0"><span :class="$style.c2">This document can be printed for reference by using the print command in the settings of any browser.</span></p>
 									 <h2 :class="$style.c3" id="h.z3gzva5oqebm"><span :class="$style.c11">Owner and Data Controller</span></h2>
-									 <p :class="$style.c0"><span :class="$style.c2">Hackerman Barcelona Agency 42 SL</span></p>
+									 <p :class="$style.c0"><span :class="$style.c2">Hackerman Barcelona Agency 42 SL (ESB67422634)</span></p>
 									 <p :class="$style.c0"><span>8bis passeig del fonoll, bloc A casa 7<br>08870 Sitges Barcelona<br>Spain</span></p>
 									 <p :class="$style.c0"><span :class="$style.c14">Owner contact email:</span><span :class="$style.c2">&nbsp;contact@supergreenlab.com</span></p>
 									 <h2 :class="$style.c3" id="h.l6ftyhvqkj6r"><span :class="$style.c11">Types of Data collected</span></h2>

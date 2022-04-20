@@ -64,6 +64,7 @@ export default {
     { src: '~plugins/infinite-loading.js', ssr: false },
     { src: '~plugins/vue-touch.js', ssr: false },
     { src: '~plugins/vue-select.js', ssr: false },
+    //{ src: '~plugins/trustedshop.js', ssr: false },
   ],
 
   components: [{
