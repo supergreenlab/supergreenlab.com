@@ -92,7 +92,7 @@
                 <b>{{ s.name }}</b><br />
                 {{ s.description }}<br />
               </div>
-              <div :class='$style.button'><img width='15pt' height='15pt' src='~/assets/img/icon_download.svg' />&nbsp;Download</div>
+              <div :class='$style.button'><img width='15pt' height='15pt' src='~/assets/img/icon_download.svg' />&nbsp;Free Download</div>
             </a>
           </div>
 
