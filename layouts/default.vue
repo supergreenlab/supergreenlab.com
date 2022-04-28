@@ -70,7 +70,7 @@ export default {
         this.$data.showDisclaimer = false
         saveToStorage('disclaimerShown', 1)
       } else {
-        setHref('https://www.google.com')
+        setHref('https://supergreentomato.com')
       }
     },
   },
