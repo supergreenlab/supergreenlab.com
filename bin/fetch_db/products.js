@@ -181,6 +181,11 @@ module.exports.fetchProducts = async () => {
       p.pics = bp.pics
       p.specs = bp.specs
     }
+    p.search = `${p.slug} ${p.name} ${p.description}`;
+    bps.forEach((bpid) => {
+      const bp = brandProducts.find(bp => bp.id == bpid)
+      p.search += `${bp.slug} ${bp.name} `
+    })
     return p
   })
 

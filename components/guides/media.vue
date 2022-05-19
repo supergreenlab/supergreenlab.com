@@ -31,7 +31,7 @@
     </video>
     <div v-else :id='$style.picture' :style='{"background-image": `url(/img/${media.fileLarge})`}' @click='toggleZoom'></div>
     <!-- <div v-if='typeof index != "undefined"' :id='$style.index'>#{{ index+1 }}</div> -->
-    <div :id="$style.guidelogo" >
+    <div v-if='!guideSection.nopiclogo' :id="$style.guidelogo" >
       <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
     </div>
     <div :id="$style.footerMedia">

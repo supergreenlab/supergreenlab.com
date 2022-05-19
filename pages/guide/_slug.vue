@@ -33,7 +33,7 @@
         </div>
         <h2 v-if='showTableOfContent'>Table of content</h2>
         <a href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
-        <div v-if='g.first && showTableOfContent' v-for='(g, i) in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
+        <div v-if='showTableOfContent' v-for='(g, i) in allGuides' :class='$style.guide' :id='g.id == guide.id ? $style.selected : ""'>
           <h1>#{{ i+1 }}</h1>
           <Guide location='table-of-content' :from='guide' :guide='g' />
         </div>
@@ -126,7 +126,7 @@ export default {
     },
     allGuides() {
       let current = this.first == null ? this.guide : guides.find(g => g.slug == this.first.nextslug[0])
-      const ordered = []
+      let ordered = []
       const fn = (current) => {
         ordered.push(current)
         current = guides.find(g => g.slug == current.nextslug)
@@ -134,6 +134,9 @@ export default {
       }
       fn(current)
 
+      if (this.first) {
+        ordered = [this.first, ...ordered]
+      }
       return ordered
     },
     next() {

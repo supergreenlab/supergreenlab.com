@@ -52,7 +52,7 @@ export default {
     },
     options () {
       return {
-        keys: ['name','SellingPoints.BrandProduct.name', 'description', 'SellingPoints.BrandProduct.description'],
+        keys: ['search'],
       }
     },
   },
