@@ -86,7 +86,7 @@
         <div :id='$style.addtocart'>
           <div v-if='brandProduct.stls && brandProduct.stls.length' :id='$style.stls'>
             <h3>Download this product!</h3>
-            <a v-for='s in brandProduct.stls' :key='s.id' :class='$style.stl' :href='`/${s.file.filePath}`' target='_blank' :download='s.file.fileName' @click='stlClicked(s)'>
+            <a v-for='s in brandProduct.stls' :key='s.id' :class='$style.stl' :href='s.file ? `/${s.file.filePath}` : s.link' target='_blank' :download='s.file ? s.file.fileName : null' @click='stlClicked(s)'>
               <img :src='`/img/${s.pic.fileLarge}`' />
               <div>
                 <b>{{ s.name }}</b><br />

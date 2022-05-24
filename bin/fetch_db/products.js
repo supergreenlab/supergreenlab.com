@@ -27,7 +27,7 @@ module.exports.fetchProducts = async () => {
   let collections = await fetchTable('Collections', ['slug', 'name','picture', 'CollectionProducts', 'description'])
   let relatedProducts = await fetchTable('RelatedProducts', ['slug', 'to', 'product', 'order', 'text'])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
-  let files = await fetchTable('Files', ['slug', 'file', 'pic', 'name', 'description', 'BrandProducts',])
+  let files = await fetchTable('Files', ['slug', 'file', 'link', 'pic', 'name', 'description', 'BrandProducts',])
 
   const regionTree = (region, acc=[]) => {
     acc.push(region)
@@ -45,7 +45,6 @@ module.exports.fetchProducts = async () => {
       picPromise = p
       f.file = data
     } catch(e) {
-      throw e
     }
 
     try {
@@ -181,7 +180,7 @@ module.exports.fetchProducts = async () => {
       p.pics = bp.pics
       p.specs = bp.specs
     }
-    p.search = `${p.slug} ${p.name} ${p.description}`;
+    p.search = `${p.slug} ${p.name}`;
     bps.forEach((bpid) => {
       const bp = brandProducts.find(bp => bp.id == bpid)
       p.search += `${bp.slug} ${bp.name} `
