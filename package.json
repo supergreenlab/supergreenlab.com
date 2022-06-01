@@ -34,7 +34,7 @@
     "airtable": "^0.10.1",
     "deepmerge": "^4.2.2",
     "nodemon": "^2.0.12",
-    "sharp": "^0.27.1",
+    "sharp": "^0.30.5",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "yaml": "^1.10.0"
