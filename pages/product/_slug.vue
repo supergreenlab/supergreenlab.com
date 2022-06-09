@@ -96,20 +96,22 @@
             </a>
           </div>
 
-          <div :id='$style.price'>
-            <Price :lineItems='[{sellingPoint, n: 1}]' :small=true :notify=true />
-          </div>
-          <OutOfStock v-if='sellingPoint.outofstock' />
-          <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
-          <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
-            <h4>Checkout those too:</h4>
-            <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
-              <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
-              <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
-              <div>
-                <b>{{ rp.price.strTotal }}</b>
-              </div>
-            </nuxt-link>
+          <div v-if='brandProduct.sellable'>
+            <div :id='$style.price'>
+              <Price :lineItems='[{sellingPoint, n: 1}]' :small=true :notify=true />
+            </div>
+            <OutOfStock v-if='sellingPoint.outofstock' />
+            <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small=true :discreet=false @click='handleAddToCart' />
+            <div v-if='relatedProducts.length' :id='$style.relatedProducts' :class='addedToCart ? $style.highlight : ""'>
+              <h4>Checkout those too:</h4>
+              <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
+                <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
+                <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
+                <div>
+                  <b>{{ rp.price.strTotal }}</b>
+                </div>
+              </nuxt-link>
+            </div>
           </div>
           <div v-if='Object.keys(brandProduct.specs).length' :id='$style.specs'>
             <div :class='$style.spec' v-if='brandProduct.specs.nItems'>Items<b>x{{ brandProduct.specs.nItems }}</b></div>

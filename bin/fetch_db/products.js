@@ -20,7 +20,7 @@ module.exports.fetchProducts = async () => {
   let sellingPoints = (await fetchTable('SellingPoints', ['slug', 'url', 'region', 'Product', 'Seller', 'price', 'currency', 'outofstock', 'canorder', 'params', 'BrandProduct', 'ready', 'offer', 'offertext', 'inctax', 'nopromo', 'freeshipping'])).filter(sp => sp.ready)
   sellingPoints.sort((sp1, sp2) => sp1.price - sp2.price)
   let sellers = await fetchTable('Sellers', ['slug', 'name', 'logo', 'description', 'url', 'regions', 'type', 'params'])
-  let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready', 'stls'])).filter(bp => bp.ready)
+  let brandProducts = (await fetchTable('BrandProducts', ['slug', 'name', 'tagline', 'description', 'bulletpoints', 'pics', 'url', 'Brand', 'specs', 'variantOf', 'ready', 'stls', 'sellable', ])).filter(bp => bp.ready)
   let brands = await fetchTable('Brands', ['slug', 'name', 'description', 'logo', 'url'])
   let regions = await fetchTable('Regions', ['code', 'name', 'flag', 'level', 'in', 'currency', 'vat', 'closest'])
   let collectionProducts = await fetchTable('CollectionProducts', ['slug', 'Product', 'order'])

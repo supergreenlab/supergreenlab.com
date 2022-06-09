@@ -25,16 +25,21 @@
       <div :id='$style.text'>
         <h2 :id="$style.title" v-html='$md.render(title)'></h2>
         <div :id="$style.description" v-html='$md.render(description)'></div>
-        <div :id='$style.productlink'>
+        <div :id='$style.productlink' v-if='brandProduct.sellable'>
           <nuxt-link :id='$style.productpage' :to='link'>View product</nuxt-link>
         </div>
       </div>
-      <div :id='$style.addtocartcontainer'>
+      <div v-if='brandProduct.sellable' :id='$style.addtocartcontainer'>
         <div :class='$style.price'>
           <Price :lineItems='[{sellingPoint: sellingPoint, n: 1}]' :freeshipping='false' />
         </div>
         <OutOfStock v-if='sellingPoint.outofstock' />
         <AddToCart v-else :type='product.type.indexOf("SGL_BUNDLE") != -1 ? "bundle" : "product"' :product='product' :sellingPoint='sellingPoint' @click='handleAddToCart' :name='`${container.slug}_${config.slug}`' />
+      </div>
+      <div v-else :id='$style.addtocartcontainer'>
+        <div :id='$style.downloadlink'>
+          <nuxt-link :id='$style.productpage' :to='link'>Free download!</nuxt-link>
+        </div>
       </div>
     </div>
   </section>
@@ -48,7 +53,8 @@ import OutOfStock from '~/components/products/outofstock.vue'
 import AddToCart from '~/components/products/addtocart.vue'
 import Price from '~/components/products/price.vue'
 
-import { products, seller } from '~/lib/json_db.js'
+import { products, brandProduct, seller } from '~/lib/json_db.js'
+const bp = brandProduct
 
 export default {
   props: ['config', 'container',],
@@ -62,6 +68,10 @@ export default {
     product() {
       const { config } = this.$props
       return products(config.products)[0]
+    },
+    brandProduct() {
+      const { config } = this.$props
+      return bp(this.sellingPoint.BrandProduct[0])
     },
     sellingPoint() {
       return this.$store.getters['eshop/sellingPointForProduct'](this.product.id)
@@ -171,6 +181,14 @@ export default {
 #productlink
   display: flex
   margin: 10pt 5pt
+
+#downloadlink
+  display: flex
+  margin: 10pt 5pt 10pt 10pt
+  font-weight: 800
+  font-size: 1.2em
+  > a
+    padding: 10pt 25pt
 
 #productpage
   display: block

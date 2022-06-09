@@ -28,7 +28,7 @@
     </a>
     <div v-if='!nomenu' :id='$style.menu' :style='{"right": (!isActive? "-200pt" : "0pt")}'>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/shop") ? $style.selected : ""' to='/shop'>Shop</nuxt-link></div>
-      <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01'>Stickers!</nuxt-link></div>
+      <!--<div><nuxt-link @click.native='onClick' :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01'>Stickers!</nuxt-link></div>-->
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/bundle/micro-box-bundle") ? $style.selected : ""' to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/bundle/my-first-stealth-grow-box") ? $style.selected : ""' to='/bundle/my-first-stealth-grow-box'>Nano bundle <span :class='$style.new'>New!</span></nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/guides") ? $style.selected : ""' to='/guides'>Guides</nuxt-link></div>
