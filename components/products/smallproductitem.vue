@@ -32,11 +32,16 @@
         <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
         <div v-if='brandProduct.description' v-html='$md.render(brandProduct.description.substring(0, 100))'></div>
       </div>
-      <div :id='$style.price'>
-        <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+      <div v-if='brandProduct.sellable'>
+        <div :id='$style.price'>
+          <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+        </div>
+        <OutOfStock v-if='sellingPoint.outofstock' />
+        <SmallAddToCart v-else :location='location' :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
       </div>
-      <OutOfStock v-if='sellingPoint.outofstock' />
-      <SmallAddToCart v-else :location='location' :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' />
+      <div v-else>
+        <nuxt-link :to='link' :class='$style.download'><img width='15pt' height='15pt' src='~/assets/img/icon_download.svg' />&nbsp;Free Download</nuxt-link>
+      </div>
     </div>
     <div :id='$style.infocontainersmall'>
       <div :id='$style.description'>
@@ -46,11 +51,18 @@
             From <b>{{ seller.name }}</b>
           </nuxt-link>
 
-          <OutOfStock v-if='sellingPoint.outofstock' />
-          <SmallAddToCart v-else :location='location' :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' :center=true />
+          <div v-if='brandProduct.sellable'>
+            <OutOfStock v-if='sellingPoint.outofstock' />
+            <SmallAddToCart v-else :location='location' :product='product' :sellingPoint='sellingPoint' :discreet=false :n='1' :center=true />
+          </div>
         </div>
-        <div :id='$style.price'>
-          <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+        <div v-if='brandProduct.sellable'>
+          <div :id='$style.price'>
+            <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+          </div>
+        </div>
+        <div v-else>
+          <div :class='$style.download'><img width='15pt' height='15pt' src='~/assets/img/icon_download.svg' />&nbsp;Free Download</div>
         </div>
       </div>
     </div>
@@ -212,5 +224,21 @@ export default {
 
 .green
   color: #3bb30b
+
+.download
+  display: block
+  background-color: #3BB30B
+  text-align: center
+  padding: 8pt 25pt
+  border-radius: 5pt
+  color: white
+  text-decoration: none
+  font-size: 1.2em
+  margin: 10pt 0
+  white-space: nowrap
+  transition: opacity 0.2s
+  @media only screen and (max-width: 1000px)
+    padding: 7pt 22pt
+    font-size: 1.1em
 
 </style>
