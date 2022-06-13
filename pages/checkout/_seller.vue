@@ -38,7 +38,8 @@
         Price in checkout will probably not be in the same currency.
       </div>
       <div :class='$style.notice'>
-        <b>Shipping cost</b> will be added on the next step.
+        <b>Shipping cost</b> will be added on the next step.<br />
+        <b>Usual delivery time:</b> 3-5 business days.
       </div>
       <div :class='$style.notice' v-if='taxdisclaimuk'>
         <b>Brexit notice</b>: Due to brexit UK customers are not charged VAT upfront anymore. But UK customs will still charge them on arrival in most cases:/ So we can't really tell you how much in advance, but seems to be around £55 for a Ninja Bundle (the 6 panels one). 

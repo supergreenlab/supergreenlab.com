@@ -86,10 +86,69 @@
           <p :class="$style.c2"><span :class="$style.c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(d) If a counter-notice is received by Our copyright agent, We may send a copy of the counter-notice to the original complaining party informing that person that We may replace the removed content or cease disabling it. Unless the original complaining party files an action seeking a court order against the content provider, member or user, the removed content may be replaced, or access to it restored, in ten (10) business days or more after receipt of the counter-notice, at Our sole discretion. Please understand that filing a counter-notification may lead to legal proceedings between You and the complaining party to determine ownership. Be aware that there may be adverse legal consequences in Your country if You make a false or bad faith allegation by using this process.</span></p>
           <p :class="$style.c2"><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(e) Further information on the DMCA can be found in 17 U.S.C. 512 or on the United States Copyright Office website at </span><span :class="$style.c6"><a :class="$style.c8" href="https://www.google.com/url?q=http://www.copyright.gov/legislation/dmca.pdf&amp;sa=D&amp;ust=1594718422319000&amp;usg=AOvVaw0jyxCjlHnbJX9oXUcYq4rz">http://www.copyright.gov/legislation/dmca.pdf</a></span><span :class="$style.c0">.</span></p>
           <p :class="$style.c2"><span :class="$style.c0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELECTRONIC DEVICES TERMS AND CONDITIONS<br></span></p>
-          <p :class="$style.c2"><span :class="$style.c4">Returns</span></p>
-          <p :class="$style.c2"><span :class="$style.c0">Our return policy lasts 30 days. If 30 days have gone by since your order has been shipped, unfortunately we can&rsquo;t offer you a refund or exchange. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging and include all accessories. Shipping and handling charges are not refundable. We are not responsible for any shipping charges of merchandise being returned to us. Before returning any packages contact us at towelie@supergreenlab.com.</span></p>
-          <p :class="$style.c1" id="h.gqdog27poujh"><span :class="$style.c4">Refunds</span></p>
-          <p :class="$style.c2"><span :class="$style.c0">Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund. If you are approved, then your refund will be processed, and a credit will automatically be applied to your credit card or original method of payment, within 5 business days.</span></p>
+          <p :class="$style.c2"><span :class="$style.c4">Returns for the delivery of goods</span></p>
+          <p :class="$style.c2"><span :class="$style.c0">
+            You have the right to cancel this contract
+            within 14 days without giving any reason. The
+            cancellation period will expire after 14 days
+            from the day on which you acquire,or a third
+            party other than the carrier and indicated by
+            you acquires, physical possession of the last
+            good.
+            To exercise the right to cancel, you must
+            inform us:
+
+            Hackerman Barcelona Agency 42 SL
+            Passeig del fonoll 8b,
+            08870 Sitges
+            Barcelona, Spain
+
+            [INSERT: Name of the company,
+            street, number, postcode, town, e-mail
+            address, telephone number]
+
+            of your decision
+            to cancel this contract by a clear statement
+            (e.g. a letter sent by post, fax or e-mail). You
+            may use the attached model cancellation form,
+            but it is not obligatory.
+            To meet the cancellation deadline, it is
+            sufficient for you to send your communication
+            concerning your exercise of the right of cancel
+            before the cancellation period has expired.
+            Effects of cancellation
+            If you cancel this contract, we will reimburse to
+            you all payments received from you, including
+            the costs of delivery (except for the
+            supplementary costs arising if you chose a
+            type of delivery other than delivery other than
+            the least expensive type of standard delivery
+            offered by us), without undue delay and in any
+            event not later than 14 days from the day on
+            which we are informed about your decision to
+            withdraw from this contract. We will make the
+            reimbursement using the same means of
+            payment as you used for the initial transaction,
+            unless you have expressly agreed otherwise;
+            in any event, you will not incur any fees as a
+            result of such reimbursement. We may
+            withhold reimbursement until we have received
+            the goods back or you have supplied evidence
+            of having sent back the goods, whichever is
+            the earliest.
+            You shall send back the goods or hand them
+            over to us, without undue delay and in any
+            event not later than 14 days from the day on
+            which you communicate your withdrawal from
+            this contract to us. The deadline is met if you
+            send back the goods before the period of 14
+            days has expired. You will have to bear the
+            direct cost of returning the goods. You are only
+            liable for any diminished value of the goods
+            resulting from the handling other than what is
+            necessary to establish the nature,
+            characteristics and functioning of the goods.
+          </span></p>
           <p :class="$style.c1" id="h.d6sahhi140vs"><span :class="$style.c4">Late or missing refunds</span></p>
           <p :class="$style.c2"><span :class="$style.c0">If you haven&rsquo;t received a refund yet, first check your bank account and then contact your credit card company or bank, it may take some time before your refund is officially posted. If you still have not received your refund yet, please contact us at towelie@supergreenlab.com</span></p>
           <p :class="$style.c1" id="h.j6dw7ncszbjg"><span :class="$style.c4">Exchanges</span></p>
