@@ -19,14 +19,14 @@
 export default ({ app }) => {
 	var _tsid = 'XE87380AEEFF1397FB483F75AC335E84B'; 
 	window._tsConfig = { 
-		'yOffset': '0', /* offset from page bottom */
-		'variant': 'reviews', /* default, reviews, custom, custom_reviews */
-		'customElementId': '', /* required for variants custom and custom_reviews */
+		'yOffset': '50', /* offset from page bottom */
+		'variant': 'custom', /* default, reviews, custom, custom_reviews */
+		'customElementId': 'trustedshops', /* required for variants custom and custom_reviews */
 		'trustcardDirection': '', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */
 		'customBadgeWidth': '', /* for custom variants: 40 - 90 (in pixels) */
 		'customBadgeHeight': '', /* for custom variants: 40 - 90 (in pixels) */
 		'disableResponsive': 'false', /* deactivate responsive behaviour */
-		'disableTrustbadge': 'true' /* deactivate trustbadge */
+		'disableTrustbadge': 'false' /* deactivate trustbadge */
 	};
 	var _ts = document.createElement('script');
 	_ts.type = 'text/javascript'; 

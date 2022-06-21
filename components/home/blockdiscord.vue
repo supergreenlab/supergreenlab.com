@@ -37,7 +37,7 @@
           <div><strong>24/7 technical and plant support</strong> from us and the community.</div>
           <div>Hundreds of people willing to share their <strong>passion for growing and building grow boxes</strong>.</div>
           <div>Wether you’re an experienced grower or total noob, <strong>there’s always something to learn and share</strong>.</div>
-          <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> private discord server is home to throusands of continuous discussions about <strong>people’s experiences</strong>.</div>
+          <div>The <span :class="$style.bolder">Super</span><strong>Green</strong><span :class="$style.bolder">Lab</span> private discord server is home to thousands of continuous discussions about <strong>people’s experiences</strong>.</div>
           <div>Using the search feature will allow you to dig old discussions about <strong>subjects that matter to your case</strong>.</div>
         </div>
         <a @click='clickJoinDiscord' href="https://discord.gg/YPwAWNh" target='_blank' :id="$style.btn"><img src='~/assets/img/discord-logo.jpg' />ACCESS DISCORD<br/>SERVER HERE</a>

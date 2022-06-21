@@ -34,6 +34,8 @@
 
     <portal-target name='root'>
     </portal-target>
+
+    <div id='trustedshops' :class='{ [ $style.trustedshops ]: true, [$style.hidden]: hideTSBadge}'></div>
   </section>
 </template>
 
@@ -41,6 +43,7 @@
 import Disclaimer from '~/components/layout/overlay-major.vue'
 
 import { loadFromStorage, saveToStorage, setHref } from '~/lib/client-side.js'
+import { seller, productWithSlug, sellingPointWithSlug, } from '~/lib/json_db.js'
 
 export default {
   components: {Disclaimer,},
@@ -62,6 +65,21 @@ export default {
             promocode = this.$store.state.checkout.promocodes[sglSellerID]
       if (!promocode || !discount) return null
       return {promocode, discount}
+    },
+    hideTSBadge() {
+      const comps = this.$route.path.split('/')
+      console.log(comps)
+      if (comps[1] == 'product') {
+        let sp = sellingPointWithSlug(comps[2])
+        if (!sp) {
+          const product = productWithSlug(comps[2])
+          sp = this.$store.getters['eshop/sellingPointForProduct'](product.id)
+        }
+        const s = seller(sp.Seller[0])
+        const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
+        return !sglSellerIDs.includes(s.id)
+      }
+      return false
     },
   },
   methods: {
@@ -103,5 +121,17 @@ export default {
 
 #promo > h1
   margin: 0
+
+.trustedshops
+  position: fixed
+  bottom: 20px
+  left: 20px
+  background-color: white
+  border: 2px solid #3bb30b
+  padding: 5px
+  border-radius: 10px
+
+.hidden
+  display: none
 
 </style>
