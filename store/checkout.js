@@ -30,7 +30,44 @@ const STORAGE_ITEM='checkout8'
 
 export const state = () => {
   let defaults = {
-    rates: [{"base":"EUR","rates":{"EUR":1,"USD":1.082755,"CAD":1.364006,"GBP":0.827869}},{"base":"USD","rates":{"EUR":0.92357,"USD":1,"CAD":1.259755,"GBP":0.764595}},{"base":"CAD","rates":{"EUR":0.733135,"USD":0.793805,"CAD":1,"GBP":0.606939}},{"base":"GBP","rates":{"EUR":1.207921,"USD":1.307882,"CAD":1.647611,"GBP":1}}],
+    rates: [
+        {
+              "base": "EUR",
+              "rates": {
+                      "EUR": 1,
+                      "USD": 1.043831,
+                      "CAD": 1.346322,
+                      "GBP": 0.861515
+                    }
+            },
+      {
+            "base": "USD",
+            "rates": {
+                    "EUR": 0.95801,
+                    "USD": 1,
+                    "CAD": 1.28979,
+                    "GBP": 0.82534
+                  }
+          },
+      {
+            "base": "CAD",
+            "rates": {
+                    "EUR": 0.742764,
+                    "USD": 0.77532,
+                    "CAD": 1,
+                    "GBP": 0.639903
+                  }
+          },
+      {
+            "base": "GBP",
+            "rates": {
+                    "EUR": 1.160746,
+                    "USD": 1.211622,
+                    "CAD": 1.562738,
+                    "GBP": 1
+                  }
+          }
+    ],
     cart: [],
     promocodes: {},
     discounts: {},

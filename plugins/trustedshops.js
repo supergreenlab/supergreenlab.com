@@ -22,9 +22,9 @@ export default ({ app }) => {
 		'yOffset': '50', /* offset from page bottom */
 		'variant': 'custom', /* default, reviews, custom, custom_reviews */
 		'customElementId': 'trustedshops', /* required for variants custom and custom_reviews */
-		'trustcardDirection': '', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */
-		'customBadgeWidth': '', /* for custom variants: 40 - 90 (in pixels) */
-		'customBadgeHeight': '', /* for custom variants: 40 - 90 (in pixels) */
+		'trustcardDirection': 'bottomLeft', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */
+		'customBadgeWidth': '200px', /* for custom variants: 40 - 90 (in pixels) */
+		'customBadgeHeight': '200px', /* for custom variants: 40 - 90 (in pixels) */
 		'disableResponsive': 'false', /* deactivate responsive behaviour */
 		'disableTrustbadge': 'false' /* deactivate trustbadge */
 	};

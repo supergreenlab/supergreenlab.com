@@ -68,11 +68,13 @@ export default {
     },
     hideTSBadge() {
       const comps = this.$route.path.split('/')
-      console.log(comps)
       if (comps[1] == 'product') {
         let sp = sellingPointWithSlug(comps[2])
         if (!sp) {
           const product = productWithSlug(comps[2])
+          if (!product) {
+            return true
+          }
           sp = this.$store.getters['eshop/sellingPointForProduct'](product.id)
         }
         const s = seller(sp.Seller[0])
