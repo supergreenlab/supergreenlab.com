@@ -132,6 +132,7 @@ export default {
   border: 2px solid #3bb30b
   padding: 5px
   border-radius: 10px
+  z-index: 10000
 
 .hidden
   display: none
