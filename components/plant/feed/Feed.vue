@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <FeedEntry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :lib='lib' :feedEntry="feedEntry" v-on:dialogTriggered="dialogTriggered"></FeedEntry>
+    <FeedEntry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :lib='lib' :feedEntry="feedEntry" v-on:dialogTriggered="dialogTriggered" v-on:shareDialogTriggered='shareDialogTriggered'></FeedEntry>
     <div v-if='feedEntries.length' :id="$style.spinner_container">
       <infinite-loading
               spinner="spiral"
@@ -58,6 +58,9 @@ export default {
     },
     dialogTriggered() {
       this.$emit('dialogTriggered');
+    },
+    shareDialogTriggered(event) {
+      this.$emit('shareDialogTriggered', event);
     },
   },
 }

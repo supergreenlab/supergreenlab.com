@@ -42,7 +42,7 @@ const MEDIA_TYPES = {
 }
 
 export default {
-  props: ['medias', 'onMediaClick', 'thumbnails', 'height', 'size'],
+  props: ['medias', 'onMediaClick', 'thumbnails', 'height', 'size',],
   data() {
     return {
       measureOpacity: 100,

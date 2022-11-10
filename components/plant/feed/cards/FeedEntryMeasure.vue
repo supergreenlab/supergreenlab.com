@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <MediaViewer v-if='media' :medias='[media]' height='400px' :onMediaClick='onClick'/>
+    <MediaViewer v-if='media' :medias='[media]' height='400px' :onMediaClick='onClick' :setShownMedias='setShownMedias'/>
     <p :id='$style.message' v-if="feedEntry.params.message">{{feedEntry.params.message}}</p>
     <FullscreenPics v-if='showPic' :medias='[media]' :onClose='onClose'/>
   </section>
@@ -32,11 +32,12 @@ export default {
       showPic: false,
     }
   },
-  props: ['lib', 'feedEntry'],
+  props: ['lib', 'feedEntry', 'setShownMedias',],
   async mounted() {
     const { lib } = this.$props
     const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
     const media = data.medias[0]
+    this.$props.setShownMedias(data.medias)
 
     const { feedEntry } = this.$props
     if (feedEntry.params.previous) {

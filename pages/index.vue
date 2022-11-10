@@ -38,7 +38,6 @@
       <BlockGuide ref='everything-you-need' />
       <BlockShop ref='shop' />
       <HomeNewsletter ref='newsletter' />
-      <SGLDiaryFeed />
     </div>
     <Footer />
     <transition name="popup">

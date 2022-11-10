@@ -23,13 +23,13 @@
       {{feedEntryHeading(feedEntry.type)}}
     </div>
     <div :id="$style.content">
-      <component :is="feedComponent(feedEntry.type)" :feedEntry="feedEntry" :lib='lib'></component>
+      <component :is="feedComponent(feedEntry.type)" :feedEntry="feedEntry" :lib='lib' :setShownMedias='setShownMedias'></component>
     </div>
     <div :id="$style.footer">
       <div :id="$style.footericons">
         <img v-on:click="dialogTriggered" :class="{[$style.footericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/button_like.png')" />
         <img v-on:click="dialogTriggered" :class="{[$style.footericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/button_comment.png')" />
-        <img v-on:click="dialogTriggered" :class="{[$style.footericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/button_share.png')" />
+        <img v-if='shownMedias && shownMedias.length && hasSharing(feedEntry.type)' v-on:click="shareDialogTriggered" :class="{[$style.footericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/button_share.png')" />
         <img v-on:click="dialogTriggered" :class="{[$style.footericon]: true, [$style.flexend]: true, clickable: true}" :src="require('~/assets/img/plant/feed/button_bookmark.png')" />
       </div>
       <div :id="$style.flexstart">{{formattedDate(feedEntry.date)}}</div>
@@ -54,6 +54,7 @@ const entries = {
     component: require('./FeedEntryMedia').default,
     name: 'Grow log',
     icon: require('~/assets/img/plant/feed/icon_media.svg'),
+    sharing: true,
   },
   FE_TIMELAPSE: {
     component: require('./FeedEntryMedia').default,
@@ -64,6 +65,7 @@ const entries = {
     component: require('./FeedEntryMeasure').default,
     name: 'Measure',
     icon: require('~/assets/img/plant/feed/icon_measure.svg'),
+    sharing: true,
   },
   FE_LIFE_EVENT: {
     component: require('./FeedEntryLifeEvent').default,
@@ -89,32 +91,42 @@ const entries = {
     component: require('./FeedEntryTraining').default,
     name: 'Bending',
     icon: require('~/assets/img/plant/feed/icon_bending.svg'),
+    sharing: true,
   },
   FE_DEFOLIATION: {
     component: require('./FeedEntryTraining').default,
     name: 'Defoliation',
     icon: require('~/assets/img/plant/feed/icon_defoliation.svg'),
+    sharing: true,
   },
   FE_TOPPING: {
     component: require('./FeedEntryTraining').default,
     name: 'Topping',
     icon: require('~/assets/img/plant/feed/icon_topping.svg'),
+    sharing: true,
   },
   FE_FIMMING: {
     component: require('./FeedEntryTraining').default,
     name: 'Fimming',
     icon: require('~/assets/img/plant/feed/icon_fimming.svg'),
+    sharing: true,
   },
   FE_TRANSPLANT: {
     component: require('./FeedEntryTraining').default,
     name: 'Transplant',
     icon: require('~/assets/img/plant/feed/icon_transplant.svg'),
+    sharing: true,
   },
 }
 
 export default {
   name: "feed-entry",
   props: ['lib', 'feedEntry'],
+  data() {
+    return {
+      shownMedias: null,
+    }
+  },
   mounted() {
   },
   computed: {
@@ -123,6 +135,9 @@ export default {
     },
     feedEntryHeading: () => (type) =>  {
       return (entries[type] || {}).name || 'Unknown card'
+    },
+    hasSharing: () => (type) => {
+      return (entries[type] || {}).sharing || false
     },
     headerIcon: () => (type) =>  {
       return (entries[type] || {}).icon || '~/assets/img/plant/feed/icon_unknown.svg'
@@ -136,6 +151,12 @@ export default {
     dialogTriggered() {
       this.$emit('dialogTriggered');
     },
+    shareDialogTriggered() {
+      this.$emit('shareDialogTriggered', this.$data.shownMedias.filter(m => m.filePath.indexOf('/feedmedias/videos-') === -1));
+    },
+    setShownMedias(shownMedias) {
+      this.$data.shownMedias = shownMedias
+    }
   },
 }
 </script>

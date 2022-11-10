@@ -21,7 +21,7 @@
     <div :id='$style.title'>
       <SectionTitle title='Checkout the'
                     green="Latest diaries in the app"
-                    title2='(install the app before clicking)' />
+                    title2='Best is to look at how others are doing:)' />
     </div>
     <div :id='$style.plants'>
       <nuxt-link :to='`/public/plant?id=${plant.id}`' :class='$style.plant' v-for='plant in plants' :key='plant.id' :style='{"background-image": `url(https://storage.supergreenlab.com${plant.thumbnailPath})`}' @click='open(plant)'>

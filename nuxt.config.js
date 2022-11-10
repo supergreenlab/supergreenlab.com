@@ -50,7 +50,7 @@ export default {
     '@/assets/css/global.css',
     'vue-slick-carousel/dist/vue-slick-carousel.css',
     'vue-slick-carousel/dist/vue-slick-carousel-theme.css',
-    'sgl-diary-feed/dist/sgl-diary-feed.css',
+    //'sgl-diary-feed/dist/sgl-diary-feed.css',
   ],
 
   /*
@@ -61,7 +61,7 @@ export default {
     { src: '~plugins/matomo.js', ssr: false },
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
-    { src: '~plugins/sgl-diary-feed.js', ssr: false },
+    //{ src: '~plugins/sgl-diary-feed.js', ssr: false },
     { src: '~plugins/vue-slick-carousel.js', ssr: false },
     { src: '~plugins/infinite-loading.js', ssr: false },
     { src: '~plugins/vue-touch.js', ssr: false },
