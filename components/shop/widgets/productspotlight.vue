@@ -167,6 +167,7 @@ export default {
   font-weight: 600
 
 #description ul
+  margin-left: 25px
   padding: 0
   list-style-type: none
 
