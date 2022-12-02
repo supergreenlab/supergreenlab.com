@@ -29,6 +29,10 @@
           <h1>{{ guideSection.title }}</h1>
           <CheckBox v-if='guideSection.showdone' label='Done' @click='checkDone' :checked='checked' />
         </div>
+        <div>
+          {{ guideSection.entry }}
+          {{ guideSection.entry && (guideSection.entry[0] || guideSection.entry).type }}
+        </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
         <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>

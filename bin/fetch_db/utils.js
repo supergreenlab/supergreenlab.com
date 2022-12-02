@@ -92,14 +92,14 @@ module.exports.fetchAttachement = (p, attachement, dir, keepRaw=false) => {
       }
     })
 
-    return { p, attachement, data: { fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, fileRaw: `${dir}/${finalFileRaw}`, type: attachement.type } }
+    return { p, attachement, data: { fileName: attachement.filename, fileLarge: `${dir}/${finalFileLarge}`, fileSmall: `${dir}/${finalFileSmall}`, fileFull: `${dir}/${finalFileFull}`, fileRaw: `${dir}/${finalFileRaw}`, type: attachement.type } }
   } else if (attachement.type.indexOf('video/') == 0) {
     const ext = attachement.type.split('/')[1].toLowerCase()
     const filePath = `${dir}/${attachement.id}.${ext}`
     p = p.then(async () => {
       await fetchFile(attachement.url, filePath)
     })
-    return { p, attachement, data: { filePath, type: attachement.type } }
+    return { p, attachement, data: { fileName: attachement.filename, filePath, type: attachement.type } }
   } else if (attachement.type == 'application/pdf') {
     const filePath = `${dir}/${attachement.id}.pdf`,
       fileLarge = `${dir}/${attachement.id}.png`,

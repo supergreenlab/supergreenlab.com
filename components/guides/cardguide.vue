@@ -44,7 +44,7 @@
        <div :id="$style.title">
           <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
       </div>
-      <div v-html="$md.render(guide.text)" :id="$style.introduction"></div>
+      <div v-html="$md.render(guide.text || '')" :id="$style.introduction"></div>
       <div :id="$style.readmorecontainer">
         <div :id="$style.stepdone" v-if="nSteps(guide)" :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
           <span :id='$style.progress'><span :class="$style.green">{{ nChecked(guide) }}</span>/{{ nSteps(guide) }}</span><div :id="$style.stepdonestring">STEPS DONE</div>

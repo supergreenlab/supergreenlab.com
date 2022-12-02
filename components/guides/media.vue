@@ -38,7 +38,7 @@
       <div v-if='guideSection.author'>Author: {{ guideSection.author }}</div>
       <div v-if='guideSection.credit'>Credit:  {{ guideSection.credit }}</div>
     </div>
-    <!--<portal v-if='showZoom' to='root'>
+    <portal v-if='showZoom' to='root'>
       <div :id='$style.fullscreen' @click='toggleZoom'>
         <video v-if='media.type == "video/mp4"' :id='$style.mediafullscreen' autoplay loop playsinline muted defaultMuted>
           <source :src="`/img/${media.filePath}`" type="video/mp4">
@@ -46,7 +46,7 @@
         </video>
         <div v-else :id='$style.mediafullscreen' :style='{"background-image": `url(/img/${media.fileLarge})`}'></div>
       </div>
-    </portal>-->
+    </portal>
   </section>
 </template>
 
@@ -110,13 +110,12 @@ export default {
   min-height: 200px
   background-position: center
   background-repeat: no-repeat
-  background-size: contain
+  background-size: cover
   max-height: 400px
   max-width: 400px
   margin: 0 10pt 0 0
   @media only screen and (max-width: 600pt)
     width: 100%
-    background-size: 100%
   @media only screen and (min-width: 600pt)
     box-shadow: -1px 1px 5px #888
 
@@ -155,7 +154,6 @@ export default {
   align-items: center
   justify-content: center
   background-color: white
-
 
 #mediafullscreen
   height: 90%
