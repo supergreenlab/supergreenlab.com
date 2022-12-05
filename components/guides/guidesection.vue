@@ -23,16 +23,14 @@
         <h1>{{ guideSection.title }}</h1>
         <CheckBox v-if='guideSection.showdone' label='Done' @click='checkDone' :checked='checked' />
       </div>
-      <Media :index='index' :media='guideSection.media' :guideSection='guideSection'/>
+      <FeedEntry v-if='guide.diary && guideSection.entry' :feedEntry='guideSection.entry' :feedMedias='feedMedias(guideSection)' />
+      <Media v-else :index='index' :media='guideSection.media' :guideSection='guideSection'/>
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>
           <h1>{{ guideSection.title }}</h1>
           <CheckBox v-if='guideSection.showdone' label='Done' @click='checkDone' :checked='checked' />
         </div>
         <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
-        <div v-if='guide.diary && guideSection.grouped'>
-          pouet {{ guideSection.entry[0].type }}
-        </div>
         <b v-if='guideSection.attachements && guideSection.attachements.length'>Attachements</b>
         <div v-if='guideSection.attachements && guideSection.attachements.length' :id='$style.attachements'>
           <a v-for='a in guideSection.attachements' :key='a.id' :class='$style.attachement' :href='`/${a.filePath}`' target='_blank' :download='a.fileName' @click='attachementClicked(a)'>
@@ -71,6 +69,7 @@ import Media from '~/components/guides/media.vue'
 import SmallProductList from '~/components/products/smallproductlist.vue'
 import CheckBox from '~/components/widgets/checkbox.vue'
 import Guide from '~/components/guides/small.vue'
+import FeedEntry from '~/components/plant/feed/cards/FeedEntry.vue'
 
 import { open, screenX, availWidth } from '~/lib/client-side.js'
 
@@ -79,7 +78,7 @@ import { product } from '~/lib/json_db.js'
 
 export default {
   props: [ 'index', 'guide', 'guideSection', ],
-  components: { Media, SmallProductList, CheckBox, Guide, },
+  components: { Media, SmallProductList, CheckBox, Guide, FeedEntry,},
   computed: {
     requires() {
       return (this.$props.guideSection.requires || []).map(r => product(r)).filter(r => r)
@@ -93,6 +92,18 @@ export default {
     gotoGuides() {
       return (this.$props.guideSection.gotoguides || []).map(gg => guides.find(g => g.id == gg))
     },
+    feedMedias() {
+      return (section) => {
+        return (section.entry.medias || []).map(m1 => { 
+          const file = section.medias.find(m => m1.filePath.indexOf(m.fileName) !== -1)
+          return Object.assign({}, m1, {
+            type: file.type,
+            filePath: `/img/${file.type.indexOf('video/') == 0 ? file.filePath : file.fileFull}`,
+            thumbnailPath: `/img/${section.medias.find(m => m1.thumbnailPath.indexOf(m.fileName) !== -1).fileSmall}`,
+          })
+        })
+      }
+    }
   },
   methods: {
     checkDone() {

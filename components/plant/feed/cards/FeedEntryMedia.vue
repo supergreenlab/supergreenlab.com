@@ -34,7 +34,6 @@ export default {
   },
   props: ['lib', 'feedEntry', 'feedMedias', 'setShownMedias',],
   async mounted() {
-    console.log('pouet', this.$props.feedMedias, this.$props.feedEntry.type)
     if (!this.$props.feedMedias) {
       if (!this.$props.lib) {
         return
@@ -45,7 +44,6 @@ export default {
     } else {
       this.$data.medias = this.$props.feedMedias
     }
-    console.log('pouet', this.$data.medias)
     this.$props.setShownMedias(this.$data.medias)
   },
   methods: {

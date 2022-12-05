@@ -25,9 +25,11 @@
             <div v-if='media.previous' :style='{"background-image": `url(${url(media.previous)})`, height: height, "background-size": size, opacity: 1 - measureOpacity/100}' :class="{ [$style.image]: true, [$style.previous]: true}" @click='e => onClick(e, media)'></div>
             <input v-if='media.previous' :class='$style.slider' type="range" min="0" max="100" v-model='measureOpacity'>
           </div>
-          <video v-else-if="mediaType(media) === MEDIA_TYPES.TYPE_VIDEO" ref="videoPlayer" :class="$style.video" @click='e => onClick(e, media)' :style='{height, "object-fit": size || "cover"}' autoplay loop playsinline muted defaultMuted>
-            <source :src="url(media)" type="video/mp4">
-          </video>
+          <div v-else-if="mediaType(media) === MEDIA_TYPES.TYPE_VIDEO">
+            <video ref="videoPlayer" :class="$style.video" @click='e => onClick(e, media)' :style='{height, "object-fit": size || "cover"}' autoplay loop playsinline muted defaultMuted>
+              <source :src="url(media)" type="video/mp4">
+            </video>
+          </div>
         </div>
       </VueSlickCarousel>
     </div>
@@ -45,6 +47,7 @@ export default {
   props: ['medias', 'onMediaClick', 'thumbnails', 'height', 'size',],
   data() {
     return {
+      playing: false,
       measureOpacity: 100,
       settings: {
         arrows: true,
@@ -77,7 +80,8 @@ export default {
         return MEDIA_TYPES.TYPE_VIDEO;
       }
     },
-    url: () => media => media.filePath.indexOf('http') !== 0 ? `https://storage.supergreenlab.com${media.filePath}` : media.filePath,
+    url: () => media => !media.type ? `https://storage.supergreenlab.com${media.filePath}` : media.filePath,
+    thumbnail: () => media => !media.type ? `https://storage.supergreenlab.com${media.thumbnailPath}` : media.thumbnailPath,
   },
 }
 </script>

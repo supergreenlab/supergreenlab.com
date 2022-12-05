@@ -32,20 +32,28 @@ export default {
       showPic: false,
     }
   },
-  props: ['lib', 'feedEntry', 'setShownMedias',],
+  props: ['lib', 'feedEntry', 'feedMedias', 'setShownMedias',],
   async mounted() {
-    const { lib } = this.$props
-    const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
-    const media = data.medias[0]
-    this.$props.setShownMedias(data.medias)
+    if (!this.$props.feedMedias) {
+      if (!this.$props.lib) {
+        return
+      }
+      const { lib } = this.$props
+      const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
+      const media = data.medias[0]
+      this.$props.setShownMedias(data.medias)
 
-    const { feedEntry } = this.$props
-    if (feedEntry.params.previous) {
-      const previous = await lib.getFeedMediaById(feedEntry.params.previous)
-      media.previous = previous
+      const { feedEntry } = this.$props
+      if (feedEntry.params.previous) {
+        const previous = await lib.getFeedMediaById(feedEntry.params.previous)
+        media.previous = previous
+      }
+      this.$data.media = media
+    } else {
+      this.$props.setShownMedias(this.$props.feedMedias)
+      this.$data.media = this.$props.feedMedias[0]
     }
 
-    this.$data.media = media
   },
   methods: {
     onClick(e) {

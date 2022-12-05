@@ -44,11 +44,20 @@ export default {
       }
     }
   },
-  props: ['lib', 'feedEntry', 'setShownMedias',],
+  props: ['lib', 'feedEntry', 'feedMedias', 'setShownMedias',],
   async mounted() {
-    const { lib } = this.$props
-    const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
-    this.$props.setShownMedias(data.medias.sort((m1, m2) => {
+    let medias = []
+    if (!this.$props.feedMedias) {
+      if (!this.$props.lib) {
+        return
+      }
+      const { lib } = this.$props
+      const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
+      medias = data.medias
+    } else {
+      medias = this.$props.feedMedias
+    }
+    this.$props.setShownMedias(medias.sort((m1, m2) => {
       const m1Before = JSON.parse(m1.params).before
       const m2Before = JSON.parse(m2.params).before
       if (m1Before && !m2Before) {
@@ -59,11 +68,11 @@ export default {
       }
       return 0
     }))
-    data.medias.forEach(imageObject => {
+    medias.forEach(imageObject => {
       if (JSON.parse(imageObject.params).before) {
-        this.images.before.push(imageObject);
+        this.$data.images.before.push(imageObject);
       } else {
-        this.images.after.push(imageObject);
+        this.$data.images.after.push(imageObject);
       }
     })
   },

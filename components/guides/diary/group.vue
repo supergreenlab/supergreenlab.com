@@ -24,7 +24,7 @@
         <div v-else>{{ e.type }}</div>
       </div>
     </div>
-    <div>
+    <div :id='$style.current'>
       <FeedEntry :key='current.id' :feedEntry='current' :feedMedias='currentMedias' />
     </div>
   </section>
@@ -54,7 +54,6 @@ export default {
     },
     currentMedias() {
       const { current } = this.$data
-      console.log(this.$props.guideSection.medias)
       return (current.medias || []).map(m1 => { 
         const file = this.$props.guideSection.medias.find(m => m1.filePath.indexOf(m.fileName) !== -1)
         return Object.assign({}, m1, {
@@ -90,5 +89,10 @@ export default {
 
 .selected
   border: 3px solid #3bb30b
+
+#current
+  display: flex
+  align-items: center
+  justify-content: center
 
 </style>

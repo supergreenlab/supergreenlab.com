@@ -18,18 +18,26 @@
 
 <template>
   <section :id='$style.container'>
-    Watering
+    <h2>Watering</h2>
+    <Card :feedEntry='guideSection.entry' />
   </section>
 </template>
 
 <script>
+import Card from '~/components/plant/feed/cards/FeedEntryWater.vue'
+
 export default {
+  props: [ 'index', 'guide', 'guideSection', ],
+  components: { Card, },
 }
 </script>
 
 <style module lang=stylus>
 
-#container {
-}
+#container {}
+
+#container > h2
+  color: #3bb30b
+  margin: 0 0 20px 0
 
 </style>
