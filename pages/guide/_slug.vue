@@ -141,7 +141,7 @@ export default {
     },
     separatorDate() {
       return (section, i) => {
-        if (i == 0) {
+        if (i == 0 && !this.guide.first) {
           return 'Start'
         }
         let entry
