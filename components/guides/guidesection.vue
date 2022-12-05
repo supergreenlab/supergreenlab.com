@@ -99,7 +99,7 @@ export default {
           return Object.assign({}, m1, {
             type: file.type,
             filePath: `/img/${file.type.indexOf('video/') == 0 ? file.filePath : file.fileFull}`,
-            thumbnailPath: `/img/${section.medias.find(m => m1.thumbnailPath.indexOf(m.fileName) !== -1).fileSmall}`,
+            thumbnailPath: `/img/${section.medias.find(m => m1.thumbnailPath.indexOf(m.fileName) !== -1).fileFull}`,
           })
         })
       }

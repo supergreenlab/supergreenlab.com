@@ -26,7 +26,10 @@
             <input v-if='media.previous' :class='$style.slider' type="range" min="0" max="100" v-model='measureOpacity'>
           </div>
           <div v-else-if="mediaType(media) === MEDIA_TYPES.TYPE_VIDEO">
-            <video ref="videoPlayer" :class="$style.video" @click='e => onClick(e, media)' :style='{height, "object-fit": size || "cover"}' autoplay loop playsinline muted defaultMuted>
+            <div v-if='!playing' :style='{"background-image": `url(${thumbnail(media)})`, height: height, "background-size": size}' :class="$style.image" @click='onPlay'>
+              <img src='~/assets/img/icon-play.svg' height='120px' />
+            </div>
+            <video v-else :poster='thumbnail(media)' ref="videoPlayer" :class="$style.video" @click='e => onClick(e, media)' :style='{height, "object-fit": size || "cover"}' autoplay loop playsinline muted defaultMuted>
               <source :src="url(media)" type="video/mp4">
             </video>
           </div>
@@ -70,6 +73,9 @@ export default {
       if (!this.$props.onMediaClick) return
       this.$props.onMediaClick(media)
     },
+    onPlay() {
+      this.$data.playing = true
+    }
   },
   computed: {
     mediaType: () => media => {
@@ -123,5 +129,10 @@ export default {
   bottom: 10px
   width: 300px
   left: calc(50% - 150px)
+
+.image
+  display: flex
+  align-items: center
+  justify-content: center
 
 </style>

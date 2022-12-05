@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.list'>
       <div v-for='e in guideSection.entry' :class='{ [$style.listItem]: true, [$style.selected]: current == e }' @click='selectItem(e)'>
-        <img v-if='thumbnailPath(e)' :src='thumbnailPath(e)' />
+        <img width='50px' v-if='thumbnailPath(e)' :src='thumbnailPath(e)' />
         <div v-else>{{ e.type }}</div>
       </div>
     </div>
@@ -49,7 +49,7 @@ export default {
           return ''
         }
         const media = this.$props.guideSection.medias.find(m => entry.medias[0].thumbnailPath.indexOf(m.fileName) !== -1)
-        return `/img/${media.fileSmall}`
+        return `/img/${media.fileFull}`
       }
     },
     currentMedias() {
@@ -59,7 +59,7 @@ export default {
         return Object.assign({}, m1, {
           type: file.type,
           filePath: `/img/${file.type.indexOf('video/') == 0 ? file.filePath : file.fileFull}`,
-          thumbnailPath: `/img/${this.$props.guideSection.medias.find(m => m1.thumbnailPath.indexOf(m.fileName) !== -1).fileSmall}`,
+          thumbnailPath: `/img/${this.$props.guideSection.medias.find(m => m1.thumbnailPath.indexOf(m.fileName) !== -1).fileFull}`,
         })
       })
     },
