@@ -423,7 +423,6 @@ export default {
 .diaryDateLabel
   display: flex
   align-items: center
-  justify-content: center
   font-size: 2em
   font-weight: bold
   color: #454545
