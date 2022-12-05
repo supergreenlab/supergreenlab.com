@@ -48,7 +48,12 @@
         </nuxt-link>
       </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>
-        <div v-if='guide.diary && addDateSeparator(section)' :class='$style.diaryDate'>{{ separatorDate(section) }}</div>
+        <div v-if='guide.diary && addDateSeparator(section)' :class='$style.diaryDate'>
+          <div :class='$style.diaryDateLabel'>
+            <img src='~/assets/img/icon_calendar.svg' height='40px' />&nbsp;{{ separatorDate(section, i) }}
+          </div>
+          <div :class='$style.separator'></div>
+        </div>
         <Section :guide='guide' :guideSection='section' :index='i' :ref='section.slug' />
         <div :class='$style.separator'></div>
       </div>
@@ -122,7 +127,7 @@ export default {
         if (!lastDate) {
           lastDate = entry.date
           const nd = new Date(entry.date)
-          return `${nd.getDate()}-${nd.getMonth()}-${nd.getFullYear()}`
+          return true
         }
         const nd = new Date(entry.date)
         const od = new Date(lastDate)
@@ -135,7 +140,10 @@ export default {
       }
     },
     separatorDate() {
-      return (section) => {
+      return (section, i) => {
+        if (i == 0) {
+          return 'Start'
+        }
         let entry
         if (section.grouped) {
           entry = section.entry[0]
@@ -311,6 +319,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.5)
 
 .separator
+  width: 100%
   height: 2pt
   margin: 30pt 0
   background-color: #efefef
@@ -411,13 +420,16 @@ export default {
   width: 100%
   margin: 20pt 0 0 0
 
-.diaryDate
+.diaryDateLabel
   display: flex
   align-items: center
   justify-content: center
   font-size: 2em
   font-weight: bold
   color: #454545
-  margin: 30px 0
+  margin-top: 30px
+
+.diaryDateLabel > img
+  margin-bottom: 10px
 
 </style>
