@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.list'>
       <div v-for='e in guideSection.entry' :class='{ [$style.listItem]: true, [$style.selected]: current == e }' @click='selectItem(e)'>
-        <img width='50px' v-if='thumbnailPath(e)' :src='thumbnailPath(e)' />
+        <img width='80px' v-if='thumbnailPath(e)' :src='thumbnailPath(e)' />
         <div v-else>{{ e.type }}</div>
       </div>
     </div>
@@ -81,6 +81,9 @@ export default {
   display: flex
   align-items: center
   justify-content: center
+  flex-wrap: wrap
+  @media only screen and (max-width: 600pt)
+    justify-content: flex-start
 
 .listItem
   margin: 5px 5px
