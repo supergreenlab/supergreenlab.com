@@ -23,7 +23,7 @@
       {{feedEntryHeading(feedEntry.type)}}
     </div>
     <div :id="$style.content">
-      <component :is="feedComponent(feedEntry.type)" :feedEntry="feedEntry" :lib='lib' :setShownMedias='setShownMedias'></component>
+      <component :is="feedComponent(feedEntry.type)" :feedEntry="feedEntry" :feedMedias='feedMedias' :lib='lib' :setShownMedias='setShownMedias'></component>
     </div>
     <div :id="$style.footer">
       <div :id="$style.footericons">
@@ -121,7 +121,7 @@ const entries = {
 
 export default {
   name: "feed-entry",
-  props: ['lib', 'feedEntry'],
+  props: ['lib', 'feedEntry', 'feedMedias'],
   data() {
     return {
       shownMedias: null,

@@ -62,7 +62,6 @@ export default {
   color: #15A01A
   font-weight: bold
   font-size: 35px
-  width: 206px
   margin: auto
 
 </style>

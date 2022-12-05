@@ -32,11 +32,20 @@ export default {
       showPic: false,
     }
   },
-  props: ['lib', 'feedEntry', 'setShownMedias',],
+  props: ['lib', 'feedEntry', 'feedMedias', 'setShownMedias',],
   async mounted() {
-    const { lib } = this.$props
-    const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
-    this.$data.medias = data.medias
+    console.log('pouet', this.$props.feedMedias, this.$props.feedEntry.type)
+    if (!this.$props.feedMedias) {
+      if (!this.$props.lib) {
+        return
+      }
+      const { lib } = this.$props
+      const data = await lib.getFeedMediasForFeedEntryId(this.feedEntry.id)
+      this.$data.medias = data.medias
+    } else {
+      this.$data.medias = this.$props.feedMedias
+    }
+    console.log('pouet', this.$data.medias)
     this.$props.setShownMedias(this.$data.medias)
   },
   methods: {

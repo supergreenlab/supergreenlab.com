@@ -34,8 +34,6 @@
 
     <portal-target name='root'>
     </portal-target>
-
-    <div id='trustedshops' :class='{ [ $style.trustedshops ]: true, [$style.hidden]: hideTSBadge}'></div>
   </section>
 </template>
 
@@ -65,23 +63,6 @@ export default {
             promocode = this.$store.state.checkout.promocodes[sglSellerID]
       if (!promocode || !discount) return null
       return {promocode, discount}
-    },
-    hideTSBadge() {
-      const comps = this.$route.path.split('/')
-      if (comps[1] == 'product') {
-        let sp = sellingPointWithSlug(comps[2])
-        if (!sp) {
-          const product = productWithSlug(comps[2])
-          if (!product) {
-            return true
-          }
-          sp = this.$store.getters['eshop/sellingPointForProduct'](product.id)
-        }
-        const s = seller(sp.Seller[0])
-        const sglSellerIDs = [process.env.sglSellerID, process.env.sgteuSellerID, process.env.sgtusSellerID]
-        return !sglSellerIDs.includes(s.id)
-      }
-      return false
     },
   },
   methods: {

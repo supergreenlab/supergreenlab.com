@@ -48,6 +48,7 @@
         </nuxt-link>
       </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>
+        <div v-if='guide.diary && addDateSeparator(section)' :class='$style.diaryDate'>{{ separatorDate(section) }}</div>
         <Section :guide='guide' :guideSection='section' :index='i' :ref='section.slug' />
         <div :class='$style.separator'></div>
       </div>
@@ -109,6 +110,88 @@ export default {
     removeEventListener('scroll', this.handleScroll);
   },
   computed: {
+    addDateSeparator() {
+      let lastDate
+      return (section) => {
+        let entry
+        if (section.grouped) {
+          entry = section.entry[0]
+        } else {
+          entry = section.entry
+        }
+        if (!lastDate) {
+          lastDate = entry.date
+          const nd = new Date(entry.date)
+          return `${nd.getDate()}-${nd.getMonth()}-${nd.getFullYear()}`
+        }
+        const nd = new Date(entry.date)
+        const od = new Date(lastDate)
+        const addSeparator = `${nd.getDate()}-${nd.getMonth()}-${nd.getFullYear()}` != `${od.getDate()}-${od.getMonth()}-${od.getFullYear()}`
+        lastDate = entry.date
+        if (!addSeparator) {
+          return false
+        }
+        return true
+      }
+    },
+    separatorDate() {
+      return (section) => {
+        let entry
+        if (section.grouped) {
+          entry = section.entry[0]
+        } else {
+          entry = section.entry
+        }
+        const plant = this.guide.plant
+        if (plant.settings.curingStart && new Date(entry.date) > new Date(plant.settings.curingStart)) {
+          const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.curingStart)) / (1000 * 60 * 60 * 24))
+          if (durationDays == 0) {
+            return `First day of curing`
+          } else if(durationDays < 7) {
+            return `Curing: day ${durationDays}`
+          } else {
+            return `Curing: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+          }
+        } else if (plant.settings.dryingStart && new Date(entry.date) > new Date(plant.settings.dryingStart)) {
+          const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.dryingStart)) / (1000 * 60 * 60 * 24))
+          if (durationDays == 0) {
+            return `First day of blooming`
+          } else if(durationDays < 7) {
+            return `Drying: day ${durationDays}`
+          } else {
+            return `Dryinging: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+          }
+        } else if (plant.settings.bloomingStart && new Date(entry.date) > new Date(plant.settings.bloomingStart)) {
+          const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.bloomingStart)) / (1000 * 60 * 60 * 24))
+          if (durationDays == 0) {
+            return `First day of blooming`
+          } else if(durationDays < 7) {
+            return `Blooming: day ${durationDays}`
+          } else {
+            return `Blooming: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+          }
+        } else if (plant.settings.veggingStart && new Date(entry.date) > new Date(plant.settings.veggingStart)) {
+          const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.veggingStart)) / (1000 * 60 * 60 * 24))
+          if (durationDays == 0) {
+            return `First day of vegging`
+          } else if(durationDays < 7) {
+            return `Vegging: day ${durationDays}`
+          } else {
+            return `Vegging: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+          }
+        } else if (plant.settings.germinationDate && new Date(entry.date) > new Date(plant.settings.germinationDate)) {
+          const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.germinationDate)) / (1000 * 60 * 60 * 24))
+          if (durationDays == 0) {
+            return `Germination!`
+          } else {
+            return `Germinated ${durationDays} days ago`
+          }
+        }
+
+        const nd = new Date(entry.date)
+        return nd.toLocaleDateString();
+      }
+    },
     guide() {
       const { slug } = this.$route.params
       const guide = require(`~/config/guide-${slug}.json`)
@@ -327,5 +410,14 @@ export default {
 #prefooter
   width: 100%
   margin: 20pt 0 0 0
+
+.diaryDate
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 2em
+  font-weight: bold
+  color: #454545
+  margin: 30px 0
 
 </style>

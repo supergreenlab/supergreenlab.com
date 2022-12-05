@@ -27,6 +27,9 @@ module.exports.fetchGuides = async () => {
         return noPic
       }
     })
+    if (g.plant) {
+      g.plant = JSON.parse(g.plant)
+    }
     try {
       const { p, data } = fetchAttachement(picPromise, g.media[0], 'guides')
       picPromise = p
@@ -69,7 +72,10 @@ module.exports.fetchGuides = async () => {
       })
       if (gs.grouped && gs.entry) {
         const entryBinary = base64.base64ToBytes(gs.entry)
-        gs.entry = fflate.strFromU8(fflate.decompressSync(entryBinary))
+        const entryJSON = fflate.strFromU8(fflate.decompressSync(entryBinary))
+        gs.entry = JSON.parse(entryJSON)
+      } else if (gs.entry) {
+        gs.entry = JSON.parse(gs.entry)
       }
 
       try {

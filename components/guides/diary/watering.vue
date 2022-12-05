@@ -18,37 +18,12 @@
 
 <template>
   <section :id='$style.container'>
-    <component :is='componentForSection' :index='index' :guide='guide' :guideSection='guideSection'></component>
+    Watering
   </section>
 </template>
 
 <script>
-import GuideSection from '~/components/guides/guidesection.vue'
-import Group from '~/components/guides/diary/group.vue'
-import Watering from '~/components/guides/diary/watering.vue'
-import LifeEvent from '~/components/guides/diary/lifeevent.vue'
-
-const componentsForType = {
-  'FE_WATER': Watering,
-  'FE_LIFE_EVENT': LifeEvent,
-}
-
 export default {
-  props: [ 'index', 'guide', 'guideSection', ],
-  components: {},
-  computed: {
-    componentForSection() {
-      const section = this.$props.guideSection
-      if (this.$props.guide.diary) {
-        if (section.grouped) {
-          return Group
-        } else if (section.entry && componentsForType[section.entry.type]) {
-          return componentsForType[section.entry.type]
-        }
-      }
-      return GuideSection
-    }
-  },
 }
 </script>
 

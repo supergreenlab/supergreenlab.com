@@ -71,13 +71,13 @@ export default {
   computed: {
     mediaType: () => media => {
       const url = media.filePath
-      if (url.includes('/feedmedias/pictures')) {
+      if (url.includes('/feedmedias/pictures') || (media.type || '').indexOf('image/') == 0) {
         return MEDIA_TYPES.TYPE_IMAGE;
-      } else if (url.includes('/feedmedias/videos')) {
+      } else if (url.includes('/feedmedias/videos') || (media.type || '').indexOf('video/') == 0) {
         return MEDIA_TYPES.TYPE_VIDEO;
       }
     },
-    url: () => media => `https://storage.supergreenlab.com${media.filePath}`,
+    url: () => media => media.filePath.indexOf('http') !== 0 ? `https://storage.supergreenlab.com${media.filePath}` : media.filePath,
   },
 }
 </script>
