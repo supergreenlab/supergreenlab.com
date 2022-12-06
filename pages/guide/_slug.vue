@@ -39,7 +39,7 @@
         </div>
         <a v-if='showTableOfContent' href='javascript:void(0)' @click='showTableOfContent = !showTableOfContent'>{{ showTableOfContent ? 'Hide' : 'Show' }} table of content - ({{ allGuides.length }} guides)</a>
       </div>
-      <Section :guide='guide' :guideSection='guide' :ref='guide.slug' />
+      <Section v-if='guide.text' :guide='guide' :guideSection='guide' :ref='guide.slug' />
       <div v-if='!first && next' :id='$style.tocs'>
         <h2>Table of contents</h2>
         <nuxt-link v-for='(g, i) in allGuides' :key='g.slug' :class='$style.toc' :to='`/guide/${g.slug}`'>
@@ -50,7 +50,7 @@
       <div v-for='(section, i) in guide.sections' :key='section.id'>
         <div v-if='guide.diary && addDateSeparator(section)' :class='$style.diaryDate'>
           <div :class='$style.diaryDateLabel'>
-            <img src='~/assets/img/icon_calendar.svg' height='40px' />&nbsp;{{ separatorDate(section, i) }}
+            <img src='~/assets/img/icon_calendar.svg' />&nbsp;{{ separatorDate(section, i) }}
           </div>
           <div :class='$style.separator'></div>
         </div>
@@ -427,8 +427,15 @@ export default {
   font-weight: bold
   color: #454545
   margin-top: 30px
+  margin-left: 10px
+  @media only screen and (max-width: 600pt)
+    font-size: 1.8em
 
 .diaryDateLabel > img
   margin-bottom: 10px
+  height: 40px
+  @media only screen and (max-width: 600pt)
+    margin-bottom: 7px
+    height: 30px
 
 </style>

@@ -19,10 +19,14 @@
 <template>
   <div :id="$style.container">
     <div :id="$style.header">
-      <img :id="$style.headerimage" :src="headerIcon(feedEntry.type)">
-      {{feedEntryHeading(feedEntry.type)}}
+      <div>
+        <img :id="$style.headerimage" :src="headerIcon(feedEntry.type)">
+        {{feedEntryHeading(feedEntry.type)}}
+      </div>
+      <img v-on:click="toggleShowChart" :class="{[$style.headericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/icon_graphs.svg')" />
     </div>
     <div :id="$style.content">
+      <Chart v-if='showChart' :feedEntry='feedEntry' />
       <component :is="feedComponent(feedEntry.type)" :feedEntry="feedEntry" :feedMedias='feedMedias' :lib='lib' :setShownMedias='setShownMedias'></component>
     </div>
     <div :id="$style.footer">
@@ -38,6 +42,8 @@
 </template>
 
 <script>
+
+import Chart from '~/components/plant/feed/cards/Chart.vue'
 
 const entries = {
   FE_LIGHT: {
@@ -122,9 +128,11 @@ const entries = {
 export default {
   name: "feed-entry",
   props: ['lib', 'feedEntry', 'feedMedias'],
+  components: { Chart, },
   data() {
     return {
       shownMedias: null,
+      showChart: false,
     }
   },
   mounted() {
@@ -156,6 +164,9 @@ export default {
     },
     setShownMedias(shownMedias) {
       this.$data.shownMedias = shownMedias
+    },
+    toggleShowChart() {
+      this.$data.showChart = !this.$data.showChart
     }
   },
 }
@@ -175,11 +186,16 @@ export default {
 
 #header
   display: flex
+  justify-content: space-between
   align-items: center
   padding: 0 10px
 
 #headerimage
   margin-right: 10px
+
+.headericon
+  width: 25px
+  height: 25px
 
 #content
   padding: 15px 0

@@ -50,15 +50,14 @@ export default {
   margin: 10pt 0 20pt 0
   @media only screen and (max-width: 600pt)
     flex-direction: column
-    align-items: center
 
 #pic
   flex: 1
-  max-width: 150px
-  height: 150px
+  max-width: 110px
+  height: 110px
   margin: 0 10pt 0 0
   background-position: top
-  background-size: contain
+  background-size: cover
   background-repeat: no-repeat
   @media only screen and (max-width: 600pt)
     background-position: center
