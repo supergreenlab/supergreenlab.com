@@ -36,7 +36,7 @@
         <img v-if='shownMedias && shownMedias.length && hasSharing(feedEntry.type)' v-on:click="shareDialogTriggered" :class="{[$style.footericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/button_share.png')" />
         <img v-on:click="dialogTriggered" :class="{[$style.footericon]: true, [$style.flexend]: true, clickable: true}" :src="require('~/assets/img/plant/feed/button_bookmark.png')" />
       </div>
-      <div :id="$style.flexstart">{{formattedDate(feedEntry.date)}}</div>
+      <div :id="$style.flexstart">{{ formattedDate }}</div>
     </div>
   </div>
 </template>
@@ -150,9 +150,56 @@ export default {
     headerIcon: () => (type) =>  {
       return (entries[type] || {}).icon || '~/assets/img/plant/feed/icon_unknown.svg'
     },
-    formattedDate: () => (date) =>  {
-      date = new Date(date);
-      return date.toLocaleDateString();
+    formattedDate() {
+      let entry = this.$props.feedEntry
+      const plant = this.$props.plant
+      if (plant.settings.curingStart && new Date(entry.date) > new Date(plant.settings.curingStart)) {
+        const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.curingStart)) / (1000 * 60 * 60 * 24))
+        if (durationDays == 0) {
+          return `First day of curing`
+        } else if(durationDays < 7) {
+          return `Curing: day ${durationDays}`
+        } else {
+          return `Curing: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+        }
+      } else if (plant.settings.dryingStart && new Date(entry.date) > new Date(plant.settings.dryingStart)) {
+        const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.dryingStart)) / (1000 * 60 * 60 * 24))
+        if (durationDays == 0) {
+          return `First day of drying`
+        } else if(durationDays < 7) {
+          return `Drying: day ${durationDays}`
+        } else {
+          return `Drying: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+        }
+      } else if (plant.settings.bloomingStart && new Date(entry.date) > new Date(plant.settings.bloomingStart)) {
+        const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.bloomingStart)) / (1000 * 60 * 60 * 24))
+        if (durationDays == 0) {
+          return `First day of blooming`
+        } else if(durationDays < 7) {
+          return `Blooming: day ${durationDays}`
+        } else {
+          return `Blooming: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+        }
+      } else if (plant.settings.veggingStart && new Date(entry.date) > new Date(plant.settings.veggingStart)) {
+        const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.veggingStart)) / (1000 * 60 * 60 * 24))
+        if (durationDays == 0) {
+          return `First day of vegging`
+        } else if(durationDays < 7) {
+          return `Vegging: day ${durationDays}`
+        } else {
+          return `Vegging: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+        }
+      } else if (plant.settings.germinationDate && new Date(entry.date) > new Date(plant.settings.germinationDate)) {
+        const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.germinationDate)) / (1000 * 60 * 60 * 24))
+        if (durationDays == 0) {
+          return `Germination!`
+        } else {
+          return `Germinated ${durationDays} days ago`
+        }
+      }
+
+      const nd = new Date(entry.date)
+      return nd.toLocaleDateString();
     },
   },
   methods: {
@@ -189,6 +236,10 @@ export default {
   justify-content: space-between
   align-items: center
   padding: 0 10px
+
+#header > div
+  display: flex
+  align-items: center
 
 #headerimage
   margin-right: 10px

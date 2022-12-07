@@ -72,7 +72,7 @@ export default {
           borderColor: '#B0B30B',
           data: this.$props.feedEntry.meta.timer.map((te, i) => {
             const dimmings = this.$props.feedEntry.meta.dimming.reduce((acc, dimming) => {
-              if (dimming[i]) {
+              if (dimming[i] && dimming[i][1]) {
                 acc.push(dimming[i][1])
               }
               return acc
@@ -108,7 +108,6 @@ export default {
                 const plant = this.$props.plant
                 const entry = this.$props.feedEntry
                 const date = new Date(ticks[index].value)
-                console.log(value, index, ticks)
                 if (plant.settings.curingStart && date > new Date(plant.settings.curingStart)) {
                   const durationDays = Math.floor((date - new Date(plant.settings.curingStart)) / (1000 * 60 * 60 * 24))
                   if (durationDays == 0) {
