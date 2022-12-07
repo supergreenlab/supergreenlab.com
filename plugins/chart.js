@@ -1,5 +1,5 @@
-import Vue from "vue";
-import { Line } from "vue-chartjs/legacy";
+import Vue from "vue"
+import { Bar, } from "vue-chartjs/legacy"
 import {
   Chart as ChartJS,
   Title,
@@ -10,8 +10,11 @@ import {
   LinearScale,
   LineElement,
   PointElement,
-} from "chart.js";
-import 'chartjs-adapter-moment'
+  LineController,
+  TimeScale,
+  TimeSeriesScale,
+} from "chart.js"
+import 'chartjs-adapter-date-fns'
 
 ChartJS.register(
   Title,
@@ -22,8 +25,11 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   LineElement,
-);
+  LineController,
+  TimeScale,
+  TimeSeriesScale,
+)
 
-Vue.component("LineChart", {
-  extends: Line,
-});
+Vue.component("BarChart", {
+  extends: Bar,
+})

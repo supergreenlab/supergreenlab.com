@@ -26,7 +26,7 @@
       <img v-on:click="toggleShowChart" :class="{[$style.headericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/icon_graphs.svg')" />
     </div>
     <div :id="$style.content">
-      <Chart v-if='showChart' :feedEntry='feedEntry' />
+      <Chart v-if='showChart' :plant='plant' :feedEntry='feedEntry' />
       <component :is="feedComponent(feedEntry.type)" :feedEntry="feedEntry" :feedMedias='feedMedias' :lib='lib' :setShownMedias='setShownMedias'></component>
     </div>
     <div :id="$style.footer">
@@ -127,7 +127,7 @@ const entries = {
 
 export default {
   name: "feed-entry",
-  props: ['lib', 'feedEntry', 'feedMedias'],
+  props: ['lib', 'plant', 'feedEntry', 'feedMedias'],
   components: { Chart, },
   data() {
     return {

@@ -163,11 +163,11 @@ export default {
         } else if (plant.settings.dryingStart && new Date(entry.date) > new Date(plant.settings.dryingStart)) {
           const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.dryingStart)) / (1000 * 60 * 60 * 24))
           if (durationDays == 0) {
-            return `First day of blooming`
+            return `First day of drying`
           } else if(durationDays < 7) {
             return `Drying: day ${durationDays}`
           } else {
-            return `Dryinging: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
+            return `Drying: week ${Math.floor(durationDays / 7) + 1} day ${durationDays % 7 + 1}`
           }
         } else if (plant.settings.bloomingStart && new Date(entry.date) > new Date(plant.settings.bloomingStart)) {
           const durationDays = Math.floor((new Date(entry.date) - new Date(plant.settings.bloomingStart)) / (1000 * 60 * 60 * 24))

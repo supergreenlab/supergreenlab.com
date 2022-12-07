@@ -23,7 +23,7 @@
         <h1>{{ guideSection.title }}</h1>
         <CheckBox v-if='guideSection.showdone' label='Done' @click='checkDone' :checked='checked' />
       </div>
-      <FeedEntry v-if='guide.diary && guideSection.entry' :feedEntry='guideSection.entry' :feedMedias='feedMedias(guideSection)' />
+      <FeedEntry v-if='guide.diary && guideSection.entry' :plant='guide.plant' :feedEntry='guideSection.entry' :feedMedias='feedMedias(guideSection)' />
       <Media v-else :index='index' :media='guideSection.media' :guideSection='guideSection'/>
       <div :class='$style.text'>
         <div :id='$style.title' v-if='!guideSection.sections && guideSection.title'>

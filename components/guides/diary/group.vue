@@ -25,7 +25,7 @@
       </div>
     </div>
     <div :id='$style.current'>
-      <FeedEntry :key='current.id' :feedEntry='current' :feedMedias='currentMedias' />
+      <FeedEntry :key='current.id' :plant='guide.plant' :feedEntry='current' :feedMedias='currentMedias' />
     </div>
   </section>
 </template>
