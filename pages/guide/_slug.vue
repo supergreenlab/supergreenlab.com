@@ -48,7 +48,7 @@
         </nuxt-link>
       </div>
       <div v-for='(section, i) in guide.sections' :key='section.id'>
-        <div v-if='guide.diary && addDateSeparator(section)' :class='$style.diaryDate'>
+        <div v-if='guide.diary && addDateSeparator(section, i)' :class='$style.diaryDate'>
           <div :class='$style.diaryDateLabel'>
             <img src='~/assets/img/icon_calendar.svg' />&nbsp;{{ separatorDate(section, i) }}
           </div>
@@ -116,23 +116,11 @@ export default {
   },
   computed: {
     addDateSeparator() {
-      let lastDate
-      return (section) => {
-        let entry
-        if (section.grouped) {
-          entry = section.entry[0]
-        } else {
-          entry = section.entry
-        }
-        if (!lastDate) {
-          lastDate = entry.date
-          const nd = new Date(entry.date)
+      return (section, i) => {
+        if (!i) {
           return true
         }
-        const nd = new Date(entry.date)
-        const od = new Date(lastDate)
-        const addSeparator = `${nd.getDate()}-${nd.getMonth()}-${nd.getFullYear()}` != `${od.getDate()}-${od.getMonth()}-${od.getFullYear()}`
-        lastDate = entry.date
+        const addSeparator = this.separatorDate(section) != this.separatorDate(this.guide.sections[i-1])
         if (!addSeparator) {
           return false
         }
