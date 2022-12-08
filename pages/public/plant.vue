@@ -25,7 +25,7 @@
     </div>
     <div :id='$style.body' v-if="plant">
       <PlantInfo :plant="plant"></PlantInfo>
-      <Feed :lib='lib' :plantID="plantID" v-on:dialogTriggered="dialogTriggered" v-on:shareDialogTriggered='shareDialogTriggered' />
+      <Feed :lib='lib' :plant="plant" v-on:dialogTriggered="dialogTriggered" v-on:shareDialogTriggered='shareDialogTriggered' />
 
       <div :class="$style.app_cta_wrapper">
         <div :class="$style.app_cta">
@@ -129,9 +129,6 @@ export default {
     this.plant = plant;
   },
   computed: {
-    plantID() {
-      return this.$route.query.id
-    },
     plantURL() {
       if (this.$route.query.feid) {
         return `sglapp://supergreenlab.com/public/plant?id=${this.$route.query.id}&feid=${this.$route.query.feid}`

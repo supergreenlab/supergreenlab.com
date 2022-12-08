@@ -18,7 +18,7 @@
 
 <template>
   <section :id='$style.container'>
-    <FeedEntry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :lib='lib' :feedEntry="feedEntry" v-on:dialogTriggered="dialogTriggered" v-on:shareDialogTriggered='shareDialogTriggered'></FeedEntry>
+    <FeedEntry v-for="feedEntry in feedEntries" v-bind:key="feedEntry.id" :lib='lib' :feedEntry="feedEntry" :plant="plant" v-on:dialogTriggered="dialogTriggered" v-on:shareDialogTriggered='shareDialogTriggered'></FeedEntry>
     <div v-if='feedEntries.length' :id="$style.spinner_container">
       <infinite-loading
               spinner="spiral"
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ['lib', 'plantID',],
+  props: ['lib', 'plant',],
   data() {
     return {
       feedEntries: [],
@@ -40,15 +40,15 @@ export default {
     }
   },
   async mounted() {
-    const { lib, plantID, } = this.$props
-    const feedEntries = await lib.getFeedEntriesForPlantId(plantID, this.pageSize, this.page)
+    const { lib, plant, } = this.$props
+    const feedEntries = await lib.getFeedEntriesForPlantId(plant.id, this.pageSize, this.page)
     this.feedEntries = this.feedEntries.concat(feedEntries);
   },
   methods: {
     async loadNextFeedEntriesById($state) {
-      const { lib, plantID, } = this.$props
+      const { lib, plant, } = this.$props
       this.page++;
-      const feedEntries = await lib.getFeedEntriesForPlantId(plantID, this.pageSize, this.page * this.pageSize)
+      const feedEntries = await lib.getFeedEntriesForPlantId(plant.id, this.pageSize, this.page * this.pageSize)
       if (feedEntries.length > 0) {
         this.feedEntries = this.feedEntries.concat(feedEntries);
         $state.loaded();

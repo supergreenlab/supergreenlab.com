@@ -23,7 +23,7 @@
         <img :id="$style.headerimage" :src="headerIcon(feedEntry.type)">
         {{feedEntryHeading(feedEntry.type)}}
       </div>
-      <img v-on:click="toggleShowChart" :class="{[$style.headericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/icon_graphs.svg')" />
+      <img v-if='feedEntry.meta.temperature' v-on:click="toggleShowChart" :class="{[$style.headericon]: true, [$style.clickable]: true}" :src="require('~/assets/img/plant/feed/icon_graphs.svg')" />
     </div>
     <div :id="$style.content">
       <Chart v-if='showChart' :plant='plant' :feedEntry='feedEntry' />

@@ -25,6 +25,7 @@
       </div>
     </div>
     <div :id='$style.current'>
+      <div :class='$style.ps' v-if='guideSection.text' v-html='$md.render(guideSection.text)'></div>
       <FeedEntry :key='current.id' :plant='guide.plant' :feedEntry='current' :feedMedias='currentMedias' />
     </div>
   </section>
@@ -95,7 +96,26 @@ export default {
 
 #current
   display: flex
+  flex-direction: column
   align-items: center
   justify-content: center
+
+.ps
+  font-size: 1.1em
+  margin: 6pt 0pt
+  color: #454545
+  @media only screen and (min-width: 600pt)
+    margin: 10pt 50pt 10pt 0
+
+.ps code
+  white-space: pre-wrap
+
+.ps strong
+  color: #3BB30B
+  font-weight: 600
+
+.ps h3
+  color: #454545
+
 
 </style>
