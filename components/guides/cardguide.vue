@@ -16,44 +16,45 @@
       along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 
-<template>
-  <section :id="$style.container">
-    <nuxt-link :class="$style.cardLink" :to='`/guide/${guide.slug}`'>
-      <div :id="$style.headerImg">
-        <div :id="$style.headerLabel">
-          <div :class="$style.headerLabel" :id="$style.headerDate">
-            Date: {{ guide.createdat | formatDate }}
-          </div>
-          <div v-if='duration(guide)' :class="$style.headerLabel" :id="$style.headerDuration">
-            Duration: {{ duration(guide) }}min
-          </div>
-          <div v-if='guide.difficulty' :class="$style.headerLabel" :id="$style.headerDifficulty">
-            Difficulty: {{ guide.difficulty }}/5
-          </div>
-        </div>
-      </div>
-      <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(/img/${ guide.thumbnail.fileLarge })`}'>
-        <div :id="$style.guidelogo" >
-          <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab">
-        </div>
-      </div>
-      <div :id="$style.footerImg">
-        <div v-if='guide.author'>Author: {{ guide.author }}</div>
-        <div v-if='guide.credit'>Credit:  {{ guide.credit }}</div>
-      </div>
-       <div :id="$style.title">
-          <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
-      </div>
-      <div v-html="$md.render(guide.text || '')" :id="$style.introduction"></div>
-      <div :id="$style.readmorecontainer">
-        <div :id="$style.stepdone" v-if="nSteps(guide)" :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
-          <span :id='$style.progress'><span :class="$style.green">{{ nChecked(guide) }}</span>/{{ nSteps(guide) }}</span><div :id="$style.stepdonestring">STEPS DONE</div>
-        </div>
-        <button :id="$style.readmorebtn">Read More</button>
-      </div>
-    </nuxt-link>
-  </section>
-</template>
+ <template>
+   <section :id="$style.container">
+     <div :id="$style.headerLabelContainer">
+       <div :class="$style.headerLabel" :id="$style.headerDate">
+         Date: {{ guide.createdat | formatDate }}
+       </div>
+       <div v-if='duration(guide)' :class="$style.headerLabel" :id="$style.headerDuration">
+         Duration: {{ duration(guide) }}min
+       </div>
+       <div v-if='guide.difficulty' :class="$style.headerLabel" :id="$style.headerDifficulty">
+         Difficulty: {{ guide.difficulty }}/5
+       </div>
+     </div>
+     <div :id="$style.guideimgcontainer" :style='{"background-position" : `center center`,"background-repeat" : `no-repeat`, "background-size" : `cover`,"background-image":  `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0) 100%), url(/img/${ guide.thumbnail.fileLarge })`}'>
+       <div :id="$style.guidelogo" >
+         <img src="~assets/img/logo_white.svg" alt="logo-supergreenlab" />
+       </div>
+     </div>
+     <div :id="$style.footerImg">
+       <div v-if='guide.author'>Author: {{ guide.author }}</div>
+       <div v-if='guide.credit'>Credit:  {{ guide.credit }}</div>
+     </div>
+     <div :id="$style.title">
+       <h2> {{ guide.title }} - <span :class="$style.green">{{ guide.subtitle }}</span></h2>
+     </div>
+     <div :id="$style.introduction" v-html='text'></div>
+     <div :id="$style.readmorecontainer">
+       <div :id="$style.stepdone" v-if="nSteps(guide)" :class='nChecked(guide) == nSteps(guide) ? $style.green : ""'>
+         <div :id='$style.progress'>
+           <no-ssr>
+             <span :class="$style.green">{{ nChecked(guide) }}</span>/{{ nSteps(guide) }}
+           </no-ssr>
+         </div>
+         <div :id="$style.stepdonestring">STEPS DONE</div>
+       </div>
+       <nuxt-link :to='`/guide/${guide.slug}`' :id="$style.readmorebtn">Read More</nuxt-link>
+     </div>
+   </section>
+ </template>
 
 <script>
 import { guides } from '~/config/guides.json'
@@ -62,11 +63,12 @@ export default {
   filters: {
     formatDate: (dateStr) =>
       Intl.DateTimeFormat("us-EN").format(new Date(dateStr)),
-    tostring: (authorStr) =>
-      authorStr = String(authorStr),
   },
-  props: ['guide', 'userStep'],
+  props: ['guide',],
   computed: {
+    text() {
+      return this.$md.render(this.$props.guide.text || '').replace(/(<a [^>]+>|<\/a>)/g, '')
+    },
     nSteps() {
       return (guide) => {
         return this.sections(guide).filter(gs => gs.showdone).length
@@ -122,6 +124,7 @@ export default {
 </script>
 
 <style module lang=stylus>
+
 #container
  color: #5D5D5D
  @media only screen and (max-width: 1000pt)
@@ -136,7 +139,7 @@ export default {
   justify-content: space-between
   margin: 8px 3px 2px 0px
 
-#headerLabel
+#headerLabelContainer
   display: flex
 
 .headerLabel
@@ -227,11 +230,14 @@ export default {
   justify-content: space-around
   margin: 10px
   @media only screen and (max-width: 1000pt)
-    margint-bottom: 10px
+    margin-bottom: 10px
   @media only screen and (max-width: 600pt)
-    margint-bottom: 10px
+    margin-bottom: 10px
 
 #readmorebtn
+  display: flex
+  align-items: center
+  justify-content: center
   text-decoration: none
   cursor: pointer
   text-align: center
@@ -242,6 +248,7 @@ export default {
   text-transform: uppercase
   border-radius: 3px
   width: 120px
+  height: 30px
 
 #readmorebtn:hover
   background-color: #2F880B

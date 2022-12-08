@@ -28,10 +28,9 @@
                     green='SuperGreenPedia'
                     content="Welcome to the brand new Guides page! As you can see we still need a bit of work to fill with guides 😅 Well good news we're full at it right now, stay tuned! You'll find here all our quick-guides related to growing awesome plants and building stealth growboxes."/>
         </div>
-        <CardGuide v-for='guide in guides' :key="guide.id"
-                       :class='$style.cardContainer'
-                       :guide='guide'
-                       userStep='0'/>
+        <div v-for='guide in guides' :key="guide.id" :class='$style.cardContainer'>
+          <CardGuide :guide='guide' />
+        </div>
       </div>
       <div :class='$style.containerSeparator'>
         <div :class='$style.separator'></div>

@@ -23,7 +23,7 @@
     </div>
     <div :id='$style.right'>
       <div :id='$style.text'>
-        <h2 :id="$style.title" v-html='$md.render(title)'></h2>
+        <h2 :id="$style.title">{{ title }}</h2>
         <div :id="$style.description" v-html='$md.render(description)'></div>
         <div :id='$style.productlink' v-if='brandProduct.sellable'>
           <nuxt-link :id='$style.productpage' :to='link'>View product</nuxt-link>
@@ -150,7 +150,7 @@ export default {
   font-size: 2em
   color: #5E5E5E
   margin-bottom: 10pt
-  margin: 10pt 0 10pt 0
+  margin: 20px 10px
   @media only screen and (max-width: 600px)
     font-size: 1.5em
 
