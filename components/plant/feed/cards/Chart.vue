@@ -56,7 +56,7 @@ export default {
           borderColor: '#B37A0B',
           data: this.$props.feedEntry.meta.vpd.map(te => ({
             x: new Date(te[0] * 1000),
-            y: te[1],
+            y: Math.min(te[1], 30),
           })),
         }, {
           type: 'line',

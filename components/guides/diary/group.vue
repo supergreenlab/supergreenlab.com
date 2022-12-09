@@ -35,6 +35,12 @@
 
 import FeedEntry from '~/components/plant/feed/cards/FeedEntry.vue'
 
+const entries = {
+  FE_LIGHT: require('~/assets/img/plant/feed/icon_light.svg'),
+  FE_VENTILATION: require('~/assets/img/plant/feed/icon_blower.svg'),
+}
+
+
 export default {
   props: [ 'index', 'guide', 'guideSection',],
   components: {FeedEntry,},
@@ -47,7 +53,7 @@ export default {
     thumbnailPath() {
       return (entry) => {
         if ((entry.medias || []).length == 0) {
-          return ''
+          return entries[entry.type]
         }
         const media = this.$props.guideSection.medias.find(m => entry.medias[0].thumbnailPath.indexOf(m.fileName) !== -1)
         return `/img/${media.fileFull}`
