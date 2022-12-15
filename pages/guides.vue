@@ -22,13 +22,23 @@
     </div>
     <div :class='$style.space'></div>
     <div :id='$style.body'>
+      <div v-for='s in sections' :class='$style.topicContainer'>
+        <div :class='$style.cardContainer'>
+          <TitleGuide :title='s.title'
+                    :green='s.green'
+                    :content='s.description' />
+        </div>
+        <div v-for='guide in guides(s.tag)' :key="guide.id" :class='$style.cardContainer'>
+          <CardGuide :guide='guide' />
+        </div>
+      </div>
       <div :class='$style.topicContainer'>
         <div :class='$style.cardContainer'>
-          <TitleGuide title='Growing Guides'
-                    green='SuperGreenPedia'
-                    content="Welcome to the brand new Guides page! As you can see we still need a bit of work to fill with guides 😅 Well good news we're full at it right now, stay tuned! You'll find here all our quick-guides related to growing awesome plants and building stealth growboxes."/>
+          <TitleGuide title='Testing guides'
+                    green='Work In Progress'
+                    content='Work-in-progress guides' />
         </div>
-        <div v-for='guide in guides' :key="guide.id" :class='$style.cardContainer'>
+        <div v-for='guide in testGuides' :key="guide.id" :class='$style.cardContainer'>
           <CardGuide :guide='guide' />
         </div>
       </div>
@@ -51,10 +61,52 @@ import Newsletter from '~/components/layout/newsletter.vue'
 
 import { guides } from '~/config/guides.json'
 
+const sections = [
+  {
+    tag: 'growing-101',
+    title: 'Growing 101',
+    green: 'Become plants',
+    description: 'Everything you need to know to grow your own guide.',
+  },
+  {
+    tag: 'building-101',
+    title: 'Building 101',
+    green: 'Better builds',
+    description: 'Everything you need to know to build your own box.',
+  },
+  {
+    tag: 'diaries',
+    title: 'Complete grow diaries',
+    green: 'How it goes',
+    description: 'Did you know that the SGL app is also a grow diary? In this section we\'ll review and comment complete seed-to-harvest diaries.',
+  },
+  {
+    tag: 'supergreennerds',
+    title: 'Let\'s get nerdy.',
+    green: 'SuperGreenNerds',
+    description: 'Become a better grower with high tech tools and accessories.',
+  },
+  {
+    tag: 'kit-manuals',
+    title: '3d printed kits manuals',
+    green: 'SuperGreenConstructionSet',
+    description: 'Just bought or printed one of SGL\'s 3d printed kits and not sure what to do? Checkout those guides.',
+  },
+  {
+    tag: 'bundle-manual',
+    title: 'SGL bundle manuals',
+    green: 'Follow the guide',
+    description: 'Everything your need to know to setup your SuperGreenLab bundle.',
+  },
+]
+
 export default {
   components: { Header, Footer, TitleGuide, SectionTitle, CardGuide, Newsletter },
   computed: {
-    guides: () => guides.filter(guide => guide.first == null).sort((g1, g2) => g1.order - g2.order),
+    allGuides: () => guides.filter(guide => guide.first == null),
+    sections: () => sections,
+    guides: () => (tag) => guides.filter(guide => guide.first == null && guide.ready && guide.tags.includes(tag)).sort((g1, g2) => g1.order - g2.order),
+    testGuides: () => guides.filter(guide => guide.first == null && !guide.ready).sort((g1, g2) => g1.order - g2.order),
   }
 }
 </script>

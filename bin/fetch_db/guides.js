@@ -11,7 +11,7 @@ module.exports.fetchGuides = async () => {
   await mkAssetsDir('links')
   await mkStaticDir('guides')
 
-  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements','order', 'duration', 'difficulty','author','credit', 'createdat', 'nopiclogo', 'diary', 'plant',])
+  let guides = await fetchTable('Guides', ['slug', 'thumbnail', 'title', 'subtitle', 'text', 'requires', 'sections', 'name', 'media', 'nextslug', 'ready', 'first', 'relatedGuides', 'links', 'attachements','order', 'duration', 'difficulty','author','credit', 'createdat', 'nopiclogo', 'diary', 'plant', 'tags',])
   const guideSections = await fetchTable('GuideSections', ['slug', 'title', 'text', 'media', 'medias', 'requires', 'order', 'links', 'attachements', 'showdone', 'author', 'credit', 'gotoguides', 'nopiclogo', 'entry', 'grouped',])
   let bookmarks = await fetchTable('Bookmarks', ['slug', 'title', 'description', 'icon', 'url'])
 
