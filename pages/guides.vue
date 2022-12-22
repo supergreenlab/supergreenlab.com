@@ -28,9 +28,10 @@
                     :green='s.green'
                     :content='s.description' />
         </div>
-        <div v-for='guide in guides(s.tag)' :key="guide.id" :class='$style.cardContainer'>
-          <CardGuide :guide='guide' />
+        <div v-for='(guide, i) in guides(s.tag)' :key="guide.id" :class='$style.cardContainer'>
+          <CardGuide v-if='!guide.spacer' :guide='guide' />
         </div>
+        <div v-if='i != sections.length-1' :class='$style.separator'></div>
       </div>
       <div :class='$style.topicContainer'>
         <div :class='$style.cardContainer'>
@@ -65,8 +66,8 @@ const sections = [
   {
     tag: 'growing-101',
     title: 'Growing 101',
-    green: 'Become plants',
-    description: 'Everything you need to know to grow your own guide.',
+    green: 'Better plants',
+    description: 'Everything you need to know to grow your own plants.',
   },
   {
     tag: 'building-101',
@@ -88,8 +89,8 @@ const sections = [
   },
   {
     tag: 'kit-manuals',
-    title: '3d printed kits manuals',
-    green: 'SuperGreenConstructionSet',
+    title: '3D printed kits manuals',
+    green: 'Grower\'s Construction Set',
     description: 'Just bought or printed one of SGL\'s 3d printed kits and not sure what to do? Checkout those guides.',
   },
   {
@@ -105,7 +106,12 @@ export default {
   computed: {
     allGuides: () => guides.filter(guide => guide.first == null),
     sections: () => sections,
-    guides: () => (tag) => guides.filter(guide => guide.first == null && guide.ready && guide.tags.includes(tag)).sort((g1, g2) => g1.order - g2.order),
+    guides: () => (tag) => {
+      const gs = guides.filter(guide => guide.first == null && guide.ready && guide.tags.includes(tag))
+      gs.sort((g1, g2) => g1.order - g2.order)
+      gs.push(...Array.from(Array(5)).map(a => ({spacer: true})))
+      return gs
+    },
     testGuides: () => guides.filter(guide => guide.first == null && !guide.ready).sort((g1, g2) => g1.order - g2.order),
   }
 }
@@ -145,6 +151,7 @@ export default {
   flex-wrap: wrap
   align-items: center
   max-width: 1300px
+  margin: 10px 0
   @media only screen and (max-width: 600pt)
     justify-content: center
 
@@ -170,10 +177,11 @@ SectionTitle
   justify-content: flex-start
 
 .separator
-  width: 95%
+  width: 100%
   border: 2px solid
-  color: #C4C4C4
+  color: #dddddd
   border-style: none none dashed none
   margin-top: 30px
   margin-bottom: 30px
+
 </style>
