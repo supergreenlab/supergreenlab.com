@@ -22,7 +22,7 @@
     </div>
     <div :class='$style.space'></div>
     <div :id='$style.body'>
-      <div v-for='s in sections' :class='$style.topicContainer'>
+      <div v-for='(s, j) in sections' :class='$style.topicContainer'>
         <div :class='$style.cardContainer'>
           <TitleGuide :title='s.title'
                     :green='s.green'
@@ -31,7 +31,7 @@
         <div v-for='(guide, i) in guides(s.tag)' :key="guide.id" :class='$style.cardContainer'>
           <CardGuide v-if='!guide.spacer' :guide='guide' />
         </div>
-        <div v-if='i != sections.length-1' :class='$style.separator'></div>
+        <div v-if='j != sections.length-1' :class='$style.separator'></div>
       </div>
       <div :class='$style.topicContainer'>
         <div :class='$style.cardContainer'>
