@@ -100,4 +100,8 @@ export const getters = {
   sellingPointForBrandProduct: (state, getters) => id => getters.sellingPoint(sellingPoints.filter(sp => sp.BrandProduct[0] == id)),
   sellingPointForProduct: (state, getters) => (id, region=null) => getters.sellingPoint(sellingPoints.filter(sp => sp.Product[0] == id), region),
   availableRegions: (state, getters) => regions.filter(r => r.id == state.offsetRegion.id || (r.in && regionTree(r).find(r2 => r2.id == state.offsetRegion.id))),
+  isInEurope(state) {
+    const rt = regionTree(state.region)
+    return !rt.find(r => r.code == 'NA')
+  },
 }
