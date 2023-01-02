@@ -26,7 +26,7 @@ import { products, sellingPoints, regions, } from '~/config/products.json'
 
 // return this.bundle.canorder && Object.keys(this.$store.state.checkout).findIndex((k) => typeof this.$store.state.checkout[k].value !== 'undefined' && !this.$store.state.checkout[k].value && !this.$store.state.checkout[k].optional) == -1
 
-const STORAGE_ITEM='checkout8'
+const STORAGE_ITEM='checkout9'
 
 export const state = () => {
   let defaults = {
