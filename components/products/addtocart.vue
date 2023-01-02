@@ -24,7 +24,7 @@
       <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? (titleadded || "ITEM ADDED!") : (title || "ADD TO CART")) }}</b></a>
     </div>
     <p v-if='discreet !== false'>Our products are shipped discreet</p>
-    <HolidayAlert v-if='discreet !== false && isInEurope' />
+    <!--<HolidayAlert v-if='discreet !== false && isInEurope' />-->
   </section>
 </template>
 
