@@ -26,11 +26,18 @@
       <b :id='seller.id == sglSellerId ? $style.green : $style.normal'>{{ seller.name }}</b>
       <div :id='$style.tagline' v-if='product.tagline' v-html='$md.render(product.tagline)'></div>
     </nuxt-link>
-    <div :class='$style.price'>
-      <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+    <div :id='$style.addtocartcontainer' v-if='brandProduct.sellable'>
+      <div :class='$style.price'>
+        <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
+      </div>
+      <OutOfStock v-if='sellingPoint.outofstock' />
+      <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' :location='location' />
     </div>
-    <OutOfStock v-if='sellingPoint.outofstock' />
-    <AddToCart v-else :product='product' :sellingPoint='sellingPoint' :small='true' :discreet=false :n='1' :location='location' />
+    <div :id='$style.addtocartcontainer' v-else>
+      <div :id='$style.downloadlink'>
+        <nuxt-link :id='$style.productpage' :to='link'>Free download!</nuxt-link>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -141,5 +148,36 @@ export default {
 #tagline strong
   color: #3bb30b
   font-weight: bold
+
+#addtocartcontainer
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+#productpage
+  display: block
+  background-color: #3bb30b
+  text-align: center
+  padding: 5pt 15pt
+  border-radius: 3pt
+  color: #ffffff
+  text-decoration: none
+  font-size: 0.9em
+  margin: 5pt 0
+  white-space: nowrap
+  text-transform: uppercase
+  cursor: pointer
+
+#productpage:hover
+  background-color: #2F880B
+
+#downloadlink
+  display: flex
+  margin: 10pt 5pt 10pt 10pt
+  font-weight: 800
+  font-size: 1.2em
+  > a
+    padding: 10pt 25pt
 
 </style>

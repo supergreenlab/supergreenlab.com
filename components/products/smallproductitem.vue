@@ -229,16 +229,16 @@ export default {
   display: block
   background-color: #3BB30B
   text-align: center
-  padding: 8pt 25pt
-  border-radius: 5pt
+  padding: 5pt 20pt
+  border-radius: 3pt
   color: white
   text-decoration: none
-  font-size: 1.2em
+  font-size: 1em
   margin: 10pt 0
   white-space: nowrap
   transition: opacity 0.2s
   @media only screen and (max-width: 1000px)
     padding: 7pt 22pt
-    font-size: 1.1em
+    font-size: 0.9em
 
 </style>

@@ -208,7 +208,6 @@ export default {
 #productpage:hover
   background-color: #2F880B
 
-
 #addtocartcontainer
   display: flex
   flex-direction: column

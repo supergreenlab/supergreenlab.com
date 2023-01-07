@@ -25,7 +25,7 @@
       <h3>{{ brandProduct.name }}<span v-if='!picOnly'><br />BY {{ brand.name }}</span></h3>
       <b :id='seller.id == sglSellerId ? $style.green : $style.normal'>{{ seller.name }}</b>
     </nuxt-link>
-    <div v-if='!picOnly'>
+    <div v-if='!picOnly && brandProduct.sellable'>
       <div :class='$style.price'>
         <Price :lineItems='[{sellingPoint, n: 1}]' :small=true />
       </div>
