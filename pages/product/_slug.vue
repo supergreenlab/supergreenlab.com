@@ -63,7 +63,7 @@
             <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
               <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
               <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
-              <div>
+              <div v-if='rp.brandProduct.sellable'>
                 <b>{{ rp.price.strTotal }}</b>
               </div>
             </nuxt-link>
@@ -107,7 +107,7 @@
               <nuxt-link :class='$style.relatedProduct' :key='rp.id' v-for='rp in relatedProducts' :to='link(rp)' @click.native='relatedProductClicked(rp)'>
                 <div :class='$style.relatedProductPic' :style='{"background-image": `url(/img/${rp.brandProduct.pics[0].fileLarge})`}'></div>
                 <div :class='$style.relatedProductText'><b>{{ rp.brandProduct.name }}</b><br />{{ rp.text }}</div>
-                <div>
+                <div v-if='rp.brandProduct.sellable'>
                   <b>{{ rp.price.strTotal }}</b>
                 </div>
               </nuxt-link>
