@@ -22,7 +22,7 @@
     "date-fns": "^2.29.3",
     "fflate": "^0.7.4",
     "fuse.js": "^6.4.6",
-    "luxon": "^2.0.1",
+    "luxon": "^2.5.2",
     "markdown-it-attrs": "^3.0.3",
     "markdown-it-div": "^1.1.0",
     "moment": "^2.29.4",
