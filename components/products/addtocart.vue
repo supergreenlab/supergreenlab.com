@@ -18,12 +18,17 @@
 
 <template>
   <section :id='$style.container' :class='small ? $style.small : ""'>
-    <div>
+    <div v-if='true'>
+      <b>We're moving the stock!</b><br />
+      We'll be back very soon<br/>
+      Add-To-cart disabled until then
+    </div>
+    <div v-else>
       <Number v-if='!lineItems' v-model='n' :small=true />
       <nuxt-link v-if='done' :id='$style.button' to='/cart'><b>GO TO CART</b></nuxt-link>
       <a v-else :id='$style.button' :style='{"opacity": activated ? 0.5 : 1}' href='javascript:void(0);' @click='addToCartClicked'><b>{{ activated ? "PLEASE WAIT" : (added ? (titleadded || "ITEM ADDED!") : (title || "ADD TO CART")) }}</b></a>
     </div>
-    <p v-if='discreet !== false'>Our products are shipped discreet</p>
+    <p v-if='false && discreet !== false'>Our products are shipped discreet</p>
     <!--<HolidayAlert v-if='discreet !== false && isInEurope' />-->
   </section>
 </template>
@@ -105,6 +110,9 @@ export default {
   padding: 6pt 18pt
   font-size: 1em
   border-radius: 4pt
+
+#container b
+  color: #3bb30b
 
 #button:hover
   background-color: #2F880B
