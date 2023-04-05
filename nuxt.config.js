@@ -58,8 +58,9 @@ export default {
   */
   plugins: [
     { src: '~plugins/init.js', ssr: false },
-    { src: '~plugins/matomo.js', ssr: false },
-    { src: '~plugins/analytics.js', ssr: false },
+    //{ src: '~plugins/matomo.js', ssr: false },
+    //{ src: '~plugins/analytics.js', ssr: false },
+    { src: '~plugins/fake-analytics.js', ssr: false },
     { src: '~plugins/crisp.js', ssr: false },
     //{ src: '~plugins/sgl-diary-feed.js', ssr: false },
     { src: '~plugins/vue-slick-carousel.js', ssr: false },
@@ -82,7 +83,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/axios',
     '@nuxtjs/markdownit',
-    ['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: process.env.NODE_ENV !== 'production' ? 7 : 4, debug: process.env.NODE_ENV !== 'production'}],
+    //['nuxt-matomo', { matomoUrl: 'https://analytics.supergreenlab.com/', trackerUrl: 'https://analytics.supergreenlab.com/matomo.php', scriptUrl: 'https://analytics.supergreenlab.com/matomo.js', siteId: process.env.NODE_ENV !== 'production' ? 7 : 4, debug: process.env.NODE_ENV !== 'production'}],
     'portal-vue/nuxt',
     'nuxt-client-init-module',
   ],
