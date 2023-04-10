@@ -33,7 +33,7 @@
         </div>
         <div v-if='j != sections.length-1' :class='$style.separator'></div>
       </div>
-      <div :class='$style.topicContainer'>
+      <div v-if='testGuides.length' :class='$style.topicContainer'>
         <div :class='$style.cardContainer'>
           <TitleGuide title='Testing guides'
                     green='Work In Progress'

@@ -16,16 +16,16 @@ const eshop = Airtable.base(AIRTABLE_BASE)
 
 const fetchFile = async (url, dst, path=assetsPath) => {
   dst = `${path}/${dst}`
-  console.log(`Fetching file ${url} to ${dst}`)
+  //console.log(`Fetching file ${url} to ${dst}`)
   try {
     if (await fs.access(dst) == null) {
-      console.log(`${dst} already exists, skipping..`)
+      //console.log(`${dst} already exists, skipping..`)
       return
     }
   } catch(e) {}
   const response = await axios.get(url, { responseType: 'arraybuffer' })
   await fs.writeFile(dst, response.data)
-  console.log(`Fetched file ${url} to ${dst}`)
+  //console.log(`Fetched file ${url} to ${dst}`)
 }
 
 module.exports.noPic = {
@@ -83,7 +83,7 @@ module.exports.fetchAttachement = (p, attachement, dir, keepRaw=false) => {
         await fetchFile(thumbnails.full.url, `tmp/${fileRaw}`)
       }
 
-      console.log(`resizing:\n${dir}/${fileSmall} ${dir}/${fileLarge} ${dir}/${fileFull}`)
+      //console.log(`resizing:\n${dir}/${fileSmall} ${dir}/${fileLarge} ${dir}/${fileFull}`)
       await sharp(`${assetsPath}/tmp/${fileSmall}`).resize(200, 200, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileSmall}`)
       await sharp(`${assetsPath}/tmp/${fileLarge}`).resize(600, 600, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileLarge}`)
       await sharp(`${assetsPath}/tmp/${fileFull}`).resize(1400, 1400, {fit: 'inside', withoutEnlargement: true}).flatten( { background: '#ffffff' } ).jpeg().toFile(`${assetsPath}/${dir}/${finalFileFull}`)
