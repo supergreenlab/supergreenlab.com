@@ -33,6 +33,10 @@ export default {
     ],
     script: [
       {
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-Z5YYTRX9MJ',
+        async: 'true',
+      },
+      {
         src: 'https://api.goaffpro.com/loader.js?shop=supergreenlab.myshopify.com',
       },
     ]
@@ -58,6 +62,7 @@ export default {
   */
   plugins: [
     { src: '~plugins/init.js', ssr: false },
+    { src: '~plugins/gtag.js', ssr: false },
     //{ src: '~plugins/matomo.js', ssr: false },
     //{ src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/fake-analytics.js', ssr: false },
