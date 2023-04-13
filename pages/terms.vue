@@ -223,15 +223,11 @@ export default {
 
 <style module lang=stylus>
 
-#container
+#container, #body
   display: flex
   flex-direction: column
   color: #5d5d5d
-
-#body
   padding: 50pt 30pt 70pt 30pt
-
-
 
 ol {
 	margin: 0;

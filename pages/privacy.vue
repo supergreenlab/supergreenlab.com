@@ -21,13 +21,6 @@
     <div :id='$style.header'>
       <Header responsiveHide='true' />
     </div>
-    <div :id='$style.body'>
-      <div :id='$style.title'>
-        <SectionTitle title=''
-            green='Privacy Policy'
-            separator='true'/>
-      </div>
-    </div>
     <div class="container">
         <div :class="`${$style.row} ${$style.align-items-center}`">
             <div class="col-12 col-md-12 ml-auto pt-5 pt-md-0">
@@ -283,7 +276,10 @@ export default {
   flex-direction: column
   justify-content: center
   align-items: center
+  padding-top: 50px;
   margin-top: 20px
+  width: 100%
+  max-width: 900pt
 
 #header
   position: fixed
@@ -291,10 +287,6 @@ export default {
   top: 0 
   left: 0
   z-index: 1000
-
-#body
-  width: 100%
-  max-width: 900pt
 
 #container a 
   color: #4c4c4c;
@@ -312,11 +304,5 @@ export default {
   background-position: center
   background-repeat: no-repeat
   background-size: contain
-
-#container
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
 </style>
