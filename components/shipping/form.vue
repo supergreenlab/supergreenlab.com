@@ -82,7 +82,7 @@ const binding = (name) => ({
     return this.$store.state.shipping[name].value
   },
   set(value) {
-    this.$store.commit('shipping/updateShipping', {key: name, value})
+    this.$store.commit('shipping/updateShipping', {key: name, value: value || ''})
   },
 })
 
