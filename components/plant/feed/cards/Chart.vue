@@ -29,16 +29,23 @@
 </template>
 
 <script>
+const fflate = require('fflate');
+const base64 = require('byte-base64');
+
 export default {
   props: ['plant', 'feedEntry',],
   data() {
+    const metaBinary = base64.base64ToBytes(this.$props.feedEntry.meta)
+    const metaJSON = fflate.strFromU8(fflate.decompressSync(metaBinary))
+    const meta = JSON.parse(metaJSON)
+
     return {
       data: {
         datasets: [{
           type: 'line',
           label: 'Temp',
           borderColor: '#3bb30b',
-          data: this.$props.feedEntry.meta.temperature.map(te => ({
+          data: meta.temperature.map(te => ({
             x: new Date(te[0] * 1000),
             y: te[1],
           })),
@@ -46,7 +53,7 @@ export default {
           type: 'line',
           label: 'Humi',
           borderColor: '#0B8BB3',
-          data: this.$props.feedEntry.meta.humidity.map(te => ({
+          data: meta.humidity.map(te => ({
             x: new Date(te[0] * 1000),
             y: te[1],
           })),
@@ -54,7 +61,7 @@ export default {
           type: 'line',
           label: 'VPD',
           borderColor: '#B37A0B',
-          data: this.$props.feedEntry.meta.vpd.map(te => ({
+          data: meta.vpd.map(te => ({
             x: new Date(te[0] * 1000),
             y: Math.min(te[1], 30),
           })),
@@ -62,7 +69,7 @@ export default {
           type: 'line',
           label: 'Ventil',
           borderColor: '#0BB3A9',
-          data: this.$props.feedEntry.meta.ventilation.map(te => ({
+          data: meta.ventilation.map(te => ({
             x: new Date(te[0] * 1000),
             y: te[1],
           })),
@@ -70,8 +77,8 @@ export default {
           type: 'line',
           label: 'Dim',
           borderColor: '#B0B30B',
-          data: this.$props.feedEntry.meta.timer.map((te, i) => {
-            const dimmings = this.$props.feedEntry.meta.dimming.reduce((acc, dimming) => {
+          data: meta.timer.map((te, i) => {
+            const dimmings = meta.dimming.reduce((acc, dimming) => {
               if (dimming[i] && dimming[i][1]) {
                 acc.push(dimming[i][1])
               }
