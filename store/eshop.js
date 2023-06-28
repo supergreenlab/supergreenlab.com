@@ -23,15 +23,16 @@ import { regionTree } from '~/lib/json_db.js'
 
 const guessDefautRegion = () => {
   const off = new Date().getTimezoneOffset() / 60
-  if (off <= 0 && off >= -3) {
+  if (off <= 1 && off >= -4) {
     return regions.find(r => r.code == 'EU')
-  } else if (off >= 3 && off <= 8) {
+  }/* else if (off >= 3 && off <= 8) {
     return regions.find(r => r.code == 'NA')
-  }
-  return regions[0]
+  }*/
+  return regions.find(r => r.code == 'NA')
+  //return regions[0]
 }
 
-const STORAGE_ITEM='eshop9'
+const STORAGE_ITEM='eshop10'
 
 export const state = () => {
   let defaults = {
