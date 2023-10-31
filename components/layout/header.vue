@@ -27,6 +27,7 @@
       <span :class="$style.burgerBar" :id='$style.bottomBar' :style='{"transform": (!isActive? "" : "rotate(-135deg)"), "background":  (!isActive? "" : "#3BB30B"), "margin-top":  (!isActive? "" : "0.4em")}'></span>
     </a>
     <div v-if='!nomenu' :id='$style.menu' :style='{"right": (!isActive? "-200pt" : "0pt")}'>
+      <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/app") ? $style.selected : ""' to='/app'>App</nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/shop") ? $style.selected : ""' to='/shop'>Shop</nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01'>Stickers!</nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/bundle/micro-box-bundle") ? $style.selected : ""' to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>

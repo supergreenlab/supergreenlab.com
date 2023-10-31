@@ -18,36 +18,19 @@
 
 <template>
   <section :id='$style.container'>
-    <div id='header_wrapper'>
-      <div :id='$style.header'>
-        <Header/>
-      </div>
+    <div :id='$style.left'>
+      <img :src='icon' />
+      <h2 v-html='$md.render(title)'></h2>
+      <p v-html='$md.render(subtitle)'></p>
     </div>
-
-    <div :id='$style.content'>
-      <Top />
-
-      <Remote />
-      <Devices />
-      <Checklists />
-  
-    </div>
-
-    <Footer />
+    <div :id='$style.right' v-html='$md.render(description)'></div>
   </section>
 </template>
 
 <script>
 
-import Header from '~/components/layout/header.vue'
-import Top from '~/components/app/top.vue'
-import Remote from '~/components/app/remote.vue'
-import Devices from '~/components/app/devices.vue'
-import Checklists from '~/components/app/checklists.vue'
-import Footer from '~/components/layout/footer.vue'
-
 export default {
-  components: {Header, Top, Remote, Devices, Checklists, Footer},
+  props: ['icon', 'title', 'subtitle', 'description'],
 }
 
 </script>
@@ -56,28 +39,28 @@ export default {
 
 #container
   display: flex
-  width: 100vw
-  flex-direction: column
-  align-items: center
-  margin-top: 60px
-  color: #414141
 
-#container h1
-  font-family: Roboto
-
-#header
-  position: fixed
-  width: 100vw
-  top: 0
-  left: 0
-  z-index: 1000
-
-#content
+#left
   display: flex
   flex-direction: column
+  margin-right: 20px
+  max-width: 200px
+  text-align: center
+
+#left img
+  height: 100px
+  margin-bottom: 10px
+
+#left h2
+  margin: 15px 0
+  text-transform: uppercase
+
+#left h2 strong
+  color: #3bb30b
+
+#right
+  display: flex
   align-items: center
-  min-height: 100vh
-  width: 100%
-  max-width: 900px
+  max-width: 400px
 
 </style>

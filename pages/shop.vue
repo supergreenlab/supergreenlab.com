@@ -52,7 +52,6 @@ import SmallProductList from '~/components/products/smallproductlist.vue'
 import Shop from '~/components/shop/shop.vue'
 
 export default {
-  props: ['location',],
   components: {Header, SmallProductList, Shop, Footer},
   head() {
     return {

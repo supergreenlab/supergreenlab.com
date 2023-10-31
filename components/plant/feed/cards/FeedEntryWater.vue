@@ -87,7 +87,7 @@ export default {
   display: block;
   margin-top: 15px;
 
-p
+.container p
   padding: 10px 15px;
   text-align: left;
 
