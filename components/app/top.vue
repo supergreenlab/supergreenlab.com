@@ -37,10 +37,7 @@
 
           <b>By monitoring your diary and environment the app</b> will give your notifications to never mess up your grow.<br /><br />
 
-          <div :id='$style.stores'>
-            <a href='https://play.google.com/store/apps/details?id=com.supergreenlab.app2'><img src='~/assets/img/app/icon-playstore.png' /></a>
-            <a href='https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318'><img src='~/assets/img/app/icon-appstore.png' /></a>
-          </div>
+          <Install />
         </div>
       </div>
 
@@ -50,9 +47,10 @@
 <script>
 
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
+import Install from '~/components/app/install.vue'
 
 export default {
-  components: {SectionTitle, },
+  components: {SectionTitle, Install, },
 }
 
 </script>
@@ -103,16 +101,5 @@ export default {
 
 #introtext h1
   margin-bottom: 40px
-
-#stores
-  display: flex
-  align-items: center
-  justify-content: center
-
-#stores a
-  margin: 20px 10px
-
-#stores a img
-  height: 50px
 
 </style>

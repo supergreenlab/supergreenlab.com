@@ -75,7 +75,6 @@
                 &nbsp;
                 This research will lead to smart alerts based on how your plant moves throughout the day.' />
 
-
   </section>
 </template>
 

@@ -32,6 +32,15 @@
       <Checklists />
       <Diary />
   
+      <div :class='$style.title'>
+        <SectionTitle title='**AVAILABLE** ON:'
+                      center='true'
+                      :border='true'/>
+      </div>
+
+      <Install />
+
+
     </div>
 
     <Footer />
@@ -40,6 +49,7 @@
 
 <script>
 
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Header from '~/components/layout/header.vue'
 import Top from '~/components/app/top.vue'
 import Remote from '~/components/app/remote.vue'
@@ -47,9 +57,10 @@ import Devices from '~/components/app/devices.vue'
 import Diary from '~/components/app/diary.vue'
 import Checklists from '~/components/app/checklists.vue'
 import Footer from '~/components/layout/footer.vue'
+import Install from '~/components/app/install.vue'
 
 export default {
-  components: {Header, Top, Remote, Devices, Diary, Checklists, Footer},
+  components: { SectionTitle, Header, Top, Remote, Devices, Diary, Checklists, Footer, Install, },
 }
 
 </script>
@@ -80,5 +91,12 @@ export default {
   align-items: center
   min-height: 100vh
   width: 100%
+
+.title
+  font-family: Roboto
+  width: 100%
+  margin: 30pt 0 30pt 0
+  @media only screen and (max-width: 600px)
+    margin: 0
 
 </style>
