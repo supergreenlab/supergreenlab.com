@@ -35,7 +35,11 @@
                 &nbsp;
                 The app will also keep track of the current phase of your plant, whether it’s in veg or bloom etc... and for how long.
                 &nbsp;
-                **And of course the app can be pinlocked 🔒**' />
+                **And of course the app can be pinlocked 🔒**'>
+
+      <img :id='$style.diarypic' src='~/assets/img/app/pic-diary-video.png' />
+
+    </AppSection>
 
   </section>
 </template>
@@ -64,5 +68,8 @@ export default {
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
+
+#diarypic
+  margin-top: 20px
 
 </style>

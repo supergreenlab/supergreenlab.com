@@ -22,6 +22,7 @@
       <img :src='icon' />
       <h2 v-html='$md.render(title)'></h2>
       <p v-html='$md.render(subtitle)'></p>
+      <slot></slot>
     </div>
     <div :id='$style.right' v-html='$md.render(description)'></div>
   </section>
@@ -44,11 +45,11 @@ export default {
 #left
   display: flex
   flex-direction: column
-  margin-right: 20px
+  margin-right: 40px
   max-width: 200px
   text-align: center
 
-#left img
+#left img:first-child
   height: 100px
   margin-bottom: 10px
 
@@ -65,6 +66,6 @@ export default {
 #right
   display: flex
   align-items: center
-  max-width: 400px
+  max-width: 500px
 
 </style>

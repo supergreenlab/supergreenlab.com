@@ -56,9 +56,10 @@ export default {
   width: 300px
 
 .pic
-  width: 50%
+  width: 65%
 
 .title
+  margin-top: -5px
   font-weight: bold
 
 .title strong
