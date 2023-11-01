@@ -55,11 +55,11 @@ export default {
   background-color: white
   border-radius: 50%
   margin: 60px 30px
-  height: 300px
-  width: 300px
+  height: 350px
+  width: 350px
 
 .pic
-  width: 65%
+  width: 68%
 
 .circle .title
   margin-top: -5px
