@@ -38,7 +38,9 @@
                       :border='true'/>
       </div>
 
-      <Install />
+      <div :id='$style.install'>
+        <Install />
+      </div>
 
 
     </div>
@@ -98,5 +100,8 @@ export default {
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
+
+#install
+  margin: 50px 0 80px 0
 
 </style>
