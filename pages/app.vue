@@ -29,8 +29,8 @@
 
       <Remote />
       <Devices />
-      <Diary />
       <Checklists />
+      <Diary />
   
     </div>
 
