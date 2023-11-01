@@ -19,7 +19,7 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.left'>
-      <img :src='icon' />
+      <img :src='icon' :style='iconStyle' />
       <h2 v-html='$md.render(title)'></h2>
       <p v-html='$md.render(subtitle)'></p>
       <slot></slot>
@@ -31,7 +31,7 @@
 <script>
 
 export default {
-  props: ['icon', 'title', 'subtitle', 'description'],
+  props: ['icon', 'iconStyle', 'title', 'subtitle', 'description'],
 }
 
 </script>

@@ -68,6 +68,7 @@
                 Early detect potential upcoming issues **before they become a problem** by receiving daily and weekly timelapses of your plant!' />
 
     <AppSection :icon='require("~/assets/img/app/pic-thirst-detection.png")'
+                :iconStyle='{ width: "234px", height: "130px" }'
                 title='Thirst and anomaly **detection**'
                 subtitle='SGL is working on the first camera based issue detection for cannabis plants.'
                 description='**COMING SOON**: Thanks to the few millions timelapse frames SGL has accumulated thanks to its community, we’re able to make smart movement analysis.
