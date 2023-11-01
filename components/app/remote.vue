@@ -43,18 +43,20 @@
                 &nbsp;
                 Thanks to the Checklist System, the sensor values can also be used to trigger reminders and alerts!' />
 
-    <GreenGallery :items='[
-      {
-        pic: require("~/assets/img/app/pic-remote-monitoring.png"),
-        title: "Remote **monitoring**",
-        subtitle: "Temperature, humidity, VPD, CO2 and Weight!",
-      },
-      {
-        pic: require("~/assets/img/app/pic-remote-control.png"),
-        title: "Remote **control**",
-        subtitle: "Ventilation, light, schedule, everything is remotely controlled!",
-      },
-    ]' />
+    <GreenGallery 
+      :circle=true
+      :items='[
+        {
+          pic: require("~/assets/img/app/pic-remote-monitoring.png"),
+          title: "Remote **monitoring**",
+          subtitle: "Temperature, humidity, VPD, CO2 and Weight!",
+        },
+        {
+          pic: require("~/assets/img/app/pic-remote-control.png"),
+          title: "Remote **control**",
+          subtitle: "Ventilation, light, schedule, everything is remotely controlled!",
+        },
+      ]' />
 
     <AppSection :icon='require("~/assets/img/app/icon-timelapse.svg")'
                 title='REMOTE **CAMERA** AND DAILY **TIMELAPSES**'

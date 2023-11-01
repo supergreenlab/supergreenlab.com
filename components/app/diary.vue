@@ -41,6 +41,17 @@
 
     </AppSection>
 
+    // TODO add diary replication explaination
+
+    <AppSection :icon='require("~/assets/img/app/icon-community.png")'
+                title='SHARE WITH THE **COMMUNITY**'
+                subtitle='Make your diary public to get help from the community or to help others.'
+                description='Share your diary with the community to get feedback and share your success!
+                &nbsp;
+                By default everything is private, but you can choose to make one of your diaries public.
+                &nbsp;
+                In this case, others will be able to see it, but also replicate your grow 💚' />
+
   </section>
 </template>
 

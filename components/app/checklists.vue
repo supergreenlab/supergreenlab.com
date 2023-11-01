@@ -33,7 +33,7 @@
                 &nbsp;
                 You can program you reminder with dates like any todo-list app, but you can also monitor your environment’s metrics and plant diary to trigger notifications just at the right time.' />
 
-    <GreenGallery :items='[
+    <GreenGallery :circle=true :items='[
       {
         pic: require("~/assets/img/app/pic-notification.png"),
         title: "**Reminder** notifications",
@@ -43,6 +43,29 @@
         pic: require("~/assets/img/app/pic-action-shortcut.png"),
         title: "**Action** shortcuts",
         subtitle: "Just tap the notification to enter a new watering entry.",
+      },
+    ]' />
+
+    <AppSection :icon='require("~/assets/img/app/icon-growing-lessons.svg")'
+                title='FREE GROWING **LESSONS**'
+                subtitle='The SGL app comes with a free checklist tutoring system.
+                The app will send you notifications when there is something you should know.'
+                description='While the app allows your create your own perfect grow recipe with the checklist system, **we also provide ready-to-use checklist collections.**
+                &nbsp;
+                Usable for beginner and advanced growers, you will find checklist collections for all levels.
+                &nbsp;
+                From the simple **“Daily checks”** to more advanced use cases like **“How to grow organically”** or **“How to make feminized seeds”**, the checklist collections can be a life saver for your plant.' />
+
+    <GreenGallery :items='[
+      {
+        pic: require("~/assets/img/app/pic-checklist-1.png"),
+        title: "The right tips at the **right time**",
+        subtitle: "No need to read all the how-to-grow guides anymore. The app monitors your activity in your diary and give you useful tips.",
+      },
+      {
+        pic: require("~/assets/img/app/pic-checklist-2.png"),
+        title: "Get answers **before you ask**",
+        subtitle: "With all its pre-programmed checklist items, the app will be able to send you contextualized notifications based on your diary and environment metrics.",
       },
     ]' />
 

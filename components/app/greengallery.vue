@@ -17,8 +17,8 @@
  -->
 
 <template>
-  <section :id='$style.container' :style='{"background-image": `url(${require("~/assets/img/app/background-gallery.svg")})`}'>
-    <div v-for='item in items' :class='$style.circle'>
+  <section :id='$style.container' :style='circle ? {"background-image": `url(${require("~/assets/img/app/background-gallery.svg")})`} : {}'>
+    <div v-for='item in items' :class='{ [$style.item]: true, [$style.circle]: !!circle }'>
       <img :class='$style.pic' :src='item.pic' />
       <div :class='$style.title' v-html='$md.render(item.title)'></div>
       <div :class='$style.subtitle' v-html='$md.render(item.subtitle)'></div>
@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  props: ['items',],
+  props: ['items', 'circle',],
 }
 
 </script>
@@ -44,11 +44,14 @@ export default {
   background-size: contain
   width: 100vw
 
-.circle
+.item
   display: flex
   flex-direction: column
   align-items: center
   justify-content: center
+  width: 400px
+
+.circle
   background-color: white
   border-radius: 50%
   margin: 60px 30px
@@ -58,9 +61,12 @@ export default {
 .pic
   width: 65%
 
-.title
+.circle .title
   margin-top: -5px
+
+.title
   font-weight: bold
+  margin-bottom: 10px
 
 .title strong
   color: #3bb30b

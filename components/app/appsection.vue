@@ -50,6 +50,8 @@ export default {
   text-align: center
 
 #left img:first-child
+  align-self: center
+  width: 100px
   height: 100px
   margin-bottom: 10px
 
