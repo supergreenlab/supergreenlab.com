@@ -29,6 +29,7 @@
 
       <Remote />
       <Devices />
+      <Diary />
       <Checklists />
   
     </div>
@@ -43,11 +44,12 @@ import Header from '~/components/layout/header.vue'
 import Top from '~/components/app/top.vue'
 import Remote from '~/components/app/remote.vue'
 import Devices from '~/components/app/devices.vue'
+import Diary from '~/components/app/diary.vue'
 import Checklists from '~/components/app/checklists.vue'
 import Footer from '~/components/layout/footer.vue'
 
 export default {
-  components: {Header, Top, Remote, Devices, Checklists, Footer},
+  components: {Header, Top, Remote, Devices, Diary, Checklists, Footer},
 }
 
 </script>
@@ -78,6 +80,5 @@ export default {
   align-items: center
   min-height: 100vh
   width: 100%
-  max-width: 900px
 
 </style>

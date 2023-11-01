@@ -18,19 +18,21 @@
 
 <template>
   <section :id='$style.container'>
-    <div :id='$style.left'>
-      <img :src='icon' />
-      <h2 v-html='$md.render(title)'></h2>
-      <p v-html='$md.render(subtitle)'></p>
+    <div :id='$style.piccontainer'>
+      <img :src='pic' />
     </div>
-    <div :id='$style.right' v-html='$md.render(description)'></div>
+    <b>{{ name }}</b>
+    <p v-html='$md.render(description)'></p>
   </section>
 </template>
 
 <script>
 
+import SectionTitle from '~/components/widgets/sectiontitle.vue'
+
 export default {
-  props: ['icon', 'title', 'subtitle', 'description'],
+  props: [ 'pic', 'name', 'description', ],
+  components: {},
 }
 
 </script>
@@ -39,32 +41,22 @@ export default {
 
 #container
   display: flex
-  margin: 30px 0
-
-#left
-  display: flex
   flex-direction: column
-  margin-right: 20px
-  max-width: 200px
+  align-items: center
+  justify-content: center
   text-align: center
 
-#left img
-  height: 100px
-  margin-bottom: 10px
+#container img
+  width: 200px
 
-#left h2
-  margin: 15px 0
-  text-transform: uppercase
+#container > p
+  max-width: 300px
 
-#left h2 strong
-  color: #3bb30b
-
-#left > p
-  font-style: italic
-
-#right
+#piccontainer
   display: flex
-  align-items: center
-  max-width: 400px
+  flex-direction: column
+  justify-content: flex-end
+  height: 200px
+  padding-bottom: 20px
 
 </style>

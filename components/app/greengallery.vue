@@ -17,20 +17,19 @@
  -->
 
 <template>
-  <section :id='$style.container'>
-    <div :id='$style.left'>
-      <img :src='icon' />
-      <h2 v-html='$md.render(title)'></h2>
-      <p v-html='$md.render(subtitle)'></p>
+  <section :id='$style.container' :style='{"background-image": `url(${require("~/assets/img/app/background-gallery.svg")})`}'>
+    <div v-for='item in items' :class='$style.circle'>
+      <img :class='$style.pic' :src='item.pic' />
+      <div :class='$style.title' v-html='$md.render(item.title)'></div>
+      <div :class='$style.subtitle' v-html='$md.render(item.subtitle)'></div>
     </div>
-    <div :id='$style.right' v-html='$md.render(description)'></div>
   </section>
 </template>
 
 <script>
 
 export default {
-  props: ['icon', 'title', 'subtitle', 'description'],
+  props: ['items',],
 }
 
 </script>
@@ -39,32 +38,35 @@ export default {
 
 #container
   display: flex
+  justify-content: center
   margin: 30px 0
+  background-repeat: norepeat
+  background-size: contain
+  width: 100vw
 
-#left
+.circle
   display: flex
   flex-direction: column
-  margin-right: 20px
-  max-width: 200px
-  text-align: center
-
-#left img
-  height: 100px
-  margin-bottom: 10px
-
-#left h2
-  margin: 15px 0
-  text-transform: uppercase
-
-#left h2 strong
-  color: #3bb30b
-
-#left > p
-  font-style: italic
-
-#right
-  display: flex
   align-items: center
-  max-width: 400px
+  justify-content: center
+  background-color: white
+  border-radius: 50%
+  margin: 60px 30px
+  height: 300px
+  width: 300px
+
+.pic
+  width: 50%
+
+.title
+  font-weight: bold
+
+.title strong
+  color: #3bb30b
+  
+.subtitle
+  font-style: italic
+  max-width: 50%
+  text-align: center
 
 </style>
