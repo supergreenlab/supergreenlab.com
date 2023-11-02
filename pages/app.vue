@@ -69,6 +69,22 @@ import Install from '~/components/app/install.vue'
 
 export default {
   components: { SectionTitle, Header, Top, Menu, Remote, Devices, Diary, Checklists, Footer, Install, },
+  head() {
+    return {
+      title: 'SuperGreenApp - The best growing app: Remote control & monitoring, Checklists & reminders, pinlocked grow diary.',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Whether you’re new to growing and need help, or are an advance grower that want to experiment with advanced technics, the SuperGreenLab app can help.
+
+          On top of it’s remote control and monitoring features, the SuperGreenLab app also features an advanced checklist/reminder system.
+
+          By monitoring your diary and environment the app will give your notifications to never mess up your grow.`
+        },
+      ],
+    }
+  },
 }
 
 </script>
