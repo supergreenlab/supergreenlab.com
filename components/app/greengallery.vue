@@ -17,7 +17,7 @@
  -->
 
 <template>
-  <section :id='$style.container' :style='circle ? {"background-image": `url(${require("~/assets/img/app/background-gallery.svg")})`} : {}'>
+  <section :id='$style.container' :class='{ [$style.greengradient]: !!circle }'>
     <div v-for='item in items' :class='{ [$style.item]: true, [$style.circle]: !!circle }'>
       <img :class='$style.pic' :src='item.pic' />
       <div :class='$style.title' v-html='$md.render(item.title)'></div>
@@ -40,9 +40,13 @@ export default {
   display: flex
   justify-content: center
   margin: 30px 0
-  background-repeat: norepeat
-  background-size: contain
   width: 100vw
+  @media only screen and (max-width: 600px)
+    flex-direction: column
+
+.greengradient
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(59,179,11,1) 5%, rgba(59,179,11,1) 95%, rgba(0,212,255,0) 100%); 
 
 .item
   display: flex
@@ -50,16 +54,25 @@ export default {
   align-items: center
   justify-content: center
   width: 400px
+  @media only screen and (min-width: 600px) and (max-width: 800px)
+    width: 300px
 
 .circle
   background-color: white
   border-radius: 50%
-  margin: 60px 30px
+  margin: 40px 30px
   height: 350px
   width: 350px
+  @media only screen and (max-width: 600px)
+    margin: 40px auto
+  @media only screen and (min-width: 600px) and (max-width: 800px)
+    height: 260px
+    width: 260px
 
 .pic
   width: 68%
+  @media only screen and (min-width: 600px) and (max-width: 800px)
+    width: 60%
 
 .circle .title
   margin-top: -5px
@@ -73,7 +86,7 @@ export default {
   
 .subtitle
   font-style: italic
-  max-width: 50%
+  max-width: 60%
   text-align: center
 
 </style>

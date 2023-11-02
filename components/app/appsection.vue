@@ -41,6 +41,10 @@ export default {
 #container
   display: flex
   margin: 30px 0
+  @media only screen and (max-width: 600px)
+    align-items: center
+    flex-direction: column
+    margin: 30px 30px
 
 #left
   display: flex
@@ -48,6 +52,9 @@ export default {
   margin-right: 40px
   max-width: 200px
   text-align: center
+  @media only screen and (max-width: 600px)
+    max-width: 100%
+    margin: 30px 0 20px 0
 
 #left img:first-child
   align-self: center
@@ -69,5 +76,7 @@ export default {
   display: flex
   align-items: center
   max-width: 500px
+  @media only screen and (max-width: 600px)
+    max-width: 100%
 
 </style>
