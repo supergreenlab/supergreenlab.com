@@ -62,7 +62,9 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: center
-  height: 70vh
+  height: 50vh
+  @media only screen and (max-width: 600px)
+    height: 70vh
 
 .title
   font-family: Roboto
