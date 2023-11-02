@@ -19,7 +19,10 @@
 <template>
   <section :id='$style.container'>
     <div :id='$style.left'>
-      <img :src='icon' :style='iconStyle' />
+      <img v-if='!video' :src='icon' :class='iconClass' />
+      <video v-else :class='iconClass' autoplay loop>
+        <source :src='video' type='video/mp4'>
+      </video>
       <h2 v-html='$md.render(title)'></h2>
       <p v-html='$md.render(subtitle)'></p>
       <slot></slot>
@@ -31,7 +34,7 @@
 <script>
 
 export default {
-  props: ['icon', 'iconStyle', 'title', 'subtitle', 'description'],
+  props: ['icon', 'video', 'iconClass', 'title', 'subtitle', 'description'],
 }
 
 </script>
