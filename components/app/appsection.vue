@@ -78,8 +78,10 @@ export default {
 #right
   display: flex
   align-items: center
+  margin-left: 20px
   max-width: 500px
   @media only screen and (max-width: 600px)
+    margin-left: 0px
     max-width: 100%
 
 </style>
