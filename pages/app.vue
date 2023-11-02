@@ -28,9 +28,13 @@
       <Top />
 
       <Menu />
+      <div id='remote'></div>
       <Remote />
+      <div id='devices'></div>
       <Devices />
+      <div id='checklists'></div>
       <Checklists />
+      <div id='diary'></div>
       <Diary />
   
       <div :class='$style.title'>
@@ -78,6 +82,8 @@ export default {
   align-items: center
   margin-top: 60px
   color: #414141
+  max-width: 100vw
+  overflow-x: hidden
 
 #container h1
   font-family: Roboto

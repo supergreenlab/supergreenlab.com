@@ -53,6 +53,7 @@
         },
       ]' />
 
+    <div id='timelapse'></div>
     <AppSection :icon='require("~/assets/img/app/icon-timelapse.svg")'
                 title='REMOTE **CAMERA** AND DAILY **TIMELAPSES**'
                 subtitle='Keep an eye on your grow and see how you plant reacts!'

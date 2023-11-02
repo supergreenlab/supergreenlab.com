@@ -56,6 +56,7 @@ export default {
   align-items: center
   justify-content: center
   width: 400px
+  margin-bottom: 40px
   @media only screen and (min-width: 600px) and (max-width: 800px)
     width: 300px
 

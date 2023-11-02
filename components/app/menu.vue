@@ -24,6 +24,24 @@
                       :border='false'/>
     </div>
 
+    <div :id='$style.menu'>
+      <nuxt-link :class='$style.item' :to='{path: "/app", hash: "#remote"}'>
+        <img src='~/assets/img/app/icon-remote-control.svg' />
+        <p>REMOTE CONTROL & <span :class='$style.green'>MONITORING</span></p>
+      </nuxt-link>
+      <nuxt-link :class='$style.item' :to='{path: "/app", hash: "#timelapse"}'>
+        <img src='~/assets/img/app/icon-timelapse.svg' />
+        <p>TIMELAPSE <span :class='$style.green'>CAMERA</span></p>
+      </nuxt-link>
+      <nuxt-link :class='$style.item' :to='{path: "/app", hash: "#checklists"}'>
+        <img src='~/assets/img/app/icon-checklists.svg' />
+        <p>CHECKLISTS & <span :class='$style.green'>LESSONS</span></p>
+      </nuxt-link>
+      <nuxt-link :class='$style.item' :to='{path: "/app", hash: "#diary"}'>
+        <img src='~/assets/img/app/icon-diary.svg' />
+        <p>PINLOCKED <span :class='$style.green'>DIARY</span></p>
+      </nuxt-link>
+    </div>
   </section>
 </template>
 
@@ -41,6 +59,10 @@ export default {
 
 #container
   display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  height: 70vh
 
 .title
   font-family: Roboto
@@ -48,5 +70,37 @@ export default {
   margin: 30pt 0 30pt 0
   @media only screen and (max-width: 600px)
     margin: 0
+
+#menu
+  display: flex
+  justify-content: center
+
+.item
+  display: flex
+  flex-direction: column
+  align-items: center
+  max-width: 150px
+  text-decoration: none
+  color: black
+  margin: 0 20px
+  color: #454545
+  @media only screen and (max-width: 600px)
+    max-width: 100px
+    margin: 0px
+
+.item:hover
+  text-decoration: underline
+
+.item > img
+  margin-bottom: 5px
+  height: 40px
+
+.item > p
+  text-align: center
+  font-weight: bold
+  font-size: 0.92em
+
+.green
+  color: #3bb30b
 
 </style>

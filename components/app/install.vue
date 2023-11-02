@@ -18,8 +18,8 @@
 
 <template>
   <div :id='$style.stores'>
-    <a href='https://play.google.com/store/apps/details?id=com.supergreenlab.app2'><img src='~/assets/img/app/icon-playstore.png' /></a>
-    <a href='https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318'><img src='~/assets/img/app/icon-appstore.png' /></a>
+    <a target='_blank' href='https://play.google.com/store/apps/details?id=com.supergreenlab.app2'><img src='~/assets/img/app/icon-playstore.png' /></a>
+    <a target='_blank' href='https://apps.apple.com/gb/app/supergreenlab-grow-assistant/id1502232318'><img src='~/assets/img/app/icon-appstore.png' /></a>
   </div>
 </template>
 
