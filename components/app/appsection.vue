@@ -20,7 +20,7 @@
   <section :id='$style.container'>
     <div :id='$style.left'>
       <img v-if='!video' :src='icon' :class='iconClass' />
-      <video v-else :class='iconClass' autoplay loop>
+      <video v-else :class='iconClass' autoplay loop defaultMuted muted playsinline>
         <source :src='video' type='video/mp4'>
       </video>
       <h2 v-html='$md.render(title)'></h2>

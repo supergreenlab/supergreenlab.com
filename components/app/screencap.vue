@@ -18,7 +18,7 @@
 
 <template>
   <div :id='$style.container'>
-    <video width='97%' height='97%' autoplay loop>
+    <video width='97%' height='97%' autoplay loop defaultMuted muted playsinline>
       <source :src='video' type='video/mp4'>
     </video>
     <img src='~/assets/img/app/mobile-frame.png' />
