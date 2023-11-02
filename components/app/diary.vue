@@ -87,5 +87,7 @@ export default {
   display: flex
   margin-top: 20px
   justify-content: center
+  @media only screen and (max-width: 600px)
+    margin: 30px 0
 
 </style>

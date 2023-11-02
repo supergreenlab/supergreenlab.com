@@ -19,11 +19,6 @@
 <template>
   <section :id='$style.container'>
     <div :class='$style.title'>
-      <SectionTitle title='ALL-IN-ONE **FEATURE** SET'
-                      center='true'
-                      :border='false'/>
-    </div>
-    <div :class='$style.title'>
       <SectionTitle title='REMOTE **CONTROL** & **MONITORING**'
                       center='true'
                       :border='true'/>

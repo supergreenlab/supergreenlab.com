@@ -27,6 +27,7 @@
     <div :id='$style.content'>
       <Top />
 
+      <Menu />
       <Remote />
       <Devices />
       <Checklists />
@@ -54,6 +55,7 @@
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import Header from '~/components/layout/header.vue'
 import Top from '~/components/app/top.vue'
+import Menu from '~/components/app/menu.vue'
 import Remote from '~/components/app/remote.vue'
 import Devices from '~/components/app/devices.vue'
 import Diary from '~/components/app/diary.vue'
@@ -62,7 +64,7 @@ import Footer from '~/components/layout/footer.vue'
 import Install from '~/components/app/install.vue'
 
 export default {
-  components: { SectionTitle, Header, Top, Remote, Devices, Diary, Checklists, Footer, Install, },
+  components: { SectionTitle, Header, Top, Menu, Remote, Devices, Diary, Checklists, Footer, Install, },
 }
 
 </script>
