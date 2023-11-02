@@ -37,7 +37,9 @@
                 &nbsp;
                 **And of course the app can be pinlocked 🔒**'>
 
-      <img :id='$style.diarypic' src='~/assets/img/app/pic-diary-video.png' />
+      <div :id='$style.diarypic'>
+        <ScreenCap video='/diary_scroll.mp4' />
+      </div>
 
     </AppSection>
 
@@ -60,9 +62,10 @@
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 import AppSection from '~/components/app/appsection.vue'
 import GreenGallery from '~/components/app/greengallery.vue'
+import ScreenCap from '~/components/app/screencap.vue'
 
 export default {
-  components: {SectionTitle, AppSection, GreenGallery, },
+  components: {SectionTitle, AppSection, GreenGallery, ScreenCap, },
 }
 
 </script>

@@ -42,6 +42,8 @@ export default {
 
 #stores a img
   height: 50px
+  @media only screen and (max-width: 600px)
+    height: 40px
 
 
 </style>

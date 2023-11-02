@@ -63,6 +63,8 @@ export default {
   flex-direction: column
   align-items: center
   margin-top: 60px
+  @media only screen and (max-width: 600px)
+    margin-top: 0px
 
 #logocontainer
   display: flex
@@ -70,17 +72,27 @@ export default {
   font-size: 4em
   margin-top: 40px
   margin-bottom: 80px
+  @media only screen and (max-width: 600px)
+    margin-top: 20px
+    margin-bottom: 40px
 
 #logo
+  display: flex
   font-family: 'PlumeAd'
   text-transform: uppercase
   letter-spacing: 1pt
   word-spacing: -15pt
   @media only screen and (max-width: 600px)
-    word-spacing: -4pt
+    flex-direction: column
+    align-items: center
+
+#logo > span
+  line-height: 50px
 
 .supergreen
   color: #3BB30B
+  @media only screen and (max-width: 600px)
+    font-size: 1.3em
 
 .supersmall
   font-size: 0.8em
@@ -88,6 +100,9 @@ export default {
 #intro
   display: flex
   align-items: center
+  @media only screen and (max-width: 600px)
+    padding: 0 25px
+    flex-direction: column
 
 .green
   color: #3bb30b
