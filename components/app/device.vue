@@ -46,6 +46,10 @@ export default {
   justify-content: center
   text-align: center
 
+
+#container > b
+  margin: 0 0 10px 0
+
 #container img
   width: 200px
 

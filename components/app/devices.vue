@@ -39,7 +39,7 @@
       <div :class='$style.device'>
         <Device :pic='require("~/assets/img/app/pic-camera.png")'
                     name='Raspberry PI + camera'
-                    description='The best way to see how your plant actually feels. Receive daily and weekly timelapses of your plant.' />
+                    description='The best way to **see how your plant actually feels**. Receive daily and weekly timelapses of your plant.' />
       </div>
       <div :class='$style.device'>
         <Device :pic='require("~/assets/img/app/pic-sensors.png")'
@@ -88,6 +88,7 @@ export default {
   flex-basis: 50%
   margin: 20px 0
   @media only screen and (max-width: 600px)
-    margin: 30px 10px
+    flex-basis: 100%
+    margin: 30px 30px
 
 </style>
