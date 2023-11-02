@@ -71,7 +71,7 @@ export default {
   components: { SectionTitle, Header, Top, Menu, Remote, Devices, Diary, Checklists, Footer, Install, },
   head() {
     return {
-      title: 'SuperGreenApp - The best growing app: Remote control & monitoring, Checklists & reminders, pinlocked grow diary.',
+      title: 'SuperGreenApp - The best growing app: Remote control & monitoring, Checklists & reminders, pinlocked grow diary and community sharing.',
       meta: [
         {
           hid: 'description',
