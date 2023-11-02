@@ -43,7 +43,7 @@
 
     </AppSection>
 
-    // TODO add diary replication explaination
+    <!--// TODO add diary replication explaination-->
 
     <AppSection :icon='require("~/assets/img/app/icon-community.png")'
                 title='SHARE WITH THE **COMMUNITY**'
