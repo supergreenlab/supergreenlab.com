@@ -80,9 +80,14 @@ export default {
   flex-wrap: wrap
   width: 100%
   max-width: 750px
+  @media only screen and (max-width: 600px)
+    align-items: center
+    justify-content: center
 
 .device
   flex-basis: 50%
   margin: 20px 0
+  @media only screen and (max-width: 600px)
+    margin: 30px 10px
 
 </style>

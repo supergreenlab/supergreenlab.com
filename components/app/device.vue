@@ -51,6 +51,8 @@ export default {
 
 #container > p
   max-width: 300px
+  @media only screen and (max-width: 600px)
+    max-width: 500px
 
 #piccontainer
   display: flex
@@ -58,5 +60,7 @@ export default {
   justify-content: flex-end
   height: 200px
   padding-bottom: 20px
+  @media only screen and (max-width: 600px)
+    height: auto
 
 </style>

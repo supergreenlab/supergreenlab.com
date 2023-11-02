@@ -84,6 +84,8 @@ export default {
     margin: 0
 
 #diarypic
+  display: flex
   margin-top: 20px
+  justify-content: center
 
 </style>

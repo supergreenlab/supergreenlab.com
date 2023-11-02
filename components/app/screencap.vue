@@ -38,6 +38,7 @@ export default {
 #container
   display: flex
   position: relative
+  width: 200px
   height: 400px
 
 #container video

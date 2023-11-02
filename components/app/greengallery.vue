@@ -43,6 +43,8 @@ export default {
   width: 100vw
   @media only screen and (max-width: 600px)
     flex-direction: column
+    align-items: center
+    padding: 40px 0
 
 .greengradient
   background: rgb(2,0,36);
@@ -64,7 +66,7 @@ export default {
   height: 350px
   width: 350px
   @media only screen and (max-width: 600px)
-    margin: 40px auto
+    margin: 10px auto
   @media only screen and (min-width: 600px) and (max-width: 800px)
     height: 260px
     width: 260px
