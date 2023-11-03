@@ -23,7 +23,7 @@
         <div :id='$style.logo'>
           <span>S<span :class='$style.supersmall'>upe</span>r</span>
           <span :class='$style.supergreen'>G<span :class='$style.supersmall'>ree</span>n</span>
-          <span>A<span :class='$style.supersmall'>a</span>p</span>
+          <span>A<span :class='$style.supersmall'>p</span>p</span>
         </div>
       </div>
 
