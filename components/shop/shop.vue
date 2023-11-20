@@ -59,7 +59,7 @@ export default {
   computed: {
     componentForName: () => name => components[name],
     containersForLocation: () => (location) =>  widgets['shop'].filter(st => !st.test && st.location == location).sort((o1, o2) => o1.order - o2.order),
-    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.expiration || Date.parse(w.expiration) > (new Date()).getTime()),
+    widgetsForContainer: () => (container) => (container.widgets || []).map(wid => widgets['widgets'].find(w => w.id == wid)).filter(w => !w.date || Date.parse(w.date) < (new Date()).getTime()).filter(w => !w.expiration || Date.parse(w.expiration) > (new Date()).getTime()).sort((w1, w2) => (w1.order || 0) - (w2.order || 0)),
   },
   created () {
     if (this.$props.name) {

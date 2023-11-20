@@ -22,6 +22,7 @@
       <div :class='$style.links'>
         <h3><strong>Products</strong></h3>
         <nuxt-link to="/bundle/micro-box-bundle">Ninja Bundle</nuxt-link>
+        <nuxt-link to="/bundle/my-first-stealth-grow-box">Ninja Bundle</nuxt-link>
       </div>
 
       <div :class='$style.links'>
@@ -29,6 +30,7 @@
         <nuxt-link to="/privacy">Privacy Policy</nuxt-link>
         <nuxt-link to="/faq">FAQ</nuxt-link>
         <nuxt-link to="/discord">Discord Support</nuxt-link>
+        <a href="https://growmies.supergreenlab.com">Become affiliate</a>
         <nuxt-link to="/terms">Terms</nuxt-link>
       </div>
 

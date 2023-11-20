@@ -29,12 +29,12 @@
     <div v-if='!nomenu' :id='$style.menu' :style='{"right": (!isActive? "-200pt" : "0pt")}'>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/app") ? $style.selected : ""' to='/app'>App</nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/shop") ? $style.selected : ""' to='/shop'>Shop</nuxt-link></div>
-      <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01'>Stickers!</nuxt-link></div>
+      <!--<div><nuxt-link @click.native='onClick' :class='$route.path.includes("/product/sgl-2x-sticker-sheets-tomtomtom-01") ? $style.selected : ""' to='/product/sgl-2x-sticker-sheets-tomtomtom-01'>Stickers!</nuxt-link></div>-->
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/bundle/micro-box-bundle") ? $style.selected : ""' to='/bundle/micro-box-bundle'>Ninja bundle</nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/bundle/my-first-stealth-grow-box") ? $style.selected : ""' to='/bundle/my-first-stealth-grow-box'>Nano bundle <span :class='$style.new'>New!</span></nuxt-link></div>
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/guides") ? $style.selected : ""' to='/guides'>Guides</nuxt-link></div>
-      <div><a @click='onClick' href='https://discord.gg/YPwAWNh' target='_blank'>Discord</a></div>
-      <div><a @click='onClick' href='https://growmies.supergreenlab.com' target='_blank'>Affiliate</a></div>
+      <div><a @click='onClick' href='https://discord.gg/YPwAWNh' target='_blank'>Support</a></div>
+      <!--<div><a @click='onClick' href='https://growmies.supergreenlab.com' target='_blank'>Affiliate</a></div>-->
       <div><nuxt-link @click.native='onClick' :class='$route.path.includes("/cart") ? $style.selected : ""' to='/cart'>Cart<span v-if='nCartItems != 0'>({{ nCartItems}})</span></nuxt-link></div>
     </div>
   </section>

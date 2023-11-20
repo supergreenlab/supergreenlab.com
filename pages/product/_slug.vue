@@ -432,8 +432,9 @@ export default {
   color: #3bb30b
   font-weight: bold
 
-#description strong
+#description strong, #description a
   color: #3bb30b
+  font-weight: bold
 
 #description p
   margin: 10pt 0

@@ -162,7 +162,7 @@ export default {
   @media only screen and (max-width: 600px)
     margin: 0 5pt
 
-#description strong
+#description strong, #description a
   color: #3BB30B
   font-weight: 600
 

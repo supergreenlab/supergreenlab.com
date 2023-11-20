@@ -94,8 +94,8 @@ export default {
   text-decoration: underline
 
 .item > img
-  margin-bottom: 5px
-  height: 40px
+  margin-bottom: 15px
+  height: 60px
 
 .item > p
   text-align: center

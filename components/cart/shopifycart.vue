@@ -21,6 +21,10 @@
     <div :class='$style.lineItems'>
       <LineItem v-for='lineItem in cart' :key='lineItem.sellingPoint.id' :lineItem='lineItem' :alternative='alternative' />
     </div>
+    <div v-if='cart.length != 0 && !hasStickers' :id='$style.stickers'>
+      <h3>Support SGL by adding these stickers to your cart 💚</h3>
+      <ProductItem :location='checkout' :product='stickersProduct' />
+    </div>
     <div :id='$style.checkoutbutton'>
       <div v-if='psuDisclaimer' :id='$style.psuDisclaimer'><b>{{ nRequirePSU }} item{{ nRequirePSU > 1 ? 's' : ''}}</b> require a <nuxt-link to='/product/power-supply-24v-6-25a'>PSU</nuxt-link>, <b>you only have {{ nPSUs }} PSUs</b> in your cart, <b>make sure you have enough.</b><br /></div>
       <CheckoutButton :cart='cart' v-model='promocode' :promocodePrompt='true' @click='startCheckout' :valid='valid' />
@@ -36,11 +40,13 @@ import Header from '~/components/layout/header.vue'
 import Footer from '~/components/layout/footer.vue'
 import LineItem from '~/components/cart/lineitem.vue'
 import CheckoutButton from '~/components/cart/checkoutbutton.vue'
+import ProductItem from '~/components/products/smallproductitem.vue'
 
 import { addEventListener, availHeight, availWidth, screenX } from '~/lib/client-side.js'
+import { product } from '~/lib/json_db.js'
 
 export default {
-  components: {Header, Footer, LineItem, CheckoutButton,},
+  components: {Header, Footer, LineItem, CheckoutButton, ProductItem,},
   props: ['seller', 'alternative',],
   destroyed() {
     if (this.timeout) clearTimeout(this.timeout)
@@ -86,12 +92,18 @@ export default {
         }, 400)
       },
     },
+    stickersProduct() {
+      return product('recA9OzCLgi3JaSIO')
+    },
     valid() {
       return this.cart.findIndex(lineItem => lineItem.sellingPoint.outofstock) == -1
     },
     cart() {
       const { seller } = this.$props
       return this.$store.getters['checkout/cart'].filter(lineItem => lineItem.sellingPoint.Seller[0] === seller.id)
+    },
+    hasStickers() {
+      return this.$store.getters['checkout/cart'].find(lineItem => lineItem.product.id == 'recA9OzCLgi3JaSIO')
     },
     nRequirePSU() {
       const lineItems = this.cart
@@ -147,5 +159,8 @@ export default {
   color: #454545
   > b
     color: #3bb30b
+
+#stickers
+  color: #454545
 
 </style>
