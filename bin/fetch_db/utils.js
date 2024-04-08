@@ -10,8 +10,8 @@ const staticPath = 'static'
 
 const Airtable = require('airtable')
 
-const { AIRTABLE_BASE, AIRTABLE_APIKEY } = process.env
-Airtable.configure({ apiKey: AIRTABLE_APIKEY })
+const { AIRTABLE_BASE, AIRTABLE_TOKEN  } = process.env
+Airtable.configure({ apiKey: AIRTABLE_TOKEN })
 const eshop = Airtable.base(AIRTABLE_BASE)
 
 const fetchFile = async (url, dst, path=assetsPath) => {

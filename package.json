@@ -38,7 +38,7 @@
     "vue2-touch-events": "^3.0.1"
   },
   "devDependencies": {
-    "airtable": "^0.10.1",
+    "airtable": "^0.12.2",
     "deepmerge": "^4.2.2",
     "nodemon": "^2.0.12",
     "sharp": "^0.27.1",
