@@ -49,7 +49,6 @@
 <script>
 import SectionTitle from '~/components/widgets/sectiontitle.vue'
 
-
 export default {
   components: { SectionTitle },
   props: ['location',],
