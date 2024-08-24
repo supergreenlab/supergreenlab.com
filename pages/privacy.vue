@@ -29,8 +29,8 @@
 									 <p :class="$style.c0"><span :class="$style.c2">This document can be printed for reference by using the print command in the settings of any browser.</span></p>
 									 <h2 :class="$style.c3" id="h.z3gzva5oqebm"><span :class="$style.c11">Owner and Data Controller</span></h2>
 									 <p :class="$style.c0"><span :class="$style.c2">Hackerman Barcelona Agency 42 SL (ESB67422634)</span></p>
-									 <p :class="$style.c0"><span>8bis passeig del fonoll, bloc A casa 7<br>08870 Sitges Barcelona<br>Spain</span></p>
-									 <p :class="$style.c0"><span :class="$style.c14">Owner contact email:</span><span :class="$style.c2">&nbsp;contact@supergreenlab.com</span></p>
+									 <p :class="$style.c0"><span>8bis passeig del fonoll<br>08870 Sitges Barcelona<br>Spain</span></p>
+									 <p :class="$style.c0"><span :class="$style.c14">Owner contact email:</span><span :class="$style.c2">&nbsp;constantin@hackerman-agency.com</span></p>
 									 <h2 :class="$style.c3" id="h.l6ftyhvqkj6r"><span :class="$style.c11">Types of Data collected</span></h2>
 									 <p :class="$style.c0"><span :class="$style.c2">Among the types of Personal Data that SuperGreenLab collects, by itself or through third parties, there are: Cookies; Usage Data; device information; geography/region; number of Users ; number of sessions; session duration; Application opens; Application updates; first launches; operating systems; first name; last name; email address; Data communicated while using the service; username; country; app information; device logs; Camera permission; Storage permission; Photo Library permission; various types of Data; payment data.</span></p>
 									 <p :class="$style.c0"><span :class="$style.c2">Complete details on each type of Personal Data collected are provided in the dedicated sections of this privacy policy or by specific explanation texts displayed prior to the Data collection.</span></p>
