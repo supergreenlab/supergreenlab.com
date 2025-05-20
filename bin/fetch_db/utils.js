@@ -46,7 +46,7 @@ module.exports.emptyAssetsDir = emptyAssetsDir
 const mkAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
   try {
-    await fs.mkdir(dir)
+    await fs.mkdir(dir, { recursive: true })
   } catch(e) {
     console.log(`mkAssetsDir error: ${e}`)
   }
