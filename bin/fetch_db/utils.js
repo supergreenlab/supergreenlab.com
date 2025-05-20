@@ -47,7 +47,9 @@ const mkAssetsDir = async (dir) => {
   dir = `${assetsPath}/${dir}`
   try {
     await fs.mkdir(dir)
-  } catch(e) {}
+  } catch(e) {
+    console.log(`mkAssetsDir error: ${e}`)
+  }
 }
 module.exports.mkAssetsDir = mkAssetsDir
 
